@@ -65,7 +65,6 @@ bool Entity::HasParent()
 
 Entity::Entity(std::string _name,Scene* _scene) : name(_name) , transform(Transform(*this))
 {
-	scene = _scene;
 	this->AddComponent<Transform>(&transform);
 	this->ID = GloblalIDs;
 	GloblalIDs++;

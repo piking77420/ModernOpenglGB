@@ -14,7 +14,7 @@ void PointLight::SetUniform(Shader* shader) const
 		std::string Setuniform = "pointLights[" + std::to_string(pointLightID) + "]";
 		shader->Use();
 		shader->SetInt("nbrOfPointLight", Light::NbrofPointLight);
-		shader->SetVector3(Setuniform + ".position", EntityAttachTo.transform.GetWordlPos().GetPtr());
+		shader->SetVector3(Setuniform + ".position", EntityAttachTo->transform.GetWordlPos().GetPtr());
 		shader->SetVector3(Setuniform + ".ambient", ambiant.GetPtr());
 		shader->SetVector3(Setuniform + ".diffuse", diffuse.GetPtr());
 		shader->SetVector3(Setuniform + ".specular", specular.GetPtr());
@@ -47,7 +47,7 @@ void PointLight::ImguiWindowComponents()
 	ImGui::Text(" ");
 }
 
-PointLight::PointLight(Entity& entityAttach, const Vector4& _ambiant, const Vector4& _diffuse, const Vector4& _specular) : constant(1.0f) , linear(0.09f) , quadralitic(0.032f) ,Light(entityAttach)
+PointLight::PointLight( const Vector4& _ambiant, const Vector4& _diffuse, const Vector4& _specular) : constant(1.0f) , linear(0.09f) , quadralitic(0.032f) 
 {
 	pointLightID = Light::NbrofPointLight;
 	Light::NbrofPointLight++;
@@ -57,7 +57,7 @@ PointLight::PointLight(Entity& entityAttach, const Vector4& _ambiant, const Vect
 	specular = _specular;
 }
 
-PointLight::PointLight(Entity& entityAttach, const Vector4& _ambiant, const Vector4& _diffuse, const Vector4& _specular,float _constant , float _linear , float _quadralitic) :  Light(entityAttach) 
+PointLight::PointLight( const Vector4& _ambiant, const Vector4& _diffuse, const Vector4& _specular,float _constant , float _linear , float _quadralitic)  
 {
 	pointLightID = Light::NbrofPointLight;
 	Light::NbrofPointLight++;
@@ -70,7 +70,7 @@ PointLight::PointLight(Entity& entityAttach, const Vector4& _ambiant, const Vect
 	quadralitic = _quadralitic;
 }
 
-PointLight::PointLight(Entity& entityAttach) : constant(1.0f), linear(0.09f), quadralitic(0.032f) , Light(entityAttach)
+PointLight::PointLight() : constant(1.0f), linear(0.09f), quadralitic(0.032f) 
 {
 	pointLightID = Light::NbrofPointLight;
 	Light::NbrofPointLight++;

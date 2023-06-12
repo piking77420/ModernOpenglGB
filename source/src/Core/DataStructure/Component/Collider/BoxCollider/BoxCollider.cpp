@@ -14,38 +14,38 @@ void BoxCollider::ImguiWindowComponents()
 
 }
 
-BoxCollider::BoxCollider(Entity& entitytoAttach) : Collider(entitytoAttach), mSize(entitytoAttach.transform.scale)
+BoxCollider::BoxCollider() : mSize(EntityAttachTo->transform.scale)
 {
 	m_ComponentName = "BOX COLLIDER";
 
 
 	std::vector<Vector3> verticies;
-	BoxGizmo* gizom = new BoxGizmo(EntityAttachTo, mSize);
+	BoxGizmo* gizom = new BoxGizmo(*EntityAttachTo, mSize);
 	Gizmorenderer = gizom;
 
 	for (size_t i = 0; i < Gizmorenderer->m_Model->vertexVector.size(); i++)
 	{
 		verticies.push_back(Gizmorenderer->m_Model->vertexVector[i].Position);
 	}
-	AABCollision* type = new AABCollision(EntityAttachTo, verticies, mSize);
+	AABCollision* type = new AABCollision(*EntityAttachTo, verticies, mSize);
 
 	CollisionShape.push_back(type);
 }
 
-BoxCollider::BoxCollider(Entity& entitytoAttach , Vector3 size) : Collider(entitytoAttach) , mSize(size)
+BoxCollider::BoxCollider(Vector3 size) :  mSize(size)
 {
 	m_ComponentName = "BOX COLLIDER";
 
 
 	std::vector<Vector3> verticies;
-	BoxGizmo* gizom = new BoxGizmo(EntityAttachTo, mSize);
+	BoxGizmo* gizom = new BoxGizmo(*EntityAttachTo, mSize);
 	Gizmorenderer = gizom;
 		
 	for (size_t i = 0; i < Gizmorenderer->m_Model->vertexVector.size(); i++)
 	{
 		verticies.push_back(Gizmorenderer->m_Model->vertexVector[i].Position);
 	}
-	AABCollision* type = new AABCollision(EntityAttachTo, verticies, mSize);
+	AABCollision* type = new AABCollision(*EntityAttachTo, verticies, mSize);
 	
 	CollisionShape.push_back(type);
 }

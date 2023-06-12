@@ -7,21 +7,21 @@
 
 
 
-SphereCollider::SphereCollider(Entity& entity) : Collider(entity) ,   radius(1.f)
+SphereCollider::SphereCollider() : radius(1.f)
 {
 	ID = SPHERE;
 	this->m_ComponentName = "SphereCollider";
-	CollisionShape.push_back(new SphereCollision(EntityAttachTo,this->radius));
-	Gizmorenderer = new SphereGizmo(EntityAttachTo,this->radius);
+	CollisionShape.push_back(new SphereCollision(*EntityAttachTo,this->radius));
+	Gizmorenderer = new SphereGizmo(*EntityAttachTo,this->radius);
 }
 
-SphereCollider::SphereCollider(Entity& entity, float radius) : Collider(entity) 
+SphereCollider::SphereCollider(float radius)
 {	
 	ID = SPHERE;
 	this->m_ComponentName = "SphereCollider";
 	this->radius = radius;
-	CollisionShape.push_back(new SphereCollision(EntityAttachTo, this->radius));
-	Gizmorenderer = new SphereGizmo(entity, this->radius);
+	CollisionShape.push_back(new SphereCollision(*EntityAttachTo, this->radius));
+	Gizmorenderer = new SphereGizmo(*EntityAttachTo,this->radius);
 
 }
 

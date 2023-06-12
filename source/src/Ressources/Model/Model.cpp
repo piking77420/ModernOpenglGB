@@ -407,8 +407,36 @@ ModelData Model::ReadModelFileOBJ(std::ifstream& stream , bool* isFaced , bool* 
 }
 
 #pragma endregion
+/*
+void Model::Load(std::string path)
+{
+	
+	bool Is3dTextureCoordinate;
 
-void Model::Draw() const 
+	bool IsFaced;
+
+	name = RessourcesManager::GetRessourcesName(path);
+	std::ifstream stream(path);
+
+	if (!stream.is_open())
+	{
+		Debug::Log->LogWarning("String doesn't match with any model");
+		Debug::Assert->Assertion(stream.is_open());
+	}
+	else
+	{
+		Debug::Log->LogGood("Model " + name + " has been corretly loaded");
+	}
+
+	ModelData data = ReadModelFileOBJ(stream, &IsFaced, &Is3dTextureCoordinate);
+
+
+	LoadVertex(data, IsFaced, Is3dTextureCoordinate);
+
+	
+}
+*/
+void Model::Draw() const
 {
 	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBindVertexArray(VAO);

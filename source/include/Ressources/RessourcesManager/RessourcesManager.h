@@ -13,9 +13,6 @@
 #include<Core/Debug/Imgui/imgui_impl_glfw.h>
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>
 
-// Make a rules for template is not bas of Iressources = error
-template<class T>
-concept IResourceClass = std::is_base_of<IResource, T>::value;
 
 class Camera;
 
@@ -29,15 +26,22 @@ public:
 	void LoadAllAssets();
 	template<class T>
 	void Remove(const std::string& name);
-	template<class IResource>
-	void PushBackElement(std::string name, IResource* newElement);
+	template<class T>
+	void PushBackElement(std::string name, T* newElement);
 	template<class T>
 	T* GetElement(const std::string& name);
 	template<class T>
 	T* Create(std::string name);
 	
+	template<class T>
+	bool IsRessourcesIs(IResource* ressources) const ;
 
-	void RealoadAllTexture();
+	template<class T>
+	T* TryIsTypeOf(IResource* ressources) const;
+
+
+	void ImguiSceneManagers() const;
+
 	RessourcesManager();
 	~RessourcesManager();
 private:
@@ -47,6 +51,7 @@ private:
 	void LookFiles(std::filesystem::path _path);
 	void LoadModel(std::filesystem::path path);
 	void LoadShader(std::filesystem::path path);
+	void LoadScene(std::filesystem::path path);
 
 
 	// Texture file accetptes jpg png 
@@ -58,7 +63,8 @@ private:
 	const std::string vertexShaderFormat = ".vertex";
 	const std::string fragmentShaderFormat = ".frag";
 	const std::string geometryShaderFormat = ".geom";
-
+	// Scene Format
+	const std::string sceneFormat = ".scene";
 	// Assets Folder
 	const std::string assetsFolder = "assets";
 	// cubeMaps folder to ignore not supported TO DO	
@@ -68,9 +74,14 @@ private:
 static RessourcesManager* StaticRessourcesManger;
 
 
-template<class IResource>
-inline void RessourcesManager::PushBackElement(std::string name, IResource* newElement)
+template<class T>
+inline void RessourcesManager::PushBackElement(std::string name, T* newElement)
 {
+	IResource* test = dynamic_cast<IResource*>(newElement);
+	
+	Debug::Assert->Assertion(test);
+
+
 	if (m_MainResourcesMap.contains(name))
 	{
 		auto currentRessources = m_MainResourcesMap.find(name);
@@ -104,6 +115,7 @@ template<class T>
 inline T* RessourcesManager::Create(std::string name)
 {
 	T* newRessources = new T(name);
+	
 	std::string Correctname = GetRessourcesName(name);
 
 	if (m_MainResourcesMap.contains(Correctname))
@@ -121,6 +133,33 @@ inline T* RessourcesManager::Create(std::string name)
 
 	return newRessources;
 }
+
+template<class T>
+inline bool RessourcesManager::IsRessourcesIs(IResource* ressources) const
+{
+	T* ptrTest = dynamic_cast<T*>(ressources);
+
+	if (!ptrTest)
+		return false;
+
+	return true;
+}
+
+template<class T>
+inline T* RessourcesManager::TryIsTypeOf(IResource* ressources) const
+{
+
+	T* ptrTest = dynamic_cast<T*>(ressources);
+
+	if(ptrTest)
+	{
+		return ptrTest;
+	}
+
+
+	return nullptr;
+}
+
 
 
 

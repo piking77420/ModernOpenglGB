@@ -12,7 +12,6 @@
 #include<Core/Debug/Imgui/imgui_impl_glfw.h>
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>
 #include "Mathf.h"
-#include"Core/Input/PlayerInputs.h"
 
 
 
@@ -34,14 +33,11 @@ class App
 public:	
 
 
-	void GetInputOutPout(const ImGuiIO& io);
 	void AppUpdate(); 
 
 	static bool GammaCorrection;	
-	Scene* currentScene;
-	
+	static Scene* currentScene;
 	RessourcesManager* m_Ressources;
-	PlayerInputs Inputs;
 
 	App(int _WindowX, int _WindowY, ImGuiIO& _io);
 	~App();
@@ -56,10 +52,11 @@ private:
 	void InitImguiTheme();
 	void ImguiInspector() const;
 	void ImguiGraphScene() const;
-	void ImguiAppInfo() ;
+	void ImguiAppInfo();
 	void ImguiDrawChildren(Entity* entity) const;
 	SkyBox* m_CurrentSkybox;
 	Shader* m_CurrentPostProcess;
+	
 
 };
 

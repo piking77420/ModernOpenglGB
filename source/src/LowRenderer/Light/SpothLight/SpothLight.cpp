@@ -13,7 +13,7 @@ void SpothLight::SetUniform(Shader* shader) const
 	{
 		shader->Use();
 		shader->SetInt("nbrOfSpothLightLight", Light::NbrofSpothLight);
-		shader->SetVector3(setuniform +".position", EntityAttachTo.transform.GetWordlPos().GetPtr());
+		shader->SetVector3(setuniform +".position", EntityAttachTo->transform.GetWordlPos().GetPtr());
 		shader->SetVector3(setuniform +".direction", SpothDirection.GetPtr());
 		shader->SetVector3(setuniform +".ambient", ambiant.GetPtr());
 		shader->SetVector3(setuniform +".diffuse", diffuse.GetPtr());
@@ -50,7 +50,7 @@ void SpothLight::ImguiWindowComponents()
 	ImGui::Text(" ");
 }
 
-SpothLight::SpothLight(Entity& entityAttach, const Vector4& _ambiant, const Vector4& _diffuse, const Vector4& _specular, const Vector3& _LightDirection, const Vector3& _spothDirection, const SpothLightData& _spothData) : Light(entityAttach)
+SpothLight::SpothLight( const Vector4& _ambiant, const Vector4& _diffuse, const Vector4& _specular, const Vector3& _LightDirection, const Vector3& _spothDirection, const SpothLightData& _spothData) 
 {
 	Light::NbrofSpothLight++;
 	m_ComponentName = "Spothlight";
@@ -65,7 +65,7 @@ SpothLight::SpothLight(Entity& entityAttach, const Vector4& _ambiant, const Vect
 	
 }
 
-SpothLight::SpothLight(Entity& entityAttach) : Light(entityAttach)  
+SpothLight::SpothLight() 
 {
 	SpothLightID = Light::NbrofSpothLight;
 	Light::NbrofSpothLight++;

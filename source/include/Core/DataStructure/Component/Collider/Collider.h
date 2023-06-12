@@ -31,7 +31,7 @@ public:
 
 
 
-	Collider(Entity& entity) : Component(entity) { isCollided = false;
+	Collider() { isCollided = false;
 	Gizmorenderer = nullptr;
 	};
 	virtual	~Collider()

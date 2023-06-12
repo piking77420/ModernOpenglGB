@@ -34,7 +34,7 @@ void UIRenderer::Draw(Scene* scene, Shader* shader)
 {
 	Matrix4X4 orthoMatrix = Matrix4X4().OrthoGraphicMatrix(-9.6, 9.6, -5.4, 5.4, 0, 1000);
 
-	Matrix4X4 model = EntityAttachTo.transform.GetMatrix();
+	Matrix4X4 model = EntityAttachTo->transform.GetMatrix();
 	
 	shader->Use();
 	texure.BindTexture();	

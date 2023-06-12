@@ -19,9 +19,9 @@ public:
 	float linear;
 	float quadralitic;
 	
-	PointLight(Entity& entityAttach ,const Vector4& _ambiant, const Vector4& _diffuse, const Vector4& _specular);
-	PointLight(Entity& entityAttach,const Vector4& _ambiant, const Vector4& _diffuse, const Vector4& _specular, float _constant, float _linear, float _quadralitic);
-	PointLight(Entity& entityAttach);
+	PointLight(const Vector4& _ambiant, const Vector4& _diffuse, const Vector4& _specular);
+	PointLight(const Vector4& _ambiant, const Vector4& _diffuse, const Vector4& _specular, float _constant, float _linear, float _quadralitic);
+	PointLight();
 	~PointLight();
 private:
 

@@ -4,7 +4,7 @@
 #include "External/Std_Image/std_image.h"
 #include "App/App.h"
 
-int Texture::nbrOfLoadedTexture = 0;
+int Texture::GlobTextureNbr = 0;
 Texture::Texture(const std::string& ImagePath, GLenum TextureType, GLenum pixelType)
 {
     imagePath = ImagePath;
@@ -24,7 +24,7 @@ Texture::Texture(const std::string& ImagePath, GLenum TextureType, GLenum pixelT
     }
 
     glGenTextures(1, &ID);
-    glActiveTexture(GL_TEXTURE0 + nbrOfLoadedTexture);
+    glActiveTexture(GL_TEXTURE0 + GlobTextureNbr);
     glBindTexture(TextureType, ID);
 
     glTexImage2D(TextureType, 0, format, width, height, 0, format, pixelType, data);
@@ -34,8 +34,8 @@ Texture::Texture(const std::string& ImagePath, GLenum TextureType, GLenum pixelT
 
     stbi_image_free(data);
 
-    slot = nbrOfLoadedTexture;
-    nbrOfLoadedTexture++;
+    slot = GlobTextureNbr;
+    GlobTextureNbr++;
 }
 
 Texture::Texture(const std::string& ImagePath)
@@ -57,7 +57,7 @@ Texture::Texture(const std::string& ImagePath)
     }
 
     glGenTextures(1, &ID);
-    glActiveTexture(GL_TEXTURE0 + nbrOfLoadedTexture);
+    glActiveTexture(GL_TEXTURE0 + GlobTextureNbr);
     glBindTexture(type, ID);
 
     glTexImage2D(type, 0, format, width, height, 0, format, pixelType, data);
@@ -67,8 +67,8 @@ Texture::Texture(const std::string& ImagePath)
 
     stbi_image_free(data);
 
-    slot = nbrOfLoadedTexture;
-    nbrOfLoadedTexture++;
+    slot = GlobTextureNbr;
+    GlobTextureNbr++;
 }
 
 Texture::Texture(const std::string& ImagePath, GLenum TextureType, GLenum pixelType, bool isNormalMap)
@@ -91,7 +91,7 @@ Texture::Texture(const std::string& ImagePath, GLenum TextureType, GLenum pixelT
     }
 
     glGenTextures(1, &ID);
-    glActiveTexture(GL_TEXTURE0 + nbrOfLoadedTexture);
+    glActiveTexture(GL_TEXTURE0 + GlobTextureNbr);
     glBindTexture(TextureType, ID);
 
     glTexImage2D(TextureType, 0, format, width, height, 0, format, pixelType, data);
@@ -101,8 +101,8 @@ Texture::Texture(const std::string& ImagePath, GLenum TextureType, GLenum pixelT
 
     stbi_image_free(data);
 
-    slot = nbrOfLoadedTexture;
-    nbrOfLoadedTexture++;
+    slot = GlobTextureNbr;
+    GlobTextureNbr++;
 }
 
 
@@ -188,19 +188,7 @@ void Texture::TextureShaderUniform(const Shader& shader, const char* uniform, GL
 
 }
 
-void Texture::UpdateTextureToGammaCorrection()
-{
 
-
-    stbi_set_flip_vertically_on_load(true);
-    unsigned char* data = stbi_load(imagePath.c_str(), &width, &height, &nbrOfChannel, 0);
-    format = GetFormat(nbrOfChannel);
-    glBindTexture(type, ID);
-    glTexImage2D(type, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-    glGenerateMipmap(type);
-    stbi_image_free(data);
-
-}
 
 
 

@@ -154,7 +154,7 @@ void PlaneCollision::ImguiWindow()
 
 void PlaneCollision::Update(const Collider& collider)
 {
-	m_P0 = collider.EntityAttachTo.transform.GetWordlPos();
+	m_P0 = collider.EntityAttachTo->transform.GetWordlPos();
 }
 
 PlaneCollision::PlaneCollision(Entity& _currentTransform, const Vector3& _P1, const Vector3& _P2, bool _IsInfinit) : IsInfinite(_IsInfinit)

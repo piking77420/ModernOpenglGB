@@ -30,7 +30,7 @@ void DirectionalLight::SetUniform(Shader* shader) const
 	if(IsEnabled)
 	{
 		shader->Use();
-		shader->SetVector3("lightPos", EntityAttachTo.transform.GetWordlPos().GetPtr());
+		shader->SetVector3("lightPos", EntityAttachTo->transform.GetWordlPos().GetPtr());
 
 		shader->SetVector3("dirLight.direction", Direction.GetPtr());
 		shader->SetVector3("dirLight.ambient", ambiant.GetPtr());
@@ -45,7 +45,7 @@ void DirectionalLight::Update(Scene* scene)
 {
 }
 
-DirectionalLight::DirectionalLight(Entity& entityAttach, const Vector4& _ambiant, const Vector4& _diffuse, const Vector4& _specular, const Vector4& _Direction) :  Light(entityAttach)
+DirectionalLight::DirectionalLight(const Vector4& _ambiant, const Vector4& _diffuse, const Vector4& _specular, const Vector4& _Direction) 
 {
 	m_ComponentName = "DirectionnalLight";
 	ambiant = _ambiant;
@@ -54,7 +54,7 @@ DirectionalLight::DirectionalLight(Entity& entityAttach, const Vector4& _ambiant
 	Direction = _Direction;
 }
 
-DirectionalLight::DirectionalLight(Entity& entityAttach) : Light(entityAttach)
+DirectionalLight::DirectionalLight() 
 {
 	m_ComponentName = "DirectionnalLight";
 

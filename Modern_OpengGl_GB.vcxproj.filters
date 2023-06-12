@@ -186,9 +186,6 @@
     <ClInclude Include="source\include\Physics\RigidBody\Rigidbody.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\Core\Input\PlayerMovement.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="source\include\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -219,6 +216,18 @@
     <ClInclude Include="source\include\Core\DataStructure\Component\Collider\Raycast.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="source\include\Core\Debug\Debug.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\LowRenderer\Ui\UIRenderer.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Physics\CollisionType\AABCollision.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Physics\CollisionType\BoxCollisionType.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
     <ClInclude Include="source\include\Core\Debug\Imgui\imconfig.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -231,9 +240,6 @@
     <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_opengl3.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_opengl3_loader.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="source\include\Core\Debug\Imgui\imgui_internal.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -244,24 +250,6 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="source\include\Core\Debug\Imgui\imstb_truetype.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Core\Debug\Debug.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Core\Input\PlayerInputs.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\LowRenderer\Ui\UIRenderer.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Scripts\KillZone.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Physics\CollisionType\AABCollision.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Physics\CollisionType\BoxCollisionType.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -429,9 +417,6 @@
     <ClCompile Include="source\src\Physics\RigidBody\Rigidbody.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="source\src\Core\Input\PlayerMovement.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -462,6 +447,15 @@
     <ClCompile Include="source\src\Core\DataStructure\Component\Collider\Raycast.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="source\src\LowRenderer\Ui\UIRenderer.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Physics\CollisionType\AABCollision.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Physics\CollisionType\BoxCollisionType.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
     <ClCompile Include="source\include\Core\Debug\Imgui\imgui.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -481,21 +475,6 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\include\Core\Debug\Imgui\imgui_widgets.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\Core\Input\PlayerInputs.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\LowRenderer\Ui\UIRenderer.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\Scripts\KillZone.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\Physics\CollisionType\AABCollision.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\Physics\CollisionType\BoxCollisionType.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

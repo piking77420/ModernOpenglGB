@@ -10,7 +10,6 @@
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 #include"Ressources/RessourcesManager/RessourcesManager.h"
-#include <Core/Input/PlayerMovement.h>
 
 const Vector2 CAMERASENSITIVITY = Vector2(0.2f, 0.2f);
 
@@ -58,13 +57,9 @@ public:
 	bool LeftClick;
 	Vector2 mousePos;
 
-	// Camera FollowPlayer
-	float FollowSpeed;
-	Vector3 OffSet;
 
-	// PlayerInfo
-	Transform* viewTarget;
-	PlayerMovement* playerMovment;
+
+
 private : 
 	void CameraRotation();
 	void CameraMovment(GLFWwindow* context, const ImGuiIO& io);

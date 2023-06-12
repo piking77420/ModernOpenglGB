@@ -29,7 +29,7 @@ void Light::Update(Scene* Scene)
 
 
 
-Light::Light(Entity& entityAttach, Vector4 _ambiant, Vector4 _diffuse, Vector4 _specular, float _specularStrenght) : Component(entityAttach)  
+Light::Light(Vector4 _ambiant, Vector4 _diffuse, Vector4 _specular, float _specularStrenght)
 {
 	ambiant = _ambiant;
 	diffuse = _diffuse;
@@ -37,7 +37,7 @@ Light::Light(Entity& entityAttach, Vector4 _ambiant, Vector4 _diffuse, Vector4 _
 	SpecularStrengt = _specularStrenght;
 }	
 
-Light::Light(Entity& entityAttach) :ambiant(Vector4::One) , diffuse(Vector4::One) , specular(Vector4::One) ,SpecularStrengt(0.4f) , Component(entityAttach)
+Light::Light() :ambiant(Vector4::One) , diffuse(Vector4::One) , specular(Vector4::One) ,SpecularStrengt(0.4f) 
 {
 
 }

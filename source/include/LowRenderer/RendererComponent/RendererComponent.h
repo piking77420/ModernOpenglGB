@@ -5,6 +5,7 @@
 #include<Core/Debug/LogClass.h>
 #include <glad/glad.h>
 #include<GLFW/glfw3.h>
+#include "Ressources/RessourcesManager/RessourcesManager.h"
 #include<Ressources/Texture/Texture.hpp>
 
 #include<LowRenderer/Material/Material.h>
@@ -27,6 +28,8 @@ public:
 	~RendererComponent();
 
 	std::vector<Vertex> vertexVector;
+	static RessourcesManager* ressourcesManager;
+
 private:
 
 

@@ -45,11 +45,9 @@ void Camera::SetCameraInfoForShaders(RessourcesManager& ressourcesManagers)
 
 Matrix4X4 Camera::GetLookMatrix() 
 {
-	if (!viewTarget)
+	
 
-		return Matrix4X4().Identity();
-
-	return Matrix4X4().LookAt(eye, viewTarget->GetWordlPos(), Up);
+	return Matrix4X4().LookAt(eye, eye + Front, Up);
 }
 
 Matrix4X4 Camera::GetProjectionMatrix() const
@@ -66,19 +64,15 @@ void Camera::CameraUpdate()
 	  GLFWwindow* currentContext = glfwGetCurrentContext();
 	  ImGuiIO& io = ImGui::GetIO();
 
-	  if(viewTarget != nullptr)
-	  {
-		  CameraMovment(currentContext, io);
-		  CameraRotation();
-		  Vector3 basepos = eye;
-		  Vector3 newPos = viewTarget->GetWordlPos() + OffSet;
-		  Vector3 smoothedpos = Lerp(basepos, newPos,  FollowSpeed * io.DeltaTime);
-		  eye = smoothedpos;
-		  
-		  m_ProjectionMatrix = m_ProjectionMatrix.ProjectionMatrix((fov), (float)windowWidth / (float)windowHeight, Fnear, Ffar);
-		  m_LookAtMatrix = GetLookMatrix();
-		  VP = m_ProjectionMatrix * m_LookAtMatrix;
-	  }
+	
+	  CameraMovment(currentContext, io);
+	  CameraRotation();
+
+
+	  m_ProjectionMatrix = m_ProjectionMatrix.ProjectionMatrix((fov), (float)windowWidth / (float)windowHeight, Fnear, Ffar);
+	  m_LookAtMatrix = GetLookMatrix();
+	  VP = m_ProjectionMatrix * m_LookAtMatrix;
+	 
 	
 }
 
@@ -108,8 +102,6 @@ void Camera::ImguiCameraWindow()
 		ImGui::DragFloat("CameraSpeed", &cameraVelocity);
 		ImGui::DragFloat("FOV", &fov);
 		ImGui::DragFloat3("Eye ", &eye.x);
-		ImGui::DragFloat3("Offeset", &OffSet.x);
-		ImGui::SliderFloat("FollowSpeed", &FollowSpeed,0,10);
 		ImGui::End();
 	}
 
@@ -137,8 +129,7 @@ Camera::Camera()
 	VP = m_ProjectionMatrix * m_LookAtMatrix;
 	mouseSentivity = CAMERASENSITIVITY;
 
-	OffSet = Vector3(0, 10, -10);		
-	FollowSpeed = 5;
+
 }
 
 
@@ -165,7 +156,7 @@ void Camera::CameraGetInput(float xInput, float yInput)
 
 void Camera::CameraRotation()
 {
-	/*
+	
 	Vector3 frontVector = Vector3::Zero;
 
 	frontVector.x = std::cos(degreesToRadians(yaw)) * std::cos(degreesToRadians(pitch));
@@ -175,14 +166,14 @@ void Camera::CameraRotation()
 	Front = frontVector.Normalize();
 	Right = Front.CrossProduct(Vector3::Up).Normalize();
 	Up = Right.CrossProduct(Front);
-	*/
+	
 }
 
 
 
 void Camera::CameraMovment( GLFWwindow* context,const ImGuiIO& io )
 {
-	/*
+	
 	float velocity = cameraVelocity *  io.DeltaTime;
 
 	if (IskeyPress(context, GLFW_KEY_W))
@@ -216,7 +207,7 @@ void Camera::CameraMovment( GLFWwindow* context,const ImGuiIO& io )
 	{
 		this->eye -= Up * velocity;
 	}
-	*/
+	
 		
 }
 void Camera::MouseCallback(GLFWwindow* context, double _xpos, double _ypos)

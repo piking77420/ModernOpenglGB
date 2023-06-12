@@ -1,21 +1,22 @@
+#include <filesystem>
 #include <ComponentsBehaviours.h>
 #include "Ressources/Scene/Scene.h"
 #include "Core/DataStructure/Component/Collider/SphereCollider/SphereCollider.h"
 #include "Core/DataStructure/Component/Collider/PlaneCollider.h"
-#include "Core/Input/PlayerMovement.h"
 #include "Collider/BoxCollider/BoxCollider.h"
 #include "LowRenderer/Ui/UIRenderer.h"
 
-#define VIKING_ROOM_OFFSET 25
 
 
-Scene::Scene(std::string _name)
+Scene::Scene(std::string _filepath)
 {
 	
 	ressourcesManagers = nullptr;
 	io = nullptr;
-	name = _name;
+	name = RessourcesManager::GetRessourcesName(_filepath);
 	cam = Camera::cam;
+
+
 }
 
 Scene::Scene()
@@ -69,11 +70,20 @@ void Scene::LateUpdate()
 
 }
 
+void Scene::Saving()
+{
+	
+	
+}
+
+IResource* Scene::Load(std::string path)
+{
+	pathLocation = path;
 
 
 
-
-
+	return nullptr;
+}
 
 
 void Scene::RenderScene(Shader* shaderProgramm, Shader* StencilShader) 

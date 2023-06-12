@@ -29,8 +29,8 @@ public:
 	SpothLightData spothData;
 
 	unsigned int SpothLightID;
-	SpothLight(Entity& entityAttach, const Vector4& _ambiant, const Vector4& _diffuse, const Vector4& _specular, const Vector3& _LightDirection, const Vector3& _spothDirection, const SpothLightData& _spothData) ;
-	SpothLight(Entity& entityAttach);
+	SpothLight(const Vector4& _ambiant, const Vector4& _diffuse, const Vector4& _specular, const Vector3& _LightDirection, const Vector3& _spothDirection, const SpothLightData& _spothData) ;
+	SpothLight();
 	~SpothLight();
 private:
 

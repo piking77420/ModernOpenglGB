@@ -12,7 +12,7 @@ void RendererComponent::Draw(Scene* scene, Shader* shader)
 {
 }
 
-RendererComponent::RendererComponent(Entity& entityAttach) : Component(entityAttach)
+RendererComponent::RendererComponent(Entity& entityAttach) 
 {
 }
 

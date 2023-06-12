@@ -34,7 +34,7 @@ void Component::LateUpdate(Scene* scene)
 {
 }
 
-Component::Component(Entity& entity) : EntityAttachTo(entity)
+Component::Component() 
 {
 
 }

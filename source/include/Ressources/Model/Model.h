@@ -33,7 +33,7 @@ public:
 	static Model LoadCube();
 	static Model LoadSphere();
 
-
+	//void Load(std::string path) override;
 	virtual void Draw() const;
 	Model(const float& reduceFormat);
 	Model(const std::string& ModelFileName, const float& reduceFormat);

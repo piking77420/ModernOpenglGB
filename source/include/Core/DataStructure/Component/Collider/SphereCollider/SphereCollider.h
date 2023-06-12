@@ -9,8 +9,8 @@ public:
 		
 	float radius;
 	
-	SphereCollider(Entity& entity);
-	SphereCollider(Entity& entity,float radius);
+	SphereCollider();
+	SphereCollider(float radius);
 	~SphereCollider();
 	void ImguiWindowComponents() override;
 

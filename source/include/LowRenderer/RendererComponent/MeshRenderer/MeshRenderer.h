@@ -29,15 +29,21 @@ public:
 	void MeshRendererDrawStencil(Scene* scene, Shader* shader);
 	void ImguiWindowComponents() override;
 	MeshRenderer(const Model& modelToCopy, const Texture& _textures, Entity& entityAttach);
+	MeshRenderer();
+
 	~MeshRenderer();
 
 	 std::vector<uint32_t> indexVector;
 	 Material material;
 
-private:
-
-	void MeshRendererDraw(Scene* scene, Shader* shader);
 	const Model* m_Model;
+private:
+	char modelName[250];
+	bool OnTyping;
+	bool OnChangModel;
+	void OnTapingModel();
+	void ChangeModel();
+	void MeshRendererDraw(Scene* scene, Shader* shader);
 	Texture texture;
 };
 

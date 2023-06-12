@@ -19,8 +19,8 @@ public:
 	void SetUniform(Shader* shader) const override;
 	void Update(Scene* scene) override;
 
-	DirectionalLight(Entity& entityAttach, const Vector4& _ambiant, const Vector4& _diffuse , const Vector4& _specular, const Vector4& _Direction);
-	DirectionalLight(Entity& entityAttach);
+	DirectionalLight( const Vector4& _ambiant, const Vector4& _diffuse , const Vector4& _specular, const Vector4& _Direction);
+	DirectionalLight();
 	~DirectionalLight();
 
 private:

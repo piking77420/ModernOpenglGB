@@ -18,8 +18,8 @@ public:
 	Vector4 diffuse;
 	Vector4 specular;
 	float SpecularStrengt;
-	Light(Entity& entityAttach,Vector4 _ambiant , Vector4 _diffuse , Vector4 _specular , float _specularStrenght);
-	Light(Entity& entityAttach);
+	Light(Vector4 _ambiant , Vector4 _diffuse , Vector4 _specular , float _specularStrenght);
+	Light();
 	~Light();
 	
 private:

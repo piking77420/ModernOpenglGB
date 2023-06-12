@@ -9,6 +9,12 @@ class Texture : public IResource
 {
 public:
 
+	
+
+	void BindTexture() const;
+	void UnBindTexture()const;
+	void DeleteTexture();
+	void TextureShaderUniform(const Shader& shader, const char* uniform, GLuint unit);
 
 	GLuint ID;
 	GLenum type;
@@ -20,13 +26,7 @@ public:
 	int nbrOfChannel;
 
 
-	static int nbrOfLoadedTexture;
 
-	void BindTexture() const;
-	void UnBindTexture()const;
-	void DeleteTexture();
-	void TextureShaderUniform(const Shader& shader, const char* uniform , GLuint unit);
-	void UpdateTextureToGammaCorrection();
 
 	Texture(const std::string& ImagePath, GLenum TextureType, GLenum pixelType);
 	Texture(const std::string& ImagePath);
@@ -36,6 +36,7 @@ public:
 	~Texture();
 
 protected:
+	static int GlobTextureNbr;
 	std::string imagePath;
 	const std::string SLOT = "GL_TEXTURE";
 	GLuint GetFormat(int nbrOfChannel);

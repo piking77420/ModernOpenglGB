@@ -6,7 +6,7 @@ PlaneCollider::~PlaneCollider()
 }
 
 
-PlaneCollider::PlaneCollider(Entity& entity) : Collider(entity)
+PlaneCollider::PlaneCollider(Entity& entity)
 {
 	ID = PLANE;
 	m_ComponentName = typeid(*this).name();

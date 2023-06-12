@@ -65,14 +65,14 @@ void Transform::Update(Scene* scene)
 	UpdateMatrix();
 }
 
-Transform::Transform(Entity& currentObject,const Vector3& _pos, const Vector3& _rotation, const Vector3& _scaling) : pos(_pos), rotate(_rotation), scale(_scaling) , Component(currentObject) 
+Transform::Transform(Entity& currentObject,const Vector3& _pos, const Vector3& _rotation, const Vector3& _scaling) : pos(_pos), rotate(_rotation), scale(_scaling) 
 {
 	UpdateMatrix();
 	IdTransform = TransformGlobalID;
 	TransformGlobalID++;
 }
 
-Transform::Transform(Entity& currentObject) : Component(currentObject)
+Transform::Transform(Entity& currentObject) 
 {
 	m_ComponentName = "Transform";
 	pos = Vector3::Zero;

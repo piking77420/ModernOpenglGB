@@ -17,7 +17,7 @@ protected:
 	std::string m_ComponentName = "Base One";
 public:
 
-	Entity& EntityAttachTo;
+	Entity* EntityAttachTo;
 
 	virtual void ImguiWindowComponents();	
 	void ImguiWindow();
@@ -26,6 +26,6 @@ public:
 	virtual void LateUpdate(Scene* scene);
 
 
-	Component(Entity& entity);	
+	Component();	
 };
 

@@ -11,9 +11,9 @@ public:
 	void Update(Scene* scene) override;
 	void ImguiWindowComponents() override;
 
-	BoxCollider(Entity& entitytoAttach);
+	BoxCollider();
 
-	BoxCollider(Entity& entitytoAttach, Vector3 zize);
+	BoxCollider( Vector3 zize);
 	~BoxCollider();
 };
 

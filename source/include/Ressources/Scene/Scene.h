@@ -17,17 +17,18 @@ class AppData;
 class Scene : public IResource
 {
 public :
-	std::string name;
 
 	void RenderScene(Shader* shaderProgramm, Shader* StencilShader);
 	void RenderGizmo(Shader* shaderProgramm);
 	void RenderUi(Shader* shaderProgramm);
-
 	void PhyscisUpdate();
 	void SceneUpdate(ImGuiIO& _io);
-
 	void LateUpdate();
+	void Saving() override;
+	virtual IResource* Load(std::string path);
 
+
+	std::string name;
 	PhysicsEngine m_PhysicsEngine;
 	ImGuiIO* io;
 	Camera* cam;
@@ -35,7 +36,7 @@ public :
 	float  Deltatime;
 	RessourcesManager* ressourcesManagers;
 	std::vector<Entity*> entities;
-	Scene(std::string _name);
+	Scene(std::string Filename);
 	Scene();	
 	~Scene();
 

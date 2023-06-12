@@ -25,7 +25,6 @@ public:
 
 	std::string name;
 	std::string Tag;
-	Scene* scene;
 	Transform transform;
 	void Update(Scene* scene);
 	void LateUpdate(Scene* scene);
@@ -37,6 +36,8 @@ public:
 	template<class T>
 	void AddComponent(T* componentsToAdd);
 
+	template<class T>
+	void AddComponent();
 
 	template<class T >
 	// Return the Components Or NullPtr if there is no one 
@@ -70,7 +71,19 @@ static bool TryGetComponent(const Entity& entity, T** returnedComponent);
 template<class T>
 inline void Entity::AddComponent(T* componentsToAdd)
 {
+	Component* c = componentsToAdd;
+	c->EntityAttachTo = this;
+
 	Components.push_back(componentsToAdd);
+}
+template<class T>
+inline void Entity::AddComponent()
+{
+	T* newComponents = new T();
+	newComponents->EntityAttachTo = this;
+	Components.push_back(newComponents);
+
+
 }
 template<class T>
 inline T* Entity::GetComponent() const

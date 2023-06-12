@@ -1,4 +1,5 @@
 #include <Ressources/RessourcesManager/RessourcesManager.h>
+#include "Ressources/Scene/Scene.h"
 #include "LowRenderer/Cam/Camera.h"
 #include<Ressources/Texture/Texture.hpp>
 #include "Ressources/Shader/Shader.h"
@@ -6,9 +7,8 @@
 #include "Ressources/Model/Model.h"
 
 
-namespace fs = std::filesystem;
 
-
+ 
 void RessourcesManager::LoadAllAssets()
 {
 	fs::path assetsPath(this->assetsFolder);
@@ -136,22 +136,30 @@ void RessourcesManager::LoadShader(std::filesystem::path path)
 
 }
 
-
-
-
-
-
-void RessourcesManager::RealoadAllTexture()
+void RessourcesManager::LoadScene(std::filesystem::path path)
 {
-	
-	for (auto it = m_MainResourcesMap.begin(); it != m_MainResourcesMap.end(); it++)
-	{
-		Texture* texture = dynamic_cast<Texture*>(it->second);
+	std::string path_string = path.generic_string();
 
-		if (texture != nullptr)
-			texture->UpdateTextureToGammaCorrection();
+	if (isThisValidForThisFormat(path_string, sceneFormat))
+	{
+		Create<Scene>(path_string);
 	}
 
+}
+
+
+void RessourcesManager::ImguiSceneManagers() const
+{
+	if(ImGui::Button("Save Scene"))
+	for (auto it = m_MainResourcesMap.begin(); it != m_MainResourcesMap.end(); it++)
+	{
+		Scene* scene = RessourcesManager::TryIsTypeOf<Scene>(it->second);
+
+		if(scene)
+		{
+			scene->Saving();
+		}
+	}
 
 }
 
@@ -169,7 +177,7 @@ void RessourcesManager::LookFiles(fs::path _path)
 
 	for (const auto& entry : fs::directory_iterator(_path))
 	{
-		
+		LoadScene(entry.path().c_str());
 		LoadTexture(entry.path().c_str());
 		LoadModel(entry.path().c_str());
 
