@@ -33,12 +33,12 @@ public:
     void SetMaxtrix(const std::string& name, const float* matrixValue) const;
     void SetVector3(const std::string& name, const float* value) const;
     void SetMaterial(const std::string& name, const Material& material) const ;
-    GLuint GetId()const ;
+    GLuint GetId() const ;
  
     Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath, std::string shaderName);
     ~Shader();
-private:
-   mutable std::unordered_map<std::string, GLint> m_UniformMap;
+protected:
+     mutable std::unordered_map<std::string, GLint> m_UniformMap;
     GLint GetUnitform(const std::string& name) const ;
     GLuint m_ID;
 

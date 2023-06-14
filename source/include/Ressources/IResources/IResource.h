@@ -11,10 +11,7 @@ namespace fs = std::filesystem;
 class IResource
 {
 public:
-	virtual IResource* Load(std::string path);
-	virtual void Saving() {};
 	virtual ~IResource();
 
 protected:
-	std::string pathLocation;
 }; 

@@ -70,20 +70,21 @@ void Scene::LateUpdate()
 
 }
 
-void Scene::Saving()
+void Scene::SaveScene()
 {
-	
-	
+
 }
 
-IResource* Scene::Load(std::string path)
+void Scene::AddEntity()
 {
-	pathLocation = path;
-
-
-
-	return nullptr;
+	entities.push_back(new Entity());
 }
+
+void Scene::RemoveEntity(Entity* entity)
+{
+}
+
+
 
 
 void Scene::RenderScene(Shader* shaderProgramm, Shader* StencilShader) 

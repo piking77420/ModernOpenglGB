@@ -16,6 +16,7 @@
 #include "Collider/BoxCollider/BoxCollider.h"
 #include "LowRenderer/Ui/UIRenderer.h"
 #include "Physics/CollisionType/BoxCollisionType.h"
+#include "LowRenderer/FrameBuffer/DepthMap/Depthmap.h"
 
 Scene* App::currentScene = nullptr;
 bool App::GammaCorrection = false;
@@ -33,22 +34,32 @@ void App::DrawSkyBox()
 void App::AppUpdate()
 {
 	
-	MultiSamples* sample = m_Ressources->GetElement<MultiSamples>("Msaa");
 	Shader* GizmoShader = m_Ressources->GetElement<Shader>("GizmoShader");
 	Shader* baseShader = m_Ressources->GetElement<Shader>("NormalShader");
 	Shader* Stencil = m_Ressources->GetElement<Shader>("StencilTest");
+	Depthmap* depthmap = m_Ressources->GetElement<Depthmap>("depthMap");
+	Shader* DepthShader = m_Ressources->GetElement<Shader>("DepthMapShader");
 
 
 
-	sample->Bind();	
+	glViewport(0, 0, depthmap->widht, depthmap->height);
+	glBindFramebuffer(GL_FRAMEBUFFER, depthmap->FBO);
+	glClear(GL_DEPTH_BUFFER_BIT);
 	currentScene->cam->SetCameraInfoForShaders(*m_Ressources);
+	currentScene->RenderScene(baseShader, Stencil);
+	depthmap->DrawBuffer(*DepthShader);
+	/*
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glViewport(0, 0, windowWidth,windowHeight);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	*/
+	currentScene->cam->SetCameraInfoForShaders(*m_Ressources);
+	currentScene->RenderScene(baseShader, Stencil);
 	DrawSkyBox();
 
 	currentScene->PhyscisUpdate();
 	currentScene->SceneUpdate(m_io);
-	currentScene->RenderScene(baseShader,Stencil);
 	currentScene->RenderGizmo(GizmoShader);
-	sample->BlitBuffers(0);
 
 	
 	
@@ -70,14 +81,12 @@ void App::AppUpdate()
 
 void App::InitRessources()
 {
-	FrameBuffer* postProcess = new FrameBuffer(windowWidth, windowHeight);
-	m_Ressources->PushBackElement("PostProcess", postProcess);
+	Depthmap* depthMap = new Depthmap();
+	m_Ressources->PushBackElement("depthMap", depthMap);
 
 	ShadowMaps* shadowMaps = new ShadowMaps(2048, 2048);
 	m_Ressources->PushBackElement("shadowMaps", shadowMaps);
 
-	MultiSamples* msaa = new MultiSamples(MSAA);
-	m_Ressources->PushBackElement("Msaa", msaa);
 	
 	std::vector<std::string> cubemapsSpaceString =
 	{
@@ -114,16 +123,14 @@ void App::InitRessources()
 void App::InitScene()
 {
 
-
+	
 	Scene* Level1 = new Scene("Scene1");
 	m_Ressources->PushBackElement<Scene>("Scene1", Level1);
 	Level1->ressourcesManagers = m_Ressources;	
+	App::currentScene = Level1;
 
 
-	
 
-	//Model* nethriPlateform = m_Ressources->GetElement<Model>("cube.obj");
-	//Texture* Diamond = m_Ressources->GetElement<Texture>("DiamondBlock.jpg");
 
 	Entity* DirectionnalLight = new Entity("Directionnal Light", Level1);
 	DirectionnalLight->AddComponent<DirectionalLight>();
@@ -139,7 +146,6 @@ void App::InitScene()
 	Level1->entities.push_back(vikingroom);
 
 	// Set Currentscene
-	App::currentScene = Level1;
 }
 
 
@@ -183,6 +189,8 @@ void App::ImguiInspector() const
 
 	if (ImGui::Begin("Inpsector"))
 	{
+		if (ImGui::Button("Add entites"))
+			currentScene->AddEntity();
 
 		if (ImGui::CollapsingHeader("Entities"))
 		{
@@ -273,13 +281,9 @@ void App::ImguiAppInfo()
 		ImGui::Text("%f", m_io.Framerate);
 		ImGui::Checkbox("PostProcess", &m_PostProcess);
 	
-		ImGui::Text("Gamma Correction change on runtime not working");
-		/*
-		if(ImGui::Checkbox("Applied GammaCorrection",&App::GammaCorrection))
-		{
-			m_Ressources->RealoadAllTexture();
-		}
-		*/
+		ImGui::Button("SaveCurrentScene");
+
+		
 
 		ImGui::Text("Type of CubeMap");
 		if(ImGui::Button("Skybox Space"))

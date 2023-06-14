@@ -29,6 +29,9 @@ public:
 	Matrix4X4 m_GlobalMatrix;
 	std::vector<Transform*> Childrens;
 
+
+
+
 	Transform(Entity& currentObject, const Vector3& _pos, const Vector3& _rotation, const Vector3& _scaling);
 	Transform(Entity& currentObject);
 	~Transform();

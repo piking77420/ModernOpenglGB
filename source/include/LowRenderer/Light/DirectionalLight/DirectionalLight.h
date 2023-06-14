@@ -11,7 +11,7 @@ class DirectionalLight : public Light
 public:
 
 
-	Matrix4X4& SetLookAtMatrix();
+	//sMatrix4X4& SetLookAtMatrix();
 	const Matrix4X4& GetLookAtMatrix() const ;
 
 	Vector3 Direction;
@@ -24,8 +24,7 @@ public:
 	~DirectionalLight();
 
 private:
-	// For ShadowMapping WIP
-	Matrix4X4 m_LightViewMatrix;
+
 
 };
 

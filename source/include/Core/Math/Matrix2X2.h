@@ -12,7 +12,7 @@ class Matrix2X2
 public:
 
 
-	Vector2 Rows[2];
+	Vector2 Ligns[2];
 
 
 

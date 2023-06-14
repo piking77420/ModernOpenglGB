@@ -1,9 +1,10 @@
 #include <Core/DataStructure/Entity/Entity.h>
 #include<Core/Debug/Imgui/imgui.h>
+#include "App/App.h"
+#include "Ressources/Scene/Scene.h"
 
 #include "Physics/Transform/Transform.h"
 
-uint32_t Entity::GloblalIDs = 0;
 
 
 void Entity::PreUpdate(Scene* scene)
@@ -37,6 +38,7 @@ void Entity::ImguiEntityWindow()
 
 	if (ImGui::CollapsingHeader(name.c_str()))
 	{	
+
 		for (Component* c : Components)
 		{
 
@@ -45,6 +47,18 @@ void Entity::ImguiEntityWindow()
 
 		}
 
+		if (ImGui::TreeNode("AddComponent"))
+		{
+			if(ImGui::Button("MeshRenderer"))
+			{
+				AddComponent<MeshRenderer>();
+			}
+
+
+			
+
+			ImGui::TreePop();
+		}
 		
 	}
 	ImGui::PopID();
@@ -63,22 +77,30 @@ bool Entity::HasParent()
 
 
 
+
+
+
 Entity::Entity(std::string _name,Scene* _scene) : name(_name) , transform(Transform(*this))
 {
 	this->AddComponent<Transform>(&transform);
-	this->ID = GloblalIDs;
-	GloblalIDs++;
+	this->m_ID = App::currentScene->GlobalID;
+	App::currentScene->GlobalID++;
 }
 
 Entity::Entity(std::string _name, Transform _transform) :   name(_name), transform(_transform)
 {
-	this->ID = GloblalIDs;
-	GloblalIDs++;
+	this->AddComponent<Transform>(&transform);
+	this->m_ID = App::currentScene->GlobalID;
+	App::currentScene->GlobalID++;
 }
 
 Entity::Entity() :  transform(Transform(*this))
 {
+	this->AddComponent<Transform>(&transform);
+	this->m_ID = App::currentScene->GlobalID;
+	App::currentScene->GlobalID++;
 
+	this->name = "Entity " + std::to_string(m_ID);
 }
 
 

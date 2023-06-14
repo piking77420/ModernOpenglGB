@@ -190,6 +190,8 @@ void main()
      endValue += SpothLight(spotLight[k],norm,FragPosf,viewDir);
     } 
 
+    
+    
 
     FragColor =  vec4(endValue,1) ;// texture(ourTexture, TexCoord);
 }

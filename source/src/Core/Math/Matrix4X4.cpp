@@ -16,25 +16,25 @@ Matrix4X4 Matrix4X4::ViewMatrix(const Vector3& Left, const Vector3& Up, const Ve
 {
 	Matrix4X4 result;
 
-	result.Coloms[0].x = Left.x;
-	result.Coloms[0].y = Left.y;
-	result.Coloms[0].z = Left.z;
-	result.Coloms[0].w = 0;
+	result.Ligns[0].x = Left.x;
+	result.Ligns[1].x = Left.y;
+	result.Ligns[2].x = Left.z;
+	result.Ligns[3].x = 0;
 
-	result.Coloms[1].x = Up.x;
-	result.Coloms[1].y = Up.y;
-	result.Coloms[1].z = Up.z;
-	result.Coloms[1].w = 0;
+	result.Ligns[0].y = Up.x;
+	result.Ligns[1].y = Up.y;
+	result.Ligns[2].y = Up.z;
+	result.Ligns[3].y = 0;
 
-	result.Coloms[2].x = Forward.x;
-	result.Coloms[2].y = Forward.y;
-	result.Coloms[2].z = Forward.z;
-	result.Coloms[2].w = 0;
+	result.Ligns[0].z = Forward.x;
+	result.Ligns[1].z = Forward.y;
+	result.Ligns[2].z = Forward.z;
+	result.Ligns[3].z = 0;
 
-	result.Coloms[3].x = Translation.x;
-	result.Coloms[3].y = Translation.y;
-	result.Coloms[3].z = Translation.z;
-	result.Coloms[3].w = 1;
+	result.Ligns[3].w = Translation.x;
+	result.Ligns[3].w = Translation.y;
+	result.Ligns[3].w = Translation.z;
+	result.Ligns[3].w = 1;
 
 	return result;
 }
@@ -48,28 +48,28 @@ Matrix4X4 Matrix4X4::ProjectionMatrix(const float& fov, const float& aspect, con
 
 	float fFovRad = 1.0f / std::tan((fov / 180.f * 3.14159f) * 0.5f);
 
-	float zdiff = Near - Far ;
+	float zdiff = Far - Near;
 
 
-	result.Coloms[0].x = fFovRad / aspect;
-	result.Coloms[0].y = 0;
-	result.Coloms[0].z = 0;
-	result.Coloms[0].w = 0;
+	result.Ligns[0].x = fFovRad / aspect;
+	result.Ligns[0].y = 0;
+	result.Ligns[0].z = 0;
+	result.Ligns[0].w = 0;
 
-	result.Coloms[1].x = 0;
-	result.Coloms[1].y = fFovRad;
-	result.Coloms[1].z = 0;
-	result.Coloms[1].w = 0;
+	result.Ligns[1].x = 0;
+	result.Ligns[1].y = fFovRad;
+	result.Ligns[1].z = 0;
+	result.Ligns[1].w = 0;
 
-	result.Coloms[2].x = 0;
-	result.Coloms[2].y = 0;
-	result.Coloms[2].z = (Far + Near) / zdiff;
-	result.Coloms[2].w = -1.0f;
+	result.Ligns[2].x = 0;
+	result.Ligns[2].y = 0;
+	result.Ligns[2].z = (Far + Near) / zdiff;
+	result.Ligns[2].w = -(2 * Far * Near) / zdiff;
 
-	result.Coloms[3].x = 0;
-	result.Coloms[3].y = 0 ;
-	result.Coloms[3].z = (2 * Far * Near) / zdiff;
-	result.Coloms[3].w = 0;
+	result.Ligns[3].x = 0;
+	result.Ligns[3].y = 0 ;
+	result.Ligns[3].z = -1.0f;
+	result.Ligns[3].w = 0;
 
 	return result;
 
@@ -83,87 +83,61 @@ Matrix4X4 Matrix4X4::OrthoGraphicMatrix(float top, float bot, float right, float
 	float topbottomDiff = top - bot;
 	float rightLeftDiff = left - right;
 
-	result.Coloms[0].x = 2.f  / right - left ;
-	result.Coloms[0].y = 0;
-	result.Coloms[0].z = 0;
-	result.Coloms[0].w = 0;
+	result.Ligns[0].x = 2.f  / right - left ;
+	result.Ligns[1].x = 0;
+	result.Ligns[2].x = 0;
+	result.Ligns[3].x = 0;
 
-	result.Coloms[1].x = 0;
-	result.Coloms[1].y =  2.f / (top - bot) ;
-	result.Coloms[1].z = 0;
-	result.Coloms[1].w = 0;
+	result.Ligns[0].y = 0;
+	result.Ligns[1].y =  2.f / (top - bot) ;
+	result.Ligns[2].y = 0;
+	result.Ligns[3].y = 0;
 
-	result.Coloms[2].x = 0;
-	result.Coloms[2].y = 0;
-	result.Coloms[2].z = 1.f / (Far - Near  );
-	result.Coloms[2].w = 0;
+	result.Ligns[0].z = 0;
+	result.Ligns[1].z = 0;
+	result.Ligns[2].z = 1.f / (Far - Near  );
+	result.Ligns[3].z = 0;
 
-	result.Coloms[3].x = (left + right )/ (left - right);
-	result.Coloms[3].y = -(top + bot )/ (bot - top);
-	result.Coloms[3].z = (Near) / (Near - Far);
-	result.Coloms[3].w = 1.f;
+	result.Ligns[0].w = (left + right )/ (left - right);
+	result.Ligns[1].w = -(top + bot )/ (bot - top);
+	result.Ligns[2].w = (Near) / (Near - Far);
+	result.Ligns[3].w = 1.f;
 
 
 	return result;
 }
 
 
-/* 
-Matrix4X4 Matrix4X4::Ortho(float left, float right, float bottom, float, float)
-{
-	Matrix4X4 result;
 
-	result.Rows[0].x = (1.f / (aspect * tan(fov / 2)));
-	result.Rows[0].y = 0;
-	result.Rows[0].z = 0;
-	result.Rows[0].w = 0;
-
-	result.Rows[1].x = 0;
-	result.Rows[1].y = (1.f / tan(fov / 2.f));
-	result.Rows[1].z = 0;
-	result.Rows[1].w = 0;
-
-	result.Rows[2].x = 0;
-	result.Rows[2].y = 0;
-	result.Rows[2].z = -((Far + Near) / (Far - Near));
-	result.Rows[2].w = -1;
-
-	result.Rows[3].x = 0;
-	result.Rows[3].y = 0;
-	result.Rows[3].z = -((2 * Far * Near) / (Far - Near));
-	result.Rows[3].w = 0;
-
-	return result;
-}*/
 
 Vector3 Matrix4X4::GetPos()
 {
-	return Vector3(Coloms[3]);
+	return Vector3(Ligns[3]);
 }
 
 Matrix4X4 Matrix4X4::ScalingMatrix4X4(const Vector3& ScalingFactor)
 {
 	Matrix4X4 result;
 	
-	result.Coloms[0].x = ScalingFactor.x;
-	result.Coloms[0].y = 0;
-	result.Coloms[0].z = 0;
-	result.Coloms[0].w = 0;
+	result.Ligns[0].x = ScalingFactor.x;
+	result.Ligns[0].y = 0;
+	result.Ligns[0].z = 0;
+	result.Ligns[0].w = 0;
 
-	result.Coloms[1].x = 0;
-	result.Coloms[1].y = ScalingFactor.y;
-	result.Coloms[1].z = 0;
-	result.Coloms[1].w = 0;
+	result.Ligns[1].x = 0;
+	result.Ligns[1].y = ScalingFactor.y;
+	result.Ligns[1].z = 0;
+	result.Ligns[1].w = 0;
 
-	result.Coloms[2].x = 0;
-	result.Coloms[2].y = 0;
-	result.Coloms[2].z = ScalingFactor.z;
-	result.Coloms[2].w = 0;
+	result.Ligns[2].x = 0;
+	result.Ligns[2].y = 0;
+	result.Ligns[2].z = ScalingFactor.z;
+	result.Ligns[2].w = 0;
 
-	result.Coloms[3].x = 0;
-	result.Coloms[3].y = 0;
-	result.Coloms[3].z = 0;
-	result.Coloms[3].w = 1;
+	result.Ligns[3].x = 0;
+	result.Ligns[3].y = 0;
+	result.Ligns[3].z = 0;
+	result.Ligns[3].w = 1;
 	
 	return result;
 }
@@ -172,25 +146,25 @@ Matrix4X4 Matrix4X4::RotationX4X4(const float& angle)
 {
 	Matrix4X4 result;
 	
-	result.Coloms[0].x = 1;
-	result.Coloms[0].y = 0;
-	result.Coloms[0].z = 0;
-	result.Coloms[0].w = 0;
+	result.Ligns[0].x = 1;
+	result.Ligns[0].y = 0;
+	result.Ligns[0].z = 0;
+	result.Ligns[0].w = 0;
 
-	result.Coloms[1].x = 0;
-	result.Coloms[1].y = cos((angle));
-	result.Coloms[1].z = sin((angle));
-	result.Coloms[1].w = 0;
+	result.Ligns[1].x = 0;
+	result.Ligns[1].y = cos((angle));
+	result.Ligns[1].z = -sin((angle));
+	result.Ligns[1].w = 0;
 
-	result.Coloms[2].x = 0;
-	result.Coloms[2].y = -sin((angle));
-	result.Coloms[2].z = cos((angle));
-	result.Coloms[2].w = 0;
+	result.Ligns[2].x = 0;
+	result.Ligns[2].y = sin((angle));
+	result.Ligns[2].z = cos((angle));
+	result.Ligns[2].w = 0;
 
-	result.Coloms[3].x = 0;
-	result.Coloms[3].y = 0;
-	result.Coloms[3].z = 0;
-	result.Coloms[3].w = 1;
+	result.Ligns[3].x = 0;
+	result.Ligns[3].y = 0;
+	result.Ligns[3].z = 0;
+	result.Ligns[3].w = 1;
 	
 
 	return result;
@@ -216,9 +190,9 @@ Matrix4X4 Matrix4X4::TranslateMatrix4X4(const Vector3& translation)
 	
 	result = result.Identity();
 
-	result[3].x = translation.x;
-	result[3].y = translation.y;
-	result[3].z = translation.z;
+	result[0].w = translation.x;
+	result[1].w = translation.y;
+	result[2].w = translation.z;
 	result[3].w = 1;
 
 		
@@ -245,25 +219,25 @@ Matrix4X4 Matrix4X4::RotationY4X4(const float& angle)
 	Matrix4X4 result;
 	
 	
-	result.Coloms[0].x = cos((angle));
-	result.Coloms[0].y = 0;
-	result.Coloms[0].z = -sin((angle));
-	result.Coloms[0].w = 0;
+	result.Ligns[0].x = cos((angle));
+	result.Ligns[0].y = 0;
+	result.Ligns[0].z = sin((angle));
+	result.Ligns[0].w = 0;
 
-	result.Coloms[1].x = 0;
-	result.Coloms[1].y = 1;
-	result.Coloms[1].z = 0;
-	result.Coloms[1].w = 0;
+	result.Ligns[1].x = 0;
+	result.Ligns[1].y = 1;
+	result.Ligns[1].z = 0;
+	result.Ligns[1].w = 0;
 
-	result.Coloms[2].x = sin((angle));
-	result.Coloms[2].y = 0;
-	result.Coloms[2].z = cos((angle));
-	result.Coloms[2].w = 0;
+	result.Ligns[2].x = -sin((angle));
+	result.Ligns[2].y = 0;
+	result.Ligns[2].z = cos((angle));
+	result.Ligns[2].w = 0;
 
-	result.Coloms[3].x = 0;
-	result.Coloms[3].y = 0;
-	result.Coloms[3].z = 0;
-	result.Coloms[3].w = 1;
+	result.Ligns[3].x = 0;
+	result.Ligns[3].y = 0;
+	result.Ligns[3].z = 0;
+	result.Ligns[3].w = 1;
 	
 	return result;
 }
@@ -276,64 +250,59 @@ Matrix4X4 Matrix4X4::RotationZ4X4(const float& angle)
 
 
 
-	result.Coloms[0].x = cos((angle));
-	result.Coloms[0].y = sin((angle));
-	result.Coloms[0].z = 0;
-	result.Coloms[0].w = 0;
+	result.Ligns[0].x = cos((angle));
+	result.Ligns[0].y = -sin((angle));
+	result.Ligns[0].z = 0;
+	result.Ligns[0].w = 0;
 
-	result.Coloms[1].x = -sin((angle));
-	result.Coloms[1].y = cos((angle));
-	result.Coloms[1].z = 0;
-	result.Coloms[1].w = 0;
+	result.Ligns[1].x = sin((angle));
+	result.Ligns[1].y = cos((angle));
+	result.Ligns[1].z = 0;
+	result.Ligns[1].w = 0;
 
-	result.Coloms[2].x = 0;
-	result.Coloms[2].y = 0;
-	result.Coloms[2].z = 1;
-	result.Coloms[2].w = 0;
+	result.Ligns[2].x = 0;
+	result.Ligns[2].y = 0;
+	result.Ligns[2].z = 1;
+	result.Ligns[2].w = 0;
 
-	result.Coloms[3].x = 0;
-	result.Coloms[3].y = 0;
-	result.Coloms[3].z = 0;
-	result.Coloms[3].w = 1;
+	result.Ligns[3].x = 0;
+	result.Ligns[3].y = 0;
+	result.Ligns[3].z = 0;
+	result.Ligns[3].w = 1;
 	
 	return result;
 }
 
  Matrix4X4 Matrix4X4::operator*(const Matrix4X4& matrix) const
 {
-	
-	
-	
-
-	Matrix4X4 trans = this->Transposate();
 
 	Matrix4X4 result ;
 
 
 
-	result.Coloms[0].x = trans[0].DotProduct(matrix.Coloms[0]);
-	result.Coloms[0].y = trans[0].DotProduct(matrix.Coloms[1]);
-	result.Coloms[0].z = trans[0].DotProduct(matrix.Coloms[2]);
-	result.Coloms[0].w = trans[0].DotProduct(matrix.Coloms[3]);
+	result.Ligns[0].x = this->Ligns[0].x * matrix[0].x + this->Ligns[0].y * matrix[1].x + this->Ligns[0].z * matrix[2].x + this->Ligns[0].w * matrix[3].x;
+	result.Ligns[0].y = this->Ligns[0].x * matrix[0].y + this->Ligns[0].y * matrix[1].y + this->Ligns[0].z * matrix[2].y + this->Ligns[0].w * matrix[3].y;
+	result.Ligns[0].z = this->Ligns[0].x * matrix[0].z + this->Ligns[0].y * matrix[1].z + this->Ligns[0].z * matrix[2].z + this->Ligns[0].w * matrix[3].z;
+	result.Ligns[0].w = this->Ligns[0].x * matrix[0].w + this->Ligns[0].y * matrix[1].w + this->Ligns[0].z * matrix[2].w + this->Ligns[0].w * matrix[3].w;
 
-	result.Coloms[1].x = trans[1].DotProduct(matrix.Coloms[0]);
-	result.Coloms[1].y = trans[1].DotProduct(matrix.Coloms[1]);
-	result.Coloms[1].z = trans[1].DotProduct(matrix.Coloms[2]);
-	result.Coloms[1].w = trans[1].DotProduct(matrix.Coloms[3]);
+	result.Ligns[1].x = this->Ligns[1].x * matrix[0].x + this->Ligns[1].y * matrix[1].x + this->Ligns[1].z * matrix[2].x + this->Ligns[1].w * matrix[3].x;
+	result.Ligns[1].y = this->Ligns[1].x * matrix[0].y + this->Ligns[1].y * matrix[1].y + this->Ligns[1].z * matrix[2].y + this->Ligns[1].w * matrix[3].y;
+	result.Ligns[1].z = this->Ligns[1].x * matrix[0].z + this->Ligns[1].y * matrix[1].z + this->Ligns[1].z * matrix[2].z + this->Ligns[1].w * matrix[3].z;
+	result.Ligns[1].w = this->Ligns[1].x * matrix[0].w + this->Ligns[1].y * matrix[1].w + this->Ligns[1].z * matrix[2].w + this->Ligns[1].w * matrix[3].w;
 
-	result.Coloms[2].x = trans[2].DotProduct(matrix.Coloms[0]);
-	result.Coloms[2].y = trans[2].DotProduct(matrix.Coloms[1]);
-	result.Coloms[2].z = trans[2].DotProduct(matrix.Coloms[2]);
-	result.Coloms[2].w = trans[2].DotProduct(matrix.Coloms[3]);
+	result.Ligns[2].x = this->Ligns[2].x * matrix[0].x + this->Ligns[2].y * matrix[1].x + this->Ligns[2].z * matrix[2].x + this->Ligns[2].w * matrix[3].x;
+	result.Ligns[2].y = this->Ligns[2].x * matrix[0].y + this->Ligns[2].y * matrix[1].y + this->Ligns[2].z * matrix[2].y + this->Ligns[2].w * matrix[3].y;
+	result.Ligns[2].z = this->Ligns[2].x * matrix[0].z + this->Ligns[2].y * matrix[1].z + this->Ligns[2].z * matrix[2].z + this->Ligns[2].w * matrix[3].z;
+	result.Ligns[2].w = this->Ligns[2].x * matrix[0].w + this->Ligns[2].y * matrix[1].w + this->Ligns[2].z * matrix[2].w + this->Ligns[2].w * matrix[3].w;
 
-	result.Coloms[3].x = trans[3].DotProduct(matrix.Coloms[0]);
-	result.Coloms[3].y = trans[3].DotProduct(matrix.Coloms[1]);
-	result.Coloms[3].z = trans[3].DotProduct(matrix.Coloms[2]);
-	result.Coloms[3].w = trans[3].DotProduct(matrix.Coloms[3]);
+	result.Ligns[3].x = this->Ligns[3].x * matrix[0].x + this->Ligns[3].y * matrix[1].x + this->Ligns[3].z * matrix[2].x + this->Ligns[3].w * matrix[3].x;
+	result.Ligns[3].y = this->Ligns[3].x * matrix[0].y + this->Ligns[3].y * matrix[1].y + this->Ligns[3].z * matrix[2].y + this->Ligns[3].w * matrix[3].y;
+	result.Ligns[3].z = this->Ligns[3].x * matrix[0].z + this->Ligns[3].y * matrix[1].z + this->Ligns[3].z * matrix[2].z + this->Ligns[3].w * matrix[3].z;
+	result.Ligns[3].w = this->Ligns[3].x * matrix[0].w + this->Ligns[3].y * matrix[1].w + this->Ligns[3].z * matrix[2].w + this->Ligns[3].w * matrix[3].w;
 
 
 
-	return result.Transposate();
+	return result;
 
 	
 }
@@ -345,18 +314,18 @@ Vector4 ReturnLign(const Matrix4X4& matrix ,int index)
 
 	if(index == 0)
 	{
-		vec = Vector4(matrix.Coloms[0].x, matrix.Coloms[1].x, matrix.Coloms[2].x, matrix.Coloms[3].x);
+		vec = Vector4(matrix.Ligns[0].x, matrix.Ligns[1].x, matrix.Ligns[2].x, matrix.Ligns[3].x);
 	}
 	else if(index == 1)
 	{
-		vec = Vector4(matrix.Coloms[0].y, matrix.Coloms[1].y, matrix.Coloms[2].y, matrix.Coloms[3].y);
+		vec = Vector4(matrix.Ligns[0].y, matrix.Ligns[1].y, matrix.Ligns[2].y, matrix.Ligns[3].y);
 	}else if(index == 2)
 	{
-		vec = Vector4(matrix.Coloms[0].z, matrix.Coloms[1].z, matrix.Coloms[2].z, matrix.Coloms[3].z);
+		vec = Vector4(matrix.Ligns[0].z, matrix.Ligns[1].z, matrix.Ligns[2].z, matrix.Ligns[3].z);
 	}
 	else if (index == 3)
 	{
-		vec = Vector4(matrix.Coloms[0].w, matrix.Coloms[1].w, matrix.Coloms[2].w, matrix.Coloms[3].w);
+		vec = Vector4(matrix.Ligns[0].w, matrix.Ligns[1].w, matrix.Ligns[2].w, matrix.Ligns[3].w);
 	}
 	else
 	{
@@ -370,25 +339,25 @@ Matrix4X4 Matrix4X4::Identity()
 {
 	Matrix4X4 result;
 
-	result.Coloms[0].x = 1;
-	result.Coloms[0].y = 0;
-	result.Coloms[0].z = 0;
-	result.Coloms[0].w = 0;
+	result.Ligns[0].x = 1;
+	result.Ligns[0].y = 0;
+	result.Ligns[0].z = 0;
+	result.Ligns[0].w = 0;
 
-	result.Coloms[1].x = 0;
-	result.Coloms[1].y = 1;
-	result.Coloms[1].z = 0;
-	result.Coloms[1].w = 0;
+	result.Ligns[1].x = 0;
+	result.Ligns[1].y = 1;
+	result.Ligns[1].z = 0;
+	result.Ligns[1].w = 0;
 
-	result.Coloms[2].x = 0;
-	result.Coloms[2].y = 0;
-	result.Coloms[2].z = 1;
-	result.Coloms[2].w = 0;
+	result.Ligns[2].x = 0;
+	result.Ligns[2].y = 0;
+	result.Ligns[2].z = 1;
+	result.Ligns[2].w = 0;
 
-	result.Coloms[3].x = 0;
-	result.Coloms[3].y = 0;
-	result.Coloms[3].z = 0;
-	result.Coloms[3].w = 1;
+	result.Ligns[3].x = 0;
+	result.Ligns[3].y = 0;
+	result.Ligns[3].z = 0;
+	result.Ligns[3].w = 1;
 
 
 	return result;
@@ -398,22 +367,27 @@ Matrix4X4 Matrix4X4::Transposate() const
 {
 	Matrix4X4 result;
 
-	for (size_t i = 0; i < 4; i++)
-	{
-		result.Coloms[i] = ReturnLign(*this, i);
-	}
+	result[0].x = Ligns[0].x ; result[0].y = Ligns[1].x ; result[0].z = Ligns[2].x ; result[0].w = Ligns[3].x ;
+	result[1].x = Ligns[0].y ; result[1].y = Ligns[1].y ; result[1].z = Ligns[2].y ; result[1].w = Ligns[3].y ;
+	result[2].x = Ligns[0].z ; result[2].y = Ligns[1].z ; result[2].z = Ligns[2].z ; result[2].w = Ligns[3].z ;
+	result[3].x = Ligns[0].w ; result[3].y = Ligns[1].w ; result[3].z = Ligns[2].w ; result[3].w = Ligns[3].w ;
+
+
+
+
+
 
 	return result;
 }
 
 Vector4 Matrix4X4::operator[](const int& i) const
 {
-	return Coloms[i];
+	return Ligns[i];
 }
 
 Vector4& Matrix4X4::operator[](const int& i)
 {
-	return Coloms[i];
+	return Ligns[i];
 }
 
 Matrix4X4 Matrix4X4::LookAt(const Vector3& eye, const Vector3& at, const Vector3& up)
@@ -426,25 +400,25 @@ Matrix4X4 Matrix4X4::LookAt(const Vector3& eye, const Vector3& at, const Vector3
 
 	Matrix4X4 LookAtMatrix;
 
-	LookAtMatrix.Coloms[0].x = xaxis.x;
-	LookAtMatrix.Coloms[0].y = yaxis.x;
-	LookAtMatrix.Coloms[0].z = zaxis.x;
-	LookAtMatrix.Coloms[0].w = 0;
+	LookAtMatrix.Ligns[0].x = xaxis.x;
+	LookAtMatrix.Ligns[0].y = yaxis.x;
+	LookAtMatrix.Ligns[0].z = zaxis.x;
+	LookAtMatrix.Ligns[0].w = 0;
 
-	LookAtMatrix.Coloms[1].x = xaxis.y;
-	LookAtMatrix.Coloms[1].y = yaxis.y;
-	LookAtMatrix.Coloms[1].z = zaxis.y;
-	LookAtMatrix.Coloms[1].w = 0;
+	LookAtMatrix.Ligns[1].x = xaxis.y;
+	LookAtMatrix.Ligns[1].y = yaxis.y;
+	LookAtMatrix.Ligns[1].z = zaxis.y;
+	LookAtMatrix.Ligns[1].w = 0;
 
-	LookAtMatrix.Coloms[2].x = xaxis.z;
-	LookAtMatrix.Coloms[2].y = yaxis.z;
-	LookAtMatrix.Coloms[2].z = zaxis.z;
-	LookAtMatrix.Coloms[2].w = 0;
+	LookAtMatrix.Ligns[2].x = xaxis.z;
+	LookAtMatrix.Ligns[2].y = yaxis.z;
+	LookAtMatrix.Ligns[2].z = zaxis.z;
+	LookAtMatrix.Ligns[2].w = 0;
 
-	LookAtMatrix.Coloms[3].x = -(xaxis.DotProduct(eye));
-	LookAtMatrix.Coloms[3].y = -(yaxis.DotProduct(eye));	
-	LookAtMatrix.Coloms[3].z = -(zaxis.DotProduct(eye));
-	LookAtMatrix.Coloms[3].w = 1;
+	LookAtMatrix.Ligns[3].x = -(xaxis.DotProduct(eye));
+	LookAtMatrix.Ligns[3].y = -(yaxis.DotProduct(eye));	
+	LookAtMatrix.Ligns[3].z = -(zaxis.DotProduct(eye));
+	LookAtMatrix.Ligns[3].w = 1;
 
 
 	return LookAtMatrix;
@@ -454,15 +428,15 @@ Matrix4X4 Matrix4X4::LookAt(const Vector3& eye, const Vector3& at, const Vector3
 
 const float* Matrix4X4::GetPtr() const
 {
-	return &Coloms[0].x;
+	return &Ligns[0].x;
 }
 
 Matrix4X4::Matrix4X4(const Vector4& a, const Vector4& b, const Vector4& c, const Vector4& d)
 {
-	Coloms[0] = a;
-	Coloms[1] = b;
-	Coloms[2] = c;
-	Coloms[3] = d;
+	Ligns[0] = a;
+	Ligns[1] = b;
+	Ligns[2] = c;
+	Ligns[3] = d;
 }
 
 Matrix4X4 Rotate(const Matrix4X4& matrix, const Vector3& angle)
@@ -474,7 +448,7 @@ Matrix4X4 Rotate(const Matrix4X4& matrix, const Vector3& angle)
 Matrix4X4 Translate(const Matrix4X4& matrix, const Vector3& angle)
 {
 	Matrix4X4 result = matrix;
-	result.Coloms[3] += angle;
+	result.Ligns[3] += angle;
 
 
 	return result;
@@ -486,10 +460,10 @@ Matrix4X4::Matrix4X4()
 {
 	for (size_t i = 0; i < 4; i++)
 	{
-		Coloms[i].x = 0;
-		Coloms[i].y = 0;
-		Coloms[i].z = 0;
-		Coloms[i].w = 0;
+		Ligns[i].x = 0;
+		Ligns[i].y = 0;
+		Ligns[i].z = 0;
+		Ligns[i].w = 0;
 
 	}
 }
@@ -547,25 +521,12 @@ std::ostream& operator<<(std::ostream& stream, const Matrix4X4& maxtrix)
 {
 	for (size_t i = 0; i < 4; i++)
 	{
-		stream << maxtrix.Coloms[i].x << " ";
-	}
-	stream << '\n';
-	for (size_t i = 0; i < 4; i++)
-	{
-		stream << maxtrix.Coloms[i].y << " ";
-	}
-	stream << '\n';
+		stream << maxtrix.Ligns[i].x << " " << maxtrix.Ligns[i].y << " " << maxtrix.Ligns[i].z << " " << maxtrix.Ligns[i].w << " ";
+		stream << '\n';
 
-	for (size_t i = 0; i < 4; i++)
-	{
-		stream << maxtrix.Coloms[i].z << " ";
 	}
-	stream << '\n';
 
-	for (size_t i = 0; i < 4; i++)
-	{
-		stream << maxtrix.Coloms[i].w << " ";
-	}
-	stream << '\n';
+
+
 	return stream;
 }

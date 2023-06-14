@@ -18,7 +18,7 @@ void MeshRenderer::ImguiWindowComponents()
 
 
 	ImGui::InputText("Current Model", &modelName[0], sizeof(modelName));
-	OnTyping = ImGui::IsItemEdited();
+	OnTyping = ImGui::IsItemActive();
 	ImGui::Text(("Model name : " + m_Model->name).c_str());
 	ImGui::Checkbox("StencilTest", &StencilTest) ;
 	ImGui::SliderInt("Diffuse ", &material.diffuse,0,30);
@@ -97,11 +97,17 @@ void MeshRenderer::OnTapingModel()
 
 
 
-	if (ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_Enter)))
+	if (ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_Enter))&& OnTyping)
 	{
 		OnChangModel = true;
-		std::cout << OnTyping << std::endl;
 
+	}
+	else
+	{
+		for (size_t i = 0; i < m_Model->name.size(); i++)
+		{
+			modelName[i] = m_Model->name[i];
+		}
 	}
 }
 
@@ -111,7 +117,12 @@ void MeshRenderer::ChangeModel()
 	if (OnChangModel)
 	{
 		std::string string = modelName;
-		m_Model =  RendererComponent::ressourcesManager->GetElement<Model>(string);
+		Model* model = RendererComponent::ressourcesManager->GetElement<Model>(string);
+
+		if (!model)
+			return;
+
+		m_Model = model;
 		OnChangModel = false;
 	}
 }

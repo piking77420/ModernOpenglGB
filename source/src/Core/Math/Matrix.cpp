@@ -599,9 +599,9 @@ Matrix::operator Matrix3X3()
 
 	for (size_t i = 0; i < 3; i++)
 	{
-		result.Coloms[i].x = mData[i][0];
-		result.Coloms[i].y = mData[i][1];
-		result.Coloms[i].z = mData[i][2];
+		result.Ligns[i].x = mData[i][0];
+		result.Ligns[i].y = mData[i][1];
+		result.Ligns[i].z = mData[i][2];
 	}
 
 

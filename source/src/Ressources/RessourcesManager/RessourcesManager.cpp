@@ -33,11 +33,11 @@ RessourcesManager::~RessourcesManager()
 	{
 		delete it->second;
 	}
-	m_MainResourcesMap.clear();
+	m_MainResourcesMap.clear();	
 }
 
 
-bool isThisValidForThisFormat(std::string path, std::string format)
+bool RessourcesManager::isThisValidForThisFormat(std::string path, std::string format)
 {
 	size_t startFileFormat = path.size() - format.size();
 	int counter = 0;
@@ -50,6 +50,22 @@ bool isThisValidForThisFormat(std::string path, std::string format)
 		return true;
 
 	return false;
+}
+
+std::string RessourcesManager::GetFormatFromFile(std::string path)
+{
+
+	// where start the .
+	int StartFormatIndex = path.find_last_of('.');
+	std::string returnFormat;
+
+	for (size_t i = StartFormatIndex; i < path.size(); i++)
+	{
+		returnFormat.push_back(path[i]);
+	}
+
+
+	return returnFormat;
 }
 
 
@@ -133,7 +149,6 @@ void RessourcesManager::LoadShader(std::filesystem::path path)
 	Shader* newShader = new Shader(vertexShader.c_str(), fragmentShader.c_str(), geometry.c_str(), ressourcesName);
 	PushBackElement<Shader>(ressourcesName, newShader);
 
-
 }
 
 void RessourcesManager::LoadScene(std::filesystem::path path)
@@ -157,11 +172,13 @@ void RessourcesManager::ImguiSceneManagers() const
 
 		if(scene)
 		{
-			scene->Saving();
+			//scene->Saving();
 		}
 	}
 
 }
+
+
 
 RessourcesManager::RessourcesManager()
 {	

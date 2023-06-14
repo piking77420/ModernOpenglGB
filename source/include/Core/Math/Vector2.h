@@ -84,6 +84,10 @@ private:
 
 };
 
+
+
+
+
 #pragma region Operator
 
  inline Vector2 operator+(const Vector2& vec1, const Vector2& Row1)

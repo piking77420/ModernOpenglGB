@@ -3,6 +3,7 @@
 #include <Core/Debug/LogClass.h>
 #include <Core/Debug/AssertClass.h>
 #include "Ressources/Model/Model.h"
+#include "Serializer/Serializer.h"
 
 
 #include<filesystem>
@@ -31,20 +32,21 @@ public:
 	template<class T>
 	T* GetElement(const std::string& name);
 	template<class T>
-	T* Create(std::string name);
-	
+	T* Create(std::string path);
 	template<class T>
 	bool IsRessourcesIs(IResource* ressources) const ;
-
 	template<class T>
 	T* TryIsTypeOf(IResource* ressources) const;
-
-
+	static std::string GetFormatFromFile(std::string path);
 	void ImguiSceneManagers() const;
+
+
+	Serializer serializer;
 
 	RessourcesManager();
 	~RessourcesManager();
 private:
+
 
 	std::unordered_map<std::string, IResource*> m_MainResourcesMap;
 	void LoadTexture(std::filesystem::path path);
@@ -52,6 +54,9 @@ private:
 	void LoadModel(std::filesystem::path path);
 	void LoadShader(std::filesystem::path path);
 	void LoadScene(std::filesystem::path path);
+	bool isThisValidForThisFormat(std::string path, std::string format);
+
+
 
 
 	// Texture file accetptes jpg png 
@@ -112,15 +117,15 @@ inline T* RessourcesManager::GetElement(const std::string& name)
 
 // if it's a path he will automaticaly return the correct name
 template<class T>
-inline T* RessourcesManager::Create(std::string name)
+inline T* RessourcesManager::Create(std::string path)
 {
-	T* newRessources = new T(name);
+	T* newRessources = new T(path);
 	
-	std::string Correctname = GetRessourcesName(name);
+	std::string Correctname = GetRessourcesName(path);
 
 	if (m_MainResourcesMap.contains(Correctname))
 	{
-		auto currentRessources = m_MainResourcesMap.find(name);
+		auto currentRessources = m_MainResourcesMap.find(Correctname);
 		delete currentRessources->second;
 		currentRessources->second = newRessources;
 		return newRessources;

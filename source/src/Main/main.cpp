@@ -44,14 +44,14 @@
     }
     void LoadCursorAppCursor(GLFWwindow* window)
     {
-        /*
+        
         GLFWimage image;
         image.width = 16;
         image.height = 16;
         int nbr = 0;
         image.pixels = stbi_load("assets/Textures/Cursor/Skyrim-normal.png", &image.width, &image.height, &nbr, 0);
         GLFWcursor* cursor = glfwCreateCursor(&image, 0, 0);
-        glfwSetCursor(window, cursor);*/
+        glfwSetCursor(window, cursor);
 
     }
     int main()
@@ -101,7 +101,6 @@
         EnableOpenGl();
         App* app = new App(windowWidth, windowHeight,io);
 
-        char ptr[250] = "fdsfds";
         // Main Loop // 
         while (!glfwWindowShouldClose(window))
         {
@@ -124,19 +123,9 @@
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
             glEnable(GL_DEPTH_TEST);
 
-            // Update
-
-           
-
-            if (ImGui::Begin("dsff"))
-            {
-                ImGui::InputText("fffsf", ptr, sizeof(ptr));
-                ImGui::End();
-
-            }
+      
             app->AppUpdate();
        
-         
 
             glStencilMask(0xFF);
             glStencilFunc(GL_ALWAYS, 0, 0xFF);

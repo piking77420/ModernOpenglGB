@@ -61,7 +61,6 @@ void main()
 	TexCoordsf = vec2(aTexCoord.x, aTexCoord.y);
 	projectionf = projectionMatrix;
 
-	
 
 
 }

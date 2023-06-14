@@ -11,6 +11,7 @@
 #include<Core/Debug/Imgui/imgui.h>
 #include<Core/Debug/Imgui/imgui_impl_glfw.h>
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>
+#include <Core/Debug/Imgui/imgui_internal.h>
 #include "Mathf.h"
 
 

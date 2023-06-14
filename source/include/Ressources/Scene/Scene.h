@@ -24,10 +24,17 @@ public :
 	void PhyscisUpdate();
 	void SceneUpdate(ImGuiIO& _io);
 	void LateUpdate();
-	void Saving() override;
-	virtual IResource* Load(std::string path);
+	void SaveScene();
+	
+
+	void AddEntity();
+	// Voir avec Eric // 
+	void RemoveEntity(Entity* entity);
+
+	
 
 
+	uint32_t GlobalID;
 	std::string name;
 	PhysicsEngine m_PhysicsEngine;
 	ImGuiIO* io;

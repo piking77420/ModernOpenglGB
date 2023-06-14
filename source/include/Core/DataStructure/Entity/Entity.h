@@ -21,7 +21,7 @@ class Entity
 {
 public:
 
-	uint32_t ID;
+	uint32_t m_ID;
 
 	std::string name;
 	std::string Tag;
@@ -31,6 +31,7 @@ public:
 	void PreUpdate(Scene* scene);
 	void ImguiEntityWindow();
 	bool HasParent();
+
 
 #pragma region Components
 	template<class T>
@@ -47,6 +48,7 @@ public:
 
 	template<class T>
 	void RemoveComponents();
+
 
 #pragma endregion
 
