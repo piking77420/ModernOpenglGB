@@ -199,7 +199,7 @@ void Shader::SetMaxtrix(const std::string& name, const float* matrixValue) const
 {
 
     int currentLoc = GetUnitform(name.c_str());
-    glUniformMatrix4fv(currentLoc, 1, GL_FALSE, matrixValue);
+    glUniformMatrix4fv(currentLoc, 1, GL_TRUE, matrixValue);
 }
 
 void Shader::SetVector3(const std::string& name, const float* value) const

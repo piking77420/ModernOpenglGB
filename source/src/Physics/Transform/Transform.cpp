@@ -51,12 +51,12 @@ const Matrix4X4& Transform::GetLocal() const
 
 const Vector3 Transform::GetWordlPos() const
 {
-	Vector3 result = Vector3(m_GlobalMatrix.Coloms[3].x, m_GlobalMatrix.Coloms[3].y, m_GlobalMatrix.Coloms[3].z);
+	Vector3 result = Vector3(m_GlobalMatrix.Ligns[3].x, m_GlobalMatrix.Ligns[3].y, m_GlobalMatrix.Ligns[3].z);
 	return result;
 }
 const Vector3 Transform::GetWordlPos()
 {
-	return Vector3(m_GlobalMatrix.Coloms[3]);
+	return Vector3(m_GlobalMatrix.Ligns[3]);
 }
 
 
@@ -92,6 +92,7 @@ Transform::~Transform()
 
 void Transform::UpdateMatrix()
 {
+	
 	m_LocalMatrix = m_LocalMatrix.TRS(pos, rotate, scale);
 
 	if (Parents != nullptr)

@@ -94,35 +94,27 @@ Matrix3X3 Matrix3X3::operator*(const Matrix3X3& matrix)
 
 
 
-	Matrix4X4 result;
 
 
 
-	result.Ligns[0].x = this->Ligns[0].x * matrix[0].x + this->Ligns[0].y * matrix[1].x + this->Ligns[0].z * matrix[2].x + this->Ligns[0].w * matrix[3].x;
-	result.Ligns[0].y = this->Ligns[0].x * matrix[0].y + this->Ligns[0].y * matrix[1].y + this->Ligns[0].z * matrix[2].y + this->Ligns[0].w * matrix[3].y;
-	result.Ligns[0].z = this->Ligns[0].x * matrix[0].z + this->Ligns[0].y * matrix[1].z + this->Ligns[0].z * matrix[2].z + this->Ligns[0].w * matrix[3].z;
+	result.Ligns[0].x = this->Ligns[0].x * matrix[0].x + this->Ligns[0].y * matrix[1].x + this->Ligns[0].z * matrix[2].x;
+	result.Ligns[0].y = this->Ligns[0].x * matrix[0].y + this->Ligns[0].y * matrix[1].y + this->Ligns[0].z * matrix[2].y ;
+	result.Ligns[0].z = this->Ligns[0].x * matrix[0].z + this->Ligns[0].y * matrix[1].z + this->Ligns[0].z * matrix[2].z ;
 
-	result.Ligns[1].x = this->Ligns[1].x * matrix[0].x + this->Ligns[1].y * matrix[1].x + this->Ligns[1].z * matrix[2].x + this->Ligns[1].w * matrix[3].x;
-	result.Ligns[1].y = this->Ligns[1].x * matrix[0].y + this->Ligns[1].y * matrix[1].y + this->Ligns[1].z * matrix[2].y + this->Ligns[1].w * matrix[3].y;
-	result.Ligns[1].z = this->Ligns[1].x * matrix[0].z + this->Ligns[1].y * matrix[1].z + this->Ligns[1].z * matrix[2].z + this->Ligns[1].w * matrix[3].z;
+	result.Ligns[1].x = this->Ligns[1].x * matrix[0].x + this->Ligns[1].y * matrix[1].x + this->Ligns[1].z * matrix[2].x ;
+	result.Ligns[1].y = this->Ligns[1].x * matrix[0].y + this->Ligns[1].y * matrix[1].y + this->Ligns[1].z * matrix[2].y ;
+	result.Ligns[1].z = this->Ligns[1].x * matrix[0].z + this->Ligns[1].y * matrix[1].z + this->Ligns[1].z * matrix[2].z ;
 
-	result.Ligns[2].x = this->Ligns[2].x * matrix[0].x + this->Ligns[2].y * matrix[1].x + this->Ligns[2].z * matrix[2].x + this->Ligns[2].w * matrix[3].x;
-	result.Ligns[2].y = this->Ligns[2].x * matrix[0].y + this->Ligns[2].y * matrix[1].y + this->Ligns[2].z * matrix[2].y + this->Ligns[2].w * matrix[3].y;
-	result.Ligns[2].z = this->Ligns[2].x * matrix[0].z + this->Ligns[2].y * matrix[1].z + this->Ligns[2].z * matrix[2].z + this->Ligns[2].w * matrix[3].z;
+	result.Ligns[2].x = this->Ligns[2].x * matrix[0].x + this->Ligns[2].y * matrix[1].x + this->Ligns[2].z * matrix[2].x ;
+	result.Ligns[2].y = this->Ligns[2].x * matrix[0].y + this->Ligns[2].y * matrix[1].y + this->Ligns[2].z * matrix[2].y ;
+	result.Ligns[2].z = this->Ligns[2].x * matrix[0].z + this->Ligns[2].y * matrix[1].z + this->Ligns[2].z * matrix[2].z ;
 
-	result.Ligns[3].x = this->Ligns[3].x * matrix[0].x + this->Ligns[3].y * matrix[1].x + this->Ligns[3].z * matrix[2].x + this->Ligns[3].w * matrix[3].x;
-	result.Ligns[3].y = this->Ligns[3].x * matrix[0].y + this->Ligns[3].y * matrix[1].y + this->Ligns[3].z * matrix[2].y + this->Ligns[3].w * matrix[3].y;
-	result.Ligns[3].z = this->Ligns[3].x * matrix[0].z + this->Ligns[3].y * matrix[1].z + this->Ligns[3].z * matrix[2].z + this->Ligns[3].w * matrix[3].z;
+	
+
 
 
 
 	return result;
-
-
-
-
-
-	return Matrix3X3();
 }
 
 Vector3 Matrix3X3::operator[](const int& i) const

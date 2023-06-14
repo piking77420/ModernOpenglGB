@@ -48,7 +48,7 @@ Matrix4X4 Matrix4X4::ProjectionMatrix(const float& fov, const float& aspect, con
 
 	float fFovRad = 1.0f / std::tan((fov / 180.f * 3.14159f) * 0.5f);
 
-	float zdiff = Far - Near;
+	float zdiff = Near - Far  ;
 
 
 	result.Ligns[0].x = fFovRad / aspect;
@@ -64,7 +64,7 @@ Matrix4X4 Matrix4X4::ProjectionMatrix(const float& fov, const float& aspect, con
 	result.Ligns[2].x = 0;
 	result.Ligns[2].y = 0;
 	result.Ligns[2].z = (Far + Near) / zdiff;
-	result.Ligns[2].w = -(2 * Far * Near) / zdiff;
+	result.Ligns[2].w = (2 * Far * Near) / zdiff;
 
 	result.Ligns[3].x = 0;
 	result.Ligns[3].y = 0 ;
@@ -401,23 +401,23 @@ Matrix4X4 Matrix4X4::LookAt(const Vector3& eye, const Vector3& at, const Vector3
 	Matrix4X4 LookAtMatrix;
 
 	LookAtMatrix.Ligns[0].x = xaxis.x;
-	LookAtMatrix.Ligns[0].y = yaxis.x;
-	LookAtMatrix.Ligns[0].z = zaxis.x;
-	LookAtMatrix.Ligns[0].w = 0;
+	LookAtMatrix.Ligns[1].x = yaxis.x;
+	LookAtMatrix.Ligns[2].x = zaxis.x;
+	LookAtMatrix.Ligns[3].x = 0;
 
-	LookAtMatrix.Ligns[1].x = xaxis.y;
+	LookAtMatrix.Ligns[0].y = xaxis.y;
 	LookAtMatrix.Ligns[1].y = yaxis.y;
-	LookAtMatrix.Ligns[1].z = zaxis.y;
-	LookAtMatrix.Ligns[1].w = 0;
+	LookAtMatrix.Ligns[2].y = zaxis.y;
+	LookAtMatrix.Ligns[3].y = 0;
 
-	LookAtMatrix.Ligns[2].x = xaxis.z;
-	LookAtMatrix.Ligns[2].y = yaxis.z;
+	LookAtMatrix.Ligns[0].z = xaxis.z;
+	LookAtMatrix.Ligns[1].z = yaxis.z;
 	LookAtMatrix.Ligns[2].z = zaxis.z;
-	LookAtMatrix.Ligns[2].w = 0;
+	LookAtMatrix.Ligns[3].z = 0;
 
-	LookAtMatrix.Ligns[3].x = -(xaxis.DotProduct(eye));
-	LookAtMatrix.Ligns[3].y = -(yaxis.DotProduct(eye));	
-	LookAtMatrix.Ligns[3].z = -(zaxis.DotProduct(eye));
+	LookAtMatrix.Ligns[0].w = -(xaxis.DotProduct(eye));
+	LookAtMatrix.Ligns[1].w = -(yaxis.DotProduct(eye));	
+	LookAtMatrix.Ligns[2].w = -(zaxis.DotProduct(eye));
 	LookAtMatrix.Ligns[3].w = 1;
 
 

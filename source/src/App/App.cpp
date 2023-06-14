@@ -42,23 +42,13 @@ void App::AppUpdate()
 
 
 
-	glViewport(0, 0, depthmap->widht, depthmap->height);
-	glBindFramebuffer(GL_FRAMEBUFFER, depthmap->FBO);
-	glClear(GL_DEPTH_BUFFER_BIT);
+
 	currentScene->cam->SetCameraInfoForShaders(*m_Ressources);
-	currentScene->RenderScene(baseShader, Stencil);
-	depthmap->DrawBuffer(*DepthShader);
-	/*
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glViewport(0, 0, windowWidth,windowHeight);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	*/
-	currentScene->cam->SetCameraInfoForShaders(*m_Ressources);
-	currentScene->RenderScene(baseShader, Stencil);
 	DrawSkyBox();
 
 	currentScene->PhyscisUpdate();
 	currentScene->SceneUpdate(m_io);
+	currentScene->RenderScene(baseShader, Stencil);
 	currentScene->RenderGizmo(GizmoShader);
 
 	
