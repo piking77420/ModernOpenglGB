@@ -1,5 +1,8 @@
-#include <thread>
 #include "App/App.h"
+#include<Core/Debug/Imgui/imgui.h>
+#include<Core/Debug/Imgui/imgui_impl_glfw.h>
+#include<Core/Debug/Imgui/imgui_impl_opengl3.h>
+#include <Core/Debug/Imgui/imgui_internal.h>
 #include "LowRenderer/RendererComponent/MeshRenderer/MeshRenderer.h"
 #include <LowRenderer/Light/Light.h>
 #include <Ressources/Model/Model.h>

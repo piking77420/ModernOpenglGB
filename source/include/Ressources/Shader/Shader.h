@@ -23,6 +23,8 @@ class Shader : public IResource
 {
 public:
 
+    
+
     void Use() const;
     void Use();
     void UnUse();
@@ -35,12 +37,20 @@ public:
     void SetMaterial(const std::string& name, const Material& material) const ;
     GLuint GetId() const ;
  
+    void Init() override;
+
     Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath, std::string shaderName);
     ~Shader();
 protected:
      mutable std::unordered_map<std::string, GLint> m_UniformMap;
     GLint GetUnitform(const std::string& name) const ;
     GLuint m_ID;
+
+    std::string m_vShaderCode;
+    std::string m_fShaderCode;
+    std::string m_gShaderCode;
+    std::string mShaderName;
+
 
 };
 

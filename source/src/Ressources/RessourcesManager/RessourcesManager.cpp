@@ -16,12 +16,24 @@ void RessourcesManager::LoadAllAssets()
 	for (const auto& entry : fs::directory_iterator(assetsPath))
 		LookFiles(entry.path());
 
-	
+	// Join threads + clear vector
+	for (size_t i = 0; i < theards.size(); i++)
+	{
+		theards[i]->join();
+		delete theards[i];
+	}
+	theards.clear();
 
+
+	// Init all ressources
+	for (auto it = m_MainResourcesMap.begin(); it != m_MainResourcesMap.end(); it++)
+	{
+		it->second->Init();
+	}
 }
 
 
-std::unordered_map<std::string, IResource*>& RessourcesManager::GetRessources()
+std::map<std::string, IResource*>& RessourcesManager::GetRessources()
 {
 	return m_MainResourcesMap;
 }
@@ -78,16 +90,22 @@ void RessourcesManager::LoadTexture(fs::path path)
 
 	if (isThisValidForThisFormat(path_string, png) || isThisValidForThisFormat(path_string, jpg))
 	{
-		Texture* tex = new Texture(path_string);
-		Debug::Log->LogGood(path_string + " has been Correcty loaded");
+		
+		std::thread* newThreads = new std::thread([this, path_string]()
+			{		
+				Debug::Log->LogGood(path_string + " has been Correcty loaded");
+				Create<Texture>(path_string);
+			});
+			
+		theards.push_back(newThreads);
 
-		Create<Texture>(path_string);
 	}
 }
 
 std::string RessourcesManager::GetRessourcesName(const std::string& path)
 {
 	std::string name;
+
 
 	if(path.contains('/'))
 	{
@@ -106,9 +124,14 @@ void RessourcesManager::LoadModel(std::filesystem::path path)
 {
 	std::string path_string = path.generic_string();
 
+
 	if (isThisValidForThisFormat(path_string, obj))
 	{
-		Create<Model>(path_string);
+		std::thread* newThreads = new std::thread([this, path_string]()
+			{
+				Create<Model>(path_string);
+			});
+		theards.push_back(newThreads);
 	}
 }
 
@@ -146,9 +169,16 @@ void RessourcesManager::LoadShader(std::filesystem::path path)
 
 	std::string ressourcesName = path.filename().string();
 
-	Shader* newShader = new Shader(vertexShader.c_str(), fragmentShader.c_str(), geometry.c_str(), ressourcesName);
-	PushBackElement<Shader>(ressourcesName, newShader);
+	
+	std::thread* newThreads = new std::thread([this, vertexShader , fragmentShader , geometry , ressourcesName]()
+		{
+			Shader* newShader = new Shader(vertexShader.c_str(), fragmentShader.c_str(), geometry.c_str(), ressourcesName);
+			PushBackElement<Shader>(ressourcesName, newShader);
 
+		});
+
+	theards.push_back(newThreads);
+	
 }
 
 void RessourcesManager::LoadScene(std::filesystem::path path)
@@ -186,7 +216,6 @@ RessourcesManager::RessourcesManager()
 
 void RessourcesManager::LookFiles(fs::path _path)
 {
-
 	if (_path.empty() || _path.filename().string() == cubeMapsFolder)
 	{
 		return;
@@ -198,11 +227,15 @@ void RessourcesManager::LookFiles(fs::path _path)
 		LoadTexture(entry.path().c_str());
 		LoadModel(entry.path().c_str());
 
-		if(entry.is_directory())
+		if (entry.is_directory())
 		{
 			LookFiles(entry.path());
 			LoadShader(entry.path().c_str());
 
 		}
 	}
+
+	
+			
+		
 }

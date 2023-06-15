@@ -1,0 +1,4 @@
+ToolSet: 17.0 (local)@C:\Program Files\Microsoft Visual Studio\2022\Community
+Options: msvc.arch=x86_arm64
+
+Options:-DCMAKE_MAKE_PROGRAM=C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe

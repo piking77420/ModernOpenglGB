@@ -4,9 +4,7 @@
 #include <Vector3.h>
 #include <Vector4.h>
 #include<Ressources/Shader/Shader.h>
-#include<Core/Debug/Imgui/imgui.h>
-#include<Core/Debug/Imgui/imgui_impl_glfw.h>
-#include<Core/Debug/Imgui/imgui_impl_opengl3.h>
+
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 #include"Ressources/RessourcesManager/RessourcesManager.h"

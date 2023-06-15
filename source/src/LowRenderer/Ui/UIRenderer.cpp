@@ -27,7 +27,7 @@ UIRenderer::UIRenderer(Entity& entity) : RendererComponent(entity)
 		m_Model.vertexVector.push_back(Vector3(BaseImage[i], BaseImage[i + 1], BaseImage[i + 2]));
 	}
 
-	m_Model.InitBuffers();
+	m_Model.Init();
 
 }
 void UIRenderer::Draw(Scene* scene, Shader* shader)

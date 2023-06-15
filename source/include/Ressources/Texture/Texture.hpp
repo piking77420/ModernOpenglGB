@@ -18,6 +18,8 @@ public:
 
 	GLuint ID;
 	GLenum type;
+	GLenum PixelType;
+
 	GLuint format;
 	int slot;
 
@@ -25,8 +27,8 @@ public:
 	int height;
 	int nbrOfChannel;
 
-
-
+	unsigned char* data;
+	void Init() override;
 
 	Texture(const std::string& ImagePath, GLenum TextureType, GLenum pixelType);
 	Texture(const std::string& ImagePath);

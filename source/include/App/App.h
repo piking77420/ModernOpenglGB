@@ -8,10 +8,7 @@
 #include "Ressources/CubeMaps/CubeMaps.h"
 
 #include <Core/Debug/Debug.h>
-#include<Core/Debug/Imgui/imgui.h>
-#include<Core/Debug/Imgui/imgui_impl_glfw.h>
-#include<Core/Debug/Imgui/imgui_impl_opengl3.h>
-#include <Core/Debug/Imgui/imgui_internal.h>
+
 #include "Mathf.h"
 
 
@@ -21,7 +18,6 @@ class Camera;
 class Texture;
 class Shader;
 class Model;
-class AppData;
 class Light;
 
 const int windowWidth = 1920;

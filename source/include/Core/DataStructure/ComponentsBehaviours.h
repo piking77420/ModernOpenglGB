@@ -7,5 +7,5 @@
 #include<LowRenderer/Light/DirectionalLight/DirectionalLight.h>
 #include<LowRenderer/Light/PointLight/PointLight.h>
 #include<LowRenderer/Light/SpothLight/SpothLight.h>
-#include "Collider/Collider.h"
+#include "Core/DataStructure/Component/Collider/Collider.h"
 #include "Physics/RigidBody/Rigidbody.h"

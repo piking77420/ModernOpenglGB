@@ -234,9 +234,6 @@
     <ClInclude Include="source\include\Core\Debug\Imgui\imgui.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_glfw.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_opengl3.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -259,6 +256,12 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="source\include\LowRenderer\FrameBuffer\DepthMap\Depthmap.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\ComponentArray\ComponentArray.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_glfw.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -465,27 +468,6 @@
     <ClCompile Include="source\src\Physics\CollisionType\BoxCollisionType.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="source\include\Core\Debug\Imgui\imgui.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\include\Core\Debug\Imgui\imgui_demo.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\include\Core\Debug\Imgui\imgui_draw.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\include\Core\Debug\Imgui\imgui_impl_glfw.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\include\Core\Debug\Imgui\imgui_impl_opengl3.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\include\Core\Debug\Imgui\imgui_tables.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\include\Core\Debug\Imgui\imgui_widgets.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="source\src\Ressources\Serializer\Serializer.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -493,6 +475,30 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\LowRenderer\FrameBuffer\DepthMap\Depthmap.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Core\DataStructure\ComponentArray\ComponentArray.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Core\Debug\Imgui\imgui.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Core\Debug\Imgui\imgui_draw.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Core\Debug\Imgui\imgui_impl_opengl3.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Core\Debug\Imgui\imgui_tables.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Core\Debug\Imgui\imgui_widgets.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Core\Debug\Imgui\imgui_demo.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Core\Debug\Imgui\imgui_impl_glfw.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

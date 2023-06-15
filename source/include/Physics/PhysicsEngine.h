@@ -12,8 +12,8 @@ struct CollisionDetection
 {
 	Collider* collider1;
 	Collider* collider2;
-	
-		
+
+
 };
 
 

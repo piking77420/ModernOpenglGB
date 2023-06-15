@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="ModernOpenglGB"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="msvc8"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Data/Isart/Projet/C++/ModernOpenglGB/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 all"/>
+					<CompileFile command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ModernOpenglGB">
+				<Option output="C:/Data/Isart/Projet/C++/ModernOpenglGB/cmake-build-debug/ModernOpenglGB.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Data/Isart/Projet/C++/ModernOpenglGB/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/DataStructure"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Debug/Imgui"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/DataStructure/Component"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/External"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Math"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Physics"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Ressources"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/App/App.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Component/Collider/BoxCollider/BoxCollider.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Component/Collider/Collider.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Component/Collider/PlaneCollider.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Component/Collider/Raycast.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Component/Collider/SphereCollider/SphereCollider.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Component/Component.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/ComponentArray/ComponentArray.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Entity/Entity.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/AssertClass.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui_demo.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui_draw.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui_impl_glfw.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui_impl_opengl3.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui_tables.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui_widgets.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/LogClass.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Input/UserInputs.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Mathf.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Matrix.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Matrix2X2.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Matrix3X3.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Matrix4X4.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Primitive.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Vector.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Vector2.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Vector3.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Vector4.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/External/Glad/glad.c"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/External/Std_Image/std_image.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Cam/Camera.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/FrameBuffer/DepthMap/Depthmap.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/FrameBuffer/FrameBuffer.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/FrameBuffer/MultiSamples/MultiSamples.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/FrameBuffer/ShadowMap/ShadowMaps.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Light/DirectionalLight/DirectionalLight.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Light/Light.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Light/PointLight/PointLight.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Light/SpothLight/SpothLight.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Material/Material.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Box/BoxGizmo.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Capsule/CapsuleGizmo.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Cylinder/CylinderGizmo.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Plane/PlaneGizmo.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Sphere/SphereGizmo.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/GizmoRenderer/GizmoRenderer.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/MeshRenderer/MeshRenderer.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/RendererComponent.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Ui/UIRenderer.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Vertex/Vertex.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Main/main.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/CollisionType/AABCollision.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/CollisionType/BoxCollisionType.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/CollisionType/CollisionType.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/CollisionType/PlaneCollision.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/CollisionType/SphereCollision.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/PhysicsEngine.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/RigidBody/Rigidbody.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/Transform/Transform.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/CubeMaps/CubeMaps.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/IResource/IResource.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/Model/Model.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/RessourcesManager/RessourcesManager.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/Scene/Scene.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/Serializer/Serializer.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/Shader/Shader.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/SkyBox/SkyBox.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/Texture/Texture.cpp/External"/>
+					<Add directory="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include"/>
+					<Add directory="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\ATLMFC\include"/>
+					<Add directory="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.22000.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.22000.0\\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.22000.0\\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.22000.0\\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.22000.0\\cppwinrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 ModernOpenglGB"/>
+					<CompileFile command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ModernOpenglGB/fast">
+				<Option output="C:/Data/Isart/Projet/C++/ModernOpenglGB/cmake-build-debug/ModernOpenglGB.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Data/Isart/Projet/C++/ModernOpenglGB/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/DataStructure"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Debug/Imgui"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/DataStructure/Component"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/External"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Math"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Physics"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Ressources"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/App/App.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Component/Collider/BoxCollider/BoxCollider.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Component/Collider/Collider.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Component/Collider/PlaneCollider.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Component/Collider/Raycast.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Component/Collider/SphereCollider/SphereCollider.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Component/Component.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/ComponentArray/ComponentArray.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Entity/Entity.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/AssertClass.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui_demo.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui_draw.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui_impl_glfw.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui_impl_opengl3.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui_tables.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui_widgets.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/LogClass.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Input/UserInputs.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Mathf.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Matrix.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Matrix2X2.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Matrix3X3.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Matrix4X4.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Primitive.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Vector.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Vector2.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Vector3.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Vector4.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/External/Glad/glad.c"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/External/Std_Image/std_image.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Cam/Camera.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/FrameBuffer/DepthMap/Depthmap.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/FrameBuffer/FrameBuffer.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/FrameBuffer/MultiSamples/MultiSamples.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/FrameBuffer/ShadowMap/ShadowMaps.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Light/DirectionalLight/DirectionalLight.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Light/Light.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Light/PointLight/PointLight.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Light/SpothLight/SpothLight.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Material/Material.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Box/BoxGizmo.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Capsule/CapsuleGizmo.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Cylinder/CylinderGizmo.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Plane/PlaneGizmo.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Sphere/SphereGizmo.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/GizmoRenderer/GizmoRenderer.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/MeshRenderer/MeshRenderer.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/RendererComponent.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Ui/UIRenderer.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Vertex/Vertex.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Main/main.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/CollisionType/AABCollision.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/CollisionType/BoxCollisionType.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/CollisionType/CollisionType.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/CollisionType/PlaneCollision.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/CollisionType/SphereCollision.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/PhysicsEngine.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/RigidBody/Rigidbody.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/Transform/Transform.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/CubeMaps/CubeMaps.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/IResource/IResource.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/Model/Model.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/RessourcesManager/RessourcesManager.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/Scene/Scene.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/Serializer/Serializer.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/Shader/Shader.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/SkyBox/SkyBox.cpp"/>
+					<Add directory="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/Texture/Texture.cpp/External"/>
+					<Add directory="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include"/>
+					<Add directory="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\ATLMFC\include"/>
+					<Add directory="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.22000.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.22000.0\\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.22000.0\\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.22000.0\\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.22000.0\\cppwinrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 ModernOpenglGB/fast"/>
+					<CompileFile command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Data/Isart/Projet/C++/ModernOpenglGB/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Data/Isart/Projet/C++/ModernOpenglGB/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/nmake.exe /NOLOGO /f C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/App/App.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/ComponentArray/ComponentArray.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/DataStructure/Component/Collider/BoxCollider/BoxCollider.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/DataStructure/Component/Collider/Collider.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/DataStructure/Component/Collider/ColliderComponents.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/DataStructure/Component/Collider/PlaneCollider.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/DataStructure/Component/Collider/Raycast.hpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/DataStructure/Component/Collider/SphereCollider/SphereCollider.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/DataStructure/Component/Component.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/DataStructure/ComponentsBehaviours.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/DataStructure/Entity/Entity.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Debug/AssertClass.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Debug/Debug.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Debug/Imgui/imconfig.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Debug/Imgui/imgui.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Debug/Imgui/imgui_impl_glfw.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Debug/Imgui/imgui_impl_opengl3.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Debug/Imgui/imgui_internal.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Debug/Imgui/imstb_rectpack.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Debug/Imgui/imstb_textedit.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Debug/Imgui/imstb_truetype.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Debug/LogClass.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Input/UserInputs.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Math/Mathf.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Math/Matrix.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Math/Matrix2X2.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Math/Matrix3X3.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Math/Matrix4X4.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Math/Primitive.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Math/Vector.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Math/Vector2.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Math/Vector3.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Core/Math/Vector4.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/External/GLFW/glfw3.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/External/GLFW/glfw3native.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/External/KHR/khrplatform.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/External/Std_Image/std_image.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/External/glad/glad.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/Cam/Camera.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/FrameBuffer/DepthMap/Depthmap.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/FrameBuffer/FrameBuffer.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/FrameBuffer/MultiSamples/MultiSamples.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/FrameBuffer/ShadowMap/ShadowMaps.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/Light/DirectionalLight/DirectionalLight.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/Light/Light.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/Light/PointLight/PointLight.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/Light/SpothLight/SpothLight.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/Material/Material.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Box/BoxGizmo.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Capsule/CapsuleGizmo.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Cylinder/CylinderGizmo.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Plane/PlaneGizmo.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Sphere/SphereGizmo.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/RendererComponent/GizmoRenderer/GizmoRenderer.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/RendererComponent/MeshRenderer/MeshRenderer.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/RendererComponent/RendererComponent.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/Ui/UIRenderer.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/LowRenderer/Vertex/Vertex.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Physics/CollisionType/AABCollision.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Physics/CollisionType/BoxCollisionType.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Physics/CollisionType/CollisionType.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Physics/CollisionType/PlaneCollision.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Physics/CollisionType/SphereCollision.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Physics/PhysicsEngine.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Physics/RigidBody/Rigidbody.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Physics/Transform/Transform.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Ressources/CubeMaps/CubeMaps.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Ressources/IResources/IResource.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Ressources/Model/Model.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Ressources/RessourcesManager/RessourcesManager.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Ressources/Scene/Scene.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Ressources/Shader/Shader.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Ressources/SkyBox/SkyBox.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Ressources/Texture/Texture.hpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/include/Serializer/Serializer.h">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/App/App.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Component/Collider/BoxCollider/BoxCollider.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Component/Collider/Collider.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Component/Collider/PlaneCollider.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Component/Collider/Raycast.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Component/Collider/SphereCollider/SphereCollider.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Component/Component.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/ComponentArray/ComponentArray.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/DataStructure/Entity/Entity.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/AssertClass.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui_demo.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui_draw.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui_impl_glfw.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui_impl_opengl3.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui_tables.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/Imgui/imgui_widgets.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Debug/LogClass.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Input/UserInputs.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Mathf.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Matrix.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Matrix2X2.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Matrix3X3.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Matrix4X4.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Primitive.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Vector.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Vector2.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Vector3.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Core/Math/Vector4.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/External/Glad/glad.c">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/External/Std_Image/std_image.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Cam/Camera.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/FrameBuffer/DepthMap/Depthmap.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/FrameBuffer/FrameBuffer.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/FrameBuffer/MultiSamples/MultiSamples.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/FrameBuffer/ShadowMap/ShadowMaps.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Light/DirectionalLight/DirectionalLight.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Light/Light.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Light/PointLight/PointLight.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Light/SpothLight/SpothLight.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Material/Material.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Box/BoxGizmo.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Capsule/CapsuleGizmo.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Cylinder/CylinderGizmo.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Plane/PlaneGizmo.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Sphere/SphereGizmo.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/GizmoRenderer/GizmoRenderer.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/MeshRenderer/MeshRenderer.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/RendererComponent/RendererComponent.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Ui/UIRenderer.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/LowRenderer/Vertex/Vertex.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Main/main.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/CollisionType/AABCollision.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/CollisionType/BoxCollisionType.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/CollisionType/CollisionType.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/CollisionType/PlaneCollision.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/CollisionType/SphereCollision.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/PhysicsEngine.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/RigidBody/Rigidbody.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Physics/Transform/Transform.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/CubeMaps/CubeMaps.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/IResource/IResource.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/Model/Model.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/RessourcesManager/RessourcesManager.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/Scene/Scene.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/Serializer/Serializer.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/Shader/Shader.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/SkyBox/SkyBox.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/source/src/Ressources/Texture/Texture.cpp">
+			<Option target="ModernOpenglGB"/>
+		</Unit>
+		<Unit filename="C:/Data/Isart/Projet/C++/ModernOpenglGB/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

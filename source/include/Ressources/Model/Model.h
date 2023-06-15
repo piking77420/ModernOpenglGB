@@ -51,8 +51,7 @@ public:
 	std::vector<uint32_t> indexVector;
 	std::string name;
 
-
-	void InitBuffers();
+	void Init() override;
 	static float cube[];
 private:
 	void LoadVertex(const ModelData& data, bool& isFaced, bool& is3dTextute);

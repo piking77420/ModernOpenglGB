@@ -522,7 +522,7 @@ Model Model::LoadCube()
 		Cube.vertexVector.push_back(Vertex(Vector3(cube[i], cube[i+1], cube[i+2]) ));
 	}
 	
-	Cube.InitBuffers();
+	Cube.Init();
 
 
 	return Cube;
@@ -562,7 +562,7 @@ Model Model::LoadSphere()
 	}
 
 	
-	Sphere.InitBuffers();
+	Sphere.Init();
 
 	return Sphere;
 }
@@ -584,7 +584,7 @@ Model::~Model()
 
 }
 
-void Model::InitBuffers()
+void Model::Init()
 {
 	// Init VAO \ Init VBO //
 
@@ -617,11 +617,12 @@ void Model::InitBuffers()
 	glEnableVertexAttribArray(2);//layout 2;
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(6 * sizeof(float)));
 
-	
+
 	// Color
 	glEnableVertexAttribArray(3);//layout 3;
 	glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(9 * sizeof(float)));
 }
+
 
 
 
@@ -723,8 +724,6 @@ void Model::LoadVertex(const ModelData& data, bool& isFaced, bool& is3dTextute)
 		}
 	}
 
-	// init VBO VAO
-	InitBuffers();
 }
 
 

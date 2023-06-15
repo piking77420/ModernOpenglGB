@@ -5,14 +5,30 @@
 #include "App/App.h"
 
 int Texture::GlobTextureNbr = 0;
+void Texture::Init()
+{
+  
+
+    glGenTextures(1, &ID);
+    glActiveTexture(GL_TEXTURE0 + slot);
+    glBindTexture(type, ID);
+
+    glTexImage2D(type, 0, format, width, height, 0, format, PixelType, data);
+    glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glGenerateMipmap(type);
+    stbi_image_free(data);
+
+}
 Texture::Texture(const std::string& ImagePath, GLenum TextureType, GLenum pixelType)
 {
     imagePath = ImagePath;
-    
+
     type = TextureType;
+    PixelType = pixelType;
 
     stbi_set_flip_vertically_on_load(true);
-    unsigned char* data = stbi_load(ImagePath.c_str(), &width, &height, &nbrOfChannel, 0);
+    data = stbi_load(ImagePath.c_str(), &width, &height, &nbrOfChannel, 0);
 
 
   
@@ -23,29 +39,23 @@ Texture::Texture(const std::string& ImagePath, GLenum TextureType, GLenum pixelT
         std::cout << "Fail to load texture" << std::endl;
     }
 
-    glGenTextures(1, &ID);
-    glActiveTexture(GL_TEXTURE0 + GlobTextureNbr);
-    glBindTexture(TextureType, ID);
 
-    glTexImage2D(TextureType, 0, format, width, height, 0, format, pixelType, data);
-    glTexParameteri(TextureType, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glGenerateMipmap(TextureType);
 
-    stbi_image_free(data);
 
     slot = GlobTextureNbr;
     GlobTextureNbr++;
+   
 }
 
 Texture::Texture(const std::string& ImagePath)
 {
     imagePath = ImagePath;
-    GLuint pixelType = GL_UNSIGNED_BYTE;
+    PixelType = GL_UNSIGNED_BYTE;
     type = GL_TEXTURE_2D;
+    std::cout << imagePath << std::endl;
 
     stbi_set_flip_vertically_on_load(true);
-    unsigned char* data = stbi_load(ImagePath.c_str(), &width, &height, &nbrOfChannel, 0);
+    data = stbi_load(ImagePath.c_str(), &width, &height, &nbrOfChannel, 0);
 
 
 
@@ -56,19 +66,10 @@ Texture::Texture(const std::string& ImagePath)
         std::cout << "Fail to load texture" << std::endl;
     }
 
-    glGenTextures(1, &ID);
-    glActiveTexture(GL_TEXTURE0 + GlobTextureNbr);
-    glBindTexture(type, ID);
-
-    glTexImage2D(type, 0, format, width, height, 0, format, pixelType, data);
-    glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glGenerateMipmap(type);
-
-    stbi_image_free(data);
 
     slot = GlobTextureNbr;
     GlobTextureNbr++;
+
 }
 
 Texture::Texture(const std::string& ImagePath, GLenum TextureType, GLenum pixelType, bool isNormalMap)
@@ -76,7 +77,7 @@ Texture::Texture(const std::string& ImagePath, GLenum TextureType, GLenum pixelT
     type = TextureType;
 
     stbi_set_flip_vertically_on_load(true);
-    unsigned char* data = stbi_load(ImagePath.c_str(), &width, &height, &nbrOfChannel, 0);
+    data = stbi_load(ImagePath.c_str(), &width, &height, &nbrOfChannel, 0);
 
 
     if (!isNormalMap)
@@ -90,19 +91,11 @@ Texture::Texture(const std::string& ImagePath, GLenum TextureType, GLenum pixelT
         std::cout << "Fail to load texture" << std::endl;
     }
 
-    glGenTextures(1, &ID);
-    glActiveTexture(GL_TEXTURE0 + GlobTextureNbr);
-    glBindTexture(TextureType, ID);
-
-    glTexImage2D(TextureType, 0, format, width, height, 0, format, pixelType, data);
-    glTexParameteri(TextureType, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glGenerateMipmap(TextureType);
-
-    stbi_image_free(data);
+ 
 
     slot = GlobTextureNbr;
     GlobTextureNbr++;
+   
 }
 
 

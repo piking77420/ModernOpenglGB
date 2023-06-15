@@ -16,9 +16,12 @@ void PhysicsEngine::DeterminateNbrOfCollision()
 		for (size_t k = i + 1; k < allCollider.size(); k++)
 		{
 			Collider* c2 = allCollider[k];
+            CollisionDetection coll ;
+            coll.collider1 = c1;
+            coll.collider2 = c2;
 
 
-			AllCollisions.push_back(CollisionDetection(c1,c2));
+			AllCollisions.push_back(coll);
 				
 		}
 	}

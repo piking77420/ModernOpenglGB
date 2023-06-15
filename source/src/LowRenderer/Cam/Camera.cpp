@@ -1,7 +1,9 @@
 #include <LowRenderer/Cam/Camera.h>
 #include <Core/Debug/LogClass.h>
 #include "App/App.h"
-
+#include<Core/Debug/Imgui/imgui.h>
+#include<Core/Debug/Imgui/imgui_impl_glfw.h>
+#include<Core/Debug/Imgui/imgui_impl_opengl3.h>
 
 
 
@@ -25,7 +27,7 @@ bool IskeyPress(GLFWwindow* context , const int& GLFWInput )
 
 void Camera::SetCameraInfoForShaders(RessourcesManager& ressourcesManagers)
 {
-	std::unordered_map<std::string, IResource*>& mainMap = ressourcesManagers.GetRessources();
+	std::map<std::string, IResource*>& mainMap = ressourcesManagers.GetRessources();
 
 	for (auto it = mainMap.begin(); it != mainMap.end(); it++)
 	{

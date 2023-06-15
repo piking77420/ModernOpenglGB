@@ -1,7 +1,6 @@
 #include "Mathf.h"
 
 
-
 bool Mathf::IsEqual(float value, float value2)
 {
 
