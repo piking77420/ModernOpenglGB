@@ -10,7 +10,7 @@ class Texture : public IResource
 public:
 
 	
-
+	
 	void BindTexture() const;
 	void UnBindTexture()const;
 	void DeleteTexture();
@@ -38,6 +38,7 @@ public:
 	~Texture();
 
 protected:
+	void IncrementTexture();
 	static int GlobTextureNbr;
 	std::string imagePath;
 	const std::string SLOT = "GL_TEXTURE";

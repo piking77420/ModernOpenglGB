@@ -20,8 +20,8 @@ class Shader;
 class Model;
 class Light;
 
-const int windowWidth = 1920;
-const int windowHeight = 1080;
+const int windowWidth = 1620;
+const int windowHeight = 920;
 const int MSAA = 8;
 
 

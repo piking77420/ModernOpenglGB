@@ -7,7 +7,8 @@
 int Texture::GlobTextureNbr = 0;
 void Texture::Init()
 {
-  
+
+    IncrementTexture();
 
     glGenTextures(1, &ID);
     glActiveTexture(GL_TEXTURE0 + slot);
@@ -40,10 +41,8 @@ Texture::Texture(const std::string& ImagePath, GLenum TextureType, GLenum pixelT
     }
 
 
+ 
 
-
-    slot = GlobTextureNbr;
-    GlobTextureNbr++;
    
 }
 
@@ -67,8 +66,7 @@ Texture::Texture(const std::string& ImagePath)
     }
 
 
-    slot = GlobTextureNbr;
-    GlobTextureNbr++;
+   
 
 }
 
@@ -93,8 +91,7 @@ Texture::Texture(const std::string& ImagePath, GLenum TextureType, GLenum pixelT
 
  
 
-    slot = GlobTextureNbr;
-    GlobTextureNbr++;
+ 
    
 }
 
@@ -106,6 +103,12 @@ Texture::Texture()
 
 Texture::~Texture()
 {
+}
+
+void Texture::IncrementTexture()
+{
+    slot = GlobTextureNbr;
+    GlobTextureNbr++;
 }
 
 GLuint Texture::GetFormat(int nbrOfChannel)
