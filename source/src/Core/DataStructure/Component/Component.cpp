@@ -28,9 +28,6 @@ void Component::PreUpdate(Scene* scene)
 {
 }
 
-
-
-
 void Component::Update(Scene* scene)
 {
 }

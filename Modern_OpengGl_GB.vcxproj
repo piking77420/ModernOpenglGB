@@ -149,7 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="source\include\Core\ComponentArray\ComponentArray.h" />
+    <ClInclude Include="source\include\Core\DataStructure\ComponentsBehaviours.h" />
     <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_glfw.h" />
     <ClInclude Include="source\include\LowRenderer\FrameBuffer\DepthMap\Depthmap.h" />
     <ClInclude Include="source\include\Serializer\Serializer.h" />
@@ -181,7 +181,6 @@
     <ClInclude Include="source\include\App\App.h" />
     <ClInclude Include="source\include\LowRenderer\FrameBuffer\MultiSamples\MultiSamples.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="source\include\Core\DataStructure\ComponentsBehaviours.h" />
     <ClInclude Include="source\include\Core\DataStructure\Component\Collider\BoxCollider\BoxCollider.h" />
     <ClInclude Include="source\include\Core\DataStructure\Component\Collider\Collider.h" />
     <ClInclude Include="source\include\Core\DataStructure\Component\Collider\ColliderComponents.h" />
@@ -260,7 +259,6 @@
     <ResourceCompile Include="Modern_OpengGl_GB.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\src\Core\DataStructure\ComponentArray\ComponentArray.cpp" />
     <ClCompile Include="source\src\Core\Debug\Imgui\imgui.cpp" />
     <ClCompile Include="source\src\Core\Debug\Imgui\imgui_demo.cpp" />
     <ClCompile Include="source\src\Core\Debug\Imgui\imgui_draw.cpp" />

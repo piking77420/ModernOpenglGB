@@ -51,9 +51,6 @@
     <ClInclude Include="source\include\Core\DataStructure\Entity\Entity.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\Core\DataStructure\ComponentsBehaviours.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="source\include\Core\Debug\AssertClass.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -258,10 +255,10 @@
     <ClInclude Include="source\include\LowRenderer\FrameBuffer\DepthMap\Depthmap.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\Core\ComponentArray\ComponentArray.h">
+    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_glfw.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_glfw.h">
+    <ClInclude Include="source\include\Core\DataStructure\ComponentsBehaviours.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -475,9 +472,6 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\LowRenderer\FrameBuffer\DepthMap\Depthmap.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\Core\DataStructure\ComponentArray\ComponentArray.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\Core\Debug\Imgui\imgui.cpp">

@@ -21,9 +21,14 @@ public:
 	Entity* EntityAttachTo;
 	virtual void ImguiWindowComponents();	
 	void ImguiWindow();
+
+
+	// Update Function // 
 	virtual void PreUpdate(Scene* scene);
 	virtual void Update(Scene* scene);
 	virtual void LateUpdate(Scene* scene);
+
+
 
 	static uint32_t GlobalComponentID;
 	void* operator new(size_t size);

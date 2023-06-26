@@ -128,6 +128,7 @@ Camera::Camera()
 
 	m_LookAtMatrix = GetLookMatrix();
 	m_ProjectionMatrix = m_ProjectionMatrix.ProjectionMatrix((fov), (float)windowWidth / (float)windowHeight, Fnear, Ffar);
+
 	VP = m_ProjectionMatrix * m_LookAtMatrix;
 	mouseSentivity = CAMERASENSITIVITY;
 

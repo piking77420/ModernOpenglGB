@@ -84,23 +84,23 @@ Matrix4X4 Matrix4X4::OrthoGraphicMatrix(float top, float bot, float right, float
 	float rightLeftDiff = left - right;
 
 	result.Ligns[0].x = 2.f  / right - left ;
-	result.Ligns[1].x = 0;
-	result.Ligns[2].x = 0;
-	result.Ligns[3].x = 0;
-
 	result.Ligns[0].y = 0;
-	result.Ligns[1].y =  2.f / (top - bot) ;
-	result.Ligns[2].y = 0;
-	result.Ligns[3].y = 0;
-
 	result.Ligns[0].z = 0;
-	result.Ligns[1].z = 0;
-	result.Ligns[2].z = 1.f / (Far - Near  );
-	result.Ligns[3].z = 0;
+	result.Ligns[0].w = (left + right) / (left - right);
 
-	result.Ligns[0].w = (left + right )/ (left - right);
-	result.Ligns[1].w = -(top + bot )/ (bot - top);
-	result.Ligns[2].w = (Near) / (Near - Far);
+	result.Ligns[1].x = 0;
+	result.Ligns[1].y =  2.f / (top - bot) ;
+	result.Ligns[1].z = 0;
+	result.Ligns[1].w = -( (top + bot ) / (topbottomDiff) );
+
+	result.Ligns[2].x = 0;
+	result.Ligns[2].y = 0;
+	result.Ligns[2].z = - (2.f  / (Far - Near));
+	result.Ligns[2].w = -((Far + Near) / (Far - Near));
+
+	result.Ligns[3].x = 0;
+	result.Ligns[3].y = 0;
+	result.Ligns[3].z = 0;
 	result.Ligns[3].w = 1.f;
 
 

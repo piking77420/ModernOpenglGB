@@ -15,8 +15,8 @@ void Texture::Init()
     glBindTexture(type, ID);
 
     glTexImage2D(type, 0, format, width, height, 0, format, PixelType, data);
-    glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glGenerateMipmap(type);
     stbi_image_free(data);
 
@@ -51,7 +51,6 @@ Texture::Texture(const std::string& ImagePath)
     imagePath = ImagePath;
     PixelType = GL_UNSIGNED_BYTE;
     type = GL_TEXTURE_2D;
-    std::cout << imagePath << std::endl;
 
     stbi_set_flip_vertically_on_load(true);
     data = stbi_load(ImagePath.c_str(), &width, &height, &nbrOfChannel, 0);
