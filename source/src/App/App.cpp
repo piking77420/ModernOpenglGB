@@ -41,7 +41,7 @@ void App::AppUpdate()
 	Shader* baseShader = m_Ressources->GetElement<Shader>("NormalShader");
 	Shader* Stencil = m_Ressources->GetElement<Shader>("StencilTest");
 	Depthmap* depthmap = m_Ressources->GetElement<Depthmap>("depthMap");
-	Shader* DepthShader = m_Ressources->GetElement<Shader>("DepthMapShader");
+	//Shader* DepthShader = m_Ressources->GetElement<Shader>("DepthMapShader");
 
 
 

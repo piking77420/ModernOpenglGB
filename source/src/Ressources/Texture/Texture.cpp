@@ -21,32 +21,8 @@ void Texture::Init()
     stbi_image_free(data);
 
 }
-Texture::Texture(const std::string& ImagePath, GLenum TextureType, GLenum pixelType)
-{
-    imagePath = ImagePath;
 
-    type = TextureType;
-    PixelType = pixelType;
-
-    stbi_set_flip_vertically_on_load(true);
-    data = stbi_load(ImagePath.c_str(), &width, &height, &nbrOfChannel, 0);
-
-
-  
-    format = GetFormat(nbrOfChannel);
-
-    if (!data)
-    {
-        std::cout << "Fail to load texture" << std::endl;
-    }
-
-
- 
-
-   
-}
-
-Texture::Texture(const std::string& ImagePath)
+Texture::Texture( std::string ImagePath)
 {
     imagePath = ImagePath;
     PixelType = GL_UNSIGNED_BYTE;
@@ -69,30 +45,7 @@ Texture::Texture(const std::string& ImagePath)
 
 }
 
-Texture::Texture(const std::string& ImagePath, GLenum TextureType, GLenum pixelType, bool isNormalMap)
-{
-    type = TextureType;
 
-    stbi_set_flip_vertically_on_load(true);
-    data = stbi_load(ImagePath.c_str(), &width, &height, &nbrOfChannel, 0);
-
-
-    if (!isNormalMap)
-        format = GetFormat(nbrOfChannel);
-    else
-        format = GL_RGB;
-
-
-    if (!data)
-    {
-        std::cout << "Fail to load texture" << std::endl;
-    }
-
- 
-
- 
-   
-}
 
 
 

@@ -40,6 +40,8 @@ public:
     void Init() override;
 
     Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath, std::string shaderName);
+    Shader(const char* vertexPath, const char* fragmentPath);
+
     ~Shader();
 protected:
      mutable std::unordered_map<std::string, GLint> m_UniformMap;

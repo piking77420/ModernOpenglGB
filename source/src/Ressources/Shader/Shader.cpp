@@ -61,6 +61,50 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* geo
     
 }
 
+Shader::Shader(const char* vertexPath, const char* fragmentPath)
+{
+
+    // 1. retrieve the vertex/fragment source code from filePath
+    std::string vertexCode;
+    std::string fragmentCode;
+    std::string geometryCode;
+    std::ifstream vShaderFile;
+    std::ifstream fShaderFile;
+
+    // ensure ifstream objects can throw exceptions:
+    vShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+    fShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+
+    try
+    {
+        // open files
+        vShaderFile.open(vertexPath);
+        fShaderFile.open(fragmentPath);
+
+        std::stringstream vShaderStream, fShaderStream, gShaderStream;
+        // read file's buffer contents into streams
+        vShaderStream << vShaderFile.rdbuf();
+        fShaderStream << fShaderFile.rdbuf();
+
+        // close file handlers
+        vShaderFile.close();
+        fShaderFile.close();
+        // convert stream into string
+        vertexCode = vShaderStream.str();
+        fragmentCode = fShaderStream.str();
+    }
+    catch (std::ifstream::failure e)
+    {
+
+        Debug::Log->LogWarning(" :  ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ \n ");
+    }
+    m_vShaderCode = vertexCode;
+    m_fShaderCode = fragmentCode;
+
+
+
+}
+
 
 
 
@@ -114,7 +158,7 @@ void Shader::SetMaxtrix(const std::string& name, const float* matrixValue) const
 {
 
     int currentLoc = GetUnitform(name.c_str());
-    glUniformMatrix4fv(currentLoc, 1, GL_TRUE, matrixValue);
+    glUniformMatrix4fv(currentLoc, 1, GL_FALSE, matrixValue);
 }
 
 void Shader::SetVector3(const std::string& name, const float* value) const

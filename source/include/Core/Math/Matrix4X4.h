@@ -13,11 +13,11 @@ public:
 
 	
 
-	Vector4 Ligns[4];
+	Vector4 Columns[4];
 
-	static Matrix4X4 ViewMatrix(const Vector3& Left , const Vector3& Up , const Vector3& Forward , const Vector3& Translation);
 	static Matrix4X4 ProjectionMatrix(const float& fov, const float& aspect, const float& Near,const float& Far);
 	static Matrix4X4 OrthoGraphicMatrix( float top , float bot , float right ,float left , float Near,  float Far);
+	static Matrix4X4 LookAt(const Vector3& eye, const Vector3& at, const Vector3& up);
 
 
 	Vector3 GetPos();
@@ -33,7 +33,6 @@ public:
 	// rad
 	static Matrix4X4 RotationX4X4(const float& angle);
 
-	static Matrix4X4 LookAt(const Vector3& eye, const Vector3& at, const Vector3& up);
 
 	// rad
 	static Matrix4X4 RotationMatrix4X4(const Vector3& angle);
@@ -54,7 +53,6 @@ public:
 	Vector4& operator[](const int& i) ;
 
 
-
 	const float* GetPtr() const;
 
 	Matrix4X4(const Vector4& a, const Vector4& b, const Vector4& c, const Vector4& d);
@@ -62,6 +60,7 @@ public:
 
 
 
+	explicit operator Matrix();
 
 
 	Matrix4X4();

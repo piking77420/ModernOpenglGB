@@ -5,6 +5,8 @@
 
 class Shader;
 
+
+
 class Texture : public IResource
 {
 public:
@@ -30,12 +32,11 @@ public:
 	unsigned char* data;
 	void Init() override;
 
-	Texture(const std::string& ImagePath, GLenum TextureType, GLenum pixelType);
-	Texture(const std::string& ImagePath);
+	Texture(std::string ImagePath);
 
-	Texture(const std::string& ImagePath, GLenum TextureType, GLenum pixelType,bool isNormalMap);
 	Texture();
 	~Texture();
+
 
 protected:
 	void IncrementTexture();

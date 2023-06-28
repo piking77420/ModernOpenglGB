@@ -13,6 +13,7 @@ class IResource
 public:
 	virtual void Init() {  };
 	virtual ~IResource();
+	
 
 protected:
 }; 

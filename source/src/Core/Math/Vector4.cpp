@@ -12,13 +12,54 @@ const Vector4 Vector4::One = Vector4(1, 1, 1, 1);
 
 
 
-/*
-
-Vector4::operator Vector3()
+float Vector4::operator[](const int& i) const
 {
-	return Vector3(x, y, z);
+	if (i == 0)
+	{
+		return x;
+	}
+	else if (i == 1)
+	{
+		return y;
+	}
+	else if (i == 2)
+	{
+		return z;
+	}
+	else if (i == 3)
+	{
+		return z;
+	}
+	return -99999999999;
+
 }
-*/
+
+float& Vector4::operator[](const int& i)
+{
+	// // O: insert return statement here
+
+	if (i == 0)
+	{
+		return x;
+	}
+	else if( i == 1 )
+	{
+		return y;
+	}
+	else if (i == 2)
+	{
+		return z;
+	}
+	else if (i == 3)
+	{
+		return z;
+	}
+
+
+	
+}
+
+
 Vector4 Vector4::operator+(float value)
 {
 	return Vector4(x + value, y + value, z + value, w + value);
@@ -104,10 +145,6 @@ float* Vector4::SetPtr()
 	return &x;
 }
 
-Vector4 Vector4::Normal() const
-{
-	return Vector4();
-}
 
 float Vector4::DotProduct(const Vector4& Row0) const
 {
@@ -125,26 +162,21 @@ float Vector4::DotProduct(const Vector4& Row0) const
 	return result;
 }
 
-Vector4 Vector4::CrossProduct(const Vector4& Row0) const
+
+
+float Vector4::DotProduct(const Vector4& vec1, const Vector4& vec2)
 {
-	return Vector4();
+	return vec1.DotProduct(vec2);
 }
 
-float Vector4::DotProduct(const Vector4& vec1, const Vector4& Row1)
-{
-	return vec1.DotProduct(Row1);
-}
-// NOT IMPLEMETED
 
-Vector4 Vector4::CrossProduct(const Vector4& a, const Vector4& b)
+float Vector4::Angle(const Vector4& vec1, const Vector4& vec2)
 {
-	return Vector4();
-}
-
-// NOT IMPLEMETED
-float Vector4::Angle(const Vector4& vec1, const Vector4& Row1)
-{
-	return 0.0f;
+	float dot = DotProduct(vec1, vec2);
+	float normVec1 = vec1.Norm();
+	float normVec2 = vec2.Norm();
+	float angle = std::acos(dot / (normVec1 * normVec2));
+	return angle;
 }
 std::ostream& operator<<(std::ostream& stream, const Vector4& vec)
 {
@@ -157,43 +189,6 @@ std::ostream& operator<<(std::ostream& stream, const Vector4& vec)
 
 
 
-
-
-
-
-
-
-///  ///////
-
-// good
-Vector4 Vector4::CylinderToCoordianteCartisiant(float _radius, float angle, float zCoordinate)
-{
-
-
-	Vector4 result;
-	result.x = _radius * cosf(angle);
-	result.y = _radius * sinf(angle);
-	result.z = zCoordinate;
-	result.w = 1;
-
-
-	return result;
-}
-
-Vector4 Vector4::CartisianeCoorToCylinderCoor()
-{
-
-
-	Vector4 result;
-	result.x = sqrtf(x * x + y * y);
-	result.y = atan2f(y, x);
-	result.z = z;
-	result.w = 1;
-
-
-	return result;
-
-}
 
 
 

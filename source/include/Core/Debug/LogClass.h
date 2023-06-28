@@ -9,7 +9,7 @@
 #include <filesystem>
 #include <ctime>
 #include <windows.h>	
-
+#include <thread>
 
 
 #define MAX_LOG_SIZE 10
@@ -44,12 +44,13 @@ namespace Debug
 {	
 	// Need to init here due to variadique template 
 	static std::fstream* debugLogStream = new std::fstream(FileName, std::ios_base::out);
-
+	
 	class LogClass
 	{
 	public:
 		
 		
+
 		template<typename ...Param>
 		void Print(const char* format, Param ...param);
 		
@@ -76,6 +77,7 @@ namespace Debug
 
 		LogClass();
 		~LogClass();
+	private :
 	};
 
 	static LogClass* Log = new Debug::LogClass();

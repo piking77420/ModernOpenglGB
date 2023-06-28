@@ -8,26 +8,36 @@
 
 std::ostream& operator<<(std::ostream& stream, const Matrix& matrix)
 {
-	/// 
-	///  X X X 
-	///  Y Y Y
-	///  Z Z Z
-	///	  
+	  
 
-	for (size_t i = 0; i < matrix.Size(); i++)
+
+	size_t maxSize = 0; // Maximum size among all rows
+
+	// Find the maximum size among all rows
+	for (size_t k = 0; k < matrix.Size(); k++)
 	{
-		
-		for (size_t k = 0; k < matrix[i].data.size(); k++)
+		if (matrix[k].Size() > maxSize)
 		{
-			
-			
-				stream << matrix[i].data[k] << " ";
-
+			maxSize = matrix[k].Size();
 		}
+	}
 
+	// Print the matrix elements
+	for (size_t i = 0; i < maxSize; i++)
+	{
+		for (size_t k = 0; k < matrix.Size(); k++)
+		{
+			if (i > matrix[k].Size())
+			{
+				stream << "$" << " ";
+			}
+			else
+			{
+				stream << matrix[k].data[i] << " ";
+			}
+		}
 		stream << '\n';
 	}
-	
 
 	return stream;
 }
@@ -196,6 +206,23 @@ Matrix::~Matrix()
 int const Matrix::Size() const
 {
 	return mData.size();
+}
+
+Matrix Matrix::Transposate()
+{
+
+	int numRows = this->Size();
+	int numCols = mData[0].Size();
+	Matrix transposedMatrix(numCols, numRows);
+
+
+	for (int i = 0; i < numRows; i++) {
+		for (int j = 0; j < numCols; j++) {
+			transposedMatrix[j][i] = this->mData[i][j];
+		}
+	}
+
+	return transposedMatrix;
 }
 
 Matrix Matrix::Identity(const int size)
@@ -494,23 +521,18 @@ int returnMaxInColomm(Matrix& matrix, const int& r, const int& j)
 {
 	int indexmax = r;
 	int currentLign = r;
-	float max = ReturnAbsol(matrix[r][j]);
+	float max = std::abs(matrix[r][j]);
 
-	// cout << " here "<< r << "  matrix.Vectors.size() - r" << endl;
-	for (size_t i = currentLign; i < matrix.Size() - r; i++)
+	for (int i = currentLign; i < matrix.Size(); i++)
 	{
-
-		if (ReturnAbsol(matrix[i][j]) > ReturnAbsol(max))
+		if (std::abs(matrix[i][j]) > max)
 		{
-
-			max = ReturnAbsol(matrix[i][j]);
-
+			max = std::abs(matrix[i][j]);
 			indexmax = i;
 		}
-
 	}
 
-	return indexmax;	
+	return indexmax;
 }
 
 
@@ -519,75 +541,48 @@ int returnMaxInColomm(Matrix& matrix, const int& r, const int& j)
 
 Matrix Matrix::PivotDeGauss()
 {
+	Matrix matrix = *this;
 
-	Matrix result = *this;
-	//cout << result << endl;
+	int numRows = matrix.Size();
+	int numCols = matrix[0].Size();
 
-	int r = 0;
-	int n = this->Size(); // nbr of ligne
-	int i = this->mData[0].data.size(); /// taile d'une ligne 
+	int r = 0; 
 
-	for (size_t j = 0; j < n; j++)
-	{
-		//cout << endl << endl << " Loop " << j << endl << result << endl;
+	for (int j = 0; j < numCols; j++) {
+		int k = r; 
 
-		int k = returnMaxInColomm(result, r, j);
-
-		//cout << "where is the Maximum " << k << endl;
-
-		if (result[k][j] != 0)
-		{
-
-
-
-			float toDivide = result[k][j];
-
-			for (size_t l = 0; l < i; l++)
-			{
-				//cout << result[k][l] << "/" << toDivide << endl;
-				result[k][l] = result[k][l] / toDivide;
-				//cout << "result = " << result[k][l] << endl;
-
+		for (int i = r + 1; i < numRows; i++) {
+			if (std::abs(matrix[i][j]) > std::abs(matrix[k][j])) {
+				k = i;
 			}
-			//cout << result << endl;
-
-			//cout << " k = " << k << " " << " r  = " << r << endl;
-			if (k != r)
-			{
-				std::swap(result[k], result[r]);
-			}
-			//cout << result << endl;
-
-
-			for (size_t m = 0; m < n; m++)
-			{
-				//cout << "m = " << m << " r = " << r << endl;
-				if (m != r)
-				{
-					float alpha = result[m][j];
-					for (size_t l = 0; l < i; l++)
-					{
-						//cout << result[m][l] << " -= " << alpha << " * " << result[r][l] << endl;
-						result[m][l] -= alpha * result[r][l];
-						//cout << "result = " << result[m][l] << endl;
-					}
-				}
-			}
-
-
-			// cout << result << endl;
-			r++;
-
-
-
-
 		}
 
+		if (matrix[k][j] == 0) {
+			continue;
+		}
 
+		std::swap(matrix[k], matrix[r]);
+
+		float divisor = matrix[r][j];
+		for (int c = j; c < numCols; c++) {
+			matrix[r][c] /= divisor;
+		}
+
+		for (int i = 0; i < numRows; i++) {
+			if (i != r) {
+				float factor = matrix[i][j];
+				for (int c = j; c < numCols; c++) {
+					matrix[i][c] -= factor * matrix[r][c];
+				}
+			}
+		}
+
+		r++;
 	}
 
+	return matrix;
 
-	return result;
+
 }
 
 /*

@@ -26,7 +26,7 @@ public:
 	
 
 
-	
+	Matrix Transposate();
 	static Matrix Identity(const int size) ;
 	static Matrix Identity(const int sizeX , const int sizeY);
 

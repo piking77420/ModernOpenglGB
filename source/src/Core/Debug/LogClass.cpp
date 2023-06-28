@@ -8,7 +8,6 @@ using namespace Debug;
 
 
 
-
 void PrintConsole(const std::string color, const std::string& time, const std::string& message)
 {
 
@@ -22,6 +21,8 @@ void PrintConsole(const std::string color, const std::string& time, const std::s
 
 void OpengFileAndPrint(std::fstream& debugLogStream, const std::string color, const std::string& time,const std::string& message)
 {
+
+
 
 	if (debugLogStream.is_open())
 	{
@@ -109,6 +110,8 @@ void LogClass::LogWarning(const std::string& currentMessage
 
 void LogClass::LogInfo(const std::string& currentMessage, const char* currentFile, const char* currentFonction, const int line )
 {
+	
+
 #ifdef _DEBUG
 
 	std::string output = ReturnMessage(currentMessage, currentFile, currentFonction, line);

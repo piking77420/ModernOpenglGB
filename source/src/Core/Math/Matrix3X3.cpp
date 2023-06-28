@@ -35,13 +35,13 @@ Matrix3X3 Matrix3X3::Rotation2DMatrix3X3(const float& angle)
 {
 	Matrix3X3 result;
 
-	result.Ligns[0].x = cos(degreesToRadians(angle));
+	result.Ligns[0].x = cos((angle));
 	result.Ligns[0].y = 0;
 	result.Ligns[0].z = 0;
 
 
 	result.Ligns[1].x = 0;
-	result.Ligns[1].y = sin(degreesToRadians(angle));
+	result.Ligns[1].y = sin((angle));
 	result.Ligns[1].z = 0;
 
 

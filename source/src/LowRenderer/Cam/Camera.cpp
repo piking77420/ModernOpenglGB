@@ -71,9 +71,11 @@ void Camera::CameraUpdate()
 	  CameraRotation();
 
 
-	  m_ProjectionMatrix = m_ProjectionMatrix.ProjectionMatrix((fov), (float)windowWidth / (float)windowHeight, Fnear, Ffar);
+	  m_ProjectionMatrix = Matrix4X4::ProjectionMatrix((fov), (float)windowWidth / (float)windowHeight, Fnear, Ffar);
+
+	  //m_ProjectionMatrix = Matrix4X4::OrthoGraphicMatrix(4,-4,4, -4, Fnear, Ffar).Transposate();
 	  m_LookAtMatrix = GetLookMatrix();
-	  VP = m_ProjectionMatrix * m_LookAtMatrix;
+	  VP =    m_ProjectionMatrix * m_LookAtMatrix;
 	 
 	
 }

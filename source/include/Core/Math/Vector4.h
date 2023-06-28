@@ -1,8 +1,7 @@
 #pragma once
 #include <iostream>
+#include "Vector3.h"
 
-
-class Vector3;
 
 class Vector4
 {
@@ -19,29 +18,22 @@ public:
 
 	float* SetPtr();
 
-	// Not Implemeted
-	Vector4 Normal() const;
-
-	float DotProduct(const Vector4& Row0) const;
-	// Not Implemeted
-	Vector4 CrossProduct(const Vector4& Row0) const;
 
 
-	float DotProduct(const Vector4& vec1, const Vector4& Row1);
-	// Not Implemeted
-	Vector4 CrossProduct(const Vector4& a, const Vector4& b);
+	float DotProduct(const Vector4& vec2) const;
 
 
-	// Not Implemeted
-	float Angle(const Vector4& vec1, const Vector4& Row1);
+	float DotProduct(const Vector4& vec1, const Vector4& vec2);
 
 
-	Vector4 CylinderToCoordianteCartisiant(float _radius, float angle, float zCoordinate);
+	float Angle(const Vector4& vec1, const Vector4& vec2);
 
-	Vector4 CartisianeCoorToCylinderCoor();
 
-	Vector4 SphericalCorrdinateToCarthesian();
 
+
+	float operator[](const int& i) const;
+
+	float& operator[](const int& i);
 
 	Vector4 operator+(float value);
 	Vector4 operator-(float value);

@@ -98,13 +98,13 @@ inline Matrix2X2 operator*(const Matrix2X2& matrix1, const Matrix2X2& matrix2)
 
 	Matrix2X2 result;
 
-	result.Ligns[0].x = matrix1.Ligns[0].x * matrix2.Ligns[0].x + matrix1.Ligns[1].x + matrix2.Ligns[0].y;
+	result.Ligns[0].x = matrix1.Ligns[0].x * matrix2.Ligns[0].x + matrix1.Ligns[1].y * matrix2.Ligns[0].y;
 
-	result.Ligns[1].x = matrix1.Ligns[0].x * matrix2.Ligns[1].x + matrix1.Ligns[1].x + matrix2.Ligns[1].y;
+	result.Ligns[1].x = matrix1.Ligns[0].x * matrix2.Ligns[1].x + matrix1.Ligns[1].y * matrix2.Ligns[1].y;
 
-	result.Ligns[0].y = matrix1.Ligns[0].y * matrix2.Ligns[0].x + matrix1.Ligns[1].y + matrix2.Ligns[0].y;
+	result.Ligns[0].y = matrix1.Ligns[0].y * matrix2.Ligns[0].x + matrix1.Ligns[1].y * matrix2.Ligns[0].y;
 
-	result.Ligns[1].y = matrix1.Ligns[0].y * matrix2.Ligns[1].x + matrix1.Ligns[1].y + matrix2.Ligns[1].y;
+	result.Ligns[1].y = matrix1.Ligns[0].y * matrix2.Ligns[1].x + matrix1.Ligns[1].y * matrix2.Ligns[1].y;
 
 
 	return result;

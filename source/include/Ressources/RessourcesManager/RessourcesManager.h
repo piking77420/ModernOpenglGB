@@ -34,7 +34,7 @@ public:
 	void PushBackElement(std::string name, T* newElement);
 	template<class T>
 	T* GetElement(const std::string& name);
-	template<class T>
+	template<typename T>
 	T* Create(std::string path);
 	template<class T>
 	bool IsRessourcesIs(IResource* ressources) const ;
@@ -43,7 +43,6 @@ public:
 	static std::string GetFormatFromFile(std::string path);
 	void ImguiSceneManagers() const;
 
-	std::vector<std::thread*> theards;
 	Serializer serializer;
 
 	RessourcesManager();
@@ -59,8 +58,7 @@ private:
 	void LoadScene(std::filesystem::path path);
 	bool isThisValidForThisFormat(std::string path, std::string format);
 
-
-
+	const std::type_info* GetID(std::string path);
 
 	// Texture file accetptes jpg png 
 	const std::string png = ".png";
@@ -77,6 +75,8 @@ private:
 	const std::string assetsFolder = "assets";
 	// cubeMaps folder to ignore not supported TO DO	
 	const std::string cubeMapsFolder = "cube_maps";
+	std::vector<std::thread*> theards;
+
 };
 
 static RessourcesManager* StaticRessourcesManger;
@@ -119,7 +119,7 @@ inline T* RessourcesManager::GetElement(const std::string& name)
 }
 
 // if it's a path he will automaticaly return the correct name
-template<class T>
+template<typename T>
 inline T* RessourcesManager::Create(std::string path)
 {
 

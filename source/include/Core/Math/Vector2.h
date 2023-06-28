@@ -85,8 +85,14 @@ private:
 };
 
 
-
-
+static inline float DistanceSquare(Vector2 a, Vector2 b)
+{
+	return ((a.x - b.x * a.x - b.x) + (a.y - b.y * a.y - b.y));
+}
+static inline float Distance(Vector2 a , Vector2 b)
+{
+	return std::sqrtf((a.x - b.x * a.x - b.x) + (a.y - b.y * a.y - b.y));
+}
 
 #pragma region Operator
 

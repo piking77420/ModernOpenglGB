@@ -65,6 +65,5 @@ private:
 };
 
 
-
 std::ostream& operator<<(std::ostream& stream, const Vector& vec);
 

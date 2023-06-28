@@ -7,7 +7,6 @@
 #include "Ressources/Model/Model.h"
 
 
-
  
 void RessourcesManager::LoadAllAssets()
 {
@@ -64,6 +63,21 @@ bool RessourcesManager::isThisValidForThisFormat(std::string path, std::string f
 	return false;
 }
 
+const std::type_info* RessourcesManager::GetID(std::string path)
+{
+	if (isThisValidForThisFormat(path, obj))
+		return &typeid(Model);
+
+	if (isThisValidForThisFormat(path, png))
+		return &typeid(Texture);
+
+	if (isThisValidForThisFormat(path, jpg))
+		return &typeid(Texture);
+
+
+	return nullptr;
+}
+
 std::string RessourcesManager::GetFormatFromFile(std::string path)
 {
 
@@ -90,10 +104,12 @@ void RessourcesManager::LoadTexture(fs::path path)
 
 	if (isThisValidForThisFormat(path_string, png) || isThisValidForThisFormat(path_string, jpg))
 	{
-		
+		const std::type_info* type = GetID(path_string);
+
 		std::thread* newThreads = new std::thread([this, path_string]()
 			{		
 				Debug::Log->LogGood(path_string + " has been Correcty loaded");
+
 				Create<Texture>(path_string);
 			});
 			
