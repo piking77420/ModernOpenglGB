@@ -124,6 +124,14 @@ std::string RessourcesManager::GetRessourcesName(const std::string& path)
 	return path;
 }
 
+void RessourcesManager::OnResizeWindow()
+{
+	for (auto it = m_MainResourcesMap.begin(); it != m_MainResourcesMap.end(); it++)
+	{
+		it->second->OnWindowResize();
+	}
+}
+
 
 void RessourcesManager::LoadModel(std::filesystem::path path)
 {

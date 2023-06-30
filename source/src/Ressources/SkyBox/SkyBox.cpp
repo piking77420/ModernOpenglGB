@@ -8,7 +8,7 @@ void SkyBox::Draw() const
     m_Cubemaps.BindTexture();
     glDepthFunc(GL_LEQUAL);
     glBindVertexArray(VAO);
-    glActiveTexture(GL_TEXTURE0);
+    glActiveTexture(GL_TEXTURE0 + m_Cubemaps.slot);
     glDrawArrays(GL_TRIANGLES, 0, 36);
     glBindVertexArray(0);
     glDepthFunc(GL_LESS);

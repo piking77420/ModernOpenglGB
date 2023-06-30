@@ -30,7 +30,7 @@ class RessourcesManager
 public:
 
 	static std::string GetRessourcesName(const std::string& path);
-	
+	void OnResizeWindow();
 	// Return map for iterator  to camera set uniform
 	std::map<std::string, IResource*>& GetRessources();
 	void LoadAllAssets();

@@ -13,7 +13,6 @@ class CubeMaps : public Texture
 {
 
 public:
-	int cubeMapIndex;
 	void operator=(const CubeMaps& cubeMaps);
 	CubeMaps(std::vector<std::string> allMapsFile);
 	CubeMaps(fs::path CubepMasFile);

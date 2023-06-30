@@ -4,12 +4,11 @@
 namespace fs = std::filesystem;
 
 
-int CubeMaps::cubmapGlobalIndex = 0;
+int CubeMaps::cubmapGlobalIndex = 20;
 
 void CubeMaps::operator=(const CubeMaps& cubeMaps)
 {
-    this->cubeMapIndex = cubeMaps.cubeMapIndex;
-    this->cubmapGlobalIndex = cubeMaps.cubeMapIndex;
+    this->slot = cubeMaps.slot;
     this->height = cubeMaps.height;
     this->width = cubeMaps.width;
     this->ID = cubeMaps.ID;
@@ -62,7 +61,7 @@ CubeMaps::CubeMaps(std::vector<std::string> allMapsFile)
     glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(type, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexParameteri(type, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-    cubeMapIndex = cubmapGlobalIndex;
+    slot = cubmapGlobalIndex;
     cubmapGlobalIndex++;
 }
 

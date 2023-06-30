@@ -17,6 +17,7 @@ public:
 	void UnBindTexture()const;
 	void DeleteTexture();
 	void TextureShaderUniform(const Shader& shader, const char* uniform, GLuint unit);
+	void OnWindowResize() override;
 
 	GLuint ID;
 	GLenum type;

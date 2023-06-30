@@ -35,7 +35,7 @@ void App::DrawSkyBox()
 void App::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
-	//currentScene->OpenGlRenderToImgui->ResizeFrammeBuffer(width, height);
+	currentScene->OpenGlRenderToImgui->ResizeFrammeBuffer(width, height);
 }
 
 void App::AppUpdate()
@@ -44,8 +44,6 @@ void App::AppUpdate()
 	Shader* GizmoShader = m_Ressources->GetElement<Shader>("GizmoShader");
 	Shader* baseShader = m_Ressources->GetElement<Shader>("NormalShader");
 	Shader* Stencil = m_Ressources->GetElement<Shader>("StencilTest");
-	Depthmap* depthmap = m_Ressources->GetElement<Depthmap>("depthMap");
-	//Shader* DepthShader = m_Ressources->GetElement<Shader>("DepthMapShader");
 
 
 	currentScene->OpenGlRenderToImgui->Bind();
@@ -168,7 +166,7 @@ App::App(int _WindowX, int _WindowY, ImGuiIO& _io) : windowX(_WindowX), windowY(
 	//InitImguiTheme();
 	Shader* skyboxShader = m_Ressources->GetElement<Shader>("SkyBoxShader");
 	skyboxShader->Use();
-	skyboxShader->SetInt("skybox", m_CurrentSkybox->m_Cubemaps.cubeMapIndex);
+	skyboxShader->SetInt("skybox", m_CurrentSkybox->m_Cubemaps.slot);
 	StaticRessourcesManger = m_Ressources;
 
 	// We Init The FrameBuffer here because we need To wait To Glad and opengl to be init

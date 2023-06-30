@@ -14,7 +14,7 @@ public:
 
 	virtual void Init() {  };
 	virtual ~IResource();
-	
+	virtual void OnWindowResize(){};
 
 protected:
 }; 

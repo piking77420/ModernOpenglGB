@@ -20,6 +20,7 @@ void Texture::Init()
     glGenerateMipmap(type);
     stbi_image_free(data);
 
+
 }
 
 Texture::Texture( std::string ImagePath)
@@ -134,6 +135,10 @@ void Texture::TextureShaderUniform(const Shader& shader, const char* uniform, GL
     glUniform1i(texUni, unit);
 
 
+}
+
+void Texture::OnWindowResize()
+{
 }
 
 
