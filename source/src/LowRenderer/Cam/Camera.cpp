@@ -66,9 +66,11 @@ void Camera::CameraUpdate()
 	  GLFWwindow* currentContext = glfwGetCurrentContext();
 	  ImGuiIO& io = ImGui::GetIO();
 
-	
-	  CameraMovment(currentContext, io);
-	  CameraRotation();
+	  
+		CameraMovment(currentContext, io);
+		CameraRotation();
+
+	  
 
 
 	  m_ProjectionMatrix = Matrix4X4::ProjectionMatrix((fov), (float)windowWidth / (float)windowHeight, Fnear, Ffar);

@@ -11,6 +11,7 @@
 
 #include "Mathf.h"
 #include "LowRenderer/FrameBuffer/FrameBuffer.h"
+#include "UI/ContentBrowser.h"
 
 
 class RessourcesManager;
@@ -20,8 +21,8 @@ class Shader;
 class Model;
 class Light;
 
-const int windowWidth = 1000;
-const int windowHeight = 720;
+const int windowWidth = 1920;
+const int windowHeight = 1080;
 const int MSAA = 8;
 
 
@@ -35,6 +36,7 @@ public:
 	static bool GammaCorrection;	
 	static Scene* currentScene;
 	RessourcesManager* m_Ressources;
+	Entity*  CurrentInspectedEntity ;
 
 	App(int _WindowX, int _WindowY, ImGuiIO& _io);
 	~App();
@@ -47,15 +49,14 @@ private:
 	void InitScene();
 	void DrawSkyBox();
 	void InitImguiTheme();
-	void ImguiInspector() const;
-	void ImguiGraphScene() const;
-	void ContentBrowser() const;
+	void ImguiInspector() ;
+	void ImguiGraphScene() ;
 	void ImguiAppInfo();
-	void DockSpace() const;
-	void ImguiDrawChildren(Entity* entity) const;
+	void DockSpace() ;
+	void ImguiDrawChildren(Entity* entity) ;
 	SkyBox* m_CurrentSkybox;
 	Shader* m_CurrentPostProcess;
-	
+	ContentBrowser m_ContentBrowser;
 
 };
 

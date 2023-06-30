@@ -10,7 +10,7 @@
  
 void RessourcesManager::LoadAllAssets()
 {
-	fs::path assetsPath(this->assetsFolder);
+	fs::path assetsPath(assetsFolder);
 
 	for (const auto& entry : fs::directory_iterator(assetsPath))
 		LookFiles(entry.path());
@@ -208,20 +208,6 @@ void RessourcesManager::LoadScene(std::filesystem::path path)
 
 
 
-void RessourcesManager::ImguiSceneManagers() const
-{
-	if(ImGui::Button("Save Scene"))
-	for (auto it = m_MainResourcesMap.begin(); it != m_MainResourcesMap.end(); it++)
-	{
-		Scene* scene = RessourcesManager::TryIsTypeOf<Scene>(it->second);
-
-		if(scene)
-		{
-			//scene->Saving();
-		}
-	}
-
-}
 
 
 

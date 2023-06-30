@@ -47,7 +47,6 @@ public:
 	template<class T>
 	T* TryIsTypeOf(IResource* ressources) const;
 	static std::string GetFormatFromFile(std::string path);
-	void ImguiSceneManagers() const;
 
 	Serializer serializer;
 

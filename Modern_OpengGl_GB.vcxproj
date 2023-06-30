@@ -231,6 +231,7 @@
     <ClInclude Include="source\include\src\App\App.h" />
     <ClInclude Include="source\include\LowRenderer\Ui\UIRenderer.h" />
     <ClInclude Include="source\include\Core\Input\UserInputs.h" />
+    <ClInclude Include="source\include\UI\ContentBrowser.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -327,6 +328,7 @@
     <ClCompile Include="source\src\Ressources\Texture\Texture.cpp" />
     <ClCompile Include="source\src\LowRenderer\Ui\UIRenderer.cpp" />
     <ClCompile Include="source\src\Core\Input\UserInputs.cpp" />
+    <ClCompile Include="source\src\UI\ContentBrowser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="source\src\External\lib\glfw3.lib" />

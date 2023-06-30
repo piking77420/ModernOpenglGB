@@ -36,31 +36,28 @@ void Entity::ImguiEntityWindow()
 {
 	ImGui::PushID(name.c_str());
 
-	if (ImGui::CollapsingHeader(name.c_str()))
-	{	
+	ImGui::CollapsingHeader(name.c_str(), NULL, ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_Leaf);
+		
 
-		for (Component* c : Components)
+	for (Component* c : Components)
+	{
+
+		c->ImguiWindow();
+		ImGui::Text("");
+
+	}
+	ImGui::SetCursorPosX((ImGui::GetWindowSize().x - ImGui::CalcTextSize("Button Text").x) * 0.5f);
+
+	if (ImGui::Button("AddComponent"))
+	{
+		if (ImGui::Button("MeshRenderer"))
 		{
-
-			c->ImguiWindow();
-			ImGui::Text("");
-
-		}
-
-		if (ImGui::TreeNode("AddComponent"))
-		{
-			if(ImGui::Button("MeshRenderer"))
-			{
-				AddComponent<MeshRenderer>();
-			}
-
-
-			
-
-			ImGui::TreePop();
+			AddComponent<MeshRenderer>();
 		}
 		
 	}
+		
+	
 	ImGui::PopID();
 
 }

@@ -20,6 +20,7 @@ class RendererComponent : public Component
 {
 
 public:
+
 	virtual void Draw(Scene* scene, Shader* shader);
 	void ImguiWindowComponents() override;
 
