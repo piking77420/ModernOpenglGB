@@ -13,6 +13,7 @@ class Transform;
 class MeshRenderer;
 class Entity;
 class AppData;
+class FrameBuffer;
 
 class Scene : public IResource
 {
@@ -28,7 +29,6 @@ public :
 	
 
 	void AddEntity();
-	// Voir avec Eric // 
 	void RemoveEntity(Entity* entity);
 
 	
@@ -43,6 +43,8 @@ public :
 	float  Deltatime;
 	RessourcesManager* ressourcesManagers;
 	std::vector<Entity*> entities;
+	static FrameBuffer* OpenGlRenderToImgui;
+
 	Scene(std::string Filename);
 	Scene();	
 	~Scene();

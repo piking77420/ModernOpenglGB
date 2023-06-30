@@ -12,7 +12,7 @@
     #include <GLFW/glfw3.h>
     #include <LowRenderer/Light/Light.h>
     #include "External/Std_Image/std_image.h"
-
+#include "LowRenderer/FrameBuffer/FrameBuffer.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -27,10 +27,11 @@
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
           glfwSetWindowShouldClose(window, true);
     }
+    /*
     void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     {
         glViewport(0, 0, width, height);
-    }
+    }*/
     void EnableOpenGl()
     {
         glDepthFunc(GL_LESS);
@@ -92,8 +93,8 @@
         glfwMakeContextCurrent(window);
 
         gladLoadGL();
-        framebuffer_size_callback(window, windowWidth, windowHeight);
-        glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+        App::framebuffer_size_callback(window, windowWidth, windowHeight);
+        glfwSetFramebufferSizeCallback(window, App::framebuffer_size_callback);
         glfwSetCursorPosCallback(window, Camera::MouseCallback);
         glfwSetMouseButtonCallback(window, Camera::MouseButtonCallBack);
 
@@ -103,6 +104,7 @@
         ImGui::CreateContext();
         // Imgui Init // 
         ImGuiIO& io = ImGui::GetIO(); (void)io;
+        io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
         io.ConfigFlags |= ImGuiConfigFlags_NoMouseCursorChange;
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
         ImGui::StyleColorsDark();
@@ -200,6 +202,8 @@
             
             */
         // Main Loop // 
+
+
         while (!glfwWindowShouldClose(window))
         {
             
@@ -216,9 +220,7 @@
             ImGui_ImplGlfw_NewFrame();
             ImGui::NewFrame();
 
-            glClearColor(0.4f, 0.3f, 0.5f, 1.0f);
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-            glEnable(GL_DEPTH_TEST);
+         
             /*
             glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -277,7 +279,7 @@
             glStencilFunc(GL_ALWAYS, 0, 0xFF);
             if (App::GammaCorrection)
             glDisable(GL_FRAMEBUFFER_SRGB);
-            
+
            // IMGUI RENDER // 
             ImGui::Render();
             ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

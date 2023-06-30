@@ -10,7 +10,7 @@
 #include <Core/Debug/Debug.h>
 
 #include "Mathf.h"
-
+#include "LowRenderer/FrameBuffer/FrameBuffer.h"
 
 
 class RessourcesManager;
@@ -29,7 +29,7 @@ class App
 {
 public:	
 
-
+	static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 	void AppUpdate(); 
 
 	static bool GammaCorrection;	
@@ -49,7 +49,9 @@ private:
 	void InitImguiTheme();
 	void ImguiInspector() const;
 	void ImguiGraphScene() const;
+	void ContentBrowser() const;
 	void ImguiAppInfo();
+	void DockSpace() const;
 	void ImguiDrawChildren(Entity* entity) const;
 	SkyBox* m_CurrentSkybox;
 	Shader* m_CurrentPostProcess;

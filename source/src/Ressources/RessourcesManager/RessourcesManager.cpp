@@ -63,20 +63,9 @@ bool RessourcesManager::isThisValidForThisFormat(std::string path, std::string f
 	return false;
 }
 
-const std::type_info* RessourcesManager::GetID(std::string path)
-{
-	if (isThisValidForThisFormat(path, obj))
-		return &typeid(Model);
-
-	if (isThisValidForThisFormat(path, png))
-		return &typeid(Texture);
-
-	if (isThisValidForThisFormat(path, jpg))
-		return &typeid(Texture);
 
 
-	return nullptr;
-}
+
 
 std::string RessourcesManager::GetFormatFromFile(std::string path)
 {
@@ -102,9 +91,9 @@ void RessourcesManager::LoadTexture(fs::path path)
 {
 	std::string path_string = path.generic_string();
 
+
 	if (isThisValidForThisFormat(path_string, png) || isThisValidForThisFormat(path_string, jpg))
 	{
-		const std::type_info* type = GetID(path_string);
 
 		std::thread* newThreads = new std::thread([this, path_string]()
 			{		
@@ -209,6 +198,8 @@ void RessourcesManager::LoadScene(std::filesystem::path path)
 }
 
 
+
+
 void RessourcesManager::ImguiSceneManagers() const
 {
 	if(ImGui::Button("Save Scene"))
@@ -227,7 +218,7 @@ void RessourcesManager::ImguiSceneManagers() const
 
 
 RessourcesManager::RessourcesManager()
-{	
+{
 }
 
 void RessourcesManager::LookFiles(fs::path _path)

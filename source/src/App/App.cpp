@@ -32,7 +32,11 @@ void App::DrawSkyBox()
 }
 
 
-
+void App::framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+	glViewport(0, 0, width, height);
+	//currentScene->OpenGlRenderToImgui->ResizeFrammeBuffer(width, height);
+}
 
 void App::AppUpdate()
 {
@@ -44,12 +48,16 @@ void App::AppUpdate()
 	//Shader* DepthShader = m_Ressources->GetElement<Shader>("DepthMapShader");
 
 
-
+	currentScene->OpenGlRenderToImgui->Bind();
+	glClearColor(0.4f, 0.3f, 0.5f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	glEnable(GL_DEPTH_TEST);
 
 	currentScene->cam->SetCameraInfoForShaders(*m_Ressources);
 	DrawSkyBox();
 
 	currentScene->PhyscisUpdate();
+	currentScene->cam->CameraUpdate();
 	currentScene->SceneUpdate(m_io);
 	currentScene->RenderScene(baseShader, Stencil);
 	currentScene->RenderGizmo(GizmoShader);
@@ -59,15 +67,17 @@ void App::AppUpdate()
 	
 
 	currentScene->LateUpdate();
-	
-	ImguiInspector();
-	currentScene->cam->CameraUpdate();
-	currentScene->cam->ImguiCameraWindow();
-	ImguiGraphScene();
-	ImguiAppInfo();	
-	
+	currentScene->OpenGlRenderToImgui->UnBind();
+
+
+	DockSpace();
+	ImguiAppInfo();
+
+	ContentBrowser();
 	
 }
+
+
 
 
 
@@ -111,6 +121,7 @@ void App::InitRessources()
 	m_CurrentSkybox = m_Ressources->GetElement<SkyBox>("SpaceSkyBox");
 	m_CurrentPostProcess = m_Ressources->GetElement<Shader>("KernelEffectShader");
 
+
 }
 
 void App::InitScene()
@@ -148,23 +159,20 @@ App::App(int _WindowX, int _WindowY, ImGuiIO& _io) : windowX(_WindowX), windowY(
 	
 	m_Ressources = new RessourcesManager();
 	RendererComponent::ressourcesManager = m_Ressources;
-
-	/*
-	std::thread newthread([this]() {
-		m_Ressources->LoadAllAssets();
-		});
-	newthread.join();*/
 	m_Ressources->LoadAllAssets();
 
 	m_io = ImGui::GetIO();
 
 	InitRessources();
 	InitScene();
-	InitImguiTheme();
+	//InitImguiTheme();
 	Shader* skyboxShader = m_Ressources->GetElement<Shader>("SkyBoxShader");
 	skyboxShader->Use();
 	skyboxShader->SetInt("skybox", m_CurrentSkybox->m_Cubemaps.cubeMapIndex);
 	StaticRessourcesManger = m_Ressources;
+
+	// We Init The FrameBuffer here because we need To wait To Glad and opengl to be init
+	Scene::OpenGlRenderToImgui->Init();
 }
 
 
@@ -214,6 +222,7 @@ void App::ImguiGraphScene() const
 {
 	if (ImGui::Begin("GraphScene"))
 	{
+		
 
 		for (size_t i = 0; i < currentScene->entities.size(); i++)
 		{
@@ -225,6 +234,14 @@ void App::ImguiGraphScene() const
 		ImGui::End();
 	}
 
+}
+
+void App::ContentBrowser() const
+{
+	if(ImGui::Begin("Content browser"))
+	{
+		ImGui::End();
+	}
 }
 
 void App::ImguiDrawChildren(Entity* entity) const
@@ -276,8 +293,6 @@ void App::ImguiAppInfo()
 	
 		ImGui::Button("SaveCurrentScene");
 
-		
-
 		ImGui::Text("Type of CubeMap");
 		if(ImGui::Button("Skybox Space"))
 		{
@@ -287,19 +302,76 @@ void App::ImguiAppInfo()
 		{
 			m_CurrentSkybox = m_Ressources->GetElement<SkyBox>("SkySkybox");
 		}
-		ImGui::Text("Type of postprocess");
-		if (ImGui::Button("KernelEffect"))
-		{
-			m_CurrentPostProcess = m_Ressources->GetElement<Shader>("KernelEffectShader");
-		}
-		if (ImGui::Button("Invert color"))
-		{
-			m_CurrentPostProcess = m_Ressources->GetElement<Shader>("InvertShader");
-		}
-
 
 		ImGui::End();
 	}
+
+}
+
+void App::DockSpace() const
+{
+	//ImGui::ShowDemoWindow();
+
+	// Create docking layout
+	static bool dockspaceOpen = true;
+	static bool opt_fullscreen_persistant = true;
+	bool opt_fullscreen = opt_fullscreen_persistant;
+	ImGuiDockNodeFlags dockspaceFlags = ImGuiDockNodeFlags_None;
+	if (opt_fullscreen)
+		dockspaceFlags |= ImGuiDockNodeFlags_PassthruCentralNode;
+	ImGuiWindowFlags windowFlags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
+	if (opt_fullscreen)
+	{
+		ImGuiViewport* viewport = ImGui::GetMainViewport();
+		ImGui::SetNextWindowPos(viewport->WorkPos);
+		ImGui::SetNextWindowSize(viewport->WorkSize);
+		ImGui::SetNextWindowViewport(viewport->ID);
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+		windowFlags |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
+		windowFlags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
+	}
+
+	// Begin docking layout
+	ImGui::Begin("DockSpace Demo", &dockspaceOpen, windowFlags);
+	if (opt_fullscreen)
+		ImGui::PopStyleVar(2);
+
+	ImGuiID dockspaceID = ImGui::GetID("DockSpace");
+	ImGui::DockSpace(dockspaceID, ImVec2(0.0f, 0.0f), dockspaceFlags);
+
+	// Create windows
+	if (ImGui::BeginMenuBar())
+	{
+		if (ImGui::BeginMenu("File"))
+		{
+			if (ImGui::MenuItem("Open")) {}
+			if (ImGui::MenuItem("Save")) {}
+			ImGui::EndMenu();
+		}
+		ImGui::EndMenuBar();
+	}
+
+	if (ImGui::Begin("Render "))
+	{
+		float width = ImGui::GetContentRegionAvail().x;
+		float height = ImGui::GetContentRegionAvail().y;
+	
+		ImGui::Image((ImTextureID)currentScene->OpenGlRenderToImgui->framebufferTexture, ImGui::GetContentRegionAvail(),
+			ImVec2(0, 1),
+			ImVec2(1, 0));
+		ImGui::End();
+	}
+
+	
+
+	ImguiInspector();
+	currentScene->cam->ImguiCameraWindow();
+	ImguiGraphScene();
+	ContentBrowser();
+
+	ImGui::End();
+
 
 }
 

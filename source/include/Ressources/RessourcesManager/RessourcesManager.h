@@ -20,9 +20,15 @@
 
 class Camera;
 
+
+
+
+
+
 class RessourcesManager
 {
 public:
+
 	static std::string GetRessourcesName(const std::string& path);
 	
 	// Return map for iterator  to camera set uniform
@@ -57,8 +63,9 @@ private:
 	void LoadShader(std::filesystem::path path);
 	void LoadScene(std::filesystem::path path);
 	bool isThisValidForThisFormat(std::string path, std::string format);
+	
 
-	const std::type_info* GetID(std::string path);
+
 
 	// Texture file accetptes jpg png 
 	const std::string png = ".png";

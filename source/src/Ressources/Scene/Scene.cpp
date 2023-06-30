@@ -5,8 +5,10 @@
 #include "Core/DataStructure/Component/Collider/PlaneCollider.h"
 #include "Collider/BoxCollider/BoxCollider.h"
 #include "LowRenderer/Ui/UIRenderer.h"
+#include "App/App.h"
+#include "LowRenderer/FrameBuffer/FrameBuffer.h"
 
-
+FrameBuffer* Scene::OpenGlRenderToImgui = new FrameBuffer(windowWidth, windowHeight);
 
 Scene::Scene(std::string _filepath)
 {
@@ -16,7 +18,6 @@ Scene::Scene(std::string _filepath)
 	name = RessourcesManager::GetRessourcesName(_filepath);
 	cam = Camera::cam;
 
-
 }
 
 Scene::Scene()
@@ -24,6 +25,7 @@ Scene::Scene()
 	ressourcesManagers = nullptr;
 	io = nullptr;
 	cam = Camera::cam;
+
 }
 
 Scene::~Scene()
