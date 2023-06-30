@@ -9,7 +9,6 @@ fs::path ContentBrowser::BasePath = fs::path("assets");
 
 fs::path ContentBrowser::CurrentPath = fs::path("assets");
 
-fs::path ContentBrowser::PreviousPath = fs::path("assets");
 
 
 
@@ -17,15 +16,24 @@ void ContentBrowser::Update()
 {
 	if(ImGui::Begin("ContentBrowser"))
 	{
-		if (ImGui::ArrowButton("Reverse", ImGuiDir_Left))
+		if(CurrentPath == BasePath)
 		{
-			for (const auto& entry : fs::directory_iterator(BasePath))
+
+		}
+		else if (ImGui::ArrowButton("Reverse", ImGuiDir_Left))
+		{
+			
+
+			int lastof = CurrentPath.string().find_last_of('\\');
+			std::string pathstring = CurrentPath.string();
+			std::string newpathstring;
+			for (size_t i = 0; i < lastof; i++)
 			{
-				if (entry.is_directory() && entry == CurrentPath)
-				{
-					CurrentPath = entry;
-				}
+					newpathstring.push_back(pathstring[i]);
 			}
+			fs::path newpath = fs::path(newpathstring);
+
+			CurrentPath = newpath;
 		}
 		
 		int i = 0;
@@ -40,7 +48,6 @@ void ContentBrowser::Update()
 				
 				if(ImGui::Button(name.c_str()))
 				{
-					PreviousPath = CurrentPath;
 					CurrentPath = path;
 				}
 			}
