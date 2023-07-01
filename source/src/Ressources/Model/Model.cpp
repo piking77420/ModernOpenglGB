@@ -501,6 +501,14 @@ Model::Model(const std::string& ModelFileName) : m_reduceValue(1)
 	LoadVertex(data, IsFaced, Is3dTextureCoordinate);
 }
 
+void Model::OnSelected()
+{
+	ImGui::PushID(name.c_str());
+	ImGui::Text(name.c_str());
+	ImGui::PopID();
+
+}
+
 
 
 Model::Model() 

@@ -142,6 +142,7 @@ void Scene::PhyscisUpdate()
 {
 	for (size_t i = 0; i < entities.size(); i++)
 	{
+		/*
 		Collider* c = entities[i]->GetComponent<Collider>();
 
 		if (c != nullptr)
@@ -152,9 +153,9 @@ void Scene::PhyscisUpdate()
 			}
 		}
 
-
+		*/
 	}
 
 
-	m_PhysicsEngine.UpdateColliders();
+	//m_PhysicsEngine.UpdateColliders();
 }

@@ -38,6 +38,8 @@ public:
 	Model(const float& reduceFormat);
 	Model(const std::string& ModelFileName, const float& reduceFormat);
 	Model(const std::string& ModelFileName);
+	void OnSelected() override;
+
 
 	Model();
 	~Model();

@@ -23,7 +23,7 @@ void GizmoRenderer::Draw(Scene* scene, Shader* shader)
 	shader->SetMaxtrix("model ", model.GetPtr());
 
 	shader->SetMaxtrix("MVP", MVP.GetPtr());
-	shader->SetMaxtrix("rotation", Matrix4X4().RotationMatrix4X4(EntityAttachTo->transform.rotate).GetPtr());
+	shader->SetMaxtrix("rotation", Matrix4X4().RotationMatrix4X4(EntityAttachTo->transform.GetRotation()).GetPtr());
 	// Draw The Object
   	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE_STRIP);
 	m_Model->Draw();

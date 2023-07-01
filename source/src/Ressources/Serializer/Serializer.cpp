@@ -1,19 +1,9 @@
 #include "Serializer/Serializer.h"
+#include <External/yaml-cpp/yaml.h>
 
 
 
 
-void Serializer::Serialize(const fs::path& _path,  const Scene* scene)
-{
-
-
-}
-
-void Serializer::Desrialize(const fs::path& _path,const Scene* scene)
-{
-
-
-}
 
 Serializer::Serializer()
 {

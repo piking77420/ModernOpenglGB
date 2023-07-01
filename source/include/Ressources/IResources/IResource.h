@@ -5,10 +5,11 @@
 #include<Core/Debug/Imgui/imgui_impl_glfw.h>
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>
 #include<filesystem>
+#include "UI/InspectorSelectable.h"
 namespace fs = std::filesystem;
 
 
-class IResource
+class IResource : public InspectorSelectable
 {
 public:
 

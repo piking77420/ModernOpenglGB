@@ -6,10 +6,10 @@
 #include "Serializer/Serializer.h"
 #include <thread>
 
-
 #include<filesystem>
 #include<unordered_map>
 #include<map>
+#include<mutex>
 
 #include<string>
 
@@ -53,8 +53,7 @@ public:
 	RessourcesManager();
 	~RessourcesManager();
 private:
-
-
+	std::mutex fileMutex;
 	std::map<std::string, IResource*> m_MainResourcesMap;
 	void LoadTexture(std::filesystem::path path);
 	void LookFiles(std::filesystem::path _path);
@@ -62,8 +61,7 @@ private:
 	void LoadShader(std::filesystem::path path);
 	void LoadScene(std::filesystem::path path);
 	bool isThisValidForThisFormat(std::string path, std::string format);
-	
-
+	void CreatMetaDataFile(const std::string& path, const std::string& FileName);
 
 
 	// Texture file accetptes jpg png 
@@ -130,8 +128,8 @@ inline T* RessourcesManager::Create(std::string path)
 {
 
 	T* newRessources = new T(path);
-	
 	std::string Correctname = GetRessourcesName(path);
+	CreatMetaDataFile(path, Correctname);
 
 	if (m_MainResourcesMap.contains(Correctname))
 	{

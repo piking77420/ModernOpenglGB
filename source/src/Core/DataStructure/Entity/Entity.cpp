@@ -34,10 +34,25 @@ void Entity::LateUpdate(Scene* scene)
 
 void Entity::ImguiEntityWindow()
 {
+
+
+}
+
+bool Entity::HasParent()
+{
+	if(transform.Parents != nullptr)
+	{
+		return true;
+	}
+	return false;
+}
+
+void Entity::OnSelected()
+{
 	ImGui::PushID(name.c_str());
 
 	ImGui::CollapsingHeader(name.c_str(), NULL, ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_Leaf);
-		
+
 
 	for (Component* c : Components)
 	{
@@ -54,21 +69,11 @@ void Entity::ImguiEntityWindow()
 		{
 			AddComponent<MeshRenderer>();
 		}
-		
+
 	}
-		
-	
+
+
 	ImGui::PopID();
-
-}
-
-bool Entity::HasParent()
-{
-	if(transform.Parents != nullptr)
-	{
-		return true;
-	}
-	return false;
 }
 
 

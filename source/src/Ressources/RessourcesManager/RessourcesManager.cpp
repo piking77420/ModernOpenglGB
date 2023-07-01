@@ -6,7 +6,7 @@
 #include "LowRenderer/Light/Light.h"
 #include "Ressources/Model/Model.h"
 
-
+#include<ostream>
  
 void RessourcesManager::LoadAllAssets()
 {
@@ -61,6 +61,34 @@ bool RessourcesManager::isThisValidForThisFormat(std::string path, std::string f
 		return true;
 
 	return false;
+}
+
+
+
+void RessourcesManager::CreatMetaDataFile(const std::string& path,const std::string& FileName)
+{
+	std::lock_guard<std::mutex> lock(fileMutex);
+		
+	std::string Path;
+	int Getpath = path.find_last_of('.');
+
+	for (size_t i = 0; i < Getpath; i++)
+	{
+		Path.push_back(path[i]);
+	}
+	
+	std::ofstream File(Path + ".metaData");
+	if (File.is_open())
+	{
+		//File << name << std::endl;
+		File.close();
+		Debug::Log->LogGood("File created: " + Path + ".metaData");
+	}
+	else
+	{
+		Debug::Log->LogWarning("Failed to open file: " + Path + ".metaData");
+
+	}
 }
 
 

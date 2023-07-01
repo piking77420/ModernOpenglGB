@@ -22,15 +22,19 @@ public:
 	void ImguiWindowComponents() override;
 	void Update(Scene* scene) override;
 
-	Vector3 pos;
-	Vector3 rotate;
-	Vector3 scale;
+
 	const Transform* Parents;
 	Matrix4X4 m_GlobalMatrix;
 	std::vector<Transform*> Childrens;
 
+	Vector3& SetPos();
+	Vector3& SetRotation();
+	Vector3& SetScale();
 
 
+	const Vector3 GetPos() const ;
+	const Vector3 GetRotation() const ;
+	const Vector3 GetScale() const ;
 
 	Transform(Entity& currentObject, const Vector3& _pos, const Vector3& _rotation, const Vector3& _scaling);
 	Transform(Entity& currentObject);
@@ -41,6 +45,10 @@ private:
 	int IdTransform;
 	static int TransformGlobalID;
 	Matrix4X4 m_LocalMatrix;
+	Vector3 pos;
+	Vector3 rotate;
+	Vector3 scale;
+	bool TransformChange;
 
 };
 

@@ -14,8 +14,8 @@ void BoxCollisionType::Update(const Collider& collider)
 	for (size_t i = 0; i < m_BoxFaces.size(); i++)
 	{
 		Vector3 posWorld = currentTranform->transform.GetWordlPos();
-		Vector3 Rotate = currentTranform->transform.rotate;
-		Vector3 scale = currentTranform->transform.scale;
+		Vector3 Rotate = currentTranform->transform.GetRotation();
+		Vector3 scale = currentTranform->transform.GetScale();
 		Matrix4X4 model = Matrix4X4().TRS(posWorld, Rotate, scale);
 		
 

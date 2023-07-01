@@ -9,7 +9,7 @@
 #include<Core/DataStructure/Component/Component.h>
 #include<Core/Debug/Imgui/imgui_impl_glfw.h>
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>
-
+#include "UI/InspectorSelectable.h"
 
 class Component;
 class AppData;
@@ -17,7 +17,7 @@ class Scene;
 
 
 
-class Entity
+class Entity : public InspectorSelectable
 {
 public:
 
@@ -31,7 +31,7 @@ public:
 	void PreUpdate(Scene* scene);
 	void ImguiEntityWindow();
 	bool HasParent();
-
+	void OnSelected() override;
 
 #pragma region Components
 	template<class T>

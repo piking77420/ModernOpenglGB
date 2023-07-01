@@ -161,9 +161,9 @@ Matrix4X4 Matrix4X4::TranslateMatrix4X4(const Vector3& translation)
 	
 	result = result.Identity();
 
-	result[0].w = translation.x;
-	result[1].w = translation.y;
-	result[2].w = translation.z;
+	result[3].x = translation.x;
+	result[3].y = translation.y;
+	result[3].z = translation.z;
 	result[3].w = 1;
 
 		
@@ -172,14 +172,9 @@ Matrix4X4 Matrix4X4::TranslateMatrix4X4(const Vector3& translation)
 
 Matrix4X4 Matrix4X4::TRS(const Vector3& translation, const Vector3& angle, const Vector3& scaling)
 {
-
 	Matrix4X4 translationMatrix = TranslateMatrix4X4(translation);
-	
-
 	Matrix4X4 rotationMatrix = RotationMatrix4X4(angle);
 	Matrix4X4 scalingMatrix = ScalingMatrix4X4(scaling);
-
-
 	return (  translationMatrix * ( rotationMatrix * scalingMatrix));
 }
 

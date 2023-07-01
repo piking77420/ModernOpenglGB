@@ -6,6 +6,7 @@
 #include<DataStructure/ComponentsBehaviours.h>
 #include "Ressources/SkyBox/SkyBox.h"
 #include "Ressources/CubeMaps/CubeMaps.h"
+#include "UI/InspectorSelectable.h"
 
 #include <Core/Debug/Debug.h>
 
@@ -35,9 +36,8 @@ public:
 
 	static bool GammaCorrection;	
 	static Scene* currentScene;
-	RessourcesManager* m_Ressources;
-	Entity*  CurrentInspectedEntity ;
-
+	RessourcesManager* m_Ressources;	
+	InspectorSelectable* InspectorCurrentindow;
 	App(int _WindowX, int _WindowY, ImGuiIO& _io);
 	~App();
 private:

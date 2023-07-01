@@ -14,7 +14,7 @@ void BoxCollider::ImguiWindowComponents()
 
 }
 
-BoxCollider::BoxCollider() : mSize(EntityAttachTo->transform.scale)
+BoxCollider::BoxCollider() : mSize(EntityAttachTo->transform.GetScale())
 {
 	m_ComponentName = "BOX COLLIDER";
 

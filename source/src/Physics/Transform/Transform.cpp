@@ -22,20 +22,31 @@ void Transform::ImguiWindowComponents()
 {
 	ImGui::PushID("");
 
+	// Pos
 	ImGui::DragFloat3("Position", &pos.x,0.2);
+	TransformChange += ImGui::IsItemEdited();
 
+	// Angle
 	ImGui::Text("Angle");
 	ImGui::SliderAngle("X", &rotate.x);
+	TransformChange += ImGui::IsItemEdited();
 	ImGui::SliderAngle("Y", &rotate.y);
+	TransformChange += ImGui::IsItemEdited();
 	ImGui::SliderAngle("Z", &rotate.z);
+	TransformChange += ImGui::IsItemEdited();
 
+	// Scale
 	ImGui::DragFloat3("Scale", &scale.x);
+	TransformChange += ImGui::IsItemEdited();
+
+
 	ImGui::PopID();
 
 }
 
 Matrix4X4& Transform::SetMatrix() 
 {
+	TransformChange = true;
 	return m_LocalMatrix;
 }
 
@@ -62,10 +73,48 @@ const Vector3 Transform::GetWordlPos()
 
 void Transform::Update(Scene* scene)
 { 
-	UpdateMatrix();
+	if(TransformChange)
+	{
+		std::cout << "sdqs" << std::endl;
+		UpdateMatrix();
+		TransformChange = false;
+	}
 }
 
-Transform::Transform(Entity& currentObject,const Vector3& _pos, const Vector3& _rotation, const Vector3& _scaling) : pos(_pos), rotate(_rotation), scale(_scaling) 
+Vector3& Transform::SetPos()
+{
+	TransformChange = true;
+	return pos;
+}
+
+Vector3& Transform::SetRotation()
+{
+	TransformChange = true;
+	return rotate;
+}
+
+Vector3& Transform::SetScale()
+{
+	TransformChange = true;
+	return scale;
+}
+
+const Vector3 Transform::GetPos() const
+{
+	return pos;
+}
+
+const Vector3 Transform::GetRotation() const
+{
+	return rotate;
+}
+
+const Vector3 Transform::GetScale() const
+{
+	return scale;
+}
+
+Transform::Transform(Entity& currentObject,const Vector3& _pos, const Vector3& _rotation, const Vector3& _scaling) : pos(_pos), rotate(_rotation), scale(_scaling)
 {
 	UpdateMatrix();
 	IdTransform = TransformGlobalID;

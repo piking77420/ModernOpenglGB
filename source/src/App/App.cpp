@@ -20,6 +20,7 @@
 #include "LowRenderer/Ui/UIRenderer.h"
 #include "Physics/CollisionType/BoxCollisionType.h"
 #include "LowRenderer/FrameBuffer/DepthMap/Depthmap.h"
+#include "External/yaml-cpp/yaml.h"
 
 
 Scene* App::currentScene = nullptr;
@@ -30,6 +31,7 @@ void App::DrawSkyBox()
 	Shader* SkyBoxShader = m_Ressources->GetElement<Shader>("SkyBoxShader");
 	SkyBoxShader->Use();
 	m_CurrentSkybox->Draw();
+
 }
 
 
@@ -143,7 +145,15 @@ void App::InitScene()
    Entity* vikingroom = new Entity("VikingRoom", Level1);
    vikingroom->AddComponent<MeshRenderer>();
 
+   /*
+   for (size_t i = 0; i < 10000; i++)
+   {
+	   Entity* entity = new Entity("VikingRoom "+ std::to_string(i), Level1);
+	   entity->AddComponent<MeshRenderer>();
+	   Level1->entities.push_back(entity);
 
+   }*/
+   
 
 	Level1->entities.push_back(DirectionnalLight);
 	Level1->entities.push_back(vikingroom);
@@ -194,8 +204,8 @@ void App::ImguiInspector()
 
 		ImGui::PushID("");
 
-		if (CurrentInspectedEntity)
-			CurrentInspectedEntity->ImguiEntityWindow();
+		if (InspectorCurrentindow)
+			InspectorCurrentindow->OnSelected();
 		
 
 		ImGui::PopID();
@@ -251,8 +261,9 @@ void App::ImguiDrawChildren(Entity* entity)
 
 	if (ImGui::TreeNodeEx(entity->name.c_str(), flags))
 	{
+	
 		if (ImGui::IsItemClicked())
-			CurrentInspectedEntity = entity;
+			InspectorCurrentindow = entity;
 
 		if (hasChildren)
 		{
@@ -356,7 +367,7 @@ void App::DockSpace()
 	ImguiInspector();
 	currentScene->cam->ImguiCameraWindow();
 	ImguiGraphScene();
-	m_ContentBrowser->Update();
+	m_ContentBrowser->Update(*this);
 
 	ImGui::End();
 

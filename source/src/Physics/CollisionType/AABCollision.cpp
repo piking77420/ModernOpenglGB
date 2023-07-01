@@ -67,13 +67,13 @@ bool AABCollision::IsInside(Vector3 point, float radius)
 
 
 
-	Scalemin = Scalemin * Matrix4X4().TRS(Vector3::Zero, currentTranform->transform.rotate, Vector3::One);
-	Scalemax = Scalemax * Matrix4X4().TRS(Vector3::Zero, currentTranform->transform.rotate, Vector3::One);
+	Scalemin = Scalemin * Matrix4X4().TRS(Vector3::Zero, currentTranform->transform.GetRotation(), Vector3::One);
+	Scalemax = Scalemax * Matrix4X4().TRS(Vector3::Zero, currentTranform->transform.GetRotation(), Vector3::One);
 
 
 
-	Scalemin += currentTranform->transform.pos;
-	Scalemax += currentTranform->transform.pos;
+	Scalemin += currentTranform->transform.GetPos();
+	Scalemax += currentTranform->transform.GetPos();
 
 	
 
