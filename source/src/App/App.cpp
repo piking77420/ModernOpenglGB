@@ -157,8 +157,9 @@ App::App(int _WindowX, int _WindowY, ImGuiIO& _io) : windowX(_WindowX), windowY(
 {
 	
 	m_Ressources = new RessourcesManager();
-	RendererComponent::ressourcesManager = m_Ressources;
 	m_Ressources->LoadAllAssets();
+	m_ContentBrowser = new ContentBrowser();
+	RendererComponent::ressourcesManager = m_Ressources;
 
 	m_io = ImGui::GetIO();
 
@@ -273,7 +274,6 @@ void App::ImguiDrawChildren(Entity* entity)
 void App::ImguiAppInfo() 
 {
 
-	ImGui::ShowDemoWindow();
 
 
 	if (ImGui::Begin("App Info"))
@@ -356,7 +356,7 @@ void App::DockSpace()
 	ImguiInspector();
 	currentScene->cam->ImguiCameraWindow();
 	ImguiGraphScene();
-	m_ContentBrowser.Update();
+	m_ContentBrowser->Update();
 
 	ImGui::End();
 

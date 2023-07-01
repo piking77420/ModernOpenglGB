@@ -2,6 +2,8 @@
 #include<filesystem>
 namespace fs = std::filesystem;
 
+class Texture;
+
 class ContentBrowser
 {
 public:
@@ -11,10 +13,15 @@ public:
 	static fs::path PreviousPath;
 	void Update();
 
-	ContentBrowser(){};
-	~ContentBrowser(){};
+
+
+
+	ContentBrowser();
+	~ContentBrowser();
+
 
 private:
-
+	std::string GetPreviousPath(const fs::path& currentPath);
+	Texture* FolderIcon;
 };
 

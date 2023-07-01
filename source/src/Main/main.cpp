@@ -55,7 +55,7 @@
         image.width = 16;
         image.height = 16;
         int nbr = 0;
-        image.pixels = stbi_load("assets/Textures/Cursor/Skyrim-normal.png", &image.width, &image.height, &nbr, 0);
+        image.pixels = stbi_load("Ressources/Skyrim-normal.png", &image.width, &image.height, &nbr, 0);
         GLFWcursor* cursor = glfwCreateCursor(&image, 0, 0);
         glfwSetCursor(window, cursor);
 

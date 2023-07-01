@@ -56,7 +56,7 @@ private:
 	void ImguiDrawChildren(Entity* entity) ;
 	SkyBox* m_CurrentSkybox;
 	Shader* m_CurrentPostProcess;
-	ContentBrowser m_ContentBrowser;
+	ContentBrowser* m_ContentBrowser;
 
 };
 
