@@ -145,7 +145,7 @@ void App::InitScene()
 
 
    Entity* Sphre2 = new Entity("Sphre2", Level1);
-   Sphre2->AddComponent<MeshRenderer>();
+   //Sphre2->AddComponent<MeshRenderer>();
    Sphre2->AddComponent<SphereCollider>();
    Sphre2->transform.SetPos() += Vector3(5, 5,0);
    
@@ -154,8 +154,10 @@ void App::InitScene()
 	Level1->entities.push_back(vikingroom);
 	Level1->entities.push_back(Sphre2);
 
+
 	// Set Currentscene
 }
+
 
 
 
@@ -271,6 +273,7 @@ void App::ImguiDrawChildren(Entity* entity)
 	ImGui::PopID();
 
 }
+
 
 
 

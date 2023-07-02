@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include "Physics/PhysicsEngine.h"
 #include "Ressources/RessourcesManager/RessourcesManager.h"
+#include "LowRenderer/Gizmo/Gizmo.h"
 #include<Core/Debug/Imgui/imgui.h>
 #include<Core/Debug/Imgui/imgui_impl_glfw.h>
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>

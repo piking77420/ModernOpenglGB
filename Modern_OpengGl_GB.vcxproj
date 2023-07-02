@@ -152,6 +152,8 @@
     <ClInclude Include="source\include\Core\DataStructure\ComponentsBehaviours.h" />
     <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_glfw.h" />
     <ClInclude Include="source\include\LowRenderer\FrameBuffer\DepthMap\Depthmap.h" />
+    <ClInclude Include="source\include\LowRenderer\Gizmo\Gizmo.h" />
+    <ClInclude Include="source\include\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.h" />
     <ClInclude Include="source\include\Serializer\Serializer.h" />
     <ClInclude Include="source\include\Core\Debug\Imgui\imconfig.h" />
     <ClInclude Include="source\include\Core\Debug\Imgui\imgui.h" />
@@ -258,6 +260,8 @@
     <ClCompile Include="source\src\Core\Debug\Imgui\imgui_tables.cpp" />
     <ClCompile Include="source\src\Core\Debug\Imgui\imgui_widgets.cpp" />
     <ClCompile Include="source\src\LowRenderer\FrameBuffer\DepthMap\Depthmap.cpp" />
+    <ClCompile Include="source\src\LowRenderer\Gizmo\Gizmo.cpp" />
+    <ClCompile Include="source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.cpp" />
     <ClCompile Include="source\src\Ressources\Serializer\Serializer.cpp" />
     <ClCompile Include="source\src\Core\DataStructure\Component\Collider\Raycast.cpp" />
     <ClCompile Include="source\src\LowRenderer\RendererComponent\MeshRenderer\MeshRenderer.cpp" />

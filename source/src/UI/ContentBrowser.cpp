@@ -130,17 +130,42 @@ void ContentBrowser::Update(App& app)
 	Renderer(app);
 	LookForInput(app);
 	ImGui::End();
-
+	StateApp();
 	
+}
+
+void ContentBrowser::StateApp()
+{
+	ImGui::Begin(" PlayMode ", NULL);
+	ImGui::SetCursorPosX((ImGui::GetWindowSize().x - 24) * 0.5f);
+	ImGui::ImageButton((ImTextureID)PlayIcon->ID, { 24,24 }, { 0,1 }, { 1,0 });
+	if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
+	{
+		Launch = true;
+	}
+
+	ImGui::ImageButton((ImTextureID)PlayIcon->ID, { 24,24 }, { 0,1 }, { 1,0 });
+	if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
+	{
+		Launch = true;
+	}
+	ImGui::End();
 }
 
 ContentBrowser::ContentBrowser()
 {
 	FolderIcon = new Texture("Ressources/Icon/FolderIcon.png");
+	PlayIcon = new Texture("Ressources/Icon/Play.png");
+	Pause = new Texture("Ressources/Icon/Pause.png");
 	FolderIcon->Init();
+	PlayIcon->Init();
+	Pause->Init();
 }
 
 ContentBrowser::~ContentBrowser()
 {
 	delete FolderIcon;
+	delete PlayIcon;
+	delete Pause;
+
 }

@@ -77,6 +77,7 @@ static bool TryGetComponent(const Entity& entity, T** returnedComponent);
 template<class T>
 inline void Entity::AddComponent(T* componentsToAdd)
 {
+
 	Component* c = componentsToAdd;
 	c->EntityAttachTo = this;
 

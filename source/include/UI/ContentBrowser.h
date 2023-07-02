@@ -13,7 +13,8 @@ public:
 	static fs::path CurrentPath;
 	static fs::path PreviousPath;
 	void Update(App& app);
-
+	void StateApp();
+	bool Launch;
 
 
 
@@ -27,5 +28,9 @@ private:
 	void LookForInput(App& app);
 	std::string GetPreviousPath(const fs::path& currentPath);
 	Texture* FolderIcon;
+	Texture* PlayIcon;
+	Texture* Pause;
+
+
 };
 

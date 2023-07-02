@@ -23,7 +23,7 @@ Scene::Scene(std::string _filepath)
 }
 
 Scene::Scene()
-{
+{	
 	ressourcesManagers = nullptr;
 	io = nullptr;
 	cam = Camera::cam;
@@ -117,18 +117,20 @@ void Scene::RenderScene(Shader* shaderProgramm, Shader* StencilShader)
 }
 void Scene::RenderGizmo(Shader* shaderProgramm)
 {
-	/*
+	
 	for (size_t i = 0; i < entities.size(); i++)
 	{
 		Collider* c = entities[i]->GetComponent<Collider>();
 		
+		if(c)
+		{
+			c->gizmo->Render(shaderProgramm, this);
+		}
 		
-		if (c != nullptr && c->Gizmorenderer != nullptr)
-			c->Gizmorenderer->Draw(this, shaderProgramm);
 			
 
 	}
-	*/
+	
 }
 void Scene::RenderUi(Shader* shaderProgramm)
 {

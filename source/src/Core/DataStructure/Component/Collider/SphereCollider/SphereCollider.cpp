@@ -1,5 +1,5 @@
 #include "Collider/SphereCollider/SphereCollider.h"
-
+#include "LowRenderer/Gizmo/GizmoCollider/SphereGizmoCollider.h"
 
 
 
@@ -18,7 +18,7 @@ void SphereCollider::Collision(SphereCollider* sphereCollider)
 	float r1r2 = this->radius + sphereCollider->radius;
 	if (distance < r1r2)
 	{
-		Debug::Log->LogGood("Collide");
+		Debug::Log->LogTODO("Collide");
 	}
 
 
@@ -27,12 +27,14 @@ void SphereCollider::Collision(SphereCollider* sphereCollider)
 
 SphereCollider::SphereCollider() : radius(1.f)
 {
+	gizmo = new SphereGizmoCollider(this);
 	Type = ColliderType::Sphere;
 	m_ComponentName = "Sphere Collider";
 }
 
 SphereCollider::SphereCollider(float radius) : radius(radius)
 {	
+	gizmo = new SphereGizmoCollider(this);
 	Type = ColliderType::Sphere;
 	m_ComponentName = "Sphere Collider";
 }
