@@ -1,7 +1,7 @@
 #pragma once
 #include <Collider/Collider.h>
-#include "Physics/CollisionType/AABCollision.h"
 
+class SphereCollider;
 
 class BoxCollider : public Collider
 {
@@ -10,6 +10,7 @@ public:
 	
 	void Update(Scene* scene) override;
 	void ImguiWindowComponents() override;
+	void Collision(SphereCollider* sphereCollider) override;
 
 	BoxCollider();
 

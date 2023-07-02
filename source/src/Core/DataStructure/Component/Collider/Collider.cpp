@@ -1,59 +1,31 @@
 #include "Core/DataStructure/Component/Collider/Collider.h"
-#include "Physics/CollisionType/CollisionType.h"
+#include "Collider/SphereCollider/SphereCollider.h"
 
 
 
-void Collider::DrawGizmo(Shader* shaderProgramm)
-{
-}
 
-void Collider::PreUpdate(Scene* scene)
+
+
+void Collider::ImguiWindowComponents()
 {
 	
 
 }
 
-void Collider::Update(Scene* scene)
+void Collider::GetCollsion(Collider* collider)
 {
-	for (size_t i = 0; i < CollisionShape.size(); i++)
+	switch (collider->Type)
 	{
-		CollisionShape[i]->Update(*this);
-	}
-	HasBeenCollided();
-}
+	default:
+		break;
 
-void Collider::ImguiWindowComponents()
-{
-	ImGui::Checkbox("Is Collided", &isCollided);
-	if(Gizmorenderer != nullptr)
-	ImGui::Checkbox("Drawing Gizmo", &Gizmorenderer->IsDrawing);
-	for (size_t i = 0; i < CollisionShape.size(); i++)
-	{
-		ImGui::PushID("");
-		CollisionShape[i]->ImguiWindow();
-		ImGui::PopID();
+	case ColliderType::Sphere:
+		SphereCollider* Sphere = reinterpret_cast<SphereCollider*>(collider);
+		Collision(Sphere);
+			break;
 	}
+
 
 }
 
-void Collider::HasBeenCollided()
-{
-	if (!entitesHasBeenCollid.empty())
-	{
-		isCollided = true;
-		if(Gizmorenderer != nullptr)
-		Gizmorenderer->color = Vector3(1, 0, 0);
-	}
-	else
-	{
-		if (Gizmorenderer != nullptr)
-		Gizmorenderer->color = Vector3(1, 1, 1);
 
-		isCollided = false;
-	}
-}
-
-void Collider::LateUpdate(Scene* scene)
-{
-	entitesHasBeenCollid.clear();
-}

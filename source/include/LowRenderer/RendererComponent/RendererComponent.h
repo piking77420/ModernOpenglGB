@@ -16,6 +16,7 @@ class Transform;
 class Vertex;
 class AppData;
 
+
 class RendererComponent : public Component
 {
 
@@ -29,7 +30,6 @@ public:
 	~RendererComponent();
 
 	std::vector<Vertex> vertexVector;
-	static RessourcesManager* ressourcesManager;
 
 private:
 

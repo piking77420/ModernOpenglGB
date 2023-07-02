@@ -75,7 +75,6 @@ void Transform::Update(Scene* scene)
 { 
 	if(TransformChange)
 	{
-		std::cout << "sdqs" << std::endl;
 		UpdateMatrix();
 		TransformChange = false;
 	}

@@ -26,7 +26,11 @@ public:
 	std::string name;
 	std::string Tag;
 	Transform transform;
+
+
 	void Update(Scene* scene);
+	void Renderer(Scene* scene);
+	void FixedUpdate(Scene* scene);
 	void LateUpdate(Scene* scene);
 	void PreUpdate(Scene* scene);
 	void ImguiEntityWindow();

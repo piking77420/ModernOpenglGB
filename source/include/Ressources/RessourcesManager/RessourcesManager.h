@@ -83,7 +83,6 @@ private:
 
 };
 
-static RessourcesManager* StaticRessourcesManger;
 
 
 template<class T>

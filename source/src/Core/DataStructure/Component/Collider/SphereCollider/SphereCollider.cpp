@@ -1,28 +1,40 @@
 #include "Collider/SphereCollider/SphereCollider.h"
-#include "Physics/CollisionType/SphereCollision.h"
-#include "LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Sphere/SphereGizmo.h"
 
 
 
 
 
+
+void SphereCollider::Collision(SphereCollider* sphereCollider)
+{
+
+	
+
+	Vector3 selftPos = this->EntityAttachTo->transform.GetWordlPos();
+	Vector3 otherspherepos = sphereCollider->EntityAttachTo->transform.GetWordlPos();
+
+	float distance = (otherspherepos - selftPos).Norm();
+
+	float r1r2 = this->radius + sphereCollider->radius;
+	if (distance < r1r2)
+	{
+		Debug::Log->LogGood("Collide");
+	}
+
+
+
+}
 
 SphereCollider::SphereCollider() : radius(1.f)
 {
-	ID = SPHERE;
-	this->m_ComponentName = "SphereCollider";
-	CollisionShape.push_back(new SphereCollision(*EntityAttachTo,this->radius));
-	Gizmorenderer = new SphereGizmo(*EntityAttachTo,this->radius);
+	Type = ColliderType::Sphere;
+	m_ComponentName = "Sphere Collider";
 }
 
-SphereCollider::SphereCollider(float radius)
+SphereCollider::SphereCollider(float radius) : radius(radius)
 {	
-	ID = SPHERE;
-	this->m_ComponentName = "SphereCollider";
-	this->radius = radius;
-	CollisionShape.push_back(new SphereCollision(*EntityAttachTo, this->radius));
-	Gizmorenderer = new SphereGizmo(*EntityAttachTo,this->radius);
-
+	Type = ColliderType::Sphere;
+	m_ComponentName = "Sphere Collider";
 }
 
 SphereCollider::~SphereCollider()
@@ -32,9 +44,6 @@ SphereCollider::~SphereCollider()
 
 void SphereCollider::ImguiWindowComponents()
 {
-	ImGui::DragFloat("radius", &radius);
-	ImGui::Checkbox("Is Collided", &isCollided);
-	if (Gizmorenderer != nullptr)
-		ImGui::Checkbox("Drawing Gizmo", &Gizmorenderer->IsDrawing);
+	ImGui::SliderFloat("Radius", &radius, 0, 100);
 
 }

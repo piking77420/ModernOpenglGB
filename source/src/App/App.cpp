@@ -18,10 +18,9 @@
 #include "Core/DataStructure/Entity/Entity.h"
 #include "Collider/BoxCollider/BoxCollider.h"
 #include "LowRenderer/Ui/UIRenderer.h"
-#include "Physics/CollisionType/BoxCollisionType.h"
 #include "LowRenderer/FrameBuffer/DepthMap/Depthmap.h"
 #include "External/yaml-cpp/yaml.h"
-
+#include "Collider/SphereCollider/SphereCollider.h"
 
 Scene* App::currentScene = nullptr;
 bool App::GammaCorrection = false;
@@ -57,7 +56,6 @@ void App::AppUpdate()
 	currentScene->cam->SetCameraInfoForShaders(*m_Ressources);
 	DrawSkyBox();
 
-	currentScene->PhyscisUpdate();
 	currentScene->cam->CameraUpdate();
 	currentScene->SceneUpdate(m_io);
 	currentScene->RenderScene(baseShader, Stencil);
@@ -67,7 +65,6 @@ void App::AppUpdate()
 	
 	
 
-	currentScene->LateUpdate();
 	currentScene->OpenGlRenderToImgui->UnBind();
 
 
@@ -144,19 +141,18 @@ void App::InitScene()
 
    Entity* vikingroom = new Entity("VikingRoom", Level1);
    vikingroom->AddComponent<MeshRenderer>();
+   vikingroom->AddComponent<SphereCollider>();
 
-   /*
-   for (size_t i = 0; i < 10000; i++)
-   {
-	   Entity* entity = new Entity("VikingRoom "+ std::to_string(i), Level1);
-	   entity->AddComponent<MeshRenderer>();
-	   Level1->entities.push_back(entity);
 
-   }*/
+   Entity* Sphre2 = new Entity("Sphre2", Level1);
+   Sphre2->AddComponent<MeshRenderer>();
+   Sphre2->AddComponent<SphereCollider>();
+   Sphre2->transform.SetPos() += Vector3(5, 5,0);
    
 
 	Level1->entities.push_back(DirectionnalLight);
 	Level1->entities.push_back(vikingroom);
+	Level1->entities.push_back(Sphre2);
 
 	// Set Currentscene
 }
@@ -169,8 +165,7 @@ App::App(int _WindowX, int _WindowY, ImGuiIO& _io) : windowX(_WindowX), windowY(
 	m_Ressources = new RessourcesManager();
 	m_Ressources->LoadAllAssets();
 	m_ContentBrowser = new ContentBrowser();
-	RendererComponent::ressourcesManager = m_Ressources;
-
+	Scene::ressourcesManagers = m_Ressources;
 	m_io = ImGui::GetIO();
 
 	InitRessources();
@@ -179,7 +174,6 @@ App::App(int _WindowX, int _WindowY, ImGuiIO& _io) : windowX(_WindowX), windowY(
 	Shader* skyboxShader = m_Ressources->GetElement<Shader>("SkyBoxShader");
 	skyboxShader->Use();
 	skyboxShader->SetInt("skybox", m_CurrentSkybox->m_Cubemaps.slot);
-	StaticRessourcesManger = m_Ressources;
 
 	// We Init The FrameBuffer here because we need To wait To Glad and opengl to be init
 	Scene::OpenGlRenderToImgui->Init();

@@ -16,15 +16,15 @@ void Rigidbody::ImguiWindowComponents()
 
 
 
-void Rigidbody::Update(Scene* scene)
+void Rigidbody::FixedUpdate(Scene* scene)
 {
 	
 
 
 }
 
-Rigidbody::Rigidbody(Entity& entity, Collider& _collider)
-	:  collider(_collider) , mass(1.f)
+Rigidbody::Rigidbody()
+	:  collider(*EntityAttachTo->GetComponent<Collider>()) , mass(1.f)
 {
 	m_ComponentName = "RigidBody";
 }

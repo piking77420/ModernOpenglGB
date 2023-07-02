@@ -36,6 +36,14 @@ void Component::LateUpdate(Scene* scene)
 {
 }
 
+void Component::FixedUpdate(Scene* scene)
+{
+}
+
+void Component::Renderer(Scene* scene)
+{
+}
+
 Component::Component() 
 {
 	this->m_ID = App::currentScene->GlobalID;
@@ -43,10 +51,5 @@ Component::Component()
 
 }
 
-void* Component::operator new(size_t size)
-{
-	
-	return malloc(size);
-}
 
 

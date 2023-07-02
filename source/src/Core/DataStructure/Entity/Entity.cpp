@@ -24,6 +24,22 @@ void Entity::Update(Scene* scene)
 	}
 }
 
+void Entity::Renderer(Scene* scene)
+{
+	for (Component* c : Components)
+	{
+		c->Renderer(scene);
+	}
+}
+
+void Entity::FixedUpdate(Scene* scene)
+{
+	for (Component* c : Components)
+	{
+		c->FixedUpdate(scene);
+	}
+}
+
 void Entity::LateUpdate(Scene* scene)
 {
 	for (Component* c : Components)

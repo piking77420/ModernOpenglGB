@@ -27,11 +27,12 @@ public:
 	virtual void PreUpdate(Scene* scene);
 	virtual void Update(Scene* scene);
 	virtual void LateUpdate(Scene* scene);
+	virtual void FixedUpdate(Scene* scene);
+	virtual void Renderer(Scene* scene);
 
 
 
 	static uint32_t GlobalComponentID;
-	void* operator new(size_t size);
 
 	Component();	
 

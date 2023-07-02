@@ -8,16 +8,13 @@ public:
 
 		
 	float radius;
-	
+
+	void Collision(SphereCollider* sphereCollider) override;
+	void ImguiWindowComponents() override;
+
 	SphereCollider();
 	SphereCollider(float radius);
 	~SphereCollider();
-	void ImguiWindowComponents() override;
-
-
-
-	
-
 private:
 	bool m_ShowGizmo = false;
 };

@@ -1,4 +1,5 @@
 #include <filesystem>
+#include"LowRenderer/Cam/Camera.h"
 #include <ComponentsBehaviours.h>
 #include "Ressources/Scene/Scene.h"
 #include "Core/DataStructure/Component/Collider/SphereCollider/SphereCollider.h"
@@ -9,6 +10,7 @@
 #include "LowRenderer/FrameBuffer/FrameBuffer.h"
 
 FrameBuffer* Scene::OpenGlRenderToImgui = new FrameBuffer(windowWidth, windowHeight);
+RessourcesManager* Scene::ressourcesManagers = nullptr;
 
 Scene::Scene(std::string _filepath)
 {
@@ -47,30 +49,31 @@ void Scene::SceneUpdate(ImGuiIO& _io)
 	io = &_io;
 	Deltatime = io->DeltaTime;
 
+	m_PhysicsEngine.DetermianteCollision(this);
 
 	for (size_t i = 0; i < entities.size(); i++)
 	{
 		entities[i]->PreUpdate(this);
 	}
 
+	FixedUpdate();
+	for (size_t i = 0; i < entities.size(); i++)
+	{
+		entities[i]->FixedUpdate(this);
+	}
+
 	for (size_t i = 0; i < entities.size(); i++)
 	{
 		entities[i]->Update(this);
 	}
-	float time = (float)glfwGetTime();
-	
-	cam->CameraUpdate();
-}
-void Scene::LateUpdate()
-{
-
 	for (size_t i = 0; i < entities.size(); i++)
 	{
 		entities[i]->LateUpdate(this);
 	}
-
-
+	m_PhysicsEngine.Reset();
+	cam->CameraUpdate();
 }
+
 
 void Scene::SaveScene()
 {
@@ -94,6 +97,8 @@ void Scene::RenderScene(Shader* shaderProgramm, Shader* StencilShader)
 
 	for (size_t i = 0; i < entities.size(); i++)
 	{
+		entities[i]->Renderer(this);
+
 		MeshRenderer* meshr = entities[i]->GetComponent<MeshRenderer>();
 		Light* l = entities[i]->GetComponent<Light>();
 		if (l != nullptr)
@@ -112,15 +117,18 @@ void Scene::RenderScene(Shader* shaderProgramm, Shader* StencilShader)
 }
 void Scene::RenderGizmo(Shader* shaderProgramm)
 {
+	/*
 	for (size_t i = 0; i < entities.size(); i++)
 	{
 		Collider* c = entities[i]->GetComponent<Collider>();
 		
+		
 		if (c != nullptr && c->Gizmorenderer != nullptr)
 			c->Gizmorenderer->Draw(this, shaderProgramm);
-
+			
 
 	}
+	*/
 }
 void Scene::RenderUi(Shader* shaderProgramm)
 {
@@ -138,8 +146,10 @@ void Scene::RenderUi(Shader* shaderProgramm)
 	}
 
 }
-void Scene::PhyscisUpdate()
+void Scene::FixedUpdate()
 {
+	//m_PhysicsEngine.UpdateColliders()
+	/*
 	for (size_t i = 0; i < entities.size(); i++)
 	{
 		/*
@@ -153,9 +163,9 @@ void Scene::PhyscisUpdate()
 			}
 		}
 
-		*/
-	}
+		
+	}*/
 
-
-	//m_PhysicsEngine.UpdateColliders();
+	m_PhysicsEngine.Update(this);
+	//;
 }

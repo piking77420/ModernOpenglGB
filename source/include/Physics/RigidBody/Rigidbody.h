@@ -8,14 +8,14 @@ class Collider;
 class Rigidbody : public Component
 {
 public:
+	void FixedUpdate(Scene* scene) override;
+	void ImguiWindowComponents() override;
 	float mass;
 	bool IsGravityApllied;
-	Collider& collider;
 	Vector3 Velocity;
-	void ImguiWindowComponents() override;
-	void Update(Scene* scene) override;
-	Rigidbody(Entity& entity , Collider& _collide);
+	Rigidbody();
 	~Rigidbody();
-
+private :
+	Collider& collider;
 };
 

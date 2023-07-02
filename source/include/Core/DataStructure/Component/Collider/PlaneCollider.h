@@ -7,7 +7,7 @@ class PlaneCollider : public Collider
 public:
 
 
-	PlaneCollider(Entity& entity);
+	PlaneCollider();
 	~PlaneCollider();
 
 };

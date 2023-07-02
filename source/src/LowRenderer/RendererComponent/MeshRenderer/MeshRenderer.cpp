@@ -45,7 +45,7 @@ MeshRenderer::MeshRenderer(const Model& modelToCopy, const Texture& _textures, E
 
 MeshRenderer::MeshRenderer() : RendererComponent(*EntityAttachTo)
 {
-	m_Model = ressourcesManager->GetElement<Model>("Sphere.obj");
+	m_Model = Scene::ressourcesManagers->GetElement<Model>("Sphere.obj");
 	for (size_t i = 0; i < m_Model->name.size(); i++)
 	{
 		modelName[i] = m_Model->name[i];
@@ -117,7 +117,7 @@ void MeshRenderer::ChangeModel()
 	if (OnChangModel)
 	{
 		std::string string = modelName;
-		Model* model = RendererComponent::ressourcesManager->GetElement<Model>(string);
+		Model* model = Scene::ressourcesManagers->GetElement<Model>(string);
 
 		if (!model)
 			return;

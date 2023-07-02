@@ -126,12 +126,6 @@
     <ClInclude Include="source\include\LowRenderer\Vertex\Vertex.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\Physics\CollisionType\CollisionType.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Physics\CollisionType\SphereCollision.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="source\include\Physics\PhysicsEngine.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -171,9 +165,6 @@
     <ClInclude Include="source\include\Ressources\Scene\Scene.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\Physics\CollisionType\PlaneCollision.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="source\include\Core\DataStructure\Component\Collider\PlaneCollider.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -181,24 +172,6 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="source\include\Physics\RigidBody\Rigidbody.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="source\include\LowRenderer\RendererComponent\MeshRenderer\MeshRenderer.h">
@@ -217,12 +190,6 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="source\include\LowRenderer\Ui\UIRenderer.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Physics\CollisionType\AABCollision.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Physics\CollisionType\BoxCollisionType.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="source\include\Core\Debug\Imgui\imconfig.h">
@@ -381,12 +348,6 @@
     <ClCompile Include="source\src\Main\main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="source\src\Physics\CollisionType\CollisionType.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\Physics\CollisionType\SphereCollision.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="source\src\Physics\PhysicsEngine.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -420,9 +381,6 @@
     <ClCompile Include="source\src\Core\DataStructure\Component\Collider\Collider.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="source\src\Physics\CollisionType\PlaneCollision.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="source\src\Core\DataStructure\Component\Collider\PlaneCollider.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -430,24 +388,6 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\Physics\RigidBody\Rigidbody.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\LowRenderer\RendererComponent\MeshRenderer\MeshRenderer.cpp">
@@ -463,12 +403,6 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\LowRenderer\Ui\UIRenderer.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\Physics\CollisionType\AABCollision.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\Physics\CollisionType\BoxCollisionType.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\Ressources\Serializer\Serializer.cpp">
