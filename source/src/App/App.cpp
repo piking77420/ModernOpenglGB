@@ -37,18 +37,26 @@ void App::DrawSkyBox()
 void App::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
-	currentScene->OpenGlRenderToImgui->ResizeFrammeBuffer(width, height);
+	//currentScene->OpenGlRenderToImgui->ResizeFrammeBuffer(width, height);
 }
 
 void App::AppUpdate()
 {
+	if (!HasPlayOnce)
+	{
+		for (size_t i = 0; i < currentScene->entities.size(); i++)
+		{
+			currentScene->entities[i]->transform.Update(currentScene);
+		}
+		HasPlayOnce = false;
+	}
 	
 	Shader* GizmoShader = m_Ressources->GetElement<Shader>("GizmoShader");
 	Shader* baseShader = m_Ressources->GetElement<Shader>("NormalShader");
 	Shader* Stencil = m_Ressources->GetElement<Shader>("StencilTest");
 
 
-	currentScene->OpenGlRenderToImgui->Bind();
+	//currentScene->OpenGlRenderToImgui->Bind();
 	glClearColor(0.4f, 0.3f, 0.5f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
@@ -61,11 +69,9 @@ void App::AppUpdate()
 	currentScene->RenderScene(baseShader, Stencil);
 	currentScene->RenderGizmo(GizmoShader);
 
-	
-	
-	
 
-	currentScene->OpenGlRenderToImgui->UnBind();
+
+	//currentScene->OpenGlRenderToImgui->UnBind();
 
 
 	DockSpace();
@@ -153,6 +159,7 @@ void App::InitScene()
 	Level1->entities.push_back(DirectionnalLight);
 	Level1->entities.push_back(vikingroom);
 	Level1->entities.push_back(Sphre2);
+	vikingroom->transform.SetParent(Sphre2->transform);
 
 
 	// Set Currentscene
@@ -178,7 +185,10 @@ App::App(int _WindowX, int _WindowY, ImGuiIO& _io) : windowX(_WindowX), windowY(
 	skyboxShader->SetInt("skybox", m_CurrentSkybox->m_Cubemaps.slot);
 
 	// We Init The FrameBuffer here because we need To wait To Glad and opengl to be init
-	Scene::OpenGlRenderToImgui->Init();
+	//Scene::OpenGlRenderToImgui->Init();
+
+
+
 }
 
 
@@ -227,10 +237,12 @@ void App::ImguiGraphScene()
 
 		for (size_t i = 0; i < currentScene->entities.size(); i++)
 		{
+			
 			if (!currentScene->entities[i]->HasParent())
 			{
 				ImguiDrawChildren(currentScene->entities[i]);
 			}
+			
 		}
 		ImGui::End();
 	}
@@ -325,7 +337,7 @@ void App::DockSpace()
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
 		windowFlags |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
-		windowFlags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
+		windowFlags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus  | ImGuiWindowFlags_NoBackground;
 	}
 
 	// Begin docking layout
@@ -348,23 +360,13 @@ void App::DockSpace()
 		ImGui::EndMenuBar();
 	}
 
-	if (ImGui::Begin("Render "))
-	{
-		float width = ImGui::GetContentRegionAvail().x;
-		float height = ImGui::GetContentRegionAvail().y;
-	
-		ImGui::Image((ImTextureID)currentScene->OpenGlRenderToImgui->framebufferTexture, ImGui::GetContentRegionAvail(),
-			ImVec2(0, 1),
-			ImVec2(1, 0));
-		ImGui::End();
-	}
 
 	
 
-	ImguiInspector();
 	currentScene->cam->ImguiCameraWindow();
 	ImguiGraphScene();
 	m_ContentBrowser->Update(*this);
+	ImguiInspector();
 
 	ImGui::End();
 

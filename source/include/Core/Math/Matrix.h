@@ -1,10 +1,9 @@
 #pragma once
 #include<iostream>
 #include <vector>
-#include "Matrix4X4.h"
 #include "Matrix3X3.h"
 #define _USE_MATH_DEFINES
-
+#include <cassert>
 #include<math.h>
 
 
@@ -12,6 +11,7 @@
 class Vector3;
 class Vector2;
 class Vector;
+class Matrix4X4;
 
 
 class Matrix
@@ -51,13 +51,14 @@ public:
 
 	static Matrix RotationMatrixTRS(Vector Translation, Vector rotation, Vector scaling);
 
+	static Matrix ReturnAugmentedMatrix(const Matrix& base, const Matrix& added);
 
 	Matrix ReturnInv();
 	void AddInMatrixVector(const Vector& Row0);
 	Matrix MatrixToHomogeneus() const ;
 
-	Matrix SubDivideMatrix(const Matrix& matrix, int index);
-	float CalculateDertimant(const Matrix& matrix);	
+	static Matrix SubDivideMatrix(const Matrix& matrix, int index);
+	static float CalculateDertimant(const Matrix& matrix);	
 	Matrix PivotDeGauss();
 
 
@@ -75,7 +76,7 @@ public:
 	Matrix operator*(const Matrix& Vector);
 
 
-	//explicit operator Matrix3X3();
+	explicit operator Matrix4X4();
 
 
 #pragma endregion

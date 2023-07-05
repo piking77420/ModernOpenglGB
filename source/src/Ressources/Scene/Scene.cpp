@@ -9,7 +9,7 @@
 #include "App/App.h"
 #include "LowRenderer/FrameBuffer/FrameBuffer.h"
 
-FrameBuffer* Scene::OpenGlRenderToImgui = new FrameBuffer(windowWidth, windowHeight);
+FrameBuffer* Scene::OpenGlRenderToImgui = nullptr;// new FrameBuffer(windowWidth, windowHeight);
 RessourcesManager* Scene::ressourcesManagers = nullptr;
 
 Scene::Scene(std::string _filepath)
@@ -78,6 +78,22 @@ void Scene::SceneUpdate(ImGuiIO& _io)
 void Scene::SaveScene()
 {
 
+}
+
+void Scene::Awake()
+{
+	for (size_t i = 0; i < entities.size(); i++)
+	{
+		entities[i]->Awake(this);
+	}
+}
+
+void Scene::Start()
+{
+	for (size_t i = 0; i < entities.size(); i++)
+	{
+		entities[i]->Start(this);
+	}
 }
 
 void Scene::AddEntity()

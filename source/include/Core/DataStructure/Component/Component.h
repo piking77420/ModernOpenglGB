@@ -24,17 +24,19 @@ public:
 
 
 	// Update Function // 
+	virtual void Awake(Scene* scene);
+	virtual void Start(Scene* scene);
 	virtual void PreUpdate(Scene* scene);
 	virtual void Update(Scene* scene);
 	virtual void LateUpdate(Scene* scene);
 	virtual void FixedUpdate(Scene* scene);
-	virtual void Renderer(Scene* scene);
 
 
 
 	static uint32_t GlobalComponentID;
 
 	Component();	
+	Component(Entity* entity);
 
 };
 

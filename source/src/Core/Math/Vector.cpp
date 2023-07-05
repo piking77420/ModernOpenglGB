@@ -114,24 +114,20 @@ Vector::operator Vector3()
 Vector Vector::operator=(Vector Row0)
 {
 	size = Row0.size;
-
-	for (size_t i = 0; i < Row0.data.size(); i++)
-	{
-		data.push_back(Row0[i]);
-	}
+	
+	data = Row0.data;
 
 	return *this;
 }
 
 Vector::Vector(const Vector& vec1)
 {
-	size = vec1.size;
+	size = vec1.Size();
 
-	data.resize(size);
 
 	for (size_t i = 0; i < size; i++)
 	{
-		data[i] = vec1.data.at(i);
+		data.push_back(vec1[i]);
 	}
 
 }

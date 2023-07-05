@@ -33,7 +33,7 @@ public:
 
 	static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 	void AppUpdate(); 
-
+	bool HasPlayOnce;
 	static bool GammaCorrection;	
 	static Scene* currentScene;
 	RessourcesManager* m_Ressources;	

@@ -453,6 +453,21 @@
     <ClCompile Include="source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="source\src\External\ImguiGizmo\GraphEditor.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\External\ImguiGizmo\ImCurveEdit.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\External\ImguiGizmo\ImGradient.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\External\ImguiGizmo\ImGuizmo.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\External\ImguiGizmo\ImSequencer.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="source\src\External\lib\glfw3.lib" />

@@ -25,6 +25,8 @@ public :
 	void FixedUpdate();
 	void SceneUpdate(ImGuiIO& _io);
 	void SaveScene();
+	void Awake();
+	void Start();
 
 	void AddEntity();
 	void RemoveEntity(Entity* entity);

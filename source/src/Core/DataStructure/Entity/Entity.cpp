@@ -1,10 +1,13 @@
 #include <Core/DataStructure/Entity/Entity.h>
-#include<Core/Debug/Imgui/imgui.h>
+#include <Core/Debug/Imgui/imgui.h>
+#include <Core/Debug/Imgui/imgui_impl_glfw.h>
+#include <Core/Debug/Imgui/imgui_impl_opengl3.h>
 #include "App/App.h"
 #include "Ressources/Scene/Scene.h"
+#include "LowRenderer/Cam/Camera.h"
 
 #include "Physics/Transform/Transform.h"
-
+#include "External/ImguiGizmo/ImGuizmo.h"
 
 
 void Entity::PreUpdate(Scene* scene)
@@ -16,6 +19,22 @@ void Entity::PreUpdate(Scene* scene)
 }
 
 
+void Entity::Awake(Scene* scene)
+{
+	for (Component* c : Components)
+	{
+		c->Awake(scene);
+	}
+}
+
+void Entity::Start(Scene* scene)
+{
+	for (Component* c : Components)
+	{
+		c->Start(scene);
+	}
+}
+
 void Entity::Update(Scene* scene)
 {
 	for(Component* c : Components)
@@ -26,10 +45,7 @@ void Entity::Update(Scene* scene)
 
 void Entity::Renderer(Scene* scene)
 {
-	for (Component* c : Components)
-	{
-		c->Renderer(scene);
-	}
+
 }
 
 void Entity::FixedUpdate(Scene* scene)
@@ -87,10 +103,96 @@ void Entity::OnSelected()
 		}
 
 	}
-
-
 	ImGui::PopID();
+
+
+
+
+
+
+
+
+
+	static ImGuizmo::OPERATION currentGizmoOperation = ImGuizmo::ROTATE;
+	static ImGuizmo::MODE currentGizmoMode = ImGuizmo::WORLD;
+
+	if (ImGui::IsKeyPressed(ImGuiKey_1, false)) {
+		currentGizmoOperation = ImGuizmo::TRANSLATE;
+	}
+	if (ImGui::IsKeyPressed(ImGuiKey_2, false)) {
+		currentGizmoOperation = ImGuizmo::ROTATE;
+	}
+	if (ImGui::IsKeyPressed(ImGuiKey_3, false)) {
+		currentGizmoOperation = ImGuizmo::SCALE;
+	}
+	if (ImGui::RadioButton("Translate", currentGizmoOperation == ImGuizmo::TRANSLATE)) {
+		currentGizmoOperation = ImGuizmo::TRANSLATE;
+	}
+	ImGui::SameLine();
+	if (ImGui::RadioButton("Rotate", currentGizmoOperation == ImGuizmo::ROTATE)) {
+		currentGizmoOperation = ImGuizmo::ROTATE;
+	}
+	ImGui::SameLine();
+	if (ImGui::RadioButton("Scale", currentGizmoOperation == ImGuizmo::SCALE)) {
+		currentGizmoOperation = ImGuizmo::SCALE;
+	}
+
+	if (currentGizmoOperation != ImGuizmo::SCALE) {
+		if (ImGui::RadioButton("Local", currentGizmoMode == ImGuizmo::LOCAL)) {
+			currentGizmoMode = ImGuizmo::LOCAL;
+		}
+		ImGui::SameLine();
+		if (ImGui::RadioButton("World", currentGizmoMode == ImGuizmo::WORLD)) {
+			currentGizmoMode = ImGuizmo::WORLD;
+		}
+	}
+	else {
+		currentGizmoMode = ImGuizmo::LOCAL;
+	}
+
+
+
+	Matrix4X4 modelMat;
+	if (HasParent())
+	{
+		modelMat = transform.GetMatrix();
+	}
+	else
+	{
+		modelMat = transform.GetMatrix();
+	}
+
+	Matrix4X4 guizmoProj(Camera::cam->GetProjectionMatrix());
+
+
+
+	ImGuiIO& io = ImGui::GetIO();
+
+	ImGuizmo::SetRect(0, 0, io.DisplaySize.x, io.DisplaySize.y);
+	ImGuizmo::Manipulate(Camera::cam->GetLookMatrix().GetPtr(), guizmoProj.GetPtr(), currentGizmoOperation,
+		currentGizmoMode, modelMat.SetPtr(), nullptr, nullptr);
+
+	if(ImGuizmo::IsUsing())
+	{
+		Vector3 pos, rot, scale;
+
+		ImGuizmo::DecomposeMatrixToComponents(modelMat.GetPtr(), pos.SetPtr(),
+			rot.SetPtr(), scale.SetPtr());
+
+		Vector3 deltarotation = rot - transform.GetRotation();
+		
+
+		transform.SetPos() = pos;
+		transform.SetRotation() += deltarotation;
+		transform.SetScale() = scale;
+	}
+	
+		
 }
+
+
+
+
 
 
 

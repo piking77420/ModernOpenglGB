@@ -17,6 +17,10 @@ SphereGizmoCollider::SphereGizmoCollider(Collider* collider): Gizmo(collider)
 
 void SphereGizmoCollider::Render(Shader* shaderProgramm, Scene* scene)
 {
+
+	if (*transformEntity == nullptr)
+		return;
+
 	Entity* e = *transformEntity;
 	Transform* transform = &e->transform;
 

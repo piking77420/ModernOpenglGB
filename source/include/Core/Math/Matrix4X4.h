@@ -41,19 +41,21 @@ public:
 
 	static Matrix4X4 TRS(const Vector3& translation , const Vector3& angle , const Vector3& scaling);
 
-	Matrix4X4 operator*(const Matrix4X4& matrix) const;
-
-
 	static Matrix4X4 Identity();
+
+	Matrix4X4 Invert() const;
 	Matrix4X4 Transposate() const;
+	float Determinant() const;
 
-
+	Matrix4X4 operator*(const Matrix4X4& matrix) const;
 	Vector4 operator[](const int& i ) const ;
 
 	Vector4& operator[](const int& i) ;
 
 
 	const float* GetPtr() const;
+	float* SetPtr();
+
 
 	Matrix4X4(const Vector4& a, const Vector4& b, const Vector4& c, const Vector4& d);
 	

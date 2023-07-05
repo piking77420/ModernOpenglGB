@@ -259,6 +259,11 @@
     <ClCompile Include="source\src\Core\Debug\Imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="source\src\Core\Debug\Imgui\imgui_tables.cpp" />
     <ClCompile Include="source\src\Core\Debug\Imgui\imgui_widgets.cpp" />
+    <ClCompile Include="source\src\External\ImguiGizmo\GraphEditor.cpp" />
+    <ClCompile Include="source\src\External\ImguiGizmo\ImCurveEdit.cpp" />
+    <ClCompile Include="source\src\External\ImguiGizmo\ImGradient.cpp" />
+    <ClCompile Include="source\src\External\ImguiGizmo\ImGuizmo.cpp" />
+    <ClCompile Include="source\src\External\ImguiGizmo\ImSequencer.cpp" />
     <ClCompile Include="source\src\LowRenderer\FrameBuffer\DepthMap\Depthmap.cpp" />
     <ClCompile Include="source\src\LowRenderer\Gizmo\Gizmo.cpp" />
     <ClCompile Include="source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.cpp" />

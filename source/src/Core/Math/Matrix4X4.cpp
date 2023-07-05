@@ -297,6 +297,15 @@ Vector4 ReturnLign(const Matrix4X4& matrix ,int index)
 	return vec;
 }
 
+Matrix4X4 Matrix4X4::Invert() const 
+{
+	Matrix4X4 matrix = *this;
+	Matrix m = Matrix(matrix).ReturnInv();
+	Matrix4X4 matrixRerturn = (Matrix4X4)m;
+
+	return matrixRerturn;
+}
+
 Matrix4X4 Matrix4X4::Identity()
 {
 	Matrix4X4 result;
@@ -339,6 +348,13 @@ Matrix4X4 Matrix4X4::Transposate() const
 
 
 
+	return result;
+}
+
+float Matrix4X4::Determinant() const
+{
+	Matrix4X4 matrix = *this;
+	float result = Matrix::CalculateDertimant(Matrix(matrix));
 	return result;
 }
 
@@ -391,6 +407,11 @@ Matrix4X4 Matrix4X4::LookAt(const Vector3& eye, const Vector3& at, const Vector3
 
 
 const float* Matrix4X4::GetPtr() const
+{
+	return &Columns[0].x;
+}
+
+float* Matrix4X4::SetPtr()
 {
 	return &Columns[0].x;
 }

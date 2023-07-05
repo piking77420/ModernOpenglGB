@@ -32,6 +32,8 @@ public:
 	void CameraUpdate();
 	void CameraRenderer(Shader* shader);
 	void CameraGetInput(float xInput, float yInput);
+	Matrix4X4 GetTransform() const;
+
 	static Camera* cam;
 	static void MouseCallback(GLFWwindow* context, double _xpos, double _ypos);
 	static void MouseButtonCallBack(GLFWwindow* window, int button, int action, int mods);

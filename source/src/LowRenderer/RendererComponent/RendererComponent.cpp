@@ -11,6 +11,8 @@ void RendererComponent::ImguiWindowComponents()
 {
 }
 
+
+
 void RendererComponent::Draw(Scene* scene, Shader* shader)
 {
 }

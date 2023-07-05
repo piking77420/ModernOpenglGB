@@ -18,7 +18,7 @@ void SphereCollider::Collision(SphereCollider* sphereCollider)
 	float r1r2 = this->radius + sphereCollider->radius;
 	if (distance < r1r2)
 	{
-		Debug::Log->LogTODO("Collide");
+		//Debug::Log->LogTODO("Collide");
 	}
 
 

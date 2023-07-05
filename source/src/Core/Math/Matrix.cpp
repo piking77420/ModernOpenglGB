@@ -3,6 +3,8 @@
 #include "Vector2.h"
 #include "Vector3.h"
 #include "Mathf.h"
+#include "Matrix4X4.h"
+
 
 
 
@@ -155,6 +157,39 @@ Matrix Matrix::operator*(const Matrix& matrix)
 
 
 	return newMatrix;
+}
+
+Matrix::operator Matrix4X4()
+{
+	Matrix4X4 result = Matrix4X4::Identity();
+
+	int sizeVector = this->mData.size();
+	int DimensionVector = 0;
+	for (size_t i = 0; i < this->mData.size(); i++)
+	{
+		if (DimensionVector < mData[i].Size())
+			DimensionVector = mData[i].Size();
+	}
+	if (sizeVector > 4)
+	{
+		sizeVector = 4;
+	}
+	if (DimensionVector > 4)
+	{
+		DimensionVector = 4;
+	}
+	
+	float* data = result.SetPtr();
+
+	for (size_t x = 0; x < sizeVector; x++)
+	{
+		for (size_t y = 0; y < DimensionVector; y++)
+		{
+			data[(x * sizeVector) + y] = mData[x][y];
+		}
+	}
+
+	return result;
 }
 
 
@@ -535,7 +570,12 @@ int returnMaxInColomm(Matrix& matrix, const int& r, const int& j)
 	return indexmax;
 }
 
-
+void SwapVector(Vector* v1,Vector* v2)
+{
+	Vector tmpr = *v1;
+	*v1 = *v2;
+	*v2 = tmpr;
+}
 
 
 
@@ -561,7 +601,7 @@ Matrix Matrix::PivotDeGauss()
 			continue;
 		}
 
-		std::swap(matrix[k], matrix[r]);
+		SwapVector(&matrix[k], &matrix[r]);
 
 		float divisor = matrix[r][j];
 		for (int c = j; c < numCols; c++) {
@@ -621,15 +661,38 @@ float Determianant2x2(const  Matrix& matrix)
 
 Matrix Matrix::SubDivideMatrix(const Matrix& matrix, int index)
 {
-	Matrix result = matrix;
+	int SizeX = matrix[0].Size() - 1;
+	int SizeY = matrix.Size() - 1 ;
 
 
-	result.mData.erase(next(result.mData.begin(), index));
+	Matrix result = Matrix(SizeY, SizeX);
 
-	for (size_t i = 0; i < result.Size(); i++)
+	size_t result_i = 0;  // Indice pour parcourir la matrice `result`
+
+	for (size_t i = 0; i <= SizeX; i++)
 	{
-		result[i].data.erase(result[i].data.begin());
+		if (i == index)
+		{
+			continue;  
+		}
+
+		size_t result_n = 0;  
+
+		for (size_t n = 0; n <= SizeY; n++)
+		{
+			if (n == index)
+			{
+				continue;  
+			}
+
+			result[result_i][result_n] = matrix[i][n];
+			result_n++; 
+		}
+
+		result_i++;  
 	}
+	
+
 
 	return result;
 
@@ -642,17 +705,17 @@ float Matrix::CalculateDertimant(const Matrix& matrix)
 
 	if (matrix.Size() != 2 && matrix[0].data.size() != 2)
 	{
-		for (size_t i = 0; i < matrix[i].Size(); i++)
+		for (size_t i = 0; i < matrix[0].Size(); i++)
 		{
 
 			if (i % 2 == 0)
 			{
-				result += matrix[i][0] * CalculateDertimant(SubDivideMatrix(matrix, i));
+				result += matrix[0][i] * CalculateDertimant(SubDivideMatrix(matrix, i));
 
 			}
 			else
 			{
-				result -= matrix[i][0] * CalculateDertimant(SubDivideMatrix(matrix, i));
+				result -= matrix[0][i] * CalculateDertimant(SubDivideMatrix(matrix, i));
 
 			}
 		}
@@ -668,7 +731,7 @@ float Matrix::CalculateDertimant(const Matrix& matrix)
 	return result;
 }
 
-Matrix ReturnAugmentedMatrix(const Matrix& base, const Matrix& added)
+Matrix Matrix::ReturnAugmentedMatrix(const Matrix& base, const Matrix& added)
 {
 	Matrix result = base;
 
@@ -682,11 +745,7 @@ Matrix ReturnAugmentedMatrix(const Matrix& base, const Matrix& added)
 
 	for (size_t i = 0; i < added.mData.size(); i++)
 	{
-		for (size_t k = 0; k < added.mData[i].data.size(); k++)
-		{
-			result.mData[i].data.push_back(added.mData[i].data[k]);
-
-		}
+		result.mData.push_back(added.mData[i]);
 
 	}
 
@@ -700,24 +759,26 @@ Matrix Matrix::ReturnInv()
 {
 	Matrix copy = *this;
 
-
-
+	float determiant = Matrix::CalculateDertimant(copy);
+	
+	if (determiant == 0)
+		return copy;
 
 	copy = ReturnAugmentedMatrix(copy, copy.Identity(copy.mData.size()));
-	std::cout << copy << std::endl;
 
 	copy = copy.PivotDeGauss();
 
 	int lignSize = copy[0].data.size();
 	int ligneSize2 = lignSize / 2;
 
-	Matrix result(copy.mData.size(), ligneSize2);
+	Matrix result(copy[0].data.size(), copy[0].data.size());
 
-	for (size_t i = 0; i < copy.mData.size(); i++)
+
+	for (size_t x = 0; x < result.Size(); x++)
 	{
-		for (size_t k = ligneSize2; k < lignSize; k++)
+		for (size_t y = 0; y < result[0].Size(); y++)
 		{
-			result[i][k - ligneSize2] = copy[i][k];
+			result[x][y] =  copy[result.Size() + x][y];
 		}
 	}
 

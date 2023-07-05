@@ -21,7 +21,7 @@ public:
 	virtual void UnBind();
 
 	unsigned int GetTexture() const;
-	void ResizeFrammeBuffer(float width, float height);
+	void ResizeFrammeBuffer(float _width, float _height);
 	void Init() override;
 
 

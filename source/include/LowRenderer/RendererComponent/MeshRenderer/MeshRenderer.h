@@ -26,6 +26,7 @@ class MeshRenderer : public RendererComponent
 {
 public:
 	void Draw(Scene* scene, Shader* shader) override;
+
 	void MeshRendererDrawStencil(Scene* scene, Shader* shader);
 	void ImguiWindowComponents() override;
 	MeshRenderer(const Model& modelToCopy, const Texture& _textures, Entity& entityAttach);

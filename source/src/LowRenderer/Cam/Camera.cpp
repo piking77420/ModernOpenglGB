@@ -72,14 +72,12 @@ void Camera::CameraUpdate()
 
 	  
 
-
 	  m_ProjectionMatrix = Matrix4X4::ProjectionMatrix((fov), (float)windowWidth / (float)windowHeight, Fnear, Ffar);
 
 	  //m_ProjectionMatrix = Matrix4X4::OrthoGraphicMatrix(4,-4,4, -4, Fnear, Ffar).Transposate();
 	  m_LookAtMatrix = GetLookMatrix();
-	  VP =    m_ProjectionMatrix * m_LookAtMatrix;
-	 
-	
+	  VP = m_ProjectionMatrix * m_LookAtMatrix;
+
 }
 
 
@@ -159,6 +157,13 @@ void Camera::CameraGetInput(float xInput, float yInput)
 		pitch = -89.0f;
 
 	CameraRotation();
+}
+
+Matrix4X4 Camera::GetTransform() const
+{
+
+	float roll = 0;
+	return Matrix4X4::TRS(eye, Vector3(pitch, yaw, roll),Vector3::One);
 }
 
 void Camera::CameraRotation()

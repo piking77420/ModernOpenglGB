@@ -27,7 +27,8 @@ public:
 	std::string Tag;
 	Transform transform;
 
-
+	void Awake(Scene* scene);
+	void Start(Scene* scene);
 	void Update(Scene* scene);
 	void Renderer(Scene* scene);
 	void FixedUpdate(Scene* scene);

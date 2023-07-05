@@ -1,18 +1,17 @@
 #include "UI/ContentBrowser.h"
 #include<Core/Debug/Imgui/imgui.h>
-#include<Core/Debug/Imgui/imgui_impl_glfw.h>
-#include<Core/Debug/Imgui/imgui_impl_opengl3.h>
-#include <Core/Debug/Imgui/imgui_internal.h>
+
 #include "Ressources/RessourcesManager/RessourcesManager.h"
 #include "App/App.h"
 #include "UI/InspectorSelectable.h"
+#include "Ressources/Scene/Scene.h"
 
 fs::path ContentBrowser::BasePath = fs::path("assets");
 
 fs::path ContentBrowser::CurrentPath = fs::path("assets");
 
 
-
+ImGuiWindow* ContentBrowser::renderer = nullptr;
 
 bool ContentBrowser::IsThisFormat(const fs::path& path, const std::string& format)
 {
@@ -86,7 +85,6 @@ void ContentBrowser::Renderer(App& app)
 			{
 				std::string ressourcename = app.m_Ressources->GetRessourcesName(path.generic_string());
 				app.InspectorCurrentindow = app.m_Ressources->GetElement<InspectorSelectable>(ressourcename);
-				std::cout << ressourcename << std::endl;
 			}
 			ImGui::Text(name.c_str());
 		}
@@ -131,6 +129,19 @@ void ContentBrowser::Update(App& app)
 	LookForInput(app);
 	ImGui::End();
 	StateApp();
+	/*
+	if (ImGui::Begin("Render"))
+	{
+		renderer = ImGui::GetCurrentWindow();
+		float width = ImGui::GetContentRegionAvail().x;
+		float height = ImGui::GetContentRegionAvail().y;
+
+		ImGui::Image((ImTextureID)App::currentScene->OpenGlRenderToImgui->framebufferTexture, ImGui::GetContentRegionAvail(),
+			ImVec2(0, 1),
+			ImVec2(1, 0));
+		ImGui::End();
+	}
+	*/
 	
 }
 
@@ -141,13 +152,11 @@ void ContentBrowser::StateApp()
 	ImGui::ImageButton((ImTextureID)PlayIcon->ID, { 24,24 }, { 0,1 }, { 1,0 });
 	if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
 	{
-		Launch = true;
 	}
 
 	ImGui::ImageButton((ImTextureID)PlayIcon->ID, { 24,24 }, { 0,1 }, { 1,0 });
 	if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
 	{
-		Launch = true;
 	}
 	ImGui::End();
 }

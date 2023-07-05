@@ -24,23 +24,23 @@ void Transform::ImguiWindowComponents()
 
 	// Pos
 	ImGui::DragFloat3("Position", &pos.x,0.2);
-	TransformChange += ImGui::IsItemEdited();
 
 	// Angle
 	ImGui::Text("Angle");
 	ImGui::SliderAngle("X", &rotate.x);
-	TransformChange += ImGui::IsItemEdited();
+	
 	ImGui::SliderAngle("Y", &rotate.y);
-	TransformChange += ImGui::IsItemEdited();
+	
 	ImGui::SliderAngle("Z", &rotate.z);
-	TransformChange += ImGui::IsItemEdited();
+	
 
 	// Scale
 	ImGui::DragFloat3("Scale", &scale.x);
-	TransformChange += ImGui::IsItemEdited();
 
 
 	ImGui::PopID();
+
+
 
 }
 
@@ -73,28 +73,26 @@ const Vector3 Transform::GetWordlPos()
 
 void Transform::Update(Scene* scene)
 { 
-	if(TransformChange)
-	{
+	
 		UpdateMatrix();
-		TransformChange = false;
-	}
+	
 }
 
 Vector3& Transform::SetPos()
 {
-	TransformChange = true;
+	
 	return pos;
 }
 
 Vector3& Transform::SetRotation()
 {
-	TransformChange = true;
+	
 	return rotate;
 }
 
 Vector3& Transform::SetScale()
 {
-	TransformChange = true;
+	
 	return scale;
 }
 
@@ -141,7 +139,8 @@ Transform::~Transform()
 void Transform::UpdateMatrix()
 {
 	
-	m_LocalMatrix = m_LocalMatrix.TRS(pos, rotate, scale);
+	m_LocalMatrix = Matrix4X4::TRS(pos, rotate, scale);
+
 
 	if (Parents != nullptr)
 	{
@@ -149,7 +148,7 @@ void Transform::UpdateMatrix()
 	}
 	else
 	{
-		m_GlobalMatrix =  m_LocalMatrix;
+		m_GlobalMatrix = m_LocalMatrix;
 	}
 
 

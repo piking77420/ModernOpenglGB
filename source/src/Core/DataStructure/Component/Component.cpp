@@ -24,6 +24,14 @@ void Component::ImguiWindow()
 
 }
 
+void Component::Awake(Scene* scene)
+{
+}
+
+void Component::Start(Scene* scene)
+{
+}
+
 void Component::PreUpdate(Scene* scene)
 {
 }
@@ -40,15 +48,20 @@ void Component::FixedUpdate(Scene* scene)
 {
 }
 
-void Component::Renderer(Scene* scene)
-{
-}
+
 
 Component::Component() 
 {
 	this->m_ID = App::currentScene->GlobalID;
 	App::currentScene->GlobalID++;
 
+}
+
+Component::Component(Entity* entity)
+{
+	EntityAttachTo = entity;
+	this->m_ID = App::currentScene->GlobalID;
+	App::currentScene->GlobalID++;
 }
 
 
