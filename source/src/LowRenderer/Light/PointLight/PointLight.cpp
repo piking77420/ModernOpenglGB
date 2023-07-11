@@ -1,5 +1,6 @@
 #include <Light/PointLight/PointLight.h>
 #include<Ressources/Shader/Shader.h>
+#include"Vector4.h"
 
 
 
@@ -15,7 +16,7 @@ void PointLight::SetUniform(Shader* shader) const
 		shader->Use();
 		shader->SetInt("nbrOfPointLight", Light::NbrofPointLight);
 		shader->SetVector3(Setuniform + ".position", EntityAttachTo->transform.GetWordlPos().GetPtr());
-		shader->SetVector3(Setuniform + ".ambient", ambiant.GetPtr());
+		shader->SetVector3(Setuniform + ".ambient", &ambiant.x);
 		shader->SetVector3(Setuniform + ".diffuse", diffuse.GetPtr());
 		shader->SetVector3(Setuniform + ".specular", specular.GetPtr());
 		shader->SetFloat(Setuniform + ".constant", constant);
@@ -41,9 +42,9 @@ void PointLight::ImguiWindowComponents()
 	ImGui::DragFloat("constant", &constant);
 	ImGui::DragFloat("linear", &linear);
 	ImGui::DragFloat("quadralitic", &quadralitic);
-	ImGui::ColorPicker4("ambiantColor", ambiant.SetPtr());
-	ImGui::ColorPicker4("DiffuseColor", diffuse.SetPtr());
-	ImGui::ColorPicker4("SpecularColor", specular.SetPtr());
+	ImGui::ColorPicker4("ambiantColor", &ambiant.x);
+	ImGui::ColorPicker4("DiffuseColor", &diffuse.x);
+	ImGui::ColorPicker4("SpecularColor", &specular.x);
 	ImGui::Text(" ");
 }
 

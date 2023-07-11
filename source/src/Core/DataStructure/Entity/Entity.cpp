@@ -106,7 +106,7 @@ void Entity::OnSelected()
 	ImGui::PopID();
 
 
-
+	/*
 
 
 
@@ -152,18 +152,11 @@ void Entity::OnSelected()
 
 
 
-	Matrix4X4 modelMat;
-	if (HasParent())
-	{
-		modelMat = transform.GetMatrix();
-	}
-	else
-	{
-		modelMat = transform.GetMatrix();
-	}
+	Matrix4X4 modelMat = transform.GetMatrix();
+
 
 	Matrix4X4 guizmoProj(Camera::cam->GetProjectionMatrix());
-
+	
 
 
 	ImGuiIO& io = ImGui::GetIO();
@@ -179,14 +172,17 @@ void Entity::OnSelected()
 		ImGuizmo::DecomposeMatrixToComponents(modelMat.GetPtr(), pos.SetPtr(),
 			rot.SetPtr(), scale.SetPtr());
 
+		std::cout << rot << std::endl;
 		Vector3 deltarotation = rot - transform.GetRotation();
-		
+	
 
 		transform.SetPos() = pos;
 		transform.SetRotation() += deltarotation;
 		transform.SetScale() = scale;
+
+
 	}
-	
+	*/
 		
 }
 

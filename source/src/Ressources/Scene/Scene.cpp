@@ -9,7 +9,7 @@
 #include "App/App.h"
 #include "LowRenderer/FrameBuffer/FrameBuffer.h"
 
-FrameBuffer* Scene::OpenGlRenderToImgui = nullptr;// new FrameBuffer(windowWidth, windowHeight);
+FrameBuffer* Scene::OpenGlRenderToImgui = new FrameBuffer(windowWidth, windowHeight);
 RessourcesManager* Scene::ressourcesManagers = nullptr;
 
 Scene::Scene(std::string _filepath)

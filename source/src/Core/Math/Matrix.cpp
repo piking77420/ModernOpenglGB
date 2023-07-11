@@ -1,10 +1,6 @@
-#include "Matrix.h"
-#include "Vector.h"
-#include "Vector2.h"
-#include "Vector3.h"
-#include "Mathf.h"
-#include "Matrix4X4.h"
 
+
+#include "mathf.h"
 
 
 
@@ -13,34 +9,22 @@ std::ostream& operator<<(std::ostream& stream, const Matrix& matrix)
 	  
 
 
-	size_t maxSize = 0; // Maximum size among all rows
-
-	// Find the maximum size among all rows
-	for (size_t k = 0; k < matrix.Size(); k++)
+	if (matrix.mData.size() != 0)
 	{
-		if (matrix[k].Size() > maxSize)
-		{
-			maxSize = matrix[k].Size();
-		}
-	}
 
-	// Print the matrix elements
-	for (size_t i = 0; i < maxSize; i++)
-	{
-		for (size_t k = 0; k < matrix.Size(); k++)
-		{
-			if (i > matrix[k].Size())
-			{
-				stream << "$" << " ";
-			}
-			else
-			{
-				stream << matrix[k].data[i] << " ";
-			}
-		}
-		stream << '\n';
-	}
 
+		for (int i = 0; i < matrix.mData.size(); i++)
+		{
+			stream << "VectorD at Matrix[" << i << "] = ";
+			for (int k = 0; k < matrix.mData[i].data.size(); k++)
+			{
+				stream << matrix[i][k] << " ";
+			}
+			stream << std::endl;
+
+		}
+
+	}
 	return stream;
 }
 
@@ -189,7 +173,42 @@ Matrix::operator Matrix4X4()
 		}
 	}
 
-	return result;
+	return result.Transposate();
+}
+
+Matrix::operator Matrix3X3()
+{
+	Matrix3X3 result = Matrix3X3();
+
+	int sizeVector = this->mData.size();
+	int DimensionVector = 0;
+	for (size_t i = 0; i < this->mData.size(); i++)
+	{
+		if (DimensionVector < mData[i].Size())
+			DimensionVector = mData[i].Size();
+	}
+	if (sizeVector > 3)
+	{
+		sizeVector = 3;
+	}
+	if (DimensionVector > 3)
+	{
+		DimensionVector = 3;
+	}
+
+	float* data = result.SetPtr();
+
+	for (size_t x = 0; x < sizeVector; x++)
+	{
+		for (size_t y = 0; y < DimensionVector; y++)
+		{
+			data[(x * sizeVector) + y] = mData[x][y];
+		}
+	}
+
+	
+
+	return result.Transposate();
 }
 
 
@@ -221,10 +240,12 @@ Matrix::Matrix(const int size)
 
 Matrix::Matrix(const int lign , const int coloms)
 {
+
 	for (size_t i = 0; i < lign; i++)
 	{
-		Vector newVec = Vector(coloms);
-		mData.push_back(newVec);
+
+		Vector added = Vector(size_t(coloms));
+		this->mData.push_back(added);
 	}
 
 }
@@ -288,257 +309,12 @@ Matrix Matrix::Identity(const int sizeX, const int sizeY)
 	return result;
 }
 
-Matrix Matrix::TranslateMatrix2x2(float x, float y)
-{
-	Matrix NewMatrix = Matrix(2);
-
-
-	NewMatrix.mData[1][0] = x;
-	NewMatrix.mData[1][1] = y;
-
-	return NewMatrix;
-
-}
-
-Matrix Matrix::TranslateMatrix3X3(Vector translation)
-{
-	Matrix NewMatrix = Matrix(3);
-
-
-	NewMatrix.mData[2][0] = translation[0];
-	NewMatrix.mData[2][1] = translation[1];
-	NewMatrix.mData[2][2] = translation[2];
-
-
-	return NewMatrix;
-}
-
-
-
-Matrix Matrix::TranslateMatrix4X4(Vector translation)
-{
-	Matrix NewMatrix = Matrix(4);
-
-
-	NewMatrix[0][0] = 1;
-	NewMatrix[1][1] = 1;
-	NewMatrix[2][2] = 1;
-
-
-
-	NewMatrix[3][0] = translation[0];
-	NewMatrix[3][1] = translation[1];
-	NewMatrix[3][2] = translation[2];
-	NewMatrix[3][3] = 1;
-
-
-
-	return NewMatrix;
-}
-
-
-Matrix Matrix::RotationMatrix2x2(float angle)
-{
-	Matrix NewMatrix = Matrix(2);
-
-
-	NewMatrix.mData[0][0] = cosf(degreesToRadians(angle));
-	NewMatrix.mData[1][0] = -sinf(degreesToRadians(angle));
-
-	NewMatrix.mData[0][1] = sinf(degreesToRadians(angle));
-	NewMatrix.mData[1][1] = cosf(degreesToRadians(angle));
-
-
-	return NewMatrix;
-}
-
-Matrix Matrix::RotationXMatrix3X3(float angle)
-{
-	Matrix NewMatrix = Matrix(3);
-
-
-
-	NewMatrix[0][0] = 1;
-	NewMatrix[0][1] = 0;
-	NewMatrix[0][2] = 0;
-
-	NewMatrix[1][0] = 0;
-	NewMatrix[1][1] = cos(degreesToRadians(angle));
-	NewMatrix[1][2] = sin(degreesToRadians(angle));
-
-	NewMatrix[2][0] = 0;
-	NewMatrix[2][1] = -sin(degreesToRadians(angle));
-	NewMatrix[2][2] = cos(degreesToRadians(angle));
-
-
-	
-
-	return NewMatrix;
-}
-
-Matrix Matrix::RotationYMatrix3X3(float angle)
-{
-	Matrix NewMatrix = Matrix(3);
-
-
-
-	NewMatrix[0][0] = cos(degreesToRadians(angle));
-	NewMatrix[0][1] = 0;
-	NewMatrix[0][2] = -sin(degreesToRadians(angle));
-
-	NewMatrix[1][0] = 0;
-	NewMatrix[1][1] = 1;
-	NewMatrix[1][2] = 0;
-
-	NewMatrix[2][0] = sin(degreesToRadians(angle));
-	NewMatrix[2][1] = 0;
-	NewMatrix[2][2] = cos(degreesToRadians(angle));
-
-
-	return NewMatrix;
-}
-
-Matrix Matrix::RotationZMatrix3X3(float angle)
-{
-	Matrix NewMatrix = Matrix(3);
-
-
-
-	NewMatrix[0][0] = cos(degreesToRadians(angle));
-	NewMatrix[0][1] = sin(degreesToRadians(angle));
-	NewMatrix[0][2] = 0;
-
-	NewMatrix[1][0] = -sin(degreesToRadians(angle));
-	NewMatrix[1][1] = cos(degreesToRadians(angle));
-	NewMatrix[1][2] = 0;
-
-	NewMatrix[2][0] = 0;
-	NewMatrix[2][1] = 0;
-	NewMatrix[2][2] = 1;
-
-
-	return NewMatrix;
-}
-
-Matrix Matrix::RotationMatrix(Vector angles)
-{
-	Matrix RotationMatrix = Matrix(3);
-
-
-
-	RotationMatrix = RotationYMatrix3X3(angles[1]) *  RotationZMatrix3X3(angles[2]);
-
-	RotationMatrix = RotationXMatrix3X3(angles[0]) * RotationMatrix;
-
-	std::cout << RotationMatrix << std::endl;
-
-
-
-
-
-	return RotationMatrix;
-}
-
-Matrix Matrix::ScalingMatrix2X2(const Vector& values)
-{
-	Matrix NewMatrix = Matrix(2);
-
-
-	NewMatrix.mData[0][0] = values[0];
-	NewMatrix.mData[1][0] = 0;
-
-	NewMatrix.mData[0][1] = 0;
-	NewMatrix.mData[1][1] = values[1];
-
-	return NewMatrix;
-
-}
-
-Matrix Matrix::ScalingMatrix3X3(const Vector& values)
-{
-	
-	Matrix NewMatrix = Matrix(3);
-
-	
-
-	NewMatrix[0][0] = values[0];
-	NewMatrix[0][1] = 0;
-	NewMatrix[0][2] = 0;
-
-	NewMatrix[1][0] = 0;
-	NewMatrix[1][1] = values[1];
-	NewMatrix[1][2] = 0;
-
-	NewMatrix[2][0] = 0;
-	NewMatrix[2][1] = 0;
-	NewMatrix[2][2] = values[2];
-
-
-	return NewMatrix;
-}
-
-
-// Vector3
-Matrix Matrix::RotationMatrixTRS(Vector Translation, Vector rotation, Vector scaling)
-{
-
-	Matrix scalingMaxtrix = ScalingMatrix3X3(scaling).MatrixToHomogeneus();
-	Matrix rotationMaxtrix = RotationMatrix(rotation).MatrixToHomogeneus();
-	Matrix translationMaxtrix = TranslateMatrix4X4(Translation);
-
-
-
-	Matrix TRS = translationMaxtrix * rotationMaxtrix * scalingMaxtrix;
-	return TRS;
-}
-
-
-
 
 
 void Matrix::AddInMatrixVector(const Vector& Row0)
 {
 	this->mData.push_back(Row0);
 }
-
-Matrix Matrix::MatrixToHomogeneus() const
-{
-
-
-	int nbrOfVector = Size();
-	int SizeOfVector = mData[0].Size();
-	if (nbrOfVector != SizeOfVector || nbrOfVector >= 4 && SizeOfVector >= 4)
-	{
-		return Matrix();
-	}
-
-	Matrix Newmatrix = Matrix(4);
-	
-
-	for (size_t i = 0; i < nbrOfVector; i++)
-	{
-		for (size_t k = 0; k < SizeOfVector; k++)
-		{
-			Newmatrix[i][k] = this->mData[i][k];
-		}
-		
-	}
-	Newmatrix[3][0] = 0;
-	Newmatrix[3][1] = 0;
-	Newmatrix[3][2] = 0;
-	Newmatrix[3][3] = 1;
-
-
-	Newmatrix[0][3] = 0;
-	Newmatrix[1][3] = 0;
-	Newmatrix[2][3] = 0;
-
-
-
-	return Newmatrix;
-}
-
-
 float ReturnAbsol(float value)
 {
 	if (value < 0)
@@ -556,73 +332,97 @@ int returnMaxInColomm(Matrix& matrix, const int& r, const int& j)
 {
 	int indexmax = r;
 	int currentLign = r;
-	float max = std::abs(matrix[r][j]);
+	float max = ReturnAbsol(matrix[r][j]);
 
-	for (int i = currentLign; i < matrix.Size(); i++)
+	// cout << " here "<< r << "  matrix.Vectors.size() - r" << endl;
+	for (size_t i = currentLign; i < matrix.mData.size() - r; i++)
 	{
-		if (std::abs(matrix[i][j]) > max)
+
+		if (ReturnAbsol(matrix[i][j]) > ReturnAbsol(max))
 		{
-			max = std::abs(matrix[i][j]);
+
+			max = ReturnAbsol(matrix[i][j]);
+
 			indexmax = i;
 		}
+
 	}
 
 	return indexmax;
 }
 
-void SwapVector(Vector* v1,Vector* v2)
-{
-	Vector tmpr = *v1;
-	*v1 = *v2;
-	*v2 = tmpr;
-}
-
-
 
 Matrix Matrix::PivotDeGauss()
 {
-	Matrix matrix = *this;
+	Matrix result = *this;
+	//cout << result << endl;
 
-	int numRows = matrix.Size();
-	int numCols = matrix[0].Size();
 
-	int r = 0; 
+	int r = 0;
+	int n = result.mData.size(); // nbr of ligne
+	int i = result.mData[0].data.size(); /// taile d'une ligne 
 
-	for (int j = 0; j < numCols; j++) {
-		int k = r; 
+	for (size_t j = 0; j < n; j++)
+	{
+		//cout << endl << endl << " Loop " << j << endl << result << endl;
 
-		for (int i = r + 1; i < numRows; i++) {
-			if (std::abs(matrix[i][j]) > std::abs(matrix[k][j])) {
-				k = i;
+		int k = returnMaxInColomm(result, r, j);
+
+		//cout << "where is the Maximum " << k << endl;
+
+		if (result[k][j] != 0)
+		{
+
+
+
+			float toDivide = result[k][j];
+
+			for (size_t l = 0; l < i; l++)
+			{
+				//cout << result[k][l] << "/" << toDivide << endl;
+				result[k][l] = result[k][l] / toDivide;
+				//cout << "result = " << result[k][l] << endl;
+
 			}
-		}
+			//cout << result << endl;
 
-		if (matrix[k][j] == 0) {
-			continue;
-		}
+			//cout << " k = " << k << " " << " r  = " << r << endl;
+			if (k != r)
+			{
+				std::swap(result[k], result[r]);
+			}
+			//cout << result << endl;
 
-		SwapVector(&matrix[k], &matrix[r]);
 
-		float divisor = matrix[r][j];
-		for (int c = j; c < numCols; c++) {
-			matrix[r][c] /= divisor;
-		}
-
-		for (int i = 0; i < numRows; i++) {
-			if (i != r) {
-				float factor = matrix[i][j];
-				for (int c = j; c < numCols; c++) {
-					matrix[i][c] -= factor * matrix[r][c];
+			for (size_t m = 0; m < n; m++)
+			{
+				//cout << "m = " << m << " r = " << r << endl;
+				if (m != r)
+				{
+					float alpha = result[m][j];
+					for (size_t l = 0; l < i; l++)
+					{
+						//cout << result[m][l] << " -= " << alpha << " * " << result[r][l] << endl;
+						result[m][l] -= alpha * result[r][l];
+						//cout << "result = " << result[m][l] << endl;
+					}
 				}
 			}
+
+
+			// cout << result << endl;
+			r++;
+
+
+
+
 		}
 
-		r++;
+
 	}
 
-	return matrix;
 
-
+	return result;
 }
 
 /*
@@ -740,12 +540,16 @@ Matrix Matrix::ReturnAugmentedMatrix(const Matrix& base, const Matrix& added)
 	int addedM = added.mData.size();
 	int addedN = added[0].data.size();
 
+	assert(baseM == addedM, "Not same Size M");
 
 
 
 	for (size_t i = 0; i < added.mData.size(); i++)
 	{
-		result.mData.push_back(added.mData[i]);
+		for (size_t k = 0; k < added.mData[i].data.size(); k++)
+		{
+			result.mData[i].data.push_back(added.mData[i].data[k]);
+		}
 
 	}
 
@@ -755,7 +559,7 @@ Matrix Matrix::ReturnAugmentedMatrix(const Matrix& base, const Matrix& added)
 }
 
 
-Matrix Matrix::ReturnInv()
+Matrix Matrix::Invert()
 {
 	Matrix copy = *this;
 
@@ -768,20 +572,19 @@ Matrix Matrix::ReturnInv()
 
 	copy = copy.PivotDeGauss();
 
+
 	int lignSize = copy[0].data.size();
 	int ligneSize2 = lignSize / 2;
 
-	Matrix result(copy[0].data.size(), copy[0].data.size());
+	Matrix result(copy.mData.size(), ligneSize2);
 
-
-	for (size_t x = 0; x < result.Size(); x++)
+	for (size_t i = 0; i < copy.mData.size(); i++)
 	{
-		for (size_t y = 0; y < result[0].Size(); y++)
+		for (size_t k = ligneSize2; k < lignSize; k++)
 		{
-			result[x][y] =  copy[result.Size() + x][y];
+			result[i][k - ligneSize2] = copy[i][k];
 		}
 	}
-
 
 	return result;
 

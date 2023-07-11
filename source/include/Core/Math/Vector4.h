@@ -1,62 +1,88 @@
 #pragma once
 #include <iostream>
-#include "Vector3.h"
 
+class Vector3;
+class Vector2;
+class Vector;
 
 class Vector4
 {
 public:
-	float x;
-	float y;
-	float z;
-	float w;
+	float x = 0 ;
+	float y = 0 ;
+	float z = 0 ;
+	float w = 0 ;
 
+	constexpr static int Size()
+	{
+		return 4;
+	}
+
+	[[nodiscard]]
 	float Norm() const;
+	[[nodiscard]]
 	Vector4 Normalize() const;
-
-	const float* GetPtr() const;
-
-	float* SetPtr();
-
-
-
-	float DotProduct(const Vector4& vec2) const;
-
-
-	float DotProduct(const Vector4& vec1, const Vector4& vec2);
-
-
-	float Angle(const Vector4& vec1, const Vector4& vec2);
+	[[nodiscard]]
+	constexpr inline static float DotProduct(const Vector4& vec1, const Vector4& vec2)
+	{
+			float result = 0;
+			result += (vec1.x * vec2.x);
+			result += (vec1.y * vec2.y);
+			result += (vec1.z * vec2.z);
+			result += (vec1.w * vec2.w);
+			return result;
+	}
 
 
+	[[nodiscard]]
+	static float Angle(const Vector4& vec1, const Vector4& vec2);
 
 
-	float operator[](const int& i) const;
 
-	float& operator[](const int& i);
+
+	float operator[](int i) const;
+	float& operator[](int i);
 
 	Vector4 operator+(float value);
 	Vector4 operator-(float value);
 	Vector4 operator*(float value);
 	Vector4 operator/(float value);
 
+	[[nodiscard]]
+	constexpr static inline float DistanceSquare(const Vector4& a, const Vector4& b)
+	{
+		return ((a.x - b.x * a.x - b.x) + (a.y - b.y * a.y - b.y) + (a.z - b.z * a.z - b.z) + (a.w - b.w * a.w - b.w));
+	}
+	[[nodiscard]]
+	static inline float Distance(const Vector4& a, const Vector4& b)
+	{
+		return std::sqrtf((a.x - b.x * a.x - b.x) + (a.y - b.y * a.y - b.y) + (a.z - b.z * a.z - b.z) + (a.w - b.w * a.w - b.w));
+	}
 
+	[[nodiscard]]
+	constexpr const float* GetPtr()const { return &x; }
 
-	Vector4(const Vector3& vec);
-
-	Vector4(float _x, float _y, float _z, float _w);
-	Vector4();
-	~Vector4();
+	[[nodiscard]]
+	constexpr float* SetPtr() { return &x; }
 
 	static const Vector4 Zero;
 	static const Vector4 One;
 
+	explicit operator Vector() const;
+	explicit operator Vector2() const;
+	explicit operator Vector3() const;
 
+
+
+	Vector4(const Vector3& vec);
+	Vector4(float _x, float _y, float _z, float _w);
+	Vector4() = default;
 private:
 
 };
 
 std::ostream& operator<<(std::ostream& stream, const Vector4& vec);
+
 
 
 

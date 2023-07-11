@@ -4,7 +4,7 @@
 #include<Core/Debug/Imgui/imgui.h>
 #include<Core/Debug/Imgui/imgui_impl_glfw.h>
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>
-
+#include "Mathf.h"
 
 
 
@@ -171,13 +171,14 @@ void Camera::CameraRotation()
 	
 	Vector3 frontVector = Vector3::Zero;
 
-	frontVector.x = std::cos(degreesToRadians(yaw)) * std::cos(degreesToRadians(pitch));
-	frontVector.y = std::sin(degreesToRadians(pitch));
-	frontVector.z = std::sin(degreesToRadians(yaw)) * std::cos(degreesToRadians(pitch));
+	frontVector.x = std::cos(Math::DegreesToRadians(yaw)) * std::cos(Math::DegreesToRadians(pitch));
+	frontVector.y = std::sin(Math::DegreesToRadians(pitch));
+	frontVector.z = std::sin(Math::DegreesToRadians(yaw)) * std::cos(Math::DegreesToRadians(pitch));
 
 	Front = frontVector.Normalize();
-	Right = Front.CrossProduct(Vector3::Up).Normalize();
-	Up = Right.CrossProduct(Front);
+
+	Right = Vector3::CrossProduct(Front,Vector3::Up).Normalize();
+	Up = Vector3::CrossProduct(Right,Front);
 	
 }
 

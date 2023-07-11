@@ -1,11 +1,10 @@
 #pragma once
-#include "Vector4.h"
-#include "Matrix3X3.h"
-#include "Mathf.h"
-#include <math.h>
 #include <iostream>
+#include "Vector4.h"
 
 
+class Vector3;
+class Matrix;
 
 class Matrix4X4
 {
@@ -13,7 +12,9 @@ public:
 
 	
 
-	Vector4 Columns[4];
+	
+	
+	Vector4 Colums[4];
 
 	static Matrix4X4 ProjectionMatrix(const float& fov, const float& aspect, const float& Near,const float& Far);
 	static Matrix4X4 OrthoGraphicMatrix( float top , float bot , float right ,float left , float Near,  float Far);
@@ -43,28 +44,29 @@ public:
 
 	static Matrix4X4 Identity();
 
-	Matrix4X4 Invert() const;
+	Matrix4X4 Invert();
 	Matrix4X4 Transposate() const;
 	float Determinant() const;
-
-	Matrix4X4 operator*(const Matrix4X4& matrix) const;
-	Vector4 operator[](const int& i ) const ;
-
-	Vector4& operator[](const int& i) ;
-
 
 	const float* GetPtr() const;
 	float* SetPtr();
 
 
-	Matrix4X4(const Vector4& a, const Vector4& b, const Vector4& c, const Vector4& d);
+
+	Matrix4X4 operator*(const Matrix4X4& matrix) const;
+	Vector4 operator[](const int& i ) const ;
+	Vector4& operator[](const int& i) ;
+	explicit operator Matrix();
+
+	Matrix4X4(const std::initializer_list<float>& values);
+
+
 	
 
 
 
-	explicit operator Matrix();
 
-
+	Matrix4X4(const Vector4& a, const Vector4& b, const Vector4& c, const Vector4& d);
 	Matrix4X4();
 	~Matrix4X4();
 

@@ -1,11 +1,8 @@
 #include "Vector2.h"
+#include "Vector4.h"
 #include "Vector3.h"
-#define _USE_MATH_DEFINES
-#include <math.h>
 #include "Vector.h"
-
-
-#define Vector2Size 2 
+#include "Mathf.h"
 
 
 
@@ -41,33 +38,49 @@ Vector2::operator Vector3() const
 	return result;
 }
 
-Vector2 Vector2::Normalize() const
+Vector2::operator Vector4() const
 {
-	
-
-	float magnitude = Norm();
-
-	if (magnitude == 1 )
-		return *this;
-
-	return Vector2( float(x / magnitude), float(y / magnitude));
-
+	return Vector4(x, y, 0, 0);
 }
 
-float Vector2::DotProduct(const Vector2& Row0) const
+float Vector2::operator[](int i) const
 {
-	return x * Row0.x + y * Row0.y ;
+	assert(i >= 0 && i < 2);
+	[[assume(i >= 0 && i < 2)]]
+
+	if (i == 0)
+		return x;
+
+	if (i == 1)
+		return y;
 }
 
-float Vector2::DotProduct(const Vector2& vec1 , const Vector2& Row1) const
+float& Vector2::operator[](int i)
 {
-	return vec1.x * Row1.x + vec1.y * Row1.y;
+	assert(i >= 0 && i < 2 );
+	[[assume(i >= 0 && i < 2)]]
 
+	if (i == 0)
+		return x;
+	if (i == 1)
+		return y;
 }
 
-float Vector2::Norm() const
+
+
+float* Vector2::SetPtr()
 {
-	return sqrtf(powf(x, 2) + powf(y, 2));
+	return &x;
+}
+
+const float* Vector2::GetPtr() const
+{
+	return &x;
+}
+
+constexpr inline float Vector2::Norm() const
+{
+	return Math::FSqrtf(x * x + y * y );
 }
 
 Vector2 Vector2::Normal() const
@@ -75,31 +88,35 @@ Vector2 Vector2::Normal() const
 	return Vector2(y, -x).Normalize();
 }
 
+float Vector2::CrossProduct(const Vector2& vec1, const Vector2& vec2) const
+{
+	return Determinant(vec1,vec2);
+}
+
 Vector2::Vector2(float _x, float _y) : x(_x), y(_y)
 {
 
 }
 
-float Vector2::CrossProduct(const Vector2& Row0) const
-{
-	return Determinant(Row0);
-}
 
-float Vector2::Determinant(const Vector2& Row0) const
-{
-	return (x * Row0.y) - (y * Row0.x);
-}
+
+
 
 float Vector2::Angle() const
 {
 	return atan2f(x, y);
 }
 
-float Vector2::Angle(const Vector2& vec1 , const Vector2& Row1) const
+float Vector2::Distance(Vector2 a, Vector2 b)
+{
+	return std::sqrtf((a.x - b.x * a.x - b.x) + (a.y - b.y * a.y - b.y));
+}
+
+float Vector2::Angle(const Vector2& vec1 , const Vector2& Row1) 
 {
 	float dot = DotProduct(vec1, Row1);
 
-	float angle = acosf(dot / (vec1.Norm() * Row1.Norm()));
+	float angle = std::acosf(dot / (vec1.Norm() * Row1.Norm()));
 
 	if(Determinant(vec1 , Row1) < 0.f )
 	{
@@ -107,42 +124,6 @@ float Vector2::Angle(const Vector2& vec1 , const Vector2& Row1) const
 	}
 	
 	return angle;
-}
-
-
-float Vector2::Determinant(const Vector2& vec1 , const Vector2& Row1) const
-{
-	return vec1.Determinant(Row1);
-}
-
-
-Vector2 Vector2::Rotate(const Vector2 center, const float cos, const float sin) const
-{
-	Vector2 temp = *this - center;
-	return Vector2(temp.x * cos - temp.y * sin, temp.y * cos + temp.x * sin) + center;
-}
-
-
-
-Vector2 Vector2::Rotation(const float cos, const float sin) const
-{
-	return Vector2(x * cos -  y * sin , y * cos + x * sin);
-}
-
-
-Vector2 Vector2::Rotate(const float angle, const Vector2 center) const
-{
-	return Rotate(center, cos(angle), sin(angle));
-}
-
-
-Vector2::Vector2() : x(0) , y(0)
-{
-	
-}
-
-Vector2::~Vector2()
-{
 }
 
 std::ostream& operator<<(std::ostream& stream, const Vector2& vec)

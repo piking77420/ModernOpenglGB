@@ -32,17 +32,11 @@ public:
 #pragma endregion
 
 
-
-
-
-
-
-
 	float operator[](const int& i) const;
 	float& operator[](const int& i);
 	explicit operator Vector2();
 	explicit operator Vector3();
-	Vector operator=(Vector Row0);
+	Vector operator=(const Vector& Row0);
 
 
 	Vector(const Vector& vec1);
@@ -67,3 +61,80 @@ private:
 
 std::ostream& operator<<(std::ostream& stream, const Vector& vec);
 
+
+inline Vector operator+(const Vector& vec1, const Vector& vec2)
+{
+	int size1 = vec1.Size();
+	int size2 = vec2.Size();
+
+	int lessSize;
+	int GreaterSize;
+	Vector result;
+
+	if (size1 < size2)
+	{
+		lessSize = size1;
+		GreaterSize = size2;
+		result = vec2;
+
+
+		for (size_t i = 0; i < lessSize; i++)
+		{
+			result[i] += vec1[i];
+		}
+	}
+	else
+	{
+		lessSize = size2;
+		GreaterSize = size1;
+		result = vec1;
+
+
+		for (size_t i = 0; i < lessSize; i++)
+		{
+			result[i] += vec2[i];
+		}
+	}
+
+	return result;
+
+}
+
+
+inline Vector operator-(const Vector& vec1, const Vector& vec2)
+{
+	int size1 = vec1.Size();
+	int size2 = vec2.Size();
+
+	int lessSize;
+	int GreaterSize;
+	Vector result;
+
+	if (size1 < size2)
+	{
+		lessSize = size1;
+		GreaterSize = size2;
+		result = vec2;
+
+
+		for (size_t i = 0; i < lessSize; i++)
+		{
+			result[i] -= vec1[i];
+		}
+	}
+	else
+	{
+		lessSize = size2;
+		GreaterSize = size1;
+		result = vec1;
+
+
+		for (size_t i = 0; i < lessSize; i++)
+		{
+			result[i] -= vec2[i];
+		}
+	}
+
+	return result;
+
+}

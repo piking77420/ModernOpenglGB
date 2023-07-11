@@ -1,10 +1,5 @@
 #pragma once
-#include<iostream>
-#include <vector>
-#include "Matrix3X3.h"
-#define _USE_MATH_DEFINES
-#include <cassert>
-#include<math.h>
+#include<vector>
 
 
 
@@ -12,6 +7,7 @@ class Vector3;
 class Vector2;
 class Vector;
 class Matrix4X4;
+class Matrix3X3;
 
 
 class Matrix
@@ -29,34 +25,10 @@ public:
 	Matrix Transposate();
 	static Matrix Identity(const int size) ;
 	static Matrix Identity(const int sizeX , const int sizeY);
-
-	static Matrix TranslateMatrix2x2(float x , float y);
-	static Matrix TranslateMatrix3X3(Vector translation);
-	static Matrix TranslateMatrix4X4(Vector translation);
-
-
-	// Degres
-	static Matrix RotationMatrix2x2(float angleD);
-
-
-	static Matrix RotationXMatrix3X3(float angle);
-	static Matrix RotationYMatrix3X3(float angle);
-	static Matrix RotationZMatrix3X3(float angle);
-	static Matrix RotationMatrix(Vector angles);
-
-	static Matrix ScalingMatrix2X2(const Vector& values);
-	static Matrix ScalingMatrix3X3(const Vector& values);
-
-
-
-	static Matrix RotationMatrixTRS(Vector Translation, Vector rotation, Vector scaling);
-
 	static Matrix ReturnAugmentedMatrix(const Matrix& base, const Matrix& added);
 
-	Matrix ReturnInv();
+	Matrix Invert();
 	void AddInMatrixVector(const Vector& Row0);
-	Matrix MatrixToHomogeneus() const ;
-
 	static Matrix SubDivideMatrix(const Matrix& matrix, int index);
 	static float CalculateDertimant(const Matrix& matrix);	
 	Matrix PivotDeGauss();
@@ -77,6 +49,7 @@ public:
 
 
 	explicit operator Matrix4X4();
+	explicit operator Matrix3X3();
 
 
 #pragma endregion

@@ -1,6 +1,7 @@
 #include <Light/SpothLight/SpothLight.h>
 #include<Ressources/Shader/Shader.h>
-
+#include"Mathf.h"
+#include"Vector4.h"
 
 
 
@@ -15,9 +16,9 @@ void SpothLight::SetUniform(Shader* shader) const
 		shader->SetInt("nbrOfSpothLightLight", Light::NbrofSpothLight);
 		shader->SetVector3(setuniform +".position", EntityAttachTo->transform.GetWordlPos().GetPtr());
 		shader->SetVector3(setuniform +".direction", SpothDirection.GetPtr());
-		shader->SetVector3(setuniform +".ambient", ambiant.GetPtr());
-		shader->SetVector3(setuniform +".diffuse", diffuse.GetPtr());
-		shader->SetVector3(setuniform +".specular", specular.GetPtr());
+		shader->SetVector3(setuniform + ".ambient", &ambiant.x);
+		shader->SetVector3(setuniform + ".diffuse", diffuse.GetPtr());
+		shader->SetVector3(setuniform + ".specular", specular.GetPtr());
 
 		shader->SetFloat(setuniform+".constant", spothData.constant);
 		shader->SetFloat(setuniform+".linear", spothData.linear);
@@ -35,7 +36,7 @@ void SpothLight::Update(Scene* scene)
 void SpothLight::ImguiWindowComponents()
 {
 	ImGui::Text(" ");
-	ImGui::SliderFloat3("LightDirection",LightDirection.SetPtr(), -1, 1);
+	ImGui::SliderFloat3("LightDirection", LightDirection.SetPtr(), -1, 1);
 	ImGui::DragFloat("constant",&spothData.constant);
 	ImGui::DragFloat("linear", &spothData.linear);
 	ImGui::DragFloat("quadralitic", &spothData.quadralitic);
@@ -44,9 +45,9 @@ void SpothLight::ImguiWindowComponents()
 
 		
 	
-	ImGui::ColorPicker4("ambiantColor", ambiant.SetPtr());
-	ImGui::ColorPicker4("DiffuseColor", diffuse.SetPtr());
-	ImGui::ColorPicker4("SpecularColor", specular.SetPtr());
+	ImGui::ColorPicker4("ambiantColor", &ambiant.x);
+	ImGui::ColorPicker4("DiffuseColor", &diffuse.x);
+	ImGui::ColorPicker4("SpecularColor", &specular.x);
 	ImGui::Text(" ");
 }
 
@@ -92,8 +93,8 @@ SpothLightData::SpothLightData(float _constant, float _linear, float _quadraliti
 	constant = _constant;
 	linear = _linear;
 	quadralitic = _quadralitic;
-	cutOff = degreesToRadians(_cutoff);
-	outerCutOff = degreesToRadians(_outerCutOff);
+	cutOff = Math::DegreesToRadians(_cutoff);
+	outerCutOff = Math::DegreesToRadians(_outerCutOff);
 	Light::NbrofSpothLight++;
 }
 
@@ -102,6 +103,6 @@ SpothLightData::SpothLightData()
 	constant = 1.f;
 	linear = 0.09f;
 	quadralitic = 0.032f;
-	cutOff = degreesToRadians(12.5f);
-	outerCutOff = degreesToRadians(15.f);
+	cutOff = Math::DegreesToRadians(12.5f);
+	outerCutOff = Math::DegreesToRadians(15.f);
 }

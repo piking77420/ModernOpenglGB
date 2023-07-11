@@ -62,12 +62,12 @@ const Matrix4X4& Transform::GetLocal() const
 
 const Vector3 Transform::GetWordlPos() const
 {
-	Vector3 result = Vector3(m_GlobalMatrix.Columns[3].x, m_GlobalMatrix.Columns[3].y, m_GlobalMatrix.Columns[3].z);
+	Vector3 result = Vector3(m_GlobalMatrix.Colums[3].x, m_GlobalMatrix.Colums[3].y, m_GlobalMatrix.Colums[3].z);
 	return result;
 }
 const Vector3 Transform::GetWordlPos()
 {
-	return Vector3(m_GlobalMatrix.Columns[3]);
+	return Vector3(m_GlobalMatrix.Colums[3]);
 }
 
 

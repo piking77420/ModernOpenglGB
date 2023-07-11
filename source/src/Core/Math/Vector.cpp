@@ -1,7 +1,5 @@
 #include "Vector.h"
-#include <cassert>
-#include "Vector2.h"
-#include "Vector3.h"
+#include "Mathf.h"
 
 
 
@@ -111,7 +109,7 @@ Vector::operator Vector3()
 	return Vector3(data[0], data[1] , data[2]);
 }
 
-Vector Vector::operator=(Vector Row0)
+Vector Vector::operator=(const Vector& Row0)
 {
 	size = Row0.size;
 	

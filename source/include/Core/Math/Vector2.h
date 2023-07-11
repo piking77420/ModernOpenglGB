@@ -1,9 +1,10 @@
 #pragma once
 #include <iostream>
-
+#include <cassert>
 
 class Vector;
 class Vector3;
+class Vector4;
 
 class Vector2 
 {
@@ -11,35 +12,70 @@ public:
 
 
 #pragma region Value
-	float x;
-	float y;
+	float x = 0;
+	float y = 0;
 #pragma endregion
-
-
+	constexpr static int Size()
+	{
+		return 2;
+	}
 #pragma region Function
-	[[nodiscard]]
 	// Return Norm of a Vector
-	float Norm() const;
 	[[nodiscard]]
+	constexpr inline float Norm() const;
 	// return Normaize one Vector
-	Vector2 Normalize() const;
+	[[nodiscard]]
+	constexpr inline Vector2 Normalize() const
+	{
+		float magnitude = Norm();
+
+		if (magnitude == 1)
+			return *this;
+
+		return Vector2(float(x / magnitude), float(y / magnitude));
+	}
 	// Return the dot product
-	float DotProduct(const Vector2& Row0) const ;
-	// Return the dot product
-	float DotProduct(const Vector2& vec1, const Vector2& Row1) const;
+	[[nodiscard]]
+	constexpr inline static float DotProduct(const Vector2& vec1, const Vector2& Row1)
+	{
+		return vec1.x * Row1.x + vec1.y * Row1.y;
+	}
 	// Return the Normal of a Vector
+	[[nodiscard]]
 	Vector2 Normal() const;
-	// Return Determinant
-	float Determinant(const Vector2& Row0) const;
 	// Return CrossProduct
-	float CrossProduct(const Vector2& Row0) const; 
+	[[nodiscard]]
+	float CrossProduct(const Vector2& vec1, const Vector2& vec2) const;
 	// Return Angle between 2 vectors
-	float Angle(const Vector2& vec1, const Vector2& Row1) const;
+	[[nodiscard]]
+	static float Angle(const Vector2& vec1, const Vector2& Row1) ;
 	// Return Trigonametrial angle Cos(x) and sin(Y)
+	[[nodiscard]]
 	float Angle() const;
 	//Return Determiant
-	float Determinant(const Vector2& vec1, const Vector2& Row1) const;
+	[[nodiscard]]
+	constexpr static float Determinant(const Vector2& vec1, const Vector2& vec2)
+	{
+		return (vec1.x * vec2.y) - (vec1.y * vec2.x);
+	}
 
+	// Return Distance from 2 Vector without std::sqrtf;
+	[[nodiscard]]
+	constexpr static inline float DistanceSquare(Vector2 a, Vector2 b)
+	{
+		return ((a.x - b.x * a.x - b.x) + (a.y - b.y * a.y - b.y));
+	}
+	// Return Distance from 2 Vector
+	[[nodiscard]]
+	static float Distance(Vector2 a, Vector2 b);
+	
+
+	// Return the address of the first value;
+	[[nodiscard]]
+	float* SetPtr();
+	// Return the address of the first value;
+	[[nodiscard]]
+	const float* GetPtr() const;
 
 
 
@@ -50,49 +86,23 @@ public:
 	static const Vector2 Up;
 	static const Vector2 Down;
 
-
-
-
-#pragma region Rotation
-
-	Vector2 Rotation(const float cos, const float sin) const;
-
-	Vector2 Rotate(const Vector2 center, const float cos, const float sin) const;
-
-	Vector2 Rotate(const float angle, const Vector2 center) const;
-
-
-
-#pragma endregion 
-
-
-
-		
 #pragma endregion 
 	Vector2(float x, float y) ; 
-	Vector2();
-	~Vector2();
+	Vector2() = default;
 
 	explicit operator Vector() const;
 	explicit operator Vector3() const;
+	explicit operator Vector4() const;
+
+	float operator[](int i) const;
+	float& operator[](int i);
 
 
-	// Mettre dans vector3
-	// explicite operator vector
-	// inplicte a regader
 private:
 
 };
 
 
-static inline float DistanceSquare(Vector2 a, Vector2 b)
-{
-	return ((a.x - b.x * a.x - b.x) + (a.y - b.y * a.y - b.y));
-}
-static inline float Distance(Vector2 a , Vector2 b)
-{
-	return std::sqrtf((a.x - b.x * a.x - b.x) + (a.y - b.y * a.y - b.y));
-}
 
 #pragma region Operator
 

@@ -7,7 +7,7 @@ void BoxCollider::Update(Scene* scene)
 
 void BoxCollider::ImguiWindowComponents()
 {
-	ImGui::DragFloat3("Size", mSize.SetPtr());
+	ImGui::DragFloat3("Size",mSize.SetPtr());
 
 }
 

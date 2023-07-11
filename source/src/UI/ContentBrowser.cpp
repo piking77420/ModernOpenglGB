@@ -129,7 +129,7 @@ void ContentBrowser::Update(App& app)
 	LookForInput(app);
 	ImGui::End();
 	StateApp();
-	/*
+	
 	if (ImGui::Begin("Render"))
 	{
 		renderer = ImGui::GetCurrentWindow();
@@ -141,7 +141,7 @@ void ContentBrowser::Update(App& app)
 			ImVec2(1, 0));
 		ImGui::End();
 	}
-	*/
+	
 	
 }
 
@@ -153,12 +153,9 @@ void ContentBrowser::StateApp()
 	if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
 	{
 	}
-
-	ImGui::ImageButton((ImTextureID)PlayIcon->ID, { 24,24 }, { 0,1 }, { 1,0 });
-	if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
-	{
-	}
 	ImGui::End();
+
+	
 }
 
 ContentBrowser::ContentBrowser()

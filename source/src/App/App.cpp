@@ -37,11 +37,14 @@ void App::DrawSkyBox()
 void App::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
-	//currentScene->OpenGlRenderToImgui->ResizeFrammeBuffer(width, height);
+	currentScene->OpenGlRenderToImgui->ResizeFrammeBuffer(width, height);
 }
 
 void App::AppUpdate()
 {
+
+
+
 	if (!HasPlayOnce)
 	{
 		for (size_t i = 0; i < currentScene->entities.size(); i++)
@@ -56,8 +59,8 @@ void App::AppUpdate()
 	Shader* Stencil = m_Ressources->GetElement<Shader>("StencilTest");
 
 
-	//currentScene->OpenGlRenderToImgui->Bind();
-	glClearColor(0.4f, 0.3f, 0.5f, 1.0f);
+	currentScene->OpenGlRenderToImgui->Bind();
+	glClearColor(0, 0, 0, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
 
@@ -71,13 +74,13 @@ void App::AppUpdate()
 
 
 
-	//currentScene->OpenGlRenderToImgui->UnBind();
+	currentScene->OpenGlRenderToImgui->UnBind();
+
 
 
 	DockSpace();
 	ImguiAppInfo();
 
-	
 	
 }
 
@@ -185,7 +188,7 @@ App::App(int _WindowX, int _WindowY, ImGuiIO& _io) : windowX(_WindowX), windowY(
 	skyboxShader->SetInt("skybox", m_CurrentSkybox->m_Cubemaps.slot);
 
 	// We Init The FrameBuffer here because we need To wait To Glad and opengl to be init
-	//Scene::OpenGlRenderToImgui->Init();
+	Scene::OpenGlRenderToImgui->Init();
 
 
 
@@ -378,6 +381,6 @@ void App::DockSpace()
 void App::InitImguiTheme()
 {
 	ImGuiStyle& style = ImGui::GetStyle();
-	style.FrameBorderSize = 0.5f;
+	style.FrameBorderSize = 0.0f;
 }
 #pragma endregion

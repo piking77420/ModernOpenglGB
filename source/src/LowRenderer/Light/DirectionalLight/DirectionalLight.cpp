@@ -1,5 +1,6 @@
 #include <Light/DirectionalLight/DirectionalLight.h>
 #include<Ressources/Shader/Shader.h>
+#include"Vector4.h"
 
 
 
@@ -45,7 +46,7 @@ void DirectionalLight::SetUniform(Shader* shader) const
 
 		shader->SetVector3("lightPos", EntityAttachTo->transform.GetWordlPos().GetPtr());
 
-		shader->SetVector3("dirLight.direction", Direction.GetPtr());
+		shader->SetVector3("dirLight.direction",Direction.GetPtr());
 		shader->SetVector3("dirLight.ambient", ambiant.GetPtr());
 		shader->SetVector3("dirLight.diffuse", diffuse.GetPtr());
 		shader->SetVector3("dirLight.specular", specular.GetPtr());

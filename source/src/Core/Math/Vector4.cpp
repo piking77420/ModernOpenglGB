@@ -1,10 +1,8 @@
 #include "Vector4.h"
-#include <math.h>
-#include <iostream>
 #include "Vector3.h"
-
-
-
+#include "Vector.h"
+#include "Vector2.h"
+#include "Mathf.h"
 
 const Vector4 Vector4::Zero = Vector4(0,0,0,0);
 const Vector4 Vector4::One = Vector4(1, 1, 1, 1);
@@ -12,51 +10,18 @@ const Vector4 Vector4::One = Vector4(1, 1, 1, 1);
 
 
 
-float Vector4::operator[](const int& i) const
+float Vector4::operator[](int i) const
 {
-	if (i == 0)
-	{
-		return x;
-	}
-	else if (i == 1)
-	{
-		return y;
-	}
-	else if (i == 2)
-	{
-		return z;
-	}
-	else if (i == 3)
-	{
-		return z;
-	}
-	return -99999999999;
-
+	assert(i >= 0 && i < 4);
+	const float* data = &x;
+	return data[i];
 }
 
-float& Vector4::operator[](const int& i)
+float& Vector4::operator[](int i)
 {
-	// // O: insert return statement here
-
-	if (i == 0)
-	{
-		return x;
-	}
-	else if( i == 1 )
-	{
-		return y;
-	}
-	else if (i == 2)
-	{
-		return z;
-	}
-	else if (i == 3)
-	{
-		return z;
-	}
-
-
-	
+	assert(i >= 0 && i < 4);
+	float* data = &x;
+	return data[i];
 }
 
 
@@ -91,22 +56,13 @@ Vector4::Vector4(float _x, float _y, float _z, float _w)
 {
 }
 
-Vector4::Vector4() : x(0), y(0), z(0), w(0)
-{
-	
-}
-
-Vector4::~Vector4()
-{
-}
 
 
 
 
-const float* Vector4::GetPtr() const 
-{
-	return &x;
-}
+
+
+
 
 Vector4::Vector4(const Vector3& vec)
 {
@@ -117,11 +73,12 @@ Vector4::Vector4(const Vector3& vec)
 
 }
 
+
 float Vector4::Norm() const
 {
-	float result = powf(x, 2) + powf(y, 2) + powf(z, 2) + powf(w, 2);
+	float result = x * x + y * y + z * z+ w * w;
 
-	return sqrtf(result) ;
+	return Math::FSqrtf(result) ;
 }
 
 Vector4 Vector4::Normalize() const
@@ -137,37 +94,39 @@ Vector4 Vector4::Normalize() const
 
 
 
-	return Vector4();
-}
-
-float* Vector4::SetPtr()
-{
-	return &x;
-}
-
-
-float Vector4::DotProduct(const Vector4& Row0) const
-{
-	float result = 0;
-
-	result += (x * Row0.x);
-	result += (y * Row0.y);
-	result += (z * Row0.z);
-	result += (w * Row0.w);
-
-	
-
-	//std::cout << result << std::endl;
-
 	return result;
 }
 
 
-
-float Vector4::DotProduct(const Vector4& vec1, const Vector4& vec2)
+Vector4::operator Vector() const
 {
-	return vec1.DotProduct(vec2);
+	Vector result = Vector(4);
+
+	const float* data = &x;
+
+	for (size_t i = 0; i < 4; i++)
+	{
+		result[i] = data[i];
+	}
+
+	return result;
 }
+
+Vector4::operator Vector2() const
+{
+	return Vector2(x, y);
+}
+
+Vector4::operator Vector3() const
+{
+	return Vector3(x,y,z);
+}
+
+
+
+
+
+
 
 
 float Vector4::Angle(const Vector4& vec1, const Vector4& vec2)
@@ -175,7 +134,7 @@ float Vector4::Angle(const Vector4& vec1, const Vector4& vec2)
 	float dot = DotProduct(vec1, vec2);
 	float normVec1 = vec1.Norm();
 	float normVec2 = vec2.Norm();
-	float angle = std::acos(dot / (normVec1 * normVec2));
+	float angle = std::acosf(dot / (normVec1 * normVec2));
 	return angle;
 }
 std::ostream& operator<<(std::ostream& stream, const Vector4& vec)

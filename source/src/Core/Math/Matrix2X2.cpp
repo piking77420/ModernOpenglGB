@@ -1,40 +1,38 @@
-#include "Matrix2X2.h"
-#include "Matrix.h"
-#include "Vector.h"
+#include "Vector2.h"
+#include "Vector3.h"
 #include "Mathf.h"
+#include "Matrix3X3.h"
+#include "Matrix.h"
 
+const Matrix2X2 Matrix2X2::Identity = Matrix2X2(1,0,0,1);
 
 
 
 Matrix2X2::Matrix2X2(Vector2 _vec, Vector2 _vec2) 
 {
 
-	Ligns[0] = _vec;
-	Ligns[1] = _vec2;
+	Coloms[0] = _vec;
+	Coloms[1] = _vec2;
 }
 
-Matrix2X2 Matrix2X2::Identity()
+
+
+
+Matrix2X2 Matrix2X2::RotationMatrix2X2(float angle)
 {
-	Matrix2X2 result;
-
-	result.Ligns[0].x = 1;
-	result.Ligns[0].y = 0;
-	result.Ligns[1].x = 0;
-	result.Ligns[1].y = 1;
-
-	return result;
+	return Matrix2X2(std::cosf(angle),-std::sinf(angle), std::sinf(angle), std::cosf(angle));
 }
 
 
 Matrix2X2::Matrix2X2(float x1 , float y1 , float x2 , float y2)
 	
 {
-	Ligns[0].x = x1;
-	Ligns[0].y = y2;
+	Coloms[0].x = x1;
+	Coloms[0].y = y2;
 
 
-	Ligns[1].x = x1;
-	Ligns[1].x = y2;
+	Coloms[1].x = x1;
+	Coloms[1].x = y2;
 
 }
 
@@ -48,25 +46,33 @@ Matrix2X2::~Matrix2X2()
 
 Matrix2X2::operator Matrix() const 
 {
-	Matrix result = Matrix(4);
-	/*
+	Matrix result = Matrix(2);
 	
-	
-	result.mData[0].data[0] = Row0.x;
-	result.mData[0].data[1] = Row0.y;
+	result[0][0] = Coloms[0].x;
+	result[0][1] = Coloms[0].y;
 
-	result.mData[1].data[0] = Row1.x;
-	result.mData[1].data[1] = Row1.y;
-	*/
+	result[1][0] = Coloms[0].x;
+	result[1][1] = Coloms[0].y;
+	
 	return result;
+}
+
+Matrix2X2::operator Matrix3X3() const
+{
+	return  Matrix3X3((Vector3)Coloms[0], (Vector3)Coloms[1], Vector3::Zero);
+}
+
+Matrix2X2::operator Matrix4X4() const
+{
+	return Matrix4X4((Vector4)Coloms[0], (Vector4)Coloms[1], Vector3::Zero, Vector3::Zero);
 }
 
 
 std::ostream& operator<<(std::ostream& stream ,Matrix2X2 matrix)
 {
-	stream << matrix.Ligns[0].x << " " << matrix.Ligns[1].x << ' \n ';
+	stream << matrix.Coloms[0].x << " " << matrix.Coloms[1].x << ' \n ';
 
-	stream << matrix.Ligns[0].y << " " << matrix.Ligns[1].y << ' \n ';
+	stream << matrix.Coloms[0].y << " " << matrix.Coloms[1].y << ' \n ';
 
 	return stream;
 }
@@ -75,8 +81,8 @@ inline Matrix2X2 operator+(const Matrix2X2& matrix1, const Matrix2X2& matrix2)
 {
 	Matrix2X2 result;
 
-	result.Ligns[0] = matrix1.Ligns[0] + matrix2.Ligns[0];
-	result.Ligns[1] = matrix1.Ligns[1] + matrix2.Ligns[1];
+	result.Coloms[0] = matrix1.Coloms[0] + matrix2.Coloms[0];
+	result.Coloms[1] = matrix1.Coloms[1] + matrix2.Coloms[1];
 
 
 
@@ -86,8 +92,8 @@ inline Matrix2X2 operator-(const Matrix2X2& matrix1, const Matrix2X2& matrix2)
 {
 	Matrix2X2 result;
 
-	result.Ligns[0] = matrix1.Ligns[0] - matrix2.Ligns[0];
-	result.Ligns[1] = matrix1.Ligns[1] - matrix2.Ligns[1];
+	result.Coloms[0] = matrix1.Coloms[0] - matrix2.Coloms[0];
+	result.Coloms[1] = matrix1.Coloms[1] - matrix2.Coloms[1];
 
 
 
@@ -98,13 +104,13 @@ inline Matrix2X2 operator*(const Matrix2X2& matrix1, const Matrix2X2& matrix2)
 
 	Matrix2X2 result;
 
-	result.Ligns[0].x = matrix1.Ligns[0].x * matrix2.Ligns[0].x + matrix1.Ligns[1].y * matrix2.Ligns[0].y;
+	result.Coloms[0].x = matrix1.Coloms[0].x * matrix2.Coloms[0].x + matrix1.Coloms[1].y * matrix2.Coloms[0].y;
 
-	result.Ligns[1].x = matrix1.Ligns[0].x * matrix2.Ligns[1].x + matrix1.Ligns[1].y * matrix2.Ligns[1].y;
+	result.Coloms[1].x = matrix1.Coloms[0].x * matrix2.Coloms[1].x + matrix1.Coloms[1].y * matrix2.Coloms[1].y;
 
-	result.Ligns[0].y = matrix1.Ligns[0].y * matrix2.Ligns[0].x + matrix1.Ligns[1].y * matrix2.Ligns[0].y;
+	result.Coloms[0].y = matrix1.Coloms[0].y * matrix2.Coloms[0].x + matrix1.Coloms[1].y * matrix2.Coloms[0].y;
 
-	result.Ligns[1].y = matrix1.Ligns[0].y * matrix2.Ligns[1].x + matrix1.Ligns[1].y * matrix2.Ligns[1].y;
+	result.Coloms[1].y = matrix1.Coloms[0].y * matrix2.Coloms[1].x + matrix1.Coloms[1].y * matrix2.Coloms[1].y;
 
 
 	return result;
@@ -116,11 +122,11 @@ static Matrix2X2 RotationMatrix2X2(const float& angle)
 	Matrix2X2 NewMatrix;
 
 
-	NewMatrix.Ligns[0].x = cosf(degreesToRadians(angle));
-	NewMatrix.Ligns[0].y = -sinf(degreesToRadians(angle));
+	NewMatrix.Coloms[0].x = cosf(Math::RadiansToDegrees(angle));
+	NewMatrix.Coloms[0].y = -sinf(Math::RadiansToDegrees(angle));
 
-	NewMatrix.Ligns[1].x = sinf(degreesToRadians(angle));
-	NewMatrix.Ligns[1].y = cosf(degreesToRadians(angle));
+	NewMatrix.Coloms[1].x = sinf(Math::RadiansToDegrees(angle));
+	NewMatrix.Coloms[1].y = cosf(Math::RadiansToDegrees(angle));
 
 
 	return NewMatrix;
@@ -129,15 +135,16 @@ static inline Matrix2X2 operator-(const Matrix2X2& matrix2)
 {
 	Matrix2X2 result = matrix2;
 
-	result.Ligns[0].x = -result.Ligns[0].x;
-	result.Ligns[0].y = -result.Ligns[0].y;
+	result.Coloms[0].x = -result.Coloms[0].x;
+	result.Coloms[0].y = -result.Coloms[0].y;
 
-	result.Ligns[1].x = -result.Ligns[1].x;
-	result.Ligns[1].y = -result.Ligns[1].y;
+	result.Coloms[1].x = -result.Coloms[1].x;
+	result.Coloms[1].y = -result.Coloms[1].y;
 
 	return result;
 
 }
+
 static Matrix2X2 RotationMatrix2X2At(const Vector2& RotatePoint, const float& angle)
 {
 
@@ -147,13 +154,23 @@ static inline Matrix2X2 operator*(float value, const Matrix2X2& matrix1)
 	Matrix2X2 result = matrix1;
 
 
-	result.Ligns[0].x *= value;
-	result.Ligns[0].y *= value;
+	result.Coloms[0].x *= value;
+	result.Coloms[0].y *= value;
 
-	result.Ligns[1].x *= value;
-	result.Ligns[1].y *= value;
+	result.Coloms[1].x *= value;
+	result.Coloms[1].y *= value;
 
 
 	return result;
 
+}
+
+std::ostream& operator<<(std::ostream& stream, const Matrix2X2& matrix)
+{
+	stream << matrix.Coloms[0].x << " " << matrix.Coloms[1].x << " ";
+	stream << '\n';
+	stream << matrix.Coloms[0].y << " " << matrix.Coloms[1].y << " ";
+	stream << '\n';
+
+	return stream;
 }
