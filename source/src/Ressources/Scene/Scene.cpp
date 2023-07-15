@@ -12,23 +12,16 @@
 FrameBuffer* Scene::OpenGlRenderToImgui = new FrameBuffer(windowWidth, windowHeight);
 RessourcesManager* Scene::ressourcesManagers = nullptr;
 
-Scene::Scene(std::string _filepath)
+Scene::Scene(const fs::path& FilePath) 
 {
 	
 	ressourcesManagers = nullptr;
 	io = nullptr;
-	name = RessourcesManager::GetRessourcesName(_filepath);
+	name = FilePath.filename().generic_string();
 	cam = Camera::cam;
 
 }
 
-Scene::Scene()
-{	
-	ressourcesManagers = nullptr;
-	io = nullptr;
-	cam = Camera::cam;
-
-}
 
 Scene::~Scene()
 {	
@@ -38,7 +31,7 @@ Scene::~Scene()
 		delete entities[i];
 	}
 	entities.clear();
-	Debug::Log->LogGood("All entites have been deleted");
+	LOG("All entites have been deleted",STATELOG::GOOD);
 }
 
 

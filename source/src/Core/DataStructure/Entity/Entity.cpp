@@ -222,24 +222,13 @@ Entity::Entity() :  transform(Transform(*this))
 
 Entity::~Entity()
 {
-	unsigned int nbrOfComponents = 0;
 	for (size_t i = 0; i < Components.size(); i++)
 	{
 		Components[i] = nullptr;
 		delete Components[i];
-		if(Components[i] == nullptr)
-		{
-			nbrOfComponents++;
-		}
+		
 	}
-	if (nbrOfComponents == Components.size())
-	{
-		Debug::Log->LogGood("All components of " + name + " has been free");
-	}
-	else
-	{
-		Debug::Log->LogWarning("All components of " + name + " has not been free");
-	}
+	
 
 	Components.clear();
 }

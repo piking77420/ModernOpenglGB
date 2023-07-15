@@ -54,9 +54,7 @@ void App::AppUpdate()
 		HasPlayOnce = false;
 	}
 	
-	Shader* GizmoShader = m_Ressources->GetElement<Shader>("GizmoShader");
-	Shader* baseShader = m_Ressources->GetElement<Shader>("NormalShader");
-	Shader* Stencil = m_Ressources->GetElement<Shader>("StencilTest");
+	
 
 
 	currentScene->OpenGlRenderToImgui->Bind();
@@ -69,7 +67,7 @@ void App::AppUpdate()
 
 	currentScene->cam->CameraUpdate();
 	currentScene->SceneUpdate(m_io);
-	currentScene->RenderScene(baseShader, Stencil);
+	currentScene->RenderScene(BaseShader, Stencil);
 	currentScene->RenderGizmo(GizmoShader);
 
 
@@ -126,7 +124,11 @@ void App::InitRessources()
 	SkyBox* SkySkybox = new SkyBox(cubemaps2);
 	m_Ressources->PushBackElement<SkyBox>("SkySkybox", SkySkybox);
 	m_CurrentSkybox = m_Ressources->GetElement<SkyBox>("SpaceSkyBox");
-	m_CurrentPostProcess = m_Ressources->GetElement<Shader>("KernelEffectShader");
+
+	GizmoShader = m_Ressources->GetElement<Shader>("GizmoShader");
+	BaseShader = m_Ressources->GetElement<Shader>("NormalShader");
+	Stencil = m_Ressources->GetElement<Shader>("StencilTest");
+
 
 
 }

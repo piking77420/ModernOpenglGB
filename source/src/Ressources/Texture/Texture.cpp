@@ -23,14 +23,14 @@ void Texture::Init()
 
 }
 
-Texture::Texture( std::string ImagePath)
+Texture::Texture(const fs::path& FilePath) 
 {
-    imagePath = ImagePath;
+    imagePath = FilePath.generic_string();
     PixelType = GL_UNSIGNED_BYTE;
     type = GL_TEXTURE_2D;
 
     stbi_set_flip_vertically_on_load(true);
-    data = stbi_load(ImagePath.c_str(), &width, &height, &nbrOfChannel, 0);
+    data = stbi_load(imagePath.c_str(), &width, &height, &nbrOfChannel, 0);
 
 
 
@@ -46,13 +46,13 @@ Texture::Texture( std::string ImagePath)
 
 }
 
-
-
-
-
 Texture::Texture()
 {
+  
 }
+
+
+
 
 Texture::~Texture()
 {

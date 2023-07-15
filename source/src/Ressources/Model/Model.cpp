@@ -447,52 +447,25 @@ void Model::Draw() const
 
 }
 
-Model::Model(const float& reduceFormat) : m_reduceValue(reduceFormat)
-{
-	name = "";
-}
 
-Model::Model(const std::string& ModelFileName, const float& reduceFormat) : m_reduceValue(reduceFormat)
+
+
+Model::Model(const fs::path& FilePath) : m_reduceValue(1)
 {
 	bool Is3dTextureCoordinate;
 
 	bool IsFaced;
-
-	name = RessourcesManager::GetRessourcesName(ModelFileName);
-	std::ifstream stream(ModelFileName);
+	name = FilePath.filename().generic_string();
+	std::ifstream stream(FilePath);
 
 	if (!stream.is_open())
 	{
-		Debug::Log->LogWarning("String doesn't match with any model");
+		LOG("String doesn't match with any model",STATELOG::WARNING);
 		Debug::Assert->Assertion(stream.is_open());
 	}
 	else
 	{
-		Debug::Log->LogGood("Model " + name + " has been corretly loaded");
-	}
-
-	ModelData data = ReadModelFileOBJ(stream , &IsFaced , &Is3dTextureCoordinate);
-	
-
-	LoadVertex(data, IsFaced, Is3dTextureCoordinate);
-}
-
-Model::Model(const std::string& ModelFileName) : m_reduceValue(1)
-{
-	bool Is3dTextureCoordinate;
-
-	bool IsFaced;
-	name = RessourcesManager::GetRessourcesName(ModelFileName);
-	std::ifstream stream(ModelFileName);
-
-	if (!stream.is_open())
-	{
-		Debug::Log->LogWarning("String doesn't match with any model");
-		Debug::Assert->Assertion(stream.is_open());
-	}
-	else
-	{
-		Debug::Log->LogGood("Model " + name + " has been corretly loaded");
+		LOG("Model " + name + " has been corretly loaded",STATELOG::GOOD);
 	}
 
 	ModelData data = ReadModelFileOBJ(stream, &IsFaced, &Is3dTextureCoordinate);
@@ -511,13 +484,6 @@ void Model::OnSelected()
 
 
 
-Model::Model() 
-{
-	this->VAO = 0;
-	this->VBO = 0;
-	this->EBO = 0;
-
-}
 
 Model Model::LoadCube()
 {

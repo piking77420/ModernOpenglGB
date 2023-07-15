@@ -4,7 +4,7 @@ layout (location = 1) in vec3 aNormal;
 layout (location = 2) in vec2 aTexCoord;
 
 
-/*
+
 out VS_OUT 
 {
     vec3 Normal;
@@ -13,16 +13,16 @@ out VS_OUT
 	vec3 FragPos;  
 	vec3 LightPos;
 	
-} vs_out;*/
+} vs_out;
 
 
-
+/*
 out vec3 Normalf;
 out vec2 TexCoordsf;
 out vec3 FragPosf;  
 out vec3 LightPosf;
 out mat4 projectionf;
-
+*/
 
 //out vec2 TexCoords;
 //out vec3 Normal;
@@ -55,11 +55,13 @@ void main()
 	
 
 	gl_Position = MVP * vec4(aPos, 1.0);
-	FragPosf = vec3(model * vec4(aPos, 1.0));
-	LightPosf = vec3(view * vec4(lightPos, 1.0)); 
-	Normalf = mat3(rotation) * aNormal;  
-	TexCoordsf = vec2(aTexCoord.x, aTexCoord.y);
-	projectionf = projectionMatrix;
+	vs_out.FragPos = vec3(model * vec4(aPos, 1.0));
+	vs_out.LightPos = vec3(view * vec4(lightPos, 1.0)); 
+	//vs_out.Normal = mat3(rotation) * aNormal;  
+	vs_out.Normal = transpose(inverse(mat3(model))) * aNormal;  
+
+	vs_out.TexCoords = vec2(aTexCoord.x, aTexCoord.y);
+	vs_out.projection = projectionMatrix;
 
 
 

@@ -240,6 +240,9 @@
     <ClInclude Include="source\include\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="source\include\Ressources\Shader\ShaderSource\ShaderSource.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -250,7 +253,7 @@
     <None Include="assets\Shader\KernelEffectShader\KernelEffectShader.frag" />
     <None Include="assets\Shader\KernelEffectShader\KernelEffectShader.vertex" />
     <None Include="assets\Shader\NormalShader\NormalShader.frag" />
-    <None Include="assets\Shader\NormalShader\NormalShader.vertex" />
+    <None Include="assets\Shader\NormalShader\NormalShader.vert" />
     <None Include="assets\Shader\DepthMapShader\DepthMapShader.frag" />
     <None Include="assets\Shader\DepthMapShader\DepthMapShader.vertex" />
     <None Include="assets\Shader\SkyBoxShader\SkyBoxShader.frag" />
@@ -466,6 +469,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\External\ImguiGizmo\ImSequencer.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Ressources\Shader\ShaderSource\ShaderSource.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

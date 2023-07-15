@@ -6,6 +6,17 @@ namespace fs = std::filesystem;
 
 int CubeMaps::cubmapGlobalIndex = 20;
 
+void CubeMaps::BindCubeMap() const
+{
+    glBindTexture(type, ID);
+}
+
+void CubeMaps::UnBindCubeMap() const
+{
+    glBindTexture(type, 0);
+}
+
+
 void CubeMaps::operator=(const CubeMaps& cubeMaps)
 {
     this->slot = cubeMaps.slot;
@@ -14,12 +25,9 @@ void CubeMaps::operator=(const CubeMaps& cubeMaps)
     this->ID = cubeMaps.ID;
     this->type = cubeMaps.type;
 }
-CubeMaps::CubeMaps() : Texture()
-{
-    
-}
 
-CubeMaps::CubeMaps(std::vector<std::string> allMapsFile)
+
+CubeMaps::CubeMaps(std::vector<std::string> allMapsFile) 
 {
 
     type = GL_TEXTURE_CUBE_MAP;
@@ -34,7 +42,7 @@ CubeMaps::CubeMaps(std::vector<std::string> allMapsFile)
         stbi_set_flip_vertically_on_load(false);
 
         data = stbi_load(allMapsFile[i].c_str(), &width, &height, &nbrOfChannel, 0);
-        GLuint format = GetFormat(nbrOfChannel);
+        GLuint format = Texture::GetFormat(nbrOfChannel);
 
         glTexImage2D(
             GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
@@ -50,7 +58,7 @@ CubeMaps::CubeMaps(std::vector<std::string> allMapsFile)
         }
         else
         {
-            Debug::Log->LogWarning("Cubemap tex failed to load at path: " + allMapsFile[i]);
+            LOG("Cubemap tex failed to load at path: " + allMapsFile[i], STATELOG::WARNING);
             stbi_image_free(data);
         }
 
@@ -65,7 +73,7 @@ CubeMaps::CubeMaps(std::vector<std::string> allMapsFile)
     cubmapGlobalIndex++;
 }
 
-CubeMaps::CubeMaps(fs::path CubepMasFile)
+CubeMaps::CubeMaps(const fs::path& FilePath)
 {
      // TO DO 
 

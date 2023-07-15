@@ -35,13 +35,11 @@ public:
 
 	//void Load(std::string path) override;
 	virtual void Draw() const;
-	Model(const float& reduceFormat);
-	Model(const std::string& ModelFileName, const float& reduceFormat);
-	Model(const std::string& ModelFileName);
+	Model(const fs::path& FilePath);
 	void OnSelected() override;
 
 
-	Model();
+	Model(){};
 	~Model();
 
 

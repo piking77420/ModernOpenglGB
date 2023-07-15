@@ -6,7 +6,7 @@
 
 
 
-Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath,std::string shaderName)
+Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath,std::string shaderName) 
 {
 
 
@@ -49,7 +49,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* geo
     catch (std::ifstream::failure e)
     {
 
-        Debug::Log->LogWarning(shaderName + " :  ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ \n ");
+        LOG(shaderName + " :  ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ \n ",STATELOG::WARNING);
     }
      m_vShaderCode = vertexCode;
      m_fShaderCode = fragmentCode;
@@ -61,9 +61,9 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* geo
     
 }
 
-Shader::Shader(const char* vertexPath, const char* fragmentPath)
+Shader::Shader(const char* vertexPath, const char* fragmentPath) 
 {
-
+    
     // 1. retrieve the vertex/fragment source code from filePath
     std::string vertexCode;
     std::string fragmentCode;
@@ -96,7 +96,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
     catch (std::ifstream::failure e)
     {
 
-        Debug::Log->LogWarning(" :  ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ \n ");
+        LOG(" :  ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ \n ", STATELOG::WARNING);
     }
     m_vShaderCode = vertexCode;
     m_fShaderCode = fragmentCode;
@@ -203,11 +203,11 @@ void Shader::Init()
     if (!success)
     {
         glGetShaderInfoLog(vertex, 512, NULL, infoLog);
-        Debug::Log->LogWarning(mShaderName + " : ERROR::SHADER::VERTEX::COMPILATION_FAILED" + '\n' + std::to_string(*infoLog));
+        LOG(mShaderName + " : ERROR::SHADER::VERTEX::COMPILATION_FAILED" + '\n' + std::to_string(*infoLog), STATELOG::WARNING);
     }
     else
     {
-        Debug::Log->LogGood(mShaderName + " : VERTEX::PROGRAM::COMPILATION_SUCCED");
+        LOG(mShaderName + " : VERTEX::PROGRAM::COMPILATION_SUCCED", STATELOG::GOOD);
 
     }
 
@@ -220,11 +220,11 @@ void Shader::Init()
     if (!success)
     {
         glGetShaderInfoLog(geometry, 512, NULL, infoLog);
-        Debug::Log->LogWarning(mShaderName + " : ERROR::SHADER::GEOMETRY::COMPILATION_FAILED" + '\n' + std::to_string(*infoLog));
+        LOG(mShaderName + " : ERROR::SHADER::GEOMETRY::COMPILATION_FAILED" + '\n' + std::to_string(*infoLog), STATELOG::WARNING);
     }
     else
     {
-        Debug::Log->LogGood(mShaderName + " : GEOMETRY::PROGRAM::COMPILATION_SUCCED");
+        LOG(mShaderName + " : GEOMETRY::PROGRAM::COMPILATION_SUCCED" , STATELOG::GOOD);
 
     }
 
@@ -240,11 +240,11 @@ void Shader::Init()
     if (!success)
     {
         glGetShaderInfoLog(fragment, 512, NULL, infoLog);
-        Debug::Log->LogWarning(mShaderName + " :ERROR::SHADER::FRAG::COMPILATION_FAILED" + '\n' + std::to_string(*infoLog));
+        LOG(mShaderName + " :ERROR::SHADER::FRAG::COMPILATION_FAILED" + '\n' + std::to_string(*infoLog), STATELOG::WARNING);
     }
     else
     {
-        Debug::Log->LogGood(mShaderName + " : FRAG::PROGRAM::COMPILATION_SUCCED" + mShaderName);
+        LOG(mShaderName + " : FRAG::PROGRAM::COMPILATION_SUCCED" + mShaderName, STATELOG::GOOD);
 
     }
 
@@ -260,11 +260,11 @@ void Shader::Init()
     if (!success)
     {
         glGetProgramInfoLog(m_ID, 512, NULL, infoLog);
-        Debug::Log->LogWarning(mShaderName + "ERROR::SHADER::PROGRAM::LINKING_FAILED" + std::to_string(*infoLog));
+        LOG(mShaderName + "ERROR::SHADER::PROGRAM::LINKING_FAILED" + std::to_string(*infoLog), STATELOG::WARNING);
     }
     else
     {
-        Debug::Log->LogGood(mShaderName + " : SHADER::PROGRAM::LINKED");
+        LOG(mShaderName + " : SHADER::PROGRAM::LINKED", STATELOG::GOOD);
 
     }
 

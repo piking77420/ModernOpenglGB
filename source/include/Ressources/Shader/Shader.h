@@ -19,6 +19,10 @@
 
 #include<LowRenderer/Material/Material.h>
 
+
+
+class ShaderSource;
+
 class Shader : public IResource 
 {
 public:
@@ -41,6 +45,9 @@ public:
 
     Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath, std::string shaderName);
     Shader(const char* vertexPath, const char* fragmentPath);
+    Shader(const ShaderSource& vertexShader, const ShaderSource& fragmentShader);
+    Shader(const ShaderSource& vertexShader, const ShaderSource& fragmentShader , const ShaderSource& GeometryShader);
+
 
     ~Shader();
 protected:

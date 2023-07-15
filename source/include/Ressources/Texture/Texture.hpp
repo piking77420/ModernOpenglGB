@@ -33,16 +33,16 @@ public:
 	unsigned char* data;
 	void Init() override;
 
-	Texture(std::string ImagePath);
-
+	Texture(const fs::path& FilePath);
 	Texture();
+
 	~Texture();
 
+	static GLuint GetFormat(int nbrOfChannel);
 
 protected:
 	void IncrementTexture();
 	static int GlobTextureNbr;
 	std::string imagePath;
 	const std::string SLOT = "GL_TEXTURE";
-	GLuint GetFormat(int nbrOfChannel);
 };

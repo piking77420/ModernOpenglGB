@@ -83,7 +83,7 @@ void ContentBrowser::Renderer(App& app)
 		{
 			if (ImGui::Button(name.c_str(), { thumbailSize,thumbailSize }))
 			{
-				std::string ressourcename = app.m_Ressources->GetRessourcesName(path.generic_string());
+				std::string ressourcename = path.filename().generic_string();
 				app.InspectorCurrentindow = app.m_Ressources->GetElement<InspectorSelectable>(ressourcename);
 			}
 			ImGui::Text(name.c_str());

@@ -46,8 +46,7 @@ public :
 	std::vector<Entity*> entities;
 	static FrameBuffer* OpenGlRenderToImgui;
 
-	Scene(std::string Filename);
-	Scene();	
+	Scene(const fs::path& FilePath);
 	~Scene();
 
 private:

@@ -5,6 +5,7 @@
 #include "Ressources/Shader/Shader.h"
 #include "LowRenderer/Light/Light.h"
 #include "Ressources/Model/Model.h"
+#include "Ressources/Shader/ShaderSource/ShaderSource.hpp"
 
 #include<ostream>
  
@@ -16,12 +17,20 @@ void RessourcesManager::LoadAllAssets()
 		LookFiles(entry.path());
 
 	// Join threads + clear vector
+
+	if(!theards.empty())
 	for (size_t i = 0; i < theards.size(); i++)
 	{
 		theards[i]->join();
 		delete theards[i];
 	}
 	theards.clear();
+
+	/*
+	for (auto it = m_MainResourcesMap.begin(); it != m_MainResourcesMap.end(); it++)
+	{
+		std::cout << it->second->PathtoMetaDataFile << std::endl;
+	}*/
 
 
 	// Init all ressources
@@ -65,54 +74,27 @@ bool RessourcesManager::isThisValidForThisFormat(std::string path, std::string f
 
 
 
-void RessourcesManager::CreatMetaDataFile(const std::string& path,const std::string& FileName)
+fs::path RessourcesManager::CreatMetaDataFile(const fs::path& FilePath,const std::string& FileName)
 {
+	
 	std::lock_guard<std::mutex> lock(fileMutex);
 		
-	std::string Path;
-	int Getpath = path.find_last_of('.');
-
-	for (size_t i = 0; i < Getpath; i++)
-	{
-		Path.push_back(path[i]);
-	}
 	
-	std::ofstream File(Path + ".metaData");
+	
+	std::ofstream File(FilePath.generic_string() + ".metaData");
 	if (File.is_open())
 	{
 		//File << name << std::endl;
 		File.close();
-		Debug::Log->LogGood("File created: " + Path + ".metaData");
+		LOG("File created: " + FilePath.generic_string() + ".metaData",STATELOG::GOOD);
 	}
 	else
 	{
-		Debug::Log->LogWarning("Failed to open file: " + Path + ".metaData");
-
-	}
-}
-
-
-
-
-
-std::string RessourcesManager::GetFormatFromFile(std::string path)
-{
-
-	// where start the .
-	int StartFormatIndex = path.find_last_of('.');
-	std::string returnFormat;
-
-	for (size_t i = StartFormatIndex; i < path.size(); i++)
-	{
-		returnFormat.push_back(path[i]);
+		LOG("Failed to open file: " + FilePath.generic_string() + ".metaData", STATELOG::WARNING);
 	}
 
-
-	return returnFormat;
+	return fs::path(FilePath.generic_string() + ".metaData");
 }
-
-
-
 
 
 void RessourcesManager::LoadTexture(fs::path path)
@@ -122,34 +104,9 @@ void RessourcesManager::LoadTexture(fs::path path)
 
 	if (isThisValidForThisFormat(path_string, png) || isThisValidForThisFormat(path_string, jpg))
 	{
-
-		std::thread* newThreads = new std::thread([this, path_string]()
-			{		
-				Debug::Log->LogGood(path_string + " has been Correcty loaded");
-
-				Create<Texture>(path_string);
-			});
-			
-		theards.push_back(newThreads);
-
+		Create<Texture>(path_string);
+		
 	}
-}
-
-std::string RessourcesManager::GetRessourcesName(const std::string& path)
-{
-	std::string name;
-
-
-	if(path.contains('/'))
-	{
-		for (size_t i = path.find_last_of('/') + 1; i < path.size(); i++)
-		{
-			name.push_back(path[i]);
-		}
-		return name;
-
-	}
-	return path;
 }
 
 void RessourcesManager::OnResizeWindow()
@@ -168,11 +125,7 @@ void RessourcesManager::LoadModel(std::filesystem::path path)
 
 	if (isThisValidForThisFormat(path_string, obj))
 	{
-		std::thread* newThreads = new std::thread([this, path_string]()
-			{
-				Create<Model>(path_string);
-			});
-		theards.push_back(newThreads);
+		Create<Model>(path_string);
 	}
 }
 
@@ -182,26 +135,26 @@ void RessourcesManager::LoadShader(std::filesystem::path path)
 	std::string fragmentShader;
 	std::string geometry;
 
-
 	for (const auto& entry : fs::directory_iterator(path))
 	{
 
 		if (isThisValidForThisFormat(entry.path().string(), vertexShaderFormat))
 		{
 			vertexShader = entry.path().string();
+			Create<ShaderSource>(vertexShader);
 		}
 
 		if (isThisValidForThisFormat(entry.path().string(), fragmentShaderFormat))
 		{
 			fragmentShader = entry.path().string();
-
+			Create<ShaderSource>(fragmentShader);
 		}
 
 		if (isThisValidForThisFormat(entry.path().string(), geometryShaderFormat))
 		{
 			geometry = entry.path().string();
-
 		}
+
 
 	}
 

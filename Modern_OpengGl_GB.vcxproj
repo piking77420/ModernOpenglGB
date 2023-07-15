@@ -154,6 +154,7 @@
     <ClInclude Include="source\include\LowRenderer\FrameBuffer\DepthMap\Depthmap.h" />
     <ClInclude Include="source\include\LowRenderer\Gizmo\Gizmo.h" />
     <ClInclude Include="source\include\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.h" />
+    <ClInclude Include="source\include\Ressources\Shader\ShaderSource\ShaderSource.hpp" />
     <ClInclude Include="source\include\Serializer\Serializer.h" />
     <ClInclude Include="source\include\Core\Debug\Imgui\imconfig.h" />
     <ClInclude Include="source\include\Core\Debug\Imgui\imgui.h" />
@@ -237,7 +238,7 @@
     <None Include="assets\Shader\KernelEffectShader\KernelEffectShader.vertex" />
     <None Include="assets\Shader\NormalShader\NormalShader.frag" />
     <None Include="assets\Shader\NormalShader\NormalShader.geom" />
-    <None Include="assets\Shader\NormalShader\NormalShader.vertex" />
+    <None Include="assets\Shader\NormalShader\NormalShader.vert" />
     <None Include="assets\Shader\DepthMapShader\DepthMapShader.frag" />
     <None Include="assets\Shader\DepthMapShader\DepthMapShader.vertex" />
     <None Include="assets\Shader\SkyBoxShader\SkyBoxShader.frag" />
@@ -312,6 +313,7 @@
     <ClCompile Include="source\src\Ressources\Model\Model.cpp" />
     <ClCompile Include="source\src\Ressources\RessourcesManager\RessourcesManager.cpp" />
     <ClCompile Include="source\src\Ressources\Shader\Shader.cpp" />
+    <ClCompile Include="source\src\Ressources\Shader\ShaderSource\ShaderSource.cpp" />
     <ClCompile Include="source\src\Ressources\SkyBox\SkyBox.cpp" />
     <ClCompile Include="source\src\Ressources\Texture\Texture.cpp" />
     <ClCompile Include="source\src\LowRenderer\Ui\UIRenderer.cpp" />

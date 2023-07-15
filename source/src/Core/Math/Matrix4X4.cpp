@@ -46,32 +46,18 @@ Matrix4X4 Matrix4X4::ProjectionMatrix(const float& fov, const float& aspect, con
 
 
 }
-// SUS
-Matrix4X4 Matrix4X4::OrthoGraphicMatrix(float top, float bot, float right, float left, float Near, float Far)
+Matrix4X4 Matrix4X4::OrthoGraphicMatrix(float left, float right, float bottom, float top, float zNear, float zFar)
 {
-	Matrix4X4 result;
+	Matrix4X4 result = Matrix4X4::Identity();
 
-	float topBottomDiff = top - bot;
-	float rightLeftDiff = right - left;
-	float farMinusNear = Far - Near;
-
-	float r00 = 2.0f / rightLeftDiff;
-	float r11 = 2.0f / topBottomDiff;
-	float r22 = -2.0f / farMinusNear;
-
-	float r03 = -(right + left) / rightLeftDiff;
-	float r13 = -(top + bot) / topBottomDiff;
-	float r23 = -(Far + Near) / farMinusNear;
-
-
-
-	result[0] = Vector4(r00, 0, 0, r03);
-	result[1] = Vector4(0, r11, 0, r13);
-	result[2] = Vector4(0, 0, r22, r23);
-	result[3] = Vector4(0, 0, 0, 1.f);
+	result[0][0] = (2.f) / (right - left);
+	result[1][1] = (2.f) / (top - bottom);
+	result[2][2] = -(2.f) / (zFar - zNear);
+	result[3][0] = -(right + left) / (right - left);
+	result[3][1] = -(top + bottom) / (top - bottom);
+	result[3][2] = -(zFar + zNear) / (zFar - zNear);
 
 	return result;
-
 }
 
 

@@ -40,7 +40,6 @@
         glEnable(GL_FRONT_FACE);
         glCullFace(GL_FRONT);
         glFrontFace(GL_CW);
-
     }
     void LoadCursorAppCursor(GLFWwindow* window)
     {
@@ -103,8 +102,24 @@
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
         ImGui::StyleColorsDark();
  
+        float near_plane = 0.10f;
+        float far_plane = 1000;
 
-       
+        glm::mat4x4 lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
+
+        Matrix4X4 me =  Matrix4X4::OrthoGraphicMatrix(-10.0f, 10.0f, -10.0f, 10.0f,near_plane, far_plane);
+
+
+
+        std::cout << lightProjection[0].x << " " << lightProjection[1].x << " " << lightProjection[2].x << " " << lightProjection[3].x << " ";
+        std::cout << '\n';
+        std::cout << lightProjection[0].y << " " << lightProjection[1].y << " " << lightProjection[2].y << " " << lightProjection[3].y << " ";
+        std::cout << '\n';
+        std::cout << lightProjection[0].z << " " << lightProjection[1].z << " " << lightProjection[2].z << " " << lightProjection[3].z << " ";
+        std::cout << '\n';
+        std::cout << lightProjection[0].w << " " << lightProjection[1].w << " " << lightProjection[2].w << " " << lightProjection[3].w << " ";
+        std::cout << '\n';
+        std::cout << me << std::endl;
 
         ImGui_ImplGlfw_InitForOpenGL(window, true);
         ImGui_ImplOpenGL3_Init("#version 330");
@@ -118,8 +133,8 @@
             
             glfwPollEvents();
 
-            //if(App::GammaCorrection)
-            //glEnable(GL_FRAMEBUFFER_SRGB);
+            if(App::GammaCorrection)
+            glEnable(GL_FRAMEBUFFER_SRGB);
             
        
             processInput(window);
@@ -148,7 +163,7 @@
 
 
         }   
-        Debug::Log->LogInfo("On Window Close");
+        LOG("On Window Close", STATELOG::NONE);
 
 
         // IMGUI destroy // 
@@ -157,9 +172,8 @@
         ImGui::DestroyContext();
 
         // delete Singeltons 
-        delete Debug::Log;
         delete Debug::Assert;
-        delete Debug::debugLogStream;
+
 
         delete app;
         glfwTerminate();

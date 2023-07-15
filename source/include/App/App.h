@@ -55,8 +55,9 @@ private:
 	void DockSpace() ;
 	void ImguiDrawChildren(Entity* entity) ;
 	SkyBox* m_CurrentSkybox;
-	Shader* m_CurrentPostProcess;
 	ContentBrowser* m_ContentBrowser;
-
+	Shader* GizmoShader;
+	Shader* BaseShader;
+	Shader* Stencil;
 };
 

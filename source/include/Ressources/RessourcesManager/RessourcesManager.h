@@ -29,7 +29,6 @@ class RessourcesManager
 {
 public:
 
-	static std::string GetRessourcesName(const std::string& path);
 	void OnResizeWindow();
 	// Return map for iterator  to camera set uniform
 	std::map<std::string, IResource*>& GetRessources();
@@ -40,13 +39,13 @@ public:
 	void PushBackElement(std::string name, T* newElement);
 	template<class T>
 	T* GetElement(const std::string& name);
-	template<typename T>
-	T* Create(std::string path);
+	template<class T>
+	void Create(const fs::path& FilePath);
 	template<class T>
 	bool IsRessourcesIs(IResource* ressources) const ;
 	template<class T>
 	T* TryIsTypeOf(IResource* ressources) const;
-	static std::string GetFormatFromFile(std::string path);
+	
 
 	Serializer serializer;
 
@@ -61,7 +60,7 @@ private:
 	void LoadShader(std::filesystem::path path);
 	void LoadScene(std::filesystem::path path);
 	bool isThisValidForThisFormat(std::string path, std::string format);
-	void CreatMetaDataFile(const std::string& path, const std::string& FileName);
+	fs::path CreatMetaDataFile(const fs::path& FilePath, const std::string& FileName);
 
 
 	// Texture file accetptes jpg png 
@@ -70,7 +69,7 @@ private:
 	// Model file supported obj
 	const std::string obj = ".obj";
 	// Shader Files format
-	const std::string vertexShaderFormat = ".vertex";
+	const std::string vertexShaderFormat = ".vert";
 	const std::string fragmentShaderFormat = ".frag";
 	const std::string geometryShaderFormat = ".geom";
 	// Scene Format
@@ -116,34 +115,43 @@ inline T* RessourcesManager::GetElement(const std::string& name)
 	}
 	std::string nameofTemplate = typeid(T).name();
 	std::string outputMessage = " There is no " + nameofTemplate + " name as " + name;
-	Debug::Log->LogWarning(outputMessage);
+	LOG(outputMessage,STATELOG::WARNING);
 
 	return nullptr;
 }
 
-// if it's a path he will automaticaly return the correct name
-template<typename T>
-inline T* RessourcesManager::Create(std::string path)
+template<class T>
+inline void RessourcesManager::Create(const fs::path& FilePath)
 {
+	std::thread* newThreads = new std::thread([this, FilePath]()
+		{
+			
 
-	T* newRessources = new T(path);
-	std::string Correctname = GetRessourcesName(path);
-	CreatMetaDataFile(path, Correctname);
+			T* newRessources = new T(FilePath);
+			IResource* test = dynamic_cast<IResource*>(newRessources);
 
-	if (m_MainResourcesMap.contains(Correctname))
-	{
-		auto currentRessources = m_MainResourcesMap.find(Correctname);
-		delete currentRessources->second;
-		currentRessources->second = newRessources;
-		return newRessources;
-
-	}
+				if (!test)
+					return;
 
 
-	m_MainResourcesMap.insert({ Correctname,newRessources });
-	auto returned = m_MainResourcesMap.find(Correctname);
+			std::string Correctname = FilePath.filename().generic_string();
+			// test->PathtoMetaDataFile = CreatMetaDataFile(FilePath, Correctname);
 
-	return newRessources;
+			if (m_MainResourcesMap.contains(Correctname))
+			{
+				auto currentRessources = m_MainResourcesMap.find(Correctname);
+				delete currentRessources->second;
+				currentRessources->second = newRessources;
+				return ;
+
+			}
+
+
+			m_MainResourcesMap.insert({ Correctname,newRessources });
+			auto returned = m_MainResourcesMap.find(Correctname);
+		});
+		theards.push_back(newThreads);
+
 }
 
 template<class T>

@@ -35,7 +35,7 @@ void FrameBuffer::Init()
     auto FrameBufferError = glCheckFramebufferStatus(GL_FRAMEBUFFER);
     if (FrameBufferError != GL_FRAMEBUFFER_COMPLETE)
     {
-        Debug::Log->LogWarning(" FRAMME BUFFER ERROR " + std::to_string(FrameBufferError));
+        LOG(" FRAMME BUFFER ERROR " + std::to_string(FrameBufferError),STATELOG::CRITICALERROR);
     }
 
     InitVAOVBO();

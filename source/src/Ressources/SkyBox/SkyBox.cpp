@@ -5,14 +5,16 @@ float SkyBox::CUBEMAPSIZE = 1000.f;
 
 void SkyBox::Draw() const 
 {
-    m_Cubemaps.BindTexture();
+
+    // TO DO RESERVE FOR EACH TEXTRURE A SLOT 
+    m_Cubemaps.BindCubeMap();
     glDepthFunc(GL_LEQUAL);
     glBindVertexArray(VAO);
     glActiveTexture(GL_TEXTURE0 + m_Cubemaps.slot);
     glDrawArrays(GL_TRIANGLES, 0, 36);
     glBindVertexArray(0);
     glDepthFunc(GL_LESS);
-    m_Cubemaps.UnBindTexture();
+    m_Cubemaps.UnBindCubeMap();
 
 }
 

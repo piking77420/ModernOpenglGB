@@ -39,49 +39,41 @@ const std::string FileName = LOG_PATH + LogFileName + LogFileformat;
 std::string GetTime();
 std::string GetCurrentFile(const std::string& currentPath);
 void OpengFileAndPrint(std::fstream& debugLogStream, const std::string color, const std::string& time, const std::string& message);
+enum class STATELOG
+{
+	NONE, GOOD, WARNING, CRITICALERROR
+};
+
 
 namespace Debug
-{	
-	// Need to init here due to variadique template 
-	static std::fstream* debugLogStream = new std::fstream(FileName, std::ios_base::out);
-	
-	class LogClass
-	{
-	public:
-		
-		
-
-		template<typename ...Param>
-		void Print(const char* format, Param ...param);
-		
-		void LogInfo(const std::string& currentMessage
-			, const char* currentFile = __builtin_FILE(),
-			const char* currentFonction = __builtin_FUNCTION(),
-			const int line = __builtin_LINE());
+{
 
 
-		void LogWarning(const std::string& currentMessage
-			, const char* currentFile = __builtin_FILE(),
-			const char* currentFonction = __builtin_FUNCTION(),
-			const int line = __builtin_LINE());
+#define LOG(message, stateLog) \
+        switch (stateLog)\
+        { \
+            case STATELOG::NONE: \
+                std::cout << WHITE; \
+                break; \
+            case STATELOG::GOOD: \
+                std::cout << GREEN; \
+                break; \
+            case STATELOG::WARNING: \
+                std::cout << YELLOW; \
+                break; \
+            case STATELOG::CRITICALERROR: \
+                std::cout << RED; \
+                break; \
+            default: \
+                std::cout << WHITE; \
+                break; \
+        } \
+        std::cout << GetTime() << message << GetCurrentFile(__builtin_FILE()) << " " << __builtin_FUNCTION() << " " << __builtin_LINE() << '\n' << '\n'; \
 
-		void LogGood(const std::string& currentMessage
-			, const char* currentFile = __builtin_FILE(),
-			const char* currentFonction = __builtin_FUNCTION(),
-			const int line = __builtin_LINE());
+}
 
-		void LogTODO(const std::string& currentMessage
-			, const char* currentFile = __builtin_FILE(),
-			const char* currentFonction = __builtin_FUNCTION(),
-			const int line = __builtin_LINE());
 
-		LogClass();
-		~LogClass();
-	private :
-	};
-
-	static LogClass* Log = new Debug::LogClass();
-
+/*
 
 
 	inline void ReadePrint(int currentIndex,std::string& output, const std::string& currentMessage)
@@ -131,3 +123,4 @@ namespace Debug
 	}
 
 }
+*/

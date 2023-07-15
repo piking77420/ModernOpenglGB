@@ -3,7 +3,6 @@
 
 
 
-using namespace Debug;
 
 
 
@@ -92,7 +91,7 @@ std::string ReturnMessage(const std::string& currentMessage ,const std::string& 
 	return message;
 }
 
-
+/*
 void LogClass::LogWarning(const std::string& currentMessage
 	, const char* currentFile,
 	const char* currentFonction,
@@ -168,3 +167,4 @@ LogClass::~LogClass()
 {
 }
 
+*/
