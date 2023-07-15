@@ -104,20 +104,21 @@
  
         float near_plane = 0.10f;
         float far_plane = 1000;
+        glm::vec3 lightPos(-2.0f, 4.0f, -1.0f);
 
-        glm::mat4x4 lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
+        glm::mat4x4 lightView = glm::lookAt(lightPos, glm::vec3(0.0f), glm::vec3(0.0, 1.0, 0.0));
 
-        Matrix4X4 me =  Matrix4X4::OrthoGraphicMatrix(-10.0f, 10.0f, -10.0f, 10.0f,near_plane, far_plane);
+        Matrix4X4 me =  Matrix4X4::LookAt(Vector3(-2.0f, 4.0f, -1.0f), Vector3::Zero,Vector3::Up);
 
 
 
-        std::cout << lightProjection[0].x << " " << lightProjection[1].x << " " << lightProjection[2].x << " " << lightProjection[3].x << " ";
+        std::cout << lightView[0].x << " " << lightView[1].x << " " << lightView[2].x << " " << lightView[3].x << " ";
         std::cout << '\n';
-        std::cout << lightProjection[0].y << " " << lightProjection[1].y << " " << lightProjection[2].y << " " << lightProjection[3].y << " ";
+        std::cout << lightView[0].y << " " << lightView[1].y << " " << lightView[2].y << " " << lightView[3].y << " ";
         std::cout << '\n';
-        std::cout << lightProjection[0].z << " " << lightProjection[1].z << " " << lightProjection[2].z << " " << lightProjection[3].z << " ";
+        std::cout << lightView[0].z << " " << lightView[1].z << " " << lightView[2].z << " " << lightView[3].z << " ";
         std::cout << '\n';
-        std::cout << lightProjection[0].w << " " << lightProjection[1].w << " " << lightProjection[2].w << " " << lightProjection[3].w << " ";
+        std::cout << lightView[0].w << " " << lightView[1].w << " " << lightView[2].w << " " << lightView[3].w << " ";
         std::cout << '\n';
         std::cout << me << std::endl;
 

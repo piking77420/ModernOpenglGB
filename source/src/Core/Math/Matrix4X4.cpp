@@ -353,6 +353,8 @@ Vector4& Matrix4X4::operator[](const int& i)
 
 Matrix4X4 Matrix4X4::LookAt(const Vector3& eye, const Vector3& at, const Vector3& up)
 {
+	Matrix4X4 LookAtMatrix = Matrix4X4::Identity();
+	/*
 	Vector3 zaxis = (at - eye).Normalize();
 	Vector3 xaxis = Vector3::CrossProduct(up,zaxis).Normalize();
 	Vector3 yaxis = Vector3::CrossProduct(zaxis,xaxis);
@@ -380,10 +382,29 @@ Matrix4X4 Matrix4X4::LookAt(const Vector3& eye, const Vector3& at, const Vector3
 	LookAtMatrix.Colums[3].y = -(Vector3::DotProduct(yaxis, eye));
 	LookAtMatrix.Colums[3].z = -(Vector3::DotProduct(zaxis,eye));
 	LookAtMatrix.Colums[3].w = 1;
+	*/
 
+	
+	Vector3 const f((at - eye).Normalize());
+	Vector3 const s((Vector3::CrossProduct(f, up).Normalize()));
+	Vector3 const u((Vector3::CrossProduct(s, f)));
 
+	LookAtMatrix[0][0] = s.x;
+	LookAtMatrix[1][0] = s.y;
+	LookAtMatrix[2][0] = s.z;
+	LookAtMatrix[0][1] = u.x;
+	LookAtMatrix[1][1] = u.y;
+	LookAtMatrix[2][1] = u.z;
+	LookAtMatrix[0][2] = -f.x;
+	LookAtMatrix[1][2] = -f.y;
+	LookAtMatrix[2][2] = -f.z;
+	LookAtMatrix[3][0] = -Vector3::DotProduct(s, eye);
+	LookAtMatrix[3][1] = -Vector3::DotProduct(u, eye);
+	LookAtMatrix[3][2] = Vector3::DotProduct(f, eye);
+
+	
 	return LookAtMatrix;
-
+	
 
 }
 
