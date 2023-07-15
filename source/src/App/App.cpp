@@ -63,7 +63,7 @@ void App::AppUpdate()
 	glEnable(GL_DEPTH_TEST);
 
 	currentScene->cam->SetCameraInfoForShaders(*m_Ressources);
-	DrawSkyBox();
+//	DrawSkyBox();
 
 	currentScene->cam->CameraUpdate();
 	currentScene->SceneUpdate(m_io);
@@ -91,11 +91,11 @@ void App::InitRessources()
 {
 	Depthmap* depthMap = new Depthmap();
 	m_Ressources->PushBackElement("depthMap", depthMap);
-
+	
 	ShadowMaps* shadowMaps = new ShadowMaps(2048, 2048);
 	m_Ressources->PushBackElement("shadowMaps", shadowMaps);
 
-	
+	/*
 	std::vector<std::string> cubemapsSpaceString =
 	{
 		"assets/cube_maps/skybox/SpaceSkyBox/bkg1_right.png",
@@ -124,7 +124,7 @@ void App::InitRessources()
 	SkyBox* SkySkybox = new SkyBox(cubemaps2);
 	m_Ressources->PushBackElement<SkyBox>("SkySkybox", SkySkybox);
 	m_CurrentSkybox = m_Ressources->GetElement<SkyBox>("SpaceSkyBox");
-
+	*/
 	GizmoShader = m_Ressources->GetElement<Shader>("GizmoShader");
 	BaseShader = m_Ressources->GetElement<Shader>("NormalShader");
 	Stencil = m_Ressources->GetElement<Shader>("StencilTest");
@@ -153,7 +153,7 @@ void App::InitScene()
    Entity* vikingroom = new Entity("VikingRoom", Level1);
    vikingroom->AddComponent<MeshRenderer>();
    vikingroom->AddComponent<SphereCollider>();
-
+   vikingroom->GetComponent<MeshRenderer>()->texture = *m_Ressources->GetElement<Texture>("EmerauldBlock.png");
 
    Entity* Sphre2 = new Entity("Sphre2", Level1);
    //Sphre2->AddComponent<MeshRenderer>();
@@ -185,10 +185,11 @@ App::App(int _WindowX, int _WindowY, ImGuiIO& _io) : windowX(_WindowX), windowY(
 	InitRessources();
 	InitScene();
 	InitImguiTheme();
+	/*
 	Shader* skyboxShader = m_Ressources->GetElement<Shader>("SkyBoxShader");
 	skyboxShader->Use();
 	skyboxShader->SetInt("skybox", m_CurrentSkybox->m_Cubemaps.slot);
-
+	*/
 	// We Init The FrameBuffer here because we need To wait To Glad and opengl to be init
 	Scene::OpenGlRenderToImgui->Init();
 

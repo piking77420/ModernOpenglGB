@@ -39,6 +39,7 @@ public:
 	~Texture();
 
 	static GLuint GetFormat(int nbrOfChannel);
+	Texture& operator=(const Texture& other);
 
 protected:
 	void IncrementTexture();

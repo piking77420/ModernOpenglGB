@@ -131,7 +131,11 @@ void MeshRenderer::MeshRendererDraw(Scene* scene, Shader* shader)
 {
 	// get Shader and bind
 	shader->Use();
+
+	glActiveTexture(GL_TEXTURE0);
 	texture.BindTexture();
+
+	
 	// Set info to shader
 	shader->SetMaterial("material", material);
 		

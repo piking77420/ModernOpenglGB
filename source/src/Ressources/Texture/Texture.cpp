@@ -11,7 +11,6 @@ void Texture::Init()
     IncrementTexture();
 
     glGenTextures(1, &ID);
-    glActiveTexture(GL_TEXTURE0 + slot);
     glBindTexture(type, ID);
 
     glTexImage2D(type, 0, format, width, height, 0, format, PixelType, data);
@@ -101,6 +100,22 @@ GLuint Texture::GetFormat(int nbrOfChannel)
 
     return GL_RGB;
 
+}
+
+Texture& Texture::operator=(const Texture& other)
+{
+    ID = other.ID;
+    type = other.type;
+    PixelType = other.PixelType;
+
+    format = other.format;
+    slot = other.slot;
+
+    width = other.width;
+    height = other.height;
+    nbrOfChannel = other.nbrOfChannel;
+    imagePath = other.imagePath;
+    return *this;
 }
 
 

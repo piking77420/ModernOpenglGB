@@ -5,6 +5,11 @@ out vec4 FragColor;
 #define NR_SPOTH_LIGHTS 10   
 
 
+// diffuse = 0
+// specular = 1;
+
+
+
 struct Material
 {
     sampler2D diffuse;
@@ -72,7 +77,6 @@ uniform DirLight dirLight;
 uniform  int nbrOfPointLight;
 uniform  int nbrOfSpothLightLight;
 
-uniform sampler2D shadowMap;
 
 uniform vec3 viewPos;
 uniform Material material;

@@ -38,6 +38,7 @@ public:
 	 Material material;
 
 	const Model* m_Model;
+	Texture texture;
 private:
 	char modelName[250];
 	bool OnTyping;
@@ -45,6 +46,5 @@ private:
 	void OnTapingModel();
 	void ChangeModel();
 	void MeshRendererDraw(Scene* scene, Shader* shader);
-	Texture texture;
 };
 
