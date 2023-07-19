@@ -10,9 +10,9 @@ class DirectionalLight : public Light
 {
 public:
 
-
-	//sMatrix4X4& SetLookAtMatrix();
-	const Matrix4X4& GetLookAtMatrix() const ;
+	Matrix4X4 GetLightSpaceMatrix() const;
+	Matrix4X4 lightProjection;
+	Matrix4X4 lightView;
 
 	Vector3 Direction;
 	void ImguiWindowComponents() override;
@@ -25,7 +25,6 @@ public:
 	~DirectionalLight();
 
 private:
-
 
 };
 

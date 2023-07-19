@@ -5,6 +5,7 @@
 
 class Vector3;
 class Matrix;
+class Quaternion;
 
 class Matrix4X4
 {
@@ -41,6 +42,7 @@ public:
 	static Matrix4X4 TranslateMatrix4X4(const Vector3& translation);
 
 	static Matrix4X4 TRS(const Vector3& translation , const Vector3& angle , const Vector3& scaling);
+	static Matrix4X4 TRS(const Vector3& translation, const Quaternion& rotation, const Vector3& scaling);
 
 	static Matrix4X4 Identity();
 

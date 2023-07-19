@@ -5,11 +5,11 @@
 ShadowMaps::~ShadowMaps()
 {
 }
-ShadowMaps::ShadowMaps(unsigned int _widht, unsigned int  _height) : widht(_widht) , height(_height)
+ShadowMaps::ShadowMaps(unsigned int _widht, unsigned int  _height) 
 {
-	InitVAOVBO();
 
-
+	widht = _widht;
+	height = _height;
 	glGenFramebuffers(1, &FBO);
 
 	glGenTextures(1, &framebufferTexture);
@@ -19,6 +19,8 @@ ShadowMaps::ShadowMaps(unsigned int _widht, unsigned int  _height) : widht(_widh
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	float borderColor[] = { 1.0, 1.0, 1.0, 1.0 };
+	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
 
 
 
@@ -27,8 +29,5 @@ ShadowMaps::ShadowMaps(unsigned int _widht, unsigned int  _height) : widht(_widh
 	glDrawBuffer(GL_NONE);
 	glReadBuffer(GL_NONE);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-
-
 
 }

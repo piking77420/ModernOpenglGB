@@ -22,7 +22,6 @@ public :
 	void RenderScene(Shader* shaderProgramm, Shader* StencilShader);
 	void RenderGizmo(Shader* shaderProgramm);
 	void RenderUi(Shader* shaderProgramm);
-	void FixedUpdate();
 	void SceneUpdate(ImGuiIO& _io);
 	void SaveScene();
 	void Awake();

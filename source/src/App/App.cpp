@@ -42,7 +42,49 @@ void App::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 
 void App::AppUpdate()
 {
+	//ShadowMaps* shadowMaps = m_Ressources->GetElement<ShadowMaps>("shadowMaps");
 
+	/*
+	ShadowShader->Use();
+	ShadowShader->SetInt("diffuseTexture", 0);
+	ShadowShader->SetInt("shadowMap", 5);
+	*/
+
+	
+
+
+
+
+	/*
+	
+	currentScene->cam->SetCameraInfoForShaders(*m_Ressources);
+
+
+	glViewport(0, 0, shadowMaps->widht, shadowMaps->height);
+	glBindFramebuffer(GL_FRAMEBUFFER, shadowMaps->FBO);
+	currentScene->RenderScene(DepthShader, Stencil);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	currentScene->OpenGlRenderToImgui->Bind();
+	glViewport(0, 0, currentScene->OpenGlRenderToImgui->widht, currentScene->OpenGlRenderToImgui->height);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+
+	DrawSkyBox();
+	currentScene->cam->CameraUpdate();
+	currentScene->SceneUpdate(m_io);
+	currentScene->RenderScene(BaseShader, Stencil);
+
+	glActiveTexture(GL_TEXTURE5);
+	glBindTexture(GL_TEXTURE_2D, shadowMaps->FBO);
+	currentScene->RenderGizmo(GizmoShader);
+
+
+
+	currentScene->OpenGlRenderToImgui->UnBind();
+	*/
+
+
+	
 
 
 	if (!HasPlayOnce)
@@ -53,8 +95,8 @@ void App::AppUpdate()
 		}
 		HasPlayOnce = false;
 	}
-	
-	
+
+
 
 
 	currentScene->OpenGlRenderToImgui->Bind();
@@ -63,9 +105,10 @@ void App::AppUpdate()
 	glEnable(GL_DEPTH_TEST);
 
 	currentScene->cam->SetCameraInfoForShaders(*m_Ressources);
-//	DrawSkyBox();
+	DrawSkyBox();
 
 	currentScene->cam->CameraUpdate();
+
 	currentScene->SceneUpdate(m_io);
 	currentScene->RenderScene(BaseShader, Stencil);
 	currentScene->RenderGizmo(GizmoShader);
@@ -92,10 +135,10 @@ void App::InitRessources()
 	Depthmap* depthMap = new Depthmap();
 	m_Ressources->PushBackElement("depthMap", depthMap);
 	
-	ShadowMaps* shadowMaps = new ShadowMaps(2048, 2048);
+	ShadowMaps* shadowMaps = new ShadowMaps(1024, 1024);
 	m_Ressources->PushBackElement("shadowMaps", shadowMaps);
 
-	/*
+	
 	std::vector<std::string> cubemapsSpaceString =
 	{
 		"assets/cube_maps/skybox/SpaceSkyBox/bkg1_right.png",
@@ -124,11 +167,12 @@ void App::InitRessources()
 	SkyBox* SkySkybox = new SkyBox(cubemaps2);
 	m_Ressources->PushBackElement<SkyBox>("SkySkybox", SkySkybox);
 	m_CurrentSkybox = m_Ressources->GetElement<SkyBox>("SpaceSkyBox");
-	*/
+	
 	GizmoShader = m_Ressources->GetElement<Shader>("GizmoShader");
 	BaseShader = m_Ressources->GetElement<Shader>("NormalShader");
 	Stencil = m_Ressources->GetElement<Shader>("StencilTest");
-
+	DepthShader = m_Ressources->GetElement<Shader>("DebugDepthShader");
+	ShadowShader = m_Ressources->GetElement<Shader>("ShadowShader");
 
 
 }
@@ -148,12 +192,18 @@ void App::InitScene()
 	Entity* DirectionnalLight = new Entity("Directionnal Light", Level1);
 	DirectionnalLight->AddComponent<DirectionalLight>();
 
+	float near_plane = 1.0f, far_plane = 7.5f;
+	DirectionnalLight->GetComponent<DirectionalLight>()->lightProjection = Matrix4X4::OrthoGraphicMatrix(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
+	DirectionnalLight->GetComponent<DirectionalLight>()->lightView = Matrix4X4::LookAt(Vector3(-2.0f, 4.0f, -1.0f), Vector3::Zero, Vector3::Up);
+
+
 
 
    Entity* vikingroom = new Entity("VikingRoom", Level1);
    vikingroom->AddComponent<MeshRenderer>();
    vikingroom->AddComponent<SphereCollider>();
-   vikingroom->GetComponent<MeshRenderer>()->texture = *m_Ressources->GetElement<Texture>("EmerauldBlock.png");
+   vikingroom->GetComponent<MeshRenderer>()->Diffuse = m_Ressources->GetElement<Texture>("EmerauldBlock.png");
+   vikingroom->GetComponent<MeshRenderer>()->Specular = m_Ressources->GetElement<Texture>("EmerauldBlock.png");
 
    Entity* Sphre2 = new Entity("Sphre2", Level1);
    //Sphre2->AddComponent<MeshRenderer>();
@@ -167,7 +217,15 @@ void App::InitScene()
 	vikingroom->transform.SetParent(Sphre2->transform);
 
 
+	Entity* Plane = new Entity("Plane", Level1);
+	Plane->transform.SetScale() += Vector3(20, 0, 20);
+	Plane->AddComponent<MeshRenderer>();
+	Plane->GetComponent<MeshRenderer>()->m_Model = m_Ressources->GetElement<Model>("plane.obj");
+	Plane->GetComponent<MeshRenderer>()->Diffuse = m_Ressources->GetElement<Texture>("woodenGround.jpg");
+	Plane->GetComponent<MeshRenderer>()->Specular = m_Ressources->GetElement<Texture>("woodenGround.jpg");
 	// Set Currentscene
+	Level1->entities.push_back(Plane);
+
 }
 
 
@@ -185,11 +243,11 @@ App::App(int _WindowX, int _WindowY, ImGuiIO& _io) : windowX(_WindowX), windowY(
 	InitRessources();
 	InitScene();
 	InitImguiTheme();
-	/*
+	
 	Shader* skyboxShader = m_Ressources->GetElement<Shader>("SkyBoxShader");
 	skyboxShader->Use();
-	skyboxShader->SetInt("skybox", m_CurrentSkybox->m_Cubemaps.slot);
-	*/
+	skyboxShader->SetInt("skybox", 30);
+	
 	// We Init The FrameBuffer here because we need To wait To Glad and opengl to be init
 	Scene::OpenGlRenderToImgui->Init();
 

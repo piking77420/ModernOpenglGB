@@ -204,12 +204,12 @@ void Camera::CameraMovment( GLFWwindow* context,const ImGuiIO& io )
 	if (IskeyPress(context, GLFW_KEY_A))
 	{
 
-		this->eye -= Right * velocity;
+		this->eye += Right * velocity;
 	}
 	else if (IskeyPress(context, GLFW_KEY_D))
 	{
 
-		this->eye += Right * velocity;
+		this->eye -= Right * velocity;
 	}
 
 	if (IskeyPress(context, GLFW_KEY_SPACE))
@@ -236,7 +236,7 @@ void Camera::MouseCallback(GLFWwindow* context, double _xpos, double _ypos)
 		firstmove = true;
 	}
 
-	float xoffset =  xpos - lastX;
+	float xoffset = lastX  - xpos ;
 	float yoffset = lastY - ypos;
 
 

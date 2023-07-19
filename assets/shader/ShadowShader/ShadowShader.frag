@@ -1,6 +1,15 @@
 #version 330 core
 out vec4 FragColor;
 
+
+struct Material
+{
+    sampler2D diffuse;
+    sampler2D specular;    
+    float shininess;
+};
+
+
 in VS_OUT {
     vec3 FragPos;
     vec3 Normal;
@@ -8,11 +17,13 @@ in VS_OUT {
     vec4 FragPosLightSpace;
 } fs_in;
 
-uniform sampler2D diffuseTexture;
 uniform sampler2D shadowMap;
 
 uniform vec3 lightPos;
 uniform vec3 viewPos;
+
+uniform Material material;
+
 
 float ShadowCalculation(vec4 fragPosLightSpace)
 {
@@ -52,7 +63,7 @@ float ShadowCalculation(vec4 fragPosLightSpace)
 
 void main()
 {           
-    vec3 color = texture(diffuseTexture, fs_in.TexCoords).rgb;
+    vec3 color = texture(material.diffuse, fs_in.TexCoords).rgb;
     vec3 normal = normalize(fs_in.Normal);
     vec3 lightColor = vec3(0.3);
     // ambient

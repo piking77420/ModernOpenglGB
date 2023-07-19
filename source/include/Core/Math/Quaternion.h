@@ -88,8 +88,11 @@ public:
 	}
 
 
-	Matrix4X4 ToMatrix(const Quaternion& Q1) const;
-	Quaternion EulerAngle(const Vector3& eulerAngle)const;
+	static Matrix3X3 ToMatrix3X3(const Quaternion& Q1) ;
+	static Matrix4X4 ToMatrix4X4(const Quaternion& Q1);
+
+	static Quaternion EulerAngle(const Vector3& eulerAngle);
+	Vector3 ToEulerAngle() const ;
 
 	inline Quaternion operator+(const Quaternion& Q1) const;
 	inline Quaternion operator-(const Quaternion& Q1) const;

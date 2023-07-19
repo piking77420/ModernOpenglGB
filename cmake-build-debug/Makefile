@@ -37,19 +37,19 @@ NULL=nul
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2023.1.3\bin\cmake\win\x64\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2023.1.4\bin\cmake\win\x64\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2023.1.3\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2023.1.4\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Data\Isart\Projet\C++\ModernOpenglGB
+CMAKE_SOURCE_DIR = "D:\Data\Isart Projet\C++\MODERNOPENGLGB"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug
+CMAKE_BINARY_DIR = "D:\Data\Isart Projet\C++\MODERNOPENGLGB\cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -57,7 +57,7 @@ CMAKE_BINARY_DIR = C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	echo >nul && "C:\Program Files\JetBrains\CLion 2023.1.3\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	echo >nul && "C:\Program Files\JetBrains\CLion 2023.1.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -67,7 +67,7 @@ edit_cache\fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	echo >nul && "C:\Program Files\JetBrains\CLion 2023.1.3\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	echo >nul && "C:\Program Files\JetBrains\CLion 2023.1.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -76,9 +76,9 @@ rebuild_cache\fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\CMakeFiles C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "D:\Data\Isart Projet\C++\MODERNOPENGLGB\cmake-build-debug\CMakeFiles" "D:\Data\Isart Projet\C++\MODERNOPENGLGB\cmake-build-debug\\CMakeFiles\progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Data\Isart\Projet\C++\ModernOpenglGB\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "D:\Data\Isart Projet\C++\MODERNOPENGLGB\cmake-build-debug\CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -285,30 +285,6 @@ source\src\Core\DataStructure\Component\Component.s: source\src\Core\DataStructu
 source\src\Core\DataStructure\Component\Component.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Core\DataStructure\Component\Component.cpp.s
 .PHONY : source\src\Core\DataStructure\Component\Component.cpp.s
-
-source\src\Core\DataStructure\ComponentArray\ComponentArray.obj: source\src\Core\DataStructure\ComponentArray\ComponentArray.cpp.obj
-.PHONY : source\src\Core\DataStructure\ComponentArray\ComponentArray.obj
-
-# target to build an object file
-source\src\Core\DataStructure\ComponentArray\ComponentArray.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Core\DataStructure\ComponentArray\ComponentArray.cpp.obj
-.PHONY : source\src\Core\DataStructure\ComponentArray\ComponentArray.cpp.obj
-
-source\src\Core\DataStructure\ComponentArray\ComponentArray.i: source\src\Core\DataStructure\ComponentArray\ComponentArray.cpp.i
-.PHONY : source\src\Core\DataStructure\ComponentArray\ComponentArray.i
-
-# target to preprocess a source file
-source\src\Core\DataStructure\ComponentArray\ComponentArray.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Core\DataStructure\ComponentArray\ComponentArray.cpp.i
-.PHONY : source\src\Core\DataStructure\ComponentArray\ComponentArray.cpp.i
-
-source\src\Core\DataStructure\ComponentArray\ComponentArray.s: source\src\Core\DataStructure\ComponentArray\ComponentArray.cpp.s
-.PHONY : source\src\Core\DataStructure\ComponentArray\ComponentArray.s
-
-# target to generate assembly for a file
-source\src\Core\DataStructure\ComponentArray\ComponentArray.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Core\DataStructure\ComponentArray\ComponentArray.cpp.s
-.PHONY : source\src\Core\DataStructure\ComponentArray\ComponentArray.cpp.s
 
 source\src\Core\DataStructure\Entity\Entity.obj: source\src\Core\DataStructure\Entity\Entity.cpp.obj
 .PHONY : source\src\Core\DataStructure\Entity\Entity.obj
@@ -718,6 +694,30 @@ source\src\Core\Math\Primitive.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Core\Math\Primitive.cpp.s
 .PHONY : source\src\Core\Math\Primitive.cpp.s
 
+source\src\Core\Math\Quaternion.obj: source\src\Core\Math\Quaternion.cpp.obj
+.PHONY : source\src\Core\Math\Quaternion.obj
+
+# target to build an object file
+source\src\Core\Math\Quaternion.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Core\Math\Quaternion.cpp.obj
+.PHONY : source\src\Core\Math\Quaternion.cpp.obj
+
+source\src\Core\Math\Quaternion.i: source\src\Core\Math\Quaternion.cpp.i
+.PHONY : source\src\Core\Math\Quaternion.i
+
+# target to preprocess a source file
+source\src\Core\Math\Quaternion.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Core\Math\Quaternion.cpp.i
+.PHONY : source\src\Core\Math\Quaternion.cpp.i
+
+source\src\Core\Math\Quaternion.s: source\src\Core\Math\Quaternion.cpp.s
+.PHONY : source\src\Core\Math\Quaternion.s
+
+# target to generate assembly for a file
+source\src\Core\Math\Quaternion.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Core\Math\Quaternion.cpp.s
+.PHONY : source\src\Core\Math\Quaternion.cpp.s
+
 source\src\Core\Math\Vector.obj: source\src\Core\Math\Vector.cpp.obj
 .PHONY : source\src\Core\Math\Vector.obj
 
@@ -837,6 +837,126 @@ source\src\External\Glad\glad.s: source\src\External\Glad\glad.c.s
 source\src\External\Glad\glad.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\External\Glad\glad.c.s
 .PHONY : source\src\External\Glad\glad.c.s
+
+source\src\External\ImguiGizmo\GraphEditor.obj: source\src\External\ImguiGizmo\GraphEditor.cpp.obj
+.PHONY : source\src\External\ImguiGizmo\GraphEditor.obj
+
+# target to build an object file
+source\src\External\ImguiGizmo\GraphEditor.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\External\ImguiGizmo\GraphEditor.cpp.obj
+.PHONY : source\src\External\ImguiGizmo\GraphEditor.cpp.obj
+
+source\src\External\ImguiGizmo\GraphEditor.i: source\src\External\ImguiGizmo\GraphEditor.cpp.i
+.PHONY : source\src\External\ImguiGizmo\GraphEditor.i
+
+# target to preprocess a source file
+source\src\External\ImguiGizmo\GraphEditor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\External\ImguiGizmo\GraphEditor.cpp.i
+.PHONY : source\src\External\ImguiGizmo\GraphEditor.cpp.i
+
+source\src\External\ImguiGizmo\GraphEditor.s: source\src\External\ImguiGizmo\GraphEditor.cpp.s
+.PHONY : source\src\External\ImguiGizmo\GraphEditor.s
+
+# target to generate assembly for a file
+source\src\External\ImguiGizmo\GraphEditor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\External\ImguiGizmo\GraphEditor.cpp.s
+.PHONY : source\src\External\ImguiGizmo\GraphEditor.cpp.s
+
+source\src\External\ImguiGizmo\ImCurveEdit.obj: source\src\External\ImguiGizmo\ImCurveEdit.cpp.obj
+.PHONY : source\src\External\ImguiGizmo\ImCurveEdit.obj
+
+# target to build an object file
+source\src\External\ImguiGizmo\ImCurveEdit.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\External\ImguiGizmo\ImCurveEdit.cpp.obj
+.PHONY : source\src\External\ImguiGizmo\ImCurveEdit.cpp.obj
+
+source\src\External\ImguiGizmo\ImCurveEdit.i: source\src\External\ImguiGizmo\ImCurveEdit.cpp.i
+.PHONY : source\src\External\ImguiGizmo\ImCurveEdit.i
+
+# target to preprocess a source file
+source\src\External\ImguiGizmo\ImCurveEdit.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\External\ImguiGizmo\ImCurveEdit.cpp.i
+.PHONY : source\src\External\ImguiGizmo\ImCurveEdit.cpp.i
+
+source\src\External\ImguiGizmo\ImCurveEdit.s: source\src\External\ImguiGizmo\ImCurveEdit.cpp.s
+.PHONY : source\src\External\ImguiGizmo\ImCurveEdit.s
+
+# target to generate assembly for a file
+source\src\External\ImguiGizmo\ImCurveEdit.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\External\ImguiGizmo\ImCurveEdit.cpp.s
+.PHONY : source\src\External\ImguiGizmo\ImCurveEdit.cpp.s
+
+source\src\External\ImguiGizmo\ImGradient.obj: source\src\External\ImguiGizmo\ImGradient.cpp.obj
+.PHONY : source\src\External\ImguiGizmo\ImGradient.obj
+
+# target to build an object file
+source\src\External\ImguiGizmo\ImGradient.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\External\ImguiGizmo\ImGradient.cpp.obj
+.PHONY : source\src\External\ImguiGizmo\ImGradient.cpp.obj
+
+source\src\External\ImguiGizmo\ImGradient.i: source\src\External\ImguiGizmo\ImGradient.cpp.i
+.PHONY : source\src\External\ImguiGizmo\ImGradient.i
+
+# target to preprocess a source file
+source\src\External\ImguiGizmo\ImGradient.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\External\ImguiGizmo\ImGradient.cpp.i
+.PHONY : source\src\External\ImguiGizmo\ImGradient.cpp.i
+
+source\src\External\ImguiGizmo\ImGradient.s: source\src\External\ImguiGizmo\ImGradient.cpp.s
+.PHONY : source\src\External\ImguiGizmo\ImGradient.s
+
+# target to generate assembly for a file
+source\src\External\ImguiGizmo\ImGradient.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\External\ImguiGizmo\ImGradient.cpp.s
+.PHONY : source\src\External\ImguiGizmo\ImGradient.cpp.s
+
+source\src\External\ImguiGizmo\ImGuizmo.obj: source\src\External\ImguiGizmo\ImGuizmo.cpp.obj
+.PHONY : source\src\External\ImguiGizmo\ImGuizmo.obj
+
+# target to build an object file
+source\src\External\ImguiGizmo\ImGuizmo.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\External\ImguiGizmo\ImGuizmo.cpp.obj
+.PHONY : source\src\External\ImguiGizmo\ImGuizmo.cpp.obj
+
+source\src\External\ImguiGizmo\ImGuizmo.i: source\src\External\ImguiGizmo\ImGuizmo.cpp.i
+.PHONY : source\src\External\ImguiGizmo\ImGuizmo.i
+
+# target to preprocess a source file
+source\src\External\ImguiGizmo\ImGuizmo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\External\ImguiGizmo\ImGuizmo.cpp.i
+.PHONY : source\src\External\ImguiGizmo\ImGuizmo.cpp.i
+
+source\src\External\ImguiGizmo\ImGuizmo.s: source\src\External\ImguiGizmo\ImGuizmo.cpp.s
+.PHONY : source\src\External\ImguiGizmo\ImGuizmo.s
+
+# target to generate assembly for a file
+source\src\External\ImguiGizmo\ImGuizmo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\External\ImguiGizmo\ImGuizmo.cpp.s
+.PHONY : source\src\External\ImguiGizmo\ImGuizmo.cpp.s
+
+source\src\External\ImguiGizmo\ImSequencer.obj: source\src\External\ImguiGizmo\ImSequencer.cpp.obj
+.PHONY : source\src\External\ImguiGizmo\ImSequencer.obj
+
+# target to build an object file
+source\src\External\ImguiGizmo\ImSequencer.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\External\ImguiGizmo\ImSequencer.cpp.obj
+.PHONY : source\src\External\ImguiGizmo\ImSequencer.cpp.obj
+
+source\src\External\ImguiGizmo\ImSequencer.i: source\src\External\ImguiGizmo\ImSequencer.cpp.i
+.PHONY : source\src\External\ImguiGizmo\ImSequencer.i
+
+# target to preprocess a source file
+source\src\External\ImguiGizmo\ImSequencer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\External\ImguiGizmo\ImSequencer.cpp.i
+.PHONY : source\src\External\ImguiGizmo\ImSequencer.cpp.i
+
+source\src\External\ImguiGizmo\ImSequencer.s: source\src\External\ImguiGizmo\ImSequencer.cpp.s
+.PHONY : source\src\External\ImguiGizmo\ImSequencer.s
+
+# target to generate assembly for a file
+source\src\External\ImguiGizmo\ImSequencer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\External\ImguiGizmo\ImSequencer.cpp.s
+.PHONY : source\src\External\ImguiGizmo\ImSequencer.cpp.s
 
 source\src\External\Std_Image\std_image.obj: source\src\External\Std_Image\std_image.cpp.obj
 .PHONY : source\src\External\Std_Image\std_image.obj
@@ -982,6 +1102,54 @@ source\src\LowRenderer\FrameBuffer\ShadowMap\ShadowMaps.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\FrameBuffer\ShadowMap\ShadowMaps.cpp.s
 .PHONY : source\src\LowRenderer\FrameBuffer\ShadowMap\ShadowMaps.cpp.s
 
+source\src\LowRenderer\Gizmo\Gizmo.obj: source\src\LowRenderer\Gizmo\Gizmo.cpp.obj
+.PHONY : source\src\LowRenderer\Gizmo\Gizmo.obj
+
+# target to build an object file
+source\src\LowRenderer\Gizmo\Gizmo.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\Gizmo\Gizmo.cpp.obj
+.PHONY : source\src\LowRenderer\Gizmo\Gizmo.cpp.obj
+
+source\src\LowRenderer\Gizmo\Gizmo.i: source\src\LowRenderer\Gizmo\Gizmo.cpp.i
+.PHONY : source\src\LowRenderer\Gizmo\Gizmo.i
+
+# target to preprocess a source file
+source\src\LowRenderer\Gizmo\Gizmo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\Gizmo\Gizmo.cpp.i
+.PHONY : source\src\LowRenderer\Gizmo\Gizmo.cpp.i
+
+source\src\LowRenderer\Gizmo\Gizmo.s: source\src\LowRenderer\Gizmo\Gizmo.cpp.s
+.PHONY : source\src\LowRenderer\Gizmo\Gizmo.s
+
+# target to generate assembly for a file
+source\src\LowRenderer\Gizmo\Gizmo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\Gizmo\Gizmo.cpp.s
+.PHONY : source\src\LowRenderer\Gizmo\Gizmo.cpp.s
+
+source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.obj: source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.cpp.obj
+.PHONY : source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.obj
+
+# target to build an object file
+source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.cpp.obj
+.PHONY : source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.cpp.obj
+
+source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.i: source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.cpp.i
+.PHONY : source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.i
+
+# target to preprocess a source file
+source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.cpp.i
+.PHONY : source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.cpp.i
+
+source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.s: source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.cpp.s
+.PHONY : source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.s
+
+# target to generate assembly for a file
+source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.cpp.s
+.PHONY : source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.cpp.s
+
 source\src\LowRenderer\Light\DirectionalLight\DirectionalLight.obj: source\src\LowRenderer\Light\DirectionalLight\DirectionalLight.cpp.obj
 .PHONY : source\src\LowRenderer\Light\DirectionalLight\DirectionalLight.obj
 
@@ -1102,150 +1270,6 @@ source\src\LowRenderer\Material\Material.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\Material\Material.cpp.s
 .PHONY : source\src\LowRenderer\Material\Material.cpp.s
 
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.obj: source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.cpp.obj
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.obj
-
-# target to build an object file
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.cpp.obj
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.cpp.obj
-
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.i: source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.cpp.i
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.i
-
-# target to preprocess a source file
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.cpp.i
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.cpp.i
-
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.s: source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.cpp.s
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.s
-
-# target to generate assembly for a file
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.cpp.s
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Box\BoxGizmo.cpp.s
-
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.obj: source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.cpp.obj
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.obj
-
-# target to build an object file
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.cpp.obj
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.cpp.obj
-
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.i: source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.cpp.i
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.i
-
-# target to preprocess a source file
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.cpp.i
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.cpp.i
-
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.s: source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.cpp.s
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.s
-
-# target to generate assembly for a file
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.cpp.s
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Capsule\CapsuleGizmo.cpp.s
-
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.obj: source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.cpp.obj
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.obj
-
-# target to build an object file
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.cpp.obj
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.cpp.obj
-
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.i: source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.cpp.i
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.i
-
-# target to preprocess a source file
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.cpp.i
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.cpp.i
-
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.s: source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.cpp.s
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.s
-
-# target to generate assembly for a file
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.cpp.s
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Cylinder\CylinderGizmo.cpp.s
-
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.obj: source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.cpp.obj
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.obj
-
-# target to build an object file
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.cpp.obj
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.cpp.obj
-
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.i: source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.cpp.i
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.i
-
-# target to preprocess a source file
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.cpp.i
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.cpp.i
-
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.s: source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.cpp.s
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.s
-
-# target to generate assembly for a file
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.cpp.s
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Plane\PlaneGizmo.cpp.s
-
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.obj: source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.cpp.obj
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.obj
-
-# target to build an object file
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.cpp.obj
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.cpp.obj
-
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.i: source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.cpp.i
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.i
-
-# target to preprocess a source file
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.cpp.i
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.cpp.i
-
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.s: source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.cpp.s
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.s
-
-# target to generate assembly for a file
-source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.cpp.s
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\Gizmo\Sphere\SphereGizmo.cpp.s
-
-source\src\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.obj: source\src\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.cpp.obj
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.obj
-
-# target to build an object file
-source\src\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.cpp.obj
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.cpp.obj
-
-source\src\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.i: source\src\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.cpp.i
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.i
-
-# target to preprocess a source file
-source\src\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.cpp.i
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.cpp.i
-
-source\src\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.s: source\src\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.cpp.s
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.s
-
-# target to generate assembly for a file
-source\src\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.cpp.s
-.PHONY : source\src\LowRenderer\RendererComponent\GizmoRenderer\GizmoRenderer.cpp.s
-
 source\src\LowRenderer\RendererComponent\MeshRenderer\MeshRenderer.obj: source\src\LowRenderer\RendererComponent\MeshRenderer\MeshRenderer.cpp.obj
 .PHONY : source\src\LowRenderer\RendererComponent\MeshRenderer\MeshRenderer.obj
 
@@ -1365,126 +1389,6 @@ source\src\Main\main.s: source\src\Main\main.cpp.s
 source\src\Main\main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Main\main.cpp.s
 .PHONY : source\src\Main\main.cpp.s
-
-source\src\Physics\CollisionType\AABCollision.obj: source\src\Physics\CollisionType\AABCollision.cpp.obj
-.PHONY : source\src\Physics\CollisionType\AABCollision.obj
-
-# target to build an object file
-source\src\Physics\CollisionType\AABCollision.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Physics\CollisionType\AABCollision.cpp.obj
-.PHONY : source\src\Physics\CollisionType\AABCollision.cpp.obj
-
-source\src\Physics\CollisionType\AABCollision.i: source\src\Physics\CollisionType\AABCollision.cpp.i
-.PHONY : source\src\Physics\CollisionType\AABCollision.i
-
-# target to preprocess a source file
-source\src\Physics\CollisionType\AABCollision.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Physics\CollisionType\AABCollision.cpp.i
-.PHONY : source\src\Physics\CollisionType\AABCollision.cpp.i
-
-source\src\Physics\CollisionType\AABCollision.s: source\src\Physics\CollisionType\AABCollision.cpp.s
-.PHONY : source\src\Physics\CollisionType\AABCollision.s
-
-# target to generate assembly for a file
-source\src\Physics\CollisionType\AABCollision.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Physics\CollisionType\AABCollision.cpp.s
-.PHONY : source\src\Physics\CollisionType\AABCollision.cpp.s
-
-source\src\Physics\CollisionType\BoxCollisionType.obj: source\src\Physics\CollisionType\BoxCollisionType.cpp.obj
-.PHONY : source\src\Physics\CollisionType\BoxCollisionType.obj
-
-# target to build an object file
-source\src\Physics\CollisionType\BoxCollisionType.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Physics\CollisionType\BoxCollisionType.cpp.obj
-.PHONY : source\src\Physics\CollisionType\BoxCollisionType.cpp.obj
-
-source\src\Physics\CollisionType\BoxCollisionType.i: source\src\Physics\CollisionType\BoxCollisionType.cpp.i
-.PHONY : source\src\Physics\CollisionType\BoxCollisionType.i
-
-# target to preprocess a source file
-source\src\Physics\CollisionType\BoxCollisionType.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Physics\CollisionType\BoxCollisionType.cpp.i
-.PHONY : source\src\Physics\CollisionType\BoxCollisionType.cpp.i
-
-source\src\Physics\CollisionType\BoxCollisionType.s: source\src\Physics\CollisionType\BoxCollisionType.cpp.s
-.PHONY : source\src\Physics\CollisionType\BoxCollisionType.s
-
-# target to generate assembly for a file
-source\src\Physics\CollisionType\BoxCollisionType.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Physics\CollisionType\BoxCollisionType.cpp.s
-.PHONY : source\src\Physics\CollisionType\BoxCollisionType.cpp.s
-
-source\src\Physics\CollisionType\CollisionType.obj: source\src\Physics\CollisionType\CollisionType.cpp.obj
-.PHONY : source\src\Physics\CollisionType\CollisionType.obj
-
-# target to build an object file
-source\src\Physics\CollisionType\CollisionType.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Physics\CollisionType\CollisionType.cpp.obj
-.PHONY : source\src\Physics\CollisionType\CollisionType.cpp.obj
-
-source\src\Physics\CollisionType\CollisionType.i: source\src\Physics\CollisionType\CollisionType.cpp.i
-.PHONY : source\src\Physics\CollisionType\CollisionType.i
-
-# target to preprocess a source file
-source\src\Physics\CollisionType\CollisionType.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Physics\CollisionType\CollisionType.cpp.i
-.PHONY : source\src\Physics\CollisionType\CollisionType.cpp.i
-
-source\src\Physics\CollisionType\CollisionType.s: source\src\Physics\CollisionType\CollisionType.cpp.s
-.PHONY : source\src\Physics\CollisionType\CollisionType.s
-
-# target to generate assembly for a file
-source\src\Physics\CollisionType\CollisionType.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Physics\CollisionType\CollisionType.cpp.s
-.PHONY : source\src\Physics\CollisionType\CollisionType.cpp.s
-
-source\src\Physics\CollisionType\PlaneCollision.obj: source\src\Physics\CollisionType\PlaneCollision.cpp.obj
-.PHONY : source\src\Physics\CollisionType\PlaneCollision.obj
-
-# target to build an object file
-source\src\Physics\CollisionType\PlaneCollision.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Physics\CollisionType\PlaneCollision.cpp.obj
-.PHONY : source\src\Physics\CollisionType\PlaneCollision.cpp.obj
-
-source\src\Physics\CollisionType\PlaneCollision.i: source\src\Physics\CollisionType\PlaneCollision.cpp.i
-.PHONY : source\src\Physics\CollisionType\PlaneCollision.i
-
-# target to preprocess a source file
-source\src\Physics\CollisionType\PlaneCollision.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Physics\CollisionType\PlaneCollision.cpp.i
-.PHONY : source\src\Physics\CollisionType\PlaneCollision.cpp.i
-
-source\src\Physics\CollisionType\PlaneCollision.s: source\src\Physics\CollisionType\PlaneCollision.cpp.s
-.PHONY : source\src\Physics\CollisionType\PlaneCollision.s
-
-# target to generate assembly for a file
-source\src\Physics\CollisionType\PlaneCollision.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Physics\CollisionType\PlaneCollision.cpp.s
-.PHONY : source\src\Physics\CollisionType\PlaneCollision.cpp.s
-
-source\src\Physics\CollisionType\SphereCollision.obj: source\src\Physics\CollisionType\SphereCollision.cpp.obj
-.PHONY : source\src\Physics\CollisionType\SphereCollision.obj
-
-# target to build an object file
-source\src\Physics\CollisionType\SphereCollision.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Physics\CollisionType\SphereCollision.cpp.obj
-.PHONY : source\src\Physics\CollisionType\SphereCollision.cpp.obj
-
-source\src\Physics\CollisionType\SphereCollision.i: source\src\Physics\CollisionType\SphereCollision.cpp.i
-.PHONY : source\src\Physics\CollisionType\SphereCollision.i
-
-# target to preprocess a source file
-source\src\Physics\CollisionType\SphereCollision.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Physics\CollisionType\SphereCollision.cpp.i
-.PHONY : source\src\Physics\CollisionType\SphereCollision.cpp.i
-
-source\src\Physics\CollisionType\SphereCollision.s: source\src\Physics\CollisionType\SphereCollision.cpp.s
-.PHONY : source\src\Physics\CollisionType\SphereCollision.s
-
-# target to generate assembly for a file
-source\src\Physics\CollisionType\SphereCollision.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Physics\CollisionType\SphereCollision.cpp.s
-.PHONY : source\src\Physics\CollisionType\SphereCollision.cpp.s
 
 source\src\Physics\PhysicsEngine.obj: source\src\Physics\PhysicsEngine.cpp.obj
 .PHONY : source\src\Physics\PhysicsEngine.obj
@@ -1726,6 +1630,30 @@ source\src\Ressources\Shader\Shader.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Ressources\Shader\Shader.cpp.s
 .PHONY : source\src\Ressources\Shader\Shader.cpp.s
 
+source\src\Ressources\Shader\ShaderSource\ShaderSource.obj: source\src\Ressources\Shader\ShaderSource\ShaderSource.cpp.obj
+.PHONY : source\src\Ressources\Shader\ShaderSource\ShaderSource.obj
+
+# target to build an object file
+source\src\Ressources\Shader\ShaderSource\ShaderSource.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Ressources\Shader\ShaderSource\ShaderSource.cpp.obj
+.PHONY : source\src\Ressources\Shader\ShaderSource\ShaderSource.cpp.obj
+
+source\src\Ressources\Shader\ShaderSource\ShaderSource.i: source\src\Ressources\Shader\ShaderSource\ShaderSource.cpp.i
+.PHONY : source\src\Ressources\Shader\ShaderSource\ShaderSource.i
+
+# target to preprocess a source file
+source\src\Ressources\Shader\ShaderSource\ShaderSource.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Ressources\Shader\ShaderSource\ShaderSource.cpp.i
+.PHONY : source\src\Ressources\Shader\ShaderSource\ShaderSource.cpp.i
+
+source\src\Ressources\Shader\ShaderSource\ShaderSource.s: source\src\Ressources\Shader\ShaderSource\ShaderSource.cpp.s
+.PHONY : source\src\Ressources\Shader\ShaderSource\ShaderSource.s
+
+# target to generate assembly for a file
+source\src\Ressources\Shader\ShaderSource\ShaderSource.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Ressources\Shader\ShaderSource\ShaderSource.cpp.s
+.PHONY : source\src\Ressources\Shader\ShaderSource\ShaderSource.cpp.s
+
 source\src\Ressources\SkyBox\SkyBox.obj: source\src\Ressources\SkyBox\SkyBox.cpp.obj
 .PHONY : source\src\Ressources\SkyBox\SkyBox.obj
 
@@ -1774,6 +1702,54 @@ source\src\Ressources\Texture\Texture.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\Ressources\Texture\Texture.cpp.s
 .PHONY : source\src\Ressources\Texture\Texture.cpp.s
 
+source\src\UI\ContentBrowser.obj: source\src\UI\ContentBrowser.cpp.obj
+.PHONY : source\src\UI\ContentBrowser.obj
+
+# target to build an object file
+source\src\UI\ContentBrowser.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\UI\ContentBrowser.cpp.obj
+.PHONY : source\src\UI\ContentBrowser.cpp.obj
+
+source\src\UI\ContentBrowser.i: source\src\UI\ContentBrowser.cpp.i
+.PHONY : source\src\UI\ContentBrowser.i
+
+# target to preprocess a source file
+source\src\UI\ContentBrowser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\UI\ContentBrowser.cpp.i
+.PHONY : source\src\UI\ContentBrowser.cpp.i
+
+source\src\UI\ContentBrowser.s: source\src\UI\ContentBrowser.cpp.s
+.PHONY : source\src\UI\ContentBrowser.s
+
+# target to generate assembly for a file
+source\src\UI\ContentBrowser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\UI\ContentBrowser.cpp.s
+.PHONY : source\src\UI\ContentBrowser.cpp.s
+
+source\src\UI\InspectorSelectable.obj: source\src\UI\InspectorSelectable.cpp.obj
+.PHONY : source\src\UI\InspectorSelectable.obj
+
+# target to build an object file
+source\src\UI\InspectorSelectable.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\UI\InspectorSelectable.cpp.obj
+.PHONY : source\src\UI\InspectorSelectable.cpp.obj
+
+source\src\UI\InspectorSelectable.i: source\src\UI\InspectorSelectable.cpp.i
+.PHONY : source\src\UI\InspectorSelectable.i
+
+# target to preprocess a source file
+source\src\UI\InspectorSelectable.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\UI\InspectorSelectable.cpp.i
+.PHONY : source\src\UI\InspectorSelectable.cpp.i
+
+source\src\UI\InspectorSelectable.s: source\src\UI\InspectorSelectable.cpp.s
+.PHONY : source\src\UI\InspectorSelectable.s
+
+# target to generate assembly for a file
+source\src\UI\InspectorSelectable.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ModernOpenglGB.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ModernOpenglGB.dir\source\src\UI\InspectorSelectable.cpp.s
+.PHONY : source\src\UI\InspectorSelectable.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -1804,9 +1780,6 @@ help:
 	@echo ... source/src/Core/DataStructure/Component/Component.obj
 	@echo ... source/src/Core/DataStructure/Component/Component.i
 	@echo ... source/src/Core/DataStructure/Component/Component.s
-	@echo ... source/src/Core/DataStructure/ComponentArray/ComponentArray.obj
-	@echo ... source/src/Core/DataStructure/ComponentArray/ComponentArray.i
-	@echo ... source/src/Core/DataStructure/ComponentArray/ComponentArray.s
 	@echo ... source/src/Core/DataStructure/Entity/Entity.obj
 	@echo ... source/src/Core/DataStructure/Entity/Entity.i
 	@echo ... source/src/Core/DataStructure/Entity/Entity.s
@@ -1858,6 +1831,9 @@ help:
 	@echo ... source/src/Core/Math/Primitive.obj
 	@echo ... source/src/Core/Math/Primitive.i
 	@echo ... source/src/Core/Math/Primitive.s
+	@echo ... source/src/Core/Math/Quaternion.obj
+	@echo ... source/src/Core/Math/Quaternion.i
+	@echo ... source/src/Core/Math/Quaternion.s
 	@echo ... source/src/Core/Math/Vector.obj
 	@echo ... source/src/Core/Math/Vector.i
 	@echo ... source/src/Core/Math/Vector.s
@@ -1873,6 +1849,21 @@ help:
 	@echo ... source/src/External/Glad/glad.obj
 	@echo ... source/src/External/Glad/glad.i
 	@echo ... source/src/External/Glad/glad.s
+	@echo ... source/src/External/ImguiGizmo/GraphEditor.obj
+	@echo ... source/src/External/ImguiGizmo/GraphEditor.i
+	@echo ... source/src/External/ImguiGizmo/GraphEditor.s
+	@echo ... source/src/External/ImguiGizmo/ImCurveEdit.obj
+	@echo ... source/src/External/ImguiGizmo/ImCurveEdit.i
+	@echo ... source/src/External/ImguiGizmo/ImCurveEdit.s
+	@echo ... source/src/External/ImguiGizmo/ImGradient.obj
+	@echo ... source/src/External/ImguiGizmo/ImGradient.i
+	@echo ... source/src/External/ImguiGizmo/ImGradient.s
+	@echo ... source/src/External/ImguiGizmo/ImGuizmo.obj
+	@echo ... source/src/External/ImguiGizmo/ImGuizmo.i
+	@echo ... source/src/External/ImguiGizmo/ImGuizmo.s
+	@echo ... source/src/External/ImguiGizmo/ImSequencer.obj
+	@echo ... source/src/External/ImguiGizmo/ImSequencer.i
+	@echo ... source/src/External/ImguiGizmo/ImSequencer.s
 	@echo ... source/src/External/Std_Image/std_image.obj
 	@echo ... source/src/External/Std_Image/std_image.i
 	@echo ... source/src/External/Std_Image/std_image.s
@@ -1891,6 +1882,12 @@ help:
 	@echo ... source/src/LowRenderer/FrameBuffer/ShadowMap/ShadowMaps.obj
 	@echo ... source/src/LowRenderer/FrameBuffer/ShadowMap/ShadowMaps.i
 	@echo ... source/src/LowRenderer/FrameBuffer/ShadowMap/ShadowMaps.s
+	@echo ... source/src/LowRenderer/Gizmo/Gizmo.obj
+	@echo ... source/src/LowRenderer/Gizmo/Gizmo.i
+	@echo ... source/src/LowRenderer/Gizmo/Gizmo.s
+	@echo ... source/src/LowRenderer/Gizmo/GizmoCollider/SphereGizmoCollider.obj
+	@echo ... source/src/LowRenderer/Gizmo/GizmoCollider/SphereGizmoCollider.i
+	@echo ... source/src/LowRenderer/Gizmo/GizmoCollider/SphereGizmoCollider.s
 	@echo ... source/src/LowRenderer/Light/DirectionalLight/DirectionalLight.obj
 	@echo ... source/src/LowRenderer/Light/DirectionalLight/DirectionalLight.i
 	@echo ... source/src/LowRenderer/Light/DirectionalLight/DirectionalLight.s
@@ -1906,24 +1903,6 @@ help:
 	@echo ... source/src/LowRenderer/Material/Material.obj
 	@echo ... source/src/LowRenderer/Material/Material.i
 	@echo ... source/src/LowRenderer/Material/Material.s
-	@echo ... source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Box/BoxGizmo.obj
-	@echo ... source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Box/BoxGizmo.i
-	@echo ... source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Box/BoxGizmo.s
-	@echo ... source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Capsule/CapsuleGizmo.obj
-	@echo ... source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Capsule/CapsuleGizmo.i
-	@echo ... source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Capsule/CapsuleGizmo.s
-	@echo ... source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Cylinder/CylinderGizmo.obj
-	@echo ... source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Cylinder/CylinderGizmo.i
-	@echo ... source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Cylinder/CylinderGizmo.s
-	@echo ... source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Plane/PlaneGizmo.obj
-	@echo ... source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Plane/PlaneGizmo.i
-	@echo ... source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Plane/PlaneGizmo.s
-	@echo ... source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Sphere/SphereGizmo.obj
-	@echo ... source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Sphere/SphereGizmo.i
-	@echo ... source/src/LowRenderer/RendererComponent/GizmoRenderer/Gizmo/Sphere/SphereGizmo.s
-	@echo ... source/src/LowRenderer/RendererComponent/GizmoRenderer/GizmoRenderer.obj
-	@echo ... source/src/LowRenderer/RendererComponent/GizmoRenderer/GizmoRenderer.i
-	@echo ... source/src/LowRenderer/RendererComponent/GizmoRenderer/GizmoRenderer.s
 	@echo ... source/src/LowRenderer/RendererComponent/MeshRenderer/MeshRenderer.obj
 	@echo ... source/src/LowRenderer/RendererComponent/MeshRenderer/MeshRenderer.i
 	@echo ... source/src/LowRenderer/RendererComponent/MeshRenderer/MeshRenderer.s
@@ -1939,21 +1918,6 @@ help:
 	@echo ... source/src/Main/main.obj
 	@echo ... source/src/Main/main.i
 	@echo ... source/src/Main/main.s
-	@echo ... source/src/Physics/CollisionType/AABCollision.obj
-	@echo ... source/src/Physics/CollisionType/AABCollision.i
-	@echo ... source/src/Physics/CollisionType/AABCollision.s
-	@echo ... source/src/Physics/CollisionType/BoxCollisionType.obj
-	@echo ... source/src/Physics/CollisionType/BoxCollisionType.i
-	@echo ... source/src/Physics/CollisionType/BoxCollisionType.s
-	@echo ... source/src/Physics/CollisionType/CollisionType.obj
-	@echo ... source/src/Physics/CollisionType/CollisionType.i
-	@echo ... source/src/Physics/CollisionType/CollisionType.s
-	@echo ... source/src/Physics/CollisionType/PlaneCollision.obj
-	@echo ... source/src/Physics/CollisionType/PlaneCollision.i
-	@echo ... source/src/Physics/CollisionType/PlaneCollision.s
-	@echo ... source/src/Physics/CollisionType/SphereCollision.obj
-	@echo ... source/src/Physics/CollisionType/SphereCollision.i
-	@echo ... source/src/Physics/CollisionType/SphereCollision.s
 	@echo ... source/src/Physics/PhysicsEngine.obj
 	@echo ... source/src/Physics/PhysicsEngine.i
 	@echo ... source/src/Physics/PhysicsEngine.s
@@ -1984,12 +1948,21 @@ help:
 	@echo ... source/src/Ressources/Shader/Shader.obj
 	@echo ... source/src/Ressources/Shader/Shader.i
 	@echo ... source/src/Ressources/Shader/Shader.s
+	@echo ... source/src/Ressources/Shader/ShaderSource/ShaderSource.obj
+	@echo ... source/src/Ressources/Shader/ShaderSource/ShaderSource.i
+	@echo ... source/src/Ressources/Shader/ShaderSource/ShaderSource.s
 	@echo ... source/src/Ressources/SkyBox/SkyBox.obj
 	@echo ... source/src/Ressources/SkyBox/SkyBox.i
 	@echo ... source/src/Ressources/SkyBox/SkyBox.s
 	@echo ... source/src/Ressources/Texture/Texture.obj
 	@echo ... source/src/Ressources/Texture/Texture.i
 	@echo ... source/src/Ressources/Texture/Texture.s
+	@echo ... source/src/UI/ContentBrowser.obj
+	@echo ... source/src/UI/ContentBrowser.i
+	@echo ... source/src/UI/ContentBrowser.s
+	@echo ... source/src/UI/InspectorSelectable.obj
+	@echo ... source/src/UI/InspectorSelectable.i
+	@echo ... source/src/UI/InspectorSelectable.s
 .PHONY : help
 
 

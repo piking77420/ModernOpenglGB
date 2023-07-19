@@ -49,7 +49,8 @@ void Scene::SceneUpdate(ImGuiIO& _io)
 		entities[i]->PreUpdate(this);
 	}
 
-	FixedUpdate();
+	m_PhysicsEngine.Update(this);
+
 	for (size_t i = 0; i < entities.size(); i++)
 	{
 		entities[i]->FixedUpdate(this);
@@ -156,27 +157,4 @@ void Scene::RenderUi(Shader* shaderProgramm)
 
 	}
 
-}
-void Scene::FixedUpdate()
-{
-	//m_PhysicsEngine.UpdateColliders()
-	/*
-	for (size_t i = 0; i < entities.size(); i++)
-	{
-		/*
-		Collider* c = entities[i]->GetComponent<Collider>();
-
-		if (c != nullptr)
-		{
-			for (size_t i = 0; i < c->CollisionShape.size(); i++)
-			{
-				c->CollisionShape[i]->Update(*c);
-			}
-		}
-
-		
-	}*/
-
-	m_PhysicsEngine.Update(this);
-	//;
 }

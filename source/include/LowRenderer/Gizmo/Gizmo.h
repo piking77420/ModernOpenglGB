@@ -11,7 +11,7 @@ class Collider;
 
 class Gizmo
 {
-public:
+public:	
 
 	Vector3 size;
 	Vector4 color = Vector4::One;
@@ -19,7 +19,7 @@ public:
 	Gizmo(Collider* collider);
 	virtual ~Gizmo();
 
-	Entity** transformEntity;
+	 Entity** transformEntity;
 protected:
 	Model* model;
 

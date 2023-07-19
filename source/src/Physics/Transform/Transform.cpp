@@ -139,8 +139,12 @@ Transform::~Transform()
 void Transform::UpdateMatrix()
 {
 	
-	m_LocalMatrix = Matrix4X4::TRS(pos, rotate, scale);
 
+	
+	m_LocalMatrix = Matrix4X4::TRS(pos, Quaternion::EulerAngle(rotate), scale);
+
+	//std::cout << Quaternion::EulerAngle(rotate) << std::endl;
+	//m_LocalMatrix = Matrix4X4::TRS(pos, rotate, scale);
 
 	if (Parents != nullptr)
 	{

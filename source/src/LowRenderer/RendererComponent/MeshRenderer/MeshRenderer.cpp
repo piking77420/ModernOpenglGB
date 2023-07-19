@@ -28,13 +28,13 @@ void MeshRenderer::ImguiWindowComponents()
 }
 
 
-MeshRenderer::MeshRenderer(const Model& modelToCopy, const Texture& _textures, Entity& entityAttach) : RendererComponent(entityAttach), texture(_textures)
+MeshRenderer::MeshRenderer(const Model& modelToCopy, const Texture& _textures, Entity& entityAttach) : RendererComponent(entityAttach), Diffuse(&_textures),Specular(&_textures)
 {
 	m_Model = &modelToCopy;
 	m_ComponentName = "MeshRenderer";
 	vertexVector = modelToCopy.vertexVector;
 	indexVector = modelToCopy.indexVector;
-	material = Material(texture.slot, 0,32.f);
+	material = Material(0, 0,32.f);
 	for (size_t i = 0; i < m_Model->name.size(); i++)
 	{
 		modelName[i] = m_Model->name[i];
@@ -51,7 +51,7 @@ MeshRenderer::MeshRenderer() : RendererComponent(*EntityAttachTo)
 		modelName[i] = m_Model->name[i];
 	}
 	m_ComponentName = "MeshRenderer";
-	material = Material(texture.slot, 0, 32.f);
+	material = Material(0, 0, 32.f);
 	
 }
 
@@ -133,7 +133,10 @@ void MeshRenderer::MeshRendererDraw(Scene* scene, Shader* shader)
 	shader->Use();
 
 	glActiveTexture(GL_TEXTURE0);
-	texture.BindTexture();
+	Diffuse->BindTexture();
+	
+	glActiveTexture(GL_TEXTURE1);
+	Specular->BindTexture();
 
 	
 	// Set info to shader
@@ -147,7 +150,12 @@ void MeshRenderer::MeshRendererDraw(Scene* scene, Shader* shader)
 	shader->SetMaxtrix("rotation",Matrix4X4().RotationMatrix4X4(EntityAttachTo->transform.GetRotation()).GetPtr());
 	// Draw The Object
 	m_Model->Draw();
-	texture.UnBindTexture();
+
+	glActiveTexture(GL_TEXTURE1);
+	Specular->UnBindTexture();
+
+	glActiveTexture(GL_TEXTURE0);
+	Diffuse->UnBindTexture();
 }
 
 void MeshRenderer::MeshRendererDrawStencil(Scene* scene, Shader* shader)
@@ -167,12 +175,12 @@ void MeshRenderer::MeshRendererDrawStencil(Scene* scene, Shader* shader)
 
 	// Get Stencil Shader and bind everything
 	shader->Use();
-	texture.BindTexture();
+	Diffuse->BindTexture();
 	Matrix4X4 mode2 = model * Matrix4X4().ScalingMatrix4X4(Vector3(1.05, 1.05, 1.05));
 	shader->SetMaxtrix("model", mode2.GetPtr());
 	// Draw The Object
 	m_Model->Draw();
-	texture.UnBindTexture();
+	Diffuse->UnBindTexture();
 	glStencilMask(0xFF);
 	glStencilFunc(GL_ALWAYS, 0, 0xFF);
 	glEnable(GL_DEPTH_TEST);

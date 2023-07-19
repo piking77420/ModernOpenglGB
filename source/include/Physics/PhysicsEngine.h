@@ -4,6 +4,7 @@ class Collider;
 
 
 
+
 struct CollisionDetection
 {
 	Collider* collider1;

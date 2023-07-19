@@ -61,7 +61,6 @@ in VS_OUT
 {
     vec3 Normal;
 	vec2 TexCoords;
-    mat4 projection;
 	vec3 FragPos;  
 	vec3 LightPos;
 	

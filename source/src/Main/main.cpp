@@ -95,6 +95,7 @@
 
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
+
         // Imgui Init // 
         ImGuiIO& io = ImGui::GetIO(); (void)io;
         io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
@@ -102,25 +103,6 @@
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
         ImGui::StyleColorsDark();
  
-        float near_plane = 0.10f;
-        float far_plane = 1000;
-        glm::vec3 lightPos(-2.0f, 4.0f, -1.0f);
-
-        glm::mat4x4 lightView = glm::lookAt(lightPos, glm::vec3(0.0f), glm::vec3(0.0, 1.0, 0.0));
-
-        Matrix4X4 me =  Matrix4X4::LookAt(Vector3(-2.0f, 4.0f, -1.0f), Vector3::Zero,Vector3::Up);
-
-
-
-        std::cout << lightView[0].x << " " << lightView[1].x << " " << lightView[2].x << " " << lightView[3].x << " ";
-        std::cout << '\n';
-        std::cout << lightView[0].y << " " << lightView[1].y << " " << lightView[2].y << " " << lightView[3].y << " ";
-        std::cout << '\n';
-        std::cout << lightView[0].z << " " << lightView[1].z << " " << lightView[2].z << " " << lightView[3].z << " ";
-        std::cout << '\n';
-        std::cout << lightView[0].w << " " << lightView[1].w << " " << lightView[2].w << " " << lightView[3].w << " ";
-        std::cout << '\n';
-        std::cout << me << std::endl;
 
         ImGui_ImplGlfw_InitForOpenGL(window, true);
         ImGui_ImplOpenGL3_Init("#version 330");

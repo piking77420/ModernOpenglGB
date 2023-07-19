@@ -2,7 +2,7 @@
 #include "Vector3.h"
 #include "Matrix.h"
 #include "Vector.h"
-
+#include "Quaternion.h"
 
 
 
@@ -46,18 +46,32 @@ Matrix4X4 Matrix4X4::ProjectionMatrix(const float& fov, const float& aspect, con
 
 
 }
-Matrix4X4 Matrix4X4::OrthoGraphicMatrix(float left, float right, float bottom, float top, float zNear, float zFar)
+// SUS
+Matrix4X4 Matrix4X4::OrthoGraphicMatrix(float top, float bot, float right, float left, float Near, float Far)
 {
-	Matrix4X4 result = Matrix4X4::Identity();
+	Matrix4X4 result;
 
-	result[0][0] = (2.f) / (right - left);
-	result[1][1] = (2.f) / (top - bottom);
-	result[2][2] = -(2.f) / (zFar - zNear);
-	result[3][0] = -(right + left) / (right - left);
-	result[3][1] = -(top + bottom) / (top - bottom);
-	result[3][2] = -(zFar + zNear) / (zFar - zNear);
+	float topBottomDiff = top - bot;
+	float rightLeftDiff = right - left;
+	float farMinusNear = Far - Near;
+
+	float r00 = 2.0f / rightLeftDiff;
+	float r11 = 2.0f / topBottomDiff;
+	float r22 = -2.0f / farMinusNear;
+
+	float r03 = -(right + left) / rightLeftDiff;
+	float r13 = -(top + bot) / topBottomDiff;
+	float r23 = -(Far + Near) / farMinusNear;
+
+
+
+	result[0] = Vector4(r00, 0, 0, r03);
+	result[1] = Vector4(0, r11, 0, r13);
+	result[2] = Vector4(0, 0, r22, r23);
+	result[3] = Vector4(0, 0, 0, 1.f);
 
 	return result;
+
 }
 
 
@@ -107,11 +121,11 @@ Matrix4X4 Matrix4X4::RotationX4X4(const float& angle)
 
 	result.Colums[1].x = 0;
 	result.Colums[1].y = cos((angle));
-	result.Colums[1].z = -sin((angle));
+	result.Colums[1].z = sin((angle));
 	result.Colums[1].w = 0;
 
 	result.Colums[2].x = 0;
-	result.Colums[2].y = sin((angle));
+	result.Colums[2].y = -sin((angle));
 	result.Colums[2].z = cos((angle));
 	result.Colums[2].w = 0;
 
@@ -161,6 +175,17 @@ Matrix4X4 Matrix4X4::TRS(const Vector3& translation, const Vector3& angle, const
 	return (  translationMatrix * ( rotationMatrix * scalingMatrix));
 }
 
+Matrix4X4 Matrix4X4::TRS(const Vector3& translation, const Quaternion& rotation, const Vector3& scaling)
+{
+
+	Matrix4X4 translationMatrix = TranslateMatrix4X4(translation);
+	Matrix4X4 rotationMatrix = Quaternion::ToMatrix4X4(rotation);
+	Matrix4X4 scalingMatrix = ScalingMatrix4X4(scaling);
+	return (translationMatrix * (rotationMatrix * scalingMatrix));
+
+	return Matrix4X4();
+}
+
 
 // rad
 Matrix4X4 Matrix4X4::RotationY4X4(const float& angle)
@@ -170,7 +195,7 @@ Matrix4X4 Matrix4X4::RotationY4X4(const float& angle)
 
 	result.Colums[0].x = cos((angle));
 	result.Colums[0].y = 0;
-	result.Colums[0].z = sin((angle));
+	result.Colums[0].z = -sin((angle));
 	result.Colums[0].w = 0;
 
 	result.Colums[1].x = 0;
@@ -178,7 +203,7 @@ Matrix4X4 Matrix4X4::RotationY4X4(const float& angle)
 	result.Colums[1].z = 0;
 	result.Colums[1].w = 0;
 
-	result.Colums[2].x = -sin((angle));
+	result.Colums[2].x = sin((angle));
 	result.Colums[2].y = 0;
 	result.Colums[2].z = cos((angle));
 	result.Colums[2].w = 0;
@@ -200,11 +225,11 @@ Matrix4X4 Matrix4X4::RotationZ4X4(const float& angle)
 
 
 	result.Colums[0].x = cos((angle));
-	result.Colums[0].y = -sin((angle));
+	result.Colums[0].y = sin((angle));
 	result.Colums[0].z = 0;
 	result.Colums[0].w = 0;
 
-	result.Colums[1].x = sin((angle));
+	result.Colums[1].x = -sin((angle));
 	result.Colums[1].y = cos((angle));
 	result.Colums[1].z = 0;
 	result.Colums[1].w = 0;
@@ -353,8 +378,6 @@ Vector4& Matrix4X4::operator[](const int& i)
 
 Matrix4X4 Matrix4X4::LookAt(const Vector3& eye, const Vector3& at, const Vector3& up)
 {
-	Matrix4X4 LookAtMatrix = Matrix4X4::Identity();
-	/*
 	Vector3 zaxis = (at - eye).Normalize();
 	Vector3 xaxis = Vector3::CrossProduct(up,zaxis).Normalize();
 	Vector3 yaxis = Vector3::CrossProduct(zaxis,xaxis);
@@ -382,29 +405,10 @@ Matrix4X4 Matrix4X4::LookAt(const Vector3& eye, const Vector3& at, const Vector3
 	LookAtMatrix.Colums[3].y = -(Vector3::DotProduct(yaxis, eye));
 	LookAtMatrix.Colums[3].z = -(Vector3::DotProduct(zaxis,eye));
 	LookAtMatrix.Colums[3].w = 1;
-	*/
 
-	
-	Vector3 const f((at - eye).Normalize());
-	Vector3 const s((Vector3::CrossProduct(f, up).Normalize()));
-	Vector3 const u((Vector3::CrossProduct(s, f)));
 
-	LookAtMatrix[0][0] = s.x;
-	LookAtMatrix[1][0] = s.y;
-	LookAtMatrix[2][0] = s.z;
-	LookAtMatrix[0][1] = u.x;
-	LookAtMatrix[1][1] = u.y;
-	LookAtMatrix[2][1] = u.z;
-	LookAtMatrix[0][2] = -f.x;
-	LookAtMatrix[1][2] = -f.y;
-	LookAtMatrix[2][2] = -f.z;
-	LookAtMatrix[3][0] = -Vector3::DotProduct(s, eye);
-	LookAtMatrix[3][1] = -Vector3::DotProduct(u, eye);
-	LookAtMatrix[3][2] = Vector3::DotProduct(f, eye);
-
-	
 	return LookAtMatrix;
-	
+
 
 }
 
@@ -542,7 +546,20 @@ Matrix4X4::~Matrix4X4()
  
 std::ostream& operator<<(std::ostream& stream, const Matrix4X4& maxtrix)
 {
-	
+
+	for (short int i = 0; i < 4; i++)
+	{
+		for (short int k = 0;k < 4;k++)
+		{
+			float value = maxtrix.Colums[k][i];
+			if (value > -0.0002 && value < 0.0002)
+				value = 0;
+
+			stream << value << " ";
+		}
+		stream << '\n';
+	}
+	/*
 	stream << maxtrix.Colums[0].x << " " << maxtrix.Colums[1].x << " " << maxtrix.Colums[2].x << " " << maxtrix.Colums[3].x << " ";
 	stream << '\n';
 	stream << maxtrix.Colums[0].y << " " << maxtrix.Colums[1].y << " " << maxtrix.Colums[2].y << " " << maxtrix.Colums[3].y << " ";
@@ -550,6 +567,6 @@ std::ostream& operator<<(std::ostream& stream, const Matrix4X4& maxtrix)
 	stream << maxtrix.Colums[0].z << " " << maxtrix.Colums[1].z << " " << maxtrix.Colums[2].z << " " << maxtrix.Colums[3].z << " ";
 	stream << '\n';
 	stream << maxtrix.Colums[0].w << " " << maxtrix.Colums[1].w << " " << maxtrix.Colums[2].w << " " << maxtrix.Colums[3].w << " ";
-
+	*/
 	return stream;
 }

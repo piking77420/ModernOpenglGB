@@ -15,7 +15,7 @@ void Gizmo::Render(Shader* shaderProgramm, Scene* scene)
 
 Gizmo::Gizmo(Collider* collider)
 {
-	transformEntity = &collider->EntityAttachTo;
+	transformEntity =  &collider->EntityAttachTo;
 
 }
 

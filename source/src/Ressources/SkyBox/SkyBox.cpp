@@ -7,10 +7,10 @@ void SkyBox::Draw() const
 {
 
     // TO DO RESERVE FOR EACH TEXTRURE A SLOT 
+    glActiveTexture(GL_TEXTURE30);
     m_Cubemaps.BindCubeMap();
     glDepthFunc(GL_LEQUAL);
     glBindVertexArray(VAO);
-    glActiveTexture(GL_TEXTURE0 + m_Cubemaps.slot);
     glDrawArrays(GL_TRIANGLES, 0, 36);
     glBindVertexArray(0);
     glDepthFunc(GL_LESS);

@@ -57,7 +57,9 @@ private:
 	SkyBox* m_CurrentSkybox;
 	ContentBrowser* m_ContentBrowser;
 	Shader* GizmoShader;
-	Shader* BaseShader;
 	Shader* Stencil;
+	Shader* DepthShader;
+	Shader* ShadowShader;
+	Shader* BaseShader;
 };
 

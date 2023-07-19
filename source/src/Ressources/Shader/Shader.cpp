@@ -170,7 +170,6 @@ void Shader::SetVector3(const std::string& name, const float* value) const
 
 void Shader::SetMaterial(const std::string& name, const Material& material) const
 {
-    // TO DO MATERIAL DIFFUSE AND SPECULAR WILL BE 0 AND 1 
     SetInt("material.diffuse", material.diffuse);
     SetInt("material.specular", material.specular);
     SetFloat("material.shininess", material.shininess);

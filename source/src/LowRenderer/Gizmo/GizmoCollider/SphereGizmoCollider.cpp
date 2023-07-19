@@ -21,8 +21,8 @@ void SphereGizmoCollider::Render(Shader* shaderProgramm, Scene* scene)
 	if (*transformEntity == nullptr)
 		return;
 
-	Entity* e = *transformEntity;
-	Transform* transform = &e->transform;
+	const Entity* e = *transformEntity;
+	const Transform* transform = &e->transform;
 
 
 	Matrix4X4 test = Matrix4X4::TRS(Vector3::Zero, Vector3::Zero, Vector3(*radius, *radius, *radius));

@@ -4,25 +4,13 @@
 
 
 
-/*
-Matrix4X4& DirectionalLight::SetLookAtMatrix()
+
+
+
+
+Matrix4X4 DirectionalLight::GetLightSpaceMatrix() const
 {
-	Matrix4X4 look = Matrix4X4().LookAt(EntityAttachTo->transform.GetWordlPos(), Vector3::Zero, Vector3(0.0, 1.0, 0.0));
-
-	Matrix4X4 ortho = Matrix4X4().OrthoGraphicMatrix(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
-
-	return m_LightViewMatrix;
-}*/
-
-const Matrix4X4& DirectionalLight::GetLookAtMatrix() const
-{
-	float near_plane = 1.0f, far_plane = 7.5f;
-
-	Matrix4X4 look = Matrix4X4().LookAt(EntityAttachTo->transform.GetWordlPos(), Vector3::Zero, Vector3(0.0, 1.0, 0.0));
-
-	Matrix4X4 ortho = Matrix4X4().OrthoGraphicMatrix(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
-
-	return ortho * look;
+	return lightProjection * lightView;
 }
 
 void DirectionalLight::ImguiWindowComponents()
@@ -50,7 +38,7 @@ void DirectionalLight::SetUniform(Shader* shader) const
 		shader->SetVector3("dirLight.ambient", ambiant.GetPtr());
 		shader->SetVector3("dirLight.diffuse", diffuse.GetPtr());
 		shader->SetVector3("dirLight.specular", specular.GetPtr());
-		shader->SetMaxtrix("lightSpaceMatrix", GetLookAtMatrix().GetPtr());
+		shader->SetMaxtrix("lightSpaceMatrix", GetLightSpaceMatrix().GetPtr());
 
 	}
 }

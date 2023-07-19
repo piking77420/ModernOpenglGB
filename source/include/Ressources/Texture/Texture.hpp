@@ -6,6 +6,13 @@
 class Shader;
 
 
+// DIFFUSE 0 
+// SPECULAR 1 
+
+
+
+
+
 
 class Texture : public IResource
 {
