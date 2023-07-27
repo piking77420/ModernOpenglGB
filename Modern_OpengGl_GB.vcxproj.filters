@@ -72,9 +72,6 @@
     <ClInclude Include="source\include\Core\Math\Matrix4X4.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\Core\Math\Primitive.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="source\include\Core\Math\Vector.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -310,9 +307,6 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\Core\Math\Matrix4X4.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\Core\Math\Primitive.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\Core\Math\Vector.cpp">

@@ -189,7 +189,6 @@
     <ClInclude Include="source\include\Core\Math\Matrix2X2.h" />
     <ClInclude Include="source\include\Core\Math\Matrix3X3.h" />
     <ClInclude Include="source\include\Core\Math\Matrix4X4.h" />
-    <ClInclude Include="source\include\Core\Math\Primitive.h" />
     <ClInclude Include="source\include\Core\Math\Vector.h" />
     <ClInclude Include="source\include\Core\Math\Vector2.h" />
     <ClInclude Include="source\include\Core\Math\Vector3.h" />
@@ -292,7 +291,6 @@
     <ClCompile Include="source\src\Core\Math\Matrix2X2.cpp" />
     <ClCompile Include="source\src\Core\Math\Matrix3X3.cpp" />
     <ClCompile Include="source\src\Core\Math\Matrix4X4.cpp" />
-    <ClCompile Include="source\src\Core\Math\Primitive.cpp" />
     <ClCompile Include="source\src\Core\Math\Vector.cpp" />
     <ClCompile Include="source\src\Core\Math\Vector2.cpp" />
     <ClCompile Include="source\src\Core\Math\Vector3.cpp" />

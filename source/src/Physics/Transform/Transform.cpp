@@ -1,5 +1,5 @@
 #include "Physics/Transform/Transform.h"
-
+#include "Ressources/Scene/Scene.h"
 
 int Transform::TransformGlobalID = 0;
 
@@ -73,7 +73,7 @@ const Vector3 Transform::GetWordlPos()
 
 void Transform::Update(Scene* scene)
 { 
-	
+		
 		UpdateMatrix();
 	
 }
@@ -145,6 +145,8 @@ void Transform::UpdateMatrix()
 
 	//std::cout << Quaternion::EulerAngle(rotate) << std::endl;
 	//m_LocalMatrix = Matrix4X4::TRS(pos, rotate, scale);
+
+	
 
 	if (Parents != nullptr)
 	{
