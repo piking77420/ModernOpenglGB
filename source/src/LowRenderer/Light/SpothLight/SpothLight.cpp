@@ -72,12 +72,12 @@ SpothLight::SpothLight()
 	Light::NbrofSpothLight++;
 	m_ComponentName = "Spothlight";
 	SpecularStrengt = 32;
-	LightDirection = Vector3::Forward;
-	SpothDirection = Vector3::Forward;
+	LightDirection = Vector3::Forward();
+	SpothDirection = Vector3::Forward();
 
-	ambiant = Vector4::Zero;
-	diffuse = Vector4::One;
-	specular = Vector4::One;
+	ambiant = Vector4::Zero();
+	diffuse = Vector4::One();
+	specular = Vector4::One();
 
 }
 

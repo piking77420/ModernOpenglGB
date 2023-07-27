@@ -4,25 +4,6 @@
 #include "Vector2.h"
 #include "Mathf.h"
 
-const Vector4 Vector4::Zero = Vector4(0,0,0,0);
-const Vector4 Vector4::One = Vector4(1, 1, 1, 1);
-
-
-
-
-float Vector4::operator[](int i) const
-{
-	assert(i >= 0 && i < 4);
-	const float* data = &x;
-	return data[i];
-}
-
-float& Vector4::operator[](int i)
-{
-	assert(i >= 0 && i < 4);
-	float* data = &x;
-	return data[i];
-}
 
 
 Vector4 Vector4::operator+(float value)
@@ -51,10 +32,6 @@ Vector4 Vector4::operator*(float value)
 
 	return Vector4(x * value, y * value, z * value, w * value);
 }
-Vector4::Vector4(float _x, float _y, float _z, float _w)
-	: x(_x), y(_y), z(_z), w(_w)
-{
-}
 
 
 
@@ -64,14 +41,8 @@ Vector4::Vector4(float _x, float _y, float _z, float _w)
 
 
 
-Vector4::Vector4(const Vector3& vec)
-{
-	this->x = vec.x;
-	this->y = vec.y;
-	this->z = vec.z;
-	this->w = 1;
 
-}
+
 
 
 float Vector4::Norm() const
@@ -129,7 +100,7 @@ Vector4::operator Vector3() const
 
 
 
-float Vector4::Angle(const Vector4& vec1, const Vector4& vec2)
+float inline  Vector4::Angle(const Vector4& vec1, const Vector4& vec2)
 {
 	float dot = DotProduct(vec1, vec2);
 	float normVec1 = vec1.Norm();

@@ -76,9 +76,9 @@ PointLight::PointLight() : constant(1.0f), linear(0.09f), quadralitic(0.032f)
 	pointLightID = Light::NbrofPointLight;
 	Light::NbrofPointLight++;
 	m_ComponentName = "PointLight";
-	ambiant = Vector4::One;
-	diffuse = Vector4::One;
-	specular = Vector4::One;
+	ambiant = Vector4::One();
+	diffuse = Vector4::One();
+	specular = Vector4::One();
 }
 
 PointLight::~PointLight()

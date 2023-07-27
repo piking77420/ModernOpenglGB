@@ -37,7 +37,7 @@ Light::Light(Vector4 _ambiant, Vector4 _diffuse, Vector4 _specular, float _specu
 	SpecularStrengt = _specularStrenght;
 }	
 
-Light::Light() :ambiant(Vector4::One) , diffuse(Vector4::One) , specular(Vector4::One) ,SpecularStrengt(0.4f) 
+Light::Light() :ambiant(Vector4::One()) , diffuse(Vector4::One()) , specular(Vector4::One()) ,SpecularStrengt(0.4f) 
 {
 
 }

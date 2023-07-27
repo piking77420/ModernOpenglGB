@@ -31,13 +31,14 @@ std::ostream& operator<<(std::ostream& stream, const Matrix& matrix)
 
 Vector& Matrix::operator[](int i)
 {
-	
+	assert(i >= 0 && i < Size());
 
 	return mData[i];
 }
 
 Vector Matrix::operator[](int i) const
 {
+	assert(i >= 0 && i < Size());
 	return mData[i];
 }
 
@@ -335,7 +336,7 @@ int returnMaxInColomm(Matrix& matrix, const int& r, const int& j)
 	float max = ReturnAbsol(matrix[r][j]);
 
 	// cout << " here "<< r << "  matrix.Vectors.size() - r" << endl;
-	for (size_t i = currentLign; i < matrix.mData.size() - r; i++)
+	for (int i = currentLign; i < matrix.mData.size() - r; i++)
 	{
 
 		if (ReturnAbsol(matrix[i][j]) > ReturnAbsol(max))
@@ -362,7 +363,7 @@ Matrix Matrix::PivotDeGauss()
 	int n = result.mData.size(); // nbr of ligne
 	int i = result.mData[0].data.size(); /// taile d'une ligne 
 
-	for (size_t j = 0; j < n; j++)
+	for (int j = 0; j < n; j++)
 	{
 		//cout << endl << endl << " Loop " << j << endl << result << endl;
 
@@ -377,7 +378,7 @@ Matrix Matrix::PivotDeGauss()
 
 			float toDivide = result[k][j];
 
-			for (size_t l = 0; l < i; l++)
+			for (int l = 0; l < i; l++)
 			{
 				//cout << result[k][l] << "/" << toDivide << endl;
 				result[k][l] = result[k][l] / toDivide;
@@ -394,13 +395,13 @@ Matrix Matrix::PivotDeGauss()
 			//cout << result << endl;
 
 
-			for (size_t m = 0; m < n; m++)
+			for (int m = 0; m < n; m++)
 			{
 				//cout << "m = " << m << " r = " << r << endl;
 				if (m != r)
 				{
 					float alpha = result[m][j];
-					for (size_t l = 0; l < i; l++)
+					for (int l = 0; l < i; l++)
 					{
 						//cout << result[m][l] << " -= " << alpha << " * " << result[r][l] << endl;
 						result[m][l] -= alpha * result[r][l];
@@ -432,7 +433,7 @@ Matrix::operator Matrix3X3()
 
 	Matrix3X3 result; 
 
-	for (size_t i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		result.Ligns[i].x = mData[i][0];
 		result.Ligns[i].y = mData[i][1];
@@ -467,18 +468,18 @@ Matrix Matrix::SubDivideMatrix(const Matrix& matrix, int index)
 
 	Matrix result = Matrix(SizeY, SizeX);
 
-	size_t result_i = 0;  // Indice pour parcourir la matrice `result`
+	int result_i = 0;  // Indice pour parcourir la matrice `result`
 
-	for (size_t i = 0; i <= SizeX; i++)
+	for (int i = 0; i <= SizeX; i++)
 	{
 		if (i == index)
 		{
 			continue;  
 		}
 
-		size_t result_n = 0;  
+		int result_n = 0;  
 
-		for (size_t n = 0; n <= SizeY; n++)
+		for (int n = 0; n <= SizeY; n++)
 		{
 			if (n == index)
 			{
@@ -505,7 +506,7 @@ float Matrix::CalculateDertimant(const Matrix& matrix)
 
 	if (matrix.Size() != 2 && matrix[0].data.size() != 2)
 	{
-		for (size_t i = 0; i < matrix[0].Size(); i++)
+		for (int i = 0; i < matrix[0].Size(); i++)
 		{
 
 			if (i % 2 == 0)
@@ -544,9 +545,9 @@ Matrix Matrix::ReturnAugmentedMatrix(const Matrix& base, const Matrix& added)
 
 
 
-	for (size_t i = 0; i < added.mData.size(); i++)
+	for (int i = 0; i < added.mData.size(); i++)
 	{
-		for (size_t k = 0; k < added.mData[i].data.size(); k++)
+		for (int k = 0; k < added.mData[i].data.size(); k++)
 		{
 			result.mData[i].data.push_back(added.mData[i].data[k]);
 		}
@@ -578,9 +579,9 @@ Matrix Matrix::Invert()
 
 	Matrix result(copy.mData.size(), ligneSize2);
 
-	for (size_t i = 0; i < copy.mData.size(); i++)
+	for (int i = 0; i < copy.mData.size(); i++)
 	{
-		for (size_t k = ligneSize2; k < lignSize; k++)
+		for (int k = ligneSize2; k < lignSize; k++)
 		{
 			result[i][k - ligneSize2] = copy[i][k];
 		}

@@ -1,6 +1,8 @@
 #include "Matrix3X3.h"
 #include "Vector2.h"
 #include "Matrix.h"
+
+
 Matrix3X3 Matrix3X3::TranslationMatrix3X3(const Vector2& translation)
 {
 	Matrix3X3 result;
@@ -49,7 +51,7 @@ Matrix3X3 Matrix3X3::Rotation2DMatrix3X3(const float& angle)
 
 
 
-Matrix3X3 Matrix3X3::Identity() const
+Matrix3X3 Matrix3X3::Identity() 
 {
 	Matrix3X3 result;
 
@@ -72,14 +74,7 @@ Matrix3X3 Matrix3X3::Identity() const
 	return result;
 }
 
-Matrix3X3::Matrix3X3(const Vector3& a, const Vector3& b, const Vector3& c)
-{
-	Coloms[0] = a;
-	Coloms[1] = b;
-	Coloms[2] = c;
-	
 
-}
 
 Matrix3X3 Matrix3X3::operator*(const Matrix3X3& matrix)
 {
@@ -104,12 +99,26 @@ Matrix3X3 Matrix3X3::operator*(const Matrix3X3& matrix)
 }
 
 Matrix3X3 Matrix3X3::Invert()
-{
+{/*
 	Matrix m = (Matrix)*this;
 
 	m = m.Invert();
 
-	return (Matrix3X3)m;
+	return (Matrix3X3)m;*/
+
+	Matrix3X3 adj = Matrix3X3::AdjoinMatrix(*this);
+	float determinant = Matrix3X3::Determinant(*this);
+
+	Matrix3X3 result;
+	for (int i = 0; i < 3; i++)
+	{
+		for (int k = 0; k < 3; k++)
+		{
+			result[i][k] = (1 / determinant) * adj[i][k];
+		}
+	}
+
+	return result;
 }
 
 Matrix3X3 Matrix3X3::Transposate() const
@@ -163,25 +172,6 @@ Matrix3X3::operator Matrix()
 	return result;
 }
 
-const float* Matrix3X3::GetPtr() const
-{
-	return &Coloms[0].x;
-}
-
-float* Matrix3X3::SetPtr()
-{
-	return &Coloms[0].x;
-}
-
-
-
-Matrix3X3::Matrix3X3()
-{
-}
-
-Matrix3X3::~Matrix3X3()
-{
-}
 
  Matrix3X3 operator+(const Matrix3X3& max, const Matrix2X2& max1)
 {

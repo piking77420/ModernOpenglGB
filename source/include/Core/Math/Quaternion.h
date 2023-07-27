@@ -7,8 +7,8 @@ class Quaternion
 {
 public:
 
-	float scalar;
-	Vector3 vector;
+	float scalar = 0;
+	Vector3 vector = Vector3::Zero();
 
 	constexpr inline float NormSquare() const
 	{
@@ -39,7 +39,7 @@ public:
 		return *this;
 	}
 
-	inline Quaternion Conjugate() const
+	constexpr inline Quaternion Conjugate() const
 	{
 		return Quaternion(scalar, -vector);
 	}
@@ -86,13 +86,20 @@ public:
 		return Quaternion(scalarResult, vectorResult);
 
 	}
+	[[nodiscard]]
+	static inline Quaternion LookAt(const Vector3 pos,const Vector3 at)
+	{
 
+	}
 
 	static Matrix3X3 ToMatrix3X3(const Quaternion& Q1) ;
 	static Matrix4X4 ToMatrix4X4(const Quaternion& Q1);
 
 	static Quaternion EulerAngle(const Vector3& eulerAngle);
 	Vector3 ToEulerAngle() const ;
+
+#pragma region Operator
+
 
 	inline Quaternion operator+(const Quaternion& Q1) const;
 	inline Quaternion operator-(const Quaternion& Q1) const;
@@ -105,12 +112,16 @@ public:
 	float operator[](int i) const;
 	float& operator[](int i);
 
-	Quaternion(float _scalar,const Vector3& _vector);
-	Quaternion();
-	~Quaternion();
+#pragma endregion
+	constexpr Quaternion(float _scalar,const Vector3& _vector) : scalar(_scalar), vector(_vector)
+	{
+	}
+	constexpr Quaternion() = default;
+
 
 private:
 };
+#pragma region Operator
 
 inline Quaternion Quaternion::operator*(const Quaternion& Q1) const
 {
@@ -147,5 +158,6 @@ inline Quaternion Quaternion::operator*(float value)
 	Vector3 imaginaryValue = vector * value;
 	return Quaternion(scalarValue, imaginaryValue);
 }
+#pragma endregion
 
 std::ostream& operator<<(std::ostream& stream, const Quaternion& q);

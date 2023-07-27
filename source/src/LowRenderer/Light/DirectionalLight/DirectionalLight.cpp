@@ -53,17 +53,17 @@ DirectionalLight::DirectionalLight(const Vector4& _ambiant, const Vector4& _diff
 	ambiant = _ambiant;
 	diffuse = _diffuse;
 	specular = _specular;
-	Direction = _Direction;
+	Direction =  static_cast<Vector3>(_Direction);
 }
 
 DirectionalLight::DirectionalLight() 
 {
 	m_ComponentName = "DirectionnalLight";
 
-	ambiant = Vector4::One;
-	diffuse = Vector4::One;
-	specular = Vector4::One;
-	Direction = Vector3::Forward;
+	ambiant = Vector4::One();
+	diffuse = Vector4::One();
+	specular = Vector4::One();
+	Direction = Vector3::Forward();
 }
 
 

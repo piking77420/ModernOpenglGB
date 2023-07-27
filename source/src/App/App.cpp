@@ -21,6 +21,8 @@
 #include "LowRenderer/FrameBuffer/DepthMap/Depthmap.h"
 #include "External/yaml-cpp/yaml.h"
 #include "Collider/SphereCollider/SphereCollider.h"
+#include "MathTransform.h"
+
 
 Scene* App::currentScene = nullptr;
 bool App::GammaCorrection = false;
@@ -193,8 +195,8 @@ void App::InitScene()
 	DirectionnalLight->AddComponent<DirectionalLight>();
 
 	float near_plane = 1.0f, far_plane = 7.5f;
-	DirectionnalLight->GetComponent<DirectionalLight>()->lightProjection = Matrix4X4::OrthoGraphicMatrix(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
-	DirectionnalLight->GetComponent<DirectionalLight>()->lightView = Matrix4X4::LookAt(Vector3(-2.0f, 4.0f, -1.0f), Vector3::Zero, Vector3::Up);
+	DirectionnalLight->GetComponent<DirectionalLight>()->lightProjection = MathTransform::OrthoGraphicMatrix(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
+	DirectionnalLight->GetComponent<DirectionalLight>()->lightView = MathTransform::LookAt(Vector3(-2.0f, 4.0f, -1.0f), Vector3::Zero(), Vector3::Up());
 
 
 

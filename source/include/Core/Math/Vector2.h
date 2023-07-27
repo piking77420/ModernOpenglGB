@@ -20,10 +20,18 @@ public:
 		return 2;
 	}
 #pragma region Function
-	// Return Norm of a Vector
+	/**
+	* @fn constexpr inline float Norm() const;
+	* @brief This function calculates the norm of the vector
+	* @return The norm of the vector.
+	*/
 	[[nodiscard]]
 	constexpr inline float Norm() const;
-	// return Normaize one Vector
+	/**
+	* @fn constexpr inline Vector2 Normalize() const
+	* @brief This function calculates The vector normalize
+	* @return The normalize vector.
+	*/
 	[[nodiscard]]
 	constexpr inline Vector2 Normalize() const
 	{
@@ -34,27 +42,38 @@ public:
 
 		return Vector2(float(x / magnitude), float(y / magnitude));
 	}
-	// Return the dot product
+	/**
+	* @fn constexpr inline static float DotProduct(const Vector3& vec1, const Vector3& vec2) noexcept
+	* @brief This fonction does the dot product of Vec1 and Vec2.
+	* @return The dotProduct.
+	*/
 	[[nodiscard]]
-	constexpr inline static float DotProduct(const Vector2& vec1, const Vector2& Row1)
+	constexpr inline static float DotProduct(const Vector2 vec1, const Vector2 Row1)
 	{
 		return vec1.x * Row1.x + vec1.y * Row1.y;
 	}
-	// Return the Normal of a Vector
+	/**
+	* @fn constexpr inline Vector2 Normal() const 
+	* @brief This fonction Return the Normal of the vector.
+	* @return The Normal Vector.
+	*/
 	[[nodiscard]]
-	Vector2 Normal() const;
+	constexpr inline Vector2 Normal() const 
+	{
+		return Vector2(y, -x).Normalize();
+	}
 	// Return CrossProduct
 	[[nodiscard]]
-	float CrossProduct(const Vector2& vec1, const Vector2& vec2) const;
+	float CrossProduct(const Vector2 vec1, const Vector2 vec2) const;
 	// Return Angle between 2 vectors
 	[[nodiscard]]
-	static float Angle(const Vector2& vec1, const Vector2& Row1) ;
+	static float Angle(const Vector2 vec1, const Vector2 Row1) ;
 	// Return Trigonametrial angle Cos(x) and sin(Y)
 	[[nodiscard]]
 	float Angle() const;
 	//Return Determiant
 	[[nodiscard]]
-	constexpr static float Determinant(const Vector2& vec1, const Vector2& vec2)
+	constexpr static float Determinant(const Vector2 vec1, const Vector2 vec2)
 	{
 		return (vec1.x * vec2.y) - (vec1.y * vec2.x);
 	}
@@ -72,33 +91,105 @@ public:
 
 	// Return the address of the first value;
 	[[nodiscard]]
-	float* SetPtr();
+	constexpr float* SetPtr() 
+	{
+		return &x;
+	}
 	// Return the address of the first value;
 	[[nodiscard]]
-	const float* GetPtr() const;
+	constexpr const float* GetPtr() const 
+	{
+		return &x;
+	}
 
+	/**
+	* \name Basic Value Constants
+	* @{
+	*/
 
+	/**
+	* @brief Return Vector2(0.f, 0.f)
+	*/
+	constexpr inline static const Vector2 Zero()
+	{
+		return Vector2(0.f, 0.f);
+	}
 
-	static const Vector2 Zero;
-	static const Vector2 One;
-	static const Vector2 Right;
-	static const Vector2 Left;
-	static const Vector2 Up;
-	static const Vector2 Down;
+	/**
+	* @brief Return Vector2(1.f, 1.f)
+	*/
+	constexpr inline static const Vector2 One()
+	{
+		return Vector2(1.f, 1.f);
+	}
+
+	/**
+	* @brief Return Vector2(1.f, 0.f)
+	*/
+	constexpr inline static const Vector2 Right()
+	{
+		return Vector2(1.f, 0.f);
+	}
+
+	/**
+	* @brief Return Vector2(-1.f, 0.f)
+	*/
+	constexpr inline static const Vector2 Left()
+	{
+		return Vector2(-1.f, 0.f);
+	}
+
+	/**
+	 * @brief Return Vector2(0.f, 1.f)
+	 */
+	constexpr inline static const Vector2 Up()
+	{
+		return Vector2(0.f, 1.f);
+	}
+
+	/**
+	 * @brief Return Vector2(0.f, -1.f)
+	 */
+	constexpr inline static const Vector2 Down()
+	{
+		return Vector2(0.f, -1.f);
+	}
+
+	
+	/** @} */ // End of Basic Value Constants
 
 #pragma endregion 
-	Vector2(float x, float y) ; 
-	Vector2() = default;
+	constexpr Vector2(float _x, float _y) : x(_x), y(_y)
+	{
+	}
+	constexpr Vector2() = default;
 
 	explicit operator Vector() const;
 	explicit operator Vector3() const;
 	explicit operator Vector4() const;
 
-	float operator[](int i) const;
-	float& operator[](int i);
+	constexpr float operator[](int i) const {
+		assert(i >= 0 && i < 2);
+		[[assume(i >= 0 && i < 2)]]
+
+		if (i == 0)
+			return x;
+
+		if (i == 1)
+			return y;
+	}
+	constexpr float& operator[](int i)
+	{
+		assert(i >= 0 && i < 2);
+		[[assume(i >= 0 && i < 2)]]
+
+		if (i == 0)
+			return x;
+		if (i == 1)
+			return y;
+	}
 
 
-private:
 
 };
 
@@ -106,80 +197,80 @@ private:
 
 #pragma region Operator
 
- inline Vector2 operator+(const Vector2& vec1, const Vector2& Row1)
+constexpr inline Vector2 operator+(const Vector2 vec1, const Vector2 Row1)
 {
 	return Vector2(vec1.x + Row1.x, vec1.y + Row1.y);
 }
 
- inline Vector2 operator-(const Vector2& vec1, const Vector2& Row1)
+constexpr inline Vector2 operator-(const Vector2 vec1, const Vector2 Row1)
 {
 	return Vector2(vec1.x - Row1.x, vec1.y - Row1.y);
 }
 
- inline Vector2 operator*(const Vector2& vec1, const Vector2& Row1)
+constexpr inline Vector2 operator*(const Vector2 vec1, const Vector2 Row1)
 {
 	return Vector2(vec1.x * Row1.x, vec1.y * Row1.y);
 }
 
- inline Vector2 operator/(const Vector2& vec1, const Vector2& Row1)
+constexpr inline Vector2 operator/(const Vector2 vec1, const Vector2 Row1)
 {
 	return Vector2(vec1.x / Row1.x, vec1.y / Row1.y);
 }
 
 
- inline Vector2 operator+(const Vector2& vec1, const float& value)
- {
-	 Vector2 result = vec1;
-	 result.x += value;
-	 result.y += value;
-	 return result;
- }
+constexpr inline Vector2 operator+(const Vector2 vec1, const float& value)
+{
+	Vector2 result = vec1;
+	result.x += value;
+	result.y += value;
+	return result;
+}
 
- inline Vector2 operator*(const Vector2& vec1, const float& value)
- {
-	 Vector2 result = vec1;
-	 result.x *= value;
-	 result.y *= value;
-	 return result;
- }
+constexpr inline Vector2 operator*(const Vector2 vec1, const float& value)
+{
+	Vector2 result = vec1;
+	result.x *= value;
+	result.y *= value;
+	return result;
+}
 
- inline Vector2 operator/(const Vector2& vec1, const float& value)
- {
-	 Vector2 result = vec1;
-	 result.x /= value;
-	 result.y /= value;
-	 return result;
- }
+constexpr inline Vector2 operator/(const Vector2 vec1, const float& value)
+{
+	Vector2 result = vec1;
+	result.x /= value;
+	result.y /= value;
+	return result;
+}
 
- inline Vector2 operator-(const Vector2& vec1, const float& value)
- {
-	 Vector2 result = vec1;
-	 result.x -= value;
-	 result.y -= value;
-	 return result;
- }
+constexpr inline Vector2 operator-(const Vector2 vec1, const float& value)
+{
+	Vector2 result = vec1;
+	result.x -= value;
+	result.y -= value;
+	return result;
+}
 
 
- inline void operator+=(Vector2& vec1 , Vector2 Row1)
+constexpr inline void operator+=(Vector2& vec1, Vector2 Row1)
 {
 	vec1.x += Row1.x;
 	vec1.y += Row1.y;
 }
 
- inline void operator-=(Vector2& vec1, Vector2 Row1)
+constexpr inline void operator-=(Vector2& vec1, Vector2 Row1)
 {
 	vec1.x -= Row1.x;
 	vec1.y -= Row1.y;
 }
 
 
- inline void operator*=(Vector2& vec1, Vector2 Row1)
+constexpr inline void operator*=(Vector2& vec1, Vector2 Row1)
 {
 	vec1.x *= Row1.x;
 	vec1.y *= Row1.y;
 }
 
- inline void operator/=(Vector2& vec1, Vector2 Row1)
+constexpr inline void operator/=(Vector2& vec1, Vector2 Row1)
 {
 	vec1.x /= Row1.x;
 	vec1.y /= Row1.y;
@@ -191,22 +282,22 @@ private:
 
 std::ostream& operator<<(std::ostream& stream, const Vector2& vec);
 
-inline bool operator!=(const Vector2& vec1, const Vector2& vec2)
+constexpr inline bool operator!=(const Vector2& vec1, const Vector2& vec2)
 {
 	return vec1.x != vec2.x && vec1.y != vec2.y;
 }
 
-inline bool operator==(const Vector2& vec1, const Vector2& vec2)
+constexpr inline bool operator==(const Vector2& vec1, const Vector2& vec2)
 {
 	return vec1.x == vec2.x && vec1.y == vec2.y;
 }
 
-inline bool operator<=(const Vector2& vec1, const Vector2& vec2)
+constexpr inline bool operator<=(const Vector2& vec1, const Vector2& vec2)
 {
 	return vec1.x <= vec2.x && vec1.y <= vec2.y;
 }
 
-inline bool operator>=(const Vector2& vec1, const Vector2& vec2)
+constexpr inline bool operator>=(const Vector2& vec1, const Vector2& vec2)
 {
 	return vec1.x >= vec2.x && vec1.y >= vec2.y;
 }

@@ -17,7 +17,7 @@
 #define cot(x) (cos(x)/sin(x))
 
 #define TOLERANCE 0.000001f
-#define GRAVITY 4.81f
+#define GRAVITY 9.81f
 
 
 
@@ -26,12 +26,12 @@ namespace Math
 
 	
 	
-	static inline float RadiansToDegrees(float radiant)
+	constexpr static inline float RadiansToDegrees(float radiant)
 	{
 		return radiant * 180.f / M_PI;
 	}
 
-	static inline float DegreesToRadians(float degrees)
+	constexpr static inline float DegreesToRadians(float degrees)
 	{
 		return degrees * M_PI / 180.0;
 	}
@@ -41,8 +41,22 @@ namespace Math
 	{
 		return (startValue + (endValue - startValue) * prt);
 	}
+
+
+
+	[[nodiscard]]
+	static inline Vector3 Slerp(const Vector3& p0, const Vector3& p1, float t) noexcept
+	{
+		float angle = Vector3::Angle(p0, p1);
+
+		float value0 = (std::sin((1 - t) * angle) / sin(angle));
+		float value1 = (std::sin(t * angle) / std::sin(angle));
+
+		return  p0 * value0 + p1 * value1;
+	}
+
 	
-	
+
 	// Fast std::Sqrtf base on Quake3 32bits  
 	constexpr static inline double FSqrtf(float value)
 	{

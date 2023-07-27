@@ -67,7 +67,7 @@ int foundFirstIndex(const std::string& line)
 
 Vector3 readLigneFromStringVec3(const std::string& line )
 {
-	Vector3 result = Vector3::Zero;
+	Vector3 result = Vector3::Zero();
 
 	std::string currentnbr;
 	int coord = 0;
@@ -125,7 +125,7 @@ Vector3 readLigneFromStringVec3(const std::string& line )
 
 Vector2 readLigneFromStringVec2(const std::string& line)
 {
-	Vector2 result = Vector2::Zero;
+	Vector2 result = Vector2::Zero();
 
 	std::string currentnbr;
 	int coord = 0;

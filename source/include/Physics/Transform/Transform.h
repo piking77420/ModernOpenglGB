@@ -2,8 +2,7 @@
 #include<Core/DataStructure/Component/Component.h>
 #include<Mathf.h>
 #include<vector>
-
-class AppData;
+#include "MathTransform.h"
 
 class Transform : public Component
 {

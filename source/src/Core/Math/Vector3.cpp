@@ -3,14 +3,6 @@
 #include "Vector4.h"
 #include "Mathf.h"
 
-const Vector3 Vector3::Zero = Vector3(0.f, 0.f, 0.f);
-const Vector3 Vector3::One = Vector3(1.f, 1.f, 1.f);
-const Vector3 Vector3::Right = Vector3(1.f, 0.f, 0.f);
-const Vector3 Vector3::Left = Vector3(-1.f, 0.f, 0.f);
-const Vector3 Vector3::Up = Vector3(0.f, 1.f, 0.f);
-const Vector3 Vector3::Down = Vector3(0.f, -1.f, 0.f);
-const Vector3 Vector3::Forward = Vector3(0.f, 0.f, 1.f);
-const Vector3 Vector3::BackForward = Vector3(0.f, 0.f, -1.f);
 
 
 
@@ -26,71 +18,39 @@ Vector3::operator Vector4() const
 }
 
 
-float Vector3::operator[](int i) const
-{
-	assert(i >= 0 && i < 3);
-
-	if (i == 0)
-		return x;
-
-	if (i == 1)
-		return y;
-
-	if (i == 2)
-		return z;
-
-}
-
-float& Vector3::operator[](int i)
-{
-	assert(i >= 0 && i < 3);
-
-	if (i == 0)
-		return x;
-
-	if (i == 1)
-		return y;
-
-	if (i == 2)
-		return z;
-}
-
 Vector3::operator Vector2() const
 {
 	return Vector2(x, y);
 }
 
-Vector3::Vector3(const Vector4& vec)
-{
-	this->x = vec.x;
-	this->y = vec.y;
-	this->z = vec.z;
 
-}
-
-Vector3::Vector3(float _x, float  _y, float _z) : x(_x), y(_y), z(_z)
-{
-}
-
-
-
-
-
-
-
-
-
-constexpr inline float Vector3::Norm() const
+constexpr inline float Vector3::FNorm() const
 {
 	return Math::FSqrtf((x * x) + (y * y) + (z * z));
 }
 
-Vector3 Vector3::Reflect(const Vector3& Vector, const Vector3& Normals)
+inline float Vector3::Norm() const
 {
-	Vector3 result = Vector3(0, 0, 0);
-	Vector3 NoramizeNormal = Normals.Normalize();
+	return std::sqrtf((x * x) + (y * y) + (z * z));
+}
 
-	result = Vector - (NoramizeNormal * (2.f * (DotProduct(Vector, Normals))));
+Vector3 Vector3::Normalize() const
+{
+	float norm = Norm();
+
+	if (norm == 1.f)
+		return *this;
+
+	return Vector3(x / norm, y / norm, z / norm);	
+}
+
+
+inline Vector3 Vector3::Reflect(const Vector3& Vector, const Vector3& Normal)
+{
+	Vector3 result = Vector3::Zero();
+	Vector3 NoramizeNormal = Normal.Normalize();
+
+	result = Vector - (NoramizeNormal * (2.f * (DotProduct(Vector, Normal))));
 
 	return result;
 }

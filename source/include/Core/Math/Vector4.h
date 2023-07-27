@@ -1,17 +1,18 @@
 #pragma once
 #include <iostream>
+#include<cassert>
+#include "Vector3.h"
 
-class Vector3;
 class Vector2;
 class Vector;
 
 class Vector4
 {
 public:
-	float x = 0 ;
-	float y = 0 ;
-	float z = 0 ;
-	float w = 0 ;
+	float x = 0;
+	float y = 0;
+	float z = 0;
+	float w = 0;
 
 	constexpr static int Size()
 	{
@@ -35,18 +36,37 @@ public:
 
 
 	[[nodiscard]]
-	static float Angle(const Vector4& vec1, const Vector4& vec2);
+	static inline float Angle(const Vector4& vec1, const Vector4& vec2);
 
 
 
+#pragma region Operator
 
-	float operator[](int i) const;
-	float& operator[](int i);
+	constexpr inline float operator[](int i) const
+	{
+		assert(i >= 0 && i < 4);
+		const float* data = &x;
+		return data[i];
+	}
+	constexpr inline float& operator[](int i)
+	{
+		assert(i >= 0 && i < 4);
+		float* data = &x;
+		return data[i];
+	}
+
 
 	Vector4 operator+(float value);
 	Vector4 operator-(float value);
 	Vector4 operator*(float value);
 	Vector4 operator/(float value);
+
+
+	explicit operator Vector() const;
+	explicit operator Vector2() const;
+	explicit operator Vector3() const;
+
+#pragma endregion
 
 	[[nodiscard]]
 	constexpr static inline float DistanceSquare(const Vector4& a, const Vector4& b)
@@ -59,23 +79,29 @@ public:
 		return std::sqrtf((a.x - b.x * a.x - b.x) + (a.y - b.y * a.y - b.y) + (a.z - b.z * a.z - b.z) + (a.w - b.w * a.w - b.w));
 	}
 
+
+#pragma region Ptr
 	[[nodiscard]]
 	constexpr const float* GetPtr()const { return &x; }
 
 	[[nodiscard]]
 	constexpr float* SetPtr() { return &x; }
+	[[nodiscard]]
+	constexpr inline static const Vector4 Zero()
+	{
+		return Vector4(0, 0, 0, 0);
+	}
+	[[nodiscard]]
+	constexpr inline static const Vector4 One()
+	{
+		return Vector4(1.f, 1.f, 1.f, 1.f);
+	}
+;
 
-	static const Vector4 Zero;
-	static const Vector4 One;
+#pragma endregion
 
-	explicit operator Vector() const;
-	explicit operator Vector2() const;
-	explicit operator Vector3() const;
-
-
-
-	Vector4(const Vector3& vec);
-	Vector4(float _x, float _y, float _z, float _w);
+	constexpr Vector4(const Vector3& vec) : x(vec.x), y(vec.y), z(vec.z), w(1.f) {}
+	constexpr Vector4(float _x, float _y, float _z, float _w) : x(_x), y(_y), z(_z), w(_w) {}
 	Vector4() = default;
 private:
 
@@ -84,7 +110,7 @@ private:
 std::ostream& operator<<(std::ostream& stream, const Vector4& vec);
 
 
-
+#pragma region Operator
 
 inline Vector4 operator+(const Vector4& vec1, const Vector4& Row1)
 {
@@ -196,3 +222,5 @@ inline bool operator>=(const Vector4& vec1, const Vector4& vec2)
 {
 	return vec1.x >= vec2.x && vec1.y >= vec2.y && vec1.z >= vec2.z && vec1.w >= vec2.w;
 }
+
+#pragma endregion

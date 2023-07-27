@@ -121,9 +121,9 @@ Transform::Transform(Entity& currentObject,const Vector3& _pos, const Vector3& _
 Transform::Transform(Entity& currentObject) 
 {
 	m_ComponentName = "Transform";
-	pos = Vector3::Zero;
-	scale = Vector3::One;
-	rotate = Vector3::Zero;
+	pos = Vector3::Zero();
+	scale = Vector3::One();
+	rotate = Vector3::Zero();
 	m_LocalMatrix = Matrix4X4().Identity();
 	m_GlobalMatrix = m_LocalMatrix;
 
@@ -141,7 +141,7 @@ void Transform::UpdateMatrix()
 	
 
 	
-	m_LocalMatrix = Matrix4X4::TRS(pos, Quaternion::EulerAngle(rotate), scale);
+	m_LocalMatrix = MathTransform::TRS(pos, Quaternion::EulerAngle(rotate), scale);
 
 	//std::cout << Quaternion::EulerAngle(rotate) << std::endl;
 	//m_LocalMatrix = Matrix4X4::TRS(pos, rotate, scale);

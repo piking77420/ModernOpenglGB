@@ -145,16 +145,6 @@ void Scene::RenderGizmo(Shader* shaderProgramm)
 void Scene::RenderUi(Shader* shaderProgramm)
 {
 
-	for (size_t i = 0; i < entities.size(); i++)
-	{
-		UIRenderer* Ui = entities[i]->GetComponent<UIRenderer>();
 
-		if (Ui)
-		{
-			Ui->Draw(this, shaderProgramm);
-		}
-
-
-	}
 
 }

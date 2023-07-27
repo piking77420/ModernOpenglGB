@@ -4,16 +4,10 @@
 #include "Matrix3X3.h"
 #include "Matrix.h"
 
-const Matrix2X2 Matrix2X2::Identity = Matrix2X2(1,0,0,1);
 
 
 
-Matrix2X2::Matrix2X2(Vector2 _vec, Vector2 _vec2) 
-{
 
-	Coloms[0] = _vec;
-	Coloms[1] = _vec2;
-}
 
 
 
@@ -24,25 +18,6 @@ Matrix2X2 Matrix2X2::RotationMatrix2X2(float angle)
 }
 
 
-Matrix2X2::Matrix2X2(float x1 , float y1 , float x2 , float y2)
-	
-{
-	Coloms[0].x = x1;
-	Coloms[0].y = y2;
-
-
-	Coloms[1].x = x1;
-	Coloms[1].x = y2;
-
-}
-
-Matrix2X2::Matrix2X2()
-{
-}
-
-Matrix2X2::~Matrix2X2()
-{
-}
 
 Matrix2X2::operator Matrix() const 
 {
@@ -59,12 +34,12 @@ Matrix2X2::operator Matrix() const
 
 Matrix2X2::operator Matrix3X3() const
 {
-	return  Matrix3X3((Vector3)Coloms[0], (Vector3)Coloms[1], Vector3::Zero);
+	return  Matrix3X3((Vector3)Coloms[0], (Vector3)Coloms[1], Vector3::Zero());
 }
 
 Matrix2X2::operator Matrix4X4() const
 {
-	return Matrix4X4((Vector4)Coloms[0], (Vector4)Coloms[1], Vector3::Zero, Vector3::Zero);
+	return Matrix4X4((Vector4)Coloms[0], (Vector4)Coloms[1], Vector3::Zero(), Vector3::Zero());
 }
 
 

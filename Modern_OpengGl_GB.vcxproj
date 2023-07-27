@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="source\include\Core\DataStructure\ComponentsBehaviours.h" />
     <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="source\include\Core\Math\MathTransform.h" />
     <ClInclude Include="source\include\Core\Math\Quaternion.h" />
     <ClInclude Include="source\include\LowRenderer\FrameBuffer\DepthMap\Depthmap.h" />
     <ClInclude Include="source\include\LowRenderer\Gizmo\Gizmo.h" />
@@ -221,7 +222,6 @@
     <ClInclude Include="source\include\Ressources\Texture\Texture.hpp" />
     <ClInclude Include="source\include\src\AppData\AppData.h" />
     <ClInclude Include="source\include\src\App\App.h" />
-    <ClInclude Include="source\include\LowRenderer\Ui\UIRenderer.h" />
     <ClInclude Include="source\include\Core\Input\UserInputs.h" />
     <ClInclude Include="source\include\UI\ContentBrowser.h" />
     <ClInclude Include="source\include\UI\InspectorSelectable.h" />
@@ -316,7 +316,6 @@
     <ClCompile Include="source\src\Ressources\Shader\ShaderSource\ShaderSource.cpp" />
     <ClCompile Include="source\src\Ressources\SkyBox\SkyBox.cpp" />
     <ClCompile Include="source\src\Ressources\Texture\Texture.cpp" />
-    <ClCompile Include="source\src\LowRenderer\Ui\UIRenderer.cpp" />
     <ClCompile Include="source\src\Core\Input\UserInputs.cpp" />
     <ClCompile Include="source\src\UI\ContentBrowser.cpp" />
     <ClCompile Include="source\src\UI\InspectorSelectable.cpp" />

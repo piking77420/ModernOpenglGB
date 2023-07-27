@@ -186,9 +186,6 @@
     <ClInclude Include="source\include\Core\Debug\Debug.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\LowRenderer\Ui\UIRenderer.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="source\include\Core\Debug\Imgui\imconfig.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -241,6 +238,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="source\include\Core\Math\Quaternion.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\Math\MathTransform.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -406,9 +406,6 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\Core\DataStructure\Component\Collider\Raycast.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\LowRenderer\Ui\UIRenderer.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\Ressources\Serializer\Serializer.cpp">

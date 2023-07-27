@@ -1,17 +1,8 @@
 #include "Quaternion.h"
 
 
-Quaternion::Quaternion(float _scalar, const Vector3& _vector) : scalar(_scalar) , vector(_vector)
-{
-}
 
-Quaternion::Quaternion()
-{
-}
 
-Quaternion::~Quaternion()
-{
-}
 float Quaternion::operator[](int i) const
 {
 	assert(i >= 0 && i < 4);
@@ -29,7 +20,7 @@ float& Quaternion::operator[](int i)
 
 Quaternion Quaternion::ConvertToUnitNormQuaternion() const
 {
-	{
+	
 		float angle = Math::DegreesToRadians(scalar);
 		Quaternion result;
 
@@ -39,7 +30,7 @@ Quaternion Quaternion::ConvertToUnitNormQuaternion() const
 		result.vector = result.vector * std::sinf(angle * 0.5);
 
 		return result;
-	}
+	
 }
 
 Matrix3X3 Quaternion::ToMatrix3X3(const Quaternion& Q1) 
@@ -63,27 +54,7 @@ Matrix3X3 Quaternion::ToMatrix3X3(const Quaternion& Q1)
 Matrix4X4 Quaternion::ToMatrix4X4(const Quaternion& Q1) 
 {
 	Matrix4X4 result;
-	/*
-	result[0].x = 2 * (Q1[0] * Q1[0] + Q1[1] * Q1[1]) - 1;
-	result[0].y = 2 * (Q1[1] * Q1[2] - Q1[0] * Q1[3]);
-	result[0].z = 2 * (Q1[1] * Q1[3] + Q1[0] * Q1[2]);
-	result[0].w = 0;
 
-	result[1].x = 2 * (Q1[1] * Q1[2] + Q1[0] * Q1[3]);
-	result[1].y = 2 * (Q1[0] * Q1[0] + Q1[2] * Q1[2]) - 1;
-	result[1].z = 2 * (Q1[2] * Q1[3] - Q1[0] * Q1[1]);
-	result[1].w = 0;
-
-	result[2].x = 2 * (Q1[1] * Q1[3] - Q1[0] * Q1[2]);
-	result[2].y = 2 * (Q1[2] * Q1[3] + Q1[0] * Q1[1]);
-	result[2].z = 2 * (Q1[0] * Q1[0] + Q1[2] * Q1[2]) - 1;
-	result[2].w = 0;
-
-	result[3].x = 0;
-	result[3].y = 0;
-	result[3].z = 0;
-	result[3].w = 1;
-	*/
 	
 	
 	float w = Q1[0];
@@ -128,41 +99,7 @@ Matrix4X4 Quaternion::ToMatrix4X4(const Quaternion& Q1)
 	result[3].z = 0;
 	result[3].w = 1;
 	
-	/*
-	float a = Q1[0];
-	float a2 = std::powf(a,2);
-
-
-	float b = Q1[1];
-	float b2 = std::powf(b, 2);
-
-	float c = Q1[2];
-	float c2 = std::powf(c, 2);
-
-	float d = Q1[3];
-	float d2 = std::powf(d, 2);
-
 	
-	result[0].x = a2 + b2 - c2 - d2;
-	result[0].y = 2 * (b*c + a*d);
-	result[0].z = 2 * (b*d - a*c);
-	result[0].w = 0;
-
-	result[1].x = 2 * (b*c - a*d);
-	result[1].y = a2 - b2 + c2 - d2;
-	result[1].z = 2 * (c*d + a*b);
-	result[1].w = 0;
-
-	result[2].x = 2 * (b*d + a*c);
-	result[2].y = 2 * (c*d - a*b);
-	result[2].z = a2 - b2 - c2 + d2;
-	result[2].w = 0;
-
-	result[3].x = 0;
-	result[3].y = 0;
-	result[3].z = 0;
-	result[3].w = 1;
-	*/
 	
 	return result;
 }
