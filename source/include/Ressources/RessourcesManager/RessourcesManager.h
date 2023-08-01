@@ -3,7 +3,6 @@
 #include <Core/Debug/LogClass.h>
 #include <Core/Debug/AssertClass.h>
 #include "Ressources/Model/Model.h"
-#include "Serializer/Serializer.h"
 #include <thread>
 
 #include<filesystem>
@@ -39,6 +38,10 @@ public:
 	void PushBackElement(std::string name, T* newElement);
 	template<class T>
 	T* GetElement(const std::string& name);
+
+	template<class T>
+	const T* GetElement(const std::string& name) const ;
+
 	template<class T>
 	void Create(const fs::path& FilePath);
 	template<class T>
@@ -47,7 +50,6 @@ public:
 	T* TryIsTypeOf(IResource* ressources) const;
 	
 
-	Serializer serializer;
 
 	RessourcesManager();
 	~RessourcesManager();
@@ -116,6 +118,24 @@ inline T* RessourcesManager::GetElement(const std::string& name)
 	std::string nameofTemplate = typeid(T).name();
 	std::string outputMessage = " There is no " + nameofTemplate + " name as " + name;
 	LOG(outputMessage,STATELOG::WARNING);
+
+	return nullptr;
+}
+
+
+
+template<class T>
+inline const T* RessourcesManager::GetElement(const std::string& name) const
+{
+	auto wanted = (m_MainResourcesMap.find(name));
+
+	if (wanted != m_MainResourcesMap.end())
+	{
+		return dynamic_cast<const T*>(wanted->second);
+	}
+	std::string nameofTemplate = typeid(T).name();
+	std::string outputMessage = " There is no " + nameofTemplate + " name as " + name;
+	LOG(outputMessage, STATELOG::WARNING);
 
 	return nullptr;
 }

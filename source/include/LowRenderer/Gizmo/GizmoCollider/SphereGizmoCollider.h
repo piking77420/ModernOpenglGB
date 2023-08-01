@@ -10,7 +10,7 @@ public:
 	void Render(Shader* shaderProgramm, Scene* scene) override;
 
 	float* radius;
-	SphereGizmoCollider(Collider* collider);
+	SphereGizmoCollider();
 	~SphereGizmoCollider();
 
 private:

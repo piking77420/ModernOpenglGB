@@ -1,150 +1,78 @@
 #include <filesystem>
 #include"LowRenderer/Cam/Camera.h"
-#include <ComponentsBehaviours.h>
 #include "Ressources/Scene/Scene.h"
-#include "Core/DataStructure/Component/Collider/SphereCollider/SphereCollider.h"
-#include "Core/DataStructure/Component/Collider/PlaneCollider.h"
-#include "Collider/BoxCollider/BoxCollider.h"
-#include "LowRenderer/Ui/UIRenderer.h"
 #include "App/App.h"
 #include "LowRenderer/FrameBuffer/FrameBuffer.h"
+
 
 FrameBuffer* Scene::OpenGlRenderToImgui = new FrameBuffer(windowWidth, windowHeight);
 RessourcesManager* Scene::ressourcesManagers = nullptr;
 
-Scene::Scene(const fs::path& FilePath) 
+void Scene::Init()
 {
-	
-	ressourcesManagers = nullptr;
-	io = nullptr;
-	name = FilePath.filename().generic_string();
-	cam = Camera::cam;
-
-}
-
-
-Scene::~Scene()
-{	
-
-	for (size_t i = 0; i < entities.size(); i++)
+	for (IEcsSystem* system : m_register.Systems)
 	{
-		delete entities[i];
+		system->Init(this);
 	}
-	entities.clear();
-	LOG("All entites have been deleted",STATELOG::GOOD);
-}
-
-
-
-
-void Scene::SceneUpdate(ImGuiIO& _io)
-{
-	io = &_io;
-	Deltatime = io->DeltaTime;
-
-	m_PhysicsEngine.DetermianteCollision(this);
-
-	for (size_t i = 0; i < entities.size(); i++)
-	{
-		entities[i]->PreUpdate(this);
-	}
-
-	m_PhysicsEngine.Update(this);
-
-	for (size_t i = 0; i < entities.size(); i++)
-	{
-		entities[i]->FixedUpdate(this);
-	}
-
-	for (size_t i = 0; i < entities.size(); i++)
-	{
-		entities[i]->Update(this);
-	}
-	for (size_t i = 0; i < entities.size(); i++)
-	{
-		entities[i]->LateUpdate(this);
-	}
-	m_PhysicsEngine.Reset();
-	cam->CameraUpdate();
-}
-
-
-void Scene::SaveScene()
-{
-
 }
 
 void Scene::Awake()
 {
-	for (size_t i = 0; i < entities.size(); i++)
+	for (IEcsSystem* system : m_register.Systems)
 	{
-		entities[i]->Awake(this);
+		system->Awake(this);
 	}
 }
 
 void Scene::Start()
 {
-	for (size_t i = 0; i < entities.size(); i++)
+	for (IEcsSystem* system : m_register.Systems)
 	{
-		entities[i]->Start(this);
+		system->Start(this);
 	}
 }
 
-void Scene::AddEntity()
+void Scene::FixedUpdate()
 {
-	entities.push_back(new Entity());
-}
-
-void Scene::RemoveEntity(Entity* entity)
-{
-}
-
-
-
-
-void Scene::RenderScene(Shader* shaderProgramm, Shader* StencilShader) 
-{
-
-	for (size_t i = 0; i < entities.size(); i++)
+	for (IEcsSystem* system : m_register.Systems)
 	{
-		entities[i]->Renderer(this);
-
-		MeshRenderer* meshr = entities[i]->GetComponent<MeshRenderer>();
-		Light* l = entities[i]->GetComponent<Light>();
-		if (l != nullptr)
-		{
-			l->SetUniform(shaderProgramm);
-		}
-
-		if(meshr != nullptr) 
-		{
-			meshr->Draw(this, shaderProgramm);
-			meshr->MeshRendererDrawStencil(this, StencilShader);
-
-		}
+		system->FixedUpdate(this);
 	}
-	
 }
-void Scene::RenderGizmo(Shader* shaderProgramm)
+
+void Scene::Update()
 {
-	
-	for (size_t i = 0; i < entities.size(); i++)
+	for (IEcsSystem* system : m_register.Systems)
 	{
-		Collider* c = entities[i]->GetComponent<Collider>();
-		
-		if(c)
-		{
-			c->gizmo->Render(shaderProgramm, this);
-		}
-		
-			
-
+		system->Update(this);
 	}
-	
 }
-void Scene::RenderUi(Shader* shaderProgramm)
-{
 
+void Scene::LateUpdate()
+{
+	for (IEcsSystem* system : m_register.Systems)
+	{
+		system->LateUpdate(this);
+	}
+}
+
+void Scene::Render()
+{
+	for (IEcsSystem* system : m_register.Systems)
+	{
+		system->Render(this);
+	}
+}
+
+Scene::Scene(const fs::path& FilePath)
+{
+	
+	cam = Camera::cam;
+}
+
+
+Scene::~Scene()
+{
 
 
 }

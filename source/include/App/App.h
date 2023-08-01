@@ -3,7 +3,6 @@
 #include <string>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include<DataStructure/ComponentsBehaviours.h>
 #include "Ressources/SkyBox/SkyBox.h"
 #include "Ressources/CubeMaps/CubeMaps.h"
 #include "UI/InspectorSelectable.h"
@@ -19,8 +18,7 @@ class RessourcesManager;
 class Camera;
 class Texture;
 class Shader;
-class Model;
-class Light;
+class Scene;
 
 const int windowWidth = 1920;
 const int windowHeight = 1080;
@@ -53,7 +51,7 @@ private:
 	void ImguiGraphScene() ;
 	void ImguiAppInfo();
 	void DockSpace() ;
-	void ImguiDrawChildren(Entity* entity) ;
+	void ImguiDrawChildren();//Entity* entity) ;
 	SkyBox* m_CurrentSkybox;
 	ContentBrowser* m_ContentBrowser;
 	Shader* GizmoShader;

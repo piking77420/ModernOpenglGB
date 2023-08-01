@@ -3,7 +3,6 @@
 #include "LowRenderer/Cam/Camera.h"
 #include<Ressources/Texture/Texture.hpp>
 #include "Ressources/Shader/Shader.h"
-#include "LowRenderer/Light/Light.h"
 #include "Ressources/Model/Model.h"
 #include "Ressources/Shader/ShaderSource/ShaderSource.hpp"
 

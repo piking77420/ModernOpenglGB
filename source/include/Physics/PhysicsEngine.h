@@ -1,9 +1,8 @@
 #pragma once
 #include<vector>
-class Collider;
 
 
-
+/*
 
 struct CollisionDetection
 {
@@ -34,3 +33,4 @@ private:
 
 };
 
+*/

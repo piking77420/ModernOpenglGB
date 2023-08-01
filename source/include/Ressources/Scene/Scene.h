@@ -5,44 +5,43 @@
 #include "Physics/PhysicsEngine.h"
 #include "Ressources/RessourcesManager/RessourcesManager.h"
 #include "LowRenderer/Gizmo/Gizmo.h"
+
+// ECS // 
+#include "Core/ECS/Register.h"
+
 #include<Core/Debug/Imgui/imgui.h>
 #include<Core/Debug/Imgui/imgui_impl_glfw.h>
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>
 
-class Transform;
-class MeshRenderer;
-class Entity;
-class AppData;
+
 class FrameBuffer;
 
 class Scene : public IResource
 {
 public :
 
-	void RenderScene(Shader* shaderProgramm, Shader* StencilShader);
-	void RenderGizmo(Shader* shaderProgramm);
-	void RenderUi(Shader* shaderProgramm);
-	void SceneUpdate(ImGuiIO& _io);
-	void SaveScene();
+
+	void Init();
+
 	void Awake();
 	void Start();
 
-	void AddEntity();
-	void RemoveEntity(Entity* entity);
 
-	
+	void FixedUpdate();
+	void Update();
+	void LateUpdate();
+
+	void Render();
 
 
-	uint32_t GlobalID;
+	Register m_register;
 	std::string name;
-	PhysicsEngine m_PhysicsEngine;
-	ImGuiIO* io;
+	ImGuiIO io;
 	Camera* cam;
 	const float FixedDeltatime = 0.016f;
 	float  Deltatime;
 
 	static RessourcesManager* ressourcesManagers;
-	std::vector<Entity*> entities;
 	static FrameBuffer* OpenGlRenderToImgui;
 
 	Scene(const fs::path& FilePath);

@@ -1,10 +1,25 @@
 #pragma once
-#include "Core/DataStructure/ECS/Component.hpp"
+#include <vector>
+#include "Core/ECS/ECSComponent.h"
+#include "Core/Math/ToolBoxMathHeaders.h"
 
 
-class Transform : public ECSComponent<Transform>
+class Transform : public EcsComponent<Transform>
 {
 public:
+	
+	Vector3 pos;
+	Vector3 rotation;
+	Vector3 scaling;
+
+	Matrix4X4 Local = Matrix4X4::Identity();
+	Matrix4X4 World = Matrix4X4::Identity();
+
+	const Transform* Parent;
+	std::vector<Transform*> childs;
+
+	Transform();
+	~Transform();
 
 private:
 

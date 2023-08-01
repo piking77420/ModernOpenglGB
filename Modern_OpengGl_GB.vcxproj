@@ -149,12 +149,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\include\LowRenderer\RendererSystem\RendererSystem.hpp" />
+    <ClInclude Include="source\include\Core\ECS\IECSSystem.h" />
+    <ClInclude Include="source\include\Physics\GraphScene\GraphScene.h" />
+    <ClInclude Include="source\include\LowRenderer\MeshRenderer\MeshRenderer.h" />
     <ClInclude Include="source\include\Core\DataStructure\ComponentsBehaviours.h" />
+    <ClInclude Include="source\include\Core\DataStructure\Project.hpp" />
     <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="source\include\Core\ECS\Component.h" />
+    <ClInclude Include="source\include\Core\ECS\ECSComponent.h" />
+    <ClInclude Include="source\include\Core\ECS\Entity.h" />
+    <ClInclude Include="source\include\Core\ECS\Register.h" />
     <ClInclude Include="source\include\Core\Math\Quaternion.h" />
     <ClInclude Include="source\include\LowRenderer\FrameBuffer\DepthMap\Depthmap.h" />
     <ClInclude Include="source\include\LowRenderer\Gizmo\Gizmo.h" />
     <ClInclude Include="source\include\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.h" />
+    <ClInclude Include="source\include\LowRenderer\Ui\ContentBrowser.h" />
+    <ClInclude Include="source\include\LowRenderer\Ui\InspectorSelectable.h" />
+    <ClInclude Include="source\include\Physics\Transform\Transform.hpp" />
     <ClInclude Include="source\include\Ressources\Shader\ShaderSource\ShaderSource.hpp" />
     <ClInclude Include="source\include\Serializer\Serializer.h" />
     <ClInclude Include="source\include\Core\Debug\Imgui\imconfig.h" />
@@ -167,8 +179,6 @@
     <ClInclude Include="include\LowRenderer\Gizmo\Gizmo.h" />
     <ClInclude Include="source\include\Core\DataStructure\Component\Collider\Raycast.hpp" />
     <ClInclude Include="source\include\Core\Debug\Debug.h" />
-    <ClInclude Include="source\include\LowRenderer\RendererComponent\MeshRenderer\MeshRenderer.h" />
-    <ClInclude Include="source\include\LowRenderer\RendererComponent\RendererComponent.h" />
     <ClInclude Include="source\include\Physics\RigidBody\Rigidbody.h" />
     <ClInclude Include="source\include\Core\DataStructure\Component\Collider\PlaneCollider.h" />
     <ClInclude Include="source\include\External\Std_Image\std_image.h" />
@@ -252,6 +262,11 @@
     <ResourceCompile Include="Modern_OpengGl_GB.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\src\LowRenderer\RendererSystem\RendererSystem.cpp" />
+    <ClCompile Include="source\src\Core\ECS\IECSSystem.cpp" />
+    <ClCompile Include="source\src\Physics\GraphScene\GraphScene.cpp" />
+    <ClCompile Include="source\src\LowRenderer\MeshRenderer\MeshRenderer.cpp" />
+    <ClCompile Include="source\src\Core\DataStructure\Project.cpp" />
     <ClCompile Include="source\src\Core\Debug\Imgui\imgui.cpp" />
     <ClCompile Include="source\src\Core\Debug\Imgui\imgui_demo.cpp" />
     <ClCompile Include="source\src\Core\Debug\Imgui\imgui_draw.cpp" />
@@ -259,6 +274,10 @@
     <ClCompile Include="source\src\Core\Debug\Imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="source\src\Core\Debug\Imgui\imgui_tables.cpp" />
     <ClCompile Include="source\src\Core\Debug\Imgui\imgui_widgets.cpp" />
+    <ClCompile Include="source\src\Core\ECS\Component.cpp" />
+    <ClCompile Include="source\src\Core\ECS\ECSComponent.cpp" />
+    <ClCompile Include="source\src\Core\ECS\Entity.cpp" />
+    <ClCompile Include="source\src\Core\ECS\Register.cpp" />
     <ClCompile Include="source\src\Core\Math\Quaternion.cpp" />
     <ClCompile Include="source\src\External\ImguiGizmo\GraphEditor.cpp" />
     <ClCompile Include="source\src\External\ImguiGizmo\ImCurveEdit.cpp" />
@@ -268,21 +287,12 @@
     <ClCompile Include="source\src\LowRenderer\FrameBuffer\DepthMap\Depthmap.cpp" />
     <ClCompile Include="source\src\LowRenderer\Gizmo\Gizmo.cpp" />
     <ClCompile Include="source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.cpp" />
+    <ClCompile Include="source\src\Physics\Transform\Transform.cpp" />
     <ClCompile Include="source\src\Ressources\Serializer\Serializer.cpp" />
-    <ClCompile Include="source\src\Core\DataStructure\Component\Collider\Raycast.cpp" />
-    <ClCompile Include="source\src\LowRenderer\RendererComponent\MeshRenderer\MeshRenderer.cpp" />
-    <ClCompile Include="source\src\LowRenderer\RendererComponent\RendererComponent.cpp" />
-    <ClCompile Include="source\src\Physics\RigidBody\Rigidbody.cpp" />
-    <ClCompile Include="source\src\Core\DataStructure\Component\Collider\PlaneCollider.cpp" />
     <ClCompile Include="source\src\External\Std_Image\std_image.cpp" />
-    <ClCompile Include="source\src\Core\DataStructure\Component\Collider\Collider.cpp" />
     <ClCompile Include="source\src\Ressources\Scene\Scene.cpp" />
     <ClCompile Include="source\src\LowRenderer\FrameBuffer\MultiSamples\MultiSamples.cpp" />
     <ClCompile Include="source\src\App\App.cpp" />
-    <ClCompile Include="source\src\Core\DataStructure\Component\Collider\BoxCollider\BoxCollider.cpp" />
-    <ClCompile Include="source\src\Core\DataStructure\Component\Collider\SphereCollider\SphereCollider.cpp" />
-    <ClCompile Include="source\src\Core\DataStructure\Component\Component.cpp" />
-    <ClCompile Include="source\src\Core\DataStructure\Entity\Entity.cpp" />
     <ClCompile Include="source\src\Core\Debug\AssertClass.cpp" />
     <ClCompile Include="source\src\Core\Debug\LogClass.cpp" />
     <ClCompile Include="source\src\Core\Math\Mathf.cpp" />
@@ -299,15 +309,10 @@
     <ClCompile Include="source\src\LowRenderer\Cam\Camera.cpp" />
     <ClCompile Include="source\src\LowRenderer\FrameBuffer\FrameBuffer.cpp" />
     <ClCompile Include="source\src\LowRenderer\FrameBuffer\ShadowMap\ShadowMaps.cpp" />
-    <ClCompile Include="source\src\LowRenderer\Light\DirectionalLight\DirectionalLight.cpp" />
-    <ClCompile Include="source\src\LowRenderer\Light\Light.cpp" />
-    <ClCompile Include="source\src\LowRenderer\Light\PointLight\PointLight.cpp" />
-    <ClCompile Include="source\src\LowRenderer\Light\SpothLight\SpothLight.cpp" />
     <ClCompile Include="source\src\LowRenderer\Material\Material.cpp" />
     <ClCompile Include="source\src\LowRenderer\Vertex\Vertex.cpp" />
     <ClCompile Include="source\src\Main\main.cpp" />
     <ClCompile Include="source\src\Physics\PhysicsEngine.cpp" />
-    <ClCompile Include="source\src\Physics\Transform\Transform.cpp" />
     <ClCompile Include="source\src\Ressources\CubeMaps\CubeMaps.cpp" />
     <ClCompile Include="source\src\Ressources\IResource\IResource.cpp" />
     <ClCompile Include="source\src\Ressources\Model\Model.cpp" />

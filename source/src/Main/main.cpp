@@ -1,17 +1,16 @@
-    #include <Windows.h>
-    #include <iostream>
-    #include <string>
-    #include <LowRenderer/Cam/Camera.h>   
-    #include "App/App.h"
-    #include <Core/Debug/LogClass.h>
-    #include <Core/Debug/AssertClass.h>
-    #include <Core/Debug/Imgui/imgui.h>
-    #include <Core/Debug/Imgui/imgui_impl_glfw.h>
-    #include <Core/Debug/Imgui/imgui_impl_opengl3.h>
-    #include <glad/glad.h>
-    #include <GLFW/glfw3.h>
-    #include <LowRenderer/Light/Light.h>
-    #include "External/Std_Image/std_image.h"
+#include <Windows.h>
+#include <iostream>
+#include <string>
+#include <LowRenderer/Cam/Camera.h>   
+#include "App/App.h"
+#include <Core/Debug/LogClass.h>
+#include <Core/Debug/AssertClass.h>
+#include <Core/Debug/Imgui/imgui.h>
+#include <Core/Debug/Imgui/imgui_impl_glfw.h>
+#include <Core/Debug/Imgui/imgui_impl_opengl3.h>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include "External/Std_Image/std_image.h"
 #include "LowRenderer/FrameBuffer/FrameBuffer.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>

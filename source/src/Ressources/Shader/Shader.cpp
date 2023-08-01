@@ -1,6 +1,6 @@
 #include <Ressources/Shader/Shader.h>
 
-
+#include "Core/Debug/LogClass.h"
 
 
 

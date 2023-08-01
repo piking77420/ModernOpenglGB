@@ -3,8 +3,6 @@
 #include<Core/Debug/Imgui/imgui_impl_glfw.h>
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>
 #include <Core/Debug/Imgui/imgui_internal.h>
-#include "LowRenderer/RendererComponent/MeshRenderer/MeshRenderer.h"
-#include <LowRenderer/Light/Light.h>
 #include <Ressources/Model/Model.h>
 #include <Ressources/Shader/Shader.h>
 #include <Ressources/Texture/Texture.hpp>
@@ -13,15 +11,11 @@
 #include "LowRenderer/FrameBuffer/MultiSamples/MultiSamples.h"
 #include "Ressources/Scene/Scene.h"
 #include <Ressources/RessourcesManager/RessourcesManager.h>
-#include "Core/DataStructure/Component/Collider/SphereCollider/SphereCollider.h"
-#include "Core/DataStructure/Component/Collider/PlaneCollider.h"
-#include "Core/DataStructure/Entity/Entity.h"
-#include "Collider/BoxCollider/BoxCollider.h"
-#include "LowRenderer/Ui/UIRenderer.h"
+
 #include "LowRenderer/FrameBuffer/DepthMap/Depthmap.h"
 #include "External/yaml-cpp/yaml.h"
-#include "Collider/SphereCollider/SphereCollider.h"
-
+#include "LowRenderer/RendererSystem/RendererSystem.hpp"
+#include "LowRenderer/MeshRenderer/MeshRenderer.h"
 
 Scene* App::currentScene = nullptr;
 bool App::GammaCorrection = false;
@@ -43,20 +37,14 @@ void App::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 
 void App::AppUpdate()
 {
-	
+	currentScene->io = m_io;
 
-	if (!HasPlayOnce)
-	{
-		for (size_t i = 0; i < currentScene->entities.size(); i++)
-		{
-			currentScene->entities[i]->transform.Update(currentScene);
-		}
-		HasPlayOnce = false;
-	}
+
+
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
-
+	
 
 	currentScene->OpenGlRenderToImgui->Bind();
 	glClearColor(0, 0, 0, 0);
@@ -68,9 +56,11 @@ void App::AppUpdate()
 
 	currentScene->cam->CameraUpdate();
 
-	currentScene->SceneUpdate(m_io);
-	currentScene->RenderScene(BaseShader, Stencil);
-	currentScene->RenderGizmo(GizmoShader);
+	currentScene->FixedUpdate();
+	currentScene->Update();
+	currentScene->Render();
+	//currentScene->Render(BaseShader, Stencil);
+	//currentScene->RenderGizmo(GizmoShader);
 
 
 
@@ -138,52 +128,25 @@ void App::InitRessources()
 
 void App::InitScene()
 {
+	Scene::ressourcesManagers = m_Ressources;
 
 	
 	Scene* Level1 = new Scene("Scene1");
 	m_Ressources->PushBackElement<Scene>("Scene1", Level1);
-	Level1->ressourcesManagers = m_Ressources;	
 	App::currentScene = Level1;
+	Entity* entity =  Level1->m_register.CreateEntity();
+	Level1->m_register.AddComponent<MeshRenderer>(entity);
+
+	MeshRenderer* meshRenderer = Level1->m_register.GetComponent<MeshRenderer>(entity);
+	meshRenderer->model = m_Ressources->GetElement<Model>("viking_room.obj");
+	meshRenderer->diffuse = m_Ressources->GetElement<Texture>("EmerauldBlock.png");
+	meshRenderer->specular = m_Ressources->GetElement<Texture>("EmerauldBlock.png");
+	Level1->m_register.Systems.push_back(new RendererSystem());
 
 
+	Level1->Init();
 
-
-	Entity* DirectionnalLight = new Entity("Directionnal Light", Level1);
-	DirectionnalLight->AddComponent<DirectionalLight>();
-
-	float near_plane = 1.0f, far_plane = 7.5f;
-	DirectionnalLight->GetComponent<DirectionalLight>()->lightProjection = Matrix4X4::OrthoGraphicMatrix(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
-	DirectionnalLight->GetComponent<DirectionalLight>()->lightView = Matrix4X4::LookAt(Vector3(-2.0f, 4.0f, -1.0f), Vector3::Zero(), Vector3::Up());
-
-
-
-
-   Entity* vikingroom = new Entity("VikingRoom", Level1);
-   vikingroom->AddComponent<MeshRenderer>();
-   vikingroom->AddComponent<SphereCollider>();
-   vikingroom->GetComponent<MeshRenderer>()->Diffuse = m_Ressources->GetElement<Texture>("EmerauldBlock.png");
-   vikingroom->GetComponent<MeshRenderer>()->Specular = m_Ressources->GetElement<Texture>("EmerauldBlock.png");
-
-   Entity* Sphre2 = new Entity("Sphre2", Level1);
-   //Sphre2->AddComponent<MeshRenderer>();
-   Sphre2->AddComponent<SphereCollider>();
-   Sphre2->transform.SetPos() += Vector3(5, 5,0);
-   
-
-	Level1->entities.push_back(DirectionnalLight);
-	Level1->entities.push_back(vikingroom);
-	Level1->entities.push_back(Sphre2);
-	vikingroom->transform.SetParent(Sphre2->transform);
-
-
-	Entity* Plane = new Entity("Plane", Level1);
-	Plane->transform.SetScale() += Vector3(20, 0, 20);
-	Plane->AddComponent<MeshRenderer>();
-	Plane->GetComponent<MeshRenderer>()->m_Model = m_Ressources->GetElement<Model>("plane.obj");
-	Plane->GetComponent<MeshRenderer>()->Diffuse = m_Ressources->GetElement<Texture>("woodenGround.jpg");
-	Plane->GetComponent<MeshRenderer>()->Specular = m_Ressources->GetElement<Texture>("woodenGround.jpg");
-	// Set Currentscene
-	Level1->entities.push_back(Plane);
+	
 
 }
 
@@ -196,7 +159,6 @@ App::App(int _WindowX, int _WindowY, ImGuiIO& _io) : windowX(_WindowX), windowY(
 	m_Ressources = new RessourcesManager();
 	m_Ressources->LoadAllAssets();
 	m_ContentBrowser = new ContentBrowser();
-	Scene::ressourcesManagers = m_Ressources;
 	m_io = ImGui::GetIO();
 
 	InitRessources();
@@ -253,6 +215,8 @@ void App::ImguiInspector()
 void App::ImguiGraphScene() 
 {
 	static bool open = true;
+
+	/*
 	if (ImGui::Begin("GraphScene",&open))
 	{
 		if (ImGui::Button("Add entites"))
@@ -268,12 +232,13 @@ void App::ImguiGraphScene()
 			
 		}
 		ImGui::End();
-	}
+	}*/
 
 }
 
-void App::ImguiDrawChildren(Entity* entity) 
+void App::ImguiDrawChildren()//Entity* entity) 
 {
+	/*
 	bool hasChildren = !entity->transform.Childrens.empty();
 	static bool open = true;
 
@@ -306,7 +271,7 @@ void App::ImguiDrawChildren(Entity* entity)
 		ImGui::TreePop();
 	}
 	ImGui::PopID();
-
+	*/
 }
 
 

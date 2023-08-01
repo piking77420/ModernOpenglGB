@@ -1,5 +1,4 @@
 #include <Ressources/Model/Model.h>
-#include "LowRenderer/RendererComponent/MeshRenderer/MeshRenderer.h"
 #include "Ressources/RessourcesManager/RessourcesManager.h"
 
 const std::string Model::MODELPATH = "include/Ressources/Model/";

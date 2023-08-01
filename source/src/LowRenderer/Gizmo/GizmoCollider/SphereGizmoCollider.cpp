@@ -4,20 +4,14 @@
 #include "App/App.h"
 #include "LowRenderer/Cam/Camera.h"
 #include <vector>
-#include "Collider/Collider.h"
-#include "Core/DataStructure/Entity/Entity.h"
-#include "Collider/SphereCollider/SphereCollider.h"
+
 #include "Vector4.h"
 
-SphereGizmoCollider::SphereGizmoCollider(Collider* collider): Gizmo(collider)
-{
-	radius = &reinterpret_cast<SphereCollider*>(collider)->radius;
-	model = Scene::ressourcesManagers->GetElement<Model>("Sphere.obj");
-}
+
 
 void SphereGizmoCollider::Render(Shader* shaderProgramm, Scene* scene)
 {
-
+	/*
 	if (*transformEntity == nullptr)
 		return;
 
@@ -40,7 +34,7 @@ void SphereGizmoCollider::Render(Shader* shaderProgramm, Scene* scene)
 	// Draw The Object
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	model->Draw();
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);*/
 }
 
 SphereGizmoCollider::~SphereGizmoCollider()

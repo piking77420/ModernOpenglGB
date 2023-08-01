@@ -13,9 +13,7 @@
 
 #include <Vector4.h>
 #include <Vector3.h>
-#include<Light/PointLight/PointLight.h>
-#include<Light/DirectionalLight/DirectionalLight.h>
-#include<Light/SpothLight/SpothLight.h>
+
 
 #include<LowRenderer/Material/Material.h>
 
