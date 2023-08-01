@@ -25,7 +25,7 @@ void SphereGizmoCollider::Render(Shader* shaderProgramm, Scene* scene)
 	const Transform* transform = &e->transform;
 
 
-	Matrix4X4 test = Matrix4X4::TRS(Vector3::Zero, Vector3::Zero, Vector3(*radius, *radius, *radius));
+	Matrix4X4 test = Matrix4X4::TRS(Vector3::Zero(), Vector3::Zero(), Vector3(*radius, *radius, *radius));
 
 
 	shaderProgramm->Use();

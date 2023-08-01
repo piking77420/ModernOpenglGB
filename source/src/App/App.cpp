@@ -21,7 +21,6 @@
 #include "LowRenderer/FrameBuffer/DepthMap/Depthmap.h"
 #include "External/yaml-cpp/yaml.h"
 #include "Collider/SphereCollider/SphereCollider.h"
-#include "MathTransform.h"
 
 
 Scene* App::currentScene = nullptr;
@@ -44,50 +43,7 @@ void App::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 
 void App::AppUpdate()
 {
-	//ShadowMaps* shadowMaps = m_Ressources->GetElement<ShadowMaps>("shadowMaps");
-
-	/*
-	ShadowShader->Use();
-	ShadowShader->SetInt("diffuseTexture", 0);
-	ShadowShader->SetInt("shadowMap", 5);
-	*/
-
 	
-
-
-
-
-	/*
-	
-	currentScene->cam->SetCameraInfoForShaders(*m_Ressources);
-
-
-	glViewport(0, 0, shadowMaps->widht, shadowMaps->height);
-	glBindFramebuffer(GL_FRAMEBUFFER, shadowMaps->FBO);
-	currentScene->RenderScene(DepthShader, Stencil);
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-	currentScene->OpenGlRenderToImgui->Bind();
-	glViewport(0, 0, currentScene->OpenGlRenderToImgui->widht, currentScene->OpenGlRenderToImgui->height);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-
-	DrawSkyBox();
-	currentScene->cam->CameraUpdate();
-	currentScene->SceneUpdate(m_io);
-	currentScene->RenderScene(BaseShader, Stencil);
-
-	glActiveTexture(GL_TEXTURE5);
-	glBindTexture(GL_TEXTURE_2D, shadowMaps->FBO);
-	currentScene->RenderGizmo(GizmoShader);
-
-
-
-	currentScene->OpenGlRenderToImgui->UnBind();
-	*/
-
-
-	
-
 
 	if (!HasPlayOnce)
 	{
@@ -98,6 +54,7 @@ void App::AppUpdate()
 		HasPlayOnce = false;
 	}
 
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 
 
@@ -195,8 +152,8 @@ void App::InitScene()
 	DirectionnalLight->AddComponent<DirectionalLight>();
 
 	float near_plane = 1.0f, far_plane = 7.5f;
-	DirectionnalLight->GetComponent<DirectionalLight>()->lightProjection = MathTransform::OrthoGraphicMatrix(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
-	DirectionnalLight->GetComponent<DirectionalLight>()->lightView = MathTransform::LookAt(Vector3(-2.0f, 4.0f, -1.0f), Vector3::Zero(), Vector3::Up());
+	DirectionnalLight->GetComponent<DirectionalLight>()->lightProjection = Matrix4X4::OrthoGraphicMatrix(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
+	DirectionnalLight->GetComponent<DirectionalLight>()->lightView = Matrix4X4::LookAt(Vector3(-2.0f, 4.0f, -1.0f), Vector3::Zero(), Vector3::Up());
 
 
 

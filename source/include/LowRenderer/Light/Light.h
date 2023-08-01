@@ -1,6 +1,7 @@
 #pragma once
 #include<Mathf.h>
 #include<Core/DataStructure/Component/Component.h>
+#include<Math/ToolBoxMathHeaders.h>
 
 class Shader;
 class Scene;

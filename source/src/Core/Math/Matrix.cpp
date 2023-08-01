@@ -1,6 +1,5 @@
 
-
-#include "mathf.h"
+#include "Matrix.h"
 
 
 
@@ -232,6 +231,7 @@ Matrix Matrix::operator-(const Matrix& maxtrix)
 
 Matrix::Matrix(const int size)
 {
+
 	for (size_t i = 0; i < size; i++)
 	{
 		mData.push_back(Vector(size));

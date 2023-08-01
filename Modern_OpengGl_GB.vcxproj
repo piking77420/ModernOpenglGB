@@ -151,7 +151,6 @@
   <ItemGroup>
     <ClInclude Include="source\include\Core\DataStructure\ComponentsBehaviours.h" />
     <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_glfw.h" />
-    <ClInclude Include="source\include\Core\Math\MathTransform.h" />
     <ClInclude Include="source\include\Core\Math\Quaternion.h" />
     <ClInclude Include="source\include\LowRenderer\FrameBuffer\DepthMap\Depthmap.h" />
     <ClInclude Include="source\include\LowRenderer\Gizmo\Gizmo.h" />
@@ -291,6 +290,7 @@
     <ClCompile Include="source\src\Core\Math\Matrix2X2.cpp" />
     <ClCompile Include="source\src\Core\Math\Matrix3X3.cpp" />
     <ClCompile Include="source\src\Core\Math\Matrix4X4.cpp" />
+    <ClCompile Include="source\src\Core\Math\Primitive.cpp" />
     <ClCompile Include="source\src\Core\Math\Vector.cpp" />
     <ClCompile Include="source\src\Core\Math\Vector2.cpp" />
     <ClCompile Include="source\src\Core\Math\Vector3.cpp" />

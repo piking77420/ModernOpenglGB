@@ -14,10 +14,36 @@ public:
 
 	
 
-	inline static float Determinant(const Matrix3X3& matrix)
+	[[nodiscard]]
+	static Matrix3X3 TranslationMatrix3X3(const Vector2& translation);
+	[[nodiscard]]
+	static Matrix3X3 Rotation2DMatrix3X3(const float& angle);
+	[[nodiscard]]
+	Matrix3X3 Invert();
+	[[nodiscard]]
+	constexpr inline Matrix3X3 Transposate() const
+	{
+		Matrix3X3 result;
+
+
+		for (size_t x = 0; x < 3; x++)
+		{
+			for (size_t y = 0; y < 3; y++)
+			{
+				result[x][y] = Coloms[y][x];
+			}
+		}
+
+
+		return result;
+	}
+
+
+
+	constexpr inline static float Determinant(const Matrix3X3& matrix)
 	{
 		float result = 0;
-		
+
 		float d0 = Matrix2X2::Determinant(Matrix2X2(matrix[1].y, matrix[1].z, matrix[2].y, matrix[2].z));
 
 		float d1 = Matrix2X2::Determinant(Matrix2X2(matrix[1].x, matrix[1].z, matrix[2].x, matrix[2].z));
@@ -33,14 +59,6 @@ public:
 		return result;
 
 	}
-	[[nodiscard]]
-	static Matrix3X3 TranslationMatrix3X3(const Vector2& translation);
-	[[nodiscard]]
-	static Matrix3X3 Rotation2DMatrix3X3(const float& angle);
-	[[nodiscard]]
-	Matrix3X3 Invert();
-	[[nodiscard]]
-	Matrix3X3 Transposate() const ;
 
 	static inline Matrix3X3 AdjoinMatrix(const Matrix3X3& matrix)
 	{
@@ -68,8 +86,16 @@ public:
 
 	
 	
-	Vector3& operator[](const int& i);
-	const Vector3& operator[](const int& i) const;
+	constexpr inline Vector3& operator[](const int& i)
+	{
+		return Coloms[i];
+	}
+	constexpr inline const Vector3& operator[](const int& i) const
+	{
+		return Coloms[i];
+	}
+
+
 	Matrix3X3 operator*(const Matrix3X3& matrix);	
 	explicit operator Matrix();
 
@@ -91,7 +117,7 @@ public:
 		Coloms[1] = b;
 		Coloms[2] = c;
 	}
-	Matrix3X3() = default;
+	constexpr Matrix3X3() = default;
 
 private:
 

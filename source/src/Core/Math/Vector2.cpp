@@ -51,10 +51,6 @@ constexpr inline float Vector2::Norm() const
 
 
 
-float Vector2::CrossProduct(const Vector2 vec1, const Vector2 vec2) const
-{
-	return Determinant(vec1,vec2);
-}
 
 
 

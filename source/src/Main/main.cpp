@@ -105,6 +105,8 @@
         LoadCursorAppCursor(window);
         EnableOpenGl();
         App* app = new App(windowWidth, windowHeight,io);
+
+      
    
         // Main Loop // 
         while (!glfwWindowShouldClose(window))

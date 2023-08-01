@@ -1,7 +1,11 @@
 #pragma once
 #include <iostream>
-#include "Mathf.h"
 #include "Vector3.h"
+
+
+class Matrix3X3;
+class Matrix4X4;
+
 
 class Quaternion
 {

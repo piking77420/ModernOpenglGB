@@ -15,6 +15,12 @@ public:
 	float x = 0;
 	float y = 0;
 #pragma endregion
+
+	/**
+	* @fn constexpr static int Size();
+	* @brief Return the Size of the Vector
+	* @return 2.
+	*/
 	constexpr static int Size()
 	{
 		return 2;
@@ -62,9 +68,7 @@ public:
 	{
 		return Vector2(y, -x).Normalize();
 	}
-	// Return CrossProduct
-	[[nodiscard]]
-	float CrossProduct(const Vector2 vec1, const Vector2 vec2) const;
+
 	// Return Angle between 2 vectors
 	[[nodiscard]]
 	static float Angle(const Vector2 vec1, const Vector2 Row1) ;
@@ -73,11 +77,16 @@ public:
 	float Angle() const;
 	//Return Determiant
 	[[nodiscard]]
-	constexpr static float Determinant(const Vector2 vec1, const Vector2 vec2)
+	constexpr static inline  float Determinant(const Vector2 vec1, const Vector2 vec2)
 	{
 		return (vec1.x * vec2.y) - (vec1.y * vec2.x);
 	}
-
+	// Return CrossProduct
+	[[nodiscard]]
+	constexpr inline static float CrossProduct(const Vector2 vec1, const Vector2 vec2)
+	{
+		return Determinant(vec1, vec2);
+	}
 	// Return Distance from 2 Vector without std::sqrtf;
 	[[nodiscard]]
 	constexpr static inline float DistanceSquare(Vector2 a, Vector2 b)
@@ -168,25 +177,14 @@ public:
 	explicit operator Vector3() const;
 	explicit operator Vector4() const;
 
-	constexpr float operator[](int i) const {
-		assert(i >= 0 && i < 2);
-		[[assume(i >= 0 && i < 2)]]
-
-		if (i == 0)
-			return x;
-
-		if (i == 1)
-			return y;
+	constexpr float operator[](int i) const 
+	{
+		return *static_cast<const float*>(&x + i);
 	}
 	constexpr float& operator[](int i)
 	{
-		assert(i >= 0 && i < 2);
-		[[assume(i >= 0 && i < 2)]]
 
-		if (i == 0)
-			return x;
-		if (i == 1)
-			return y;
+		return *static_cast<float*>(&x + i);
 	}
 
 

@@ -24,10 +24,9 @@ class Camera
 public:
 
 	
-	Matrix4X4 GetLookMatrix()	;
+	Matrix4X4 GetLookMatrix();
 	Matrix4X4 GetProjectionMatrix() const;
 	void SetCameraInfoForShaders(RessourcesManager& cam);
-	void OnSelectObject(Shader* shader);
 	void ImguiCameraWindow();
 	void CameraUpdate();
 	void CameraRenderer(Shader* shader);

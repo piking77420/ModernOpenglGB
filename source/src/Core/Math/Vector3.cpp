@@ -24,10 +24,7 @@ Vector3::operator Vector2() const
 }
 
 
-constexpr inline float Vector3::FNorm() const
-{
-	return Math::FSqrtf((x * x) + (y * y) + (z * z));
-}
+
 
 inline float Vector3::Norm() const
 {
@@ -45,9 +42,9 @@ Vector3 Vector3::Normalize() const
 }
 
 
-inline Vector3 Vector3::Reflect(const Vector3& Vector, const Vector3& Normal)
+Vector3 Vector3::Reflect(const Vector3& Vector, const Vector3& Normal)
 {
-	Vector3 result = Vector3::Zero();
+	Vector3 result;
 	Vector3 NoramizeNormal = Normal.Normalize();
 
 	result = Vector - (NoramizeNormal * (2.f * (DotProduct(Vector, Normal))));

@@ -2,23 +2,121 @@
 #include <iostream>
 #include "Vector4.h"
 #include "Matrix3X3.h"
+#include "Quaternion.h"
 
 class Vector3;
 class Matrix;
-class Quaternion;
+
+/**
+	*@class Matrix4X4
+	*@brief Matrix4X4 ColomsMajor \n
+	* m00 m10 m20 m30 \n
+	* m01 m11 m21 m31 \n
+	* m02 m12 m22 m32 \n
+	* m03 m13 m23 m33 \n
+	*/
+
+
 
 class Matrix4X4
 {
 public:
 
+	/**
+	* @var Colums
+	Data of the Matrix
+	*/
 	Vector4 Colums[4];
 
 
-
+	/**
+	* @fn inline Vector3 GetPos();
+	* @brief This function Return the Translation of the matrix.
+	* @return m30 m31 m32 m33.
+	*/
 	inline Vector3 GetPos();
-	
-	static Matrix4X4 ScalingMatrix4X4(const Vector3& ScalingFactor);
 
+
+#pragma region GraphicMatrix
+
+	/**
+	* @fn static Matrix4X4 PerspectiveMatrix(const float fov, const float aspect, const float Near,const float Far);
+	* @brief Projection Matrix.
+	* @param fov the field of wiew in radian
+	*/
+	static inline Matrix4X4 PerspectiveMatrix(const float fov, const float aspect, const float Near,const float Far)
+	{
+		float fFovRad = 1.0f / std::tan(fov * 0.5f);
+		float zdiff = Near - Far;
+
+		float r00 = fFovRad / aspect;
+		float r11 = fFovRad;
+
+		float r22 = (Far + Near) / zdiff;
+		float r32 = (2 * Far * Near) / zdiff;
+
+		return {
+				{r00, 0.f, 0.f,0.f },
+				{0.f, r11, 0.f,0.f },
+				{0.f, 0.f, r22, -1.0f},
+				{0, 0,r32, 1.f}
+		};
+
+	}
+	/**
+	* @fn static Matrix4X4 OrthoGraphicMatrix( float top , float bot , float right ,float left , float Near,  float Far);
+	* @brief OrthoGraphicProjection.
+	*/
+	constexpr static inline Matrix4X4 OrthoGraphicMatrix(float left, float right, float bottom, float top, float zNear, float zFar) 
+	{
+		float topBottomDiff = top - bottom;
+		float rightLeftDiff = right - left;
+		float farMinusNear = zFar - zNear;
+
+		float r00 = 2.0f / rightLeftDiff;
+		float r11 = 2.0f / topBottomDiff;
+		float r22 = -2.0f / farMinusNear;
+
+		float r03 = -(right + left) / rightLeftDiff;
+		float r13 = -(top + bottom) / topBottomDiff;
+		float r23 = -(zFar + zNear) / farMinusNear;
+
+		return {
+				{r00, 0.f, 0.f,0.f },
+				{0.f, r11, 0.f,0.f },
+				{0.f, 0.f, r22, 0.f},
+				{r03, r13,r23, 1.f}
+		};
+
+	}
+
+	/**
+	* @fn static Matrix4X4 LookAt(const Vector3& eye, const Vector3& at, const Vector3& up);;
+	* @brief OrthoGraphicProjection.
+	*/
+	static inline Matrix4X4 LookAt(const Vector3& eye, const Vector3& at, const Vector3& up)
+	{
+		Vector3 zaxis = (at - eye).Normalize();
+		Vector3 xaxis = Vector3::CrossProduct(up, zaxis).Normalize();
+		Vector3 yaxis = Vector3::CrossProduct(zaxis, xaxis);
+
+		zaxis = -zaxis;
+
+		float r00 = xaxis.x; float r10 = xaxis.y; float r20 = xaxis.z; float r30 = -(Vector3::DotProduct(xaxis, eye));
+		float r01 = yaxis.x; float r11 = yaxis.y; float r21 = yaxis.z; float r31 = -(Vector3::DotProduct(yaxis, eye));
+		float r02 = zaxis.x; float r12 = zaxis.y; float r22 = zaxis.z; float r32 = -(Vector3::DotProduct(zaxis, eye));
+
+
+		return {
+					{r00, r01, r02,0.f },
+					{r10, r11, r12,0.f },
+					{r20, r21, r22, 0.f},
+					{r30, r31,r32, 1.f}
+		};
+	}
+#pragma endregion
+
+#pragma region TransformMatrix
 	// rad
 	static Matrix4X4 RotationZ4X4(const float& angle);
 
@@ -32,40 +130,63 @@ public:
 	// rad
 	static Matrix4X4 RotationMatrix4X4(const Vector3& angle);
 
-	static Matrix4X4 TranslateMatrix4X4(const Vector3& translation);
+	constexpr inline static Matrix4X4 TranslateMatrix4X4(const Vector3& translation)
+	{
+		return {
+		{1.f, 0.f, 0.f,0.f },
+		{0.f, 1.f, 0.f,0.f },
+		{0.f, 0.f, 1.f, 0.f},
+		{translation.x, translation.y,translation.z, 1.f}
+		};
+	}
+
+	constexpr inline static Matrix4X4 ScalingMatrix4X4(const Vector3& ScalingFactor)
+	{
+		return {
+		{ScalingFactor.x, 0.f, 0.f,0.f },
+		{0.f, ScalingFactor.y, 0.f,0.f },
+		{0.f, 0.f, ScalingFactor.z, 0.f},
+		{0, 0,0 , 1.f}
+		};
+	}
+
+	static inline Matrix4X4 TRS(const Vector3& translation , const Vector3& angle , const Vector3& scaling) 
+	{
+		return (TranslateMatrix4X4(translation) * (RotationMatrix4X4(angle) * ScalingMatrix4X4(scaling)));
+	}
+	static inline Matrix4X4 TRS(const Vector3& translation, const Quaternion& rotation, const Vector3& scaling)
+	{
+		return (TranslateMatrix4X4(translation) * (Quaternion::ToMatrix4X4(rotation) * ScalingMatrix4X4(scaling)));
+	}
+
+#pragma endregion
+
 
 
 	constexpr inline static Matrix4X4 Identity()
 	{
+		return {
+					{1.f, 0.f, 0.f,0.f },
+					{0.f, 1.f, 0.f,0.f },
+					{0.f, 0.f, 1.f, 0.f},
+					{0.f, 0.f,0.f, 1.f}
+		};
+	}
+
+	Matrix4X4 Invert();
+	constexpr inline Matrix4X4 Transposate() const 
+	{
 		Matrix4X4 result;
 
-		result.Colums[0].x = 1;
-		result.Colums[0].y = 0;
-		result.Colums[0].z = 0;
-		result.Colums[0].w = 0;
-
-		result.Colums[1].x = 0;
-		result.Colums[1].y = 1;
-		result.Colums[1].z = 0;
-		result.Colums[1].w = 0;
-
-		result.Colums[2].x = 0;
-		result.Colums[2].y = 0;
-		result.Colums[2].z = 1;
-		result.Colums[2].w = 0;
-
-		result.Colums[3].x = 0;
-		result.Colums[3].y = 0;
-		result.Colums[3].z = 0;
-		result.Colums[3].w = 1;
+		result[0].x = Colums[0].x; result[0].y = Colums[1].x; result[0].z = Colums[2].x; result[0].w = Colums[3].x;
+		result[1].x = Colums[0].y; result[1].y = Colums[1].y; result[1].z = Colums[2].y; result[1].w = Colums[3].y;
+		result[2].x = Colums[0].z; result[2].y = Colums[1].z; result[2].z = Colums[2].z; result[2].w = Colums[3].z;
+		result[3].x = Colums[0].w; result[3].y = Colums[1].w; result[3].z = Colums[2].w; result[3].w = Colums[3].w;
 
 
 		return result;
 	}
-
-	Matrix4X4 Invert();
-	Matrix4X4 Transposate() const;
-	float Determinant() const;
+	static inline float Determinant(const Matrix4X4& matrix);
 
 	constexpr inline const float* GetPtr() const
 	{
@@ -79,12 +200,47 @@ public:
 
 	static inline Matrix4X4 AdjoinMatrix(const Matrix4X4& matrix);
 	
+#pragma region Operator 
+	constexpr inline Matrix4X4 operator*(const Matrix4X4& matrix) const
+	{
 
-	Matrix4X4 operator*(const Matrix4X4& matrix) const;
-	Vector4 operator[](const int& i ) const ;
-	Vector4& operator[](const int& i) ;
+		Matrix4X4 result;
+
+		result.Colums[0].x = this->Colums[0].x * matrix[0].x + this->Colums[1].x * matrix[0].y + this->Colums[2].x * matrix[0].z + this->Colums[3].x * matrix[0].w;
+		result.Colums[0].y = this->Colums[0].y * matrix[0].x + this->Colums[1].y * matrix[0].y + this->Colums[2].y * matrix[0].z + this->Colums[3].y * matrix[0].w;
+		result.Colums[0].z = this->Colums[0].z * matrix[0].x + this->Colums[1].z * matrix[0].y + this->Colums[2].z * matrix[0].z + this->Colums[3].z * matrix[0].w;
+		result.Colums[0].w = this->Colums[0].w * matrix[0].x + this->Colums[1].w * matrix[0].y + this->Colums[2].w * matrix[0].z + this->Colums[3].w * matrix[0].w;
+
+		result.Colums[1].x = this->Colums[0].x * matrix[1].x + this->Colums[1].x * matrix[1].y + this->Colums[2].x * matrix[1].z + this->Colums[3].x * matrix[1].w;
+		result.Colums[1].y = this->Colums[0].y * matrix[1].x + this->Colums[1].y * matrix[1].y + this->Colums[2].y * matrix[1].z + this->Colums[3].y * matrix[1].w;
+		result.Colums[1].z = this->Colums[0].z * matrix[1].x + this->Colums[1].z * matrix[1].y + this->Colums[2].z * matrix[1].z + this->Colums[3].z * matrix[1].w;
+		result.Colums[1].w = this->Colums[0].w * matrix[1].x + this->Colums[1].w * matrix[1].y + this->Colums[2].w * matrix[1].z + this->Colums[3].w * matrix[1].w;
+
+		result.Colums[2].x = this->Colums[0].x * matrix[2].x + this->Colums[1].x * matrix[2].y + this->Colums[2].x * matrix[2].z + this->Colums[3].x * matrix[2].w;
+		result.Colums[2].y = this->Colums[0].y * matrix[2].x + this->Colums[1].y * matrix[2].y + this->Colums[2].y * matrix[2].z + this->Colums[3].y * matrix[2].w;
+		result.Colums[2].z = this->Colums[0].z * matrix[2].x + this->Colums[1].z * matrix[2].y + this->Colums[2].z * matrix[2].z + this->Colums[3].z * matrix[2].w;
+		result.Colums[2].w = this->Colums[0].w * matrix[2].x + this->Colums[1].w * matrix[2].y + this->Colums[2].w * matrix[2].z + this->Colums[3].w * matrix[2].w;
+
+		result.Colums[3].x = this->Colums[0].x * matrix[3].x + this->Colums[1].x * matrix[3].y + this->Colums[2].x * matrix[3].z + this->Colums[3].x * matrix[3].w;
+		result.Colums[3].y = this->Colums[0].y * matrix[3].x + this->Colums[1].y * matrix[3].y + this->Colums[2].y * matrix[3].z + this->Colums[3].y * matrix[3].w;
+		result.Colums[3].z = this->Colums[0].z * matrix[3].x + this->Colums[1].z * matrix[3].y + this->Colums[2].z * matrix[3].z + this->Colums[3].z * matrix[3].w;
+		result.Colums[3].w = this->Colums[0].w * matrix[3].x + this->Colums[1].w * matrix[3].y + this->Colums[2].w * matrix[3].z + this->Colums[3].w * matrix[3].w;
+
+		return result;
+
+
+	}
+
+	constexpr inline const Vector4& operator[](int i) const 
+	{
+		return Colums[i];
+	}
+	constexpr inline Vector4& operator[](int i)
+	{
+		return Colums[i];
+	}
 	explicit operator Matrix();
-
+#pragma endregion
 
 	constexpr Matrix4X4(const Vector4& a, const Vector4& b, const Vector4& c, const Vector4& d)
 	{
@@ -100,7 +256,7 @@ private:
 
 };
 
- Vector4 operator*(const Matrix4X4& matrix, const Vector4& Row1);
- Vector4 operator*(const Vector4& Row1,const Matrix4X4& matrix);
 
+Vector4 operator*(const Matrix4X4& matrix, const Vector4& Row1);
+Vector4 operator*(const Vector4& Row1,const Matrix4X4& matrix);
 std::ostream& operator<<(std::ostream& stream, const  Matrix4X4& maxtrix);

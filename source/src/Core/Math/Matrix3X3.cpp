@@ -121,32 +121,8 @@ Matrix3X3 Matrix3X3::Invert()
 	return result;
 }
 
-Matrix3X3 Matrix3X3::Transposate() const
-{
-	Matrix3X3 result;
-
-	
-	for (size_t x = 0; x < 3; x++)
-	{
-		for (size_t y = 0; y < 3; y++)
-		{
-			result[x][y] = Coloms[y][x];
-		}
-	}
 
 
-	return result;
-}
-
-Vector3& Matrix3X3::operator[](const int& i)
-{
-	return Coloms[i];
-}
-
-const Vector3&  Matrix3X3::operator[](const int& i) const
-{
-	return Coloms[i];
-}
 
 
 

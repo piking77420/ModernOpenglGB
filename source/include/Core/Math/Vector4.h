@@ -14,7 +14,7 @@ public:
 	float z = 0;
 	float w = 0;
 
-	constexpr static int Size()
+	constexpr static uint16_t Size()
 	{
 		return 4;
 	}
@@ -44,15 +44,11 @@ public:
 
 	constexpr inline float operator[](int i) const
 	{
-		assert(i >= 0 && i < 4);
-		const float* data = &x;
-		return data[i];
+		return *static_cast<const float*>(&x + i);
 	}
 	constexpr inline float& operator[](int i)
 	{
-		assert(i >= 0 && i < 4);
-		float* data = &x;
-		return data[i];
+		return *static_cast<float*>(&x + i);
 	}
 
 

@@ -6,6 +6,7 @@
 
 class Matrix;
 class Matrix3X3;
+class Matrix4X4;
 
 class Matrix2X2
 {
@@ -59,12 +60,8 @@ public:
 		Coloms[0] = _vec;
 		Coloms[1] = _vec2;
 	};
-	constexpr Matrix2X2()
-	{
-		Coloms[0] = Vector2::Zero();
-		Coloms[1] = Vector2::Zero();
-	};
-
+	constexpr Matrix2X2() = default;
+	
 
 	[[nosdiscard]]
 	constexpr inline static Matrix2X2 Identity()
@@ -72,6 +69,15 @@ public:
 		return Matrix2X2(1, 0, 0, 1);
 	};
 
+
+	constexpr inline Vector2& operator[](const int& i)
+	{
+		return Coloms[i];
+	}
+	constexpr inline const Vector2& operator[](const int& i) const
+	{
+		return Coloms[i];
+	}
 
 	explicit operator Matrix() const;
 	explicit operator Matrix3X3() const;
@@ -97,7 +103,7 @@ constexpr inline bool operator==(const Matrix2X2& matrix1 ,const Matrix2X2& matr
 {
 	const float* ptr1 = matrix1.GetPtr();
 	const float* ptr2 = matrix2.GetPtr();
-	short int size = Matrix2X2::Size();
+	constexpr const int size = Matrix2X2::Size();
 	
 	for (size_t i = 0; i < size; i++)
 	{
@@ -112,7 +118,7 @@ constexpr inline bool operator!=(const Matrix2X2& matrix1, const Matrix2X2& matr
 {
 	const float* ptr1 = matrix1.GetPtr();
 	const float* ptr2 = matrix2.GetPtr();
-	short int size = Matrix2X2::Size();
+	constexpr const int size = Matrix2X2::Size();
 
 	for (size_t i = 0; i < size; i++)
 	{

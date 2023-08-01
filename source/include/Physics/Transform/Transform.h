@@ -1,8 +1,8 @@
 #pragma once
 #include<Core/DataStructure/Component/Component.h>
 #include<Mathf.h>
+#include<Math/ToolBoxMathHeaders.h>
 #include<vector>
-#include "MathTransform.h"
 
 class Transform : public Component
 {

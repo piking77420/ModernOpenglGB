@@ -5,7 +5,6 @@
 #include<Core/Debug/Imgui/imgui_impl_glfw.h>
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>
 #include "Mathf.h"
-#include "MathTransform.h"
 
 
 // Camera Init // 
@@ -49,7 +48,7 @@ Matrix4X4 Camera::GetLookMatrix()
 {
 	
 
-	return MathTransform::LookAt(eye, eye + Front, Up);
+	return Matrix4X4::LookAt(eye, eye + Front, Up);
 }
 
 Matrix4X4 Camera::GetProjectionMatrix() const
@@ -72,7 +71,7 @@ void Camera::CameraUpdate()
 
 	  
 
-	  m_ProjectionMatrix = MathTransform::ProjectionMatrix((fov), (float)windowWidth / (float)windowHeight, Fnear, Ffar);
+	  m_ProjectionMatrix = Matrix4X4::PerspectiveMatrix(Math::DegreesToRadians(fov), (float)windowWidth / (float)windowHeight, Fnear, Ffar);
 
 	  //m_ProjectionMatrix = Matrix4X4::OrthoGraphicMatrix(4,-4,4, -4, Fnear, Ffar).Transposate();
 	  m_LookAtMatrix = GetLookMatrix();
@@ -92,12 +91,7 @@ void Camera::CameraRenderer(Shader* shader)
 
 }
 
-void Camera::OnSelectObject(Shader* shader)
-{
-	//if(RigthClick)
 
-
-}
 
 void Camera::ImguiCameraWindow()
 {
@@ -129,7 +123,7 @@ Camera::Camera()
 	CameraRotation();
 
 	m_LookAtMatrix = GetLookMatrix();
-	m_ProjectionMatrix = MathTransform::ProjectionMatrix((fov), (float)windowWidth / (float)windowHeight, Fnear, Ffar);
+	m_ProjectionMatrix = Matrix4X4::PerspectiveMatrix(Math::DegreesToRadians(fov), (float)windowWidth / (float)windowHeight, Fnear, Ffar);
 
 	VP = m_ProjectionMatrix * m_LookAtMatrix;
 	mouseSentivity = CAMERASENSITIVITY;
@@ -163,7 +157,7 @@ Matrix4X4 Camera::GetTransform() const
 {
 
 	float roll = 0;
-	return MathTransform::TRS(eye, Vector3(pitch, yaw, roll),Vector3::One());
+	return Matrix4X4::TRS(eye, Vector3(pitch, yaw, roll),Vector3::One());
 }
 
 void Camera::CameraRotation()

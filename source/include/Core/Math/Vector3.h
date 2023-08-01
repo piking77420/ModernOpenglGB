@@ -1,6 +1,6 @@
 #pragma once
 #include "Vector2.h"
-
+#include "Mathf.h"
 class Vector;
 class Vector4;
 
@@ -33,24 +33,17 @@ public:
 	float z = 0.f;
 
 	/**
-		* @fn constexpr static int Size();
+		* @fn constexpr static uint16_t Size();
 		* @brief This function Return the size of the vector.
 		* @return the size of the vector.
 		*/
-	constexpr static int Size()
+	constexpr static uint16_t Size()
 	{
 		return 3;
 	}
 
 
-	/**
-	* @fn constexpr inline float FNorm() const;
-	* @brief This function calculates the norm of the vector with The Math::FSqrtf.
-	* @return The norm of the vector.
-	*/
-	[[nodiscard]]
-	constexpr inline float FNorm() const;
-	
+
 
 	/**
 	 * @fn inline float Norm() const
@@ -77,18 +70,28 @@ public:
 	
 
 	 /**
+	 * @fn constexpr inline float FNorm() const;
+	 * @brief This function calculates the norm of the vector with The Math::FSqrtf.
+	 * @return The norm of the vector.
+	 */
+	 [[nodiscard]]
+	 constexpr inline float FNorm() const
+	 {
+		 return Math::FSqrtf((x * x) + (y * y) + (z * z));
+	 }
+	 /**
 	 * @fn line Vector3 Normalize() const
 	 * @brief This fonction Normalize a copy of the Vector with FNorm fn.
 	 * @return The NormalizeVector.
 	 */
-	[[nodiscard]]
-	constexpr inline Vector3 FNormalize() const
-	{
-		float norm = FNorm();
+	 [[nodiscard]]
+	 constexpr inline Vector3 FNormalize() const
+	 {
+		 float norm = FNorm();
 
 
-		return Vector3(x/norm, y/norm, z/norm);
-	}
+		 return Vector3(x / norm, y / norm, z / norm);
+	 }
 
 	/**
 	* @fn Vector3 Reflect(const Vector3& Vector, const Vector3& Normals)
@@ -97,7 +100,7 @@ public:
 	* @param vec2 the NormalVector
 	* @return The ReflectVector.
 	*/ [[nodiscard]]
-	static inline Vector3 Reflect(const Vector3& Vector, const Vector3& Normal);
+	static Vector3 Reflect(const Vector3& Vector, const Vector3& Normal);
 
 	/**
 	* @fn constexpr inline static float DotProduct(const Vector3& vec1, const Vector3& vec2) noexcept
@@ -262,7 +265,6 @@ public:
 	*/
 	constexpr float operator[](int i) const
 	{
-		assert(i >= 0 && i < 3);
 		return *static_cast<const float*>(&x + i);
 	}
 
@@ -273,7 +275,6 @@ public:
 	 */
 	constexpr float& operator[](int i)
 	{
-		assert(i >= 0 && i < 3);
 		return *static_cast<float*>(&x + i);
 	}
 	/** @} */ // End of Operator Overloads
