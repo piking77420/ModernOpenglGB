@@ -12,23 +12,20 @@ void GraphScene::Update(Scene* scene)
 	// Getting All the data
 	std::vector<uint8_t>* transformDataVector = scene->m_register.ComponentsData[Transform::ComponentTypeID].second;
 	const uint32_t nbrOfTransform = transformDataVector->size();
+	if (nbrOfTransform == 0)
+		return;
+
 
 	// Prepare Getting all the Transfrom
 	std::vector<Transform*> ptr;
 	for (size_t i = 0; i < transformDataVector->size() / sizeof(Transform); i++)
 	{
 		uint32_t index = i * sizeof(Transform);
-		ptr.push_back(reinterpret_cast<Transform*>(&(*transformDataVector)[i]));
+		ptr.push_back(reinterpret_cast<Transform*>(&(*transformDataVector)[index]));
 	}
-
-	if (ptr.empty())
-		return;
-
 	
 	StarTree(ptr);
-	
 
-	
 	
 }
 
@@ -68,28 +65,31 @@ void GraphScene::StarTree(std::vector<Transform*>& transformVector)
 		treeNode.push_back({ transformVector[i],CurrentTransformLinkValue });
 	}
 
-	std::vector<std::thread> Transformthread;
 
 
 	for (size_t i = 0; i < getMaxIteration; i++)
 	{
+		std::vector<std::thread*> Transformthread;
+
 		for (size_t k = 0; k < treeNode.size(); k++)
 		{
 			// Push Mulihtrading here 
-
-			if (treeNode[k].second == i)
-			{
-				UpdateTransform(treeNode[k].first, treeNode[i].second);
-			}
+			std::thread* thread = new std::thread([this, treeNode, i, k]()
+				{
+					if (treeNode[k].second == i)
+					{
+						UpdateTransform(treeNode[k].first, treeNode[i].second);
+					}
+				});
+			Transformthread.push_back(thread);
+		
 		}
-		// Wait for each theard current line 
-		/*
-		if (!Transformthread.empty())
-			for (std::thread& thread : Transformthread)
-			{
-				thread.join();
-			}
-			*/
+		for(std::thread* thread : Transformthread)
+		{
+			thread->join();
+		}
+
+		Transformthread.clear();
 	}
 }
 
@@ -102,10 +102,10 @@ Matrix4X4 GraphScene::ToMatrix(const Transform* transform)
 
 void GraphScene::GetParentLink(const Transform* transform, uint32_t& currentValue)
 {
-	if (transform->Parent)
+	if (transform->Parent != nullptr)
 	{
 		currentValue++;
-		GetParentLink(transform, currentValue);
+		GetParentLink(transform->Parent, currentValue);
 	}
 
 }

@@ -6,6 +6,7 @@
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>
 #include "Mathf.h"
 
+#include "Ressources/Scene/Scene.h"
 
 // Camera Init // 
 float lastX = windowWidth / 2.0f;
@@ -71,7 +72,7 @@ void Camera::CameraUpdate()
 
 	  
 
-	  m_ProjectionMatrix = Matrix4X4::PerspectiveMatrix(Math::DegreesToRadians(fov), (float)windowWidth / (float)windowHeight, Fnear, Ffar);
+	  m_ProjectionMatrix = Matrix4X4::PerspectiveMatrix(Math::DegreesToRadians(fov), (float)Scene::OpenGlRenderToImgui->widht / (float)Scene::OpenGlRenderToImgui->height, Fnear, Ffar);
 
 	  //m_ProjectionMatrix = Matrix4X4::OrthoGraphicMatrix(4,-4,4, -4, Fnear, Ffar).Transposate();
 	  m_LookAtMatrix = GetLookMatrix();

@@ -15,8 +15,10 @@ public:
 	Matrix4X4 Local = Matrix4X4::Identity();
 	Matrix4X4 World = Matrix4X4::Identity();
 
-	const Transform* Parent;
+	const Transform* Parent = nullptr;
 	std::vector<Transform*> childs;
+	void ImguiWindowComponent() override;
+
 
 	Transform();
 	~Transform();

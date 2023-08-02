@@ -103,7 +103,7 @@
         ImGui_ImplOpenGL3_Init("#version 330");
         LoadCursorAppCursor(window);
         EnableOpenGl();
-        App* app = new App(windowWidth, windowHeight,io);
+        App app(windowWidth, windowHeight,io);
 
       
    
@@ -126,7 +126,7 @@
             ImGuizmo::BeginFrame();
 
          
-            app->AppUpdate();
+            app.AppUpdate();
 
 
          
@@ -155,7 +155,7 @@
         delete Debug::Assert;
 
 
-        delete app;
+        
         glfwTerminate();
 
         return 0;

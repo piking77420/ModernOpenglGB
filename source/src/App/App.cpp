@@ -17,6 +17,12 @@
 #include "LowRenderer/RendererSystem/RendererSystem.hpp"
 #include "LowRenderer/MeshRenderer/MeshRenderer.h"
 
+#include "Physics/Transform/Transform.hpp"
+#include "LowRenderer/RendererLightSystem/RendererLightSystem.hpp"
+#include "LowRenderer/Light/DirectionalLight/DirectionalLight.hpp"
+#include "LowRenderer/Light/SpothLight/SpothLight.hpp"
+#include "LowRenderer/Light/PointLight/PointLight.hpp"
+
 Scene* App::currentScene = nullptr;
 bool App::GammaCorrection = false;
 
@@ -59,8 +65,7 @@ void App::AppUpdate()
 	currentScene->FixedUpdate();
 	currentScene->Update();
 	currentScene->Render();
-	//currentScene->Render(BaseShader, Stencil);
-	//currentScene->RenderGizmo(GizmoShader);
+;
 
 
 
@@ -118,10 +123,6 @@ void App::InitRessources()
 	m_CurrentSkybox = m_Ressources->GetElement<SkyBox>("SpaceSkyBox");
 	
 	GizmoShader = m_Ressources->GetElement<Shader>("GizmoShader");
-	BaseShader = m_Ressources->GetElement<Shader>("NormalShader");
-	Stencil = m_Ressources->GetElement<Shader>("StencilTest");
-	DepthShader = m_Ressources->GetElement<Shader>("DebugDepthShader");
-	ShadowShader = m_Ressources->GetElement<Shader>("ShadowShader");
 
 
 }
@@ -130,10 +131,24 @@ void App::InitScene()
 {
 	Scene::ressourcesManagers = m_Ressources;
 
+
+
+
 	
 	Scene* Level1 = new Scene("Scene1");
 	m_Ressources->PushBackElement<Scene>("Scene1", Level1);
 	App::currentScene = Level1;
+
+	RendererSystem* rendererSystem = new RendererSystem();
+	rendererSystem->shaderName = "NormalShader";
+	Level1->m_register.Systems.push_back(rendererSystem);
+
+	RendererLightSystem* lightRenderer = new RendererLightSystem();
+	lightRenderer->shaderName = "NormalShader";
+	Level1->m_register.Systems.push_back(lightRenderer);
+
+
+
 	Entity* entity =  Level1->m_register.CreateEntity();
 	Level1->m_register.AddComponent<MeshRenderer>(entity);
 
@@ -141,8 +156,12 @@ void App::InitScene()
 	meshRenderer->model = m_Ressources->GetElement<Model>("viking_room.obj");
 	meshRenderer->diffuse = m_Ressources->GetElement<Texture>("EmerauldBlock.png");
 	meshRenderer->specular = m_Ressources->GetElement<Texture>("EmerauldBlock.png");
-	Level1->m_register.Systems.push_back(new RendererSystem());
+	
 
+
+	Entity* entity2 = Level1->m_register.CreateEntity();
+	Level1->m_register.GetComponent<Transform>(entity2)->pos = Vector3(2, 2, 2);
+	Level1->m_register.AddComponent<DirectionalLight>(entity2);
 
 	Level1->Init();
 
@@ -216,34 +235,38 @@ void App::ImguiGraphScene()
 {
 	static bool open = true;
 
-	/*
+	if (!currentScene)
+		return;
+
+	
 	if (ImGui::Begin("GraphScene",&open))
 	{
-		if (ImGui::Button("Add entites"))
-			currentScene->AddEntity();
-
-		for (size_t i = 0; i < currentScene->entities.size(); i++)
+		
+		for (Entity* entity : currentScene->m_register.entities)
 		{
-			
-			if (!currentScene->entities[i]->HasParent())
+			Transform* transfrom = currentScene->m_register.GetComponent<Transform>(entity);
+			if (!transfrom->Parent)
 			{
-				ImguiDrawChildren(currentScene->entities[i]);
+				ImguiDrawChildren(entity);
+
 			}
-			
 		}
+
+		
 		ImGui::End();
-	}*/
+	}
 
 }
 
-void App::ImguiDrawChildren()//Entity* entity) 
+void App::ImguiDrawChildren(Entity* entity)
 {
-	/*
-	bool hasChildren = !entity->transform.Childrens.empty();
+	
+	Transform* transform = currentScene->m_register.GetComponent<Transform>(entity);
+	bool hasChildren = !transform->childs.empty();
 	static bool open = true;
 
 
-	ImGuiTreeNodeFlags_ flags;
+	ImGuiTreeNodeFlags_ flags ;
 	if (hasChildren)
 	{
 		flags = ImGuiTreeNodeFlags_None;
@@ -255,23 +278,25 @@ void App::ImguiDrawChildren()//Entity* entity)
 
 	ImGui::PushID("");
 
-	if (ImGui::TreeNodeEx(entity->name.c_str(), flags))
+	if (ImGui::TreeNodeEx(entity->Entityname.c_str(), flags))
 	{
-	
+		/*
 		if (ImGui::IsItemClicked())
 			InspectorCurrentindow = entity;
+		*/
+
 
 		if (hasChildren)
 		{
-			for (size_t i = 0; i < entity->transform.Childrens.size(); i++)
+			for (size_t i = 0; i < transform->childs.size(); i++)
 			{
-				ImguiDrawChildren(entity->transform.Childrens[i]->EntityAttachTo);
+				ImguiDrawChildren(transform->childs[i]->entity);
 			}
 		}
 		ImGui::TreePop();
 	}
 	ImGui::PopID();
-	*/
+	
 }
 
 

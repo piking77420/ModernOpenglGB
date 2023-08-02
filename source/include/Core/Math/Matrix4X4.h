@@ -34,7 +34,7 @@ public:
 	* @brief This function Return the Translation of the matrix.
 	* @return m30 m31 m32 m33.
 	*/
-	inline Vector3 GetPos();
+	Vector3 GetPos();
 
 
 #pragma region GraphicMatrix
@@ -59,7 +59,7 @@ public:
 				{r00, 0.f, 0.f,0.f },
 				{0.f, r11, 0.f,0.f },
 				{0.f, 0.f, r22, -1.0f},
-				{0, 0,r32, 1.f}
+				{0, 0,r32, 0}
 		};
 
 	}

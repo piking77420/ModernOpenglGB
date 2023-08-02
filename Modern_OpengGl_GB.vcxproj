@@ -149,6 +149,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\include\LowRenderer\Light\DirectionalLight\DirectionalLight.hpp" />
+    <ClInclude Include="source\include\LowRenderer\Light\Light.hpp" />
+    <ClInclude Include="source\include\LowRenderer\Light\PointLight\PointLight.hpp" />
+    <ClInclude Include="source\include\LowRenderer\Light\SpothLight\SpothLight.hpp" />
+    <ClInclude Include="source\include\LowRenderer\RendererLightSystem\RendererLightSystem.hpp" />
     <ClInclude Include="source\include\LowRenderer\RendererSystem\RendererSystem.hpp" />
     <ClInclude Include="source\include\Core\ECS\IECSSystem.h" />
     <ClInclude Include="source\include\Physics\GraphScene\GraphScene.h" />
@@ -214,10 +219,7 @@
     <ClInclude Include="source\include\LowRenderer\Cam\Camera.h" />
     <ClInclude Include="source\include\LowRenderer\FrameBuffer\FrameBuffer.h" />
     <ClInclude Include="source\include\LowRenderer\FrameBuffer\ShadowMap\ShadowMaps.h" />
-    <ClInclude Include="source\include\LowRenderer\Light\DirectionalLight\DirectionalLight.h" />
     <ClInclude Include="source\include\LowRenderer\Light\Light.h" />
-    <ClInclude Include="source\include\LowRenderer\Light\PointLight\PointLight.h" />
-    <ClInclude Include="source\include\LowRenderer\Light\SpothLight\SpothLight.h" />
     <ClInclude Include="source\include\LowRenderer\Material\Material.h" />
     <ClInclude Include="source\include\LowRenderer\Vertex\Vertex.h" />
     <ClInclude Include="source\include\Physics\PhysicsEngine.h" />
@@ -262,6 +264,10 @@
     <ResourceCompile Include="Modern_OpengGl_GB.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\src\LowRenderer\Light\Light.cpp" />
+    <ClCompile Include="source\src\LowRenderer\Light\DirectionalLight\DirectionalLight.cpp" />
+    <ClCompile Include="source\src\LowRenderer\Light\PointLight\PointLight.cpp" />
+    <ClCompile Include="source\src\LowRenderer\RendererLightSystem\RendererLightSystem.cpp" />
     <ClCompile Include="source\src\LowRenderer\RendererSystem\RendererSystem.cpp" />
     <ClCompile Include="source\src\Core\ECS\IECSSystem.cpp" />
     <ClCompile Include="source\src\Physics\GraphScene\GraphScene.cpp" />
@@ -288,7 +294,6 @@
     <ClCompile Include="source\src\LowRenderer\Gizmo\Gizmo.cpp" />
     <ClCompile Include="source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.cpp" />
     <ClCompile Include="source\src\Physics\Transform\Transform.cpp" />
-    <ClCompile Include="source\src\Ressources\Serializer\Serializer.cpp" />
     <ClCompile Include="source\src\External\Std_Image\std_image.cpp" />
     <ClCompile Include="source\src\Ressources\Scene\Scene.cpp" />
     <ClCompile Include="source\src\LowRenderer\FrameBuffer\MultiSamples\MultiSamples.cpp" />
@@ -300,7 +305,6 @@
     <ClCompile Include="source\src\Core\Math\Matrix2X2.cpp" />
     <ClCompile Include="source\src\Core\Math\Matrix3X3.cpp" />
     <ClCompile Include="source\src\Core\Math\Matrix4X4.cpp" />
-    <ClCompile Include="source\src\Core\Math\Primitive.cpp" />
     <ClCompile Include="source\src\Core\Math\Vector.cpp" />
     <ClCompile Include="source\src\Core\Math\Vector2.cpp" />
     <ClCompile Include="source\src\Core\Math\Vector3.cpp" />
@@ -324,6 +328,7 @@
     <ClCompile Include="source\src\Core\Input\UserInputs.cpp" />
     <ClCompile Include="source\src\UI\ContentBrowser.cpp" />
     <ClCompile Include="source\src\UI\InspectorSelectable.cpp" />
+    <ClCompile Include="source\src\LowRenderer\Light\SpothLight\SpothLight.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="source\src\External\lib\glfw3.lib" />

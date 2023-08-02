@@ -27,9 +27,9 @@ private:
 
 public:
 	virtual ~Component() {}
+	virtual void ImguiWindowComponent(){};
 
-	
-
+	bool IsEnable = true;
 	Entity* entity;
 	
 	

@@ -2,7 +2,6 @@
 #include<LowRenderer/Material/Material.h>
 #include "Core/ECS/ECSComponent.h"
 
-
 class Model;
 class Texture;
 class Shader;
@@ -13,9 +12,13 @@ public:
 
 	Material material;
 	const Model* model;
-	const Texture* diffuse;
-	const Texture* specular;
-	const Shader* shader;
+	const Texture* diffuse = nullptr;
+	const Texture* specular = nullptr;
+	const Shader* shader = nullptr;
+	bool m_Stencil = false;
+
+	void ImguiWindowComponent() override;
+
 private:
 };
 

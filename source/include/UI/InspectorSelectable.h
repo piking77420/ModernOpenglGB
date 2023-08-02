@@ -1,12 +1,7 @@
 #pragma once 
 
 
-class InspectorSelectable
+__interface InspectorSelectable
 {
-public:
-	virtual void OnSelected(){};
-	virtual ~InspectorSelectable(){};
-	
-private:
-
+	virtual void OnInspector() {};
 };

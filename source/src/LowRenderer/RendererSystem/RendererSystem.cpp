@@ -10,13 +10,24 @@
 
 void RendererSystem::Init(Scene* scene)
 {
-	shaderName = "NormalShader";
 	shaderProgramm = Scene::ressourcesManagers->GetElement<Shader>(shaderName);
 
+	std::vector<uint8_t>* MeshRenderData = scene->m_register.ComponentsData[MeshRenderer::ComponentTypeID].second;
+
+	for (size_t i = 0; i < MeshRenderData->size() / sizeof(MeshRenderer); i++)
+	{
+		size_t offset = i * sizeof(MeshRenderer);
+		MeshRenderer* meshRenderer = reinterpret_cast<MeshRenderer*>(&(*MeshRenderData)[offset]);
+		if (meshRenderer->model == nullptr)
+			meshRenderer->model = Scene::ressourcesManagers->GetElement<Model>("Sphere.obj");
+	}
 }
 
 void RendererSystem::Render(Scene* scene)
 {
+	if (!shaderProgramm)
+		return;
+
 	std::vector<uint8_t>* MeshRenderData = scene->m_register.ComponentsData[MeshRenderer::ComponentTypeID].second;
 
 
@@ -56,7 +67,9 @@ void RendererSystem::RenderMeshRender(const MeshRenderer* meshRender, const Scen
 	shaderProgramm->SetMaxtrix("model", model.GetPtr());
 
 	shaderProgramm->SetMaxtrix("MVP", MVP.GetPtr());
-	shaderProgramm->SetMaxtrix("rotation", Matrix4X4::RotationMatrix4X4(transform->rotation).GetPtr());
+	//shaderProgramm->SetMaxtrix("NormalMatrix",  model.Invert().Transposate().GetPtr());
+
+	shaderProgramm->SetMaxtrix("rotation",  Matrix4X4::RotationMatrix4X4(transform->rotation).GetPtr());
 	// Draw The Object
 	meshRender->model->Draw();
 

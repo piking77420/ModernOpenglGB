@@ -115,11 +115,16 @@ void Shader::Use()
     glUseProgram(m_ID);
 }
 
+
 void Shader::Use() const
 {
     glUseProgram(m_ID);
 }
 
+void Shader::UnUse() const
+{
+    glUseProgram(0);
+}
 void Shader::UnUse()
 {
     glUseProgram(0);

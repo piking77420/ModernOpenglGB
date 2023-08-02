@@ -12,7 +12,7 @@
 #include "Mathf.h"
 #include "LowRenderer/FrameBuffer/FrameBuffer.h"
 #include "UI/ContentBrowser.h"
-
+#include "Core/ECS/Entity.h"
 
 class RessourcesManager;
 class Camera;
@@ -51,7 +51,7 @@ private:
 	void ImguiGraphScene() ;
 	void ImguiAppInfo();
 	void DockSpace() ;
-	void ImguiDrawChildren();//Entity* entity) ;
+	void ImguiDrawChildren(Entity* entity);//Entity* entity) ;
 	SkyBox* m_CurrentSkybox;
 	ContentBrowser* m_ContentBrowser;
 	Shader* GizmoShader;

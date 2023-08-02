@@ -8,6 +8,7 @@ Entity* Register::CreateEntity()
 
 
 	NewEntitie->SetID() = entities.size();
+	NewEntitie->Entityname = "Entity " + std::to_string(NewEntitie->ID);
 	entities.push_back(NewEntitie);
 
 	// Minimal Componnent

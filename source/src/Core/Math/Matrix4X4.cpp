@@ -11,7 +11,7 @@
 
 
 
-inline Vector3 Matrix4X4::GetPos()
+Vector3 Matrix4X4::GetPos()
 {
 	return static_cast<Vector3>(Colums[3]);
 }

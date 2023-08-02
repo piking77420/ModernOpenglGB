@@ -1,12 +1,17 @@
 #pragma once
 #include <vector>
 #include <stdint.h>
-
+#include <string>
+#include "UI/InspectorSelectable.h"
 #define ComponentNULL 4294967295
 
-class Entity
+class Register;
+
+class Entity : public InspectorSelectable
 {
 public:
+
+	std::string Entityname;
 
 	uint32_t& SetID()
 	{
@@ -26,10 +31,11 @@ public:
 
 
 	std::vector< uint32_t> EnityComponents;
+	uint32_t ID;
+	Register* Scene_register;
 
 private:
 
-	uint32_t ID;
 
 };
 
