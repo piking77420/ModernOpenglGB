@@ -20,6 +20,6 @@ public:
 
 private:
 	const Shader* shaderProgramm = nullptr;
-	void RenderMeshRender(const MeshRenderer* meshRender , const Scene* scene);
+	void RenderMeshRender(const MeshRenderer* meshRender , Scene* scene);
 };
 

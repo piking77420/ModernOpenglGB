@@ -63,23 +63,8 @@ void Texture::IncrementTexture()
 
 GLuint Texture::GetFormat(int nbrOfChannel)
 {
-    if(App::GammaCorrection)
-    {
-        if (nbrOfChannel == 1)
-        {
-            return GL_RED;
-        }
-        else if (nbrOfChannel == 3)
-        {
-            return GL_SRGB;
-        }
-        else if (nbrOfChannel == 4)
-        {
-            return GL_SRGB_ALPHA;
-        }
-    }
-    else
-    {
+   
+    
 
         if (nbrOfChannel == 1)
         {
@@ -93,7 +78,7 @@ GLuint Texture::GetFormat(int nbrOfChannel)
         {
             return GL_RGBA;
         }
-    }
+    
     
 
     return GL_RGB;
@@ -149,11 +134,6 @@ void Texture::TextureShaderUniform(const Shader& shader, const char* uniform, GL
 
 
 }
-
-void Texture::OnWindowResize()
-{
-}
-
 
 
 

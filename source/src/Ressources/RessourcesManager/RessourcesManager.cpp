@@ -5,18 +5,53 @@
 #include "Ressources/Shader/Shader.h"
 #include "Ressources/Model/Model.h"
 #include "Ressources/Shader/ShaderSource/ShaderSource.hpp"
-
+#include "LowRenderer/FrameBuffer/DepthMap/Depthmap.h"
+#include "LowRenderer/FrameBuffer/ShadowMap/ShadowMaps.h"
+#include "LowRenderer/FrameBuffer/MultiSamples/MultiSamples.h"
+#include "Ressources/SkyBox/SkyBox.h"
+#include "Ressources/CubeMaps/CubeMaps.h"
 #include<ostream>
  
-void RessourcesManager::LoadAllAssets()
+void RessourcesManager::LoadAllAssets(const std::string& projectFolder)
 {
+
+
+
+	std::vector<std::string> cubemapsSpaceString =
+	{
+		"ProjectFolder/Project1/assets/cube_maps/skybox/SpaceSkyBox/bkg1_right.png",
+		"ProjectFolder/Project1/assets/cube_maps/skybox/SpaceSkyBox/bkg1_left.png",
+		"ProjectFolder/Project1/assets/cube_maps/skybox/SpaceSkyBox/bkg1_top.png",
+		"ProjectFolder/Project1/assets/cube_maps/skybox/SpaceSkyBox/bkg1_bottom.png",
+		"ProjectFolder/Project1/assets/cube_maps/skybox/SpaceSkyBox/bkg1_front.png",
+		"ProjectFolder/Project1/assets/cube_maps/skybox/SpaceSkyBox/bkg1_back.png",
+
+	};
+	CubeMaps cubemaps(cubemapsSpaceString);
+	SkyBox* spaceSkybox = new SkyBox(cubemaps);
+	PushBackElement<SkyBox>("SpaceSkyBox", spaceSkybox);
+
+	std::vector<std::string> cubemapsSkyString =
+	{
+		"ProjectFolder/Project1/assets/cube_maps/skybox/SkySkybox/right.jpg",
+		"ProjectFolder/Project1/assets/cube_maps/skybox/SkySkybox/left.jpg",
+		"ProjectFolder/Project1/assets/cube_maps/skybox/SkySkybox/top.jpg",
+		"ProjectFolder/Project1/assets/cube_maps/skybox/SkySkybox/bottom.jpg",
+		"ProjectFolder/Project1/assets/cube_maps/skybox/SkySkybox/front.jpg",
+		"ProjectFolder/Project1/assets/cube_maps/skybox/SkySkybox/back.jpg",
+
+	};
+	CubeMaps cubemaps2(cubemapsSkyString);
+	SkyBox* SkySkybox = new SkyBox(cubemaps2);
+	PushBackElement<SkyBox>("SkySkybox", SkySkybox);
+
+
 	fs::path assetsPath(assetsFolder);
 
-	for (const auto& entry : fs::directory_iterator(assetsPath))
+	for (const auto& entry : fs::directory_iterator(projectFolder))
 		LookFiles(entry.path());
 
 	// Join threads + clear vector
-
 	if(!theards.empty())
 	for (size_t i = 0; i < theards.size(); i++)
 	{
@@ -25,11 +60,6 @@ void RessourcesManager::LoadAllAssets()
 	}
 	theards.clear();
 
-	/*
-	for (auto it = m_MainResourcesMap.begin(); it != m_MainResourcesMap.end(); it++)
-	{
-		std::cout << it->second->PathtoMetaDataFile << std::endl;
-	}*/
 
 
 	// Init all ressources
@@ -37,6 +67,10 @@ void RessourcesManager::LoadAllAssets()
 	{
 		it->second->Init();
 	}
+
+
+
+
 }
 
 
@@ -108,13 +142,7 @@ void RessourcesManager::LoadTexture(fs::path path)
 	}
 }
 
-void RessourcesManager::OnResizeWindow()
-{
-	for (auto it = m_MainResourcesMap.begin(); it != m_MainResourcesMap.end(); it++)
-	{
-		it->second->OnWindowResize();
-	}
-}
+
 
 
 void RessourcesManager::LoadModel(std::filesystem::path path)
@@ -174,16 +202,7 @@ void RessourcesManager::LoadShader(std::filesystem::path path)
 	
 }
 
-void RessourcesManager::LoadScene(std::filesystem::path path)
-{
-	std::string path_string = path.generic_string();
 
-	if (isThisValidForThisFormat(path_string, sceneFormat))
-	{
-		Create<Scene>(path_string);
-	}
-
-}
 
 
 
@@ -204,7 +223,6 @@ void RessourcesManager::LookFiles(fs::path _path)
 
 	for (const auto& entry : fs::directory_iterator(_path))
 	{
-		LoadScene(entry.path().c_str());
 		LoadTexture(entry.path().c_str());
 		LoadModel(entry.path().c_str());
 

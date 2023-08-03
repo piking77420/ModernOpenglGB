@@ -149,6 +149,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\include\LowRenderer\Renderer\Renderer.hpp" />
+    <ClInclude Include="source\include\UI\Hierarchy.hpp" />
+    <ClInclude Include="source\include\UI\DockingSystem.hpp" />
+    <ClInclude Include="source\include\UI\Inspector.hpp" />
+    <ClInclude Include="source\include\UI\ImguiLayer.h" />
+    <ClInclude Include="source\include\Core\ECS\Register.h" />
     <ClInclude Include="source\include\LowRenderer\Light\DirectionalLight\DirectionalLight.hpp" />
     <ClInclude Include="source\include\LowRenderer\Light\Light.hpp" />
     <ClInclude Include="source\include\LowRenderer\Light\PointLight\PointLight.hpp" />
@@ -164,13 +170,10 @@
     <ClInclude Include="source\include\Core\ECS\Component.h" />
     <ClInclude Include="source\include\Core\ECS\ECSComponent.h" />
     <ClInclude Include="source\include\Core\ECS\Entity.h" />
-    <ClInclude Include="source\include\Core\ECS\Register.h" />
     <ClInclude Include="source\include\Core\Math\Quaternion.h" />
     <ClInclude Include="source\include\LowRenderer\FrameBuffer\DepthMap\Depthmap.h" />
     <ClInclude Include="source\include\LowRenderer\Gizmo\Gizmo.h" />
     <ClInclude Include="source\include\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.h" />
-    <ClInclude Include="source\include\LowRenderer\Ui\ContentBrowser.h" />
-    <ClInclude Include="source\include\LowRenderer\Ui\InspectorSelectable.h" />
     <ClInclude Include="source\include\Physics\Transform\Transform.hpp" />
     <ClInclude Include="source\include\Ressources\Shader\ShaderSource\ShaderSource.hpp" />
     <ClInclude Include="source\include\Serializer\Serializer.h" />
@@ -236,6 +239,7 @@
     <ClInclude Include="source\include\Core\Input\UserInputs.h" />
     <ClInclude Include="source\include\UI\ContentBrowser.h" />
     <ClInclude Include="source\include\UI\InspectorSelectable.h" />
+    <ClInclude Include="source\include\LowRenderer\SystemRendererSkyMap\SystemRendererSkyMap.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -264,6 +268,12 @@
     <ResourceCompile Include="Modern_OpengGl_GB.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\src\LowRenderer\Renderer\Renderer.cpp" />
+    <ClCompile Include="source\src\UI\Hierarchy.cpp" />
+    <ClCompile Include="source\src\UI\DockingSystem.cpp" />
+    <ClCompile Include="source\src\UI\Inspector.cpp" />
+    <ClCompile Include="source\src\UI\ImguiLayer.cpp" />
+    <ClCompile Include="source\src\Core\ECS\Register.cpp" />
     <ClCompile Include="source\src\LowRenderer\Light\Light.cpp" />
     <ClCompile Include="source\src\LowRenderer\Light\DirectionalLight\DirectionalLight.cpp" />
     <ClCompile Include="source\src\LowRenderer\Light\PointLight\PointLight.cpp" />
@@ -283,7 +293,6 @@
     <ClCompile Include="source\src\Core\ECS\Component.cpp" />
     <ClCompile Include="source\src\Core\ECS\ECSComponent.cpp" />
     <ClCompile Include="source\src\Core\ECS\Entity.cpp" />
-    <ClCompile Include="source\src\Core\ECS\Register.cpp" />
     <ClCompile Include="source\src\Core\Math\Quaternion.cpp" />
     <ClCompile Include="source\src\External\ImguiGizmo\GraphEditor.cpp" />
     <ClCompile Include="source\src\External\ImguiGizmo\ImCurveEdit.cpp" />
@@ -329,6 +338,7 @@
     <ClCompile Include="source\src\UI\ContentBrowser.cpp" />
     <ClCompile Include="source\src\UI\InspectorSelectable.cpp" />
     <ClCompile Include="source\src\LowRenderer\Light\SpothLight\SpothLight.cpp" />
+    <ClCompile Include="source\src\LowRenderer\SystemRendererSkyMap\SystemRendererSkyMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="source\src\External\lib\glfw3.lib" />

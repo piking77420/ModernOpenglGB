@@ -9,16 +9,13 @@
 namespace fs = std::filesystem;
 
 
-class IResource : public InspectorSelectable
+class IResource 
 {
 public:
-	
-	fs::path PathtoMetaDataFile;
 	virtual void Init() {  };
 	virtual void WriteInMetaData() {  };
-	IResource(){};
-	virtual ~IResource();
-	virtual void OnWindowResize(){};
 
-protected:
 }; 
+
+
+

@@ -28,10 +28,9 @@ class RessourcesManager
 {
 public:
 
-	void OnResizeWindow();
 	// Return map for iterator  to camera set uniform
 	std::map<std::string, IResource*>& GetRessources();
-	void LoadAllAssets();
+	void LoadAllAssets(const std::string& projectFolder);
 	template<class T>
 	void Remove(const std::string& name);
 	template<class T>
@@ -60,7 +59,6 @@ private:
 	void LookFiles(std::filesystem::path _path);
 	void LoadModel(std::filesystem::path path);
 	void LoadShader(std::filesystem::path path);
-	void LoadScene(std::filesystem::path path);
 	bool isThisValidForThisFormat(std::string path, std::string format);
 	fs::path CreatMetaDataFile(const fs::path& FilePath, const std::string& FileName);
 

@@ -5,11 +5,16 @@
 #include "UI/InspectorSelectable.h"
 #define ComponentNULL 4294967295
 
-class Register;
+
+class Scene;
 
 class Entity : public InspectorSelectable
 {
 public:
+
+
+	void OnInspector() override;
+
 
 	std::string Entityname;
 
@@ -29,13 +34,11 @@ public:
 		
 	};
 
-
+	Scene* scene;
 	std::vector< uint32_t> EnityComponents;
 	uint32_t ID;
-	Register* Scene_register;
 
 private:
-
 
 };
 

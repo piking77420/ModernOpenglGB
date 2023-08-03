@@ -3,7 +3,7 @@
 
 
 class Shader;
-#define MAX_POINTLIGHT
+#define MAX_POINTLIGHT 
 #define MAX_SPOTHLIGHT
 
 struct Light 

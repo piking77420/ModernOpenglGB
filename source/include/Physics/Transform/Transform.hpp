@@ -8,9 +8,9 @@ class Transform : public EcsComponent<Transform>
 {
 public:
 	
-	Vector3 pos;
-	Vector3 rotation;
-	Vector3 scaling;
+	Vector3 pos = Vector3::Zero();
+	Vector3 rotation = Vector3::Zero();
+	Vector3 scaling = Vector3::One();
 
 	Matrix4X4 Local = Matrix4X4::Identity();
 	Matrix4X4 World = Matrix4X4::Identity();

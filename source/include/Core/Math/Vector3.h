@@ -167,6 +167,13 @@ public:
 		return result;
 	}
 
+
+
+	static inline Vector3 scale(const Vector3& v, float desiredLength)
+	{
+		return v * desiredLength / v.Norm();
+	}
+
 	
 	/**
 	* @fn constexpr float* SetPtr()
@@ -304,7 +311,14 @@ public:
 
 	/** @} */ // End of Cast Operator 
 
-		
+	Vector3 operator*(float value) const {
+		return Vector3(x * value, y * value, z * value);
+	}
+
+
+	Vector3 operator/(float value) const {
+		return Vector3(x / value, y / value, z / value);
+	}
 
 	/**
 	* \name Constructor
@@ -382,14 +396,7 @@ constexpr inline Vector3 operator+(const Vector3& vec1, const float value) noexc
 	result.z += value;
 	return result;
 }
-constexpr inline Vector3 operator*(const Vector3& vec1, const float value) noexcept
-{
-	Vector3 result = vec1;
-	result.x *= value;
-	result.y *= value;
-	result.z *= value;
-	return result;
-}
+
 
 constexpr inline Vector3 operator*(const float value, const Vector3& vec1) noexcept
 {
@@ -399,14 +406,7 @@ constexpr inline Vector3 operator*(const float value, const Vector3& vec1) noexc
 	result.z *= value;
 	return result;
 }
-constexpr inline Vector3 operator/(const Vector3& vec1, const float value) noexcept
-{
-	Vector3 result = vec1;
-	result.x /= value;
-	result.y /= value;
-	result.z /= value;
-	return result;
-}
+
 constexpr inline Vector3 operator-(const Vector3& vec1, const float value) noexcept
 {
 	Vector3 result = vec1;

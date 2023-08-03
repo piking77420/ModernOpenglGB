@@ -105,7 +105,7 @@ float inline  Vector4::Angle(const Vector4& vec1, const Vector4& vec2)
 	float dot = DotProduct(vec1, vec2);
 	float normVec1 = vec1.Norm();
 	float normVec2 = vec2.Norm();
-	float angle = std::acosf(dot / (normVec1 * normVec2));
+	float angle = std::acos(dot / (normVec1 * normVec2));
 	return angle;
 }
 std::ostream& operator<<(std::ostream& stream, const Vector4& vec)

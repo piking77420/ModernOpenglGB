@@ -27,7 +27,7 @@ private:
 
 public:
 	virtual ~Component() {}
-	virtual void ImguiWindowComponent(){};
+	virtual void ImguiWindowComponent() { std::cout << "sqd" << std::endl; };
 
 	bool IsEnable = true;
 	Entity* entity;
@@ -72,6 +72,7 @@ private:
 		return std::get<3>(ComponentTypeInfos->at(ID));
 	}
 	friend Register;
+
 protected:
 
 

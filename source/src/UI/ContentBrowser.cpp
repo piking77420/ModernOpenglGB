@@ -6,12 +6,11 @@
 #include "UI/InspectorSelectable.h"
 #include "Ressources/Scene/Scene.h"
 
-fs::path ContentBrowser::BasePath = fs::path("assets");
+fs::path ContentBrowser::BasePath;
 
-fs::path ContentBrowser::CurrentPath = fs::path("assets");
+fs::path ContentBrowser::CurrentPath;
 
 
-ImGuiWindow* ContentBrowser::renderer = nullptr;
 
 bool ContentBrowser::IsThisFormat(const fs::path& path, const std::string& format)
 {
@@ -30,7 +29,7 @@ bool ContentBrowser::IsThisFormat(const fs::path& path, const std::string& forma
 	return false;
 }
 
-void ContentBrowser::Renderer(App& app)
+void ContentBrowser::Renderer(Project& currentProject)
 {
 
 
@@ -84,7 +83,7 @@ void ContentBrowser::Renderer(App& app)
 			if (ImGui::Button(name.c_str(), { thumbailSize,thumbailSize }))
 			{
 				std::string ressourcename = path.filename().generic_string();
-				app.InspectorCurrentindow = app.m_Ressources->GetElement<InspectorSelectable>(ressourcename);
+				//app.InspectorCurrentindow = app.m_Ressources->GetElement<InspectorSelectable>(ressourcename);
 			}
 			ImGui::Text(name.c_str());
 		}
@@ -96,15 +95,7 @@ void ContentBrowser::Renderer(App& app)
 
 }
 
-void ContentBrowser::LookForInput(App& app)
-{
-	if(ImGui::IsWindowHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Right))
-	{
-		ImGui::ShowDemoWindow();
 
-		
-	}
-}
 
 std::string ContentBrowser::GetPreviousPath(const fs::path& currentPath)
 {
@@ -122,39 +113,26 @@ std::string ContentBrowser::GetPreviousPath(const fs::path& currentPath)
 
 
 
-void ContentBrowser::Update(App& app)
+void ContentBrowser::UpdateLayer(Project& currentProject)
 {
 	ImGui::Begin("ContentBrowser", NULL);
-	Renderer(app);
-	LookForInput(app);
+	Renderer(currentProject);
 	ImGui::End();
-	StateApp();
 	
+
+	// to do move this
 	if (ImGui::Begin("Render"))
 	{
-		renderer = ImGui::GetCurrentWindow();
+		ImGuiWindow* renderer = ImGui::GetCurrentWindow();
 		float width = ImGui::GetContentRegionAvail().x;
 		float height = ImGui::GetContentRegionAvail().y;
 
-		ImGui::Image((ImTextureID)App::currentScene->OpenGlRenderToImgui->framebufferTexture, ImGui::GetContentRegionAvail(),
+		ImGui::Image((ImTextureID)currentProject.renderer.OpenGlRenderToImgui->framebufferTexture, ImGui::GetContentRegionAvail(),
 			ImVec2(0, 1),
 			ImVec2(1, 0));
 		ImGui::End();
 	}
 	
-	
-}
-
-void ContentBrowser::StateApp()
-{
-	ImGui::Begin(" PlayMode ", NULL);
-	ImGui::SetCursorPosX((ImGui::GetWindowSize().x - 24) * 0.5f);
-	ImGui::ImageButton((ImTextureID)PlayIcon->ID, { 24,24 }, { 0,1 }, { 1,0 });
-	if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
-	{
-	}
-	ImGui::End();
-
 	
 }
 

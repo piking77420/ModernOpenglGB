@@ -4,7 +4,7 @@
 
 class Shader;
 
-class FrameBuffer : public IResource
+class FrameBuffer
 {
 public:
 	unsigned int FBO ;
@@ -22,7 +22,7 @@ public:
 
 	unsigned int GetTexture() const;
 	void ResizeFrammeBuffer(float _width, float _height);
-	void Init() override;
+	virtual void Init();
 
 
 	void InitVAOVBO();

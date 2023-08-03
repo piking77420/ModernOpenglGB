@@ -225,16 +225,7 @@
     <ClInclude Include="source\include\Core\Math\Quaternion.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\LowRenderer\Ui\InspectorSelectable.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\LowRenderer\Ui\ContentBrowser.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="source\include\Core\ECS\Component.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Core\ECS\Register.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="source\include\Core\ECS\Entity.h">
@@ -274,6 +265,27 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="source\include\LowRenderer\Light\Light.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\ECS\Register.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\UI\ImguiLayer.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\UI\Inspector.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\UI\DockingSystem.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\UI\Hierarchy.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\LowRenderer\Renderer\Renderer.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\LowRenderer\SystemRendererSkyMap\SystemRendererSkyMap.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -465,9 +477,6 @@
     <ClCompile Include="source\src\Core\ECS\Entity.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="source\src\Core\ECS\Register.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="source\src\Physics\Transform\Transform.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -499,6 +508,27 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\LowRenderer\Light\Light.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Core\ECS\Register.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\UI\ImguiLayer.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\UI\Inspector.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\UI\DockingSystem.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\UI\Hierarchy.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\LowRenderer\Renderer\Renderer.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\LowRenderer\SystemRendererSkyMap\SystemRendererSkyMap.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

@@ -16,8 +16,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "External/ImguiGizmo/ImGuizmo.h"
-
-
+#include "Core/DataStructure/Project.hpp"
+#include "LowRenderer/Renderer/Renderer.hpp"
 
     void processInput(GLFWwindow* window)
     {
@@ -81,8 +81,8 @@
         glfwMakeContextCurrent(window);
 
         gladLoadGL();
-        App::framebuffer_size_callback(window, windowWidth, windowHeight);
-        glfwSetFramebufferSizeCallback(window, App::framebuffer_size_callback);
+        Renderer::framebuffer_size_callback(window, windowWidth, windowHeight);
+        glfwSetFramebufferSizeCallback(window, Renderer::framebuffer_size_callback);
         glfwSetCursorPosCallback(window, Camera::MouseCallback);
         glfwSetMouseButtonCallback(window, Camera::MouseButtonCallBack);
 
@@ -113,8 +113,7 @@
             
             glfwPollEvents();
 
-            if(App::GammaCorrection)
-            glEnable(GL_FRAMEBUFFER_SRGB);
+
             
        
             processInput(window);
@@ -133,8 +132,7 @@
             
             glStencilMask(0xFF);
             glStencilFunc(GL_ALWAYS, 0, 0xFF);
-            if (App::GammaCorrection)
-            glDisable(GL_FRAMEBUFFER_SRGB);
+
 
            // IMGUI RENDER // 
             ImGui::Render();

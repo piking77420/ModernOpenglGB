@@ -3,8 +3,7 @@
 #include <string>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "Ressources/SkyBox/SkyBox.h"
-#include "Ressources/CubeMaps/CubeMaps.h"
+
 #include "UI/InspectorSelectable.h"
 
 #include <Core/Debug/Debug.h>
@@ -13,6 +12,8 @@
 #include "LowRenderer/FrameBuffer/FrameBuffer.h"
 #include "UI/ContentBrowser.h"
 #include "Core/ECS/Entity.h"
+#include "UI/DockingSystem.hpp"
+#include "Core/DataStructure/Project.hpp"
 
 class RessourcesManager;
 class Camera;
@@ -25,39 +26,18 @@ const int windowHeight = 1080;
 const int MSAA = 8;
 
 
+
 class App
 {
 public:	
 
-	static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 	void AppUpdate(); 
-	bool HasPlayOnce;
-	static bool GammaCorrection;	
-	static Scene* currentScene;
-	RessourcesManager* m_Ressources;	
-	InspectorSelectable* InspectorCurrentindow;
+	Project CurrentProject;
 	App(int _WindowX, int _WindowY, ImGuiIO& _io);
 	~App();
 private:
-	ImGuiIO& m_io;
-	bool m_PostProcess;
 	const int windowX;
 	const int windowY;
-	void InitRessources();
-	void InitScene();
-	void DrawSkyBox();
-	void InitImguiTheme();
-	void ImguiInspector() ;
-	void ImguiGraphScene() ;
-	void ImguiAppInfo();
-	void DockSpace() ;
-	void ImguiDrawChildren(Entity* entity);//Entity* entity) ;
-	SkyBox* m_CurrentSkybox;
-	ContentBrowser* m_ContentBrowser;
-	Shader* GizmoShader;
-	Shader* Stencil;
-	Shader* DepthShader;
-	Shader* ShadowShader;
-	Shader* BaseShader;
+
 };
 

@@ -2,33 +2,11 @@
 #include "Physics/Transform/Transform.hpp"
 #include "Physics/GraphScene/GraphScene.h"
 
-Entity* Register::CreateEntity()
-{
-	Entity* NewEntitie = new Entity();
 
 
-	NewEntitie->SetID() = entities.size();
-	NewEntitie->Entityname = "Entity " + std::to_string(NewEntitie->ID);
-	entities.push_back(NewEntitie);
-
-	// Minimal Componnent
-	AddComponent<Transform>(NewEntitie);
-
-	return NewEntitie;
-}
-
-Entity* Register::GetEntities(uint32_t ID)
-{
-	for (size_t i = 0; i < entities.size(); i++)
-	{
-		if (entities[i]->GetID() == ID)
-			return entities[i];
-	}
-
-}
 
 Register::Register()
-{	
+{
 	for (size_t i = 0; i < Component::GetNbrOfComponent(); i++)
 	{
 		std::pair<uint32_t, std::vector<uint8_t>*> newArray(i, new std::vector<uint8_t>());
@@ -62,14 +40,14 @@ void Register::AddComponentInternal(uint32_t ComponenTypeID, Entity* entity)
 			std::vector<uint8_t>& data = *ComponentsData[i].second;
 			ECSComponentCreateFunction createfn = Component::GetCreateFN(ComponenTypeID);
 			Component* ptr = nullptr;
-			uint32_t index =  createfn(data, entity, &ptr);
+			uint32_t index = createfn(data, entity, &ptr);
 			AddComponentEntitie(entity, ComponenTypeID, index);
 			return;
 		}
 	}
 }
 
-Component* Register::GetComponentInternal(uint32_t ComponenTypeID ,Entity* entity)
+Component* Register::GetComponentInternal(uint32_t ComponenTypeID, Entity* entity)
 {
 	uint32_t IndexOffComponent = entity->EnityComponents.at(ComponenTypeID);
 	// this entities Doesnt' have this Component
@@ -80,12 +58,13 @@ Component* Register::GetComponentInternal(uint32_t ComponenTypeID ,Entity* entit
 	return ptr;
 }
 
-const Component* Register::GetComponentInternal(uint32_t ComponenTypeID,const Entity* entity) const
+const Component* Register::GetComponentInternal(uint32_t ComponenTypeID, const Entity* entity) const
 {
 	uint32_t IndexOffComponent = entity->EnityComponents.at(ComponenTypeID);
 	// this entities Doesnt' have this Component
 	if (IndexOffComponent == ComponentNULL)
 		return nullptr;
+
 	const Component* ptr = reinterpret_cast<Component*>(&ComponentsData.at(ComponenTypeID).second->at(IndexOffComponent));
 
 	return ptr;
@@ -142,7 +121,7 @@ void Register::RemoveEntityInternal(Entity* entity)
 	}
 
 
-	uint32_t destIndex =  entity->GetID();
+	uint32_t destIndex = entity->GetID();
 
 	uint32_t srcIndex = entities.size() - 1;
 
@@ -152,22 +131,22 @@ void Register::RemoveEntityInternal(Entity* entity)
 	// Care
 	entities[destIndex] = entities[srcIndex];
 
-	
+
 
 	entities.pop_back();
 }
 
-void Register::AddComponentEntitie(Entity* entity,uint32_t ComponenTypeID,uint32_t ComponentIndex)
+void Register::AddComponentEntitie(Entity* entity, uint32_t ComponenTypeID, uint32_t ComponentIndex)
 {
 	// we assume There is alrealy all Array has been initialise
 
 
 	// if it's empty just add 
-	if(entity->EnityComponents.at(ComponenTypeID) == ComponentNULL)
+	if (entity->EnityComponents.at(ComponenTypeID) == ComponentNULL)
 	{
 		entity->EnityComponents.at(ComponenTypeID) = ComponentIndex;
 	}
-	
+
 	// This entities Doest Alrealy has This Compoennt
 	return;
 
@@ -177,4 +156,3 @@ void Register::RemoveComponentEntitie(Entity* entity, uint32_t ComponenTypeID)
 {
 	entity->EnityComponents.at(ComponenTypeID) = ComponentNULL;
 }
-

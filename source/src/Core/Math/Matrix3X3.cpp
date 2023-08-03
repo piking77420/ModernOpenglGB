@@ -30,13 +30,13 @@ Matrix3X3 Matrix3X3::Rotation2DMatrix3X3(const float& angle)
 {
 	Matrix3X3 result;
 
-	result.Coloms[0].x = cos((angle));
+	result.Coloms[0].x = std::cos((angle));
 	result.Coloms[0].y = 0;
 	result.Coloms[0].z = 0;
 
 
 	result.Coloms[1].x = 0;
-	result.Coloms[1].y = sin((angle));
+	result.Coloms[1].y = std::sin((angle));
 	result.Coloms[1].z = 0;
 
 

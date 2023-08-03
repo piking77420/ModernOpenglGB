@@ -5,6 +5,7 @@
 #include<Core/Debug/Imgui/imgui_impl_glfw.h>
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>
 #include "Mathf.h"
+#include "Core/DataStructure/Project.hpp"
 
 #include "Ressources/Scene/Scene.h"
 
@@ -72,7 +73,7 @@ void Camera::CameraUpdate()
 
 	  
 
-	  m_ProjectionMatrix = Matrix4X4::PerspectiveMatrix(Math::DegreesToRadians(fov), (float)Scene::OpenGlRenderToImgui->widht / (float)Scene::OpenGlRenderToImgui->height, Fnear, Ffar);
+	  m_ProjectionMatrix = Matrix4X4::PerspectiveMatrix(Math::DegreesToRadians(fov), (float)Renderer::OpenGlRenderToImgui->widht / (float)Renderer::OpenGlRenderToImgui->height, Fnear, Ffar);
 
 	  //m_ProjectionMatrix = Matrix4X4::OrthoGraphicMatrix(4,-4,4, -4, Fnear, Ffar).Transposate();
 	  m_LookAtMatrix = GetLookMatrix();
@@ -124,7 +125,7 @@ Camera::Camera()
 	CameraRotation();
 
 	m_LookAtMatrix = GetLookMatrix();
-	m_ProjectionMatrix = Matrix4X4::PerspectiveMatrix(Math::DegreesToRadians(fov), (float)windowWidth / (float)windowHeight, Fnear, Ffar);
+	m_ProjectionMatrix = Matrix4X4::PerspectiveMatrix(Math::DegreesToRadians(fov), (float)Renderer::OpenGlRenderToImgui->widht / (float)Renderer::OpenGlRenderToImgui->height, Fnear, Ffar);
 
 	VP = m_ProjectionMatrix * m_LookAtMatrix;
 	mouseSentivity = CAMERASENSITIVITY;

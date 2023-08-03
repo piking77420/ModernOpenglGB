@@ -11,7 +11,9 @@ class GraphScene : public IEcsSystem
 public:
 	void Update(Scene* scene) override;
 
-
+	static void BeChildOf(Transform* Parent, Transform* Child);
+	static void NoParent(Transform* transform);
+	static void UnChild(Transform* Parent, Transform* Child);
 
 	GraphScene(){};
 	 ~GraphScene() override {};

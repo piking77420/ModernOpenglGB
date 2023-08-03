@@ -7,7 +7,7 @@ class DirectionalLight : public EcsComponent<DirectionalLight>
 {
 public:
 	Light lightData;
-	Vector3 direction = Vector3::Zero();
+	void ImguiWindowComponent() override;
 
 	DirectionalLight();
 	~DirectionalLight();

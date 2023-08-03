@@ -59,19 +59,19 @@ constexpr inline float Vector2::Norm() const
 
 float Vector2::Angle() const
 {
-	return std::atan2f(x, y);
+	return std::atan2(x, y);
 }
 
 float Vector2::Distance(Vector2 a, Vector2 b)
 {
-	return std::sqrtf((a.x - b.x * a.x - b.x) + (a.y - b.y * a.y - b.y));
+	return std::sqrt((a.x - b.x * a.x - b.x) + (a.y - b.y * a.y - b.y));
 }
 
 float Vector2::Angle(const Vector2 vec1 , const Vector2 Row1) 
 {
 	float dot = DotProduct(vec1, Row1);
 
-	float angle = std::acosf(dot / (vec1.Norm() * Row1.Norm()));
+	float angle = std::acos(dot / (vec1.Norm() * Row1.Norm()));
 
 	if(Determinant(vec1 , Row1) < 0.f )
 	{

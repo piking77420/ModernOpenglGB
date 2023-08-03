@@ -9,14 +9,13 @@
 class SkyBox : public Model
 {	
 public : 
-	void Draw() const override;
-	SkyBox(CubeMaps& cubemaps);
-	SkyBox();
+	void Init() override;
+
+	SkyBox(CubeMaps& _cubemaps);
 	~SkyBox();
-	CubeMaps m_Cubemaps;
+	CubeMaps cubemap;
 	void operator=(const SkyBox& skybox);
 private: 
 	static float CUBEMAPSIZE;
-	void InitBufferCubaMaps();
 };
 

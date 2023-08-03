@@ -1,6 +1,7 @@
 #pragma once
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <limits>
 #define cot(x) (cos(x)/sin(x))
 
 #define TOLERANCE 0.000001f
@@ -8,6 +9,26 @@
 
 namespace Math
 {
+	constexpr float Epsilon()
+	{
+		return std::numeric_limits<float>::epsilon();
+	}
+
+
+	inline bool epsilonEqual
+	(
+		double const& x,
+		double const& y,
+		double const& epsilon
+	)
+	{
+		return abs(x - y) < epsilon;
+	}
+
+	inline bool epsilonNotEqual(float const& x, float const& y, float const& epsilon)
+	{
+		return abs(x - y) >= epsilon;
+	}
 
 	
 	

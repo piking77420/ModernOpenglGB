@@ -3,6 +3,7 @@
 #include "Vector4.h"
 #include "Matrix3X3.h"
 #include "Quaternion.h"
+#include "Mathf.h"
 
 class Vector3;
 class Matrix;
@@ -34,7 +35,11 @@ public:
 	* @brief This function Return the Translation of the matrix.
 	* @return m30 m31 m32 m33.
 	*/
-	Vector3 GetPos();
+	inline Vector3 GetPos()
+	{
+		return static_cast<Vector3>(Colums[3]);
+	}
+
 
 
 #pragma region GraphicMatrix
@@ -59,7 +64,7 @@ public:
 				{r00, 0.f, 0.f,0.f },
 				{0.f, r11, 0.f,0.f },
 				{0.f, 0.f, r22, -1.0f},
-				{0, 0,r32, 0}
+				{0, 0,r32, 1.f}
 		};
 
 	}
@@ -89,6 +94,67 @@ public:
 		};
 
 	}
+
+	static inline bool DecomposeMatrix(const Matrix4X4& matrix, Vector3& tranlation , Vector3& rotation , Vector3& scale )
+	{
+
+		 // From Hazel github page 
+		// https://github.com/TheCherno/Hazel/blob/5e20b232b749a8f1339e32074c254c44d7c9c263/Hazel/src/Hazel/Math/Math.cpp#L46
+
+		using namespace Math;
+
+		Matrix4X4 LocalMatrix(matrix);
+
+		if (epsilonEqual(LocalMatrix[3][3], 0.f, Epsilon()))
+			return false;
+
+		// First, isolate perspective.  This is the messiest.
+		if (
+			epsilonNotEqual(LocalMatrix[0][3], 0.f, Epsilon()) ||
+			epsilonNotEqual(LocalMatrix[1][3], 0.f, Epsilon()) ||
+			epsilonNotEqual(LocalMatrix[2][3], 0.f, Epsilon()))
+		{
+			// Clear the perspective partition
+			LocalMatrix[0][3] = LocalMatrix[1][3] = LocalMatrix[2][3] = 0.f;
+			LocalMatrix[3][3] = 1.f;
+		}
+
+		tranlation = static_cast<Vector3>(LocalMatrix[3]);
+
+		LocalMatrix[3] = Vector4(0.f, 0.f, 0.f, LocalMatrix[3].w);
+
+
+		Vector3 Row[3], Pdum3;
+
+		// Now get scale and shear.
+		for (uint32_t i = 0; i < 3; ++i)
+			for (uint32_t j = 0; j < 3; ++j)
+				Row[i][j] = LocalMatrix[i][j];
+
+		// Compute X scale factor and normalize first row.
+		scale.x = Row[0].Norm();
+		Row[0] = Vector3::scale(Row[0], 1.f);
+		scale.y = Row[1].Norm();
+		Row[1] = Vector3::scale(Row[1], 1.f);
+		scale.z = Row[2].Norm();
+		Row[2] = Vector3::scale(Row[2], 1.f);
+
+
+
+		rotation.y = asin(-Row[0][2]);
+		if (cos(rotation.y) != 0) {
+			rotation.x = atan2(Row[1][2], Row[2][2]);
+			rotation.z = atan2(Row[0][1], Row[0][0]);
+		}
+		else {
+			rotation.x = atan2(-Row[2][0], Row[1][1]);
+			rotation.z = 0;
+		}
+
+
+		return true;
+	}
+
 
 	/**
 	* @fn static Matrix4X4 LookAt(const Vector3& eye, const Vector3& at, const Vector3& up);;

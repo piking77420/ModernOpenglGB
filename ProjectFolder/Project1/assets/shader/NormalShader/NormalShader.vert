@@ -33,7 +33,7 @@ void main()
 	vs_out.LightPos = vec3(view * vec4(lightPos, 1.0)); 
 	//vs_out.Normal = mat3(rotation) * aNormal;  
 	//vs_out.Normal = mat3(NormalMatrix) * aNormal;  
-	vs_out.Normal = transpose(inverse(mat3(NormalMatrix))) * aNormal;  
+	vs_out.Normal = mat3(NormalMatrix) * aNormal;  
 
 	//vs_out.Normal = NormalMatrix * aNormal;  
 	vs_out.TexCoords = vec2(aTexCoord.x, aTexCoord.y);

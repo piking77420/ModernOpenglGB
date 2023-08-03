@@ -473,13 +473,7 @@ Model::Model(const fs::path& FilePath) : m_reduceValue(1)
 	LoadVertex(data, IsFaced, Is3dTextureCoordinate);
 }
 
-void Model::OnSelected()
-{
-	ImGui::PushID(name.c_str());
-	ImGui::Text(name.c_str());
-	ImGui::PopID();
 
-}
 
 
 

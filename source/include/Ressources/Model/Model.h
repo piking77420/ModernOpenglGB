@@ -36,7 +36,6 @@ public:
 	//void Load(std::string path) override;
 	virtual void Draw() const;
 	Model(const fs::path& FilePath);
-	void OnSelected() override;
 
 
 	Model(){};
@@ -51,7 +50,7 @@ public:
 	std::vector<uint32_t> indexVector;
 	std::string name;
 
-	void Init() override;
+	virtual void Init() override;
 	static float cube[];
 private:
 	void LoadVertex(const ModelData& data, bool& isFaced, bool& is3dTextute);

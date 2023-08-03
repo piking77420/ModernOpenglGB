@@ -6,11 +6,11 @@
 #include "LowRenderer/Light/PointLight/PointLight.hpp"
 #include "Ressources/Scene/Scene.h"
 #include "Physics/Transform/Transform.hpp"
-
+#include "Core/DataStructure/Project.hpp"
 
 void RendererLightSystem::Init(Scene* scene)
 {
-	shaderProgramm = Scene::ressourcesManagers->GetElement<Shader>(shaderName);
+	shaderProgramm = scene->currentproject->ressourcesManager.GetElement<Shader>(shaderName);
 }
 
 void RendererLightSystem::Render(Scene* scene)
@@ -21,11 +21,11 @@ void RendererLightSystem::Render(Scene* scene)
 	}
 	shaderProgramm->Use();
 
-	UpdateDirectionnalLights(scene->m_register.ComponentsData[DirectionalLight::ComponentTypeID].second, scene);
+	UpdateDirectionnalLights(scene->GetComponentDataArray<DirectionalLight>(), scene);
 
-	UpdatePointLights(scene->m_register.ComponentsData[PointLight::ComponentTypeID].second, scene);
+	UpdatePointLights(scene->GetComponentDataArray<PointLight>(), scene);
 
-	UpdateSpothLights(scene->m_register.ComponentsData[SpothLight::ComponentTypeID].second, scene);
+	UpdateSpothLights(scene->GetComponentDataArray<SpothLight>(), scene);
 
 	shaderProgramm->UnUse();
 
@@ -86,14 +86,15 @@ void RendererLightSystem::UpdateSpothLights(std::vector<uint8_t>* data, Scene* s
 
 void RendererLightSystem::RenderDirectionalLight(const DirectionalLight* dirLight, Scene* scene)
 {
-	Transform* transformOfLight = scene->m_register.GetComponent<Transform>(dirLight->entity);
-
+	Transform* transformOfLight = scene->GetComponent<Transform>(dirLight->entity);
+	Vector3 LightDirection = static_cast<Vector3>( Vector4(0,0,-1,0) * Matrix4X4::RotationMatrix4X4(transformOfLight->rotation));
 
 	shaderProgramm->SetVector3("lightPos", transformOfLight->World.GetPos().GetPtr());
-	shaderProgramm->SetVector3("dirLight.direction", dirLight->direction.GetPtr());
+	shaderProgramm->SetVector3("dirLight.direction", LightDirection.GetPtr());
 	shaderProgramm->SetVector3("dirLight.ambient", dirLight->lightData.ambiantColor.GetPtr());
 	shaderProgramm->SetVector3("dirLight.diffuse", dirLight->lightData.diffuseColor.GetPtr());
 	shaderProgramm->SetVector3("dirLight.specular", dirLight->lightData.specularColor.GetPtr());
+	
 	//shader->SetMaxtrix("lightSpaceMatrix", GetLightSpaceMatrix().GetPtr());
 }
 
