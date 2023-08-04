@@ -14,7 +14,6 @@ public:
 	const Model* model;
 	const Texture* diffuse = nullptr;
 	const Texture* specular = nullptr;
-	const Shader* shader = nullptr;
 	bool m_Stencil = false;
 
 	void ImguiWindowComponent() override;

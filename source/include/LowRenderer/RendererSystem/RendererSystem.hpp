@@ -12,11 +12,11 @@ public:
 
 	std::string shaderName;
 
-	void Init(Scene* scene) override;
-	void Render(Scene* scene) override;
+	ImplementIEcsSystem;
+
 	RendererSystem(){};
 
-	 ~RendererSystem() override {};
+	 ~RendererSystem(){};
 
 private:
 	const Shader* shaderProgramm = nullptr;

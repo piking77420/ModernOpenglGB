@@ -4,6 +4,7 @@
 #include <string>
 #include "UI/InspectorSelectable.h"
 #define ComponentNULL 4294967295
+#define EntityNULL 4294967295
 
 
 class Scene;

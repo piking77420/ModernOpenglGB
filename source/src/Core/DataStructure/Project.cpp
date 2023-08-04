@@ -28,6 +28,8 @@ void Project::Update()
 {
 	m_io = ImGui::GetIO();
 
+
+
 	mainCamera->SetCameraInfoForShaders(ressourcesManager);
 	mainCamera->CameraUpdate();
 
@@ -87,45 +89,61 @@ Project::~Project()
 void Project::InitScene()
 {
 
-	currentScene->AddSystem<RendererSystem>();
-	RendererSystem* rs = currentScene->GetSystem<RendererSystem>();
+	RendererSystem* rs = new RendererSystem();
+	currentScene->AddSystem(rs);
 	rs->shaderName = "NormalShader";
 
-	currentScene->AddSystem<RendererLightSystem>();
-	RendererLightSystem* rl = currentScene->GetSystem<RendererLightSystem>();
+	RendererLightSystem* rl = new RendererLightSystem();
+	currentScene->AddSystem(rl);
 	rl->shaderName = "NormalShader";
 
 
-	currentScene->AddSystem<SystemRendererSkyMap>();
-	SystemRendererSkyMap* systemRendererSkyMap = currentScene->GetSystem<SystemRendererSkyMap>();
+	SystemRendererSkyMap* systemRendererSkyMap = new SystemRendererSkyMap();
+	currentScene->AddSystem(systemRendererSkyMap);
 
 
 
 	Entity* entity = currentScene->CreateEntity();
 	currentScene->AddComponent<MeshRenderer>(entity);
 	currentScene->GetComponent<Transform>(entity)->pos += Vector3(2,2,2);
-
-
-
-
 	MeshRenderer* meshRenderer = currentScene->GetComponent<MeshRenderer>(entity);
-	meshRenderer->model = ressourcesManager.GetElement<Model>("viking_room.obj");
+	meshRenderer->model = ressourcesManager.GetElement<Model>("cube.obj");
 	meshRenderer->diffuse = ressourcesManager.GetElement<Texture>("EmerauldBlock.png");
 	meshRenderer->specular = ressourcesManager.GetElement<Texture>("EmerauldBlock.png");
 
 
 
-	Entity* entity2 = currentScene->CreateEntity();
-	currentScene->AddComponent<MeshRenderer>(entity2);
-	MeshRenderer* meshRenderer2 = currentScene->GetComponent<MeshRenderer>(entity2);
-	meshRenderer2->model =  ressourcesManager.GetElement<Model>("Sphere.obj");
-	meshRenderer2->diffuse = ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
-	meshRenderer2->specular = ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
+	Entity* entityCube2 = currentScene->CreateEntity();
+	currentScene->AddComponent<MeshRenderer>(entityCube2);
+	currentScene->GetComponent<Transform>(entityCube2)->pos += Vector3(-4, 4, -4);
+	currentScene->GetComponent<Transform>(entityCube2)->rotation += Vector3(0.5, 2, -0.8);
 
+	meshRenderer = currentScene->GetComponent<MeshRenderer>(entityCube2);
+	meshRenderer->model = ressourcesManager.GetElement<Model>("cube.obj");
+	meshRenderer->diffuse = ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
+	meshRenderer->specular = ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
+
+
+
+	Entity* entity2 = currentScene->CreateEntity();
+	currentScene->GetComponent<Transform>(entity2)->scaling = Vector3(0.5, 0.5,0.5);
+	currentScene->GetComponent<Transform>(entity2)->pos = Vector3(0, 1000, 0);
 	currentScene->AddComponent<DirectionalLight>(entity2);
 
 
-	GraphScene::BeChildOf(currentScene->GetComponent<Transform>(entity2), currentScene->GetComponent<Transform>(entity));
+	GraphScene::BeChildOf(currentScene->GetComponent<Transform>(entityCube2), currentScene->GetComponent<Transform>(entity));
+
+	
+	Entity* plane = currentScene->CreateEntity();
+	currentScene->AddComponent<MeshRenderer>(plane);
+	MeshRenderer* planerdr = currentScene->GetComponent<MeshRenderer>(plane);
+	currentScene->GetComponent<Transform>(plane)->scaling = Vector3(25,0,25);
+	planerdr->model = ressourcesManager.GetElement<Model>("plane.obj");
+	planerdr->diffuse = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
+	planerdr->specular = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
+
+	
+
 	
 
 

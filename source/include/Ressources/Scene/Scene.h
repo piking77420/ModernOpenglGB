@@ -41,6 +41,8 @@ public :
 	Entity* GetEntities(uint32_t ID);
 
 
+	
+
 	template<class T>
 	bool IsEntityHas(const Entity* entity);
 
@@ -58,7 +60,7 @@ public :
 	{
 		return reinterpret_cast<T*>(registerScene.GetComponentInternal(T::ComponentTypeID, entity));
 	}
-
+	
 
 	template<class T>
 	inline void RemoveComponent(Entity* entity)
@@ -72,10 +74,9 @@ public :
 	}
 
 
-	template<class T>
-	inline void AddSystem()
+	inline void AddSystem(IEcsSystem* system)
 	{
-		registerScene.Systems.push_back(new T());
+		registerScene.AddSystemInternal(system);
 	}
 
 	template<class T>

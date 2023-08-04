@@ -1,7 +1,7 @@
 #include "Core/ECS/Register.h"
 #include "Physics/Transform/Transform.hpp"
 #include "Physics/GraphScene/GraphScene.h"
-
+#include "Core/Debug/Debug.h"
 
 
 
@@ -11,9 +11,11 @@ Register::Register()
 	{
 		std::pair<uint32_t, std::vector<uint8_t>*> newArray(i, new std::vector<uint8_t>());
 		ComponentsData.push_back(newArray);
+		
 	}
 
-	Systems.push_back(new GraphScene);
+
+	AddSystemInternal(new GraphScene);
 }
 
 Register::~Register()
@@ -24,10 +26,10 @@ Register::~Register()
 		delete ComponentsData[i].second;
 	}
 	ComponentsData.clear();
-	/*for (size_t i = 0; i < entities.size(); i++)
+	for (size_t i = 0; i < entities.size(); i++)
 	{
 		delete entities[i];
-	}*/
+	}
 }
 
 void Register::AddComponentInternal(uint32_t ComponenTypeID, Entity* entity)
@@ -42,6 +44,10 @@ void Register::AddComponentInternal(uint32_t ComponenTypeID, Entity* entity)
 			Component* ptr = nullptr;
 			uint32_t index = createfn(data, entity, &ptr);
 			AddComponentEntitie(entity, ComponenTypeID, index);
+
+			// On Resize 
+			TriggerOnresizeDataEvent(ComponenTypeID, &data);
+
 			return;
 		}
 	}
@@ -57,6 +63,8 @@ Component* Register::GetComponentInternal(uint32_t ComponenTypeID, Entity* entit
 
 	return ptr;
 }
+
+
 
 const Component* Register::GetComponentInternal(uint32_t ComponenTypeID, const Entity* entity) const
 {
@@ -99,6 +107,7 @@ void Register::RemoveComponentInternal(uint32_t ComponenTypeID, Entity* entity)
 	if (index == LastIndex) {
 		dataArray.resize(LastIndex);
 		RemoveComponentEntitie(entity, ComponenTypeID);
+		TriggerOnresizeDataEvent(ComponenTypeID, &dataArray);
 		return;
 	}
 
@@ -109,6 +118,9 @@ void Register::RemoveComponentInternal(uint32_t ComponenTypeID, Entity* entity)
 
 	RemoveComponentEntitie(entity, ComponenTypeID);
 
+	TriggerOnresizeDataEvent(ComponenTypeID, &dataArray);
+
+	
 }
 
 
@@ -136,6 +148,8 @@ void Register::RemoveEntityInternal(Entity* entity)
 	entities.pop_back();
 }
 
+
+
 void Register::AddComponentEntitie(Entity* entity, uint32_t ComponenTypeID, uint32_t ComponentIndex)
 {
 	// we assume There is alrealy all Array has been initialise
@@ -156,3 +170,20 @@ void Register::RemoveComponentEntitie(Entity* entity, uint32_t ComponenTypeID)
 {
 	entity->EnityComponents.at(ComponenTypeID) = ComponentNULL;
 }
+
+void Register::AddSystemInternal(IEcsSystem* system)
+{
+	Systems.push_back(system);
+	OnReSizeDataVector.push_back(&IEcsSystem::OnResizeData);
+}
+
+void Register::TriggerOnresizeDataEvent(uint32_t ComponenTypeID, std::vector<uint8_t>* data)
+{
+	for (size_t i = 0; i < OnReSizeDataVector.size(); i++)
+	{
+		OnReSizeDataVector[i](*Systems[i], ComponenTypeID, data);
+	}
+
+}
+
+

@@ -69,7 +69,7 @@ void Hierarchy::ImguiDrawChildren(Entity* entity, Project& currentProject)
 		{
 			for (size_t i = 0; i < transform->childs.size(); i++)
 			{
-				ImguiDrawChildren(transform->childs[i]->entity, currentProject);
+				ImguiDrawChildren(transform->childs[i].second->entity, currentProject);
 			}
 		}
 		ImGui::TreePop();

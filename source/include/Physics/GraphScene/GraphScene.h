@@ -9,14 +9,17 @@ class Transform;
 class GraphScene : public IEcsSystem
 {
 public:
-	void Update(Scene* scene) override;
+
+
+	ImplementIEcsSystem;
+
 
 	static void BeChildOf(Transform* Parent, Transform* Child);
 	static void NoParent(Transform* transform);
 	static void UnChild(Transform* Parent, Transform* Child);
 
 	GraphScene(){};
-	 ~GraphScene() override {};
+	 ~GraphScene() {};
 private:
 	void UpdateTransform(Transform* transform, uint32_t treeIndex);
 	void StarTree(std::vector<Transform*>& transformVector);
@@ -27,6 +30,12 @@ private:
 
 	void GetParentLink(const Transform* transform, uint32_t& currentValue);
 	uint32_t CountParentLink(const Transform* transform);
+	void UpdateAllTransformPointers(std::vector<uint8_t>* data);
 
+	static bool HasParent(const Transform* transform);
+	static bool HasChild(const Transform* transform);
+
+
+	static void UnbindParent(Transform* transform);
 };
 

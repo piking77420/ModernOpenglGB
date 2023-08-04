@@ -9,16 +9,39 @@
 #include "LowRenderer/Cam/Camera.h"
 #include "Core/DataStructure/Project.hpp"
 
+
+
 void RendererSystem::Init(Scene* scene)
 {
 	shaderProgramm = scene->currentproject->ressourcesManager.GetElement<Shader>(shaderName);
+};
 
-
-	
-}
-
-void RendererSystem::Render(Scene* scene)
+void RendererSystem::Awake(Scene* scene)
 {
+
+};
+void RendererSystem::Start(Scene* scene)
+{
+
+};
+
+
+void RendererSystem::FixedUpdate(Scene* scene) 
+{
+
+};
+void RendererSystem::Update(Scene* scene) 
+{
+
+};
+void RendererSystem::LateUpdate(Scene* scene) 
+{
+
+};
+
+void RendererSystem::Render(Scene* scene) 
+{
+
 	if (!shaderProgramm)
 		return;
 
@@ -26,14 +49,20 @@ void RendererSystem::Render(Scene* scene)
 
 
 
-	for(uint32_t i = 0 ; i < MeshRenderData->size() / sizeof(MeshRenderer); i++)
+	for (uint32_t i = 0; i < MeshRenderData->size() / sizeof(MeshRenderer); i++)
 	{
 		size_t offset = i * sizeof(MeshRenderer);
 		MeshRenderer* meshRenderer = reinterpret_cast<MeshRenderer*>(&(*MeshRenderData)[offset]);
-		RenderMeshRender(meshRenderer,scene);
+		RenderMeshRender(meshRenderer, scene);
 	}
-	
-}
+};
+void RendererSystem::OnResizeData(uint32_t ComponentTypeID,std::vector<uint8_t>* data) 
+{
+
+};
+
+
+
 
 void RendererSystem::RenderMeshRender(const MeshRenderer* meshRender, Scene* scene)
 {

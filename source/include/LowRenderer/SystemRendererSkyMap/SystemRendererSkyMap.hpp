@@ -10,15 +10,12 @@ public:
 	const Shader* shaderProgram = nullptr;
 	const SkyBox* skybox = nullptr;
 
-	 void Init(Scene* scene) override ;
+	ImplementIEcsSystem;
 
-	 void Awake(Scene* scene) override ;
-
-	 void Render(Scene* scene) override ;
 
 
 	SystemRendererSkyMap(){};
-	~SystemRendererSkyMap() override {};
+	~SystemRendererSkyMap(){};
 
 };
 

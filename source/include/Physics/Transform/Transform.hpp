@@ -2,7 +2,7 @@
 #include <vector>
 #include "Core/ECS/ECSComponent.h"
 #include "Core/Math/ToolBoxMathHeaders.h"
-
+#include "Core/ECS/Entity.h"
 
 class Transform : public EcsComponent<Transform>
 {
@@ -15,8 +15,15 @@ public:
 	Matrix4X4 Local = Matrix4X4::Identity();
 	Matrix4X4 World = Matrix4X4::Identity();
 
+
+	// TO DO : Change pointers for entity ID beacause of the deallocation of the vector<uint_8> if you resize it 
+	// the pointers will be invalud
+
+	uint32_t ParentId = EntityNULL;
 	const Transform* Parent = nullptr;
-	std::vector<Transform*> childs;
+	std::vector <std::pair<uint32_t,Transform* >> childs;
+
+
 	void ImguiWindowComponent() override;
 
 

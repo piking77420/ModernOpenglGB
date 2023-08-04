@@ -8,14 +8,40 @@
 #include "Physics/Transform/Transform.hpp"
 #include "Core/DataStructure/Project.hpp"
 
+
+
+
 void RendererLightSystem::Init(Scene* scene)
 {
 	shaderProgramm = scene->currentproject->ressourcesManager.GetElement<Shader>(shaderName);
-}
+};
+
+void RendererLightSystem::Awake(Scene* scene)
+{
+
+};
+void RendererLightSystem::Start(Scene* scene)
+{
+
+};
+
+
+void RendererLightSystem::FixedUpdate(Scene* scene)
+{
+
+};
+void RendererLightSystem::Update(Scene* scene)
+{
+
+};
+void RendererLightSystem::LateUpdate(Scene* scene)
+{
+
+};
 
 void RendererLightSystem::Render(Scene* scene)
 {
-	if(!shaderProgramm)
+	if (!shaderProgramm)
 	{
 		LOG("ShaderProgramm Is Nullptr ", STATELOG::CRITICALERROR);
 	}
@@ -29,7 +55,20 @@ void RendererLightSystem::Render(Scene* scene)
 
 	shaderProgramm->UnUse();
 
-}
+};
+void RendererLightSystem::OnResizeData(uint32_t ComponentTypeID,std::vector<uint8_t>* data)
+{
+
+};
+
+
+
+
+
+
+
+
+
 
 void RendererLightSystem::UpdateDirectionnalLights(std::vector<uint8_t>* data, Scene* scene)
 {
