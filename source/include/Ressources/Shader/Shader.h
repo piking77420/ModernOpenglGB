@@ -35,7 +35,7 @@ public:
     void SetInt(const std::string& name, int value) const;
     void SetFloat(const std::string& name, float value) const;
     void SetVector4(const std::string& name, const float* value) const;
-    void SetMaxtrix(const std::string& name, const float* matrixValue) const;
+    void SetMatrix(const std::string& name, const float* matrixValue) const;
     void SetVector3(const std::string& name, const float* value) const;
     void SetMaterial(const std::string& name, const Material& material) const ;
     GLuint GetId() const ;

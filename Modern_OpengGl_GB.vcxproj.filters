@@ -114,9 +114,6 @@
     <ClInclude Include="source\include\LowRenderer\Vertex\Vertex.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\Physics\PhysicsEngine.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="source\include\Ressources\CubeMaps\CubeMaps.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -213,12 +210,6 @@
     <ClInclude Include="source\include\UI\InspectorSelectable.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\LowRenderer\Gizmo\Gizmo.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="source\include\Ressources\Shader\ShaderSource\ShaderSource.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -286,6 +277,27 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="source\include\LowRenderer\SystemRendererSkyMap\SystemRendererSkyMap.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\UI\TransformGuizmo.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\LowRenderer\RendererShadowSystem\RendererShadowSystem.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Physics\Collider\SphereCollider.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Physics\Collider\ColliderSystem.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Physics\Collider\BoxCollider.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Physics\Collider\Collider.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\LowRenderer\Gizmo\Gizmo.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -375,9 +387,6 @@
     <ClCompile Include="source\src\Main\main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="source\src\Physics\PhysicsEngine.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="source\src\Ressources\CubeMaps\CubeMaps.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -439,12 +448,6 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\UI\InspectorSelectable.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\LowRenderer\Gizmo\Gizmo.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\External\ImguiGizmo\GraphEditor.cpp">
@@ -529,6 +532,27 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\LowRenderer\SystemRendererSkyMap\SystemRendererSkyMap.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\UI\TransformGuizmo.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\LowRenderer\RendererShadowSystem\RendererShadowSystem.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Physics\Collider\SphereCollider.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Physics\Collider\ColliderSystem.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Physics\Collider\BoxCollider.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Physics\Collider\Collider.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\LowRenderer\Gizmo\Gizmo.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

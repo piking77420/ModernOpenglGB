@@ -1,53 +1,7 @@
 #include <Ressources/Model/Model.h>
 #include "Ressources/RessourcesManager/RessourcesManager.h"
 
-const std::string Model::MODELPATH = "include/Ressources/Model/";
-#pragma region Cube
-float Model::cube[] = {
-	// positions          
-	-1.0f,  1.0f, -1.0f,
-	-1.0f, -1.0f, -1.0f,
-	 1.0f, -1.0f, -1.0f,
-	 1.0f, -1.0f, -1.0f,
-	 1.0f,  1.0f, -1.0f,
-	-1.0f,  1.0f, -1.0f,
 
-	-1.0f, -1.0f,  1.0f,
-	-1.0f, -1.0f, -1.0f,
-	-1.0f,  1.0f, -1.0f,
-	-1.0f,  1.0f, -1.0f,
-	-1.0f,  1.0f,  1.0f,
-	-1.0f, -1.0f,  1.0f,
-
-	 1.0f, -1.0f, -1.0f,
-	 1.0f, -1.0f,  1.0f,
-	 1.0f,  1.0f,  1.0f,
-	 1.0f,  1.0f,  1.0f,
-	 1.0f,  1.0f, -1.0f,
-	 1.0f, -1.0f, -1.0f,
-
-	-1.0f, -1.0f,  1.0f,
-	-1.0f,  1.0f,  1.0f,
-	 1.0f,  1.0f,  1.0f,
-	 1.0f,  1.0f,  1.0f,
-	 1.0f, -1.0f,  1.0f,
-	-1.0f, -1.0f,  1.0f,
-
-	-1.0f,  1.0f, -1.0f,
-	 1.0f,  1.0f, -1.0f,
-	 1.0f,  1.0f,  1.0f,
-	 1.0f,  1.0f,  1.0f,
-	-1.0f,  1.0f,  1.0f,
-	-1.0f,  1.0f, -1.0f,
-
-	-1.0f, -1.0f, -1.0f,
-	-1.0f, -1.0f,  1.0f,
-	 1.0f, -1.0f, -1.0f,
-	 1.0f, -1.0f, -1.0f,
-	-1.0f, -1.0f,  1.0f,
-	 1.0f, -1.0f,  1.0f
-};
-#pragma endregion
 
 
 #pragma region LoadOBJ
@@ -472,73 +426,6 @@ Model::Model(const fs::path& FilePath) : m_reduceValue(1)
 
 	LoadVertex(data, IsFaced, Is3dTextureCoordinate);
 }
-
-
-
-
-
-
-Model Model::LoadCube()
-{
-	Model Cube;
-	Cube.name = "Cube";
-		
-
-	for (size_t i = 0; i < 36; i+=3)
-	{
-		Cube.vertexVector.push_back(Vertex(Vector3(cube[i], cube[i+1], cube[i+2]) ));
-	}
-	
-	Cube.Init();
-
-
-	return Cube;
-}
-
-
-Model Model::LoadSphere()
-{
-	Model Sphere;
-
-	float latitude = 0;
-	float longitude = 0;
-
-	int slice = 32;
-
-	for (int i = 0; i < slice; i++)
-	{
-		float theta1 = (float)i * 2.0f * M_PI / slice;
-		float theta2 = (float)(i + 1) * 2.0f * M_PI / slice;
-
-		for (size_t k = 0; k <= slice; k++)
-		{
-			float phi = (float)k * M_PI / slice;
-
-			float x1 =  sin(theta1) * sin(phi);
-			float y1 =  cos(phi);
-			float z1 =  cos(theta1) * sin(phi);
-
-			float x2 =  sin(theta2) * sin(phi);
-			float y2 =  cos(phi);
-			float z2 =  cos(theta2) * sin(phi);
-			Vector3 current = Vector3(x1,y1,z1);
-			Vector3 current2 = Vector3(x2, y2, z2);
-			Sphere.vertexVector.push_back(current);
-
-		}
-	}
-
-	
-	Sphere.Init();
-
-	return Sphere;
-}
-
-
-	
-
-
-
 
 
 

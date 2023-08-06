@@ -9,6 +9,8 @@
 #include "UI/DockingSystem.hpp"
 #include "LowRenderer/Renderer/Renderer.hpp"
 
+#include "LowRenderer/FrameBuffer/FrameBuffer.h"
+#include "LowRenderer/RendererShadowSystem/RendererShadowSystem.h"
 
 
 namespace fs = std::filesystem;
@@ -19,6 +21,8 @@ class Project
 {
 public:
 
+	static FrameBuffer* OpenGlRenderToImgui;
+	static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
 
 	static inline fs::path ProjectFolderDirectory = fs::path("ProjectFolder");
@@ -27,6 +31,7 @@ public:
 	RessourcesManager ressourcesManager;
 	DockingSystem DockingSystem;
 	Renderer renderer;
+
 
 	std::string ProjectName = "Project";
 	Camera* mainCamera;
@@ -43,4 +48,5 @@ public:
 	
 private:
 	void InitScene();
+	
 };

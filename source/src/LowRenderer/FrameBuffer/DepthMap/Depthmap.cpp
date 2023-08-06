@@ -1,11 +1,15 @@
 #include "LowRenderer/FrameBuffer/DepthMap/Depthmap.h"
 
-Depthmap::Depthmap()
-{
-	widht = 1024;
-	height = 1024;
+Depthmap::Depthmap(uint32_t _widht, uint32_t _height) 
 
-	
+{
+	widht = _widht;
+	height = _height;
+	Init();
+}
+
+void Depthmap::Init()
+{
 	glGenFramebuffers(1, &FBO);
 
 
@@ -24,6 +28,15 @@ Depthmap::Depthmap()
 	glReadBuffer(GL_NONE);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
+
+Depthmap::Depthmap()
+{
+	widht = 1024;
+	height = 1024;
+
+	Init();
+}
+
 
 Depthmap::~Depthmap()
 {

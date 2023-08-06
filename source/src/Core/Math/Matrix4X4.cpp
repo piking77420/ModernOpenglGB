@@ -12,6 +12,7 @@
 
 
 
+
 Matrix4X4 Matrix4X4::RotationX4X4(const float& angle)
 {
 	Matrix4X4 result;
@@ -195,7 +196,7 @@ Matrix4X4 Matrix4X4::Invert()
 	{
 		for (int k = 0; k < 4; k++)
 		{
-			result[i][k] = (1 / determinant) * adj[i][k];
+			result[i][k] = (1.f / determinant) * adj[i][k];
 		}
 	}
 

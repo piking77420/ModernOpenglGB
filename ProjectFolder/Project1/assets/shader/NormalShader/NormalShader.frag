@@ -63,6 +63,8 @@ in VS_OUT
 	vec2 TexCoords;
 	vec3 FragPos;  
 	vec3 LightPos;
+    vec4 FragPosLightSpace;
+
 	
 } fs_in;
     
@@ -77,8 +79,31 @@ uniform  int nbrOfPointLight;
 uniform  int nbrOfSpothLightLight;
 
 
+
+
 uniform vec3 viewPos;
 uniform Material material;
+
+uniform sampler2D shadowMap;
+uniform vec3 lightPos;
+
+float ShadowCalculationDirectionnal(vec4 fragPosLightSpace)
+{
+    // perform perspective divide
+    vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+    // transform to [0,1] range
+    projCoords = projCoords * 0.5 + 0.5;
+    // get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
+    float closestDepth = texture(shadowMap, projCoords.xy).r; 
+    // get depth of current fragment from light's perspective
+    float currentDepth = projCoords.z;
+    // check whether current frag pos is in shadow
+    float shadow = currentDepth > closestDepth  ? 1.0 : 0.0;
+
+    return shadow;
+}
+
+
 
 
 vec3 CalculatePointLight(PointLight light , vec3 normal , vec3 fragPos , vec3 viewDir )
@@ -136,7 +161,10 @@ vec3 Directionnal(DirLight light , vec3 normal , vec3 viewDir)
     // ambiant light
     vec3 ambient = light.ambient * vec3(texture(material.diffuse, fs_in.TexCoords));
     
-    return ambient + diffuse + specular;
+    float shadow = ShadowCalculationDirectionnal(fs_in.FragPosLightSpace);                      
+      return (ambient + (1.0 - shadow) * (diffuse + specular));
+
+   // return (ambient + (diffuse + specular));
 }
 
 vec3 SpothLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)

@@ -47,13 +47,16 @@ void GraphScene::Update(Scene* scene)
 
 	StarTree(transformVector);
 
+
+
+
 };
 void GraphScene::LateUpdate(Scene* scene)
 {
 
 };
 
-void GraphScene::Render(Scene* scene)
+void GraphScene::Render(Shader& shader,Scene* scene)
 {
 
 };

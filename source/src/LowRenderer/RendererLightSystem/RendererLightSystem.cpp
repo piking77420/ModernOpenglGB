@@ -1,5 +1,7 @@
-#include<vector>
 #include "LowRenderer/RendererLightSystem/RendererLightSystem.hpp"
+#include<vector>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #include "Core/Debug/Debug.h"
 #include "LowRenderer/Light/DirectionalLight/DirectionalLight.hpp"
 #include "LowRenderer/Light/SpothLight/SpothLight.hpp"
@@ -13,7 +15,6 @@
 
 void RendererLightSystem::Init(Scene* scene)
 {
-	shaderProgramm = scene->currentproject->ressourcesManager.GetElement<Shader>(shaderName);
 };
 
 void RendererLightSystem::Awake(Scene* scene)
@@ -39,13 +40,19 @@ void RendererLightSystem::LateUpdate(Scene* scene)
 
 };
 
-void RendererLightSystem::Render(Scene* scene)
+void RendererLightSystem::Render(Shader& shader, Scene* scene)
 {
-	if (!shaderProgramm)
-	{
-		LOG("ShaderProgramm Is Nullptr ", STATELOG::CRITICALERROR);
-	}
-	shaderProgramm->Use();
+	currentShader = &shader;
+	// Calulate Depthmap
+	
+
+
+
+
+
+
+
+	currentShader->Use();
 
 	UpdateDirectionnalLights(scene->GetComponentDataArray<DirectionalLight>(), scene);
 
@@ -53,7 +60,7 @@ void RendererLightSystem::Render(Scene* scene)
 
 	UpdateSpothLights(scene->GetComponentDataArray<SpothLight>(), scene);
 
-	shaderProgramm->UnUse();
+	currentShader->UnUse();
 
 };
 void RendererLightSystem::OnResizeData(uint32_t ComponentTypeID,std::vector<uint8_t>* data)
@@ -121,19 +128,25 @@ void RendererLightSystem::UpdateSpothLights(std::vector<uint8_t>* data, Scene* s
 }
 
 
-// Render Light  // 
+
 
 void RendererLightSystem::RenderDirectionalLight(const DirectionalLight* dirLight, Scene* scene)
 {
 	Transform* transformOfLight = scene->GetComponent<Transform>(dirLight->entity);
-	Vector3 LightDirection = static_cast<Vector3>( Vector4(0,0,-1,0) * Matrix4X4::RotationMatrix4X4(transformOfLight->rotation));
+	Vector3 LightDirection = static_cast<Vector3>( Vector4(0,0,-1,0) * Matrix4X4::RotationMatrix4X4(transformOfLight->rotation)).Normalize();
 
-	shaderProgramm->SetVector3("lightPos", transformOfLight->World.GetPos().GetPtr());
-	shaderProgramm->SetVector3("dirLight.direction", LightDirection.GetPtr());
-	shaderProgramm->SetVector3("dirLight.ambient", dirLight->lightData.ambiantColor.GetPtr());
-	shaderProgramm->SetVector3("dirLight.diffuse", dirLight->lightData.diffuseColor.GetPtr());
-	shaderProgramm->SetVector3("dirLight.specular", dirLight->lightData.specularColor.GetPtr());
-	
+	currentShader->SetVector3("lightPos", transformOfLight->World.GetPos().GetPtr());
+	currentShader->SetMatrix("lightSpaceMatrix", dirLight->lightData.LightSpaceMatrix.GetPtr());
+	currentShader->SetVector3("dirLight.direction", LightDirection.GetPtr());
+	currentShader->SetVector3("dirLight.ambient", dirLight->lightData.ambiantColor.GetPtr());
+	currentShader->SetVector3("dirLight.diffuse", dirLight->lightData.diffuseColor.GetPtr());
+	currentShader->SetVector3("dirLight.specular", dirLight->lightData.specularColor.GetPtr());
+
+	currentShader->SetInt("shadowMap", 29);
+	glActiveTexture(GL_TEXTURE29);
+	glBindTexture(GL_TEXTURE_2D, dirLight->lightData.depthmap.framebufferTexture);
+
+
 	//shader->SetMaxtrix("lightSpaceMatrix", GetLightSpaceMatrix().GetPtr());
 }
 

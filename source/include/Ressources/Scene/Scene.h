@@ -2,9 +2,7 @@
 #include<vector>
 #include "Ressources/IResources/IResource.h"
 #include <unordered_map>
-#include "Physics/PhysicsEngine.h"
 #include "Ressources/RessourcesManager/RessourcesManager.h"
-#include "LowRenderer/Gizmo/Gizmo.h"
 
 // ECS // 
 #include "Core/ECS/Entity.h"
@@ -17,6 +15,7 @@
 
 class FrameBuffer;
 class Project;
+class Shader;
 
 class Scene : public IResource
 {
@@ -33,7 +32,7 @@ public :
 	void Update();
 	void LateUpdate();
 
-	void Render();
+	void Render(Shader& shader);
 
 
 	Entity* CreateEntity();
@@ -59,6 +58,12 @@ public :
 	inline T* GetComponent(Entity* entity)
 	{
 		return reinterpret_cast<T*>(registerScene.GetComponentInternal(T::ComponentTypeID, entity));
+	}
+
+	template<class T>
+	inline const T* GetComponent(Entity* entity) const 
+	{
+		return reinterpret_cast<const T*>(registerScene.GetComponentInternal(T::ComponentTypeID, entity));
 	}
 	
 

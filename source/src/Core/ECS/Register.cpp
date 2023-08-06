@@ -73,7 +73,7 @@ const Component* Register::GetComponentInternal(uint32_t ComponenTypeID, const E
 	if (IndexOffComponent == ComponentNULL)
 		return nullptr;
 
-	const Component* ptr = reinterpret_cast<Component*>(&ComponentsData.at(ComponenTypeID).second->at(IndexOffComponent));
+	const Component* ptr = reinterpret_cast<const Component*>(&ComponentsData.at(ComponenTypeID).second->at(IndexOffComponent));
 
 	return ptr;
 }

@@ -11,11 +11,12 @@
 
 void SystemRendererSkyMap::Init(Scene* scene)
 {
-	shaderProgram = scene->currentproject->ressourcesManager.GetElement<Shader>("SkyBoxShader");
 	skybox = scene->currentproject->ressourcesManager.GetElement<SkyBox>("SkySkybox");
-
+	shaderProgram = scene->currentproject->ressourcesManager.GetElement<Shader>("SkyBoxShader");
 	shaderProgram->Use();
+
 	shaderProgram->SetInt("skybox", 30);
+
 };
 
 void SystemRendererSkyMap::Awake(Scene* scene)
@@ -41,8 +42,9 @@ void SystemRendererSkyMap::LateUpdate(Scene* scene)
 
 };
 
-void SystemRendererSkyMap::Render(Scene* scene)
+void SystemRendererSkyMap::Render(Shader& shader,Scene* scene)
 {
+
 	shaderProgram->Use();
 
 	// TO DO RESERVE FOR EACH TEXTRURE A SLOT 

@@ -56,11 +56,11 @@ void Scene::LateUpdate()
 	}
 }
 
-void Scene::Render()
+void Scene::Render(Shader& shader)
 {
 	for (IEcsSystem* system : registerScene.Systems)
 	{
-		system->Render(this);
+		system->Render(shader,this);
 	}
 }
 

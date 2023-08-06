@@ -8,6 +8,7 @@
 #include "Core/DataStructure/Project.hpp"
 
 #include "Ressources/Scene/Scene.h"
+#include "Core/DataStructure/Project.hpp"
 
 // Camera Init // 
 float lastX = windowWidth / 2.0f;
@@ -36,8 +37,8 @@ void Camera::SetCameraInfoForShaders(RessourcesManager& ressourcesManagers)
 		if (currentShader != nullptr)
 		{
 			currentShader->Use();
-			currentShader->SetMaxtrix("VP", this->VP.GetPtr());
-			currentShader->SetMaxtrix("view", this->GetLookMatrix().GetPtr());
+			currentShader->SetMatrix("VP", this->VP.GetPtr());
+			currentShader->SetMatrix("view", this->GetLookMatrix().GetPtr());
 			currentShader->SetVector3("viewPos", &this->eye.x);
 
 			currentShader->UnUse();
@@ -55,7 +56,7 @@ Matrix4X4 Camera::GetLookMatrix()
 
 Matrix4X4 Camera::GetProjectionMatrix() const
 {
-	return m_ProjectionMatrix;
+	return Matrix4X4::PerspectiveMatrix(Math::DegreesToRadians(fov), (float)Project::OpenGlRenderToImgui->widht / (float)Project::OpenGlRenderToImgui->height, Fnear, Ffar);
 }
 
 
@@ -73,7 +74,7 @@ void Camera::CameraUpdate()
 
 	  
 
-	  m_ProjectionMatrix = Matrix4X4::PerspectiveMatrix(Math::DegreesToRadians(fov), (float)Renderer::OpenGlRenderToImgui->widht / (float)Renderer::OpenGlRenderToImgui->height, Fnear, Ffar);
+		m_ProjectionMatrix = GetProjectionMatrix();
 
 	  //m_ProjectionMatrix = Matrix4X4::OrthoGraphicMatrix(4,-4,4, -4, Fnear, Ffar).Transposate();
 	  m_LookAtMatrix = GetLookMatrix();
@@ -86,10 +87,10 @@ void Camera::CameraUpdate()
 void Camera::CameraRenderer(Shader* shader)
 {
 	shader->Use();
-	shader->SetMaxtrix("VP", VP.GetPtr());
-	shader->SetMaxtrix("view", GetLookMatrix().GetPtr());
+	shader->SetMatrix("VP", VP.GetPtr());
+	shader->SetMatrix("view", GetLookMatrix().GetPtr());
 	shader->SetVector3("viewPos", &eye.x);
-	shader->SetMaxtrix("projectionMatrix", GetProjectionMatrix().GetPtr());
+	shader->SetMatrix("projectionMatrix", GetProjectionMatrix().GetPtr());
 
 }
 
@@ -111,7 +112,7 @@ void Camera::ImguiCameraWindow()
 Camera::Camera()
 {
 	
-	eye = Vector3(0, 6, -15);
+	eye = Vector3(0, 0, 0);
 
 	cameraVelocity = 4;
 
@@ -125,7 +126,7 @@ Camera::Camera()
 	CameraRotation();
 
 	m_LookAtMatrix = GetLookMatrix();
-	m_ProjectionMatrix = Matrix4X4::PerspectiveMatrix(Math::DegreesToRadians(fov), (float)Renderer::OpenGlRenderToImgui->widht / (float)Renderer::OpenGlRenderToImgui->height, Fnear, Ffar);
+	m_ProjectionMatrix = GetProjectionMatrix();
 
 	VP = m_ProjectionMatrix * m_LookAtMatrix;
 	mouseSentivity = CAMERASENSITIVITY;
@@ -157,9 +158,7 @@ void Camera::CameraGetInput(float xInput, float yInput)
 
 Matrix4X4 Camera::GetTransform() const
 {
-
-	float roll = 0;
-	return Matrix4X4::TRS(eye, Vector3(pitch, yaw, roll),Vector3::One());
+	return Matrix4X4::TRS(eye, Vector3(pitch, yaw, 0), Vector3::One());
 }
 
 void Camera::CameraRotation()
@@ -200,12 +199,12 @@ void Camera::CameraMovment( GLFWwindow* context,const ImGuiIO& io )
 	if (IskeyPress(context, GLFW_KEY_A))
 	{
 
-		this->eye += Right * velocity;
+		this->eye -= Right * velocity;
 	}
 	else if (IskeyPress(context, GLFW_KEY_D))
 	{
 
-		this->eye -= Right * velocity;
+		this->eye += Right * velocity;
 	}
 
 	if (IskeyPress(context, GLFW_KEY_SPACE))
@@ -232,7 +231,7 @@ void Camera::MouseCallback(GLFWwindow* context, double _xpos, double _ypos)
 		firstmove = true;
 	}
 
-	float xoffset = lastX  - xpos ;
+	float xoffset =  xpos - lastX;
 	float yoffset = lastY - ypos;
 
 

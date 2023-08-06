@@ -18,6 +18,7 @@
 #include "External/ImguiGizmo/ImGuizmo.h"
 #include "Core/DataStructure/Project.hpp"
 #include "LowRenderer/Renderer/Renderer.hpp"
+#include "Physics/Transform/Transform.hpp"
 
     void processInput(GLFWwindow* window)
     {
@@ -81,8 +82,8 @@
         glfwMakeContextCurrent(window);
 
         gladLoadGL();
-        Renderer::framebuffer_size_callback(window, windowWidth, windowHeight);
-        glfwSetFramebufferSizeCallback(window, Renderer::framebuffer_size_callback);
+        Project::framebuffer_size_callback(window, windowWidth, windowHeight);
+        glfwSetFramebufferSizeCallback(window, Project::framebuffer_size_callback);
         glfwSetCursorPosCallback(window, Camera::MouseCallback);
         glfwSetMouseButtonCallback(window, Camera::MouseButtonCallBack);
 

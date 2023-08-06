@@ -10,16 +10,15 @@ class RendererSystem : public IEcsSystem
 {
 public:
 
-	std::string shaderName;
 
 	ImplementIEcsSystem;
+
 
 	RendererSystem(){};
 
 	 ~RendererSystem(){};
 
 private:
-	const Shader* shaderProgramm = nullptr;
-	void RenderMeshRender(const MeshRenderer* meshRender , Scene* scene);
+	void RenderMeshRender(const MeshRenderer* meshRender , Shader& shader, Scene* scene);
 };
 

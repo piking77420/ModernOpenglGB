@@ -5,7 +5,13 @@
 #include "App/App.h"
 #include "UI/InspectorSelectable.h"
 #include "Ressources/Scene/Scene.h"
-
+#include "Core/DataStructure/Project.hpp" 
+#include<Core/Debug/Imgui/imgui.h>
+#include<Core/Debug/Imgui/imgui_impl_glfw.h>
+#include<Core/Debug/Imgui/imgui_impl_opengl3.h>
+#include <Core/Debug/Imgui/imgui_internal.h>
+#include "External/ImguiGizmo/ImGuizmo.h"
+#include "Physics/Transform/Transform.hpp"
 fs::path ContentBrowser::BasePath;
 
 fs::path ContentBrowser::CurrentPath;
@@ -127,10 +133,39 @@ void ContentBrowser::UpdateLayer(Project& currentProject)
 		float width = ImGui::GetContentRegionAvail().x;
 		float height = ImGui::GetContentRegionAvail().y;
 
-		ImGui::Image((ImTextureID)currentProject.renderer.OpenGlRenderToImgui->framebufferTexture, ImGui::GetContentRegionAvail(),
+		ImGui::Image((ImTextureID)currentProject.OpenGlRenderToImgui->framebufferTexture, ImGui::GetContentRegionAvail(),
 			ImVec2(0, 1),
 			ImVec2(1, 0));
+
+
+		if (!currentProject.DockingSystem.entitySelected)
+		{
+			ImGui::End();
+			return;
+		}
+
+		/*
+
+		ImGuizmo::SetOrthographic(false);
+		ImGuizmo::SetDrawlist();
+
+		float windowWidht = (float)ImGui::GetWindowWidth();
+		float windowHeight = (float)ImGui::GetWindowHeight();
+		ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidht, windowHeight);
+
+		
+		//Camera
+		Camera& cam = *Camera::cam;
+		const Matrix4X4& projection = cam.GetProjectionMatrix(); 
+		Matrix4X4 camerview = cam.GetTransform().Invert();
+
+		Transform* transform = currentProject.currentScene->GetComponent<Transform>(currentProject.DockingSystem.entitySelected);
+
+		ImGuizmo::Manipulate(camerview.GetPtr(), projection.GetPtr(), ImGuizmo::OPERATION::TRANSLATE, ImGuizmo::LOCAL, transform->Local.SetPtr());
+		
+		*/
 		ImGui::End();
+
 	}
 	
 	

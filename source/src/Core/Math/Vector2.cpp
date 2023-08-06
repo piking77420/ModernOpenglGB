@@ -27,9 +27,7 @@ Vector2::operator Vector() const
 
 Vector2::operator Vector3() const
 {
-	Vector3 result = Vector3(x, y, 0);
-
-	return result;
+	return  Vector3(x, y, 0);
 }
 
 Vector2::operator Vector4() const
@@ -48,13 +46,6 @@ constexpr inline float Vector2::Norm() const
 {
 	return Math::FSqrtf(x * x + y * y );
 }
-
-
-
-
-
-
-
 
 
 float Vector2::Angle() const

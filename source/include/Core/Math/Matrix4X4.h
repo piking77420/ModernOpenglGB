@@ -29,7 +29,6 @@ public:
 	*/
 	Vector4 Colums[4];
 
-
 	/**
 	* @fn inline Vector3 GetPos();
 	* @brief This function Return the Translation of the matrix.
@@ -39,7 +38,6 @@ public:
 	{
 		return static_cast<Vector3>(Colums[3]);
 	}
-
 
 
 #pragma region GraphicMatrix
@@ -64,7 +62,7 @@ public:
 				{r00, 0.f, 0.f,0.f },
 				{0.f, r11, 0.f,0.f },
 				{0.f, 0.f, r22, -1.0f},
-				{0, 0,r32, 0}
+				{0, 0,r32, 1.f}
 		};
 
 	}
@@ -141,13 +139,13 @@ public:
 
 
 
-		rotation.y = asin(-Row[0][2]);
-		if (cos(rotation.y) != 0) {
-			rotation.x = atan2(Row[1][2], Row[2][2]);
-			rotation.z = atan2(Row[0][1], Row[0][0]);
+		rotation.y = std::asin(-Row[0][2]);
+		if (std::cos(rotation.y) != 0) {
+			rotation.x = std::atan2(Row[1][2], Row[2][2]);
+			rotation.z = std::atan2(Row[0][1], Row[0][0]);
 		}
 		else {
-			rotation.x = atan2(-Row[2][0], Row[1][1]);
+			rotation.x = std::atan2(-Row[2][0], Row[1][1]);
 			rotation.z = 0;
 		}
 
@@ -162,23 +160,27 @@ public:
 	*/
 	static inline Matrix4X4 LookAt(const Vector3& eye, const Vector3& at, const Vector3& up)
 	{
-		Vector3 zaxis = (at - eye).Normalize();
-		Vector3 xaxis = Vector3::CrossProduct(up, zaxis).Normalize();
-		Vector3 yaxis = Vector3::CrossProduct(zaxis, xaxis);
-
-		zaxis = -zaxis;
-
-		float r00 = xaxis.x; float r10 = xaxis.y; float r20 = xaxis.z; float r30 = -(Vector3::DotProduct(xaxis, eye));
-		float r01 = yaxis.x; float r11 = yaxis.y; float r21 = yaxis.z; float r31 = -(Vector3::DotProduct(yaxis, eye));
-		float r02 = zaxis.x; float r12 = zaxis.y; float r22 = zaxis.z; float r32 = -(Vector3::DotProduct(zaxis, eye));
+		Vector3 f = (at - eye).Normalize();
+		Vector3 s = Vector3::CrossProduct(f, up).Normalize();
+		Vector3 u = Vector3::CrossProduct(s, f);
 
 
-		return {
-					{r00, r01, r02,0.f },
-					{r10, r11, r12,0.f },
-					{r20, r21, r22, 0.f},
-					{r30, r31,r32, 1.f}
-		};
+		Matrix4X4 Result(Matrix4X4::Identity());
+
+		Result[0][0] = s.x;
+		Result[1][0] = s.y;
+		Result[2][0] = s.z;
+		Result[0][1] = u.x;
+		Result[1][1] = u.y;
+		Result[2][1] = u.z;
+		Result[0][2] = -f.x;
+		Result[1][2] = -f.y;
+		Result[2][2] = -f.z;
+		Result[3][0] = -Vector3::DotProduct(s, eye);
+		Result[3][1] = -Vector3::DotProduct(u, eye);
+		Result[3][2] = Vector3::DotProduct(f, eye);
+
+		return Result;
 	}
 #pragma endregion
 
@@ -222,7 +224,9 @@ public:
 	}
 	static inline Matrix4X4 TRS(const Vector3& translation, const Quaternion& rotation, const Vector3& scaling)
 	{
-		return (TranslateMatrix4X4(translation) * (Quaternion::ToMatrix4X4(rotation) * ScalingMatrix4X4(scaling)));
+
+
+		return (TranslateMatrix4X4(translation) * (Quaternion::ToRotationMatrix4X4(rotation) * ScalingMatrix4X4(scaling)));
 	}
 
 #pragma endregion

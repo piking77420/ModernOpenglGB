@@ -6,6 +6,7 @@
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>
 #include <Core/Debug/Imgui/imgui_internal.h>
 #include "UI/ContentBrowser.h"
+#include "LowRenderer/Gizmo/Gizmo.hpp"
 
 #include "LowRenderer/RendererSystem/RendererSystem.hpp"
 #include "LowRenderer/MeshRenderer/MeshRenderer.h"
@@ -17,35 +18,56 @@
 #include "LowRenderer/Light/PointLight/PointLight.hpp"
 #include "Core/DataStructure/Project.hpp"
 #include "LowRenderer/SystemRendererSkyMap/SystemRendererSkyMap.hpp"
+#include "LowRenderer/RendererShadowSystem/RendererShadowSystem.h"
 
 #include "LowRenderer/Renderer/Renderer.hpp"
 
 #include "Physics/GraphScene/GraphScene.h"
 
+FrameBuffer* Project::OpenGlRenderToImgui = new FrameBuffer(800, 800);
+
+void Project::framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+	if (!OpenGlRenderToImgui)
+		return;
+	glViewport(0, 0, width, height);
+	OpenGlRenderToImgui->ResizeFrammeBuffer(width, height);
+}
 
 
 void Project::Update()
 {
 	m_io = ImGui::GetIO();
 
-
+	Shader* shaderNormal = ressourcesManager.GetElement<Shader>("NormalShader");
+	Shader* DephtMap = ressourcesManager.GetElement<Shader>("DepthMapShader");
+	Shader* skybox = ressourcesManager.GetElement<Shader>("SkyBoxShader");
 
 	mainCamera->SetCameraInfoForShaders(ressourcesManager);
 	mainCamera->CameraUpdate();
+	//currentScene->Render(*DephtMap);
 
 
 
-	renderer.PreRendererScene(currentScene);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+
+	OpenGlRenderToImgui->Bind();
+
+
+	glClearColor(0, 0, 0, 0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	glEnable(GL_DEPTH_TEST);
 
 	currentScene->FixedUpdate();
 	currentScene->Update();
 	currentScene->LateUpdate();
 
-	currentScene->Render();
-	renderer.RendereScene(currentScene);
+	currentScene->Render(*shaderNormal);
 
+	OpenGlRenderToImgui->UnBind();
 
 	DockingSystem.UpdateDockSpace(*this);
+	RendererShadowSystem::boolHasDrawBuffer = false;
 
 }
 
@@ -60,7 +82,7 @@ Project::Project(std::string ProjectPath) : m_io(ImGui::GetIO())
 
 
 
-
+	
 	ContentBrowser::BasePath = ProjectPath;
 	ContentBrowser::CurrentPath = ContentBrowser::BasePath;
 
@@ -75,7 +97,7 @@ Project::Project() : m_io(ImGui::GetIO())
 	currentScene->currentproject = this;
 	mainCamera = Camera::cam;
 
-
+	
 	ContentBrowser::BasePath = "ProjectFolder/Project1";
 	ContentBrowser::CurrentPath = ContentBrowser::BasePath;
 	InitScene();
@@ -88,15 +110,18 @@ Project::~Project()
 
 void Project::InitScene()
 {
-
+	/*
 	RendererSystem* rs = new RendererSystem();
 	currentScene->AddSystem(rs);
-	rs->shaderName = "NormalShader";
+
+	RendererShadowSystem* rShadow = new RendererShadowSystem();
+	currentScene->AddSystem(rShadow);
+
+
 
 	RendererLightSystem* rl = new RendererLightSystem();
 	currentScene->AddSystem(rl);
-	rl->shaderName = "NormalShader";
-
+	*/
 
 	SystemRendererSkyMap* systemRendererSkyMap = new SystemRendererSkyMap();
 	currentScene->AddSystem(systemRendererSkyMap);
@@ -116,7 +141,7 @@ void Project::InitScene()
 	Entity* entityCube2 = currentScene->CreateEntity();
 	currentScene->AddComponent<MeshRenderer>(entityCube2);
 	currentScene->GetComponent<Transform>(entityCube2)->pos += Vector3(-4, 4, -4);
-	currentScene->GetComponent<Transform>(entityCube2)->rotation += Vector3(0.5, 2, -0.8);
+	currentScene->GetComponent<Transform>(entityCube2)->rotation = Vector3(0.5, 1.8, -0.8);
 
 	meshRenderer = currentScene->GetComponent<MeshRenderer>(entityCube2);
 	meshRenderer->model = ressourcesManager.GetElement<Model>("cube.obj");
@@ -127,11 +152,8 @@ void Project::InitScene()
 
 	Entity* entity2 = currentScene->CreateEntity();
 	currentScene->GetComponent<Transform>(entity2)->scaling = Vector3(0.5, 0.5,0.5);
-	currentScene->GetComponent<Transform>(entity2)->pos = Vector3(0, 1000, 0);
+	currentScene->GetComponent<Transform>(entity2)->pos = Vector3(-2.0f, 4.0f, -1.0f);
 	currentScene->AddComponent<DirectionalLight>(entity2);
-
-
-	GraphScene::BeChildOf(currentScene->GetComponent<Transform>(entityCube2), currentScene->GetComponent<Transform>(entity));
 
 	
 	Entity* plane = currentScene->CreateEntity();
@@ -148,4 +170,6 @@ void Project::InitScene()
 
 
 	currentScene->Init();
+	OpenGlRenderToImgui->Init();
+
 }

@@ -28,7 +28,7 @@ Vector3::operator Vector2() const
 
 inline float Vector3::Norm() const
 {
-	return std::sqrt((x * x) + (y * y) + (z * z));
+	return std::sqrt(Vector3::DotProduct(*this,*this));
 }
 
 Vector3 Vector3::Normalize() const

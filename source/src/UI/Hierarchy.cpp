@@ -62,7 +62,10 @@ void Hierarchy::ImguiDrawChildren(Entity* entity, Project& currentProject)
 	{
 		
 		if (ImGui::IsItemClicked())
+		{
 			currentProject.DockingSystem.Insepctor = entity;
+			currentProject.DockingSystem.entitySelected = entity;
+		}
 
 
 		if (hasChildren)

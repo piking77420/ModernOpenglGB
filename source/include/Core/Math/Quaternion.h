@@ -1,26 +1,31 @@
 #pragma once
 #include <iostream>
 #include "Vector3.h"
-
+#include "Vector4.h"
 
 class Matrix3X3;
 class Matrix4X4;
-
 
 class Quaternion
 {
 public:
 
-	float scalar = 0;
-	Vector3 vector = Vector3::Zero();
+	Vector3 imaginary;
+	float w = 0.f;
+
+	constexpr static inline Quaternion Identity()
+	{
+		return Quaternion(Vector3::Zero(), 1.f);
+	}
 
 	constexpr inline float NormSquare() const
 	{
-		return scalar * scalar + vector.x * vector.x + vector.y * vector.y + vector.z * vector.z;
+
+		return imaginary.x * imaginary.x + imaginary.y * imaginary.y + imaginary.z * imaginary.z + w * w;
 	}
 	inline float Norm() const
 	{
-		return std::sqrtf(scalar * scalar + vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
+		return std::sqrtf(NormSquare());
 	}
 
 	inline Quaternion Normalize() const
@@ -29,12 +34,12 @@ public:
 
 		if(Norm() != 0.f)
 		{
-			Quaternion result = *this;
+			Quaternion result(*this);
 
 			float normValue = 1 / Norm();
 
-			result.scalar *= normValue;
-			result.vector *= normValue;
+			result.imaginary.x *= normValue;
+			result.w *= normValue;
 
 			return result;
 		}
@@ -45,7 +50,7 @@ public:
 
 	constexpr inline Quaternion Conjugate() const
 	{
-		return Quaternion(scalar, -vector);
+		return Quaternion(-imaginary,w);
 	}
 
 	Quaternion ConvertToUnitNormQuaternion() const;
@@ -59,19 +64,18 @@ public:
 
 		Quaternion conjugateValue = q1.Conjugate();
 
-		float scalar = conjugateValue.scalar * absoluteValue;
-		Vector3 imaginary = conjugateValue.vector * absoluteValue;
+		float scalar = conjugateValue.w * absoluteValue;
 
-		return Quaternion(scalar, imaginary);
+		return Quaternion( Vector3(conjugateValue[0], conjugateValue[1], conjugateValue[2]) * absoluteValue, scalar);
 	}
 
 
 	inline Quaternion RotateVectorAboutAngleAndAxis(float uAngle, const Vector3& axis) const
 	{
-		Quaternion p(0,(*this).vector);
+		Quaternion p(axis,0);
 		Vector3 axisNormalize = axis.Normalize();
 
-		Quaternion q(uAngle, axisNormalize);
+		Quaternion q(axisNormalize, uAngle);
 		q = q.ConvertToUnitNormQuaternion();
 		Quaternion qInverse = Quaternion::Invert(q);
 
@@ -85,9 +89,13 @@ public:
 	[[nodiscard]]
 	static inline Quaternion Multiply(const Quaternion& Q1, const Quaternion& Q2)
 	{
-		float scalarResult = Q1.scalar * Q2.scalar - Vector3::DotProduct(Q1.vector, Q2.vector);
-		Vector3 vectorResult = Q1.scalar * Q2.vector + Q1.vector * Q1.scalar + Vector3::CrossProduct(Q1.vector, Q2.vector);
-		return Quaternion(scalarResult, vectorResult);
+		Vector3 im1 = Vector3(Q1[0], Q1[1], Q1[2]);
+		Vector3 im2 = Vector3(Q1[0], Q1[1], Q1[2]);
+
+
+		float scalarResult = Q1.w * Q2.w - Vector3::DotProduct(im1, im2);
+		Vector3 vectorResult = Q1.w * im2 + im1 * Q2.w + Vector3::CrossProduct(im1, im2);
+		return Quaternion(vectorResult.x, vectorResult.y, vectorResult.z, scalarResult);
 
 	}
 	[[nodiscard]]
@@ -96,11 +104,23 @@ public:
 
 	}
 
-	static Matrix3X3 ToMatrix3X3(const Quaternion& Q1) ;
-	static Matrix4X4 ToMatrix4X4(const Quaternion& Q1);
+	static Matrix3X3 ToRotationMatrix3X3(const Quaternion& Q1);
+	
+
+	static Matrix4X4 ToRotationMatrix4X4(const Quaternion& Q1);
+	
+
 
 	static Quaternion EulerAngle(const Vector3& eulerAngle);
 	Vector3 ToEulerAngle() const ;
+
+	[[nodiscard]]
+	constexpr float* SetPtr() { return &imaginary.x; }
+
+	[[nodiscard]]
+	constexpr const float* GetPtr()const { return &imaginary.x; }
+
+
 
 #pragma region Operator
 
@@ -117,9 +137,16 @@ public:
 	float& operator[](int i);
 
 #pragma endregion
-	constexpr Quaternion(float _scalar,const Vector3& _vector) : scalar(_scalar), vector(_vector)
+	constexpr Quaternion(const Vector4& vector) : imaginary(vector.x, vector.y, vector.z), w(vector.w)
 	{
 	}
+	constexpr Quaternion(float _x , float _y, float _z, float _w) : imaginary(_x, _y, _z), w(_w)
+	{
+	}
+	constexpr Quaternion(const Vector3& _imaginary,float _w) : imaginary(_imaginary), w(_w)
+	{
+	}
+
 	constexpr Quaternion() = default;
 
 
@@ -134,33 +161,65 @@ inline Quaternion Quaternion::operator*(const Quaternion& Q1) const
 
 inline Quaternion Quaternion::operator+(const Quaternion& Q1) const
 {
-	return Quaternion(scalar + Q1.scalar, vector + Q1.vector);
+	const float* prt = GetPtr();
+	const float* Q1ptr = Q1.GetPtr();
+	Quaternion result;
+
+	for (size_t i = 0; i < 4; i++)
+	{
+		result[i] = prt[i] + Q1ptr[i];
+	}
+
+	return result;
 }
 inline Quaternion Quaternion::operator-(const Quaternion& Q1) const
 {
-	return Quaternion(scalar - Q1.scalar, vector - Q1.vector);
+	const float* prt = GetPtr();
+	const float* Q1ptr = Q1.GetPtr();
+	Quaternion result;
+
+	for (size_t i = 0; i < 4; i++)
+	{
+		result[i] = prt[i] - Q1ptr[i];
+	}
+	return result;
+
 }
 inline void Quaternion::operator+=(const Quaternion& Q1) 
 {
-	scalar += Q1.scalar;
-	vector += Q1.vector;
+	float* prt = SetPtr();
+	const float* Q1ptr = Q1.GetPtr();
+
+	for (size_t i = 0; i < 4; i++)
+	{
+		prt[i] += Q1ptr[i];
+	}
 }
 inline void Quaternion::operator-=(const Quaternion& Q1)
 {
-	scalar -= Q1.scalar;
-	vector -= Q1.vector;
+	float* prt = SetPtr();
+	const float* Q1ptr = Q1.GetPtr();
+
+	for (size_t i = 0; i < 4; i++)
+	{
+		prt[i] -= Q1ptr[i];
+	}
 }
 
 inline void Quaternion::operator*=(float value)
 {
-	scalar *= value;
-	vector *= value;
+	float* prt = SetPtr();
+
+	for (size_t i = 0; i < 4; i++)
+	{
+		prt[i] *= value;
+	}
 }
 inline Quaternion Quaternion::operator*(float value)
 {
-	float scalarValue = scalar * value;
-	Vector3 imaginaryValue = vector * value;
-	return Quaternion(scalarValue, imaginaryValue);
+	float scalarValue = w * value;
+	Vector3 imaginaryValue = imaginary * value;
+	return Quaternion(imaginaryValue,scalarValue);
 }
 #pragma endregion
 

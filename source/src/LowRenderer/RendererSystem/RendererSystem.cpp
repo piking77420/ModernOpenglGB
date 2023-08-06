@@ -13,7 +13,6 @@
 
 void RendererSystem::Init(Scene* scene)
 {
-	shaderProgramm = scene->currentproject->ressourcesManager.GetElement<Shader>(shaderName);
 };
 
 void RendererSystem::Awake(Scene* scene)
@@ -39,21 +38,19 @@ void RendererSystem::LateUpdate(Scene* scene)
 
 };
 
-void RendererSystem::Render(Scene* scene) 
+void RendererSystem::Render(Shader& shader,Scene* scene) 
 {
 
-	if (!shaderProgramm)
-		return;
+	
 
-	std::vector<uint8_t>* MeshRenderData = scene->GetComponentDataArray<MeshRenderer>();
+	std::vector<uint8_t>* data = scene->GetComponentDataArray<MeshRenderer>();
 
+	std::vector<MeshRenderer>* MeshRenderData = reinterpret_cast<std::vector<MeshRenderer>*>(data);
 
-
-	for (uint32_t i = 0; i < MeshRenderData->size() / sizeof(MeshRenderer); i++)
+	for (uint32_t i = 0; i < MeshRenderData->size(); i++)
 	{
-		size_t offset = i * sizeof(MeshRenderer);
-		MeshRenderer* meshRenderer = reinterpret_cast<MeshRenderer*>(&(*MeshRenderData)[offset]);
-		RenderMeshRender(meshRenderer, scene);
+		MeshRenderer* meshRenderer = &(*MeshRenderData)[i];
+		RenderMeshRender(meshRenderer, shader, scene);
 	}
 };
 void RendererSystem::OnResizeData(uint32_t ComponentTypeID,std::vector<uint8_t>* data) 
@@ -64,14 +61,14 @@ void RendererSystem::OnResizeData(uint32_t ComponentTypeID,std::vector<uint8_t>*
 
 
 
-void RendererSystem::RenderMeshRender(const MeshRenderer* meshRender, Scene* scene)
+void RendererSystem::RenderMeshRender(const MeshRenderer* meshRender, Shader& shader, Scene* scene)
 {
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	glStencilMask(0x00);
 
 	// get Shader and bind
-	shaderProgramm->Use();
+	shader.Use();
 
 	glActiveTexture(GL_TEXTURE0);
 	meshRender->diffuse->BindTexture();
@@ -80,27 +77,22 @@ void RendererSystem::RenderMeshRender(const MeshRenderer* meshRender, Scene* sce
 	meshRender->specular->BindTexture();
 
 
-	// Set info to shaderProgramm
-	shaderProgramm->SetMaterial("material", meshRender->material);
-
 	Entity* entity = meshRender->entity;
 	const Transform* transform = scene->GetComponent<Transform>(entity);
+	const Matrix4X4 model = transform->World;
+	const Matrix4X4 MVP = Camera::cam->GetProjectionMatrix() * Camera::cam->GetLookMatrix() * model;
+	const Matrix4X4 NormalMatrix = Matrix4X4::RotationMatrix4X4(transform->rotation).Invert().Transposate();
 
-	Matrix4X4 model = transform->World;
-	Matrix4X4 MVP = Camera::cam->GetProjectionMatrix() * Camera::cam->GetLookMatrix() * model;
-	shaderProgramm->SetMaxtrix("model", model.GetPtr());
 
-	shaderProgramm->SetMaxtrix("MVP", MVP.GetPtr());
-	//shaderProgramm->SetMaxtrix("NormalMatrix",  model.Invert().Transposate().GetPtr());
-	Matrix4X4 NormalMatrix = Matrix4X4::RotationMatrix4X4(transform->rotation).Invert().Transposate();
 
-	shaderProgramm->SetMaxtrix("NormalMatrix", NormalMatrix.GetPtr());
+	// Set info to shaderProgramm
+	shader.SetMaterial("material", meshRender->material);
+	shader.SetMatrix("model", model.GetPtr());
+	shader.SetMatrix("MVP", MVP.GetPtr());
+	shader.SetMatrix("NormalMatrix", NormalMatrix.GetPtr());
+
+
 	// Draw The Object
 	meshRender->model->Draw();
 
-	glActiveTexture(GL_TEXTURE1);
-	meshRender->specular->UnBindTexture();
-
-	glActiveTexture(GL_TEXTURE0);
-	meshRender->diffuse->UnBindTexture();
 }

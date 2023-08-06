@@ -149,6 +149,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\include\LowRenderer\Gizmo\Gizmo.hpp" />
+    <ClInclude Include="source\include\Physics\Collider\Collider.hpp" />
+    <ClInclude Include="source\include\Physics\Collider\BoxCollider.hpp" />
+    <ClInclude Include="source\include\Physics\Collider\ColliderSystem.hpp" />
+    <ClInclude Include="source\include\LowRenderer\RendererShadowSystem\RendererShadowSystem.h" />
     <ClInclude Include="source\include\LowRenderer\Renderer\Renderer.hpp" />
     <ClInclude Include="source\include\UI\Hierarchy.hpp" />
     <ClInclude Include="source\include\UI\DockingSystem.hpp" />
@@ -172,8 +177,6 @@
     <ClInclude Include="source\include\Core\ECS\Entity.h" />
     <ClInclude Include="source\include\Core\Math\Quaternion.h" />
     <ClInclude Include="source\include\LowRenderer\FrameBuffer\DepthMap\Depthmap.h" />
-    <ClInclude Include="source\include\LowRenderer\Gizmo\Gizmo.h" />
-    <ClInclude Include="source\include\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.h" />
     <ClInclude Include="source\include\Physics\Transform\Transform.hpp" />
     <ClInclude Include="source\include\Ressources\Shader\ShaderSource\ShaderSource.hpp" />
     <ClInclude Include="source\include\Serializer\Serializer.h" />
@@ -225,7 +228,6 @@
     <ClInclude Include="source\include\LowRenderer\Light\Light.h" />
     <ClInclude Include="source\include\LowRenderer\Material\Material.h" />
     <ClInclude Include="source\include\LowRenderer\Vertex\Vertex.h" />
-    <ClInclude Include="source\include\Physics\PhysicsEngine.h" />
     <ClInclude Include="source\include\Physics\Transform\Transform.h" />
     <ClInclude Include="source\include\Ressources\CubeMaps\CubeMaps.h" />
     <ClInclude Include="source\include\Ressources\IResources\IResource.h" />
@@ -240,6 +242,8 @@
     <ClInclude Include="source\include\UI\ContentBrowser.h" />
     <ClInclude Include="source\include\UI\InspectorSelectable.h" />
     <ClInclude Include="source\include\LowRenderer\SystemRendererSkyMap\SystemRendererSkyMap.hpp" />
+    <ClInclude Include="source\include\UI\TransformGuizmo.hpp" />
+    <ClInclude Include="source\include\Physics\Collider\SphereCollider.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -268,6 +272,11 @@
     <ResourceCompile Include="Modern_OpengGl_GB.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\src\LowRenderer\Gizmo\Gizmo.cpp" />
+    <ClCompile Include="source\src\Physics\Collider\Collider.cpp" />
+    <ClCompile Include="source\src\Physics\Collider\BoxCollider.cpp" />
+    <ClCompile Include="source\src\Physics\Collider\ColliderSystem.cpp" />
+    <ClCompile Include="source\src\LowRenderer\RendererShadowSystem\RendererShadowSystem.cpp" />
     <ClCompile Include="source\src\LowRenderer\Renderer\Renderer.cpp" />
     <ClCompile Include="source\src\UI\Hierarchy.cpp" />
     <ClCompile Include="source\src\UI\DockingSystem.cpp" />
@@ -300,8 +309,6 @@
     <ClCompile Include="source\src\External\ImguiGizmo\ImGuizmo.cpp" />
     <ClCompile Include="source\src\External\ImguiGizmo\ImSequencer.cpp" />
     <ClCompile Include="source\src\LowRenderer\FrameBuffer\DepthMap\Depthmap.cpp" />
-    <ClCompile Include="source\src\LowRenderer\Gizmo\Gizmo.cpp" />
-    <ClCompile Include="source\src\LowRenderer\Gizmo\GizmoCollider\SphereGizmoCollider.cpp" />
     <ClCompile Include="source\src\Physics\Transform\Transform.cpp" />
     <ClCompile Include="source\src\External\Std_Image\std_image.cpp" />
     <ClCompile Include="source\src\Ressources\Scene\Scene.cpp" />
@@ -325,7 +332,6 @@
     <ClCompile Include="source\src\LowRenderer\Material\Material.cpp" />
     <ClCompile Include="source\src\LowRenderer\Vertex\Vertex.cpp" />
     <ClCompile Include="source\src\Main\main.cpp" />
-    <ClCompile Include="source\src\Physics\PhysicsEngine.cpp" />
     <ClCompile Include="source\src\Ressources\CubeMaps\CubeMaps.cpp" />
     <ClCompile Include="source\src\Ressources\IResource\IResource.cpp" />
     <ClCompile Include="source\src\Ressources\Model\Model.cpp" />
@@ -339,6 +345,8 @@
     <ClCompile Include="source\src\UI\InspectorSelectable.cpp" />
     <ClCompile Include="source\src\LowRenderer\Light\SpothLight\SpothLight.cpp" />
     <ClCompile Include="source\src\LowRenderer\SystemRendererSkyMap\SystemRendererSkyMap.cpp" />
+    <ClCompile Include="source\src\UI\TransformGuizmo.cpp" />
+    <ClCompile Include="source\src\Physics\Collider\SphereCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="source\src\External\lib\glfw3.lib" />

@@ -38,7 +38,7 @@ public:
 		return result;
 	}
 
-
+	
 
 	constexpr inline static float Determinant(const Matrix3X3& matrix)
 	{

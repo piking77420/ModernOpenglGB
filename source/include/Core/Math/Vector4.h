@@ -72,7 +72,7 @@ public:
 	[[nodiscard]]
 	static inline float Distance(const Vector4& a, const Vector4& b)
 	{
-		return std::sqrtf((a.x - b.x * a.x - b.x) + (a.y - b.y * a.y - b.y) + (a.z - b.z * a.z - b.z) + (a.w - b.w * a.w - b.w));
+		return std::sqrt((a.x - b.x * a.x - b.x) + (a.y - b.y * a.y - b.y) + (a.z - b.z * a.z - b.z) + (a.w - b.w * a.w - b.w));
 	}
 
 

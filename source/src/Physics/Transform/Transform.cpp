@@ -21,7 +21,6 @@ void Transform::ImguiWindowComponent()
 
 	ImGui::SliderAngle("Z", &rotation.z);
 
-
 	// Scale
 	ImGui::DragFloat3("Scale", &scaling.x);
 

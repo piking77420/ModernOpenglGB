@@ -30,8 +30,6 @@ class Model : public IResource
 public:
 
 
-	static Model LoadCube();
-	static Model LoadSphere();
 
 	//void Load(std::string path) override;
 	virtual void Draw() const;

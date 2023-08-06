@@ -163,7 +163,7 @@ public:
 		const float dx = a.x - b.x;
 		const float dy = a.y - b.y;
 		const float dz = a.z - b.z;
-		const float result = std::sqrtf(dx * dx + dy * dy + dz * dz);
+		const float result = std::sqrt(dx * dx + dy * dy + dz * dz);
 		return result;
 	}
 

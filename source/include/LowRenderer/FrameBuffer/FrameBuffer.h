@@ -7,16 +7,16 @@ class Shader;
 class FrameBuffer
 {
 public:
-	unsigned int FBO ;
-	unsigned int framebufferTexture;
-	unsigned int RBO;
+	uint32_t FBO;
+	uint32_t framebufferTexture;
+	uint32_t RBO;
 
-	unsigned int rectVAO;
-	unsigned int rectVBO;
+	uint32_t rectVAO;
+	uint32_t rectVBO;
 
+	uint32_t widht;
+	uint32_t height;
 
-	int widht;
-	int height;
 	virtual void Bind();
 	virtual void UnBind();
 

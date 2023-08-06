@@ -11,7 +11,8 @@ out VS_OUT
 	vec2 TexCoords;
 	vec3 FragPos;  
 	vec3 LightPos;
-	
+	vec4 FragPosLightSpace;
+
 } vs_out;
 
 uniform mat4 model;
@@ -20,6 +21,7 @@ uniform mat4 MVP;
 uniform mat4 view;
 uniform vec3 lightPos;
 uniform mat4 projectionMatrix;
+uniform mat4 lightSpaceMatrix;
 
 
 
@@ -34,6 +36,7 @@ void main()
 	//vs_out.Normal = mat3(rotation) * aNormal;  
 	//vs_out.Normal = mat3(NormalMatrix) * aNormal;  
 	vs_out.Normal = mat3(NormalMatrix) * aNormal;  
+	vs_out.FragPosLightSpace = lightSpaceMatrix * vec4(vs_out.FragPos, 1.0);
 
 	//vs_out.Normal = NormalMatrix * aNormal;  
 	vs_out.TexCoords = vec2(aTexCoord.x, aTexCoord.y);
