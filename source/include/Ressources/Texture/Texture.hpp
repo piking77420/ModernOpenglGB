@@ -20,24 +20,22 @@ public:
 
 	
 	
+	void Init() override;
 	void BindTexture() const;
 	void UnBindTexture()const;
 	void DeleteTexture();
 	void TextureShaderUniform(const Shader& shader, const char* uniform, GLuint unit);
 
 	GLuint ID;
-	GLenum type;
-	GLenum PixelType;
+	std::string type;
+	std::string path;
 
-	GLuint format;
-	int slot;
 
 	int width;
 	int height;
 	int nbrOfChannel;
-
 	unsigned char* data;
-	void Init() override;
+
 
 	Texture(const fs::path& FilePath);
 	Texture();
@@ -48,8 +46,6 @@ public:
 	Texture& operator=(const Texture& other);
 
 protected:
-	void IncrementTexture();
-	static int GlobTextureNbr;
-	std::string imagePath;
-	const std::string SLOT = "GL_TEXTURE";
+	GLuint format;
+
 };

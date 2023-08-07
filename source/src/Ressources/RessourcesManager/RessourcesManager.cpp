@@ -137,8 +137,12 @@ void RessourcesManager::LoadTexture(fs::path path)
 
 	if (isThisValidForThisFormat(path_string, png) || isThisValidForThisFormat(path_string, jpg))
 	{
-		Create<Texture>(path_string);
-		
+		std::thread* newThreads = new std::thread([this, path_string]()
+			{
+				Create<Texture>(path_string);
+			});
+		theards.push_back(newThreads);
+
 	}
 }
 
@@ -152,7 +156,11 @@ void RessourcesManager::LoadModel(std::filesystem::path path)
 
 	if (isThisValidForThisFormat(path_string, obj))
 	{
-		Create<Model>(path_string);
+		std::thread* newThreads = new std::thread([this, path_string]()
+			{
+				Create<Model>(path_string);
+			});
+		theards.push_back(newThreads);
 	}
 }
 

@@ -300,6 +300,9 @@
     <ClInclude Include="source\include\LowRenderer\Gizmo\Gizmo.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="source\include\Ressources\Mesh\Mesh.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -320,6 +323,7 @@
     <None Include="assets\Shader\DebugDepthShader\DebugDepthShader.frag" />
     <None Include="assets\Shader\DebugDepthShader\DebugDepthShader.vertex" />
     <None Include="assets\Shader\NormalShader\NormalShader.geom" />
+    <None Include="source\include\External\assimp\assimp-vc143-mt.dll" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Log\LOG .txt" />
@@ -553,6 +557,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\LowRenderer\Gizmo\Gizmo.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Ressources\Mesh\Mesh.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

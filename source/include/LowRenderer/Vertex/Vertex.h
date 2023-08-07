@@ -1,10 +1,11 @@
 #pragma once
 #include<Mathf.h>
 #include<Math/ToolBoxMathHeaders.h>
+#define MAX_BONE_INFLUENCE 4
 
-class Vertex
+
+struct Vertex
 {
-public:
 
 	void SetPos(const Vector3 _Position);
 	void SetNormal(const Vector3 _Position);
@@ -13,12 +14,13 @@ public:
 	Vector3 Position;
 	Vector3 Normal;
 	Vector2 TextureCoord;
-	Vector4 color;
-
-	Vertex(const Vector3 _Position);
-
-	Vertex(const Vector3 _Position , const Vector3 _Normal , const Vector2 _TextureCoord);
-	Vertex();
-	~Vertex();
+	// tangent
+	Vector3 Tangent;
+	// bitangent
+	Vector3 Bitangent;
+	//bone indexes which will influence this vertex
+	int m_BoneIDs[MAX_BONE_INFLUENCE];
+	//weights from each bone
+	float m_Weights[MAX_BONE_INFLUENCE];
 };
 

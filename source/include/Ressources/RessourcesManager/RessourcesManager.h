@@ -141,8 +141,7 @@ inline const T* RessourcesManager::GetElement(const std::string& name) const
 template<class T>
 inline void RessourcesManager::Create(const fs::path& FilePath)
 {
-	std::thread* newThreads = new std::thread([this, FilePath]()
-		{
+
 			
 
 			T* newRessources = new T(FilePath);
@@ -167,8 +166,6 @@ inline void RessourcesManager::Create(const fs::path& FilePath)
 
 			m_MainResourcesMap.insert({ Correctname,newRessources });
 			auto returned = m_MainResourcesMap.find(Correctname);
-		});
-		theards.push_back(newThreads);
 
 }
 

@@ -110,7 +110,7 @@ Project::~Project()
 
 void Project::InitScene()
 {
-	/*
+	
 	RendererSystem* rs = new RendererSystem();
 	currentScene->AddSystem(rs);
 
@@ -121,7 +121,7 @@ void Project::InitScene()
 
 	RendererLightSystem* rl = new RendererLightSystem();
 	currentScene->AddSystem(rl);
-	*/
+	
 
 	SystemRendererSkyMap* systemRendererSkyMap = new SystemRendererSkyMap();
 	currentScene->AddSystem(systemRendererSkyMap);

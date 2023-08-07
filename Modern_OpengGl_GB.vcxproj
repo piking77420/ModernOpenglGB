@@ -118,14 +118,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)source\Include\Core\Math;$(ProjectDir)source\Include\Core\DataStructure\Component;$(ProjectDir)source\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)source\Include\Core\Math;$(ProjectDir)source\Include\Core\DataStructure\Component;$(ProjectDir)source\Include;$(ProjectDir)source\Include\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -136,7 +136,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)source\Include\Core\Math;$(ProjectDir)source\Include\Core\DataStructure\Component;$(ProjectDir)source\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)source\Include\Core\Math;$(ProjectDir)source\Include\Core\DataStructure\Component;$(ProjectDir)source\Include;$(ProjectDir)source\Include\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -145,10 +145,11 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\include\Ressources\Mesh\Mesh.hpp" />
     <ClInclude Include="source\include\LowRenderer\Gizmo\Gizmo.hpp" />
     <ClInclude Include="source\include\Physics\Collider\Collider.hpp" />
     <ClInclude Include="source\include\Physics\Collider\BoxCollider.hpp" />
@@ -264,6 +265,7 @@
     <None Include="assets\Shader\SkyBoxShader\SkyBoxShader.vertex" />
     <None Include="assets\Shader\StencilTest\StencilTest.frag" />
     <None Include="assets\Shader\StencilTest\StencilTest.vertex" />
+    <None Include="source\include\External\assimp\assimp-vc143-mt.dll" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Log\LOG .txt" />
@@ -272,6 +274,7 @@
     <ResourceCompile Include="Modern_OpengGl_GB.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\src\Ressources\Mesh\Mesh.cpp" />
     <ClCompile Include="source\src\LowRenderer\Gizmo\Gizmo.cpp" />
     <ClCompile Include="source\src\Physics\Collider\Collider.cpp" />
     <ClCompile Include="source\src\Physics\Collider\BoxCollider.cpp" />

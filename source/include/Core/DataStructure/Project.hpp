@@ -8,10 +8,11 @@
 #include "LowRenderer/Cam/Camera.h"
 #include "UI/DockingSystem.hpp"
 #include "LowRenderer/Renderer/Renderer.hpp"
-
 #include "LowRenderer/FrameBuffer/FrameBuffer.h"
 #include "LowRenderer/RendererShadowSystem/RendererShadowSystem.h"
-
+#include "External/assimp/Importer.hpp"
+#include "External/assimp/scene.h"
+#include "External/assimp/postprocess.h"
 
 namespace fs = std::filesystem;
 
