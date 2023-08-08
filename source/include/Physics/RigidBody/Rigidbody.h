@@ -1,22 +1,20 @@
 #pragma once
-#include <Mathf.h>
-#include "Core/DataStructure/Component/Component.h"
+#include "Core/ECS/ECSComponent.h"
 #include<Math/ToolBoxMathHeaders.h>
 
 class Scene;
 class Collider;
 
-class Rigidbody : public Component
+class Rigidbody : public EcsComponent<Rigidbody>
 {
 public:
-	void FixedUpdate(Scene* scene) override;
-	void ImguiWindowComponents() override;
-	float mass;
-	bool IsGravityApllied;
-	Vector3 Velocity;
-	Rigidbody();
-	~Rigidbody();
-private :
-	Collider& collider;
+	bool IsKinematic = false;
+	bool IsGravityApplie;
+
+	float mass = 1.0f;
+	Vector3 Force;
+	Vector3 velocity;
+	
+
 };
 

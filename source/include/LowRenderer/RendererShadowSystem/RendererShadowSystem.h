@@ -19,6 +19,6 @@ private:
 	Scene* currentScene;
 
 
-	void CalCulateDepthBufferDirectionnal();
+	void CalCulateDepthBufferDirectionnal(Scene* scene);
 };
 

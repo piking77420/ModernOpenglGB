@@ -32,6 +32,14 @@ void Scene::Start()
 	}
 }
 
+void Scene::DrawGizmo()
+{
+	for (IEcsSystem* system : registerScene.Systems)
+	{
+		system->OnDrawGizmo(this);
+	}
+}
+
 void Scene::FixedUpdate()
 {
 	for (IEcsSystem* system : registerScene.Systems)
@@ -92,10 +100,6 @@ Entity* Scene::CreateEntity()
 
 Entity* Scene::GetEntities(uint32_t ID)
 {
-	for (size_t i = 0; i < registerScene.entities.size(); i++)
-	{
-		if (registerScene.entities[i]->GetID() == ID)
-			return registerScene.entities[i];
-	}
+	return registerScene.GetEntiesById(ID);
 
 }

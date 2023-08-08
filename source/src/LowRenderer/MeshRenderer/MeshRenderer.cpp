@@ -7,6 +7,8 @@
 
 void MeshRenderer::ImguiWindowComponent()
 {
+	ImGui::Text("MeshRenderer");
+
 	ImGui::PushID("");
 
 	ImGui::Text(model->name.c_str());

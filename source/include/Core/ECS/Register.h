@@ -35,7 +35,7 @@ private:
 	Component* GetComponentInternal(uint32_t ComponenTypeID,Entity* entity);
 	const Component* GetComponentInternal(uint32_t ComponenTypeID, const Entity* entity) const;
 	
-
+	Entity* GetEntiesById(uint32_t entityId);
 
 	void RemoveComponentInternal(uint32_t ComponenTypeID,Entity* entity);
 	void RemoveEntityInternal(Entity* entity);

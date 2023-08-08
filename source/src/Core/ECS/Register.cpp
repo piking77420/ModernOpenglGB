@@ -78,6 +78,15 @@ const Component* Register::GetComponentInternal(uint32_t ComponenTypeID, const E
 	return ptr;
 }
 
+Entity* Register::GetEntiesById(uint32_t entityId)
+{
+	for (size_t i = 0; i < entities.size(); i++)
+	{
+		if (entities[i]->GetID() == entityId)
+			return entities[i];
+	}
+}
+
 
 void Register::RemoveComponentInternal(uint32_t ComponenTypeID, Entity* entity)
 {
@@ -112,8 +121,8 @@ void Register::RemoveComponentInternal(uint32_t ComponenTypeID, Entity* entity)
 	}
 
 	memcpy(destComp, LastComp, SizeOfComponent);
-
-	LastComp->entity->EnityComponents.at(ComponenTypeID) = index;
+	Entity* entitylast = GetEntiesById(LastComp->entityID);
+	entitylast->EnityComponents.at(ComponenTypeID) = index;
 	dataArray.resize(LastIndex);
 
 	RemoveComponentEntitie(entity, ComponenTypeID);

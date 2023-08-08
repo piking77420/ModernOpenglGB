@@ -6,7 +6,12 @@
 
 
 
+void SystemRendererSkyMap::OnDrawGizmo(Scene* scene)
+{
 
+
+
+}
 
 
 void SystemRendererSkyMap::Init(Scene* scene)

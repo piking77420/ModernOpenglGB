@@ -11,7 +11,12 @@
 #include "Core/DataStructure/Project.hpp"
 
 
+void RendererLightSystem::OnDrawGizmo(Scene* scene)
+{
 
+
+
+}
 
 void RendererLightSystem::Init(Scene* scene)
 {
@@ -132,8 +137,9 @@ void RendererLightSystem::UpdateSpothLights(std::vector<uint8_t>* data, Scene* s
 
 void RendererLightSystem::RenderDirectionalLight(const DirectionalLight* dirLight, Scene* scene)
 {
-	Transform* transformOfLight = scene->GetComponent<Transform>(dirLight->entity);
-	Vector3 LightDirection = static_cast<Vector3>( Vector4(0,0,-1,0) * Matrix4X4::RotationMatrix4X4(transformOfLight->rotation)).Normalize();
+	Entity* entity = scene->GetEntities(dirLight->entityID);
+	Transform* transformOfLight = scene->GetComponent<Transform>(entity);
+	Vector3 LightDirection = static_cast<Vector3>(Matrix4X4::RotationMatrix4X4(transformOfLight->rotation) * Vector4(0,0,-1,0) ).Normalize();
 
 	currentShader->SetVector3("lightPos", transformOfLight->World.GetPos().GetPtr());
 	currentShader->SetMatrix("lightSpaceMatrix", dirLight->lightData.LightSpaceMatrix.GetPtr());

@@ -282,44 +282,20 @@ Matrix4X4::operator Matrix()
 
 
 
- Vector4 operator*( Matrix4X4& matrix, const Vector4& Row1)
+
+Vector4 operator*(const Matrix4X4& matrix, const Vector4& Row1)
 {
-		
+	Vector4 resutl;
+	Matrix4X4 m = matrix.Transposate();
 
-	 Vector4 newVec;
-
-
-
-	 newVec.x = (Row1.x * matrix[0].x) + (Row1.y * matrix[0].y) + (Row1.z * matrix[0].z) + (Row1.w * matrix[0].w);
-
-	 newVec.y = (Row1.x * matrix[1].x) + (Row1.y * matrix[1].y) + (Row1.z * matrix[1].z) + (Row1.w * matrix[1].w);
-
-	 newVec.z = (Row1.x * matrix[2].x) + (Row1.y * matrix[2].y) + (Row1.z * matrix[2].z) + (Row1.w * matrix[2].w);
-
-	 newVec.w = (Row1.x * matrix[3].x) + (Row1.y * matrix[3].y) + (Row1.z * matrix[3].z) + (Row1.w * matrix[3].w);
+	resutl.x = Vector4::DotProduct(m[0], Row1);
+	resutl.y = Vector4::DotProduct(m[1], Row1);
+	resutl.z = Vector4::DotProduct(m[2], Row1);
+	resutl.w = Vector4::DotProduct(m[3], Row1);
 
 
-
-	 return newVec;
-	
+	return resutl;
 }
-
- Vector4 operator*(const Vector4& Row1, const Matrix4X4& matrix)
- {
-		 Vector4 newVec;
-
-		 newVec.x = (Row1.x * matrix[0].x) + (Row1.y * matrix[0].y)  +( Row1.z * matrix[0].z)  +( Row1.w * matrix[0].w);
-
-		 newVec.y = (Row1.x * matrix[1].x) + (Row1.y * matrix[1].y)  +(Row1.z * matrix[1].z)  +(Row1.w * matrix[1].w);
-
-		 newVec.z = (Row1.x * matrix[2].x) + (Row1.y * matrix[2].y)  +(Row1.z * matrix[2].z)  +(Row1.w * matrix[2].w);
-
-		 newVec.w = (Row1.x * matrix[3].x) + (Row1.y * matrix[3].y)  +(Row1.z * matrix[3].z)  +(Row1.w * matrix[3].w);
-
-
-
-		 return newVec;
- }
  
 std::ostream& operator<<(std::ostream& stream, const Matrix4X4& maxtrix)
 {

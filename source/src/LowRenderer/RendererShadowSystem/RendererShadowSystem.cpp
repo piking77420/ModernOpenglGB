@@ -43,7 +43,7 @@ void RendererShadowSystem::Render(Shader& shader, Scene* scene)
 	currentScene = scene;
 	depthShader = &shader;
 
-	CalCulateDepthBufferDirectionnal();
+	CalCulateDepthBufferDirectionnal(scene);
 
 
 };
@@ -51,8 +51,12 @@ void RendererShadowSystem::OnResizeData(uint32_t ComponentTypeID, std::vector<ui
 {
 
 };
+void RendererShadowSystem::OnDrawGizmo(Scene* scene)
+{
 
-void RendererShadowSystem::CalCulateDepthBufferDirectionnal()
+}
+
+void RendererShadowSystem::CalCulateDepthBufferDirectionnal(Scene* scene)
 {
 
 	std::vector<uint8_t>* data = currentScene->GetComponentDataArray<DirectionalLight>();
@@ -67,8 +71,9 @@ void RendererShadowSystem::CalCulateDepthBufferDirectionnal()
 	for (uint32_t i = 0; i < dataDirectionalLight->size(); i++)
 	{
 		DirectionalLight* dirlight = &(*dataDirectionalLight)[i];
-		Transform* transform = currentScene->GetComponent<Transform>(dirlight->entity);
-		Vector3 LightDirection = static_cast<Vector3>(Vector4(0, 0, -1, 0) * Matrix4X4::RotationMatrix4X4(transform->rotation)).Normalize();
+		Entity* entity = scene->GetEntities(dirlight->entityID);
+		Transform* transform = currentScene->GetComponent<Transform>(entity);
+		Vector3 LightDirection = static_cast<Vector3>(Matrix4X4::RotationMatrix4X4(transform->rotation) * Vector4(0, 0, -1, 0)).Normalize();
 		//Vector3 pos, roation, scale;
 
 

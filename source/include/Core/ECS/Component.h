@@ -27,10 +27,10 @@ private:
 
 public:
 	virtual ~Component() {}
-	virtual void ImguiWindowComponent() { std::cout << "sqd" << std::endl; };
+	virtual void ImguiWindowComponent() { std::cout << "Bacis Imgui ImguiWindowComponent !! " << std::endl; };
 
 	bool IsEnable = true;
-	Entity* entity;
+	uint32_t entityID;
 	
 	
 protected:

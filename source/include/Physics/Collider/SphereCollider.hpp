@@ -7,6 +7,8 @@ class SphereCollider : public EcsComponent<SphereCollider>
 {
 public:
 	Collider collider;
-	float radius;
+	float radius = 1.f;
+	 void ImguiWindowComponent() override;
+
 };
 

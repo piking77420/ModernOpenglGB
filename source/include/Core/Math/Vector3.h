@@ -467,7 +467,10 @@ constexpr inline void operator+= (Vector3& vec1, const Vector2 Row1) noexcept
 {
 	vec1.x += Row1.x;
 	vec1.y += Row1.y;
+
 }
+
+
 constexpr inline void operator-= (Vector3& vec1, const Vector2 Row1) noexcept
 {
 	vec1.x -= Row1.x;
@@ -485,6 +488,35 @@ constexpr inline void operator/= (Vector3& vec1, const Vector2 Row1) noexcept
 	vec1.y /= Row1.y;
 }
 
+
+
+constexpr inline void operator+= (Vector3& vec1, float value) noexcept
+{
+	vec1.x += value;
+	vec1.y += value;
+	vec1.z += value;
+}
+
+constexpr inline void operator-= (Vector3& vec1, float value) noexcept
+{
+	vec1.x -= value;
+	vec1.y -= value;
+	vec1.z -= value;
+}
+
+constexpr inline void operator*= (Vector3& vec1, float value) noexcept
+{
+	vec1.x *= value;
+	vec1.y *= value;
+	vec1.z *= value;
+}
+
+constexpr inline void operator/= (Vector3& vec1, float value) noexcept
+{
+	vec1.x /= value;
+	vec1.y /= value;
+	vec1.z /= value;
+}
 
 
 

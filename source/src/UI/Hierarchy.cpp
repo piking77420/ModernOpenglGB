@@ -26,7 +26,8 @@ void Hierarchy::UpdateLayer(Project& currentProject)
 
 			if (!transfrom->Parent)
 			{
-				ImguiDrawChildren(transfrom->entity, currentProject);
+				Entity* entity = currentProject.currentScene->GetEntities(transfrom->entityID);
+				ImguiDrawChildren(entity, currentProject);
 
 			}
 		}
@@ -72,7 +73,8 @@ void Hierarchy::ImguiDrawChildren(Entity* entity, Project& currentProject)
 		{
 			for (size_t i = 0; i < transform->childs.size(); i++)
 			{
-				ImguiDrawChildren(transform->childs[i].second->entity, currentProject);
+				Entity* entity = currentProject.currentScene->GetEntities(transform->childs[i].second->entityID);
+				ImguiDrawChildren(entity, currentProject);
 			}
 		}
 		ImGui::TreePop();

@@ -8,7 +8,7 @@ uint32_t ECSComponentCreate(std::vector<uint8_t>& memory, Entity* entity, Compon
 	uint32_t index = memory.size();
 	memory.resize(index + T::SIZE);
 	T* component = new(&memory[index]) T();
-	component->entity = entity;
+	component->entityID = entity->ID;
 	*ptr = component;
 	return index;
 }

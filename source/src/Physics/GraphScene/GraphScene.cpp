@@ -20,7 +20,12 @@ void GraphScene::Start(Scene* scene)
 
 };
 
+void GraphScene::OnDrawGizmo(Scene* scene)
+{
+	
 
+
+}
 void GraphScene::FixedUpdate(Scene* scene)
 {
 
@@ -82,8 +87,8 @@ void GraphScene::BeChildOf(Transform* Parent, Transform* Child)
 		return;
 
 	Child->Parent = Parent;
-	Child->ParentId = Parent->entity->ID;
-	Parent->childs.push_back({ Child->entity->ID,Child });
+	Child->ParentId = Parent->entityID;
+	Parent->childs.push_back({ Child->entityID,Child });
 }
 
 void GraphScene::NoParent(Transform* transform)
@@ -253,7 +258,7 @@ void GraphScene::UpdateAllTransformPointers(std::vector<uint8_t>* data)
 		for (size_t k = 0; k < dataTransform->size(); k++)
 		{
 			const Transform* LookForParent = &(*dataTransform)[k];
-			if(UpdatedTransform->ParentId == LookForParent->entity->ID)
+			if(UpdatedTransform->ParentId == LookForParent->entityID)
 			{
 				UpdatedTransform->Parent = LookForParent;
 				break;
@@ -269,7 +274,7 @@ void GraphScene::UpdateAllTransformPointers(std::vector<uint8_t>* data)
 				{
 					Transform* LookChild = &(*dataTransform)[k];
 
-					if (UpdatedTransform->childs[i].first == LookChild->entity->ID)
+					if (UpdatedTransform->childs[i].first == LookChild->entityID)
 					{
 						UpdatedTransform->childs[i].second = LookChild;
 					}

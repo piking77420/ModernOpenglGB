@@ -23,7 +23,12 @@ void RendererSystem::Start(Scene* scene)
 {
 
 };
+void RendererSystem::OnDrawGizmo(Scene* scene)
+{
 
+
+
+}
 
 void RendererSystem::FixedUpdate(Scene* scene) 
 {
@@ -77,7 +82,7 @@ void RendererSystem::RenderMeshRender(const MeshRenderer* meshRender, Shader& sh
 	meshRender->specular->BindTexture();
 
 
-	Entity* entity = meshRender->entity;
+	Entity* entity = scene->GetEntities(meshRender->entityID);
 	const Transform* transform = scene->GetComponent<Transform>(entity);
 	const Matrix4X4 model = transform->World;
 	const Matrix4X4 MVP = Camera::cam->GetProjectionMatrix() * Camera::cam->GetLookMatrix() * model;

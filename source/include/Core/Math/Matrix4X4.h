@@ -328,5 +328,4 @@ private:
 
 
 Vector4 operator*(const Matrix4X4& matrix, const Vector4& Row1);
-Vector4 operator*(const Vector4& Row1,const Matrix4X4& matrix);
 std::ostream& operator<<(std::ostream& stream, const  Matrix4X4& maxtrix);

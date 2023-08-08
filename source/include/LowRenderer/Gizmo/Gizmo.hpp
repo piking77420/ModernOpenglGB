@@ -1,16 +1,46 @@
 #pragma once
 #include "ToolBoxMathHeaders.h"
 #include "Ressources/Model/Model.h"
-class Projet;
+#include "Core/DataStructure/Project.hpp"
 class Shader;
 
+enum class GizmoColor
+{
+	REDGIZMO,
+	GREENGIZMO,
+	BLUEGIZMO
+
+};
 
 class Gizmo
 {
-	
-	static void DrawSphere(const Vector3& pos,float radius);
+public:
+
+	static void InitGizmo(const Project& projet);
+
+	static void DrawSphere(const Vector3& pos,float radius,GizmoColor gizmoColor);
+	static void DrawBox(const Matrix4X4& model,const Vector3& sizeBox, GizmoColor gizmoColor);
+
 private:
-	friend Projet;
-	static const Shader* GizmoShader;
+	static inline const Model* Sphere = nullptr;
+	static inline const Model* Box = nullptr;
+	static inline const Shader* GizmoShader = nullptr;
+	static  constexpr Vector4 GetColor(GizmoColor gizmoColor)
+	{
+		switch (gizmoColor)
+		{
+		case GizmoColor::REDGIZMO:
+			return Vector4(1, 0, 0, 1);
+			break;
+		case GizmoColor::GREENGIZMO:
+			return Vector4(0, 1, 0, 1);
+			break;
+		case GizmoColor::BLUEGIZMO:
+			return Vector4(0, 0, 1, 1);
+			break;
+		default:
+			break;
+		}
+	}
 };
 

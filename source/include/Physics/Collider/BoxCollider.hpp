@@ -4,7 +4,10 @@
 
 class BoxCollider : public EcsComponent<BoxCollider>
 {
+public:
 	Collider collider;
-	Vector3 Size;
+	Vector3 Size = Vector3::One();
+	void ImguiWindowComponent() override;
+
 };
 

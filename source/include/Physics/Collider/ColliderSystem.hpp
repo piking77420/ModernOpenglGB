@@ -1,5 +1,8 @@
 #pragma once
 #include "Core/ECS/IECSSystem.h"
+#include "Physics/Transform/Transform.hpp"
+#include <array>
+
 
 class Collider;
 class SphereCollider;
@@ -11,6 +14,7 @@ public:
 	void Init(Scene* scene) override; 
 	void Awake(Scene* scene) override; 
 	void Start(Scene* scene) override; 
+	void OnDrawGizmo(Scene* scene) override;
 	void FixedUpdate(Scene* scene) override; 
 	void Update(Scene* scene) override; 
 	void LateUpdate(Scene* scene) override; 
@@ -20,14 +24,21 @@ public:
 	ColliderSystem() {  };
 	~ColliderSystem(){}
 private:
-	const Scene* currentScene;
+	Scene* currentScene;
 
-	bool CheckCollision(const SphereCollider& sphere1, const SphereCollider& sphere2);
 
-	bool CheckCollision(const BoxCollider& sphere1, const BoxCollider& sphere2);
 
-	bool CheckCollision(const BoxCollider& sphere1, const SphereCollider& sphere2);
+	bool CheckCollision(SphereCollider& sphere1, SphereCollider& sphere2);
 
+	bool CheckCollision(BoxCollider& Box1, BoxCollider& Box2);
+
+	bool CheckCollision(BoxCollider& sphere1, SphereCollider& sphere2);
+
+	Vector3 GetVertexBox(Transform& transform, const Vector3& halfLength, int vertexIndex);
+	std::array<Vector3, 6> GetAxis(std::array<Vector3,8> arrayOfVerticies);
+
+
+	void ProjectVerticesOnAxis(const std::array<Vector3, 8>& verticiesArray, const Vector3& axis, float& outmin, float& outmax);
 
 
 };

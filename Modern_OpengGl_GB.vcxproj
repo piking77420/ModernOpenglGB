@@ -149,6 +149,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\include\Physics\PhysicsSystem\PhysicsSystem.hpp" />
+    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_opengl3_loader.h" />
     <ClInclude Include="source\include\Ressources\Mesh\Mesh.hpp" />
     <ClInclude Include="source\include\LowRenderer\Gizmo\Gizmo.hpp" />
     <ClInclude Include="source\include\Physics\Collider\Collider.hpp" />
@@ -274,6 +276,7 @@
     <ResourceCompile Include="Modern_OpengGl_GB.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\src\Physics\PhysicsSystem\PhysicsSystem.cpp" />
     <ClCompile Include="source\src\Ressources\Mesh\Mesh.cpp" />
     <ClCompile Include="source\src\LowRenderer\Gizmo\Gizmo.cpp" />
     <ClCompile Include="source\src\Physics\Collider\Collider.cpp" />

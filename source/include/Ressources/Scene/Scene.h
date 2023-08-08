@@ -27,6 +27,7 @@ public :
 	void Awake();
 	void Start();
 
+	void DrawGizmo();
 
 	void FixedUpdate();
 	void Update();
@@ -143,7 +144,7 @@ public :
 
 	std::string sceneName = "Scene";
 	ImGuiIO io;
-	const float FixedDeltatime = 0.016f;
+	const float FixedDeltatime = 0.06f;
 	float  Deltatime;
 	Project* currentproject;
 
