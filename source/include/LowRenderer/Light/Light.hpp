@@ -8,10 +8,7 @@ class Depthmap;
 
 struct Light 
 {
-	Vector4 ambiantColor = Vector4(0.5f, 0.5f, 0.5f, 0.5f);
-	Vector4 diffuseColor = Vector4(0.5f, 0.5f, 0.5f, 0.5f);
-	Vector4 specularColor = Vector4(0.5f, 0.5f, 0.5f, 0.5f);
-	float SpecularStrengt = 32.f;
+	Vector4 color  = Vector4(0.5f, 0.5f, 0.5f, 0.5f);
 	Matrix4X4 LightSpaceMatrix;
 	Depthmap depthmap;
 };

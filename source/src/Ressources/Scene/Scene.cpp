@@ -7,7 +7,6 @@
 #include "Physics/GraphScene/GraphScene.h"
 #include "Core/DataStructure/Project.hpp"
 
-
 void Scene::Init()
 {
 	for (IEcsSystem* system : registerScene.Systems)
@@ -70,6 +69,11 @@ void Scene::Render(Shader& shader)
 	{
 		system->Render(shader,this);
 	}
+}
+
+void Scene::RenderScene(Shader& shader)
+{
+	renderer.RendereScene(this,&shader);
 }
 
 Scene::Scene(std::string name)

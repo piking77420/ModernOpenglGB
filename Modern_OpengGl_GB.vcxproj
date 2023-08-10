@@ -276,6 +276,7 @@
     <ResourceCompile Include="Modern_OpengGl_GB.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\include\Physics\RigidBody\Rigidbody.cpp" />
     <ClCompile Include="source\src\Physics\PhysicsSystem\PhysicsSystem.cpp" />
     <ClCompile Include="source\src\Ressources\Mesh\Mesh.cpp" />
     <ClCompile Include="source\src\LowRenderer\Gizmo\Gizmo.cpp" />

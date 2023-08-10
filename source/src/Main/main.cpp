@@ -88,22 +88,23 @@
         glfwSetMouseButtonCallback(window, Camera::MouseButtonCallBack);
 
        
-
+        EnableOpenGl();
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
+
+        ImGui::StyleColorsDark();
+        ImGui_ImplGlfw_InitForOpenGL(window, true);
+        ImGui_ImplOpenGL3_Init("#version 330");
+ 
 
         // Imgui Init // 
         ImGuiIO& io = ImGui::GetIO(); (void)io;
         io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
         io.ConfigFlags |= ImGuiConfigFlags_NoMouseCursorChange;
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-        ImGui::StyleColorsDark();
- 
 
-        ImGui_ImplGlfw_InitForOpenGL(window, true);
-        ImGui_ImplOpenGL3_Init("#version 330");
         LoadCursorAppCursor(window);
-        EnableOpenGl();
+
         App app(windowWidth, windowHeight,io);
 
       
@@ -111,18 +112,14 @@
         // Main Loop // 
         while (!glfwWindowShouldClose(window))
         {
-            
-            glfwPollEvents();
-
-
-            
-       
+         
             processInput(window);
 
-             //Imgui new frame // 
+            //Imgui new frame // 
             ImGui_ImplOpenGL3_NewFrame();
             ImGui_ImplGlfw_NewFrame();
             ImGui::NewFrame();
+
             ImGuizmo::BeginFrame();
 
          
@@ -139,7 +136,7 @@
             ImGui::Render();
             ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
             glfwSwapBuffers(window);
-
+            glfwPollEvents();
 
         }   
         LOG("On Window Close", STATELOG::NONE);

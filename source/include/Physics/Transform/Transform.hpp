@@ -23,6 +23,8 @@ public:
 	const Transform* Parent = nullptr;
 	std::vector <std::pair<uint32_t,Transform* >> childs;
 
+	
+
 
 	void ImguiWindowComponent() override;
 

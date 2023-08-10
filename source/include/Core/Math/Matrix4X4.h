@@ -90,7 +90,6 @@ public:
 				{0.f, 0.f, r22, 0.f},
 				{r03, r13,r23, 1.f}
 		};
-
 	}
 
 	static inline bool DecomposeMatrix(const Matrix4X4& matrix, Vector3& tranlation , Vector3& rotation , Vector3& scale )

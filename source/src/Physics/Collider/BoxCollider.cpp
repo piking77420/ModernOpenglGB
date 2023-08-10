@@ -5,6 +5,19 @@
 
 void BoxCollider::ImguiWindowComponent()
 {
+	ImGui::Text("BOX COLLIDER \n ");
+
+	ImGui::Text("CollisionPoint size = %d ", collider.CollisionPoint.size());
 	ImGui::Checkbox("IsDrawing", &collider.IsDrawing);
 	ImGui::DragFloat3("BoxSize", Size.SetPtr());
-};
+}
+BoxCollider::BoxCollider()
+{
+	collider.collisionType = CollisionType::Box;
+}
+
+BoxCollider::~BoxCollider()
+{
+}
+
+;

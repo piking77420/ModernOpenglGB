@@ -12,6 +12,8 @@
 #include <Core/Debug/Imgui/imgui_internal.h>
 #include "External/ImguiGizmo/ImGuizmo.h"
 #include "Physics/Transform/Transform.hpp"
+#include "LowRenderer/Light/DirectionalLight/DirectionalLight.hpp"
+
 fs::path ContentBrowser::BasePath;
 
 fs::path ContentBrowser::CurrentPath;
@@ -117,7 +119,8 @@ std::string ContentBrowser::GetPreviousPath(const fs::path& currentPath)
 }
 
 
-
+unsigned int quadVAO = 0;
+unsigned int quadVBO;
 
 void ContentBrowser::UpdateLayer(Project& currentProject)
 {
@@ -133,10 +136,12 @@ void ContentBrowser::UpdateLayer(Project& currentProject)
 		float width = ImGui::GetContentRegionAvail().x;
 		float height = ImGui::GetContentRegionAvail().y;
 
+
+		
 		ImGui::Image((ImTextureID)currentProject.OpenGlRenderToImgui->framebufferTexture, ImGui::GetContentRegionAvail(),
 			ImVec2(0, 1),
 			ImVec2(1, 0));
-
+			
 
 		if (!currentProject.DockingSystem.entitySelected)
 		{

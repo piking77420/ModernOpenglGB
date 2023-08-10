@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include "Ressources/RessourcesManager/RessourcesManager.h"
 
+
 // ECS // 
 #include "Core/ECS/Entity.h"
 #include "Core/ECS/Register.h"
@@ -11,6 +12,8 @@
 #include<Core/Debug/Imgui/imgui.h>
 #include<Core/Debug/Imgui/imgui_impl_glfw.h>
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>
+#include "LowRenderer/Renderer/Renderer.hpp"
+
 
 
 class FrameBuffer;
@@ -34,6 +37,7 @@ public :
 	void LateUpdate();
 
 	void Render(Shader& shader);
+	void RenderScene(Shader& shader);
 
 
 	Entity* CreateEntity();
@@ -147,7 +151,7 @@ public :
 	const float FixedDeltatime = 0.06f;
 	float  Deltatime;
 	Project* currentproject;
-
+	Renderer renderer;
 
 	Scene(std::string name);
 	~Scene();

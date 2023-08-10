@@ -9,11 +9,7 @@
 void DirectionalLight::ImguiWindowComponent()
 {
 	ImGui::Text(" ");
-	ImGui::ColorPicker4("ambiantColor", lightData.ambiantColor.SetPtr());
-	ImGui::ColorPicker4("diffuseLightColor", lightData.diffuseColor.SetPtr());
-	ImGui::ColorPicker4("SpecularColor", lightData.specularColor.SetPtr());
-	ImGui::DragFloat("SpecularColor", &lightData.SpecularStrengt);
-
+	ImGui::ColorPicker4("ambiantColor", lightData.color.SetPtr());
 	ImGui::Text(" ");
 
 }

@@ -1,5 +1,6 @@
 #include <vector>
 #include <limits>
+#include <algorithm>
 #include <ToolBoxMathHeaders.h>
 #include "Vector4.h"
 #include "Physics/Collider/ColliderSystem.hpp"
@@ -59,52 +60,67 @@ void ColliderSystem::OnDrawGizmo(Scene* scene)
 
 }
 
+
+
+void ColliderSystem::ProcessSphereSphere(std::vector<SphereCollider>* sphereData)
+{
+	for (size_t i = 0; i < sphereData->size(); i++)
+	{
+		SphereCollider* sphereptr = &(*sphereData)[i];
+		for (size_t k = 0; k < sphereData->size(); k++)
+		{
+			SphereCollider* sphereptr2 = &(*sphereData)[k];
+			if (sphereptr == sphereptr2)
+				continue;
+
+			CheckCollision(*sphereptr, *sphereptr2);
+
+		}
+	}
+
+}
+
+void ColliderSystem::ProcessBoxBox(std::vector<BoxCollider>* boxData)
+{
+	for (size_t i = 0; i < boxData->size(); i++)
+	{
+		BoxCollider* Boxptr = &(*boxData)[i];
+		for (size_t k = 0; k < boxData->size(); k++)
+		{
+			BoxCollider* Boxptr2 = &(*boxData)[k];
+			if (Boxptr == Boxptr2)
+				continue;
+
+			CheckCollision(*Boxptr, *Boxptr2);
+
+		}
+	}
+}
+
+void ColliderSystem::ProcessSphereBox(std::vector<SphereCollider>* sphereData, std::vector<BoxCollider>* boxData)
+{
+	for (size_t i = 0; i < sphereData->size(); i++)
+	{
+		SphereCollider* sphereptr = &(*sphereData)[i];
+
+		for (size_t k = 0; k < boxData->size(); k++)
+		{
+			BoxCollider* Boxptr = &(*boxData)[i];
+			CheckCollision(*Boxptr ,*sphereptr);
+
+		}
+	}
+}
+
 void ColliderSystem::FixedUpdate(Scene* scene)
 {
 	std::vector<SphereCollider>* dataSphere =  reinterpret_cast<std::vector<SphereCollider>*>(scene->GetComponentDataArray<SphereCollider>());
 	std::vector<BoxCollider>* dataBox = reinterpret_cast<std::vector<BoxCollider>*>(scene->GetComponentDataArray<BoxCollider>());
 
-	for (size_t i = 0; i < dataSphere->size(); i++)
-	{
-		SphereCollider* sphereptr = &(*dataSphere)[i];
-		
-		for (size_t k = 0; k < dataSphere->size(); k++)
-		{
-			SphereCollider* sphereptr2 = &(*dataSphere)[k];
+	ProcessSphereSphere(dataSphere);
+	ProcessSphereBox(dataSphere, dataBox);
+	ProcessBoxBox(dataBox);
 
-			if (sphereptr == sphereptr2)
-				continue;
-			CheckCollision(*sphereptr, *sphereptr2);
-		}
-
-		for (size_t i = 0; i < dataBox->size(); i++)
-		{
-			BoxCollider* Boxptr = &(*dataBox)[i];
-			CheckCollision(*Boxptr, *sphereptr);
-
-		}
-
-	}
-
-
-	for (size_t i = 0; i < dataBox->size(); i++)
-	{
-		BoxCollider* Boxptr = &(*dataBox)[i];
-
-		for (size_t k = 0; k < dataBox->size(); k++)
-		{
-			BoxCollider* Boxptr2 = &(*dataBox)[k];
-
-			if (Boxptr == Boxptr2)
-				continue;
-
-			if(CheckCollision(*Boxptr, *Boxptr2))
-			{
-			}
-		}
-
-
-	}
 }
 
 
@@ -112,6 +128,8 @@ void ColliderSystem::FixedUpdate(Scene* scene)
 void ColliderSystem::Update(Scene* scene)
 {
 }
+
+
 
 void ColliderSystem::LateUpdate(Scene* scene)
 {
@@ -156,19 +174,21 @@ bool ColliderSystem::CheckCollision(SphereCollider& sphere1, SphereCollider& sph
 	const Vector3 worldPosS1 = static_cast<const Vector3>(s1->World[3]);
 	const Vector3 worldPosS2 = static_cast<const Vector3>(s2->World[3]);
 
-	const float distance = Vector3::Distance(worldPosS1, worldPosS2);
+	const float Distance = Vector3::Distance(worldPosS1, worldPosS2);
 	const float r1r2 = sphere1.radius + sphere2.radius;
 
 
-	if (distance < r1r2)
+	if (Distance < r1r2)
 	{
-		CollisionPoint coll1;
-		coll1.depht = distance;
-		coll1.Normal = Vector3(worldPosS2 - worldPosS1).Normalize();
+		Vector3 normalS1 = Vector3(worldPosS2 - worldPosS1);
+		Vector3 normalS2 = Vector3(worldPosS1 - worldPosS2);
+		float depth = r1r2 - Distance;
 
-		CollisionPoint coll2;
-		coll2.depht = distance;
-		coll2.Normal = Vector3(worldPosS1 - worldPosS2).Normalize();
+		CollisionPoint coll1(sphere2.entityID, depth, normalS1.Normalize());
+		CollisionPoint coll2(sphere1.entityID, depth, normalS2.Normalize());
+		coll1.collisionPoint = worldPosS1 + (worldPosS2 - worldPosS1).Normalize() * depth;
+		coll2.collisionPoint = worldPosS2 + (worldPosS1 - worldPosS2).Normalize() * depth;
+
 		
 		sphere1.collider.CollisionPoint.push_back(coll1);
 		sphere1.collider.CollisionPoint.push_back(coll2);
@@ -186,6 +206,8 @@ bool ColliderSystem::CheckCollision(BoxCollider& sphere1, SphereCollider& sphere
 {
 	return false;
 }
+
+
 
 Vector3 ColliderSystem::GetVertexBox(Transform& transform, const Vector3& halfLength, int vertexIndex)
 {
@@ -206,30 +228,21 @@ Vector3 ColliderSystem::GetVertexBox(Transform& transform, const Vector3& halfLe
 	return vertex;
 }
 
-std::array<Vector3, 6> ColliderSystem::GetAxis(std::array<Vector3, 8> arrayOfVertices)
+std::array<Vector3, 3> ColliderSystem::GetAxis(const std::array<Vector3, 8>& arrayOfVertices,const Transform& transfrom)
 {
-	std::array<Vector3, 6> output;
 
-	int faceIndices[6][4] = {
-	{0, 1, 2, 3}, // Front face (vertices: 0, 1, 2, 3)
-	{5, 4, 7, 6}, // Back face (vertices: 4, 7, 6, 5)
-	{0, 4, 5, 1}, // Top face (vertices: 0, 4, 5, 1)
-	{4, 0, 1, 5}, // Bottom face (vertices: 2, 6, 7, 3)
-	{0, 2, 6, 4}, // Left face (vertices: 0, 2, 6, 4)
-	{1, 5, 7, 3}  // Right face (vertices: 1, 5, 7, 3)
-	};
+	std::array<Vector3, 3> output;
+	Vector3 pos, rotation, scale;
+
+	Matrix4X4::DecomposeMatrix(transfrom.World, pos, rotation, scale);
+
+	Matrix4X4 rotationMatrix = Matrix4X4::RotationMatrix4X4(rotation);
 
 
-	for (int i = 0; i < 6; ++i) {
-		// Calculate the normal vector for each face
-			Vector3 v1 = arrayOfVertices[faceIndices[i][0]];
-			Vector3 v2 = arrayOfVertices[faceIndices[i][1]];
-			Vector3 v3 = arrayOfVertices[faceIndices[i][2]];
-			Vector3 normal = (Vector3::CrossProduct(v2 - v1, v3 - v1)).Normalize();
+	output[0] = (Vector3)(rotationMatrix * Vector4(0, 1, 0, 1));
+	output[1] = (Vector3)(rotationMatrix * Vector4(0, 0,1, 1));
+	output[2] = (Vector3)(rotationMatrix * Vector4(1, 0, 1, 1));
 
-			output[i] = normal;
-	
-	}
 
 	return output;
 }
@@ -259,8 +272,41 @@ void ColliderSystem::ProjectVerticesOnAxis(const std::array<Vector3, 8>& vertici
 
 
 
+Vector3 ColliderSystem::DeterminateVectorNormal(const Vector3& normal, const Vector3& origin)
+{
+	if (Vector3::DotProduct(origin, normal) >= 0.f)
+		return normal;
+
+	return -normal;
+}
+
+
+Vector3 GetClosestVertex(const std::array<Vector3, 8>& verticies1, const std::array<Vector3, 8>& verticies2) 
+{
+	Vector3 closestVertex = verticies1[0];
+
+	float minDistance = std::numeric_limits<float>::infinity();
+
+	for (const Vector3& vertex1 : verticies1)
+	{
+		float distance = Vector3::Distance(vertex1, verticies2[0]);
+
+		if (distance < minDistance) {
+			minDistance = distance;
+			closestVertex = vertex1;
+		}
+	}
+
+	return closestVertex;
+}
+
+
 bool ColliderSystem::CheckCollision(BoxCollider& Box1, BoxCollider& Box2)
 {
+	Vector3 NormalCollision = Vector3::Zero();
+	float depth = std::numeric_limits<float>::infinity();
+
+
 	Entity* entity1 = currentScene->GetEntities(Box1.entityID);
 	Entity* entity2 = currentScene->GetEntities(Box2.entityID);
 
@@ -275,7 +321,6 @@ bool ColliderSystem::CheckCollision(BoxCollider& Box1, BoxCollider& Box2)
 	std::array<Vector3,8> cubeVerticies1;
 	std::array<Vector3,8> cubeVerticies2;
 
-	
 
 	// Applie transformation to the cube 
 	for (int i = 0; i < cubeVerticies1.size(); ++i) {
@@ -283,34 +328,37 @@ bool ColliderSystem::CheckCollision(BoxCollider& Box1, BoxCollider& Box2)
 		cubeVerticies2[i] = GetVertexBox(transformbox2, halfLegnhtbox2, i);
 	}
 
-
 	// Get Axis
-	std::array<Vector3, 6> AxisCube1 = GetAxis(cubeVerticies1);
-	std::array<Vector3, 6> AxisCube2 = GetAxis(cubeVerticies2);
+	std::array<Vector3, 3> AxisCube1 = GetAxis(cubeVerticies1, transformbox1);
+	std::array<Vector3, 3> AxisCube2 = GetAxis(cubeVerticies2, transformbox2);
 
-	
+	Vector3 ImpactPoint1;
+	Vector3 ImpactPoint2;
 
-	// Process SAT // 
-
-	// Axis cube 1 
 
 	// Process SAT
 	for (size_t i = 0; i < AxisCube1.size(); i++) {
-
-		if( !(i  %  2))
-		{
+	
 			float maxA, minA, maxB, minB;
-
 			// Project vertices on the axis for both cubes
 			ProjectVerticesOnAxis(cubeVerticies1, AxisCube1[i], minA, maxA);
 			ProjectVerticesOnAxis(cubeVerticies2, AxisCube1[i], minB, maxB);
 
 			// Check for separation along the axis
 			if (minA >= maxB || minB >= maxA)
+			{
 				return false;
+			}
 
-		}
-		
+			float axisDepth = std::fminf(maxB - minA,maxA-minB);
+
+			if(axisDepth < depth)
+			{
+				depth = axisDepth;
+				NormalCollision = AxisCube1[i];
+			}
+			ImpactPoint1 = GetClosestVertex(cubeVerticies1, cubeVerticies2);
+			ImpactPoint2 = GetClosestVertex(cubeVerticies2, cubeVerticies1);
 	}
 	
 	
@@ -324,11 +372,47 @@ bool ColliderSystem::CheckCollision(BoxCollider& Box1, BoxCollider& Box2)
 
 		// Check for separation along the axis
 		if (minA >= maxB || minB >= maxA)
+		{
 			return false;
+		}
+
+		float axisDepth = std::fminf(maxB - minA, maxA - minB);
+
+		if (axisDepth < depth)
+		{
+			depth = axisDepth;
+			NormalCollision = AxisCube2[i];	
+
+		}
+
+		ImpactPoint1 = GetClosestVertex(cubeVerticies1, cubeVerticies2);
+		ImpactPoint2 = GetClosestVertex(cubeVerticies2, cubeVerticies1);
+
 	}
 
+	
+		depth /= NormalCollision.Norm();
+		NormalCollision = NormalCollision.Normalize();
 
-	std::cout << "Collision " << std::endl;
+		CollisionPoint p1;
+		p1.collisionPoint = ImpactPoint1;
+		p1.depht = depth;
+		p1.entityIDBeenCollidWith = Box2.entityID;
+		p1.Normal = DeterminateVectorNormal(NormalCollision, transformbox1.World.GetPos());
+
+		CollisionPoint p2;
+		p2.collisionPoint = ImpactPoint2;
+		p2.depht = depth;
+		p2.entityIDBeenCollidWith = Box1.entityID;
+		p2.Normal = DeterminateVectorNormal(NormalCollision, transformbox2.World.GetPos());
+
+
+		Box1.collider.CollisionPoint.push_back(p1);
+
+		Box2.collider.CollisionPoint.push_back(p2);
+	
+
 
 	return true;
 }
+

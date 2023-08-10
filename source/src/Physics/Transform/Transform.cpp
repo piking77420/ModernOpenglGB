@@ -5,7 +5,7 @@
 
 
 
-
+char buffer[25];
 void Transform::ImguiWindowComponent()
 {
 	ImGui::PushID("");

@@ -68,7 +68,7 @@ namespace Debug
                 std::cout << WHITE; \
                 break; \
         } \
-        std::cout << GetTime() << message << GetCurrentFile(__builtin_FILE()) << " " << __builtin_FUNCTION() << " " << __builtin_LINE() << '\n' << '\n'; \
+        std::cout << GetTime() << message << GetCurrentFile(__builtin_FILE()) << " " << __builtin_FUNCTION() << " " << __builtin_LINE() << '\n' << '\n' << WHITE; \
 
 }
 

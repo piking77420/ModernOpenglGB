@@ -2,6 +2,9 @@
 #include "Ressources/Scene/Scene.h"
 #include "Physics/RigidBody/Rigidbody.h"
 #include "Physics/Transform/Transform.hpp"
+#include "Physics/Collider/SphereCollider.hpp"
+#include "Physics/Collider/BoxCollider.hpp"
+#include "EasyFunction.h"
 float PhysicsSystem::FixedDelatime = 0;
 
 
@@ -27,8 +30,8 @@ void PhysicsSystem::FixedUpdate(Scene* scene)
 {
 	std::vector<Rigidbody>* rigidBodys = reinterpret_cast<std::vector<Rigidbody>*>(scene->GetComponentDataArray<Rigidbody>());
 	ApplieGravity(scene,rigidBodys);
-	
-
+	CollisionRespond(scene, rigidBodys);
+	ApplieForces(scene, rigidBodys);
 
 };
 void PhysicsSystem::Update(Scene* scene)
@@ -55,13 +58,117 @@ void PhysicsSystem::ApplieGravity(Scene* scene,std::vector<Rigidbody>* rigidBody
 	{
 		Rigidbody* rigidbody = &(*rigidBodys)[i];
 
-		rigidbody->Force += rigidbody->mass * Gravity;
-		rigidbody->velocity += rigidbody->Force / rigidbody->mass * FixedDelatime;
-		Entity* ent = scene->GetEntities(rigidbody->entityID);
-		Transform* transform = scene->GetComponent<Transform>(ent);
-		transform->pos += rigidbody->velocity * FixedDelatime;
+		if (rigidbody->IsKinematic || !rigidbody->IsEnable || !rigidbody->IsGravityApplie)
+			continue;
 
-		rigidbody->Force = Vector3::Zero();
+		rigidbody->Force += Gravity * rigidbody->mass;
+
 	}
 
+}
+
+
+
+
+
+
+void PhysicsSystem::CollisionRespond(Scene* scene, std::vector<Rigidbody>* rigidBodys)
+{
+	
+	for (size_t i = 0; i < rigidBodys->size(); i++)
+	{
+		Rigidbody* rb = &(*rigidBodys)[i];
+		Collider* coll = GetCollider(scene, rb->entityID);
+		Entity* entity = scene->GetEntities(rb->entityID);
+		Transform* transform = scene->GetComponent<Transform>(entity);
+
+		if (coll->IsTrigger)
+			return;
+
+		for (size_t i = 0; i < coll->CollisionPoint.size(); i++)
+		{
+			CollisionPoint* collptr = &coll->CollisionPoint[i];
+			Entity* entity = scene->GetEntities(collptr->entityIDBeenCollidWith);
+			Rigidbody* rbOther = scene->GetComponent<Rigidbody>(entity);
+
+			Vector3 Forceadded;
+
+			if (rbOther)
+			{
+				Forceadded = collptr->depht * collptr->Normal * rbOther->mass;
+			}
+			else
+			{
+
+				Forceadded = (collptr->Normal) * (rb->mass * -Gravity);
+			}
+			rb->Force += Forceadded;
+
+
+		}
+
+	}
+}
+
+
+Collider* PhysicsSystem::GetCollider(Scene* scene, uint32_t EntityID)
+{
+	Entity* entity = scene->GetEntities(EntityID);
+	if(!entity)
+	{
+		LOG("This entity ID Is Unvalid",STATELOG::CRITICALERROR);
+		return nullptr;
+	}
+
+	SphereCollider* sphereCollider = scene->GetComponent<SphereCollider>(entity);
+
+	if(!sphereCollider)
+	{
+		BoxCollider* boxCollider = scene->GetComponent<BoxCollider>(entity);
+		return &boxCollider->collider;
+	}
+	else
+	{
+		return &sphereCollider->collider;
+	}
+
+	LOG("This entity doesn't have collider Component", STATELOG::CRITICALERROR);
+
+
+	return nullptr;
+}
+void PhysicsSystem::ApplieForces(Scene* scene, std::vector<Rigidbody>* rigidBodys)
+{
+
+	
+	for (size_t i = 0; i < rigidBodys->size(); i++)
+	{
+		Rigidbody* rb = &(*rigidBodys)[i];
+		Transform* transform = scene->GetComponent<Transform>(scene->GetEntities(rb->entityID));
+		Collider* coll = GetCollider(scene, rb->entityID);
+
+
+		if (rb->IsKinematic || !rb->IsEnable)
+			continue;
+
+		Vector3 frictionForce = -rb->Velocity * coll->physcicalMaterial.friction;
+		Vector3 AddedVelocity = (rb->Force + frictionForce) * FixedDelatime;
+
+		
+
+		rb->Velocity += AddedVelocity;
+		transform->pos += rb->Velocity * FixedDelatime;
+
+
+
+
+
+		// reset Force
+		rb->Force = Vector3::Zero();
+	}
+
+
+
+
+	
 }

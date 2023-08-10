@@ -571,6 +571,9 @@
     <ClCompile Include="source\src\Physics\PhysicsSystem\PhysicsSystem.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="source\include\Physics\RigidBody\Rigidbody.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="source\src\External\lib\glfw3.lib" />

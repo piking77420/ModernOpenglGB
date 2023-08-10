@@ -64,7 +64,7 @@ private :
 	void CameraMovment(GLFWwindow* context, const ImGuiIO& io);
 
 	//Camera Shader
-	float fov = 90.f;
+	float fov = 85.f;
 	float Fnear = 0.01f;
 	float Ffar = 1000.f;
 	Matrix4X4 VP;

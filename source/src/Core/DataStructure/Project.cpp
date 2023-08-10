@@ -25,6 +25,8 @@
 #include "Physics/Collider/SphereCollider.hpp"
 #include "Physics/GraphScene/GraphScene.h"
 #include "Physics/Collider/BoxCollider.hpp"
+#include "Physics/PhysicsSystem/PhysicsSystem.hpp"
+#include "Physics/RigidBody/Rigidbody.h"
 
 FrameBuffer* Project::OpenGlRenderToImgui = new FrameBuffer(800, 800);
 
@@ -43,19 +45,17 @@ void Project::Update()
 	m_io = ImGui::GetIO();
 
 	Shader* shaderNormal = ressourcesManager.GetElement<Shader>("NormalShader");
-	Shader* DephtMap = ressourcesManager.GetElement<Shader>("DepthMapShader");
+	Shader* shaderShadowMapping = ressourcesManager.GetElement<Shader>("ShadowMapping");
+
 	Shader* skybox = ressourcesManager.GetElement<Shader>("SkyBoxShader");
 
 	mainCamera->SetCameraInfoForShaders(ressourcesManager);
 	mainCamera->CameraUpdate();
-	//currentScene->Render(*DephtMap);
 
 
 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 	OpenGlRenderToImgui->Bind();
-
 
 	glClearColor(0, 0, 0, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
@@ -67,12 +67,13 @@ void Project::Update()
 
 
 	currentScene->DrawGizmo();
-	currentScene->Render(*shaderNormal);
+
+	currentScene->Render(*shaderShadowMapping);
+	currentScene->RenderScene(*shaderShadowMapping);
 	
 	OpenGlRenderToImgui->UnBind();
 
 	DockingSystem.UpdateDockSpace(*this);
-	RendererShadowSystem::boolHasDrawBuffer = false;
 
 }
 
@@ -117,13 +118,9 @@ Project::~Project()
 void Project::InitScene()
 {
 	
-	RendererSystem* rs = new RendererSystem();
-	currentScene->AddSystem(rs);
 
 	RendererShadowSystem* rShadow = new RendererShadowSystem();
 	currentScene->AddSystem(rShadow);
-
-
 
 	RendererLightSystem* rl = new RendererLightSystem();
 	currentScene->AddSystem(rl);
@@ -132,48 +129,83 @@ void Project::InitScene()
 	ColliderSystem* colliderSystem = new ColliderSystem();
 	currentScene->AddSystem(colliderSystem);
 
+	PhysicsSystem* physicsSystem = new PhysicsSystem();
+	currentScene->AddSystem(physicsSystem);
+
 
 	SystemRendererSkyMap* systemRendererSkyMap = new SystemRendererSkyMap();
 	currentScene->AddSystem(systemRendererSkyMap);
 
+	
 
-
-	Entity* entity = currentScene->CreateEntity();
-	currentScene->AddComponent<MeshRenderer>(entity);
-	currentScene->GetComponent<Transform>(entity)->pos += Vector3(2,2,2);
-	MeshRenderer* meshRenderer = currentScene->GetComponent<MeshRenderer>(entity);
-	meshRenderer->model = ressourcesManager.GetElement<Model>("cube.obj");
-	meshRenderer->diffuse = ressourcesManager.GetElement<Texture>("EmerauldBlock.png");
-	meshRenderer->specular = ressourcesManager.GetElement<Texture>("EmerauldBlock.png");
-	currentScene->AddComponent<BoxCollider>(entity);
-
-
-	Entity* entityCube2 = currentScene->CreateEntity();
-	currentScene->AddComponent<MeshRenderer>(entityCube2);
-	currentScene->AddComponent<BoxCollider>(entityCube2);
-
-	currentScene->GetComponent<Transform>(entityCube2)->pos += Vector3(-4, 4, -4);
-
-	meshRenderer = currentScene->GetComponent<MeshRenderer>(entityCube2);
-	meshRenderer->model = ressourcesManager.GetElement<Model>("cube.obj");
-	meshRenderer->diffuse = ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
-	meshRenderer->specular = ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
-
-
-
-	Entity* entity2 = currentScene->CreateEntity();
-	currentScene->GetComponent<Transform>(entity2)->scaling = Vector3(0.5, 0.5,0.5);
-	currentScene->GetComponent<Transform>(entity2)->pos = Vector3(-2.0f, 4.0f, -1.0f);
-	currentScene->AddComponent<DirectionalLight>(entity2);
 
 	
 	Entity* plane = currentScene->CreateEntity();
 	currentScene->AddComponent<MeshRenderer>(plane);
+
 	MeshRenderer* planerdr = currentScene->GetComponent<MeshRenderer>(plane);
-	currentScene->GetComponent<Transform>(plane)->scaling = Vector3(25,0,25);
+	currentScene->GetComponent<Transform>(plane)->scaling = Vector3(25, 1, 25);
+	currentScene->GetComponent<Transform>(plane)->pos = Vector3(0, -0.5f, 0);
+
 	planerdr->model = ressourcesManager.GetElement<Model>("plane.obj");
 	planerdr->diffuse = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
 	planerdr->specular = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
+
+
+
+	Entity* entity1 = currentScene->CreateEntity();
+	currentScene->AddComponent<MeshRenderer>(entity1);
+	currentScene->GetComponent<Transform>(entity1)->pos += Vector3(2.0f, 0.0f, 1.0);
+	currentScene->GetComponent<Transform>(entity1)->scaling = Vector3(0.5, 0.5, 0.5);
+	MeshRenderer* meshRenderer = currentScene->GetComponent<MeshRenderer>(entity1);
+	meshRenderer->model = ressourcesManager.GetElement<Model>("cube.obj");
+	meshRenderer->diffuse = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
+	meshRenderer->specular = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
+
+
+
+
+	Entity* entity2 = currentScene->CreateEntity();
+	currentScene->AddComponent<MeshRenderer>(entity2);
+	currentScene->GetComponent<Transform>(entity2)->pos += Vector3(0.0f, 1.5f, 0.0);
+	MeshRenderer* meshRenderer2 = currentScene->GetComponent<MeshRenderer>(entity2);
+	meshRenderer2->model = ressourcesManager.GetElement<Model>("cube.obj");
+	meshRenderer2->diffuse = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
+	meshRenderer2->specular = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
+
+
+
+	Entity* entity3 = currentScene->CreateEntity();
+	currentScene->AddComponent<MeshRenderer>(entity3);
+	currentScene->GetComponent<Transform>(entity3)->pos += Vector3(-1.0f, 0.0f, 2.0);
+	currentScene->GetComponent<Transform>(entity3)->rotation = Vector3(Math::DegreesToRadians(60), 0, Math::DegreesToRadians(60));
+	currentScene->GetComponent<Transform>(entity3)->scaling = Vector3(0.25, 0.25, 0.25);
+
+	MeshRenderer* meshRenderer3 = currentScene->GetComponent<MeshRenderer>(entity3);
+	meshRenderer3->model = ressourcesManager.GetElement<Model>("cube.obj");
+	meshRenderer3->diffuse = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
+	meshRenderer3->specular = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
+
+
+
+	/*
+	Entity* entityCube2 = currentScene->CreateEntity();
+	currentScene->AddComponent<MeshRenderer>(entityCube2);
+	currentScene->AddComponent<BoxCollider>(entityCube2);
+	currentScene->AddComponent<Rigidbody>(entityCube2);
+	currentScene->GetComponent<Transform>(entityCube2)->pos += Vector3(-4, 10 , -4);
+	MeshRenderer* meshRenderer2 = currentScene->GetComponent<MeshRenderer>(entityCube2);
+	meshRenderer2->model = ressourcesManager.GetElement<Model>("cube.obj");
+	meshRenderer2->diffuse = ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
+	meshRenderer2->specular = ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
+	
+	*/
+	
+	Entity* Directionnale = currentScene->CreateEntity();
+	currentScene->GetComponent<Transform>(Directionnale)->pos = Vector3(-2.0f, 4.0f, -1.0f);
+	currentScene->AddComponent<DirectionalLight>(Directionnale);
+
+
 
 	
 

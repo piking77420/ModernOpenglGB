@@ -199,7 +199,7 @@ public:
 	 */
 	constexpr inline static const Vector3 Zero() noexcept
 	{
-		return Vector3(0.f, 0.f, 0.f);
+		return Vector3(0, 0, 0);
 	}
 
 	/**
@@ -207,7 +207,7 @@ public:
 	 */
 	constexpr inline static const Vector3 One() noexcept
 	{
-		return Vector3(1.f, 1.f, 1.f);
+		return Vector3(1, 1, 1);
 	}
 
 	/**
@@ -314,6 +314,8 @@ public:
 	Vector3 operator*(float value) const {
 		return Vector3(x * value, y * value, z * value);
 	}
+
+	
 
 
 	Vector3 operator/(float value) const {

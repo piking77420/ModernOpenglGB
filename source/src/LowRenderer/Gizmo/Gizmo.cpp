@@ -40,7 +40,7 @@ void Gizmo::DrawBox(const Matrix4X4& model, const Vector3& sizeBox, GizmoColor g
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	Gizmo::GizmoShader->Use();
-	Matrix4X4 MVP = Camera::cam->GetProjectionMatrix() * Camera::cam->GetLookMatrix() * Matrix4X4::TRS(pos, rotation, sizeBox);
+	Matrix4X4 MVP = Camera::cam->GetProjectionMatrix() * Camera::cam->GetLookMatrix() * Matrix4X4::TRS(pos, rotation, sizeBox * scale);
 	Vector4 color = Gizmo::GetColor(gizmoColor);
 
 	GizmoShader->SetMatrix("MVP", MVP.GetPtr());

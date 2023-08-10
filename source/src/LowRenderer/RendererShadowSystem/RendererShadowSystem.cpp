@@ -41,8 +41,6 @@ void RendererShadowSystem::LateUpdate(Scene* scene)
 void RendererShadowSystem::Render(Shader& shader, Scene* scene)
 {
 	currentScene = scene;
-	depthShader = &shader;
-
 	CalCulateDepthBufferDirectionnal(scene);
 
 
@@ -55,16 +53,21 @@ void RendererShadowSystem::OnDrawGizmo(Scene* scene)
 {
 
 }
+;
+
 
 void RendererShadowSystem::CalCulateDepthBufferDirectionnal(Scene* scene)
 {
+
+	Shader* depthShader = scene->currentproject->ressourcesManager.GetElement<Shader>("DepthMapShader");
+	//Shader* depthShader = scene->currentproject->ressourcesManager.GetElement<Shader>("NormalShader");
+
 
 	std::vector<uint8_t>* data = currentScene->GetComponentDataArray<DirectionalLight>();
 
 	std::vector<DirectionalLight>* dataDirectionalLight = reinterpret_cast<std::vector<DirectionalLight>*>(data);
 
-	depthShader->Use();
-
+	Shader* shadowShader = scene->currentproject->ressourcesManager.GetElement<Shader>("ShadowMapping");
 
 
 
@@ -74,39 +77,37 @@ void RendererShadowSystem::CalCulateDepthBufferDirectionnal(Scene* scene)
 		Entity* entity = scene->GetEntities(dirlight->entityID);
 		Transform* transform = currentScene->GetComponent<Transform>(entity);
 		Vector3 LightDirection = static_cast<Vector3>(Matrix4X4::RotationMatrix4X4(transform->rotation) * Vector4(0, 0, -1, 0)).Normalize();
-		//Vector3 pos, roation, scale;
 
+		float near_plane = 1.0f, far_plane = 7.5f;
 
-
-		glViewport(0, 0, dirlight->lightData.depthmap.widht, dirlight->lightData.depthmap.height);
-		glBindFramebuffer(GL_FRAMEBUFFER, dirlight->lightData.depthmap.FBO);
-		glClear(GL_DEPTH_BUFFER_BIT);
-
-		Matrix4X4 LightProjection = Matrix4X4::OrthoGraphicMatrix(-10.0f, 10.0f, -10.0f, 10.0f, 1.0, 7.5f);
-		Matrix4X4 LookAt = Matrix4X4::LookAt(transform->pos, LightDirection, Vector3::Up());
-
+		Matrix4X4 LightProjection = Matrix4X4::OrthoGraphicMatrix(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
+		Matrix4X4 LookAt = Matrix4X4::LookAt(transform->World.GetPos(), Vector3::Zero(), Vector3::Up());
 		dirlight->lightData.LightSpaceMatrix = LightProjection * LookAt;
 
+		depthShader->Use();
 		depthShader->SetMatrix("lightSpaceMatrix", dirlight->lightData.LightSpaceMatrix.GetPtr());
 
-		//Render Scene Hero  
+		glViewport(0, 0, (GLuint)dirlight->lightData.depthmap.widht, (GLuint)dirlight->lightData.depthmap.height);
+		dirlight->lightData.depthmap.Bind();
+		glClear(GL_DEPTH_BUFFER_BIT);
+		
 
-		if(!RendererShadowSystem::boolHasDrawBuffer)
-		{
-			RendererShadowSystem::boolHasDrawBuffer = true;
-			currentScene->Render(*depthShader);
-		}
+		//Render Scene here  
+		currentScene->RenderScene(*depthShader);
+		
 
 		
 
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		dirlight->lightData.depthmap.UnBind();
+
+		
 
 	}
-	depthShader->UnUse();
 
+	
 	// reset viewport
 	glViewport(0, 0, currentScene->currentproject->OpenGlRenderToImgui->widht, currentScene->currentproject->OpenGlRenderToImgui->height);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	currentScene->currentproject->OpenGlRenderToImgui->Bind();
-
+	
 }

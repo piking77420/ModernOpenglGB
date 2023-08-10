@@ -48,7 +48,6 @@ void RendererLightSystem::LateUpdate(Scene* scene)
 void RendererLightSystem::Render(Shader& shader, Scene* scene)
 {
 	currentShader = &shader;
-	// Calulate Depthmap
 	
 
 
@@ -57,7 +56,6 @@ void RendererLightSystem::Render(Shader& shader, Scene* scene)
 
 
 
-	currentShader->Use();
 
 	UpdateDirectionnalLights(scene->GetComponentDataArray<DirectionalLight>(), scene);
 
@@ -139,27 +137,32 @@ void RendererLightSystem::RenderDirectionalLight(const DirectionalLight* dirLigh
 {
 	Entity* entity = scene->GetEntities(dirLight->entityID);
 	Transform* transformOfLight = scene->GetComponent<Transform>(entity);
-	Vector3 LightDirection = static_cast<Vector3>(Matrix4X4::RotationMatrix4X4(transformOfLight->rotation) * Vector4(0,0,-1,0) ).Normalize();
+	Vector3 LightDirection = static_cast<Vector3>(Matrix4X4::RotationMatrix4X4(transformOfLight->rotation) * Vector4(0,0,1,0) ).Normalize();
+	currentShader->Use();
+
+	/*
+	currentShader->SetVector3("dirLight.lightPos", transformOfLight->World.GetPos().GetPtr());
+	currentShader->SetVector3("dirLight.direction", LightDirection.GetPtr());
+	currentShader->SetVector3("dirLight.color", dirLight->lightData.color.GetPtr());
+	*/
 
 	currentShader->SetVector3("lightPos", transformOfLight->World.GetPos().GetPtr());
-	currentShader->SetMatrix("lightSpaceMatrix", dirLight->lightData.LightSpaceMatrix.GetPtr());
-	currentShader->SetVector3("dirLight.direction", LightDirection.GetPtr());
-	currentShader->SetVector3("dirLight.ambient", dirLight->lightData.ambiantColor.GetPtr());
-	currentShader->SetVector3("dirLight.diffuse", dirLight->lightData.diffuseColor.GetPtr());
-	currentShader->SetVector3("dirLight.specular", dirLight->lightData.specularColor.GetPtr());
-
-	currentShader->SetInt("shadowMap", 29);
-	glActiveTexture(GL_TEXTURE29);
-	glBindTexture(GL_TEXTURE_2D, dirLight->lightData.depthmap.framebufferTexture);
+	currentShader->SetMatrix("lightSpaceMatrix", dirLight->lightData.LightSpaceMatrix.GetPtr());;
+	currentShader->SetInt("shadowMap", 1);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, dirLight->lightData.depthmap.depthMap);
 
 
-	//shader->SetMaxtrix("lightSpaceMatrix", GetLightSpaceMatrix().GetPtr());
 }
 
 void RendererLightSystem::RenderPointLight(const PointLight* dirLight, Scene* scene)
 {
+	currentShader->Use();
+
 }
 
 void RendererLightSystem::RenderSpothLight(const SpothLight* dirLight, Scene* scene)
 {
+	currentShader->Use();
+
 }

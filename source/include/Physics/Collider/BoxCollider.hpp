@@ -9,5 +9,8 @@ public:
 	Vector3 Size = Vector3::One();
 	void ImguiWindowComponent() override;
 
+	BoxCollider();
+	~BoxCollider();
+
 };
 
