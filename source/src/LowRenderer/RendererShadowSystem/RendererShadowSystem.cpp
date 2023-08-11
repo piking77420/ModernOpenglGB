@@ -70,18 +70,20 @@ void RendererShadowSystem::CalCulateDepthBufferDirectionnal(Scene* scene)
 	Shader* shadowShader = scene->currentproject->ressourcesManager.GetElement<Shader>("ShadowMapping");
 
 
-
 	for (uint32_t i = 0; i < dataDirectionalLight->size(); i++)
 	{
 		DirectionalLight* dirlight = &(*dataDirectionalLight)[i];
 		Entity* entity = scene->GetEntities(dirlight->entityID);
 		Transform* transform = currentScene->GetComponent<Transform>(entity);
-		Vector3 LightDirection = static_cast<Vector3>(Matrix4X4::RotationMatrix4X4(transform->rotation) * Vector4(0, 0, -1, 0)).Normalize();
+		Vector3 LightDirection = static_cast<Vector3>(Matrix4X4::RotationMatrix4X4(transform->rotation) * Vector4(0, 1,0, 0)).Normalize();
 
-		float near_plane = 1.0f, far_plane = 7.5f;
+		float near_plane = 2.5, far_plane = 100;
 
 		Matrix4X4 LightProjection = Matrix4X4::OrthoGraphicMatrix(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
-		Matrix4X4 LookAt = Matrix4X4::LookAt(transform->World.GetPos(), Vector3::Zero(), Vector3::Up());
+		//float ratio = currentScene->currentproject->OpenGlRenderToImgui->widht / currentScene->currentproject->OpenGlRenderToImgui->height;
+		//Matrix4X4 LightProjection = Matrix4X4::PerspectiveMatrix(Math::DegreesToRadians(60), ratio,0.1f,1000);
+
+		Matrix4X4 LookAt = Matrix4X4::LookAt(transform->World.GetPos(), LightDirection, Vector3::Up());
 		dirlight->lightData.LightSpaceMatrix = LightProjection * LookAt;
 
 		depthShader->Use();
@@ -93,8 +95,10 @@ void RendererShadowSystem::CalCulateDepthBufferDirectionnal(Scene* scene)
 		
 
 		//Render Scene here  
+		glCullFace(GL_FRONT);
 		currentScene->RenderScene(*depthShader);
-		
+		glCullFace(GL_BACK);
+
 
 		
 
@@ -104,7 +108,7 @@ void RendererShadowSystem::CalCulateDepthBufferDirectionnal(Scene* scene)
 
 	}
 
-	
+
 	// reset viewport
 	glViewport(0, 0, currentScene->currentproject->OpenGlRenderToImgui->widht, currentScene->currentproject->OpenGlRenderToImgui->height);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

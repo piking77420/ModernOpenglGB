@@ -3,7 +3,7 @@
 #include "LowRenderer/Cam/Camera.h"
 #include<Ressources/Texture/Texture.hpp>
 #include "Ressources/Shader/Shader.h"
-#include "Ressources/Model/Model.h"
+#include "Ressources/Mesh/Mesh.h"
 #include "Ressources/Shader/ShaderSource/ShaderSource.hpp"
 #include "LowRenderer/FrameBuffer/DepthMap/Depthmap.h"
 #include "LowRenderer/FrameBuffer/ShadowMap/ShadowMaps.h"
@@ -50,6 +50,30 @@ void RessourcesManager::LoadAllAssets(const std::string& projectFolder)
 
 	for (const auto& entry : fs::directory_iterator(projectFolder))
 		LookFiles(entry.path());
+
+
+	std::string pathToCube = "Ressources/BasePrimitive/cube.obj";
+	std::thread* newThreads1 = new std::thread([this, pathToCube]()
+		{
+			Create<Mesh>(pathToCube);
+		});
+	theards.push_back(newThreads1);
+
+	std::string pathToSphere = "Ressources/BasePrimitive/Sphere.obj";
+	std::thread* newThreads2 = new std::thread([this, pathToSphere]()
+		{
+			Create<Mesh>(pathToSphere);
+		});
+	theards.push_back(newThreads2);
+	std::string pathToplane = "Ressources/BasePrimitive/plane.obj";
+	std::thread* newThreads3 = new std::thread([this, pathToplane]()
+		{
+			Create<Mesh>(pathToplane);
+		});
+	theards.push_back(newThreads3);
+
+
+
 
 	// Join threads + clear vector
 	if(!theards.empty())
@@ -151,6 +175,7 @@ void RessourcesManager::LoadTexture(fs::path path)
 
 void RessourcesManager::LoadModel(std::filesystem::path path)
 {
+	/*
 	std::string path_string = path.generic_string();
 
 
@@ -158,10 +183,10 @@ void RessourcesManager::LoadModel(std::filesystem::path path)
 	{
 		std::thread* newThreads = new std::thread([this, path_string]()
 			{
-				Create<Model>(path_string);
+				Create<Mesh>(path_string);
 			});
 		theards.push_back(newThreads);
-	}
+	}*/
 }
 
 void RessourcesManager::LoadShader(std::filesystem::path path)

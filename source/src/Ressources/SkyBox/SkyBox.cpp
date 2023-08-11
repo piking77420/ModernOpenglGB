@@ -1,6 +1,5 @@
 #include "Ressources/SkyBox/SkyBox.h"
 
-
 float SkyBox::CUBEMAPSIZE = 1000.f;
 
 
@@ -13,7 +12,7 @@ void SkyBox::operator=(const SkyBox& skybox)
 
 void SkyBox::Init()
 {
-
+    
     float skyboxVertices[] = {
         // positions          
         -CUBEMAPSIZE,  CUBEMAPSIZE, -CUBEMAPSIZE,

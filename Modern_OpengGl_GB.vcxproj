@@ -149,9 +149,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\include\Ressources\Model\Model.h" />
+    <ClInclude Include="source\include\UI\Log.hpp" />
     <ClInclude Include="source\include\Physics\PhysicsSystem\PhysicsSystem.hpp" />
     <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_opengl3_loader.h" />
-    <ClInclude Include="source\include\Ressources\Mesh\Mesh.hpp" />
     <ClInclude Include="source\include\LowRenderer\Gizmo\Gizmo.hpp" />
     <ClInclude Include="source\include\Physics\Collider\Collider.hpp" />
     <ClInclude Include="source\include\Physics\Collider\BoxCollider.hpp" />
@@ -234,7 +235,7 @@
     <ClInclude Include="source\include\Physics\Transform\Transform.h" />
     <ClInclude Include="source\include\Ressources\CubeMaps\CubeMaps.h" />
     <ClInclude Include="source\include\Ressources\IResources\IResource.h" />
-    <ClInclude Include="source\include\Ressources\Model\Model.h" />
+    <ClInclude Include="source\include\Ressources\Mesh\Mesh.h" />
     <ClInclude Include="source\include\Ressources\RessourcesManager\RessourcesManager.h" />
     <ClInclude Include="source\include\Ressources\Shader\Shader.h" />
     <ClInclude Include="source\include\Ressources\SkyBox\SkyBox.h" />
@@ -247,6 +248,7 @@
     <ClInclude Include="source\include\LowRenderer\SystemRendererSkyMap\SystemRendererSkyMap.hpp" />
     <ClInclude Include="source\include\UI\TransformGuizmo.hpp" />
     <ClInclude Include="source\include\Physics\Collider\SphereCollider.hpp" />
+    <ClInclude Include="source\include\Core\AppTime.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -276,9 +278,10 @@
     <ResourceCompile Include="Modern_OpengGl_GB.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\src\Ressources\Model\Model.cpp" />
+    <ClCompile Include="source\src\UI\Log.cpp" />
     <ClCompile Include="source\include\Physics\RigidBody\Rigidbody.cpp" />
     <ClCompile Include="source\src\Physics\PhysicsSystem\PhysicsSystem.cpp" />
-    <ClCompile Include="source\src\Ressources\Mesh\Mesh.cpp" />
     <ClCompile Include="source\src\LowRenderer\Gizmo\Gizmo.cpp" />
     <ClCompile Include="source\src\Physics\Collider\Collider.cpp" />
     <ClCompile Include="source\src\Physics\Collider\BoxCollider.cpp" />
@@ -341,7 +344,7 @@
     <ClCompile Include="source\src\Main\main.cpp" />
     <ClCompile Include="source\src\Ressources\CubeMaps\CubeMaps.cpp" />
     <ClCompile Include="source\src\Ressources\IResource\IResource.cpp" />
-    <ClCompile Include="source\src\Ressources\Model\Model.cpp" />
+    <ClCompile Include="source\src\Ressources\Mesh\Mesh.cpp" />
     <ClCompile Include="source\src\Ressources\RessourcesManager\RessourcesManager.cpp" />
     <ClCompile Include="source\src\Ressources\Shader\Shader.cpp" />
     <ClCompile Include="source\src\Ressources\Shader\ShaderSource\ShaderSource.cpp" />
@@ -354,6 +357,7 @@
     <ClCompile Include="source\src\LowRenderer\SystemRendererSkyMap\SystemRendererSkyMap.cpp" />
     <ClCompile Include="source\src\UI\TransformGuizmo.cpp" />
     <ClCompile Include="source\src\Physics\Collider\SphereCollider.cpp" />
+    <ClCompile Include="source\src\Core\AppTime.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="source\src\External\lib\glfw3.lib" />

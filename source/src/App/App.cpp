@@ -3,7 +3,7 @@
 #include<Core/Debug/Imgui/imgui_impl_glfw.h>
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>
 #include <Core/Debug/Imgui/imgui_internal.h>
-#include <Ressources/Model/Model.h>
+#include <Ressources/Mesh/Mesh.h>
 #include <Ressources/Shader/Shader.h>
 #include <Ressources/Texture/Texture.hpp>
 #include <LowRenderer/Cam/Camera.h>   
@@ -12,7 +12,7 @@
 #include <Ressources/RessourcesManager/RessourcesManager.h>
 
 #include "External/yaml-cpp/yaml.h"
-
+#include "Core/AppTime.h"
 
 
 
@@ -23,13 +23,12 @@ void App::AppUpdate()
 {
 
 	CurrentProject.Update();
-	
 }
 
 
 App::App(int _WindowX, int _WindowY, ImGuiIO& _io) : windowX(_WindowX), windowY(_WindowY) ,CurrentProject(Project("ProjectFolder/Project1"))
 {
-	
+	/*
 	ImGuiStyle& style = ImGui::GetStyle();
 	style.Colors[ImGuiCol_Text] = ImVec4(1.00f, 1.00f, 1.00f, 1.00f);
 	style.Colors[ImGuiCol_TextDisabled] = ImVec4(0.50f, 0.50f, 0.50f, 1.00f);
@@ -82,7 +81,7 @@ App::App(int _WindowX, int _WindowY, ImGuiIO& _io) : windowX(_WindowX), windowY(
 	style.Colors[ImGuiCol_NavWindowingDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.20f);
 	style.Colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.35f);
 	style.GrabRounding = style.FrameRounding = 2.3f;
-
+	*/
 }
 
 

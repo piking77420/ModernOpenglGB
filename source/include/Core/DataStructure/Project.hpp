@@ -32,7 +32,6 @@ public:
 
 	std::string ProjectName = "Project";
 	Camera* mainCamera;
-	ImGuiIO& m_io;
 
 	void Update();
 	

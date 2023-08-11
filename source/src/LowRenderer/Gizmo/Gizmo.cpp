@@ -6,8 +6,8 @@
 void Gizmo::InitGizmo(const Project& projet)
 {
 
-	Gizmo::Sphere = projet.ressourcesManager.GetElement<Model>("Sphere.obj");
-	Gizmo::Box = projet.ressourcesManager.GetElement<Model>("cube.obj");
+	Gizmo::Sphere = projet.ressourcesManager.GetElement<Mesh>("Sphere.obj");
+	Gizmo::Box = projet.ressourcesManager.GetElement<Mesh>("cube.obj");
 	Gizmo::GizmoShader = projet.ressourcesManager.GetElement<Shader>("GizmoShader");
 }
 

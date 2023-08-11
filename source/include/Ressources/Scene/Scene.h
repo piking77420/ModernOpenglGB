@@ -148,7 +148,6 @@ public :
 
 	std::string sceneName = "Scene";
 	ImGuiIO io;
-	const float FixedDeltatime = 0.06f;
 	float  Deltatime;
 	Project* currentproject;
 	Renderer renderer;

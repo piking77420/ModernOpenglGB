@@ -4,7 +4,7 @@
 #include "Ressources/Shader/Shader.h"
 class Scene;
 class MeshRenderer;
-class Model;
+class Mesh;
 
 class RendererSystem : public IEcsSystem
 {

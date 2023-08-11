@@ -42,7 +42,6 @@ void Project::framebuffer_size_callback(GLFWwindow* window, int width, int heigh
 
 void Project::Update()
 {
-	m_io = ImGui::GetIO();
 
 	Shader* shaderNormal = ressourcesManager.GetElement<Shader>("NormalShader");
 	Shader* shaderShadowMapping = ressourcesManager.GetElement<Shader>("ShadowMapping");
@@ -77,7 +76,7 @@ void Project::Update()
 
 }
 
-Project::Project(std::string ProjectPath) : m_io(ImGui::GetIO())
+Project::Project(std::string ProjectPath) 
 {
 	ressourcesManager.LoadAllAssets(ProjectPath);
 	
@@ -96,7 +95,7 @@ Project::Project(std::string ProjectPath) : m_io(ImGui::GetIO())
 
 }
 
-Project::Project() : m_io(ImGui::GetIO())
+Project::Project() 
 {
 	ressourcesManager.LoadAllAssets("ProjectFolder/Project1");
 	currentScene = new Scene("Scene 0");
@@ -144,10 +143,10 @@ void Project::InitScene()
 	currentScene->AddComponent<MeshRenderer>(plane);
 
 	MeshRenderer* planerdr = currentScene->GetComponent<MeshRenderer>(plane);
-	currentScene->GetComponent<Transform>(plane)->scaling = Vector3(25, 1, 25);
+	currentScene->GetComponent<Transform>(plane)->scaling = Vector3(25, 0.1, 25);
 	currentScene->GetComponent<Transform>(plane)->pos = Vector3(0, -0.5f, 0);
 
-	planerdr->model = ressourcesManager.GetElement<Model>("plane.obj");
+	planerdr->model = ressourcesManager.GetElement<Mesh>("cube.obj");
 	planerdr->diffuse = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
 	planerdr->specular = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
 
@@ -158,7 +157,7 @@ void Project::InitScene()
 	currentScene->GetComponent<Transform>(entity1)->pos += Vector3(2.0f, 0.0f, 1.0);
 	currentScene->GetComponent<Transform>(entity1)->scaling = Vector3(0.5, 0.5, 0.5);
 	MeshRenderer* meshRenderer = currentScene->GetComponent<MeshRenderer>(entity1);
-	meshRenderer->model = ressourcesManager.GetElement<Model>("cube.obj");
+	meshRenderer->model = ressourcesManager.GetElement<Mesh>("cube.obj");
 	meshRenderer->diffuse = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
 	meshRenderer->specular = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
 
@@ -169,7 +168,7 @@ void Project::InitScene()
 	currentScene->AddComponent<MeshRenderer>(entity2);
 	currentScene->GetComponent<Transform>(entity2)->pos += Vector3(0.0f, 1.5f, 0.0);
 	MeshRenderer* meshRenderer2 = currentScene->GetComponent<MeshRenderer>(entity2);
-	meshRenderer2->model = ressourcesManager.GetElement<Model>("cube.obj");
+	meshRenderer2->model = ressourcesManager.GetElement<Mesh>("cube.obj");
 	meshRenderer2->diffuse = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
 	meshRenderer2->specular = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
 
@@ -182,7 +181,7 @@ void Project::InitScene()
 	currentScene->GetComponent<Transform>(entity3)->scaling = Vector3(0.25, 0.25, 0.25);
 
 	MeshRenderer* meshRenderer3 = currentScene->GetComponent<MeshRenderer>(entity3);
-	meshRenderer3->model = ressourcesManager.GetElement<Model>("cube.obj");
+	meshRenderer3->model = ressourcesManager.GetElement<Mesh>("cube.obj");
 	meshRenderer3->diffuse = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
 	meshRenderer3->specular = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
 

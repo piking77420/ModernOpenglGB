@@ -1,6 +1,6 @@
 #pragma once
 #include "ToolBoxMathHeaders.h"
-#include "Ressources/Model/Model.h"
+#include "Ressources/Mesh/Mesh.h"
 #include "Core/DataStructure/Project.hpp"
 class Shader;
 
@@ -22,8 +22,8 @@ public:
 	static void DrawBox(const Matrix4X4& model,const Vector3& sizeBox, GizmoColor gizmoColor);
 
 private:
-	static inline const Model* Sphere = nullptr;
-	static inline const Model* Box = nullptr;
+	static inline const Mesh* Sphere = nullptr;
+	static inline const Mesh* Box = nullptr;
 	static inline const Shader* GizmoShader = nullptr;
 	static  constexpr Vector4 GetColor(GizmoColor gizmoColor)
 	{

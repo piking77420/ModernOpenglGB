@@ -2,7 +2,7 @@
 #include <Ressources/IResources/IResource.h>
 #include <Core/Debug/LogClass.h>
 #include <Core/Debug/AssertClass.h>
-#include "Ressources/Model/Model.h"
+#include "Ressources/Mesh/Mesh.h"
 #include <thread>
 
 #include<filesystem>

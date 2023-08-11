@@ -37,9 +37,7 @@
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
-        glEnable(GL_FRONT_FACE);
-        glCullFace(GL_FRONT);
-        glFrontFace(GL_CW);
+
     }
     void LoadCursorAppCursor(GLFWwindow* window)
     {
@@ -107,12 +105,12 @@
 
         App app(windowWidth, windowHeight,io);
 
-      
+
    
         // Main Loop // 
         while (!glfwWindowShouldClose(window))
         {
-         
+
             processInput(window);
 
             //Imgui new frame // 
@@ -120,13 +118,13 @@
             ImGui_ImplGlfw_NewFrame();
             ImGui::NewFrame();
 
-            ImGuizmo::BeginFrame();
+           ImGuizmo::BeginFrame();
 
          
             app.AppUpdate();
+            //ImGui::ShowDemoWindow();
 
 
-         
             
             glStencilMask(0xFF);
             glStencilFunc(GL_ALWAYS, 0, 0xFF);

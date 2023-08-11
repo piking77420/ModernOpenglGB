@@ -9,7 +9,7 @@
 #include "LowRenderer/Cam/Camera.h"
 #include "UI/ContentBrowser.h"
 #include "UI/Inspector.hpp"
-
+#include "UI/Log.hpp"
 #include "UI/Hierarchy.hpp"
 
 void DockingSystem::UpdateDockSpace(Project& CurrentProject)
@@ -72,6 +72,7 @@ DockingSystem::DockingSystem()
 	ImguiLayers.push_back(new ContentBrowser());
 	ImguiLayers.push_back(new Hierarchy());
 	ImguiLayers.push_back(new Inspector());
+	ImguiLayers.push_back(new Log());
 
 
 }

@@ -7111,7 +7111,7 @@ struct ExampleAppLog
             ImGui::Checkbox("Auto-scroll", &AutoScroll);
             ImGui::EndPopup();
         }
-
+        
         // Main window
         if (ImGui::Button("Options"))
             ImGui::OpenPopup("Options");
@@ -7131,6 +7131,7 @@ struct ExampleAppLog
             if (copy)
                 ImGui::LogToClipboard();
 
+            
             ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 0));
             const char* buf = Buf.begin();
             const char* buf_end = Buf.end();

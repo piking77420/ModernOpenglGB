@@ -5,12 +5,11 @@
 #include "Physics/Collider/SphereCollider.hpp"
 #include "Physics/Collider/BoxCollider.hpp"
 #include "EasyFunction.h"
-float PhysicsSystem::FixedDelatime = 0;
+#include "Core/AppTime.h"
 
 
 void PhysicsSystem::Init(Scene* scene)
 {
-	PhysicsSystem::FixedDelatime = scene->FixedDeltatime;
 };
 
 void PhysicsSystem::Awake(Scene* scene)
@@ -152,12 +151,12 @@ void PhysicsSystem::ApplieForces(Scene* scene, std::vector<Rigidbody>* rigidBody
 			continue;
 
 		Vector3 frictionForce = -rb->Velocity * coll->physcicalMaterial.friction;
-		Vector3 AddedVelocity = (rb->Force + frictionForce) * FixedDelatime;
+		Vector3 AddedVelocity = (rb->Force + frictionForce) * AppTime::GetDeltatime();
 
 		
 
 		rb->Velocity += AddedVelocity;
-		transform->pos += rb->Velocity * FixedDelatime;
+		transform->pos += rb->Velocity * AppTime::GetDeltatime();
 
 
 

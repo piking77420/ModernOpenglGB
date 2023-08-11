@@ -9,7 +9,13 @@ class Shader;
 // DIFFUSE 0 
 // SPECULAR 1 
 
-
+enum TextureType
+{
+	DIFFUSE,
+	SPECULAR,
+	HEIGHT,
+	AMBIENT
+};
 
 
 

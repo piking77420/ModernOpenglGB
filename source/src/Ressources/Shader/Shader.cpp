@@ -255,8 +255,8 @@ void Shader::Init()
     // shader Program
     m_ID = glCreateProgram();
     glAttachShader(m_ID, vertex);
-    //glAttachShader(m_ID, geometry);
     glAttachShader(m_ID, fragment);
+  //  glAttachShader(m_ID, geometry);
     glLinkProgram(m_ID);
     // print linking errors if any
     glGetProgramiv(m_ID, GL_LINK_STATUS, &success);

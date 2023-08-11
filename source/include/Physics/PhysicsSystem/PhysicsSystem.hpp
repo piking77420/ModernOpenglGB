@@ -12,7 +12,6 @@ class PhysicsSystem : public IEcsSystem
 {
 public:
 	ImplementIEcsSystem;
-	static float FixedDelatime;
 
 
 	static inline Vector3 Gravity = Vector3(0,-9.81f,0);

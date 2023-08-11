@@ -16,10 +16,11 @@ void SystemRendererSkyMap::OnDrawGizmo(Scene* scene)
 
 void SystemRendererSkyMap::Init(Scene* scene)
 {
+	
+
 	skybox = scene->currentproject->ressourcesManager.GetElement<SkyBox>("SkySkybox");
 	shaderProgram = scene->currentproject->ressourcesManager.GetElement<Shader>("SkyBoxShader");
 	shaderProgram->Use();
-
 	shaderProgram->SetInt("skybox", 30);
 
 };
