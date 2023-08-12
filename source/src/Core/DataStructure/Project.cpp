@@ -8,7 +8,6 @@
 #include "UI/ContentBrowser.h"
 #include "LowRenderer/Gizmo/Gizmo.hpp"
 
-#include "LowRenderer/RendererSystem/RendererSystem.hpp"
 #include "LowRenderer/MeshRenderer/MeshRenderer.h"
 #include "Physics/Collider/ColliderSystem.hpp"
 
@@ -27,7 +26,8 @@
 #include "Physics/Collider/BoxCollider.hpp"
 #include "Physics/PhysicsSystem/PhysicsSystem.hpp"
 #include "Physics/RigidBody/Rigidbody.h"
-
+#include "LowRenderer/Light/PointLight/PointLight.hpp"
+#include "LowRenderer/Light/SpothLight/SpothLight.hpp"
 FrameBuffer* Project::OpenGlRenderToImgui = new FrameBuffer(800, 800);
 
 void Project::framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -146,9 +146,9 @@ void Project::InitScene()
 	currentScene->GetComponent<Transform>(plane)->scaling = Vector3(25, 0.1, 25);
 	currentScene->GetComponent<Transform>(plane)->pos = Vector3(0, -0.5f, 0);
 
-	planerdr->model = ressourcesManager.GetElement<Mesh>("cube.obj");
-	planerdr->diffuse = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
-	planerdr->specular = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
+	planerdr->mesh = ressourcesManager.GetElement<Mesh>("cube.obj");
+	planerdr->material.diffuse = *ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
+	planerdr->material.specular = *ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
 
 
 
@@ -157,9 +157,10 @@ void Project::InitScene()
 	currentScene->GetComponent<Transform>(entity1)->pos += Vector3(2.0f, 0.0f, 1.0);
 	currentScene->GetComponent<Transform>(entity1)->scaling = Vector3(0.5, 0.5, 0.5);
 	MeshRenderer* meshRenderer = currentScene->GetComponent<MeshRenderer>(entity1);
-	meshRenderer->model = ressourcesManager.GetElement<Mesh>("cube.obj");
-	meshRenderer->diffuse = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
-	meshRenderer->specular = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
+	meshRenderer->mesh = ressourcesManager.GetElement<Mesh>("cube.obj");
+	meshRenderer->material.diffuse = *ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
+	meshRenderer->material.specular = *ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
+	currentScene->AddComponent<PointLight>(entity1);
 
 
 
@@ -168,9 +169,9 @@ void Project::InitScene()
 	currentScene->AddComponent<MeshRenderer>(entity2);
 	currentScene->GetComponent<Transform>(entity2)->pos += Vector3(0.0f, 1.5f, 0.0);
 	MeshRenderer* meshRenderer2 = currentScene->GetComponent<MeshRenderer>(entity2);
-	meshRenderer2->model = ressourcesManager.GetElement<Mesh>("cube.obj");
-	meshRenderer2->diffuse = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
-	meshRenderer2->specular = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
+	meshRenderer2->mesh = ressourcesManager.GetElement<Mesh>("cube.obj");
+	meshRenderer2->material.diffuse = *ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
+	meshRenderer2->material.specular = *ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
 
 
 
@@ -181,9 +182,9 @@ void Project::InitScene()
 	currentScene->GetComponent<Transform>(entity3)->scaling = Vector3(0.25, 0.25, 0.25);
 
 	MeshRenderer* meshRenderer3 = currentScene->GetComponent<MeshRenderer>(entity3);
-	meshRenderer3->model = ressourcesManager.GetElement<Mesh>("cube.obj");
-	meshRenderer3->diffuse = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
-	meshRenderer3->specular = ressourcesManager.GetElement<Texture>("woodenGround.jpg");
+	meshRenderer3->mesh = ressourcesManager.GetElement<Mesh>("cube.obj");
+	meshRenderer3->material.diffuse = *ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
+	meshRenderer3->material.specular = *ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
 
 
 

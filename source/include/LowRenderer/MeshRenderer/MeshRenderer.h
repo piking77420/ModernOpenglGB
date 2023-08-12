@@ -11,9 +11,7 @@ class MeshRenderer : public EcsComponent<MeshRenderer>
 public:
 
 	Material material;
-	const Mesh* model;
-	const Texture* diffuse = nullptr;
-	const Texture* specular = nullptr;
+	const Mesh* mesh;
 	bool m_Stencil = false;
 
 	void ImguiWindowComponent() override;

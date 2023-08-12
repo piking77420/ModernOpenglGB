@@ -52,7 +52,7 @@ void SystemRendererSkyMap::Render(Shader& shader,Scene* scene)
 {
 
 	shaderProgram->Use();
-
+	shaderProgram->SetMatrix("VP", (Camera::cam->GetProjectionMatrix() * Camera::cam->GetLookMatrix()).GetPtr());
 	// TO DO RESERVE FOR EACH TEXTRURE A SLOT 
 	glActiveTexture(GL_TEXTURE30);
 	skybox->cubemap.BindCubeMap();

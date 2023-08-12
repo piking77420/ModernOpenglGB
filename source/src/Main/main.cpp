@@ -122,7 +122,6 @@
 
          
             app.AppUpdate();
-            //ImGui::ShowDemoWindow();
 
 
             

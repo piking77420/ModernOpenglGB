@@ -1,18 +1,20 @@
 #pragma once
 #include<Mathf.h>
+#include "Ressources/IResources/IResource.h"
+#include "Ressources/Texture/Texture.hpp"
 
 class Material
 {
 public:
 
 	
-	int diffuse;
-	int specular;
-	float shininess;
+	Texture diffuse;
+	Texture specular;
+	Texture height;
+	Texture ambient;
+	float shininess = 32;
 
-	Material(const float& _shiniess);
-	Material(int _diffuse , int _specular, const float& _shininess);
-	Material();
+	Material(){};
 	~Material();
 
 private:

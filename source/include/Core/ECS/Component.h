@@ -27,7 +27,7 @@ private:
 
 public:
 	virtual ~Component() {}
-	virtual void ImguiWindowComponent() { std::cout << "Bacis Imgui ImguiWindowComponent !! " << std::endl; };
+	virtual void ImguiWindowComponent();
 
 	bool IsEnable = true;
 	uint32_t entityID;

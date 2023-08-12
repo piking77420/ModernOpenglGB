@@ -36,6 +36,5 @@ public:
 	CubeMaps(){};
 	~CubeMaps();
 private:
-	static int cubmapGlobalIndex;
 };
 

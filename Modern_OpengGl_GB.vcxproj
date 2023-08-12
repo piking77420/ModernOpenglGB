@@ -169,7 +169,6 @@
     <ClInclude Include="source\include\LowRenderer\Light\PointLight\PointLight.hpp" />
     <ClInclude Include="source\include\LowRenderer\Light\SpothLight\SpothLight.hpp" />
     <ClInclude Include="source\include\LowRenderer\RendererLightSystem\RendererLightSystem.hpp" />
-    <ClInclude Include="source\include\LowRenderer\RendererSystem\RendererSystem.hpp" />
     <ClInclude Include="source\include\Core\ECS\IECSSystem.h" />
     <ClInclude Include="source\include\Physics\GraphScene\GraphScene.h" />
     <ClInclude Include="source\include\LowRenderer\MeshRenderer\MeshRenderer.h" />
@@ -242,7 +241,7 @@
     <ClInclude Include="source\include\Ressources\Texture\Texture.hpp" />
     <ClInclude Include="source\include\src\AppData\AppData.h" />
     <ClInclude Include="source\include\src\App\App.h" />
-    <ClInclude Include="source\include\Core\Input\UserInputs.h" />
+    <ClInclude Include="source\include\Core\Event\Event.h" />
     <ClInclude Include="source\include\UI\ContentBrowser.h" />
     <ClInclude Include="source\include\UI\InspectorSelectable.h" />
     <ClInclude Include="source\include\LowRenderer\SystemRendererSkyMap\SystemRendererSkyMap.hpp" />
@@ -297,7 +296,6 @@
     <ClCompile Include="source\src\LowRenderer\Light\DirectionalLight\DirectionalLight.cpp" />
     <ClCompile Include="source\src\LowRenderer\Light\PointLight\PointLight.cpp" />
     <ClCompile Include="source\src\LowRenderer\RendererLightSystem\RendererLightSystem.cpp" />
-    <ClCompile Include="source\src\LowRenderer\RendererSystem\RendererSystem.cpp" />
     <ClCompile Include="source\src\Core\ECS\IECSSystem.cpp" />
     <ClCompile Include="source\src\Physics\GraphScene\GraphScene.cpp" />
     <ClCompile Include="source\src\LowRenderer\MeshRenderer\MeshRenderer.cpp" />
@@ -350,7 +348,7 @@
     <ClCompile Include="source\src\Ressources\Shader\ShaderSource\ShaderSource.cpp" />
     <ClCompile Include="source\src\Ressources\SkyBox\SkyBox.cpp" />
     <ClCompile Include="source\src\Ressources\Texture\Texture.cpp" />
-    <ClCompile Include="source\src\Core\Input\UserInputs.cpp" />
+    <ClCompile Include="source\src\Event\Event.cpp" />
     <ClCompile Include="source\src\UI\ContentBrowser.cpp" />
     <ClCompile Include="source\src\UI\InspectorSelectable.cpp" />
     <ClCompile Include="source\src\LowRenderer\Light\SpothLight\SpothLight.cpp" />

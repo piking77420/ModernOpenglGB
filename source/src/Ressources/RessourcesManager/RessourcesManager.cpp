@@ -226,7 +226,17 @@ void RessourcesManager::LoadShader(std::filesystem::path path)
 	
 	std::thread* newThreads = new std::thread([this, vertexShader , fragmentShader , geometry , ressourcesName]()
 		{
-			Shader* newShader = new Shader(vertexShader.c_str(), fragmentShader.c_str(), geometry.c_str(), ressourcesName);
+			Shader* newShader = nullptr;
+
+			if (geometry.empty())
+			{
+				newShader = new Shader(vertexShader.c_str(), fragmentShader.c_str(), ressourcesName);
+			}
+			else
+			{
+				newShader = new Shader(vertexShader.c_str(), fragmentShader.c_str(), geometry.c_str(), ressourcesName);
+
+			}
 			PushBackElement<Shader>(ressourcesName, newShader);
 
 		});

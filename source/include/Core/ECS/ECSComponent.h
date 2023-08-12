@@ -16,7 +16,15 @@ uint32_t ECSComponentCreate(std::vector<uint8_t>& memory, Entity* entity, Compon
 template<class T>
 constexpr std::string GetName()
 {
-	return typeid(T).name();
+	std::string rawname = typeid(T).name();
+	std::string name;
+	for (size_t i = 6; i < rawname.size(); i++)
+	{
+		name.push_back(rawname[i]);
+	}
+
+
+	return name;
 }
 
 

@@ -17,7 +17,13 @@
 
 #include<LowRenderer/Material/Material.h>
 
-
+enum SHADERFLAG : int
+{
+    NONE = 0,
+    VERTEX = 1 << 0,
+    FRAGMENT = 1 << 1,
+    GEOMETRY = 1 << 2,
+};
 
 class ShaderSource;
 
@@ -25,7 +31,7 @@ class Shader : public IResource
 {
 public:
 
-    
+    int flagShader;
 
     void Use() const;
     void Use();
@@ -43,7 +49,7 @@ public:
     void Init() override;
 
     Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath, std::string shaderName);
-    Shader(const char* vertexPath, const char* fragmentPath);
+    Shader(const char* vertexPath, const char* fragmentPath, std::string shaderName);
     Shader(const ShaderSource& vertexShader, const ShaderSource& fragmentShader);
     Shader(const ShaderSource& vertexShader, const ShaderSource& fragmentShader , const ShaderSource& GeometryShader);
 

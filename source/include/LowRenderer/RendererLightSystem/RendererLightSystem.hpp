@@ -22,8 +22,6 @@ private:
 
 
 	void RenderDirectionalLight(const DirectionalLight* dirLight, Scene* scene);
-	void RenderPointLight(const PointLight* dirLight, Scene* scene);
-	void RenderSpothLight(const SpothLight* dirLight, Scene* scene);
 
 
 	const Shader const* currentShader;

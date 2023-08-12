@@ -3,6 +3,7 @@
 #include "Ressources/Texture/Texture.hpp"
 
 #include "Core/Debug/LogClass.h"
+#include "LowRenderer/Material/Material.h"
 
 
 Model::Model(const fs::path& FilePath)
@@ -23,7 +24,6 @@ Model::Model(const fs::path& FilePath)
     // process ASSIMP's root node recursively
     processNode(scene->mRootNode, scene);
 }
-
 
 // processes a node in a recursive fashion. Processes each individual mesh located at the node and repeats this process on its children nodes (if any).
 void Model::processNode(aiNode* node, const aiScene* scene)
@@ -153,7 +153,7 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType 
         if (!skip)
         {   // if texture hasn't been loaded already, load it
             Texture texture;
-            texture.ID = TextureFromFile(str.C_Str(), this->directory);
+            //texture.ID = TextureFromFile(str.C_Str(), this->directory);
             texture.type = typeName;
             texture.path = str.C_Str();
             textures.push_back(texture);

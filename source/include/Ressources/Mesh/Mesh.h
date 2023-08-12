@@ -35,15 +35,17 @@ public:
 	Mesh(const fs::path& FilePath);
 
 
-	Mesh(){};
+	Mesh(const std::vector<Vertex>& vertex, const std::vector<uint32_t>& indexVector, const std::vector<Texture>& Texture) {};
 	~Mesh();
-
+	Mesh() {};
 
 	GLuint VAO;
 	GLuint VBO;
 	GLuint EBO;
 	std::vector<Vertex> vertexVector;
 	std::vector<uint32_t> indexVector;
+	std::vector<Texture> textures;
+
 
 	virtual void Init() override;
 private:

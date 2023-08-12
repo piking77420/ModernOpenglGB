@@ -17,10 +17,21 @@ uniform mat4 model;
 uniform mat4 lightSpaceMatrix;
 uniform mat4 MVP;
 uniform mat4 NormalMatrix;
+uniform bool reverse_normals;
+
 void main()
 {
     vs_out.FragPos = vec3(model * vec4(aPos, 1.0));
-    vs_out.Normal = mat3(NormalMatrix) * aNormal;
+     if(reverse_normals)
+     {
+              vs_out.Normal = mat3(NormalMatrix) * (-1.0 * aNormal);
+
+     }
+     else
+     {
+         vs_out.Normal = mat3(NormalMatrix) * aNormal;
+
+     }
     vs_out.TexCoords = aTexCoords;
     vs_out.FragPosLightSpace = lightSpaceMatrix * vec4(vs_out.FragPos, 1.0);
     gl_Position = MVP * vec4(aPos, 1.0);

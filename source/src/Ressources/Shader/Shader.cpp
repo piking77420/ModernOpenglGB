@@ -10,6 +10,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* geo
 {
 
 
+    flagShader = SHADERFLAG::VERTEX | SHADERFLAG::FRAGMENT | SHADERFLAG::GEOMETRY;
 
     // 1. retrieve the vertex/fragment source code from filePath
     std::string vertexCode;
@@ -61,8 +62,10 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* geo
     
 }
 
-Shader::Shader(const char* vertexPath, const char* fragmentPath) 
+Shader::Shader(const char* vertexPath, const char* fragmentPath ,std::string shaderName ) 
 {
+
+    flagShader = SHADERFLAG::VERTEX | SHADERFLAG::FRAGMENT;
     
     // 1. retrieve the vertex/fragment source code from filePath
     std::string vertexCode;
@@ -191,6 +194,7 @@ void Shader::Init()
     int success;
     char infoLog[512];
 
+    bool HasGeomtryShader = flagShader & SHADERFLAG::GEOMETRY;
 
     const char* vertexShader = m_vShaderCode.c_str();
     const char* gertexShader = m_gShaderCode.c_str();
@@ -214,22 +218,27 @@ void Shader::Init()
 
     }
 
-    // geometry Shader
-    geometry = glCreateShader(GL_GEOMETRY_SHADER);
-    glShaderSource(geometry, 1, &gertexShader, NULL);
-    glCompileShader(geometry);
-    // print compile errors if any
-    glGetShaderiv(geometry, GL_COMPILE_STATUS, &success);
-    if (!success)
-    {
-        glGetShaderInfoLog(geometry, 512, NULL, infoLog);
-        LOG(mShaderName + " : ERROR::SHADER::GEOMETRY::COMPILATION_FAILED" + '\n' + std::to_string(*infoLog), STATELOG::WARNING);
-    }
-    else
-    {
-        LOG(mShaderName + " : GEOMETRY::PROGRAM::COMPILATION_SUCCED" , STATELOG::GOOD);
 
+    if(HasGeomtryShader)
+    {
+        // geometry Shader
+        geometry = glCreateShader(GL_GEOMETRY_SHADER);
+        glShaderSource(geometry, 1, &gertexShader, NULL);
+        glCompileShader(geometry);
+        // print compile errors if any
+        glGetShaderiv(geometry, GL_COMPILE_STATUS, &success);
+        if (!success)
+        {
+            glGetShaderInfoLog(geometry, 512, NULL, infoLog);
+            LOG(mShaderName + " : ERROR::SHADER::GEOMETRY::COMPILATION_FAILED" + '\n' + std::to_string(*infoLog), STATELOG::WARNING);
+        }
+        else
+        {
+            LOG(mShaderName + " : GEOMETRY::PROGRAM::COMPILATION_SUCCED", STATELOG::GOOD);
+
+        }
     }
+   
 
 
 
@@ -256,7 +265,12 @@ void Shader::Init()
     m_ID = glCreateProgram();
     glAttachShader(m_ID, vertex);
     glAttachShader(m_ID, fragment);
-  //  glAttachShader(m_ID, geometry);
+
+    if (HasGeomtryShader)
+    {
+        glAttachShader(m_ID, geometry);
+    }
+  // 
     glLinkProgram(m_ID);
     // print linking errors if any
     glGetProgramiv(m_ID, GL_LINK_STATUS, &success);
@@ -276,7 +290,10 @@ void Shader::Init()
     // delete Shader cause we liked them before so there no longer nessecery
     glDeleteShader(vertex);
     glDeleteShader(fragment);
-    glDeleteShader(geometry);
+    if(HasGeomtryShader)
+    {
+        glDeleteShader(geometry);
+    }
 
 }
 

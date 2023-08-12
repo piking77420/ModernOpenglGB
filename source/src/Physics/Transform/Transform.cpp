@@ -8,6 +8,8 @@
 char buffer[25];
 void Transform::ImguiWindowComponent()
 {
+	Component::ImguiWindowComponent();
+
 	ImGui::PushID("");
 
 	// Pos

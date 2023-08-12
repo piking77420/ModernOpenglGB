@@ -18,5 +18,10 @@ private:
 
 
 	void CalCulateDepthBufferDirectionnal(Scene* scene);
+	void CalCulateDepthBufferPointLight(Scene* scene);
+	void CalCulateDepthBufferSpothLight(Scene* scene);
+
+	void ResetViewPort() const;
+
 };
 

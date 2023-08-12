@@ -1,6 +1,5 @@
 #pragma once
 #include "Core/Math/ToolBoxMathHeaders.h"
-#include "LowRenderer/FrameBuffer/DepthMap/Depthmap.h"
 
 class Shader;
 class Depthmap;
@@ -10,6 +9,8 @@ struct Light
 {
 	Vector4 color  = Vector4(0.5f, 0.5f, 0.5f, 0.5f);
 	Matrix4X4 LightSpaceMatrix;
-	Depthmap depthmap;
+	float minimumRange = 2.5f;
+	float maxRange = 100.f;
+	float size = 10.f;
 };
 

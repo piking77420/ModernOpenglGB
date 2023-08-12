@@ -11,9 +11,6 @@
 #include "Core/DataStructure/Project.hpp"
 
 
-unsigned int planeVAO = 0 ;
-// plane VAO
-unsigned int planeVBO;
 
 void Renderer::RendereScene(Scene* scene,Shader* shader)
 {
@@ -68,23 +65,22 @@ void Renderer::RenderMeshRender(const MeshRenderer* meshRender, Shader& shader, 
 	shader.SetMatrix("NormalMatrix", NormalMatrix.GetPtr());
 	shader.SetVector3("viewPos", Camera::cam->eye.GetPtr());
 
-
-	/*
+	
+	
 	shader.SetInt("material.diffuse",0);
 	shader.SetInt("material.specular",1);
 	shader.SetFloat("material.shininess", meshRender->material.shininess);
-	*/
-	shader.SetInt("diffuseTexture", 0);
+	
 
 	glActiveTexture(GL_TEXTURE0);
-	meshRender->diffuse->BindTexture();
+	meshRender->material.diffuse.BindTexture();
 
-	/*
+	
 	glActiveTexture(GL_TEXTURE1);
-	meshRender->specular->BindTexture();
-	*/
+	meshRender->material.specular.BindTexture();
+	
 	// Draw The Object
-	meshRender->model->Draw();
+	meshRender->mesh->Draw();
 
 
 }
