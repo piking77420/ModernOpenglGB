@@ -21,9 +21,9 @@ float& Quaternion::operator[](int i)
 
 Quaternion Quaternion::ConvertToUnitNormQuaternion() const
 {
-	
 
-	float angle = Math::DegreesToRadians(w);
+
+	float angle = Math::Deg2Rad * w;
 	Quaternion result;
 
 
@@ -33,7 +33,7 @@ Quaternion Quaternion::ConvertToUnitNormQuaternion() const
 
 	return result;
 
-	
+
 }
 
 
@@ -67,7 +67,6 @@ Matrix3X3 Quaternion::ToRotationMatrix3X3(const Quaternion& Q1)
 
 Matrix4X4 Quaternion::ToRotationMatrix4X4(const Quaternion& Q1)
 {
-	
 
 	float x = Q1[0];
 	float y = Q1[1];
@@ -87,77 +86,85 @@ Matrix4X4 Quaternion::ToRotationMatrix4X4(const Quaternion& Q1)
 	float wy = w * y2;
 	float wz = w * z2;
 
-
 	return {
 				{(1 - (yy + zz)),(xy + wz), (xz - wy),0.f },
 				{(xy - wz), (1 - (xx + zz)),(yz + wx),0.f },
 				{(xz + wy), (yz - wx),(1 - (xx + yy)),0},
 				{0, 0,0, 1.f}
 	};
-	
-	
 }
 
 Quaternion Quaternion::EulerAngle(const Vector3& eulerAngle)
 {
 	Quaternion q;
+	Vector3 c = Vector3(std::cos(eulerAngle.x * 0.5f), std::cos(eulerAngle.y * 0.5f), std::cos(eulerAngle.z * 0.5f));
+	Vector3 s = Vector3(std::sin(eulerAngle.x * 0.5f), std::sin(eulerAngle.y * 0.5f), std::sin(eulerAngle.z * 0.5f));
 
-	float c1 = std::cos(eulerAngle.x * 0.5f);
-	float c2 = std::cos(eulerAngle.y * 0.5f);
-	float c3 = std::cos(eulerAngle.z * 0.5f);
-
-	float s1 = std::sin(eulerAngle.x * 0.5f);
-	float s2 = std::sin(eulerAngle.y * 0.5f);
-	float s3 = std::sin(eulerAngle.z * 0.5f);
-
-
-
-	q[0] = s1 * c2 * c3 + c1 * s2 * s3;
-	q[1] = c1 * s2 * c3 - s1 * c2 * s3;
-	q[2] = c1 * c2 * s3 + s1 * s2 * c3;
-	q[3] = c1 * c2 * c3 - s1 * s2 * s3;
+	q.w = c.x * c.y * c.z + s.x * s.y * s.z;
+	q.imaginary.x = s.x * c.y * c.z - c.x * s.y * s.z;
+	q.imaginary.y = c.x * s.y * c.z + s.x * c.y * s.z;
+	q.imaginary.z = c.x * c.y * s.z - s.x * s.y * c.z;
 
 	return q;
 }
 
+float NormalizeAngle(float angle)
+{
+	while (angle > M_PI * 2.f)
+		angle -= M_PI * 2.f;
+	while (angle < 0)
+		angle += M_PI * 2.f;
+	return angle;
+}
+Vector3 NormalizeAngles(Vector3 angles)
+{
+	angles.x = NormalizeAngle(angles.x);
+	angles.y = NormalizeAngle(angles.y);
+	angles.z = NormalizeAngle(angles.z);
+	return angles;
+}
 
-//Quaternion to Euler angles(in 3 - 2 - 1 sequence) conversion
+
+// https://forum.unity.com/threads/is-there-a-conversion-method-from-quaternion-to-euler.624007/
 Vector3 Quaternion::ToEulerAngle() const
 {
-	Quaternion qNorm = this->Normalize();
+
+	float sqw = w * w;
+	float sqx = imaginary.x * imaginary.x;
+	float sqy = imaginary.y * imaginary.y;
+	float sqz = imaginary.z * imaginary.z;
+	float unit = sqx + sqy + sqz + sqw; // if normalised is one, otherwise is correction factor
+	float test = imaginary.x * w - imaginary.y * imaginary.z;
+	Vector3 v;
+
+	if (test > 0.4995f * unit)
+	{ // singularity at north pole
+		v.y = 2.f * std::atan2(imaginary.y, imaginary.x);
+		v.x = M_PI/ 2.f;
+		v.z = 0;
+		return NormalizeAngles(v);
+	}
+	if (test < -0.4995f * unit)
+	{ // singularity at south pole
+		v.y = -2.f * std::atan2(imaginary.y, imaginary.x);
+		v.x = -M_PI / 2;
+		v.z = 0;
+		return NormalizeAngles(v);
+	}
+
+	Quaternion rot = Quaternion( imaginary.z, imaginary.x, imaginary.y ,w);
+	v.y = std::atan2(2.f * rot.imaginary.x * rot.w + 2.f * rot.imaginary.y * rot.imaginary.z, 1 - 2.f * (rot.imaginary.z * rot.imaginary.z + rot.w * rot.w));     // Yaw
+	v.x = std::asin(2.f * (rot.imaginary.x * rot.imaginary.z - rot.w * rot.imaginary.y));                             // Pitch
+	v.z = std::atan2(2.f * rot.imaginary.x * rot.imaginary.y + 2.f * rot.imaginary.z * rot.w, 1 - 2.f * (rot.imaginary.y * rot.imaginary.y + rot.imaginary.z * rot.imaginary.z));      // Roll
+	return NormalizeAngles(v);
 
 
-	float x = qNorm.imaginary.x;
-	float y = qNorm.imaginary.y;
-	float z = qNorm.imaginary.z;
-
-	float roll = 0.f;
-	float pitch = 0.f;
-	float yaw = 0.f;
-
-	float sinr = 2.f * (w * x + y * z);
-	float cosr = 1.f - 2.f * (x * x + y * y);
-	roll = std::atan2(sinr, cosr);
-
-	// pitch (y-axis rotation)
-	float sinp = 2 * (w * y - x * z);
-	float cosp = 1 - 2 * (w * w + x * x);
-	pitch = std::atan2(sinp, cosp);
-
-
-	// yaw (z-axis rotation)
-	float siny = 2.f * (w * z + x * y);
-	float cosy = 1.f - 2.f * (y * y + z * z);
-	yaw = std::atan2(siny, cosy);
-
-
-	return Vector3(roll,pitch,yaw);
 }
 
 
 std::ostream& operator<<(std::ostream& stream, const Quaternion& q)
 {
-	
+
 	stream << " i " << q[0] << " j " << q[1] << " k  " << q[2] << " w " << q[3] << '\n';
 
 

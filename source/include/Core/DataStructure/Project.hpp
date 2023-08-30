@@ -43,5 +43,4 @@ public:
 	
 private:
 	void InitScene();
-	
 };

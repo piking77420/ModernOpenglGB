@@ -97,11 +97,11 @@ static Matrix2X2 RotationMatrix2X2(const float& angle)
 	Matrix2X2 NewMatrix;
 
 
-	NewMatrix.Coloms[0].x = cosf(Math::RadiansToDegrees(angle));
-	NewMatrix.Coloms[0].y = -sinf(Math::RadiansToDegrees(angle));
+	NewMatrix.Coloms[0].x = cosf(Math::Rad2Deg * angle);
+	NewMatrix.Coloms[0].y = -sinf(Math::Rad2Deg * angle);
 
-	NewMatrix.Coloms[1].x = sinf(Math::RadiansToDegrees(angle));
-	NewMatrix.Coloms[1].y = cosf(Math::RadiansToDegrees(angle));
+	NewMatrix.Coloms[1].x = sinf(Math::Rad2Deg * angle);
+	NewMatrix.Coloms[1].y = cosf(Math::Rad2Deg * angle);
 
 
 

@@ -28,10 +28,8 @@ void GraphScene::OnDrawGizmo(Scene* scene)
 }
 void GraphScene::FixedUpdate(Scene* scene)
 {
+	// we update this here to be able to rotate the the local or the world matrix in all update method
 
-};
-void GraphScene::Update(Scene* scene)
-{
 	// Getting All the data
 	std::vector<uint8_t>* transformDataVector = scene->GetComponentDataArray<Transform>();
 
@@ -51,9 +49,9 @@ void GraphScene::Update(Scene* scene)
 
 
 	StarTree(transformVector);
-
-
-
+};
+void GraphScene::Update(Scene* scene)
+{
 
 };
 void GraphScene::LateUpdate(Scene* scene)
@@ -216,9 +214,10 @@ void GraphScene::StarTree(std::vector<Transform*>& transformVector)
 	}*/
 }
 
-Matrix4X4 GraphScene::ToMatrix(const Transform* transform)
+Matrix4X4 GraphScene::ToMatrix(Transform* transform)
 {
-	return Matrix4X4::TRS(transform->pos,transform->rotation,transform->scaling);
+	transform->rotation = Quaternion::EulerAngle(transform->rotationValue * Math::Deg2Rad);
+	return Matrix4X4::TRS(transform->pos, transform->GetRotation(), transform->scaling);
 }
 
 // Get Recursif Value

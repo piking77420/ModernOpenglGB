@@ -35,9 +35,9 @@ public:
 		
 	};
 
-	Scene* scene;
+	Scene* scene = nullptr;
 	std::vector< uint32_t> EnityComponents;
-	uint32_t ID;
+	uint32_t ID = EntityNULL;
 
 private:
 

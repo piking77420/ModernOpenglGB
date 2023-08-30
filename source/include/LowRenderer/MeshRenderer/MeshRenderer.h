@@ -1,8 +1,8 @@
 #pragma once
 #include<LowRenderer/Material/Material.h>
 #include "Core/ECS/ECSComponent.h"
+#include "Ressources/Mesh/Mesh.h"
 
-class Mesh;
 class Texture;
 class Shader;
 
@@ -11,8 +11,8 @@ class MeshRenderer : public EcsComponent<MeshRenderer>
 public:
 
 	Material material;
-	const Mesh* mesh;
-	bool m_Stencil = false;
+	Mesh mesh;
+	bool stencil = false;
 
 	void ImguiWindowComponent() override;
 

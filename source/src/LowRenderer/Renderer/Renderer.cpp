@@ -23,6 +23,14 @@ void Renderer::RendereScene(Scene* scene,Shader* shader)
 	{
 		MeshRenderer* meshRenderer = &(*MeshRenderData)[i];
 		RenderMeshRender(meshRenderer, *shader, scene);
+
+		if(meshRenderer->stencil)
+		{
+			const Shader* stencilShader = scene->currentproject->ressourcesManager.GetElement<Shader>("StencilTest");
+			RenderStencil(meshRenderer, *stencilShader, scene);
+
+		}
+
 	}
 
 
@@ -30,6 +38,9 @@ void Renderer::RendereScene(Scene* scene,Shader* shader)
 
 
 }
+
+
+
 
 Renderer::Renderer()
 {
@@ -55,7 +66,7 @@ void Renderer::RenderMeshRender(const MeshRenderer* meshRender, Shader& shader, 
 	const Transform* transform = scene->GetComponent<Transform>(entity);
 	const Matrix4X4 model = transform->World;
 	const Matrix4X4 MVP = Camera::cam->GetProjectionMatrix() * Camera::cam->GetLookMatrix() * model;
-	const Matrix4X4 NormalMatrix = Matrix4X4::RotationMatrix4X4(transform->rotation).Invert().Transposate();
+	const Matrix4X4 NormalMatrix = Quaternion::ToRotationMatrix4X4(transform->GetRotation()).Invert().Transposate();
 
 
 
@@ -66,21 +77,26 @@ void Renderer::RenderMeshRender(const MeshRenderer* meshRender, Shader& shader, 
 	shader.SetVector3("viewPos", Camera::cam->eye.GetPtr());
 
 	
-	
+	// Set Material 
 	shader.SetInt("material.diffuse",0);
 	shader.SetInt("material.specular",1);
 	shader.SetFloat("material.shininess", meshRender->material.shininess);
 	
 
+	// Set Diffuse Texture 
 	glActiveTexture(GL_TEXTURE0);
 	meshRender->material.diffuse.BindTexture();
 
-	
+	// Set Specular Texture 
 	glActiveTexture(GL_TEXTURE1);
 	meshRender->material.specular.BindTexture();
 	
 	// Draw The Object
-	meshRender->mesh->Draw();
+	meshRender->mesh.Draw();
 
 
+}
+
+void Renderer::RenderStencil(const MeshRenderer* meshRender, const Shader& shader, Scene* scene)
+{
 }

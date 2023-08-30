@@ -6,7 +6,36 @@
 #include "Physics/Collider/BoxCollider.hpp"
 #include "EasyFunction.h"
 #include "Core/AppTime.h"
+void PhysicsSystem::AddForce(Rigidbody& rb, const Vector3& forces)
+{
+	rb.Force += forces;
+}
+Collider* PhysicsSystem::GetCollider(Scene* scene, uint32_t EntityID)
+{
+	Entity* entity = scene->GetEntities(EntityID);
+	if (!entity)
+	{
+		LOG("This entity ID Is Unvalid", STATELOG::CRITICALERROR);
+		return nullptr;
+	}
 
+	SphereCollider* sphereCollider = scene->GetComponent<SphereCollider>(entity);
+
+	if (!sphereCollider)
+	{
+		BoxCollider* boxCollider = scene->GetComponent<BoxCollider>(entity);
+		return &boxCollider->collider;
+	}
+	else
+	{
+		return &sphereCollider->collider;
+	}
+
+	LOG("This entity doesn't have collider Component", STATELOG::CRITICALERROR);
+
+
+	return nullptr;
+}
 
 void PhysicsSystem::Init(Scene* scene)
 {
@@ -27,9 +56,19 @@ void PhysicsSystem::OnDrawGizmo(Scene* scene)
 
 void PhysicsSystem::FixedUpdate(Scene* scene)
 {
+	// test Key forces 
 	std::vector<Rigidbody>* rigidBodys = reinterpret_cast<std::vector<Rigidbody>*>(scene->GetComponentDataArray<Rigidbody>());
+
+	if(ImGui::IsKeyPressed(ImGuiKey_E,false))
+	{
+		Rigidbody& rb = rigidBodys->at(0);
+		AddForce(rb, Vector3(0, 5, 0));
+
+	}
+
+
 	ApplieGravity(scene,rigidBodys);
-	CollisionRespond(scene, rigidBodys);
+	//CollisionRespond(scene, rigidBodys);
 	ApplieForces(scene, rigidBodys);
 
 };
@@ -51,6 +90,8 @@ void PhysicsSystem::OnResizeData(uint32_t ComponentTypeID, std::vector<uint8_t>*
 
 };
 
+
+
 void PhysicsSystem::ApplieGravity(Scene* scene,std::vector<Rigidbody>* rigidBodys)
 {
 	for (size_t i = 0; i < rigidBodys->size(); i++)
@@ -60,8 +101,8 @@ void PhysicsSystem::ApplieGravity(Scene* scene,std::vector<Rigidbody>* rigidBody
 		if (rigidbody->IsKinematic || !rigidbody->IsEnable || !rigidbody->IsGravityApplie)
 			continue;
 
-		rigidbody->Force += Gravity * rigidbody->mass;
-
+			
+		PhysicsSystem::AddForce(*rigidbody, Gravity * rigidbody->mass);
 	}
 
 }
@@ -110,31 +151,21 @@ void PhysicsSystem::CollisionRespond(Scene* scene, std::vector<Rigidbody>* rigid
 }
 
 
-Collider* PhysicsSystem::GetCollider(Scene* scene, uint32_t EntityID)
+
+void PhysicsSystem::UpdateDrag(Rigidbody& rb)
 {
-	Entity* entity = scene->GetEntities(EntityID);
-	if(!entity)
-	{
-		LOG("This entity ID Is Unvalid",STATELOG::CRITICALERROR);
-		return nullptr;
-	}
+	
+	//Applie dragforce
+	Vector3 forcedrag = rb.Velocity;
 
-	SphereCollider* sphereCollider = scene->GetComponent<SphereCollider>(entity);
+	float dragCoefficent = forcedrag.Norm();
+	float k1 = rb.drag;
+	float k2 = k1 * k1;
+	dragCoefficent = k1 * dragCoefficent + k2 * dragCoefficent * dragCoefficent;
+	forcedrag = forcedrag.Normalize();
+	forcedrag *= -dragCoefficent;
+	AddForce(rb, forcedrag);
 
-	if(!sphereCollider)
-	{
-		BoxCollider* boxCollider = scene->GetComponent<BoxCollider>(entity);
-		return &boxCollider->collider;
-	}
-	else
-	{
-		return &sphereCollider->collider;
-	}
-
-	LOG("This entity doesn't have collider Component", STATELOG::CRITICALERROR);
-
-
-	return nullptr;
 }
 void PhysicsSystem::ApplieForces(Scene* scene, std::vector<Rigidbody>* rigidBodys)
 {
@@ -150,22 +181,34 @@ void PhysicsSystem::ApplieForces(Scene* scene, std::vector<Rigidbody>* rigidBody
 		if (rb->IsKinematic || !rb->IsEnable)
 			continue;
 
-		Vector3 frictionForce = -rb->Velocity * coll->physcicalMaterial.friction;
-		Vector3 AddedVelocity = (rb->Force + frictionForce) * AppTime::GetDeltatime();
-
-		
-
-		rb->Velocity += AddedVelocity;
-		transform->pos += rb->Velocity * AppTime::GetDeltatime();
+		constexpr float deltatime = AppTime::GetFixedDeltatime();
 
 
+		Vector3 accelration = rb->Force * (1.f / rb->mass);
+
+		// update velocity 
+		rb->Velocity += accelration * deltatime;
+
+
+		UpdateDrag(*rb);
+		//rb->Velocity *= rb->drag;
 
 
 
-		// reset Force
-		rb->Force = Vector3::Zero();
+		// make sure that if it under presision the object not moving
+		for (size_t i = 0; i < Vector3::Size(); i++)
+		{
+			float* ptr = rb->Velocity.SetPtr() + i;
+			Math::ZeroPrecision(ptr);
+
+		}
+
+		// update pos
+		transform->pos += rb->Velocity * deltatime;
+
+		// Reset Force
+		rb->Force = Vector3::Zero();;
 	}
-
 
 
 

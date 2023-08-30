@@ -3,7 +3,6 @@
 #include "Physics/Transform/Transform.hpp"
 #include <array>
 
-
 class Collider;
 class SphereCollider;
 class BoxCollider;
@@ -29,8 +28,7 @@ public:
 private:
 	Scene* currentScene = nullptr;
 
-
-
+	
 	bool CheckCollision(SphereCollider& sphere1, SphereCollider& sphere2);
 
 	bool CheckCollision(BoxCollider& Box1, BoxCollider& Box2);
@@ -43,6 +41,7 @@ private:
 	void ProcessBoxBox(std::vector<BoxCollider>* boxData);
 
 	void ProcessSphereBox(std::vector<SphereCollider>* sphereData , std::vector<BoxCollider>* boxData);
+	
 
 
 	Vector3 DeterminateVectorNormal(const Vector3& normal, const Vector3& origin);

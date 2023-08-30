@@ -56,7 +56,7 @@ Matrix4X4 Camera::GetLookMatrix()
 
 Matrix4X4 Camera::GetProjectionMatrix() const
 {
-	return Matrix4X4::PerspectiveMatrix(Math::DegreesToRadians(fov), (float)Project::OpenGlRenderToImgui->widht / (float)Project::OpenGlRenderToImgui->height, Fnear, Ffar);
+	return Matrix4X4::PerspectiveMatrix(Math::Deg2Rad * (fov), (float)Project::OpenGlRenderToImgui->widht / (float)Project::OpenGlRenderToImgui->height, Fnear, Ffar);
 }
 
 
@@ -112,7 +112,7 @@ void Camera::ImguiCameraWindow()
 Camera::Camera()
 {
 	
-	eye = Vector3(0, 0, 0);
+	eye = Vector3(0, 2, -8);
 
 	cameraVelocity = 4;
 
@@ -166,9 +166,9 @@ void Camera::CameraRotation()
 	
 	Vector3 frontVector = Vector3::Zero();
 
-	frontVector.x = std::cos(Math::DegreesToRadians(yaw)) * std::cos(Math::DegreesToRadians(pitch));
-	frontVector.y = std::sin(Math::DegreesToRadians(pitch));
-	frontVector.z = std::sin(Math::DegreesToRadians(yaw)) * std::cos(Math::DegreesToRadians(pitch));
+	frontVector.x = std::cos(Math::Deg2Rad * yaw) * std::cos(Math::Deg2Rad * pitch);
+	frontVector.y = std::sin(Math::Deg2Rad * pitch);
+	frontVector.z = std::sin(Math::Deg2Rad * yaw) * std::cos(Math::Deg2Rad * pitch);
 
 	Front = frontVector.Normalize();
 

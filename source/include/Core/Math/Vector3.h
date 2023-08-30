@@ -187,6 +187,8 @@ public:
 	*/
 	constexpr const float* GetPtr() const { return &x; }
 
+	[[nodiscard]]
+	Vector3 MakePositivEuleur() const;
 
 	
 	/**

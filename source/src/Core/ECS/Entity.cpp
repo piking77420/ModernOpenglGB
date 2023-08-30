@@ -9,24 +9,16 @@ void Entity::OnInspector()
 	
 		for (size_t i = 0; i < EnityComponents.size(); i++)
 		{
-		
+			if (EnityComponents[i] == ComponentNULL) continue;
 
-				if (EnityComponents[i] != ComponentNULL)
-				{
-					if(ImGui::CollapsingHeader(Component::GetComponentName(i).c_str()))
-					{
+			if (ImGui::CollapsingHeader(Component::GetComponentName(i).c_str()))
+			{
 
-						std::vector<uint8_t>* data = scene->GetComponentDataArray(i);
-						Component* comp = reinterpret_cast<Component*>(&data->at(EnityComponents[i]));
-						comp->ImguiWindowComponent();
+				std::vector<uint8_t>* data = scene->GetComponentDataArray(i);
+				Component* comp = reinterpret_cast<Component*>(&data->at(EnityComponents[i]));
+				comp->ImguiWindowComponent();
 
-					}
-
-
-				}
-
-
-	
+			}
 		}
 
 	

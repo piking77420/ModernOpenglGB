@@ -149,6 +149,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ProjectFolder\Project1\assets\Scipt\RumicsCube.h" />
+    <ClInclude Include="source\include\Physics\Raycast\Raycast.h" />
     <ClInclude Include="source\include\Ressources\Model\Model.h" />
     <ClInclude Include="source\include\UI\Log.hpp" />
     <ClInclude Include="source\include\Physics\PhysicsSystem\PhysicsSystem.hpp" />
@@ -277,6 +279,8 @@
     <ResourceCompile Include="Modern_OpengGl_GB.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ProjectFolder\Project1\assets\Scipt\RumicsCube.cpp" />
+    <ClCompile Include="source\src\Physics\Raycast\Raycast.cpp" />
     <ClCompile Include="source\src\Ressources\Model\Model.cpp" />
     <ClCompile Include="source\src\UI\Log.cpp" />
     <ClCompile Include="source\include\Physics\RigidBody\Rigidbody.cpp" />

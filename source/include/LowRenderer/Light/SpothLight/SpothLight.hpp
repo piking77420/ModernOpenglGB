@@ -10,8 +10,8 @@ public:
 	Light lightData;
 	Vector3 direction = Vector3::Forward();
 
-	float cutOff = Math::DegreesToRadians(12.5f);	
-	float outerCutOff = Math::DegreesToRadians(15.f);
+	float cutOff = 12.5f * Math::Deg2Rad;	
+	float outerCutOff = 15.f * Math::Deg2Rad;
 	float constant = 1.0f;
 	float linear = 0.09f;
 	float quadratic = 0.032f;

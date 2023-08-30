@@ -85,7 +85,7 @@ void RendererShadowSystem::CalCulateDepthBufferDirectionnal(Scene* scene)
 		DirectionalLight* dirlight = &(*dataDirectionalLight)[i];
 		Entity* entity = scene->GetEntities(dirlight->entityID);
 		Transform* transform = currentScene->GetComponent<Transform>(entity);
-		Vector3 LightDirection = static_cast<Vector3>(Matrix4X4::RotationMatrix4X4(transform->rotation) * Vector4(0, 1,0, 0)).Normalize();
+		Vector3 LightDirection = static_cast<Vector3>(Quaternion::ToRotationMatrix4X4(transform->GetRotation()) * Vector4(0, 1,0, 0)).Normalize();
 
 		float size = dirlight->lightData.size;
 		Matrix4X4 LightProjection = Matrix4X4::OrthoGraphicMatrix(-dirlight->lightData.size, size, -size, size, dirlight->lightData.minimumRange, dirlight->lightData.maxRange);
@@ -184,7 +184,7 @@ void RendererShadowSystem::CalCulateDepthBufferPointLight(Scene* scene)
 		float shadowHeight = pointLight->depthMap.height;
 
 		Vector3 lightPos = transform->World.GetPos();
-		Matrix4X4 shadowProj = Matrix4X4::PerspectiveMatrix(Math::DegreesToRadians(90.f), (float)shadowWidht / (float)shadowHeight, pointLight->lightData.minimumRange, pointLight->lightData.maxRange);
+		Matrix4X4 shadowProj = Matrix4X4::PerspectiveMatrix(Math::Deg2Rad * 90.f, (float)shadowWidht / (float)shadowHeight, pointLight->lightData.minimumRange, pointLight->lightData.maxRange);
 		std::array<Matrix4X4, 6> shadowTransforms;
 
 

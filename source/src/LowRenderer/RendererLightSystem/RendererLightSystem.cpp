@@ -161,7 +161,7 @@ void RendererLightSystem::RenderDirectionalLight(const DirectionalLight* dirLigh
 {
 	Entity* entity = scene->GetEntities(dirLight->entityID);
 	Transform* transformOfLight = scene->GetComponent<Transform>(entity);
-	Vector3 LightDirection = static_cast<Vector3>(Matrix4X4::RotationMatrix4X4(transformOfLight->rotation) * Vector4(0,1,0,0) ).Normalize();
+	Vector3 LightDirection = static_cast<Vector3>(Quaternion::ToRotationMatrix4X4(transformOfLight->GetRotation()) * Vector4(0,1,0,0) ).Normalize();
 	
 	currentShader->SetVector3("dirLight.color", dirLight->lightData.color.GetPtr());
 	

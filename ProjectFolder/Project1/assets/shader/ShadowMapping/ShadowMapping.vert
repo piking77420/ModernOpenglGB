@@ -2,6 +2,9 @@
 layout (location = 0) in vec3 aPos;
 layout (location = 1) in vec3 aNormal;
 layout (location = 2) in vec2 aTexCoords;
+layout (location = 3) in vec3 aTangent;
+layout (location = 4) in vec3 aBitangent;
+
 
 out vec2 TexCoords;
 
@@ -10,6 +13,9 @@ out VS_OUT {
     vec3 Normal;
     vec2 TexCoords;
     vec4 FragPosLightSpace;
+    vec3 TangentLightPos;
+    vec3 TangentViewPos;
+    vec3 TangentFragPos;
 } vs_out;
 
 uniform mat4 view;
@@ -25,6 +31,7 @@ void main()
      if(reverse_normals)
      {
               vs_out.Normal = mat3(NormalMatrix) * (-1.0 * aNormal);
+
 
      }
      else

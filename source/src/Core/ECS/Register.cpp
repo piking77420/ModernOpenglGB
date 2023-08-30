@@ -15,7 +15,6 @@ Register::Register()
 	}
 
 
-	AddSystemInternal(new GraphScene);
 }
 
 Register::~Register()

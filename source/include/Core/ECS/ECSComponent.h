@@ -36,10 +36,13 @@ void ECSComponentFree(Component* ptr)
 }
 
 
+
+
 template<class T>
 class EcsComponent : public Component
 {
 public:
+
 	static  const uint32_t ComponentTypeID;
 
 	// Size_t Of the component
@@ -77,3 +80,4 @@ const GetNameOfComponent EcsComponent<T>::NAME_FUNCTION(GetName<T>);
 
 
 
+#define MONOBEHAVIOUR(x) : public EcsComponent<x>

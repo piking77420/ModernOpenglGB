@@ -45,6 +45,7 @@ public:
 	std::vector<Vertex> vertexVector;
 	std::vector<uint32_t> indexVector;
 	std::vector<Texture> textures;
+	
 
 
 	virtual void Init() override;
@@ -56,3 +57,4 @@ private:
 
 
 };
+

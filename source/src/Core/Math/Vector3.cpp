@@ -35,7 +35,7 @@ Vector3 Vector3::Normalize() const
 {
 	float norm = Norm();
 
-	if (norm == 1.f)
+	if (norm <= 1.f)
 		return *this;
 
 	return Vector3(x / norm, y / norm, z / norm);	
@@ -50,6 +50,54 @@ Vector3 Vector3::Reflect(const Vector3& Vector, const Vector3& Normal)
 	result = Vector - (NoramizeNormal * (2.f * (DotProduct(Vector, Normal))));
 
 	return result;
+}
+
+Vector3 Vector3::MakePositivEuleur() const
+{
+	Vector3 euler = *this;
+	euler.x = euler.x * Math::Deg2Rad;
+	euler.y = euler.y * Math::Deg2Rad;
+	euler.z = euler.z * Math::Deg2Rad;
+
+
+	float value = 180.f;
+	float num = -0.005729578f;
+	float num2 = value + num;
+
+
+	if (euler.x < num)
+	{
+		euler.x += value;
+	}
+	else if (euler.x > num2)
+	{
+		euler.x -= value;
+	}
+
+	if (euler.y < num)
+	{
+		euler.y += value;
+	}
+	else if (euler.y > num2)
+	{
+		euler.y -= value;
+	}
+
+	if (euler.z < num)
+	{
+		euler.z += value;
+	}
+	else if (euler.z > num2)
+	{
+		euler.z -= value;
+	}
+
+	euler.x = euler.x * Math::Deg2Rad;
+	euler.y = euler.y * Math::Deg2Rad;
+	euler.z = euler.z * Math::Deg2Rad;
+
+
+	return euler;
 }
 
 

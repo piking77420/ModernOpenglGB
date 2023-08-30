@@ -25,7 +25,7 @@ public:
 	}
 	inline float Norm() const
 	{
-		return std::sqrtf(NormSquare());
+		return std::sqrt(NormSquare());
 	}
 
 	inline Quaternion Normalize() const
@@ -36,9 +36,13 @@ public:
 		{
 			Quaternion result(*this);
 
-			float normValue = 1 / Norm();
+			float normValue = 1.f / Norm();
 
 			result.imaginary.x *= normValue;
+			result.imaginary.y *= normValue;
+			result.imaginary.z *= normValue;
+
+
 			result.w *= normValue;
 
 			return result;
@@ -109,7 +113,7 @@ public:
 
 	static Matrix4X4 ToRotationMatrix4X4(const Quaternion& Q1);
 	
-
+	
 
 	static Quaternion EulerAngle(const Vector3& eulerAngle);
 	Vector3 ToEulerAngle() const ;
@@ -125,14 +129,8 @@ public:
 #pragma region Operator
 
 
-	inline Quaternion operator+(const Quaternion& Q1) const;
-	inline Quaternion operator-(const Quaternion& Q1) const;
-	inline void operator+=(const Quaternion& Q1) ;
-	inline void operator-=(const Quaternion& Q1) ;
 	inline Quaternion operator*(const Quaternion& Q1) const;
-	inline void operator*=(float value);
-	inline Quaternion operator*(float value);
-
+	inline void operator*=(const Quaternion& Q1);
 	float operator[](int i) const;
 	float& operator[](int i);
 
@@ -152,6 +150,7 @@ public:
 
 private:
 };
+
 #pragma region Operator
 
 inline Quaternion Quaternion::operator*(const Quaternion& Q1) const
@@ -159,68 +158,13 @@ inline Quaternion Quaternion::operator*(const Quaternion& Q1) const
 	return Multiply(*this,Q1);
 }
 
-inline Quaternion Quaternion::operator+(const Quaternion& Q1) const
+inline void Quaternion::operator*=(const Quaternion& Q1)
 {
-	const float* prt = GetPtr();
-	const float* Q1ptr = Q1.GetPtr();
-	Quaternion result;
-
-	for (size_t i = 0; i < 4; i++)
-	{
-		result[i] = prt[i] + Q1ptr[i];
-	}
-
-	return result;
-}
-inline Quaternion Quaternion::operator-(const Quaternion& Q1) const
-{
-	const float* prt = GetPtr();
-	const float* Q1ptr = Q1.GetPtr();
-	Quaternion result;
-
-	for (size_t i = 0; i < 4; i++)
-	{
-		result[i] = prt[i] - Q1ptr[i];
-	}
-	return result;
-
-}
-inline void Quaternion::operator+=(const Quaternion& Q1) 
-{
-	float* prt = SetPtr();
-	const float* Q1ptr = Q1.GetPtr();
-
-	for (size_t i = 0; i < 4; i++)
-	{
-		prt[i] += Q1ptr[i];
-	}
-}
-inline void Quaternion::operator-=(const Quaternion& Q1)
-{
-	float* prt = SetPtr();
-	const float* Q1ptr = Q1.GetPtr();
-
-	for (size_t i = 0; i < 4; i++)
-	{
-		prt[i] -= Q1ptr[i];
-	}
+	*this = Multiply(*this, Q1);
 }
 
-inline void Quaternion::operator*=(float value)
-{
-	float* prt = SetPtr();
 
-	for (size_t i = 0; i < 4; i++)
-	{
-		prt[i] *= value;
-	}
-}
-inline Quaternion Quaternion::operator*(float value)
-{
-	float scalarValue = w * value;
-	Vector3 imaginaryValue = imaginary * value;
-	return Quaternion(imaginaryValue,scalarValue);
-}
+
 #pragma endregion
 
 std::ostream& operator<<(std::ostream& stream, const Quaternion& q);

@@ -4,7 +4,7 @@
 #include <limits>
 #define cot(x) (cos(x)/sin(x))
 
-#define TOLERANCE 0.000001f
+#define TOLERANCE 0.01f
 #define GRAVITY 9.81f
 
 namespace Math
@@ -31,16 +31,10 @@ namespace Math
 	}
 
 	
-	
-	constexpr static inline float RadiansToDegrees(float radiant)
-	{
-		return radiant * 180.f / M_PI;
-	}
 
-	constexpr static inline float DegreesToRadians(float degrees)
-	{
-		return degrees * M_PI / 180.0;
-	}
+	 constexpr static inline float Deg2Rad((float)M_PI / 180.f);
+
+	 constexpr static inline float Rad2Deg = 57.29578f;
 
 
 	// Fast std::Sqrtf base on Quake3 32bits  
@@ -61,7 +55,15 @@ namespace Math
 		return 1/(float)y;
 	}
 
+	constexpr static inline void ZeroPrecision(float* value)
+	{
 
+		if (*value > -TOLERANCE && *value < TOLERANCE)
+		{
+			*value = 0.f;
+		}
+
+	}
 
 }
 

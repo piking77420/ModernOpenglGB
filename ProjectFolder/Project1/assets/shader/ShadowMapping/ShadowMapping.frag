@@ -52,6 +52,9 @@ in VS_OUT {
     vec3 Normal;
     vec2 TexCoords;
     vec4 FragPosLightSpace;
+    vec3 TangentLightPos;
+    vec3 TangentViewPos;
+    vec3 TangentFragPos;
 } fs_in;
 
 uniform vec3 viewPos;
@@ -150,13 +153,13 @@ float ShadowCalculationPointLight(PointLight light,vec3 fragPos)
     int samples = 20;
     float viewDistance = length(viewPos - fragPos);
     float diskRadius = (1.0 + (viewDistance / light.far_plane)) / 25.0;
-    for(int i = 0; i < samples; ++i)
+   /* for(int i = 0; i < samples; ++i)
     {
         float closestDepth = texture(light.depthMapCube, fragToLight + gridSamplingDisk[i] * diskRadius).r;
         closestDepth *= light.far_plane;   // undo mapping [0;1]
         if(currentDepth - bias > closestDepth)
             shadow += 1.0;
-    }
+    }*/
     shadow /= float(samples);
         
     // display closestDepth as debug (to visualize depth cubemap)
@@ -199,6 +202,7 @@ vec3 PointLightCalcul(PointLight light)
     vec3 normal = normalize(fs_in.Normal);
     
     vec3 lightColor = light.color;
+
     // ambient
     vec3 ambient = lightColor;
     // diffuse
@@ -217,9 +221,8 @@ vec3 PointLightCalcul(PointLight light)
     float shadow = ShadowCalculationPointLight(light,fs_in.FragPos);                
     /*
     /*
-    vec3 lighting = (ambient + (1.0 - shadow) * (diffuse + specular)) * color;  
     */
-    vec3 lighting = vec3(1,1,1);
+    vec3 lighting = (ambient + (1.0 - shadow) * (diffuse + specular)) * color;  
     return lighting;
 
 }
@@ -233,7 +236,7 @@ void main()
     
     for(int i = 0 ; i < numberOfPointLight;i++)
     {
-        endresult += PointLightCalcul(pointLights[i]);
+     //   endresult += PointLightCalcul(pointLights[i]);
     }
 
     FragColor = vec4(endresult, 1.0);

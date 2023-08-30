@@ -16,6 +16,9 @@ public:
 
 	static inline Vector3 Gravity = Vector3(0,-9.81f,0);
 
+	void AddForce(Rigidbody& rb, const Vector3& forces);
+
+
 	PhysicsSystem(){};
 	~PhysicsSystem(){};
 private:
@@ -24,6 +27,6 @@ private:
 	void CollisionRespond(Scene* scene, std::vector<Rigidbody>* rigidBodys);
 	void ApplieForces(Scene* scene, std::vector<Rigidbody>* rigidBodys);
 	Collider* GetCollider(Scene* scene, uint32_t EntityID);
-
+	void UpdateDrag(Rigidbody& rb);
 };
 

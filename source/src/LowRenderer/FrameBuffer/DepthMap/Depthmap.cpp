@@ -45,8 +45,8 @@ void Depthmap::UnBind()
 
 Depthmap::Depthmap()
 {
-	widht = 2048;
-	height = 2048;
+	widht = 4096;
+    height = 4096;
 
 	Init();
 }

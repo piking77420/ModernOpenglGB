@@ -15,5 +15,6 @@ public:
 	~Renderer();
 private:
 	void RenderMeshRender(const MeshRenderer* meshRender, Shader& shader, Scene* scene);
+	void RenderStencil(const MeshRenderer* meshRender,const Shader& shader, Scene* scene);
 };
 
