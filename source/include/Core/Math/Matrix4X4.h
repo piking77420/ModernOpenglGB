@@ -49,7 +49,7 @@ public:
 	*/
 	static inline Matrix4X4 PerspectiveMatrix(const float fov, const float aspect, const float Near,const float Far)
 	{
-		float fFovRad = 1.0f / std::tan(fov * 0.5f);
+		float fFovRad = 1.0f / std::tanf(fov * 0.5f);
 		float zdiff = Near - Far;
 
 		float r00 = fFovRad / aspect;

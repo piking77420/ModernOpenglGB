@@ -71,8 +71,8 @@ void Project::Update()
 
 	currentScene->DrawGizmo();
 
-	currentScene->Render(*shaderShadowMapping);
-	currentScene->RenderScene(*shaderShadowMapping);
+	currentScene->Render(*shaderNormal);
+	currentScene->RenderScene(*shaderNormal);
 	
 	OpenGlRenderToImgui->UnBind();
 

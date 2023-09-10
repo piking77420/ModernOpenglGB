@@ -21,7 +21,7 @@ public:
 	void SetRotation(const Quaternion& q) 
 	{ 
 		rotation = q;
-		rotationValue = q.ToEulerAngle();
+		rotationValue = rotation.ToEulerAngle();
 	};
 
 

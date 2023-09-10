@@ -35,7 +35,7 @@ Vector3 Vector3::Normalize() const
 {
 	float norm = Norm();
 
-	if (norm <= 1.f)
+	if (norm == 1.f)
 		return *this;
 
 	return Vector3(x / norm, y / norm, z / norm);	
