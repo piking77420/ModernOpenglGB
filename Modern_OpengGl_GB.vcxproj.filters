@@ -84,18 +84,6 @@
     <ClInclude Include="source\include\Core\Math\Vector4.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\External\glad\glad.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\External\GLFW\glfw3.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\External\GLFW\glfw3native.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\External\KHR\khrplatform.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="source\include\LowRenderer\Cam\Camera.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -151,9 +139,6 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="source\include\Core\DataStructure\Component\Collider\PlaneCollider.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\External\Std_Image\std_image.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="source\include\Physics\RigidBody\Rigidbody.h">
@@ -339,6 +324,7 @@
     <None Include="assets\Shader\DebugDepthShader\DebugDepthShader.vertex" />
     <None Include="assets\Shader\NormalShader\NormalShader.geom" />
     <None Include="source\include\External\assimp\assimp-vc143-mt.dll" />
+    <None Include="source\src\External\lib\assimp-vc143-mtd.exp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Log\LOG .txt" />
@@ -595,6 +581,7 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="source\src\External\lib\glfw3.lib" />
+    <Library Include="source\src\External\lib\assimp-vc143-mtd.lib" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\cube_maps\skybox\SkySkybox\back.jpg">

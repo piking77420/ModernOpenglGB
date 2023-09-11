@@ -1,9 +1,11 @@
 #pragma once
 #include "ImguiLayer.h"
 
+
 class Log : public ImguiLayer
 {
 public:
+
 
 	std::string WindowName;
 	 void UpdateLayer(Project& currentProject) override;

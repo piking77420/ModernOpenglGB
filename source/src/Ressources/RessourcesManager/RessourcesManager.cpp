@@ -134,7 +134,6 @@ bool RessourcesManager::isThisValidForThisFormat(std::string path, std::string f
 fs::path RessourcesManager::CreatMetaDataFile(const fs::path& FilePath,const std::string& FileName)
 {
 	
-	std::lock_guard<std::mutex> lock(fileMutex);
 		
 	
 	

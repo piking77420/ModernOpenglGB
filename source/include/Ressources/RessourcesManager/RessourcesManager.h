@@ -154,18 +154,26 @@ inline void RessourcesManager::Create(const fs::path& FilePath)
 			std::string Correctname = FilePath.filename().generic_string();
 			// test->PathtoMetaDataFile = CreatMetaDataFile(FilePath, Correctname);
 
+
+
 			if (m_MainResourcesMap.contains(Correctname))
 			{
+				fileMutex.lock();
 				auto currentRessources = m_MainResourcesMap.find(Correctname);
 				delete currentRessources->second;
 				currentRessources->second = newRessources;
+				fileMutex.unlock();
 				return ;
 
 			}
 
+			fileMutex.lock();
 
 			m_MainResourcesMap.insert({ Correctname,newRessources });
 			auto returned = m_MainResourcesMap.find(Correctname);
+
+			fileMutex.unlock();
+
 
 }
 

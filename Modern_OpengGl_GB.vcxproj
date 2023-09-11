@@ -119,7 +119,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)source\Include\Core\Math;$(ProjectDir)source\Include\Core\DataStructure\Component;$(ProjectDir)source\Include;$(ProjectDir)source\Include\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -197,7 +197,6 @@
     <ClInclude Include="source\include\Core\Debug\Debug.h" />
     <ClInclude Include="source\include\Physics\RigidBody\Rigidbody.h" />
     <ClInclude Include="source\include\Core\DataStructure\Component\Collider\PlaneCollider.h" />
-    <ClInclude Include="source\include\External\Std_Image\std_image.h" />
     <ClInclude Include="source\include\Ressources\Scene\Scene.h" />
     <ClInclude Include="source\include\App\App.h" />
     <ClInclude Include="source\include\LowRenderer\FrameBuffer\MultiSamples\MultiSamples.h" />
@@ -219,10 +218,6 @@
     <ClInclude Include="source\include\Core\Math\Vector2.h" />
     <ClInclude Include="source\include\Core\Math\Vector3.h" />
     <ClInclude Include="source\include\Core\Math\Vector4.h" />
-    <ClInclude Include="source\include\External\glad\glad.h" />
-    <ClInclude Include="source\include\External\GLFW\glfw3.h" />
-    <ClInclude Include="source\include\External\GLFW\glfw3native.h" />
-    <ClInclude Include="source\include\External\KHR\khrplatform.h" />
     <ClInclude Include="source\include\glad\glad.h" />
     <ClInclude Include="source\include\GLFW\glfw3.h" />
     <ClInclude Include="source\include\GLFW\glfw3native.h" />
@@ -271,6 +266,7 @@
     <None Include="assets\Shader\StencilTest\StencilTest.frag" />
     <None Include="assets\Shader\StencilTest\StencilTest.vertex" />
     <None Include="source\include\External\assimp\assimp-vc143-mt.dll" />
+    <None Include="source\src\External\lib\assimp-vc143-mtd.exp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Log\LOG .txt" />
@@ -362,6 +358,7 @@
     <ClCompile Include="source\src\Core\AppTime.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Library Include="source\src\External\lib\assimp-vc143-mtd.lib" />
     <Library Include="source\src\External\lib\glfw3.lib" />
   </ItemGroup>
   <ItemGroup>

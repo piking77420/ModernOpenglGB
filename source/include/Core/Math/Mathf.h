@@ -1,6 +1,7 @@
 #pragma once
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <cmath>
 #include <limits>
 #define cot(x) (cos(x)/sin(x))
 
