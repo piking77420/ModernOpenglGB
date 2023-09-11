@@ -50,8 +50,7 @@ void Camera::SetCameraInfoForShaders(RessourcesManager& ressourcesManagers)
 Matrix4X4 Camera::GetLookMatrix() 
 {
 	
-
-	return Matrix4X4::LookAt(eye, eye + Front, Up);
+	return Matrix4X4::LookAt(eye, (eye + Front), Up);
 }
 
 Matrix4X4 Camera::GetProjectionMatrix() const
@@ -233,7 +232,7 @@ void Camera::MouseCallback(GLFWwindow* context, double _xpos, double _ypos)
 		firstmove = true;
 	}
 
-	float xoffset =  xpos - lastX;
+	float xoffset = xpos - lastX;
 	float yoffset = lastY - ypos;
 
 

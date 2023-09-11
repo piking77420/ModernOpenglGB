@@ -1,7 +1,7 @@
 #include "Physics/GraphScene/GraphScene.h"
 #include "Ressources/Scene/Scene.h"
 #include "Physics/Transform/Transform.hpp"
-
+#include "LowRenderer/Gizmo/Gizmo.hpp"
 
 
 
@@ -23,7 +23,6 @@ void GraphScene::Start(Scene* scene)
 void GraphScene::OnDrawGizmo(Scene* scene)
 {
 	
-
 
 }
 void GraphScene::FixedUpdate(Scene* scene)
@@ -249,7 +248,7 @@ void GraphScene::UpdateAllTransformPointers(std::vector<uint8_t>* data)
 	for (size_t i = 0; i < dataTransform->size(); i++)
 	{
 		Transform* UpdatedTransform = &(*dataTransform)[i];
-		if (!HasParent(UpdatedTransform)&& !HasChild(UpdatedTransform))
+		if (!HasParent(UpdatedTransform) && !HasChild(UpdatedTransform))
 			continue;
 
 
