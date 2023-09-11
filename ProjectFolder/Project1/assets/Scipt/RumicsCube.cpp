@@ -13,6 +13,7 @@ RumicsCube::~RumicsCube()
 }
 void RumicsCube::Init(Scene* scene)
 {
+	/*
 	int cubeSize = 3;
 	float spacing = 2.f;  // Adjust the spacing between cubes
 
@@ -51,7 +52,7 @@ void RumicsCube::Init(Scene* scene)
 				meshRenderer->material.specular = *scene->currentproject->ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
 			}
 		}
-	}
+	}*/
 };
 
 void RumicsCube::Awake(Scene* scene)

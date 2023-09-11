@@ -216,7 +216,7 @@ void GraphScene::StarTree(std::vector<Transform*>& transformVector)
 Matrix4X4 GraphScene::ToMatrix(Transform* transform)
 {
 	transform->rotation = Quaternion::EulerAngle(transform->rotationValue * Math::Deg2Rad);
-	return Matrix4X4::TRS(transform->pos, transform->GetRotation(), transform->scaling);
+	return Matrix4X4::TRS(transform->pos, transform->rotation, transform->scaling);
 }
 
 // Get Recursif Value

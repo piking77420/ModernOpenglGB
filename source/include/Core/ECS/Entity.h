@@ -3,19 +3,21 @@
 #include <stdint.h>
 #include <string>
 #include "UI/InspectorSelectable.h"
+#include "Core/ISerialzable/ISerialzable.h"
 #define ComponentNULL 4294967295
 #define EntityNULL 4294967295
 
 
 class Scene;
 
-class Entity : public InspectorSelectable
+class Entity : public InspectorSelectable , public ISerialzable
 {
 public:
 
 
 	void OnInspector() override;
-
+	void OnSerialize(Scene* scene) const override;
+	void OnDeSerialize(Scene* scene) const override;
 
 	std::string Entityname;
 

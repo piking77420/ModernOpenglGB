@@ -59,10 +59,22 @@ public :
 		registerScene.AddComponentInternal(T::ComponentTypeID, entity);
 	}
 
+	void AddComponent(uint32_t ComponentTypeID, Entity* entity)
+	{
+		registerScene.AddComponentInternal(ComponentTypeID, entity);
+	}
+
 	template<class T>
 	inline T* GetComponent(Entity* entity)
 	{
 		return reinterpret_cast<T*>(registerScene.GetComponentInternal(T::ComponentTypeID, entity));
+	}
+
+		
+	inline bool HasComponent(uint32_t ComponentTypeID,const  Entity* entity)
+	{
+		const Component* ptr = registerScene.GetComponentInternal(ComponentTypeID, entity);
+		return ptr;	
 	}
 
 	template<class T>

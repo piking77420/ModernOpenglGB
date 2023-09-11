@@ -68,12 +68,10 @@ void Project::Update()
 	currentScene->Update();
 	currentScene->LateUpdate();
 
-
+	currentScene->Render(*shaderShadowMapping);
+	currentScene->RenderScene(*shaderShadowMapping);
 	currentScene->DrawGizmo();
 
-	currentScene->Render(*shaderNormal);
-	currentScene->RenderScene(*shaderNormal);
-	
 	OpenGlRenderToImgui->UnBind();
 
 	DockingSystem.UpdateDockSpace(*this);
@@ -171,8 +169,26 @@ void Project::InitScene()
 	currentScene->AddComponent<DirectionalLight>(Directionnale);
 
 
+	Entity* Cube1 = currentScene->CreateEntity();
+	currentScene->AddComponent<MeshRenderer>(Cube1);
 
-	
+	currentScene->GetComponent<Transform>(Cube1)->pos = Vector3(-2.0f, 4.0f, -1.0f);
+	MeshRenderer* Cube1rdr = currentScene->GetComponent<MeshRenderer>(Cube1);
+	currentScene->AddComponent<BoxCollider>(Cube1);
+	Cube1rdr->mesh = *ressourcesManager.GetElement<Mesh>("cube.obj");
+	Cube1rdr->material.diffuse = *ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
+	Cube1rdr->material.specular = *ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
+
+	Entity* Cube2 = currentScene->CreateEntity();
+	currentScene->AddComponent<MeshRenderer>(Cube2);
+	currentScene->AddComponent<BoxCollider>(Cube2);
+	currentScene->GetComponent<Transform>(Cube2)->pos = Vector3(-4.0f, 5.0f, -3.0f);
+
+	currentScene->GetComponent<Transform>(Cube2)->pos = Vector3(-2.0f, 4.0f, -1.0f);
+	MeshRenderer* Cube2rdr = currentScene->GetComponent<MeshRenderer>(Cube2);
+	Cube2rdr->mesh = *ressourcesManager.GetElement<Mesh>("cube.obj");
+	Cube2rdr->material.diffuse = *ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
+	Cube2rdr->material.specular = *ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
 
 	
 

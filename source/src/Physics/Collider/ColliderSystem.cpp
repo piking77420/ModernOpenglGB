@@ -245,9 +245,9 @@ std::array<Vector3, 3> ColliderSystem::GetAxis(const std::array<Vector3, 8>& arr
 	Matrix4X4 rotationMatrix = Matrix4X4::RotationMatrix4X4(rotation);
 
 
-	output[0] = (Vector3)(rotationMatrix * Vector4(0, 1, 0, 1));
-	output[1] = (Vector3)(rotationMatrix * Vector4(0, 0,1, 1));
-	output[2] = (Vector3)(rotationMatrix * Vector4(1, 0, 1, 1));
+	output[0] = static_cast<Vector3>(rotationMatrix * Vector4(0, 1, 0, 1));
+	output[1] = static_cast<Vector3>(rotationMatrix * Vector4(0, 0, 1, 1));
+	output[2] = static_cast<Vector3>(rotationMatrix * Vector4(1, 0, 0, 1));
 
 
 	return output;
@@ -365,6 +365,8 @@ bool ColliderSystem::CheckCollision(BoxCollider& Box1, BoxCollider& Box2)
 			}
 			ImpactPoint1 = GetClosestVertex(cubeVerticies1, cubeVerticies2);
 			ImpactPoint2 = GetClosestVertex(cubeVerticies2, cubeVerticies1);
+
+
 	}
 	
 	
@@ -417,6 +419,7 @@ bool ColliderSystem::CheckCollision(BoxCollider& Box1, BoxCollider& Box2)
 
 		Box2.collider.CollisionPoint.push_back(p2);
 	
+		LOG("SAT", STATELOG::GOOD);
 
 
 	return true;

@@ -15,6 +15,7 @@ public:
 	Vector3 Velocity = Vector3::Zero();
 	Vector3 Force = Vector3::Zero();
 	void ImguiWindowComponent() override;
+
 private:
 
 };

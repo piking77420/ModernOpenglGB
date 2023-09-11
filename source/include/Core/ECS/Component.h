@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 #include "Entity.h"
-
+#include "Core/ISerialzable/ISerialzable.h"
 
 class Register;
 class Component;
@@ -16,14 +16,14 @@ typedef void(*ECSComponentFreeFunction)(Component* ptr);
 typedef std::string (*GetNameOfComponent)();
 
 
-class Component
+class Component : public ISerialzable
 {
 
 
 
 private:
 
-	static inline std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >* ComponentTypeInfos = new  std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >();
+	static inline std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >* ComponentTypeInfos = new std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >();
 
 public:
 	virtual ~Component() {}
@@ -32,7 +32,9 @@ public:
 	bool IsEnable = true;
 	uint32_t entityID;
 	
-	
+	static inline const std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >* GetComponentTypeInfos() { return ComponentTypeInfos; }
+	static inline std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >* SetComponentTypeInfos() { return ComponentTypeInfos; }
+
 protected:
 	static uint32_t GetNbrOfComponent()
 	{
