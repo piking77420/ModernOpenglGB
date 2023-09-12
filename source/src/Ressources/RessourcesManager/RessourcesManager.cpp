@@ -52,27 +52,6 @@ void RessourcesManager::LoadAllAssets(const std::string& projectFolder)
 		LookFiles(entry.path());
 
 
-	std::string pathToCube = "Ressources/BasePrimitive/cube.obj";
-	std::thread* newThreads1 = new std::thread([this, pathToCube]()
-		{
-			Create<Mesh>(pathToCube);
-		});
-	theards.push_back(newThreads1);
-
-	std::string pathToSphere = "Ressources/BasePrimitive/Sphere.obj";
-	std::thread* newThreads2 = new std::thread([this, pathToSphere]()
-		{
-			Create<Mesh>(pathToSphere);
-		});
-	theards.push_back(newThreads2);
-	std::string pathToplane = "Ressources/BasePrimitive/plane.obj";
-	std::thread* newThreads3 = new std::thread([this, pathToplane]()
-		{
-			Create<Mesh>(pathToplane);
-		});
-	theards.push_back(newThreads3);
-
-
 
 
 	// Join threads + clear vector
@@ -174,7 +153,7 @@ void RessourcesManager::LoadTexture(fs::path path)
 
 void RessourcesManager::LoadModel(std::filesystem::path path)
 {
-	/*
+	
 	std::string path_string = path.generic_string();
 
 
@@ -185,7 +164,7 @@ void RessourcesManager::LoadModel(std::filesystem::path path)
 				Create<Mesh>(path_string);
 			});
 		theards.push_back(newThreads);
-	}*/
+	}
 }
 
 void RessourcesManager::LoadShader(std::filesystem::path path)

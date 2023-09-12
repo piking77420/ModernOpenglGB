@@ -419,7 +419,6 @@ bool ColliderSystem::CheckCollision(BoxCollider& Box1, BoxCollider& Box2)
 
 		Box2.collider.CollisionPoint.push_back(p2);
 	
-		LOG("SAT", STATELOG::GOOD);
 
 
 	return true;
