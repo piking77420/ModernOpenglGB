@@ -73,7 +73,7 @@ void Entity::OnSerialize(Scene* scene) const
 
 }
 
-void Entity::OnDeSerialize(Scene* scene) const
+void Entity::OnDeSerialize(Scene* scene) 
 {
 	for (size_t i = 0; i < Component::GetNbrOfComponent(); i++)
 	{

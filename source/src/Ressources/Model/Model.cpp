@@ -5,7 +5,7 @@
 #include "Core/Debug/LogClass.h"
 #include "LowRenderer/Material/Material.h"
 
-
+/*
 Model::Model(const fs::path& FilePath)
 {
     std::string pathToString = FilePath.generic_string();
@@ -166,3 +166,4 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType 
 Model::~Model()
 {
 }
+*/

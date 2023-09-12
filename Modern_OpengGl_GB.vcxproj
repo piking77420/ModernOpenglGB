@@ -151,6 +151,8 @@
   <ItemGroup>
     <ClInclude Include="ProjectFolder\Project1\assets\Scipt\RumicsCube.h" />
     <ClInclude Include="source\include\Core\ISerialzable\ISerialzable.h" />
+    <ClInclude Include="source\include\Core\Math\EasyFunction.h" />
+    <ClInclude Include="source\include\Core\Math\ToolBoxMathHeaders.h" />
     <ClInclude Include="source\include\Physics\Raycast\Raycast.h" />
     <ClInclude Include="source\include\Ressources\Model\Model.h" />
     <ClInclude Include="source\include\UI\Log.hpp" />

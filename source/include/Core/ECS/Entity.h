@@ -17,7 +17,7 @@ public:
 
 	void OnInspector() override;
 	void OnSerialize(Scene* scene) const override;
-	void OnDeSerialize(Scene* scene) const override;
+	void OnDeSerialize(Scene* scene) override;
 
 	std::string Entityname;
 
