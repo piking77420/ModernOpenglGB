@@ -57,7 +57,7 @@ Matrix4X4 Camera::GetProjectionMatrix() const
 {
 
 
-	return Matrix4X4::PerspectiveMatrix(Math::Deg2Rad * (fov), (float)Project::OpenGlRenderToImgui->widht / (float)Project::OpenGlRenderToImgui->height, Fnear, Ffar);
+	return Matrix4X4::PerspectiveMatrix(Math::Deg2Rad * (fov), (float)Renderer::OpenGlRenderToImgui->widht / (float)Renderer::OpenGlRenderToImgui->height, Fnear, Ffar);
 }
 
 

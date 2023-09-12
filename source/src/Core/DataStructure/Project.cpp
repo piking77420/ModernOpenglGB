@@ -29,16 +29,8 @@
 #include "LowRenderer/Light/PointLight/PointLight.hpp"
 #include "LowRenderer/Light/SpothLight/SpothLight.hpp"
 #include "../../../ProjectFolder/Project1/assets/Scipt/RumicsCube.h"
+#include "Core/ThreadPool/ThreadPool.h"
 
-FrameBuffer* Project::OpenGlRenderToImgui = new FrameBuffer(800, 800);
-
-void Project::framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-	if (!OpenGlRenderToImgui)
-		return;
-	glViewport(0, 0, width, height);
-	OpenGlRenderToImgui->ResizeFrammeBuffer(width, height);
-}
 
 
 
@@ -56,7 +48,7 @@ void Project::Update()
 
 
 
-	OpenGlRenderToImgui->Bind();
+	currentScene->renderer.OpenGlRenderToImgui->Bind();
 
 	glClearColor(0, 0, 0, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
@@ -72,7 +64,7 @@ void Project::Update()
 	currentScene->RenderScene(*shaderShadowMapping);
 	currentScene->DrawGizmo();
 
-	OpenGlRenderToImgui->UnBind();
+	currentScene->renderer.OpenGlRenderToImgui->UnBind();
 
 	DockingSystem.UpdateDockSpace(*this);
 
@@ -194,6 +186,6 @@ void Project::InitScene()
 
 
 	currentScene->Init();
-	OpenGlRenderToImgui->Init();
+	currentScene->renderer.OpenGlRenderToImgui->Init();
 
 }

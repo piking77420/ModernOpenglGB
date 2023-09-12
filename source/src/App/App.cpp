@@ -18,10 +18,9 @@
 
 
 
-
 void App::AppUpdate()
 {
-
+	CurrentProject.poolThread = &poolThread;
 	CurrentProject.Update();
 }
 

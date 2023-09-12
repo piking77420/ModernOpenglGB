@@ -80,8 +80,8 @@
         glfwMakeContextCurrent(window);
 
         gladLoadGL();
-        Project::framebuffer_size_callback(window, windowWidth, windowHeight);
-        glfwSetFramebufferSizeCallback(window, Project::framebuffer_size_callback);
+        Renderer::framebuffer_size_callback(window, windowWidth, windowHeight);
+        glfwSetFramebufferSizeCallback(window, Renderer ::framebuffer_size_callback);
         glfwSetCursorPosCallback(window, Camera::MouseCallback);
         glfwSetMouseButtonCallback(window, Camera::MouseButtonCallBack);
 

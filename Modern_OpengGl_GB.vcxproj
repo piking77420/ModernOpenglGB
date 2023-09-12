@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ProjectFolder\Project1\assets\Scipt\RumicsCube.h" />
+    <ClInclude Include="source\include\Core\CoreEngine.h" />
     <ClInclude Include="source\include\Core\ISerialzable\ISerialzable.h" />
     <ClInclude Include="source\include\Core\Math\EasyFunction.h" />
     <ClInclude Include="source\include\Core\Math\ToolBoxMathHeaders.h" />
@@ -248,6 +249,7 @@
     <ClInclude Include="source\include\UI\TransformGuizmo.hpp" />
     <ClInclude Include="source\include\Physics\Collider\SphereCollider.hpp" />
     <ClInclude Include="source\include\Core\AppTime.h" />
+    <ClInclude Include="source\include\Core\ThreadPool\ThreadPool.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -360,6 +362,7 @@
     <ClCompile Include="source\src\UI\TransformGuizmo.cpp" />
     <ClCompile Include="source\src\Physics\Collider\SphereCollider.cpp" />
     <ClCompile Include="source\src\Core\AppTime.cpp" />
+    <ClCompile Include="source\src\Core\ThreadPool\ThreadPool.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="source\src\External\lib\assimp-vc143-mtd.lib" />

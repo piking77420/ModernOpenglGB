@@ -18,7 +18,7 @@
 
 
 class Camera;
-
+class App;
 
 
 
@@ -30,11 +30,15 @@ public:
 
 	// Return map for iterator  to camera set uniform
 	std::map<std::string, IResource*>& GetRessources();
+	
 	void LoadAllAssets(const std::string& projectFolder);
+	
 	template<class T>
 	void Remove(const std::string& name);
+	
 	template<class T>
 	void PushBackElement(std::string name, T* newElement);
+	
 	template<class T>
 	T* GetElement(const std::string& name);
 
@@ -43,21 +47,26 @@ public:
 
 	template<class T>
 	void Create(const fs::path& FilePath);
+
+
+	//
 	template<class T>
 	bool IsRessourcesIs(IResource* ressources) const ;
+
+	//
 	template<class T>
 	T* TryIsTypeOf(IResource* ressources) const;
 	
 
+	std::mutex ressourcesMutex;	
 
 	RessourcesManager();
 	~RessourcesManager();
 private:
-	std::mutex ressourcesMutex;
 	std::map<std::string, IResource*> m_MainResourcesMap;
 	void LoadTexture(std::filesystem::path path);
 	void LookFiles(std::filesystem::path _path);
-	void LoadModel(std::filesystem::path path);
+	void LoadModel(std::filesystem::path path);	
 	void LoadShader(std::filesystem::path path);
 	bool isThisValidForThisFormat(std::string path, std::string format);
 	fs::path CreatMetaDataFile(const fs::path& FilePath, const std::string& FileName);
@@ -76,9 +85,6 @@ private:
 	const std::string sceneFormat = ".scene";
 	// Assets Folder
 	const std::string assetsFolder = "assets";
-	// cubeMaps folder to ignore not supported TO DO	
-	const std::string cubeMapsFolder = "cube_maps";
-	std::vector<std::thread*> theards;
 
 };
 
@@ -87,21 +93,37 @@ private:
 template<class T>
 inline void RessourcesManager::PushBackElement(std::string name, T* newElement)
 {
-	IResource* test = dynamic_cast<IResource*>(newElement);
-	
-	Debug::Assert->Assertion(test);
+	auto l = [](RessourcesManager* ressourcesManagers, std::string name, T* newElement)
+		{
+			IResource* test = dynamic_cast<IResource*>(newElement);
+
+			Debug::Assert->Assertion(test);
+			std::lock_guard<std::mutex> lock(ressourcesManagers->ressourcesMutex);
 
 
-	if (m_MainResourcesMap.contains(name))
+			if (ressourcesManagers->m_MainResourcesMap.contains(name))
+			{
+				auto currentRessources = ressourcesManagers->m_MainResourcesMap.find(name);
+				delete currentRessources->second;
+				currentRessources->second = newElement;
+				return;
+
+			}
+
+			ressourcesManagers->m_MainResourcesMap.insert({ name, newElement });
+	};
+
+	if(App::IsMonoThread)
 	{
-		auto currentRessources = m_MainResourcesMap.find(name);
-		delete currentRessources->second;
-		currentRessources->second = newElement;
+		l(this, name, newElement);
+		
 		return;
-
 	}
 
-	m_MainResourcesMap.insert({ name, newElement });
+	std::thread workers(l, this, name, newElement);
+	workers.detach();
+
+
 }
 
 template<class T>
@@ -141,27 +163,39 @@ inline const T* RessourcesManager::GetElement(const std::string& name) const
 template<class T>
 inline void RessourcesManager::Create(const fs::path& FilePath)
 {	
-		T* newRessources = new T(FilePath);
-		IResource* test = dynamic_cast<IResource*>(newRessources);
 
-		if (!test)
-			return;
-		std::string Correctname = FilePath.filename().generic_string();
-			// test->PathtoMetaDataFile = CreatMetaDataFile(FilePath, Correctname);
 
-		std::lock_guard<std::mutex> lock(ressourcesMutex);
-		
-		
-		if (m_MainResourcesMap.contains(Correctname))
+	auto l = [](RessourcesManager* ressourcesManagers ,const fs::path& FilePath)
 		{
-			auto currentRessources = m_MainResourcesMap.find(Correctname);
-			delete currentRessources->second;
-			currentRessources->second = newRessources;
-			return;
 
-		}
-		m_MainResourcesMap.insert({ Correctname,newRessources });
-		auto returned = m_MainResourcesMap.find(Correctname);
+			T* newRessources = new T(FilePath);
+	
+			// test->PathtoMetaDataFile = CreatMetaDataFile(FilePath, Correctname);
+			std::string Correctname = FilePath.filename().generic_string();
+
+			std::lock_guard<std::mutex> lock(ressourcesManagers->ressourcesMutex);
+
+			
+			if (ressourcesManagers->m_MainResourcesMap.contains(Correctname))
+			{
+				auto currentRessources = ressourcesManagers->m_MainResourcesMap.find(Correctname);
+				delete currentRessources->second;
+				currentRessources->second = newRessources;
+				return;
+
+			}
+			ressourcesManagers->m_MainResourcesMap.insert({ Correctname,newRessources });
+			auto returned = ressourcesManagers->m_MainResourcesMap.find(Correctname);
+		};
+
+	if(App::IsMonoThread)
+	{
+		l(this, FilePath);
+		return;
+	}
+
+	std::thread worker = std::thread(l,this, FilePath);
+	worker.detach();
 
 }
 

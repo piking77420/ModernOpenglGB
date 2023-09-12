@@ -138,7 +138,7 @@ void ContentBrowser::UpdateLayer(Project& currentProject)
 
 
 		
-		ImGui::Image((ImTextureID)currentProject.OpenGlRenderToImgui->framebufferTexture, ImGui::GetContentRegionAvail(),
+		ImGui::Image((ImTextureID)currentProject.currentScene->renderer.OpenGlRenderToImgui->framebufferTexture, ImGui::GetContentRegionAvail(),
 			ImVec2(0, 1),
 			ImVec2(1, 0));
 			

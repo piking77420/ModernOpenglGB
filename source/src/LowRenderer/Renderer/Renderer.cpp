@@ -10,6 +10,16 @@
 #include "LowRenderer/Cam/Camera.h"
 #include "Core/DataStructure/Project.hpp"
 
+FrameBuffer* Renderer::OpenGlRenderToImgui = new FrameBuffer(800, 800);
+
+void Renderer::framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+	if (!OpenGlRenderToImgui)
+		return;
+	glViewport(0, 0, width, height);
+	OpenGlRenderToImgui->ResizeFrammeBuffer(width, height);
+}
+
 
 
 void Renderer::RendereScene(Scene* scene,Shader* shader)

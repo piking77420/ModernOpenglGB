@@ -13,22 +13,23 @@
 namespace fs = std::filesystem;
 
 class RessourcesManager;
-	
+class ThreadPool;
+
 class Project
 {
 public:
 
-	static FrameBuffer* OpenGlRenderToImgui;
-	static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+
 
 
 	static inline fs::path ProjectFolderDirectory = fs::path("ProjectFolder");
 	
 	Scene* currentScene;
+	
 	RessourcesManager ressourcesManager;
 	DockingSystem DockingSystem;
-	Renderer renderer;
 
+	ThreadPool* poolThread;
 
 	std::string ProjectName = "Project";
 	Camera* mainCamera;

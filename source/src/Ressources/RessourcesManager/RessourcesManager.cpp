@@ -11,7 +11,11 @@
 #include "Ressources/SkyBox/SkyBox.h"
 #include "Ressources/CubeMaps/CubeMaps.h"
 #include<ostream>
- 
+#include <App/App.h>
+
+
+
+
 void RessourcesManager::LoadAllAssets(const std::string& projectFolder)
 {
 
@@ -54,14 +58,6 @@ void RessourcesManager::LoadAllAssets(const std::string& projectFolder)
 
 
 
-	// Join threads + clear vector
-	if(!theards.empty())
-	for (size_t i = 0; i < theards.size(); i++)
-	{
-		theards[i]->join();
-		delete theards[i];
-	}
-	theards.clear();
 
 
 
@@ -139,12 +135,7 @@ void RessourcesManager::LoadTexture(fs::path path)
 
 	if (isThisValidForThisFormat(path_string, png) || isThisValidForThisFormat(path_string, jpg))
 	{
-		std::thread* newThreads = new std::thread([this, path_string]()
-			{
-				Create<Texture>(path_string);
-			});
-		theards.push_back(newThreads);
-
+		Create<Texture>(path_string);	
 	}
 }
 
@@ -159,11 +150,7 @@ void RessourcesManager::LoadModel(std::filesystem::path path)
 
 	if (isThisValidForThisFormat(path_string, obj))
 	{
-		std::thread* newThreads = new std::thread([this, path_string]()
-			{
-				Create<Mesh>(path_string);
-			});
-		theards.push_back(newThreads);
+		Create<Mesh>(path_string);	
 	}
 }
 
@@ -201,25 +188,21 @@ void RessourcesManager::LoadShader(std::filesystem::path path)
 
 	std::string ressourcesName = path.filename().string();
 
+	Shader* newShader = nullptr;
+
+	if (geometry.empty())
+	{
+		newShader = new Shader(vertexShader.c_str(), fragmentShader.c_str(), ressourcesName);
+	}
+	else
+	{
+		newShader = new Shader(vertexShader.c_str(), fragmentShader.c_str(), geometry.c_str(), ressourcesName);
+
+	}
+	PushBackElement<Shader>(ressourcesName, newShader);
+
 	
-	std::thread* newThreads = new std::thread([this, vertexShader , fragmentShader , geometry , ressourcesName]()
-		{
-			Shader* newShader = nullptr;
 
-			if (geometry.empty())
-			{
-				newShader = new Shader(vertexShader.c_str(), fragmentShader.c_str(), ressourcesName);
-			}
-			else
-			{
-				newShader = new Shader(vertexShader.c_str(), fragmentShader.c_str(), geometry.c_str(), ressourcesName);
-
-			}
-			PushBackElement<Shader>(ressourcesName, newShader);
-
-		});
-
-	theards.push_back(newThreads);
 	
 }
 
@@ -237,7 +220,7 @@ RessourcesManager::RessourcesManager()
 
 void RessourcesManager::LookFiles(fs::path _path)
 {
-	if (_path.empty() || _path.filename().string() == cubeMapsFolder)
+	if (_path.empty())
 	{
 		return;
 	}

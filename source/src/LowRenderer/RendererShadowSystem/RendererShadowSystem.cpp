@@ -162,9 +162,9 @@ void RendererShadowSystem::CalCulateDepthBufferSpothLight(Scene* scene)
 void RendererShadowSystem::ResetViewPort() const
 {
 	// reset viewport
-	glViewport(0, 0, currentScene->currentproject->OpenGlRenderToImgui->widht, currentScene->currentproject->OpenGlRenderToImgui->height);
+	glViewport(0, 0, currentScene->renderer.OpenGlRenderToImgui->widht, currentScene->renderer.OpenGlRenderToImgui->height);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	currentScene->currentproject->OpenGlRenderToImgui->Bind();
+	currentScene->renderer.OpenGlRenderToImgui->Bind();
 }
 void RendererShadowSystem::CalCulateDepthBufferPointLight(Scene* scene)
 {

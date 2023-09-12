@@ -14,6 +14,7 @@
 #include "Core/ECS/Entity.h"
 #include "UI/DockingSystem.hpp"
 #include "Core/DataStructure/Project.hpp"
+#include "Core/ThreadPool/ThreadPool.h"
 
 class RessourcesManager;
 class Camera;
@@ -30,9 +31,11 @@ const int MSAA = 8;
 class App
 {
 public:	
-
+		
+	static inline bool IsMonoThread = false;
 	void AppUpdate(); 
 	Project CurrentProject;
+	ThreadPool poolThread;
 	App(int _WindowX, int _WindowY, ImGuiIO& _io);
 	~App();
 private:
