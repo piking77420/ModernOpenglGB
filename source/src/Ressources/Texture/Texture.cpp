@@ -17,15 +17,13 @@ void Texture::Init()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     glGenerateMipmap(GL_TEXTURE_2D);
-    stbi_image_free(data);
+    delete data;
 }
 Texture::Texture(const fs::path& FilePath) 
 {
-    path = FilePath.generic_string();
-    type = GL_TEXTURE_2D;
     
     stbi_set_flip_vertically_on_load(true);
-    data = stbi_load(path.c_str(), &width, &height, &nbrOfChannel, 0);
+    data = stbi_load(FilePath.generic_string().c_str(), &width, &height, &nbrOfChannel, 0);
 
 
     format = GetFormat(nbrOfChannel);
@@ -50,6 +48,11 @@ Texture::Texture()
 
 Texture::~Texture()
 {
+    if (glIsTexture(ID))
+    {
+        glDeleteTextures(1, &ID);
+    }
+
 }
 
 
@@ -78,18 +81,15 @@ GLuint Texture::GetFormat(int nbrOfChannel)
 
 }
 
-Texture& Texture::operator=(const Texture& other)
+void Texture::operator=(const Texture& other)
 {
     ID = other.ID;
-    type = other.type;
 
     format = other.format;
 
     width = other.width;
     height = other.height;
     nbrOfChannel = other.nbrOfChannel;
-    path = other.path;
-    return *this;
 }
 
 
@@ -110,10 +110,7 @@ void Texture::UnBindTexture() const
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void Texture::DeleteTexture()
-{
-    glDeleteTextures(1, &ID);
-}
+
 
 void Texture::TextureShaderUniform(const Shader& shader, const char* uniform, GLuint unit)
 {

@@ -6,13 +6,13 @@
 #include "LowRenderer/Light/DirectionalLight/DirectionalLight.hpp"
 #include "LowRenderer/Light/SpothLight/SpothLight.hpp"
 #include "LowRenderer/Light/PointLight/PointLight.hpp"
-#include "Ressources/Scene/Scene.h"
+#include "ECS/Scene/Scene.h"
 #include "Physics/Transform/Transform.hpp"
 #include "Core/DataStructure/Project.hpp"
 #include "LowRenderer/Light/PointLight/PointLight.hpp"
 #include "Core/Debug/AssertClass.h"
 #include "LowRenderer/Light/SpothLight/SpothLight.hpp"
-
+#include "App/App.h"
 void RendererShadowSystem::Init(Scene* scene)
 {
 
@@ -74,7 +74,7 @@ void RendererShadowSystem::OnDrawGizmo(Scene* scene)
 void RendererShadowSystem::CalCulateDepthBufferDirectionnal(Scene* scene)
 {
 
-	Shader* depthShader = scene->currentproject->ressourcesManager.GetElement<Shader>("DepthMapShader");
+	Shader* depthShader = scene->currentProject->resourcesManager.GetElement<Shader>("DepthMapShader");
 	std::vector<uint8_t>* data = currentScene->GetComponentDataArray<DirectionalLight>();
 	std::vector<DirectionalLight>* dataDirectionalLight = reinterpret_cast<std::vector<DirectionalLight>*>(data);
 
@@ -90,7 +90,7 @@ void RendererShadowSystem::CalCulateDepthBufferDirectionnal(Scene* scene)
 		float size = dirlight->lightData.size;
 		Matrix4X4 LightProjection = Matrix4X4::OrthoGraphicMatrix(-dirlight->lightData.size, size, -size, size, dirlight->lightData.minimumRange, dirlight->lightData.maxRange);
 
-		Matrix4X4 LookAt = Matrix4X4::LookAt(transform->World.GetPos(), LightDirection, Vector3::Up());
+		Matrix4X4 LookAt = Matrix4X4::LookAt(transform->world.GetPos(), LightDirection, Vector3::Up());
 		dirlight->lightData.LightSpaceMatrix = LightProjection * LookAt;
 
 		depthShader->Use();
@@ -162,14 +162,16 @@ void RendererShadowSystem::CalCulateDepthBufferSpothLight(Scene* scene)
 void RendererShadowSystem::ResetViewPort() const
 {
 	// reset viewport
-	glViewport(0, 0, currentScene->currentproject->OpenGlRenderToImgui->widht, currentScene->currentproject->OpenGlRenderToImgui->height);
+	glViewport(0, 0, currentScene->renderer.OpenGlRenderToImgui->widht, currentScene->renderer.OpenGlRenderToImgui->height);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	currentScene->currentproject->OpenGlRenderToImgui->Bind();
+	currentScene->renderer.OpenGlRenderToImgui->Bind();
+	//glViewport(0, 0, windowWidth, windowHeight);
+
 }
 void RendererShadowSystem::CalCulateDepthBufferPointLight(Scene* scene)
 {
 	
-	Shader* depthShader = scene->currentproject->ressourcesManager.GetElement<Shader>("DepthMapShaderPointLight");
+	Shader* depthShader = scene->currentProject->resourcesManager.GetElement<Shader>("DepthMapShaderPointLight");
 	std::vector<PointLight>* dataDirectionalLight = reinterpret_cast<std::vector<PointLight>*>(currentScene->GetComponentDataArray<PointLight>());
 
 
@@ -183,7 +185,7 @@ void RendererShadowSystem::CalCulateDepthBufferPointLight(Scene* scene)
 		float shadowWidht = pointLight->depthMap.width;
 		float shadowHeight = pointLight->depthMap.height;
 
-		Vector3 lightPos = transform->World.GetPos();
+		Vector3 lightPos = transform->world.GetPos();
 		Matrix4X4 shadowProj = Matrix4X4::PerspectiveMatrix(Math::Deg2Rad * 90.f, (float)shadowWidht / (float)shadowHeight, pointLight->lightData.minimumRange, pointLight->lightData.maxRange);
 		std::array<Matrix4X4, 6> shadowTransforms;
 

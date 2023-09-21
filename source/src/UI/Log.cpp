@@ -4,7 +4,7 @@
 #include <Core/Debug/Imgui/imgui_internal.h>
 
 
-void Log::UpdateLayer(Project& currentProject)
+void Log::UpdateLayer(Project& currentProject, std::vector<InputEvent*>& inputsEvents)
 {
     
   /*
@@ -23,7 +23,12 @@ void Log::UpdateLayer(Project& currentProject)
            ImGui::EndPopup();
        }
 
+       ImGui::Text( std::to_string(ImGui::GetIO().Framerate).c_str());
 
    ImGui::End();
     
+}
+
+void Log::ListenToInput(Project& currentProject,std::vector<InputEvent*>& inputEvent)
+{
 }

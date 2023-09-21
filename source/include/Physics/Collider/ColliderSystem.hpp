@@ -26,14 +26,14 @@ public:
 	ColliderSystem() {  };
 	~ColliderSystem(){}
 private:
-	Scene* currentScene = nullptr;
+	Scene* m_currentScene = nullptr;
 
 	
-	bool CheckCollision(SphereCollider& sphere1, SphereCollider& sphere2);
+	void CheckCollisionSphereSphere(SphereCollider& sphere1, SphereCollider& sphere2);
 
-	bool CheckCollision(BoxCollider& Box1, BoxCollider& Box2);
+	void CheckCollisionBoxBox(BoxCollider& Box1, BoxCollider& Box2);
 
-	bool CheckCollision(BoxCollider& sphere1, SphereCollider& sphere2);
+	void CheckCollisionBoxSphere(BoxCollider& sphere1, SphereCollider& sphere2);
 
 
 
@@ -50,7 +50,6 @@ private:
 	Vector3 GetVertexBox(Transform& transform, const Vector3& halfLength, int vertexIndex);
 	std::array<Vector3, 3> GetAxis(const std::array<Vector3, 8>& arrayOfVertices, const Transform& transfrom);
 	void ProjectVerticesOnAxis(const std::array<Vector3, 8>& verticiesArray, const Vector3& axis, float& outmin, float& outmax);
-
 
 };
 

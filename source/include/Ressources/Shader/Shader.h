@@ -1,6 +1,5 @@
 #pragma once
-#ifndef SHADER_H
-#define SHADER_H
+
 
 #include <glad/glad.h> 
 #include <Ressources/IResources/IResource.h>
@@ -20,18 +19,19 @@
 enum SHADERFLAG : int
 {
     NONE = 0,
-    VERTEX = 1 << 0,
-    FRAGMENT = 1 << 1,
-    GEOMETRY = 1 << 2,
+    VERTEX = 0 << 1,
+    FRAGMENT = 0 << 2,
+    GEOMETRY = 0 << 3,
 };
 
 class ShaderSource;
+class ResourcesManager;
 
 class Shader : public IResource 
 {
 public:
 
-    int flagShader;
+    SHADERFLAG shaderFlag;
 
     void Use() const;
     void Use();
@@ -43,20 +43,23 @@ public:
     void SetVector4(const std::string& name, const float* value) const;
     void SetMatrix(const std::string& name, const float* matrixValue) const;
     void SetVector3(const std::string& name, const float* value) const;
+
+    // DeadFonction For Load Model
     void SetMaterial(const std::string& name, const Material& material) const ;
-    GLuint GetId() const ;
  
+    GLuint GetId() const ;
     void Init() override;
 
-    Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath, std::string shaderName);
-    Shader(const char* vertexPath, const char* fragmentPath, std::string shaderName);
-    Shader(const ShaderSource& vertexShader, const ShaderSource& fragmentShader);
-    Shader(const ShaderSource& vertexShader, const ShaderSource& fragmentShader , const ShaderSource& GeometryShader);
+    // we assume that There is Fragment vertex and geometry shader is this folder
+    Shader(const fs::path& FilePath);
+
+    static SHADERFLAG GetShaderFlagsInDirectory(const fs::path& FilePath, Shader& shader);
+    
 
 
     ~Shader();
 protected:
-     mutable std::unordered_map<std::string, GLint> m_UniformMap;
+    mutable std::unordered_map<std::string, GLint> m_UniformMap;
     GLint GetUnitform(const std::string& name) const ;
     GLuint m_ID;
 
@@ -65,7 +68,8 @@ protected:
     std::string m_gShaderCode;
     std::string mShaderName;
 
+private:
 
+    static void LoadShaderFileInString(std::string& string, const fs::path& FilePath);
 };
 
-#endif

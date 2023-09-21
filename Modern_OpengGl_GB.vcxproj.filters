@@ -51,12 +51,6 @@
     <ClInclude Include="source\include\Core\DataStructure\Entity\Entity.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\Core\Debug\AssertClass.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Core\Debug\LogClass.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="source\include\Core\Math\Mathf.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -82,18 +76,6 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="source\include\Core\Math\Vector4.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\External\glad\glad.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\External\GLFW\glfw3.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\External\GLFW\glfw3native.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\External\KHR\khrplatform.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="source\include\LowRenderer\Cam\Camera.h">
@@ -147,13 +129,7 @@
     <ClInclude Include="source\include\Physics\Transform\Transform.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\Ressources\Scene\Scene.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="source\include\Core\DataStructure\Component\Collider\PlaneCollider.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\External\Std_Image\std_image.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="source\include\Physics\RigidBody\Rigidbody.h">
@@ -165,30 +141,6 @@
     <ClInclude Include="source\include\Core\DataStructure\Component\Collider\Raycast.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\Core\Debug\Debug.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Core\Debug\Imgui\imconfig.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Core\Debug\Imgui\imgui.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_opengl3.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_internal.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Core\Debug\Imgui\imstb_rectpack.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Core\Debug\Imgui\imstb_textedit.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Core\Debug\Imgui\imstb_truetype.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="source\include\Serializer\Serializer.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -196,9 +148,6 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="source\include\LowRenderer\FrameBuffer\DepthMap\Depthmap.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_glfw.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="source\include\Core\DataStructure\ComponentsBehaviours.h">
@@ -297,9 +246,6 @@
     <ClInclude Include="source\include\LowRenderer\Gizmo\Gizmo.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_opengl3_loader.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="source\include\Physics\PhysicsSystem\PhysicsSystem.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -316,6 +262,72 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="ProjectFolder\Project1\assets\Scipt\RumicsCube.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\ISerialzable\ISerialzable.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\Math\ToolBoxMathHeaders.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\Math\EasyFunction.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\ThreadPatern\TheardCP.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\CoreEngine.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\Input\CoreInput.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\Input\InputEvent.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\External\glad\glad.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\ThreadPatern\ThreadPool.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\ThreadPatern\ThreadPoolDynamic.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\Debug\LogClass.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\Debug\Debug.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\Debug\AssertClass.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\Debug\Imgui\imconfig.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\Debug\Imgui\imgui.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_glfw.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_opengl3.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_opengl3_loader.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_internal.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\Debug\Imgui\imstb_rectpack.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\Debug\Imgui\imstb_textedit.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\Core\Debug\Imgui\imstb_truetype.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -339,6 +351,9 @@
     <None Include="assets\Shader\DebugDepthShader\DebugDepthShader.vertex" />
     <None Include="assets\Shader\NormalShader\NormalShader.geom" />
     <None Include="source\include\External\assimp\assimp-vc143-mt.dll" />
+    <None Include="source\src\External\lib\assimp-vc143-mtd.exp" />
+    <None Include="assimp-vc143-mtd.dll" />
+    <None Include="source\src\External\lib\yaml-cppd.pdb" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Log\LOG .txt" />
@@ -425,9 +440,6 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\LowRenderer\FrameBuffer\MultiSamples\MultiSamples.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\Ressources\Scene\Scene.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\External\Std_Image\std_image.cpp">
@@ -592,9 +604,32 @@
     <ClCompile Include="ProjectFolder\Project1\assets\Scipt\RumicsCube.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="source\src\Core\ISerialzable\ISerialzable.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Core\ThreadPatern\TheardCP.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Core\Input\CoreInput.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Core\Input\InputEvent.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Core\ThreadPatern\ThreadPool.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Core\ThreadPatern\ThreadPoolDynamic.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Core\ECS\Scene\Scene.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="source\src\External\lib\glfw3.lib" />
+    <Library Include="source\src\External\lib\assimp-vc143-mtd.lib" />
+    <Library Include="source\src\External\lib\yaml-cppd.lib" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\cube_maps\skybox\SkySkybox\back.jpg">
@@ -631,6 +666,24 @@
       <Filter>Fichiers de ressources</Filter>
     </Image>
     <Image Include="assets\cube_maps\skybox\SpaceSkyBox\bkg1_front.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="ProjectFolder\Project1\assets\cube_maps\skybox\SkySkybox\back.jpg">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="ProjectFolder\Project1\assets\cube_maps\skybox\SkySkybox\top.jpg">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="ProjectFolder\Project1\assets\cube_maps\skybox\SkySkybox\front.jpg">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="ProjectFolder\Project1\assets\cube_maps\skybox\SkySkybox\bottom.jpg">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="ProjectFolder\Project1\assets\cube_maps\skybox\SkySkybox\left.jpg">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="ProjectFolder\Project1\assets\cube_maps\skybox\SkySkybox\right.jpg">
       <Filter>Fichiers de ressources</Filter>
     </Image>
   </ItemGroup>

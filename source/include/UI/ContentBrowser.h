@@ -18,11 +18,13 @@ public:
 	static fs::path CurrentPath;
 	static fs::path PreviousPath;
 
-	void UpdateLayer(Project& currentProject) override;
+	void UpdateLayer(Project& currentProject, std::vector<InputEvent*>& inputsEvents) override;
 
 
 	ContentBrowser();
 	~ContentBrowser();
+protected:
+	void ListenToInput(Project& currentProject,std::vector<InputEvent*>& inputEvent);
 
 
 private:

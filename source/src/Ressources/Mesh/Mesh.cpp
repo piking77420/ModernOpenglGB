@@ -401,9 +401,17 @@ Mesh::Mesh(const fs::path& FilePath)
 
 Mesh::~Mesh()
 {
+	if(glIsBuffer(VAO))
+	{
+		glDeleteBuffers(1, &VAO);
+	}
 
-	glDeleteBuffers(1, &VAO);
-	glDeleteBuffers(1, &VBO);
+	if (glIsBuffer(VBO))
+	{
+		glDeleteBuffers(1, &VBO);
+	}
+	vertexVector.clear();
+	indexVector.clear();
 
 }
 

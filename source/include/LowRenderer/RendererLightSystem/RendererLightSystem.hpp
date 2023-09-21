@@ -1,7 +1,7 @@
 #pragma once
 #include "Core/ECS/IECSSystem.h"
 #include <string>
-
+#include "Core/CoreEngine.h"
 class Shader;
 class Scene;
 class DirectionalLight;
@@ -23,8 +23,10 @@ private:
 
 	void RenderDirectionalLight(const DirectionalLight* dirLight, Scene* scene);
 
-
 	const Shader const* currentShader;
+
+
+
 	Scene* currentScene;
 
 

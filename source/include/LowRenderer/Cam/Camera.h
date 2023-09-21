@@ -26,7 +26,6 @@ public:
 	
 	Matrix4X4 GetLookMatrix();
 	Matrix4X4 GetProjectionMatrix() const;
-	void SetCameraInfoForShaders(RessourcesManager& cam);
 	void ImguiCameraWindow();
 	void CameraUpdate();
 	void CameraRenderer(Shader* shader);
@@ -57,7 +56,10 @@ public:
 	Vector2 mousePos;
 
 
-
+	Matrix4X4 GetVp() 
+	{
+		return GetProjectionMatrix() * GetLookMatrix();
+	}
 
 private : 
 	void CameraRotation();

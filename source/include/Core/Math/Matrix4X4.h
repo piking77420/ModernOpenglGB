@@ -195,7 +195,10 @@ public:
 
 
 	// rad
-	static Matrix4X4 RotationMatrix4X4(const Vector3& angle);
+	constexpr static Matrix4X4 RotationMatrix4X4(const Vector3& angle)
+	{
+		return RotationZ4X4(angle.z) * RotationY4X4(angle.y) * RotationX4X4(angle.x);
+	}
 
 	constexpr inline static Matrix4X4 TranslateMatrix4X4(const Vector3& translation)
 	{
@@ -217,11 +220,11 @@ public:
 		};
 	}
 
-	static inline Matrix4X4 TRS(const Vector3& translation , const Vector3& angle , const Vector3& scaling) 
+	constexpr static inline Matrix4X4 TRS(const Vector3& translation , const Vector3& angle , const Vector3& scaling)
 	{
 		return (TranslateMatrix4X4(translation) * (RotationMatrix4X4(angle) * ScalingMatrix4X4(scaling)));
 	}
-	static inline Matrix4X4 TRS(const Vector3& translation, const Quaternion& rotation, const Vector3& scaling)
+	constexpr static inline Matrix4X4 TRS(const Vector3& translation, const Quaternion& rotation, const Vector3& scaling)
 	{
 
 

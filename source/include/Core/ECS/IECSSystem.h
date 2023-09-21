@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-
 #define ImplementIEcsSystem \
 void Init(Scene* scene) override; \
 void Awake(Scene* scene) override; \
@@ -36,9 +35,6 @@ public:
 
 	virtual void Render(Shader& shader,Scene* scene) = 0;
 	virtual void OnResizeData(uint32_t ComponentTypeID,std::vector<uint8_t>* data)  = 0;
-
-
-
 
 };
 

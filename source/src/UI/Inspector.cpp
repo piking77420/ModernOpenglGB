@@ -3,8 +3,10 @@
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>
 #include <Core/Debug/Imgui/imgui_internal.h>
 #include "App/App.h"
+#include "Core/ECS/Entity.h"
 
-void Inspector::UpdateLayer(Project& currentProject)
+
+void Inspector::UpdateLayer(Project& currentProject, std::vector<InputEvent*>& inputsEvents)
 {
 	if (ImGui::Begin(WindowName.c_str()))
 	{
@@ -12,8 +14,8 @@ void Inspector::UpdateLayer(Project& currentProject)
 
 		ImGui::PushID("");
 		
-		if (currentProject.DockingSystem.Insepctor)
-			currentProject.DockingSystem.Insepctor->OnInspector();
+		if (currentProject.dockingSystem.EnitySelectedID != EntityNULL)
+			Entity::OnInspector(currentProject.dockingSystem.EnitySelectedID, currentProject.currentScene);
 	
 
 		ImGui::PopID();
@@ -23,4 +25,8 @@ void Inspector::UpdateLayer(Project& currentProject)
 		ImGui::End();
 	}
 
+}
+
+void Inspector::ListenToInput(Project& currentProject,std::vector<InputEvent*>& inputEvent)
+{
 }

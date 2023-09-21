@@ -29,6 +29,14 @@ Register::~Register()
 	{
 		delete entities[i];
 	}
+
+	for (size_t i = 0; i < systems.size(); i++)
+	{
+		delete systems[i];
+	}
+
+
+
 }
 
 void Register::AddComponentInternal(uint32_t ComponenTypeID, Entity* entity)
@@ -42,7 +50,7 @@ void Register::AddComponentInternal(uint32_t ComponenTypeID, Entity* entity)
 			ECSComponentCreateFunction createfn = Component::GetCreateFN(ComponenTypeID);
 			Component* ptr = nullptr;
 			uint32_t index = createfn(data, entity, &ptr);
-			AddComponentEntitie(entity, ComponenTypeID, index);
+			AddComponentEntity(entity, ComponenTypeID, index);
 
 			// On Resize 
 			TriggerOnresizeDataEvent(ComponenTypeID, &data);
@@ -54,10 +62,11 @@ void Register::AddComponentInternal(uint32_t ComponenTypeID, Entity* entity)
 
 Component* Register::GetComponentInternal(uint32_t ComponenTypeID, Entity* entity)
 {
-	uint32_t IndexOffComponent = entity->EnityComponents.at(ComponenTypeID);
+	uint32_t IndexOffComponent = entity->entityComponents.at(ComponenTypeID);
 	// this entities Doesnt' have this Component
 	if (IndexOffComponent == ComponentNULL)
 		return nullptr;
+
 	Component* ptr = reinterpret_cast<Component*>(&ComponentsData.at(ComponenTypeID).second->at(IndexOffComponent));
 
 	return ptr;
@@ -67,7 +76,7 @@ Component* Register::GetComponentInternal(uint32_t ComponenTypeID, Entity* entit
 
 const Component* Register::GetComponentInternal(uint32_t ComponenTypeID, const Entity* entity) const
 {
-	uint32_t IndexOffComponent = entity->EnityComponents.at(ComponenTypeID);
+	uint32_t IndexOffComponent = entity->entityComponents.at(ComponenTypeID);
 	// this entities Doesnt' have this Component
 	if (IndexOffComponent == ComponentNULL)
 		return nullptr;
@@ -87,46 +96,46 @@ Entity* Register::GetEntiesById(uint32_t entityId)
 }
 
 
-void Register::RemoveComponentInternal(uint32_t ComponenTypeID, Entity* entity)
+void Register::RemoveComponentInternal(uint32_t componentTypeID, Entity* entity)
 {
 
-	if (ComponenTypeID == Transform::ComponentTypeID)
+	if (componentTypeID == Transform::componentTypeID)
 		return;
 
-	if (entity->EnityComponents.at(ComponenTypeID) == ComponentNULL)
+	if (entity->entityComponents.at(componentTypeID) == ComponentNULL)
 	{
 		// This entity Doesn'h have this Component
 		return;
 	}
-	uint32_t index = entity->EnityComponents.at(ComponenTypeID);
+	uint32_t index = entity->entityComponents.at(componentTypeID);
 
-	std::vector<uint8_t>& dataArray = *ComponentsData.at(ComponenTypeID).second;
-	ECSComponentFreeFunction freefn = Component::GetFreeFN(ComponenTypeID);
-	size_t SizeOfComponent = Component::GetSizeOfComponent(ComponenTypeID);
+	std::vector<uint8_t>& dataArray = *ComponentsData.at(componentTypeID).second;
+	ECSComponentFreeFunction freefn = Component::GetFreeFN(componentTypeID);
+	size_t sizeOfComponent = Component::GetSizeOfComponent(componentTypeID);
 
 	//Last index for last Componenet
-	uint32_t LastIndex = dataArray.size() - SizeOfComponent;
+	uint32_t lastIndex = dataArray.size() - sizeOfComponent;
 
 	Component* destComp = reinterpret_cast<Component*>(&dataArray[index]);
-	Component* LastComp = reinterpret_cast<Component*>(&dataArray[LastIndex]);
+	Component* lastComp = reinterpret_cast<Component*>(&dataArray[lastIndex]);
 	freefn(destComp);
 
 	// the Component Free was the last so just resize it 
-	if (index == LastIndex) {
-		dataArray.resize(LastIndex);
-		RemoveComponentEntitie(entity, ComponenTypeID);
-		TriggerOnresizeDataEvent(ComponenTypeID, &dataArray);
+	if (index == lastIndex) {
+		dataArray.resize(lastIndex);
+		RemoveComponentEntity(entity, componentTypeID);
+		TriggerOnresizeDataEvent(componentTypeID, &dataArray);
 		return;
 	}
 
-	memcpy(destComp, LastComp, SizeOfComponent);
-	Entity* entitylast = GetEntiesById(LastComp->entityID);
-	entitylast->EnityComponents.at(ComponenTypeID) = index;
-	dataArray.resize(LastIndex);
+	memcpy(destComp, lastComp, sizeOfComponent);
+	Entity* entitylast = GetEntiesById(lastComp->entityID);
+	entitylast->entityComponents.at(componentTypeID) = index;
+	dataArray.resize(lastIndex);
 
-	RemoveComponentEntitie(entity, ComponenTypeID);
+	RemoveComponentEntity(entity, componentTypeID);
 
-	TriggerOnresizeDataEvent(ComponenTypeID, &dataArray);
+	TriggerOnresizeDataEvent(componentTypeID, &dataArray);
 
 	
 }
@@ -135,7 +144,7 @@ void Register::RemoveComponentInternal(uint32_t ComponenTypeID, Entity* entity)
 
 void Register::RemoveEntityInternal(Entity* entity)
 {
-	for (size_t i = 0; i < entity->EnityComponents.size(); i++)
+	for (size_t i = 0; i < entity->entityComponents.size(); i++)
 	{
 		RemoveComponentInternal(i, entity);
 	}
@@ -158,38 +167,37 @@ void Register::RemoveEntityInternal(Entity* entity)
 
 
 
-void Register::AddComponentEntitie(Entity* entity, uint32_t ComponenTypeID, uint32_t ComponentIndex)
+void Register::AddComponentEntity(Entity* entity, uint32_t componentTypeID, uint32_t componentIndex)
 {
-	// we assume There is alrealy all Array has been initialise
-
+	// we assume that all arrays has been initialised
 
 	// if it's empty just add 
-	if (entity->EnityComponents.at(ComponenTypeID) == ComponentNULL)
+	if (entity->entityComponents.at(componentTypeID) == ComponentNULL)
 	{
-		entity->EnityComponents.at(ComponenTypeID) = ComponentIndex;
+		entity->entityComponents.at(componentTypeID) = componentIndex;
 	}
 
-	// This entities Doest Alrealy has This Compoennt
+	// This entity doesn't already has this component
 	return;
 
 }
 
-void Register::RemoveComponentEntitie(Entity* entity, uint32_t ComponenTypeID)
+void Register::RemoveComponentEntity(Entity* entity, uint32_t componentTypeID)
 {
-	entity->EnityComponents.at(ComponenTypeID) = ComponentNULL;
+	entity->entityComponents.at(componentTypeID) = ComponentNULL;
 }
 
 void Register::AddSystemInternal(IEcsSystem* system)
 {
-	Systems.push_back(system);
+	systems.push_back(system);
 	OnReSizeDataVector.push_back(&IEcsSystem::OnResizeData);
 }
 
-void Register::TriggerOnresizeDataEvent(uint32_t ComponenTypeID, std::vector<uint8_t>* data)
+void Register::TriggerOnresizeDataEvent(uint32_t componentTypeID, std::vector<uint8_t>* data)
 {
 	for (size_t i = 0; i < OnReSizeDataVector.size(); i++)
 	{
-		OnReSizeDataVector[i](*Systems[i], ComponenTypeID, data);
+		OnReSizeDataVector[i](*systems[i], componentTypeID, data);
 	}
 
 }

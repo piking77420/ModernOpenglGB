@@ -16,7 +16,7 @@ public:
 
 	GLuint ID;
 	GLenum type;
-	GLenum PixelType;
+	GLenum pixelType;
 
 	GLuint format;
 	int slot;
@@ -24,17 +24,20 @@ public:
 	int width;
 	int height;
 	int nbrOfChannel;
-
+	GLuint VAO;
+	GLuint VBO;
 
 	void BindCubeMap() const;
 	void UnBindCubeMap() const;
+	void Init() override;
 
 	
 	void operator=(const CubeMaps& cubeMaps);
 	CubeMaps(std::vector<std::string> allMapsFile);
-	CubeMaps(const fs::path& FilePath);
-	CubeMaps(){};
+	CubeMaps() {};
 	~CubeMaps();
 private:
+	static inline float cubeMapSize = 250;
+
 };
 

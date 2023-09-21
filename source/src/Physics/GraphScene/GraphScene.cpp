@@ -1,8 +1,9 @@
 #include "Physics/GraphScene/GraphScene.h"
-#include "Ressources/Scene/Scene.h"
+#include "ECS/Scene/Scene.h"
 #include "Physics/Transform/Transform.hpp"
 #include "LowRenderer/Gizmo/Gizmo.hpp"
-
+#include "App/App.h"
+#include<algorithm>
 
 
 
@@ -27,27 +28,16 @@ void GraphScene::OnDrawGizmo(Scene* scene)
 }
 void GraphScene::FixedUpdate(Scene* scene)
 {
-	// we update this here to be able to rotate the the local or the world matrix in all update method
 
 	// Getting All the data
-	std::vector<uint8_t>* transformDataVector = scene->GetComponentDataArray<Transform>();
+	std::vector<Transform>* transformDataVector = reinterpret_cast<std::vector<Transform>*>(scene->GetComponentDataArray<Transform>());
 
-	const uint32_t nbrOfTransform = transformDataVector->size();
-	if (nbrOfTransform == 0)
-		return;
+	std::chrono::system_clock::time_point timeStart = std::chrono::system_clock::now();
+	StarTree(transformDataVector);
+	std::chrono::system_clock::time_point timeEnd = std::chrono::system_clock::now();
 
+	m_timeForGraphUpdate = std::chrono::duration_cast<std::chrono::microseconds>(timeEnd - timeStart).count();
 
-	// Prepare Getting all the Transfrom
-	std::vector<Transform*> transformVector;
-	for (size_t i = 0; i < transformDataVector->size() / sizeof(Transform); i++)
-	{
-		uint32_t index = i * sizeof(Transform);
-		transformVector.push_back(reinterpret_cast<Transform*>(&(*transformDataVector)[index]));
-	}
-
-
-
-	StarTree(transformVector);
 };
 void GraphScene::Update(Scene* scene)
 {
@@ -61,13 +51,27 @@ void GraphScene::LateUpdate(Scene* scene)
 void GraphScene::Render(Shader& shader,Scene* scene)
 {
 
+		if (ImGui::Begin("GraphSceneUpdate"))
+		{
+			ImGui::Text("Time for update  = %f  microseconds", m_timeForGraphUpdate);
+
+			if (!App::IsMonoThread)
+			{
+				ImGui::Checkbox(" Is dynamic thread ", &GraphScene::IsDynamic);
+			}
+			ImGui::End();
+		}
+
+	
+
+
 };
 
 
 
 void GraphScene::OnResizeData(uint32_t ComponentTypeID,std::vector<uint8_t>* data)
 {
-	if(ComponentTypeID == Transform::ComponentTypeID)
+	if(ComponentTypeID == Transform::componentTypeID)
 	{
 		UpdateAllTransformPointers(data);
 	}
@@ -83,17 +87,17 @@ void GraphScene::BeChildOf(Transform* Parent, Transform* Child)
 	if (Parent == Child)
 		return;
 
-	Child->Parent = Parent;
-	Child->ParentId = Parent->entityID;
+	Child->parent = Parent;
+	Child->parentID = Parent->entityID;
 	Parent->childs.push_back({ Child->entityID,Child });
 }
 
 void GraphScene::NoParent(Transform* transform)
 {
-	if (!transform->Parent)
+	if (!transform->parent)
 		return;
 
-	for (auto it = transform->Parent->childs.begin(); it != transform->Parent->childs.begin(); it++)
+	for (auto it = transform->parent->childs.begin(); it != transform->parent->childs.begin(); it++)
 	{
 		Transform* itera = it->second;
 		if(itera == transform)
@@ -130,103 +134,200 @@ void GraphScene::UnChild(Transform* Parent, Transform* Child)
 
 void GraphScene::UpdateTransform(Transform* transform,uint32_t treevalue)
 {
-	transform->Local = ToMatrix(transform);
+	transform->local = ToMatrix(transform);
 
 	
 	if(treevalue != 0 )
 	{
-		transform->World = transform->Parent->World * transform->Local;
+		transform->world = transform->parent->world * transform->local;
 		return;
 	}
 
-	transform->World = transform->Local;
+	transform->world = transform->local;
 }
 
 
-
-
-void GraphScene::StarTree(std::vector<Transform*>& transformVector)
+void ThreadingCountParent(Transform* transform,uint32_t index,uint32_t* max, std::vector<std::pair<Transform*, uint32_t>>& _treeNod)
 {
-	// Update Local Matrix
+	uint32_t CurrentTransformLinkValue = GraphScene::CountParentLink(transform);
 
 
-	uint32_t treeIndex = 0;
-	std::vector<std::pair<Transform*, uint32_t>> treeNode;
-	uint32_t getMaxIteration = 0;
 
-	for (size_t i = 0; i < transformVector.size(); i++)
+	if (CurrentTransformLinkValue > *max)
 	{
-		uint32_t CurrentTransformLinkValue = CountParentLink(transformVector[i]);
 
-		if (CurrentTransformLinkValue > getMaxIteration)
-			getMaxIteration = CurrentTransformLinkValue;
-
-		treeNode.push_back({ transformVector[i],CurrentTransformLinkValue });
+		*max = CurrentTransformLinkValue;
 	}
 
-	// Push Mulihtrading here
-	 /*std::thread* thread = new std::thread([this, treeNode, i, k]()
-		{
-		});
-	Transformthread.push_back(thread);*/
+	_treeNod.at(index) = { transform,CurrentTransformLinkValue };
+}
+
+void GraphScene::StarTree(std::vector<Transform>* transformVector)
+{
+	if (transformVector->empty())
+		return;
 
 
-	size_t k = 0;
-	do
+	UpdateLocalMatrix(transformVector);
+
+
+	if (App::IsMonoThread)
 	{
-
-
-		//std::vector<std::thread*> Transformthread;
-
-		for (size_t i = 0; i < treeNode.size(); i++)
+		for (size_t i = 0; i < transformVector->size(); i++)
 		{
-			
-			
-				if (treeNode[i].second == k)
-				{
-					UpdateTransform(treeNode[i].first, treeNode[i].second);
-				}
+			UpdateWorld(&transformVector->at(i));
+		}
+		return;
+	}
+	
+	GraphScene::IsDynamic ? UpdateVector(transformVector) : UpdateArray(transformVector);
 
-			
-			
+}
+
+
+
+void GraphScene::UpdateArray(std::vector<Transform>* transformVector)
+{
+	for (size_t i = 0; i < m_threadPool.GetSize(); i++)
+	{
+		if (transformVector->size() <= m_threadPool.GetSize())
+		{
+			if (i > transformVector->size())
+				break;
+
+			m_threadPool[i] = std::thread(&GraphScene::ThreadUpdateTranform, transformVector, i, i);
+			continue;
 		}
 
-		/*
-		for (std::thread* thread : Transformthread)
+
+
+		int offset = (transformVector->size() / m_threadPool.GetSize());
+		int startIndex = i * offset;
+		int endIndex = startIndex + offset;
+		float fOffset = ((float)transformVector->size() / (float)m_threadPool.GetSize());
+
+		if (fOffset > offset)
 		{
-			thread->join();
+			if (i == m_threadPool.GetSize() - 1)
+			{
+				int lastOffset = transformVector->size() - endIndex;
+				endIndex += lastOffset;
+			}
+
 		}
 
-		Transformthread.clear();
 
-		*/
-		k++;
-	} while (k < getMaxIteration + 1);
+
+		m_threadPool[i] = std::thread(&GraphScene::ThreadUpdateTranform, transformVector, startIndex, endIndex);
+	}
+
+	m_threadPool.JoinIfJoinable();
+}
+
+void GraphScene::UpdateVector(std::vector<Transform>* transformVector)
+{
+	m_threadPoolDynamic.Resize(THREADPOOLSIZE);
+
+	for (size_t i = 0; i < THREADPOOLSIZE; i++)
+	{
+		if (transformVector->size() <= m_threadPoolDynamic.GetSize())
+		{
+			if (i > transformVector->size())
+				break;
+
+			m_threadPoolDynamic[i] = std::thread(&GraphScene::ThreadUpdateTranform, transformVector, i, i);
+			continue;
+		}
+
+
+
+		int offset = (transformVector->size() / m_threadPoolDynamic.GetSize());
+		int startIndex = i * offset;
+		int endIndex = startIndex + offset;
+		float fOffset = ((float)transformVector->size() / (float)m_threadPoolDynamic.GetSize());
+
+		if (fOffset > offset)
+		{
+			if (i == m_threadPoolDynamic.GetSize() - 1)
+			{
+				int lastOffset = transformVector->size() - endIndex;
+
+				m_threadPoolDynamic.Resize(m_threadPoolDynamic.GetSize() + 1);
+
+				m_threadPoolDynamic[i + 1] = std::thread(&GraphScene::ThreadUpdateTranform, transformVector, endIndex, endIndex + lastOffset);
+			}
+
+		}
+
+
+
+		m_threadPoolDynamic[i] = std::thread(&GraphScene::ThreadUpdateTranform, transformVector, startIndex, endIndex);
+	}
+
+	m_threadPoolDynamic.JoinIfJoinable();
+	m_threadPoolDynamic.Clear();
+}
+
+
+
+
+
+
+void GraphScene::UpdateLocalMatrix(std::vector<Transform>* transformVector)
+{
+	for (size_t i = 0; i < transformVector->size(); i++)
+	{
+		transformVector->at(i).local = ToMatrix(&transformVector->at(i));
+	}
+}
+
+void GraphScene::UpdateWorld(Transform* transform)
+{
+	if(!GraphScene::HasParent(transform))
+	{
+		transform->world = transform->local;
+		return;
+	}
+
+	transform->world = ReturnParentsMatrix(transform->parent) * transform->local;
+
+}
+
+void GraphScene::ThreadUpdateTranform(std::vector<Transform>* transformVector,uint32_t startIndex, uint32_t endIndex)
+{
+	for (uint32_t j = startIndex; j < endIndex; j++)
+	{
+		UpdateWorld(&transformVector->at(j));
+	}
+}
+
+Matrix4X4 GraphScene::ReturnParentsMatrix(const Transform* parent)
+{
+	if(!GraphScene::HasParent(parent))
+	{
+		return parent->local;
+	}
+	
+	return parent->local * ReturnParentsMatrix(parent);
 	
 
-
-
-	/*
-	for (size_t i = 0; i < treeNode.size(); i++)
-	{
-		std::cout << treeNode[i].first->World << std::endl;
-	}*/
 }
+
+
 
 Matrix4X4 GraphScene::ToMatrix(Transform* transform)
 {
-	transform->rotation = Quaternion::EulerAngle(transform->rotationValue * Math::Deg2Rad);
-	return Matrix4X4::TRS(transform->pos, transform->GetRotation(), transform->scaling);
+	transform->m_rotation = Quaternion::EulerAngle(transform->rotationValue * Math::Deg2Rad);
+	return Matrix4X4::TRS(transform->pos, transform->m_rotation, transform->scaling);
 }
 
 // Get Recursif Value
-
 void GraphScene::GetParentLink(const Transform* transform, uint32_t& currentValue)
 {
-	if (transform->Parent != nullptr)
+	if (transform->parent != nullptr)
 	{
 		currentValue++;
-		GetParentLink(transform->Parent, currentValue);
+		GetParentLink(transform->parent, currentValue);
 	}
 
 }
@@ -256,9 +357,9 @@ void GraphScene::UpdateAllTransformPointers(std::vector<uint8_t>* data)
 		for (size_t k = 0; k < dataTransform->size(); k++)
 		{
 			const Transform* LookForParent = &(*dataTransform)[k];
-			if(UpdatedTransform->ParentId == LookForParent->entityID)
+			if(UpdatedTransform->parentID == LookForParent->entityID)
 			{
-				UpdatedTransform->Parent = LookForParent;
+				UpdatedTransform->parent = LookForParent;
 				break;
 			}
 
@@ -289,7 +390,7 @@ void GraphScene::UpdateAllTransformPointers(std::vector<uint8_t>* data)
 
 bool GraphScene::HasParent(const Transform* transform)
 {
-	if (transform->Parent == nullptr && transform->ParentId == EntityNULL)
+	if (transform->parent == nullptr && transform->parentID == EntityNULL)
 		return false;
 
 	return true;
@@ -306,7 +407,7 @@ bool GraphScene::HasChild(const Transform* transform)
 
 void GraphScene::UnbindParent(Transform* transform)
 {
-	transform->ParentId = EntityNULL;
-	transform->Parent = nullptr;
+	transform->parentID = EntityNULL;
+	transform->parent = nullptr;
 }
 

@@ -4,7 +4,7 @@
 #include "Ressources/RessourcesManager/RessourcesManager.h"
 #include "App/App.h"
 #include "UI/InspectorSelectable.h"
-#include "Ressources/Scene/Scene.h"
+#include "ECS/Scene/Scene.h"
 #include "Core/DataStructure/Project.hpp" 
 #include<Core/Debug/Imgui/imgui.h>
 #include<Core/Debug/Imgui/imgui_impl_glfw.h>
@@ -119,10 +119,8 @@ std::string ContentBrowser::GetPreviousPath(const fs::path& currentPath)
 }
 
 
-unsigned int quadVAO = 0;
-unsigned int quadVBO;
 
-void ContentBrowser::UpdateLayer(Project& currentProject)
+void ContentBrowser::UpdateLayer(Project& currentProject, std::vector<InputEvent*>& inputsEvents)
 {
 	ImGui::Begin("ContentBrowser", NULL);
 	Renderer(currentProject);
@@ -132,24 +130,21 @@ void ContentBrowser::UpdateLayer(Project& currentProject)
 	// to do move this
 	if (ImGui::Begin("Render"))
 	{
-		ImGuiWindow* renderer = ImGui::GetCurrentWindow();
-		float width = ImGui::GetContentRegionAvail().x;
-		float height = ImGui::GetContentRegionAvail().y;
+	
 
 
-		
-		ImGui::Image((ImTextureID)currentProject.OpenGlRenderToImgui->framebufferTexture, ImGui::GetContentRegionAvail(),
+		ImGui::Image((ImTextureID)Renderer::OpenGlRenderToImgui->framebufferTexture, ImGui::GetContentRegionAvail(),
 			ImVec2(0, 1),
 			ImVec2(1, 0));
-			
 
-		if (!currentProject.DockingSystem.entitySelected)
+
+		if (!currentProject.dockingSystem.EnitySelectedID == EntityNULL)
 		{
 			ImGui::End();
 			return;
 		}
 
-		/*
+	
 
 		ImGuizmo::SetOrthographic(false);
 		ImGuizmo::SetDrawlist();
@@ -158,22 +153,41 @@ void ContentBrowser::UpdateLayer(Project& currentProject)
 		float windowHeight = (float)ImGui::GetWindowHeight();
 		ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidht, windowHeight);
 
+		static ImGuizmo::OPERATION mCurrentGizmoOperation(ImGuizmo::ROTATE);
+		static ImGuizmo::MODE mCurrentGizmoMode(ImGuizmo::WORLD);
+
+		if (ImGui::IsKeyPressed(ImGuiKey_E))
+			mCurrentGizmoOperation = ImGuizmo::TRANSLATE;
+		if (ImGui::IsKeyPressed(ImGuiKey_R))
+			mCurrentGizmoOperation = ImGuizmo::ROTATE;
+		if (ImGui::IsKeyPressed(ImGuiKey_Z)) // r Key
+			mCurrentGizmoOperation = ImGuizmo::SCALE;
+	
+
 		
+
+
 		//Camera
 		Camera& cam = *Camera::cam;
-		const Matrix4X4& projection = cam.GetProjectionMatrix(); 
-		Matrix4X4 camerview = cam.GetTransform().Invert();
+		const Matrix4X4& projection = cam.GetProjectionMatrix();
+		Matrix4X4 camerview = cam.GetLookMatrix();
 
-		Transform* transform = currentProject.currentScene->GetComponent<Transform>(currentProject.DockingSystem.entitySelected);
+		uint32_t entityId = currentProject.dockingSystem.EnitySelectedID;
+		Transform* transform = currentProject.currentScene->GetComponent<Transform>(currentProject.currentScene->GetEntities(entityId));
+	
 
-		ImGuizmo::Manipulate(camerview.GetPtr(), projection.GetPtr(), ImGuizmo::OPERATION::TRANSLATE, ImGuizmo::LOCAL, transform->Local.SetPtr());
+		ImGuizmo::Manipulate(camerview.GetPtr(), projection.GetPtr(), mCurrentGizmoOperation, ImGuizmo::LOCAL, transform->world.SetPtr());
+
+	
 		
-		*/
+		
+
+
 		ImGui::End();
 
+		
+
 	}
-	
-	
 }
 
 ContentBrowser::ContentBrowser()
@@ -192,4 +206,8 @@ ContentBrowser::~ContentBrowser()
 	delete PlayIcon;
 	delete Pause;
 
+}
+
+void ContentBrowser::ListenToInput(Project& currentProject,std::vector<InputEvent*>& inputEvent)
+{
 }

@@ -1,12 +1,15 @@
 #include "Ui/Hierarchy.hpp"
-#include "Ressources/Scene/Scene.h"
+#include "ECS/Scene/Scene.h"
 #include "LowRenderer/Cam/Camera.h"
 #include "App/App.h"
 #include "Physics/Transform/Transform.hpp"
 #include "Core/DataStructure/Project.hpp" 
 
-void Hierarchy::UpdateLayer(Project& currentProject)
+void Hierarchy::UpdateLayer(Project& currentProject, std::vector<InputEvent*>& inputEvent)
 {
+
+	
+
 	static bool open = true;
 
 	if (!currentProject.currentScene)
@@ -15,6 +18,13 @@ void Hierarchy::UpdateLayer(Project& currentProject)
 
 	if (ImGui::Begin("GraphScene", &open))
 	{
+		if (ImGui::IsWindowHovered())
+		{
+			ListenToInput(currentProject, inputEvent);
+		}
+
+		
+
 
 		std::vector<uint8_t>* transformDataVector = currentProject.currentScene->GetComponentDataArray<Transform>();
 
@@ -24,7 +34,7 @@ void Hierarchy::UpdateLayer(Project& currentProject)
 			size_t offset = i * sizeof(Transform);
 			Transform* transfrom = reinterpret_cast<Transform*>(&(*transformDataVector)[offset]);
 
-			if (!transfrom->Parent)
+			if (!transfrom->parent)
 			{
 				Entity* entity = currentProject.currentScene->GetEntities(transfrom->entityID);
 				ImguiDrawChildren(entity, currentProject);
@@ -36,6 +46,8 @@ void Hierarchy::UpdateLayer(Project& currentProject)
 
 		ImGui::End();
 	}
+
+
 }
 
 
@@ -59,13 +71,12 @@ void Hierarchy::ImguiDrawChildren(Entity* entity, Project& currentProject)
 
 	ImGui::PushID("");
 
-	if (ImGui::TreeNodeEx(entity->Entityname.c_str(), flags))
+	if (ImGui::TreeNodeEx(entity->entityName.c_str(), flags))
 	{
 		
 		if (ImGui::IsItemClicked())
 		{
-			currentProject.DockingSystem.Insepctor = entity;
-			currentProject.DockingSystem.entitySelected = entity;
+			currentProject.dockingSystem.EnitySelectedID = entity->ID;
 		}
 
 
@@ -83,6 +94,25 @@ void Hierarchy::ImguiDrawChildren(Entity* entity, Project& currentProject)
 
 }
 
+void Hierarchy::HierarchyMenue(Project& currentProject)
+{
+	
+
+	ImGui::SetNextWindowPos(ImGui::GetMousePos(), 0, ImVec2(0, 0));
+
+
+	if (ImGui::BeginChild("HierarchyMenu"))
+	{
+		if (ImGui::MenuItem("Add Entity"))
+		{
+			currentProject.currentScene->CreateEntity();
+		}
+
+		ImGui::EndChild();
+	}
+
+}
+
 
 Hierarchy::Hierarchy()
 {
@@ -91,4 +121,26 @@ Hierarchy::Hierarchy()
 
 Hierarchy::~Hierarchy()
 {
+}
+
+void Hierarchy::ListenToInput(Project& currentProject, std::vector<InputEvent*>& inputEvent)
+{
+	
+
+	for (size_t i = 0; i < inputEvent.size(); i++)
+	{
+		switch(inputEvent[i]->eventType)
+		{
+		case MOUSELEFTCLICK:
+			//hierackyMenue = true;
+			break;
+		default:
+			break;
+
+		}
+	}
+
+	//if(hierackyMenue)
+	//HierarchyMenue(currentProject);
+
 }

@@ -111,8 +111,8 @@ public:
 	static Matrix3X3 ToRotationMatrix3X3(const Quaternion& Q1);
 	
 
-	static Matrix4X4 ToRotationMatrix4X4(const Quaternion& Q1);
-	
+	 static Matrix4X4 ToRotationMatrix4X4(const Quaternion& Q1);	
+
 	
 
 	static Quaternion EulerAngle(const Vector3& eulerAngle);

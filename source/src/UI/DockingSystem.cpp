@@ -5,15 +5,24 @@
 
 #include "UI/DockingSystem.hpp"
 #include "Core/DataStructure/Project.hpp"
-#include "Ressources/Scene/Scene.h"
+#include "ECS/Scene/Scene.h"
 #include "LowRenderer/Cam/Camera.h"
 #include "UI/ContentBrowser.h"
 #include "UI/Inspector.hpp"
 #include "UI/Log.hpp"
 #include "UI/Hierarchy.hpp"
 
-void DockingSystem::UpdateDockSpace(Project& CurrentProject)
+void DockingSystem::UpdateDockSpace(Project& CurrentProject, std::vector<InputEvent*>& inputsEvents)
 {
+	
+	
+
+	
+
+
+	
+
+	
 	// Create docking layout
 	static bool dockspaceOpen = true;
 	static bool opt_fullscreen_persistant = true;
@@ -41,8 +50,8 @@ void DockingSystem::UpdateDockSpace(Project& CurrentProject)
 
 	ImGuiID dockspaceID = ImGui::GetID("DockSpace");
 	ImGui::DockSpace(dockspaceID, ImVec2(0.0f, 0.0f), dockspaceFlags);
-
-	/*
+	
+	
 	// Create windows
 	if (ImGui::BeginMenuBar())
 	{
@@ -54,11 +63,11 @@ void DockingSystem::UpdateDockSpace(Project& CurrentProject)
 		}
 		ImGui::EndMenuBar();
 	}
-	*/
+	
 
 	for (ImguiLayer* imguiLayer : ImguiLayers)
 	{
-		imguiLayer->UpdateLayer(CurrentProject);
+		imguiLayer->UpdateLayer(CurrentProject,inputsEvents);
 	}
 
 

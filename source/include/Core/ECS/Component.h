@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 #include "Entity.h"
-
+#include "Core/ISerialzable/ISerialzable.h"
 
 class Register;
 class Component;
@@ -16,27 +16,29 @@ typedef void(*ECSComponentFreeFunction)(Component* ptr);
 typedef std::string (*GetNameOfComponent)();
 
 
-class Component
+class Component : public ISerialzable
 {
 
 
 
 private:
 
-	static inline std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >* ComponentTypeInfos = new  std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >();
+	static inline std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >* m_componentTypeInfos = new std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >();
 
 public:
 	virtual ~Component() {}
 	virtual void ImguiWindowComponent();
 
-	bool IsEnable = true;
+	bool isEnable = true;
 	uint32_t entityID;
 	
-	
+	static inline const std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >* GetComponentTypeInfos() { return m_componentTypeInfos; }
+	static inline std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >* SetComponentTypeInfos() { return m_componentTypeInfos; }
+
 protected:
 	static uint32_t GetNbrOfComponent()
 	{
-		return Component::ComponentTypeInfos->size();
+		return Component::m_componentTypeInfos->size();
 	}
 
 	template<typename T>
@@ -45,8 +47,8 @@ protected:
 	{
 
 		// Which array all the data of all this type Componenet will be 
-		uint32_t DataArrayIndex = ComponentTypeInfos->size();
-		ComponentTypeInfos->push_back({ createfn,freefn,size, namefn() });
+		uint32_t DataArrayIndex = m_componentTypeInfos->size();
+		m_componentTypeInfos->push_back({ createfn,freefn,size, namefn() });
 
 		return DataArrayIndex;
 	}
@@ -55,26 +57,23 @@ protected:
 private:
 	static inline ECSComponentCreateFunction GetCreateFN(uint32_t ID)
 	{
-		return std::get<0>(ComponentTypeInfos->at(ID));
+		return std::get<0>(m_componentTypeInfos->at(ID));
 	}
 
 	static inline ECSComponentFreeFunction GetFreeFN(uint32_t ID)
 	{
-		return std::get<1>(ComponentTypeInfos->at(ID));
+		return std::get<1>(m_componentTypeInfos->at(ID));
 	}
 
 	static inline size_t GetSizeOfComponent(uint32_t ID)
 	{
-		return std::get<2>(ComponentTypeInfos->at(ID));
+		return std::get<2>(m_componentTypeInfos->at(ID));
 	}
 	static inline std::string GetComponentName(uint32_t ID)
 	{
-		return std::get<3>(ComponentTypeInfos->at(ID));
+		return std::get<3>(m_componentTypeInfos->at(ID));
 	}
 	friend Register;
-
-protected:
-
 
 };
 

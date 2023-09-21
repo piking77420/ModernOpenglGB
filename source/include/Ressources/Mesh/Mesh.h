@@ -19,7 +19,6 @@ struct MeshData
 	std::vector<Vector3> vertexNormal;
 	std::vector<Vector2> vertexUv;
 	std::vector<uint32_t> indexVector;
-	bool IsUi = false;
 };
 
 
@@ -36,15 +35,13 @@ public:
 
 
 	Mesh(const std::vector<Vertex>& vertex, const std::vector<uint32_t>& indexVector, const std::vector<Texture>& Texture) {};
-	~Mesh();
+	 virtual ~Mesh();
 	Mesh() {};
 
 	GLuint VAO;
 	GLuint VBO;
-	GLuint EBO;
 	std::vector<Vertex> vertexVector;
 	std::vector<uint32_t> indexVector;
-	std::vector<Texture> textures;
 	
 
 

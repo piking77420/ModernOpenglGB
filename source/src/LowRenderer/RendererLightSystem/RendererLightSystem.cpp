@@ -6,9 +6,10 @@
 #include "LowRenderer/Light/DirectionalLight/DirectionalLight.hpp"
 #include "LowRenderer/Light/SpothLight/SpothLight.hpp"
 #include "LowRenderer/Light/PointLight/PointLight.hpp"
-#include "Ressources/Scene/Scene.h"
+#include "ECS/Scene/Scene.h"
 #include "Physics/Transform/Transform.hpp"
 #include "Core/DataStructure/Project.hpp"
+
 
 
 void RendererLightSystem::OnDrawGizmo(Scene* scene)
@@ -20,6 +21,10 @@ void RendererLightSystem::OnDrawGizmo(Scene* scene)
 
 void RendererLightSystem::Init(Scene* scene)
 {
+
+
+
+	  
 };
 
 void RendererLightSystem::Awake(Scene* scene)
@@ -93,7 +98,7 @@ void RendererLightSystem::UpdateDirectionnalLights(std::vector<uint8_t>* data, S
 	{
 		size_t offset = i * sizeof(DirectionalLight);
 		DirectionalLight* directionalLight = reinterpret_cast<DirectionalLight*>(&(*data)[offset]);
-		if (!directionalLight->IsEnable)
+		if (!directionalLight->isEnable)
 			continue;
 
 		RenderDirectionalLight(directionalLight, scene);
@@ -112,7 +117,7 @@ void RendererLightSystem::UpdatePointLights(std::vector<uint8_t>* data, Scene* s
 		Entity* entity = scene->GetEntities(pointlight->entityID);
 		Transform* transformOfLight = scene->GetComponent<Transform>(entity);
 
-		currentShader->SetVector3("pointLights[" + std::to_string(i) + "].position", transformOfLight->World.GetPos().GetPtr());
+		currentShader->SetVector3("pointLights[" + std::to_string(i) + "].position", transformOfLight->world.GetPos().GetPtr());
 		currentShader->SetVector3("pointLights[" + std::to_string(i) + "].color", pointlight->lightData.color.GetPtr());
 		currentShader->SetFloat("pointLights[" + std::to_string(i) + "].constant", pointlight->constant);
 		currentShader->SetFloat("pointLights[" + std::to_string(i) + "].quadratic", pointlight->quadratic);
@@ -140,7 +145,7 @@ void RendererLightSystem::UpdateSpothLights(std::vector<uint8_t>* data, Scene* s
 		Entity* entity = scene->GetEntities(spothlight->entityID);
 		Transform* transformOfLight = scene->GetComponent<Transform>(entity);
 
-		currentShader->SetVector3("spotLights[" + std::to_string(i) + "].position", transformOfLight->World.GetPos().GetPtr());
+		currentShader->SetVector3("spotLights[" + std::to_string(i) + "].position", transformOfLight->world.GetPos().GetPtr());
 		currentShader->SetVector3("spotLights[" + std::to_string(i) + "].direction", spothlight->direction.GetPtr());
 		currentShader->SetVector3("spotLights[" + std::to_string(i) + "].color", spothlight->lightData.color.GetPtr());
 		currentShader->SetFloat("spotLights[" + std::to_string(i) + "].cutOff", spothlight->cutOff);
@@ -167,7 +172,7 @@ void RendererLightSystem::RenderDirectionalLight(const DirectionalLight* dirLigh
 	
 	currentShader->SetVector3("dirLight.LightDirection", LightDirection.GetPtr());
 
-	currentShader->SetVector3("dirLight.lightPos", transformOfLight->World.GetPos().GetPtr());
+	currentShader->SetVector3("dirLight.lightPos", transformOfLight->world.GetPos().GetPtr());
 	currentShader->SetMatrix("lightSpaceMatrix", dirLight->lightData.LightSpaceMatrix.GetPtr());
 
 

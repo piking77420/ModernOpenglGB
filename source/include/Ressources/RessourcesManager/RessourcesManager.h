@@ -3,38 +3,53 @@
 #include <Core/Debug/LogClass.h>
 #include <Core/Debug/AssertClass.h>
 #include "Ressources/Mesh/Mesh.h"
-#include <thread>
-
+#include <Core/CoreEngine.h>
 #include<filesystem>
 #include<unordered_map>
 #include<map>
-#include<mutex>
 
-#include<string>
 
 #include<Core/Debug/Imgui/imgui.h>
 #include<Core/Debug/Imgui/imgui_impl_glfw.h>
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>
-
+#include "Core/ThreadPatern/TheardCP.h"
 
 class Camera;
 
 
+#define PRODUCER 1
+#define CONSUMERS 5
 
-
-
-
-class RessourcesManager
+class ResourcesManager
 {
 public:
 
-	// Return map for iterator  to camera set uniform
-	std::map<std::string, IResource*>& GetRessources();
+	ResourcesManager()
+	{
+	}
+	~ResourcesManager()
+	{
+		// delete all ressources
+		for (auto it = m_mainResourcesMap.begin(); it != m_mainResourcesMap.end(); it++)
+		{
+			delete it->second;
+		}
+		m_mainResourcesMap.clear();
+	}
+
+	void SetCameraInfoForShader(Camera* cam);
+	
+	// function to load all asset in projectFolder
 	void LoadAllAssets(const std::string& projectFolder);
+
+	void DeleteAllasset();
+	
 	template<class T>
 	void Remove(const std::string& name);
+	
 	template<class T>
 	void PushBackElement(std::string name, T* newElement);
+	
 	template<class T>
 	T* GetElement(const std::string& name);
 
@@ -42,74 +57,124 @@ public:
 	const T* GetElement(const std::string& name) const ;
 
 	template<class T>
+	void GetResource(std::future<T*>& futureResource,std::string name)
+	{
+		std::promise<T*> promise;
+		futureResource = promise.get_future();
+
+		// Create a thread to handle promise
+		auto l = [&](std::string _name) {
+			try
+			{
+				T* ressource = GetElement<T>(_name);
+				promise.set_value(ressource);
+
+				
+			}
+			catch (const std::exception& e)
+			{
+				promise.set_exception(std::current_exception());
+			}
+			};
+
+		std::async(std::launch::async,
+			l, name);
+
+		
+	}
+
+
+	template<class T>
+	void GetResource(std::future<const T*>& futureResource,std::string name)
+	{
+		std::promise<const T*> promise;
+		futureResource = promise.get_future();
+
+		// Create a thread to handle promise
+		auto l = [&](std::string _name) {
+			try
+			{
+				const T* ressource = GetElement<T>(_name);
+				promise.set_value(ressource);
+
+
+			}
+			catch (const std::exception& e)
+			{
+				promise.set_exception(std::current_exception());
+			}
+			};
+
+		std::async(std::launch::async,
+			l, name);
+	}
+
+
+	template<class T>
 	void Create(const fs::path& FilePath);
-	template<class T>
-	bool IsRessourcesIs(IResource* ressources) const ;
-	template<class T>
-	T* TryIsTypeOf(IResource* ressources) const;
 	
+	std::mutex resourcesMutex;	
+
+	static bool IsTexture(std::string path_string);
+	static bool IsModel(std::string path_string);
+	static bool IsShader(std::string path_string);
+
+	static bool IsThisValidForThisFormat(std::string path, std::string format);
 
 
-	RessourcesManager();
-	~RessourcesManager();
+	static constexpr std::string GetVertexShaderFormat() { return ResourcesManager::vertexShaderFormat; }
+	static constexpr std::string GetFragmentShaderFormat() { return ResourcesManager::fragmentShaderFormat; }
+	static constexpr std::string GetGeometryShaderFormat() { return ResourcesManager::geometryShaderFormat; }
+
+
 private:
-	std::mutex fileMutex;
-	std::map<std::string, IResource*> m_MainResourcesMap;
-	void LoadTexture(std::filesystem::path path);
-	void LookFiles(std::filesystem::path _path);
-	void LoadModel(std::filesystem::path path);
-	void LoadShader(std::filesystem::path path);
-	bool isThisValidForThisFormat(std::string path, std::string format);
-	fs::path CreatMetaDataFile(const fs::path& FilePath, const std::string& FileName);
 
+
+	TheardCP<PRODUCER ,CONSUMERS, std::filesystem::path> m_consumerProd;
+	std::map<std::string, IResource*> m_mainResourcesMap;
+
+	// Look for 
+	void LoadTexture(std::filesystem::path path);
+	void LoadModel(std::filesystem::path path);	
+	void LoadShader(std::filesystem::path path);
+
+	// Look in the project folder rescursively to push resources path
+	void LookFiles(std::filesystem::path _path);
+
+	// On Load Func //
+
+	void ProduceurFunc(const std::string& projectFolder);
+	void ConsumersFunc(TheardCP<PRODUCER, CONSUMERS, std::filesystem::path>& production);
+	template<class T>
+	void CreateOnLoad(std::filesystem::path path);
+
+	/////////////////
 
 	// Texture file accetptes jpg png 
-	const std::string png = ".png";
-	const std::string jpg = ".jpg";
+	static inline const std::string png = ".png";
+	static inline const std::string jpg = ".jpg";
 	// Model file supported obj
-	const std::string obj = ".obj";
+	static inline const std::string obj = ".obj";
 	// Shader Files format
-	const std::string vertexShaderFormat = ".vert";
-	const std::string fragmentShaderFormat = ".frag";
-	const std::string geometryShaderFormat = ".geom";
+	static inline const std::string vertexShaderFormat = ".vert";
+	static inline const std::string fragmentShaderFormat = ".frag";
+	static inline const std::string geometryShaderFormat = ".geom";
 	// Scene Format
-	const std::string sceneFormat = ".scene";
+	static inline const std::string sceneFormat = ".scene";
 	// Assets Folder
-	const std::string assetsFolder = "assets";
-	// cubeMaps folder to ignore not supported TO DO	
-	const std::string cubeMapsFolder = "cube_maps";
-	std::vector<std::thread*> theards;
-
+	static inline const std::string assetsFolder = "assets";
 };
 
 
 
+
 template<class T>
-inline void RessourcesManager::PushBackElement(std::string name, T* newElement)
-{
-	IResource* test = dynamic_cast<IResource*>(newElement);
+inline T* ResourcesManager::GetElement(const std::string& name)
+	{
 	
-	Debug::Assert->Assertion(test);
+	auto wanted = (m_mainResourcesMap.find(name));
 
-
-	if (m_MainResourcesMap.contains(name))
-	{
-		auto currentRessources = m_MainResourcesMap.find(name);
-		delete currentRessources->second;
-		currentRessources->second = newElement;
-		return;
-
-	}
-
-	m_MainResourcesMap.insert({ name, newElement });
-}
-
-template<class T>
-inline T* RessourcesManager::GetElement(const std::string& name)
-	{
-	auto wanted = (m_MainResourcesMap.find(name));
-
-	if (wanted != m_MainResourcesMap.end())
+	if (wanted != m_mainResourcesMap.end())
 	{
 		return dynamic_cast<T*>(wanted->second);
 	}
@@ -123,11 +188,11 @@ inline T* RessourcesManager::GetElement(const std::string& name)
 
 
 template<class T>
-inline const T* RessourcesManager::GetElement(const std::string& name) const
+inline const T* ResourcesManager::GetElement(const std::string& name) const
 {
-	auto wanted = (m_MainResourcesMap.find(name));
+	auto wanted = (m_mainResourcesMap.find(name));
 
-	if (wanted != m_MainResourcesMap.end())
+	if (wanted != m_mainResourcesMap.end())
 	{
 		return dynamic_cast<const T*>(wanted->second);
 	}
@@ -139,75 +204,70 @@ inline const T* RessourcesManager::GetElement(const std::string& name) const
 }
 
 template<class T>
-inline void RessourcesManager::Create(const fs::path& FilePath)
+inline void ResourcesManager::Create(const fs::path& FilePath)
 {
-
-			
-
-			T* newRessources = new T(FilePath);
-			IResource* test = dynamic_cast<IResource*>(newRessources);
-
-				if (!test)
-					return;
+	std::string toString = FilePath.generic_string();
+	T* newResources = new T(FilePath);
 
 
-			std::string Correctname = FilePath.filename().generic_string();
-			// test->PathtoMetaDataFile = CreatMetaDataFile(FilePath, Correctname);
-
-			if (m_MainResourcesMap.contains(Correctname))
-			{
-				auto currentRessources = m_MainResourcesMap.find(Correctname);
-				delete currentRessources->second;
-				currentRessources->second = newRessources;
-				return ;
-
-			}
-
-
-			m_MainResourcesMap.insert({ Correctname,newRessources });
-			auto returned = m_MainResourcesMap.find(Correctname);
-
-}
-
-template<class T>
-inline bool RessourcesManager::IsRessourcesIs(IResource* ressources) const
-{
-	T* ptrTest = dynamic_cast<T*>(ressources);
-
-	if (!ptrTest)
-		return false;
-
-	return true;
-}
-
-template<class T>
-inline T* RessourcesManager::TryIsTypeOf(IResource* ressources) const
-{
-
-	T* ptrTest = dynamic_cast<T*>(ressources);
-
-	if(ptrTest)
+	if (m_mainResourcesMap.contains(toString))
 	{
-		return ptrTest;
+		auto currentResources = m_mainResourcesMap.find(toString);
+		delete currentResources->second;
+		currentResources->second = newResources;
+		return;
+	}
+	m_mainResourcesMap.insert({ FilePath.filename().generic_string(),newResources});
+	newResources->Init();
+	
+}
+
+template<class T>
+inline void ResourcesManager::PushBackElement(std::string name, T* newElement)
+{
+	if (m_mainResourcesMap.contains(name))
+	{
+		auto currentResources = m_mainResourcesMap.find(name);
+		delete currentResources->second;
+		currentResources->second = newElement;
+		return;
 	}
 
+	m_mainResourcesMap.insert({ name, newElement });
+	newElement->Init();
+}
 
-	return nullptr;
+template<class T>
+inline void ResourcesManager::CreateOnLoad(std::filesystem::path path)
+{
+	std::string toString = path.filename().generic_string();
+	T* newResources = new T(path);
+
+	std::lock_guard<std::mutex> lock(resourcesMutex);
+
+	if (m_mainResourcesMap.contains(toString))
+	{
+		auto currentResources = m_mainResourcesMap.find(toString);
+		delete currentResources->second;
+		currentResources->second = newResources;
+		return;
+	}
+
+	m_mainResourcesMap.insert({ toString, newResources });
+	
 }
 
 
-
-
 template<class T>
-inline void RessourcesManager::Remove(const std::string& name)
+inline void ResourcesManager::Remove(const std::string& name)
 {
 
-	auto wanted = (m_MainResourcesMap.find(name));
+	auto wanted = (m_mainResourcesMap.find(name));
 
-	if (wanted != m_MainResourcesMap.end())
+	if (wanted != m_mainResourcesMap.end())
 	{
 		delete wanted->second;
-		m_MainResourcesMap.erase(wanted);
+		m_mainResourcesMap.erase(wanted);
 	}
 
 }

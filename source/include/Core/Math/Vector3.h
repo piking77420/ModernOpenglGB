@@ -1,3 +1,5 @@
+ 
+
 #pragma once
 #include "Vector2.h"
 #include "Mathf.h"
@@ -199,7 +201,7 @@ public:
 	/**
 	 * @brief Return Vector(0,0,0)
 	 */
-	constexpr inline static const Vector3 Zero() noexcept
+	consteval inline static const Vector3 Zero() noexcept
 	{
 		return Vector3(0, 0, 0);
 	}
@@ -207,7 +209,7 @@ public:
 	/**
 	 * @brief Return Vector(1,1,1)
 	 */
-	constexpr inline static const Vector3 One() noexcept
+	consteval inline static const Vector3 One() noexcept
 	{
 		return Vector3(1, 1, 1);
 	}
@@ -215,7 +217,7 @@ public:
 	/**
 	 * @brief Return Vector(1,0,0)
 	 */
-	constexpr inline static const Vector3 Right() noexcept
+	consteval inline static const Vector3 Right() noexcept
 	{
 		return Vector3(1.f, 0.f, 0.f);
 	}
@@ -223,7 +225,7 @@ public:
 	/**
 	 * @brief Return Vector(-1,0,0)
 	 */
-	constexpr inline static const Vector3 Left() noexcept
+	consteval inline static const Vector3 Left() noexcept
 	{
 		return Vector3(-1.f, 0.f, 0.f);
 	}
@@ -231,7 +233,7 @@ public:
 	/**
 	 * @brief Return Vector(0,1,0)
 	 */
-	constexpr inline static const Vector3 Up() noexcept
+	consteval inline static const Vector3 Up() noexcept
 	{
 		return Vector3(0.f, 1.f, 0.f);
 	}
@@ -239,7 +241,7 @@ public:
 	/**
 	 * @brief Return Vector(0,-1,0)
 	 */
-	constexpr inline static const Vector3 Down() noexcept
+	consteval inline static const Vector3 Down() noexcept
 	{
 		return Vector3(0.f, -1.f, 0.f);
 	}
@@ -247,7 +249,7 @@ public:
 	/**
 	 * @brief Return Vector(0,0,1)
 	 */
-	constexpr inline static const Vector3 Forward() noexcept
+	consteval inline static const Vector3 Forward() noexcept
 	{
 		return Vector3(0.f, 0.f, 1.f);
 	}
@@ -255,7 +257,7 @@ public:
 	/**
 	 * @brief Return Vector(0,0,-1)
 	 */
-	constexpr inline static const Vector3 BackForward() noexcept
+	consteval inline static const Vector3 BackForward() noexcept
 	{
 		return Vector3(0.f, 0.f, -1.f);
 	}

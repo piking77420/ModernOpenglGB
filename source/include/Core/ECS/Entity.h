@@ -3,21 +3,23 @@
 #include <stdint.h>
 #include <string>
 #include "UI/InspectorSelectable.h"
+#include "Core/ISerialzable/ISerialzable.h"
 #define ComponentNULL 4294967295
 #define EntityNULL 4294967295
 
 
 class Scene;
 
-class Entity : public InspectorSelectable
+class Entity :  public ISerialzable
 {
 public:
 
 
-	void OnInspector() override;
+	static void OnInspector(uint32_t entityID, Scene* scene);
+	void OnSerialize(Scene* scene) const override;
+	void OnDeSerialize(Scene* scene) override;
 
-
-	std::string Entityname;
+	std::string entityName;
 
 	uint32_t& SetID()
 	{
@@ -36,10 +38,8 @@ public:
 	};
 
 	Scene* scene = nullptr;
-	std::vector< uint32_t> EnityComponents;
+	std::vector< uint32_t> entityComponents;
 	uint32_t ID = EntityNULL;
-
-private:
-
+	
 };
 

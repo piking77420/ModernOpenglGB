@@ -2,13 +2,21 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "Ressources/Scene/Scene.h"
+#include "ECS/Scene/Scene.h"
 #include "Ressources/RessourcesManager/RessourcesManager.h"
 #include "LowRenderer/MeshRenderer/MeshRenderer.h"
-#include "Ressources/Scene/Scene.h"
 #include "Physics/Transform/Transform.hpp"
 #include "LowRenderer/Cam/Camera.h"
 #include "Core/DataStructure/Project.hpp"
+
+	
+void Renderer::framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+
+
+	glViewport(0, 0, width, height);
+	OpenGlRenderToImgui->ResizeFrammeBuffer(width, height);
+}
 
 
 
@@ -26,7 +34,7 @@ void Renderer::RendereScene(Scene* scene,Shader* shader)
 
 		if(meshRenderer->stencil)
 		{
-			const Shader* stencilShader = scene->currentproject->ressourcesManager.GetElement<Shader>("StencilTest");
+			const Shader* stencilShader = scene->currentProject->resourcesManager.GetElement<Shader>("StencilTest");
 			RenderStencil(meshRenderer, *stencilShader, scene);
 
 		}
@@ -44,6 +52,7 @@ void Renderer::RendereScene(Scene* scene,Shader* shader)
 
 Renderer::Renderer()
 {
+
 }
 
 Renderer::~Renderer()
@@ -64,7 +73,7 @@ void Renderer::RenderMeshRender(const MeshRenderer* meshRender, Shader& shader, 
 
 	Entity* entity = scene->GetEntities(meshRender->entityID);
 	const Transform* transform = scene->GetComponent<Transform>(entity);
-	const Matrix4X4 model = transform->World;
+	const Matrix4X4 model = transform->world;
 	const Matrix4X4 MVP = Camera::cam->GetProjectionMatrix() * Camera::cam->GetLookMatrix() * model;
 	const Matrix4X4 NormalMatrix = Quaternion::ToRotationMatrix4X4(transform->GetRotation()).Invert().Transposate();
 

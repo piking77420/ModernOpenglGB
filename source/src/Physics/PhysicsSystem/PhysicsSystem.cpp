@@ -1,11 +1,12 @@
 #include "Physics/PhysicsSystem/PhysicsSystem.hpp"
-#include "Ressources/Scene/Scene.h"
+#include "ECS/Scene/Scene.h"
 #include "Physics/RigidBody/Rigidbody.h"
 #include "Physics/Transform/Transform.hpp"
 #include "Physics/Collider/SphereCollider.hpp"
 #include "Physics/Collider/BoxCollider.hpp"
 #include "EasyFunction.h"
 #include "Core/AppTime.h"
+
 void PhysicsSystem::AddForce(Rigidbody& rb, const Vector3& forces)
 {
 	rb.Force += forces;
@@ -59,13 +60,7 @@ void PhysicsSystem::FixedUpdate(Scene* scene)
 	// test Key forces 
 	std::vector<Rigidbody>* rigidBodys = reinterpret_cast<std::vector<Rigidbody>*>(scene->GetComponentDataArray<Rigidbody>());
 
-	if(ImGui::IsKeyPressed(ImGuiKey_E,false))
-	{
-		Rigidbody& rb = rigidBodys->at(0);
-		AddForce(rb, Vector3(0, 5, 0));
-
-	}
-
+	
 
 	ApplieGravity(scene,rigidBodys);
 	//CollisionRespond(scene, rigidBodys);
@@ -98,11 +93,11 @@ void PhysicsSystem::ApplieGravity(Scene* scene,std::vector<Rigidbody>* rigidBody
 	{
 		Rigidbody* rigidbody = &(*rigidBodys)[i];
 
-		if (rigidbody->IsKinematic || !rigidbody->IsEnable || !rigidbody->IsGravityApplie)
+		if (rigidbody->IsKinematic || !rigidbody->isEnable || !rigidbody->IsGravityApplie)
 			continue;
 
 			
-		PhysicsSystem::AddForce(*rigidbody, Gravity * rigidbody->mass);
+		PhysicsSystem::AddForce(*rigidbody, gravity * rigidbody->mass);
 	}
 
 }
@@ -140,7 +135,7 @@ void PhysicsSystem::CollisionRespond(Scene* scene, std::vector<Rigidbody>* rigid
 			else
 			{
 
-				Forceadded = (collptr->Normal) * (rb->mass * -Gravity);
+				Forceadded = (collptr->Normal) * (rb->mass * -gravity);
 			}
 			rb->Force += Forceadded;
 
@@ -178,7 +173,7 @@ void PhysicsSystem::ApplieForces(Scene* scene, std::vector<Rigidbody>* rigidBody
 		Collider* coll = GetCollider(scene, rb->entityID);
 
 
-		if (rb->IsKinematic || !rb->IsEnable)
+		if (rb->IsKinematic || !rb->isEnable)
 			continue;
 
 		constexpr float deltatime = AppTime::GetFixedDeltatime();

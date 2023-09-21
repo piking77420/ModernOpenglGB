@@ -149,12 +149,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\include\Core\Debug\AssertClass.h" />
+    <ClInclude Include="source\include\Core\Debug\Debug.h" />
+    <ClInclude Include="source\include\Core\Debug\Imgui\imconfig.h" />
+    <ClInclude Include="source\include\Core\Debug\Imgui\imgui.h" />
+    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_internal.h" />
+    <ClInclude Include="source\include\Core\Debug\Imgui\imstb_rectpack.h" />
+    <ClInclude Include="source\include\Core\Debug\Imgui\imstb_textedit.h" />
+    <ClInclude Include="source\include\Core\Debug\Imgui\imstb_truetype.h" />
+    <ClInclude Include="source\include\Core\Debug\LogClass.h" />
+    <ClInclude Include="source\include\Core\ECS\Scene\Scene.h" />
+    <ClInclude Include="source\include\Core\Input\InputEvent.h" />
+    <ClInclude Include="source\include\Core\Input\CoreInput.h" />
     <ClInclude Include="ProjectFolder\Project1\assets\Scipt\RumicsCube.h" />
+    <ClInclude Include="source\include\Core\CoreEngine.h" />
+    <ClInclude Include="source\include\Core\ISerialzable\ISerialzable.h" />
+    <ClInclude Include="source\include\Core\Math\EasyFunction.h" />
+    <ClInclude Include="source\include\Core\Math\ToolBoxMathHeaders.h" />
+    <ClInclude Include="source\include\External\glad\glad.h" />
     <ClInclude Include="source\include\Physics\Raycast\Raycast.h" />
     <ClInclude Include="source\include\Ressources\Model\Model.h" />
     <ClInclude Include="source\include\UI\Log.hpp" />
     <ClInclude Include="source\include\Physics\PhysicsSystem\PhysicsSystem.hpp" />
-    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_opengl3_loader.h" />
     <ClInclude Include="source\include\LowRenderer\Gizmo\Gizmo.hpp" />
     <ClInclude Include="source\include\Physics\Collider\Collider.hpp" />
     <ClInclude Include="source\include\Physics\Collider\BoxCollider.hpp" />
@@ -176,7 +195,6 @@
     <ClInclude Include="source\include\LowRenderer\MeshRenderer\MeshRenderer.h" />
     <ClInclude Include="source\include\Core\DataStructure\ComponentsBehaviours.h" />
     <ClInclude Include="source\include\Core\DataStructure\Project.hpp" />
-    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_glfw.h" />
     <ClInclude Include="source\include\Core\ECS\Component.h" />
     <ClInclude Include="source\include\Core\ECS\ECSComponent.h" />
     <ClInclude Include="source\include\Core\ECS\Entity.h" />
@@ -185,20 +203,10 @@
     <ClInclude Include="source\include\Physics\Transform\Transform.hpp" />
     <ClInclude Include="source\include\Ressources\Shader\ShaderSource\ShaderSource.hpp" />
     <ClInclude Include="source\include\Serializer\Serializer.h" />
-    <ClInclude Include="source\include\Core\Debug\Imgui\imconfig.h" />
-    <ClInclude Include="source\include\Core\Debug\Imgui\imgui.h" />
-    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_impl_opengl3.h" />
-    <ClInclude Include="source\include\Core\Debug\Imgui\imgui_internal.h" />
-    <ClInclude Include="source\include\Core\Debug\Imgui\imstb_rectpack.h" />
-    <ClInclude Include="source\include\Core\Debug\Imgui\imstb_textedit.h" />
-    <ClInclude Include="source\include\Core\Debug\Imgui\imstb_truetype.h" />
     <ClInclude Include="include\LowRenderer\Gizmo\Gizmo.h" />
     <ClInclude Include="source\include\Core\DataStructure\Component\Collider\Raycast.hpp" />
-    <ClInclude Include="source\include\Core\Debug\Debug.h" />
     <ClInclude Include="source\include\Physics\RigidBody\Rigidbody.h" />
     <ClInclude Include="source\include\Core\DataStructure\Component\Collider\PlaneCollider.h" />
-    <ClInclude Include="source\include\External\Std_Image\std_image.h" />
-    <ClInclude Include="source\include\Ressources\Scene\Scene.h" />
     <ClInclude Include="source\include\App\App.h" />
     <ClInclude Include="source\include\LowRenderer\FrameBuffer\MultiSamples\MultiSamples.h" />
     <ClInclude Include="resource.h" />
@@ -208,8 +216,6 @@
     <ClInclude Include="source\include\Core\DataStructure\Component\Collider\SphereCollider\SphereCollider.h" />
     <ClInclude Include="source\include\Core\DataStructure\Component\Component.h" />
     <ClInclude Include="source\include\Core\DataStructure\Entity\Entity.h" />
-    <ClInclude Include="source\include\Core\Debug\AssertClass.h" />
-    <ClInclude Include="source\include\Core\Debug\LogClass.h" />
     <ClInclude Include="source\include\Core\Math\Mathf.h" />
     <ClInclude Include="source\include\Core\Math\Matrix.h" />
     <ClInclude Include="source\include\Core\Math\Matrix2X2.h" />
@@ -219,10 +225,6 @@
     <ClInclude Include="source\include\Core\Math\Vector2.h" />
     <ClInclude Include="source\include\Core\Math\Vector3.h" />
     <ClInclude Include="source\include\Core\Math\Vector4.h" />
-    <ClInclude Include="source\include\External\glad\glad.h" />
-    <ClInclude Include="source\include\External\GLFW\glfw3.h" />
-    <ClInclude Include="source\include\External\GLFW\glfw3native.h" />
-    <ClInclude Include="source\include\External\KHR\khrplatform.h" />
     <ClInclude Include="source\include\glad\glad.h" />
     <ClInclude Include="source\include\GLFW\glfw3.h" />
     <ClInclude Include="source\include\GLFW\glfw3native.h" />
@@ -250,6 +252,9 @@
     <ClInclude Include="source\include\UI\TransformGuizmo.hpp" />
     <ClInclude Include="source\include\Physics\Collider\SphereCollider.hpp" />
     <ClInclude Include="source\include\Core\AppTime.h" />
+    <ClInclude Include="source\include\Core\ThreadPatern\TheardCP.h" />
+    <ClInclude Include="source\include\Core\ThreadPatern\ThreadPool.h" />
+    <ClInclude Include="source\include\Core\ThreadPatern\ThreadPoolDynamic.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -270,7 +275,10 @@
     <None Include="assets\Shader\SkyBoxShader\SkyBoxShader.vertex" />
     <None Include="assets\Shader\StencilTest\StencilTest.frag" />
     <None Include="assets\Shader\StencilTest\StencilTest.vertex" />
+    <None Include="assimp-vc143-mtd.dll" />
     <None Include="source\include\External\assimp\assimp-vc143-mt.dll" />
+    <None Include="source\src\External\lib\assimp-vc143-mtd.exp" />
+    <None Include="source\src\External\lib\yaml-cppd.pdb" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Log\LOG .txt" />
@@ -279,7 +287,11 @@
     <ResourceCompile Include="Modern_OpengGl_GB.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\src\Core\ECS\Scene\Scene.cpp" />
+    <ClCompile Include="source\src\Core\Input\InputEvent.cpp" />
+    <ClCompile Include="source\src\Core\Input\CoreInput.cpp" />
     <ClCompile Include="ProjectFolder\Project1\assets\Scipt\RumicsCube.cpp" />
+    <ClCompile Include="source\src\Core\ISerialzable\ISerialzable.cpp" />
     <ClCompile Include="source\src\Physics\Raycast\Raycast.cpp" />
     <ClCompile Include="source\src\Ressources\Model\Model.cpp" />
     <ClCompile Include="source\src\UI\Log.cpp" />
@@ -323,7 +335,6 @@
     <ClCompile Include="source\src\LowRenderer\FrameBuffer\DepthMap\Depthmap.cpp" />
     <ClCompile Include="source\src\Physics\Transform\Transform.cpp" />
     <ClCompile Include="source\src\External\Std_Image\std_image.cpp" />
-    <ClCompile Include="source\src\Ressources\Scene\Scene.cpp" />
     <ClCompile Include="source\src\LowRenderer\FrameBuffer\MultiSamples\MultiSamples.cpp" />
     <ClCompile Include="source\src\App\App.cpp" />
     <ClCompile Include="source\src\Core\Debug\AssertClass.cpp" />
@@ -360,9 +371,14 @@
     <ClCompile Include="source\src\UI\TransformGuizmo.cpp" />
     <ClCompile Include="source\src\Physics\Collider\SphereCollider.cpp" />
     <ClCompile Include="source\src\Core\AppTime.cpp" />
+    <ClCompile Include="source\src\Core\ThreadPatern\TheardCP.cpp" />
+    <ClCompile Include="source\src\Core\ThreadPatern\ThreadPool.cpp" />
+    <ClCompile Include="source\src\Core\ThreadPatern\ThreadPoolDynamic.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Library Include="source\src\External\lib\assimp-vc143-mtd.lib" />
     <Library Include="source\src\External\lib\glfw3.lib" />
+    <Library Include="source\src\External\lib\yaml-cppd.lib" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\cube_maps\skybox\SkySkybox\back.jpg" />
@@ -377,6 +393,12 @@
     <Image Include="assets\cube_maps\skybox\SpaceSkyBox\bkg1_left.png" />
     <Image Include="assets\cube_maps\skybox\SpaceSkyBox\bkg1_right.png" />
     <Image Include="assets\cube_maps\skybox\SpaceSkyBox\bkg1_top.png" />
+    <Image Include="ProjectFolder\Project1\assets\cube_maps\skybox\SkySkybox\back.jpg" />
+    <Image Include="ProjectFolder\Project1\assets\cube_maps\skybox\SkySkybox\bottom.jpg" />
+    <Image Include="ProjectFolder\Project1\assets\cube_maps\skybox\SkySkybox\front.jpg" />
+    <Image Include="ProjectFolder\Project1\assets\cube_maps\skybox\SkySkybox\left.jpg" />
+    <Image Include="ProjectFolder\Project1\assets\cube_maps\skybox\SkySkybox\right.jpg" />
+    <Image Include="ProjectFolder\Project1\assets\cube_maps\skybox\SkySkybox\top.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

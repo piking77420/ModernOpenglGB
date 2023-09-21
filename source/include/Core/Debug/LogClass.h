@@ -10,6 +10,7 @@
 #include <ctime>
 #include <windows.h>	
 #include <thread>
+#include <mutex>
 
 
 #define MAX_LOG_SIZE 10
@@ -48,6 +49,7 @@ enum class STATELOG
 namespace Debug
 {
 
+	static inline std::mutex consoleOutput;
 
 #define LOG(message, stateLog) \
         switch (stateLog)\
@@ -68,7 +70,9 @@ namespace Debug
                 std::cout << WHITE; \
                 break; \
         } \
+		Debug::consoleOutput.lock();\
         std::cout << GetTime() << message << GetCurrentFile(__builtin_FILE()) << " " << __builtin_FUNCTION() << " " << __builtin_LINE() << '\n' << '\n' << WHITE; \
+		Debug::consoleOutput.unlock()\
 
 }
 

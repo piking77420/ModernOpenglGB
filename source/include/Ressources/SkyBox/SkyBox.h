@@ -4,18 +4,15 @@
 #include "Ressources/CubeMaps/CubeMaps.h"
 
 	
-class Mesh;
 
-class SkyBox : public Mesh
+class SkyBox 
 {	
 public : 
-	void Init() override;
 
-	SkyBox(CubeMaps& _cubemaps);
+	SkyBox() {};
 	~SkyBox();
-	CubeMaps cubemap;
+	CubeMaps* cubemap = nullptr;
 	void operator=(const SkyBox& skybox);
 private: 
-	static float CUBEMAPSIZE;
 };
 

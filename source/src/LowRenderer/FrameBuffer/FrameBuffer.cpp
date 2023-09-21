@@ -115,11 +115,26 @@ FrameBuffer::FrameBuffer(int windowWidth,int windowHeight)
 {
     widht = windowWidth;
     height = windowHeight;
-
-  
-
-
 }
+
+void FrameBuffer::DestroyBuffers()
+{
+    if (glIsBuffer(FBO))
+        glDeleteBuffers(1, &FBO);
+
+    if (glIsBuffer(rectVAO))
+        glDeleteBuffers(1, &rectVAO);
+
+    if (glIsBuffer(rectVBO))
+        glDeleteBuffers(1, &rectVBO);
+
+    if (glIsTexture(framebufferTexture))
+        glDeleteTextures(1, &framebufferTexture);
+
+    if (glIsRenderbuffer(RBO))
+        glDeleteRenderbuffers(1, &RBO);
+}
+
 
 FrameBuffer::FrameBuffer()
 {
@@ -128,4 +143,5 @@ FrameBuffer::FrameBuffer()
 
 FrameBuffer::~FrameBuffer()
 {
+    DestroyBuffers();
 }

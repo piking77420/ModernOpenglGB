@@ -42,13 +42,7 @@ Matrix4X4 Matrix4X4::RotationX4X4(const float& angle)
 
 }
 
-Matrix4X4 Matrix4X4::RotationMatrix4X4(const Vector3& angle)
-{
-	Matrix4X4 result;
-	result = RotationZ4X4(angle.z) * RotationY4X4(angle.y) * RotationX4X4(angle.x);
 
-	return result;
-}
 
 
 

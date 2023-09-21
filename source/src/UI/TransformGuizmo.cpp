@@ -1,5 +1,5 @@
 #include "Ui/TransformGuizmo.hpp"
-#include "Ressources/Scene/Scene.h"
+#include "ECS/Scene/Scene.h"
 #include "LowRenderer/Cam/Camera.h"
 #include "App/App.h"
 #include "Core/DataStructure/Project.hpp" 
@@ -10,7 +10,7 @@
 #include "External/ImguiGizmo/ImGuizmo.h"
 #include "Physics/Transform/Transform.hpp"
 
-void TransformGuizmo::UpdateLayer(Project& currentProject)
+void TransformGuizmo::UpdateLayer(Project& currentProject, std::vector<InputEvent*>& inputsEvents)
 {
 
 

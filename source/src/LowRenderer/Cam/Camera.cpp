@@ -7,7 +7,7 @@
 #include "Mathf.h"
 #include "Core/DataStructure/Project.hpp"
 
-#include "Ressources/Scene/Scene.h"
+#include "ECS/Scene/Scene.h"
 #include "Core/DataStructure/Project.hpp"
 
 // Camera Init // 
@@ -26,27 +26,6 @@ bool IskeyPress(GLFWwindow* context , const int& GLFWInput )
 }
 
 
-
-void Camera::SetCameraInfoForShaders(RessourcesManager& ressourcesManagers)
-{
-	std::map<std::string, IResource*>& mainMap = ressourcesManagers.GetRessources();
-
-	for (auto it = mainMap.begin(); it != mainMap.end(); it++)
-	{
-		Shader* currentShader = dynamic_cast<Shader*>(it->second);
-		if (currentShader != nullptr)
-		{
-			currentShader->Use();
-			currentShader->SetMatrix("VP", this->VP.GetPtr());
-			currentShader->SetMatrix("view", this->GetLookMatrix().GetPtr());
-			currentShader->SetVector3("viewPos", &this->eye.x);
-
-			currentShader->UnUse();
-
-		}
-	}
-}
-
 Matrix4X4 Camera::GetLookMatrix() 
 {
 	
@@ -55,7 +34,10 @@ Matrix4X4 Camera::GetLookMatrix()
 
 Matrix4X4 Camera::GetProjectionMatrix() const
 {
-	return Matrix4X4::PerspectiveMatrix(Math::Deg2Rad * (fov), (float)Project::OpenGlRenderToImgui->widht / (float)Project::OpenGlRenderToImgui->height, Fnear, Ffar);
+	
+	//return Matrix4X4::PerspectiveMatrix(Math::Deg2Rad * (fov), (float)Renderer::OpenGlRenderToImgui->widht / (float)Renderer::OpenGlRenderToImgui->height, Fnear, Ffar);
+	return Matrix4X4::PerspectiveMatrix(Math::Deg2Rad * (fov), (float)windowWidth/ (float)windowHeight, Fnear, Ffar);
+
 }
 
 
@@ -63,21 +45,12 @@ Matrix4X4 Camera::GetProjectionMatrix() const
 
 void Camera::CameraUpdate() 
 {
-
-	  GLFWwindow* currentContext = glfwGetCurrentContext();
-	  ImGuiIO& io = ImGui::GetIO();
-
-	  
-		CameraMovment(currentContext, io);
-		CameraRotation();
-
-	  
-
-		m_ProjectionMatrix = GetProjectionMatrix();
-
-	  //m_ProjectionMatrix = Matrix4X4::OrthoGraphicMatrix(4,-4,4, -4, Fnear, Ffar).Transposate();
-	  m_LookAtMatrix = GetLookMatrix();
-	  VP = m_ProjectionMatrix * m_LookAtMatrix;
+	GLFWwindow* currentContext = glfwGetCurrentContext();
+	ImGuiIO& io = ImGui::GetIO();
+	CameraMovment(currentContext, io);
+	CameraRotation();
+	m_ProjectionMatrix = GetProjectionMatrix();
+	m_LookAtMatrix = GetLookMatrix();
 
 }
 
@@ -238,7 +211,7 @@ void Camera::MouseCallback(GLFWwindow* context, double _xpos, double _ypos)
 	lastX = xpos;
 	lastY = ypos;
 
-	if (glfwGetKey(context, GLFW_KEY_C) == GLFW_PRESS)
+	if (glfwGetMouseButton(context, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
 		Camera::cam->CameraGetInput(xoffset, yoffset);
 
 }

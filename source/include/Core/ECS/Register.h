@@ -12,22 +12,17 @@ class Register
 {
 public:
 
-
-	
-	
-
-
 	Register();
 	~Register();
 
 	std::vector<Entity*> entities;
 
 	// ComponentType // DATA
-	std::vector< std::pair<uint32_t, std::vector<uint8_t>* > > ComponentsData;
+	std::vector< std::pair<uint32_t, std::vector<uint8_t>* >> ComponentsData;
 
-	std::vector<IEcsSystem*> Systems;
+	std::vector<IEcsSystem*> systems;
 
-	std::vector<std::function<void(IEcsSystem& system, uint32_t ComponentTypeID,std::vector<uint8_t>* datavector)>> OnReSizeDataVector;
+	std::vector<std::function<void(IEcsSystem& system, uint32_t ComponentTypeID,std::vector<uint8_t>* datavector) >> OnReSizeDataVector;
 
 private:
 	friend Scene;
@@ -40,8 +35,8 @@ private:
 	void RemoveComponentInternal(uint32_t ComponenTypeID,Entity* entity);
 	void RemoveEntityInternal(Entity* entity);
 
-	void AddComponentEntitie(Entity* entity,uint32_t ComponenTypeID , uint32_t ComponentIndex);
-	void RemoveComponentEntitie(Entity* entity, uint32_t ComponenTypeID);
+	void AddComponentEntity(Entity* entity,uint32_t ComponenTypeID , uint32_t ComponentIndex);
+	void RemoveComponentEntity(Entity* entity, uint32_t ComponenTypeID);
 
 	
 	void AddSystemInternal(IEcsSystem* system);

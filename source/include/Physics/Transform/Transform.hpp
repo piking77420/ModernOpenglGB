@@ -14,29 +14,30 @@ public:
 	Vector3 pos = Vector3::Zero();
 	Vector3 scaling = Vector3::One();
 	Vector3 rotationValue;
-	Matrix4X4 Local = Matrix4X4::Identity();
-	Matrix4X4 World = Matrix4X4::Identity();
+	Matrix4X4 local = Matrix4X4::Identity();
+	Matrix4X4 world = Matrix4X4::Identity();
 
 
 	void SetRotation(const Quaternion& q) 
 	{ 
-		rotation = q;
-		rotationValue = rotation.ToEulerAngle();
+		m_rotation = q;
+		rotationValue = m_rotation.ToEulerAngle();
 	};
 
 
 	// In Radians
 	void SetRotation(const Vector3& eulerangle)
 	{ 
-		rotation = Quaternion::EulerAngle(eulerangle);
+		m_rotation = Quaternion::EulerAngle(eulerangle);
 		rotationValue = eulerangle * Math::Rad2Deg;
 	};
 
-	const Quaternion& GetRotation() const { return rotation; };
+	const Quaternion& GetRotation() const { return m_rotation; };
 
-	uint32_t ParentId = EntityNULL;
-	const Transform* Parent = nullptr;
+	uint32_t parentID = EntityNULL;
+	const Transform* parent = nullptr;
 	std::vector <std::pair<uint32_t,Transform* >> childs;
+
 
 	void ImguiWindowComponent() override;
 
@@ -44,7 +45,7 @@ public:
 	~Transform();
 
 private:
-	Quaternion rotation;
+	Quaternion m_rotation;
 	friend GraphScene;
 };
 

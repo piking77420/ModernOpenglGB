@@ -7,15 +7,15 @@ class Shader;
 class FrameBuffer
 {
 public:
-	uint32_t FBO;
-	uint32_t framebufferTexture;
-	uint32_t RBO;
+	uint32_t FBO = 0 ;
+	uint32_t framebufferTexture = 0 ;
+	uint32_t RBO = 0 ;
 
-	uint32_t rectVAO;
-	uint32_t rectVBO;
+	uint32_t rectVAO = 0 ;
+	uint32_t rectVBO = 0 ;
 
-	uint32_t widht;
-	uint32_t height;
+	uint32_t widht = 0 ;
+	uint32_t height = 0 ;
 
 	virtual void Bind();
 	virtual void UnBind();
@@ -23,6 +23,8 @@ public:
 	unsigned int GetTexture() const;
 	void ResizeFrammeBuffer(float _width, float _height);
 	virtual void Init();
+
+	void DestroyBuffers();
 
 
 	void InitVAOVBO();

@@ -36,7 +36,6 @@ Quaternion Quaternion::ConvertToUnitNormQuaternion() const
 
 }
 
-
 Matrix3X3 Quaternion::ToRotationMatrix3X3(const Quaternion& Q1)
 {
 

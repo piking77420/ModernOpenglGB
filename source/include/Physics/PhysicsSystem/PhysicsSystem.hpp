@@ -14,7 +14,7 @@ public:
 	ImplementIEcsSystem;
 
 
-	static inline Vector3 Gravity = Vector3(0,-9.81f,0);
+	static inline Vector3 gravity = Vector3(0,-9.81f,0);
 
 	void AddForce(Rigidbody& rb, const Vector3& forces);
 

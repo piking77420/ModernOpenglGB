@@ -30,80 +30,56 @@
 #include "LowRenderer/Light/SpothLight/SpothLight.hpp"
 #include "../../../ProjectFolder/Project1/assets/Scipt/RumicsCube.h"
 
-FrameBuffer* Project::OpenGlRenderToImgui = new FrameBuffer(800, 800);
-
-void Project::framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-	if (!OpenGlRenderToImgui)
-		return;
-	glViewport(0, 0, width, height);
-	OpenGlRenderToImgui->ResizeFrammeBuffer(width, height);
-}
-
-
+#include"App/App.h"
 
 void Project::Update()
 {
 
-	Shader* shaderNormal = ressourcesManager.GetElement<Shader>("NormalShader");
-	Shader* shaderShadowMapping = ressourcesManager.GetElement<Shader>("ShadowMapping");
+	std::vector<InputEvent*> inputsEvents;
+	resourcesManager.GetResource(shaderShadowMapping, "ShadowMapping");
 
-	Shader* skybox = ressourcesManager.GetElement<Shader>("SkyBoxShader");
 
-	mainCamera->SetCameraInfoForShaders(ressourcesManager);
+	resourcesManager.SetCameraInfoForShader(mainCamera);
 	mainCamera->CameraUpdate();
 
 
 
-
-	OpenGlRenderToImgui->Bind();
+	currentScene->renderer.OpenGlRenderToImgui->Bind();
 
 	glClearColor(0, 0, 0, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
 
 
-
+	coreInput.LookForInput(inputsEvents);
 	currentScene->FixedUpdate();
 	currentScene->Update();
 	currentScene->LateUpdate();
 
 
+
+
+
+	shaderShadowMapping.wait();
+	Shader* shader = shaderShadowMapping.get();
+
+	currentScene->Render(*shader);
+	currentScene->RenderScene(*shader);
 	currentScene->DrawGizmo();
+	currentScene->renderer.OpenGlRenderToImgui->UnBind();
 
-	currentScene->Render(*shaderNormal);
-	currentScene->RenderScene(*shaderNormal);
-	
-	OpenGlRenderToImgui->UnBind();
 
-	DockingSystem.UpdateDockSpace(*this);
+	dockingSystem.UpdateDockSpace(*this, inputsEvents);
 
 }
 
-Project::Project(std::string ProjectPath) 
-{
-	ressourcesManager.LoadAllAssets(ProjectPath);
-	
-	currentScene = new Scene("Scene 0");
-	currentScene->currentproject = this;
-	mainCamera = Camera::cam;
 
-
-
-
-	
-	ContentBrowser::BasePath = ProjectPath;
-	ContentBrowser::CurrentPath = ContentBrowser::BasePath;
-	Gizmo::InitGizmo(*this);
-	InitScene();
-
-}
 
 Project::Project() 
 {
-	ressourcesManager.LoadAllAssets("ProjectFolder/Project1");
+	resourcesManager.LoadAllAssets("ProjectFolder/Project1");
 	currentScene = new Scene("Scene 0");
-	currentScene->currentproject = this;
+	currentScene->currentProject = this;
 	mainCamera = Camera::cam;
 
 	
@@ -111,11 +87,14 @@ Project::Project()
 	ContentBrowser::CurrentPath = ContentBrowser::BasePath;
 	Gizmo::InitGizmo(*this);
 	InitScene();
+	Renderer::OpenGlRenderToImgui->Init();
+
 
 }
 
 Project::~Project()
 {
+	delete currentScene;
 }
 
 
@@ -162,7 +141,6 @@ void Project::InitScene()
 
 
 
-
 	//currentScene->AddComponent<Rigidbody>(entity2);
 
 	
@@ -171,13 +149,29 @@ void Project::InitScene()
 	currentScene->AddComponent<DirectionalLight>(Directionnale);
 
 
+	Entity* Cube1 = currentScene->CreateEntity();
+	currentScene->AddComponent<MeshRenderer>(Cube1);
+
+	currentScene->GetComponent<Transform>(Cube1)->pos = Vector3(-2.0f, 4.0f, -1.0f);
+	MeshRenderer* Cube1rdr = currentScene->GetComponent<MeshRenderer>(Cube1);
+	currentScene->AddComponent<BoxCollider>(Cube1);
+	Cube1rdr->mesh = *resourcesManager.GetElement<Mesh>("viking_room.obj");
+	Cube1rdr->material.diffuse = *resourcesManager.GetElement<Texture>("Viking_room.png");
+	Cube1rdr->material.specular = *resourcesManager.GetElement<Texture>("Viking_room.png");
+
+	Entity* Cube2 = currentScene->CreateEntity();
+	currentScene->AddComponent<MeshRenderer>(Cube2);
+	currentScene->AddComponent<BoxCollider>(Cube2);
+	currentScene->GetComponent<Transform>(Cube2)->pos = Vector3(-4.0f, 5.0f, -3.0f);
+
+	currentScene->GetComponent<Transform>(Cube2)->pos = Vector3(-2.0f, 4.0f, -1.0f);
+	MeshRenderer* Cube2rdr = currentScene->GetComponent<MeshRenderer>(Cube2);
+	Cube2rdr->mesh = *resourcesManager.GetElement<Mesh>("viking_room.obj");
+	Cube2rdr->material.diffuse = *resourcesManager.GetElement<Texture>("Viking_room.png");
+	Cube2rdr->material.specular = *resourcesManager.GetElement<Texture>("Viking_room.png");
 
 	
-
-	
-
 
 	currentScene->Init();
-	OpenGlRenderToImgui->Init();
 
 }

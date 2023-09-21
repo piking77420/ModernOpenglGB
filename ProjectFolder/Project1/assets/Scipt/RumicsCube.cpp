@@ -4,6 +4,8 @@
 #include "Ressources/RessourcesManager/RessourcesManager.h"
 #include "Core/DataStructure/Project.hpp"
 #include "LowRenderer/MeshRenderer/MeshRenderer.h"
+#include"Physics/Collider/BoxCollider.hpp"
+
 RumicsCube::RumicsCube()
 {
 }
@@ -13,45 +15,45 @@ RumicsCube::~RumicsCube()
 }
 void RumicsCube::Init(Scene* scene)
 {
-	int cubeSize = 3;
-	float spacing = 2.f;  // Adjust the spacing between cubes
+	
 
-
-	Entity* Rumicube = scene->CreateEntity();
-	Rumicube->Entityname = "Rumicube";
+	Rumicube = scene->CreateEntity();
+	Rumicube->entityName = "Rumicube";
 	RumicksCubeEntityId = Rumicube->ID;
 
 
 
 
+    int numCubesPerRow = 2; // Number of cubes in each row
+    int cubeSize = 2; // Size of each cube
+    float spacing = 2.0f; // Spacing between cubes
 
-	for (int x = 0; x < cubeSize; x++)
-	{
-		for (int y = 0; y < cubeSize; y++)
-		{
-			for (int z = 0; z < cubeSize; z++)
-			{
-				Entity* entity = scene->CreateEntity();
-				scene->AddComponent<MeshRenderer>(entity);
+    for (int i = 0; i < numCubesPerRow; i++) {
+        for (int j = 0; j < numCubesPerRow; j++) {
+            for (int x = 0; x < cubeSize; x++) {
+                for (int y = 0; y < cubeSize; y++) {
+                    for (int z = 0; z < cubeSize; z++) {
+                        Entity* entity = scene->CreateEntity();
+                        scene->AddComponent<MeshRenderer>(entity);
+                        //scene->AddComponent<BoxCollider>(entity);
+                        float offsetX = static_cast<float>(x - cubeSize / 2) + i * spacing * cubeSize;
+                        float offsetY = static_cast<float>(y - cubeSize / 2) + j * spacing * cubeSize;
+                        float offsetZ = static_cast<float>(z - cubeSize / 2);
+                        scene->GetComponent<Transform>(entity)->pos = Vector3(offsetX, offsetY, offsetZ) * spacing;
 
-				float offsetX = static_cast<float>(x - cubeSize / 2);
-				float offsetY = static_cast<float>(y - cubeSize / 2);
-				float offsetZ = static_cast<float>(z - cubeSize / 2);
+                        GraphScene::BeChildOf(scene->GetComponent<Transform>(Rumicube), scene->GetComponent<Transform>(entity));
 
-				scene->GetComponent<Transform>(entity)->pos = Vector3(offsetX, offsetY, offsetZ) * spacing;
+                        MeshRenderer* meshRenderer = scene->GetComponent<MeshRenderer>(entity);
+                        meshRenderer->mesh = *scene->currentProject->resourcesManager.GetElement<Mesh>("cube.obj");
+                        meshRenderer->material.diffuse = *scene->currentProject->resourcesManager.GetElement<Texture>("DiamondBlock.jpg");
+                        meshRenderer->material.specular = *scene->currentProject->resourcesManager.GetElement<Texture>("DiamondBlock.jpg");
+                    }
+                }
+            }
+        }
+    }
+	
 
-
-				GraphScene::BeChildOf(scene->GetComponent<Transform>(Rumicube), scene->GetComponent<Transform>(entity));
-
-
-
-				MeshRenderer* meshRenderer = scene->GetComponent<MeshRenderer>(entity);
-				meshRenderer->mesh = *scene->currentproject->ressourcesManager.GetElement<Mesh>("cube.obj");
-				meshRenderer->material.diffuse = *scene->currentproject->ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
-				meshRenderer->material.specular = *scene->currentproject->ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
-			}
-		}
-	}
 };
 
 void RumicsCube::Awake(Scene* scene)
@@ -74,7 +76,7 @@ void RumicsCube::FixedUpdate(Scene* scene)
 void RumicsCube::Update(Scene* scene)
 {
 
-
+	scene->GetComponent<Transform>(Rumicube)->rotationValue += Vector3(1, -1, 1);
 
 
 };

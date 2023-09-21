@@ -54,4 +54,13 @@ Depthmap::Depthmap()
 
 Depthmap::~Depthmap()
 {
+    if(glIsBuffer(depthMapFBO))
+    {
+        glDeleteBuffers(1, &depthMapFBO);
+
+    }
+    if (glIsTexture(depthMapFBO))
+    {
+        glDeleteTextures(1, &depthMap);
+    }
 }

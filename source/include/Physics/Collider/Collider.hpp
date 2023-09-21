@@ -3,6 +3,9 @@
 #include "Physics/Transform/Transform.hpp"
 #include "ToolBoxMathHeaders.h"
 #include "Core/ECS/Entity.h"
+#include <mutex>
+
+class ColliderSystem;
 
 enum class CollisionType
 {
@@ -35,5 +38,8 @@ struct Collider
 	bool IsTrigger = false;
 	std::vector<CollisionPoint> CollisionPoint;
 	PhyscicalMaterial physcicalMaterial;
+private:
+	friend ColliderSystem;
+	std::mutex mutex;
 };
 
