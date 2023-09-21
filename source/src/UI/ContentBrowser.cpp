@@ -144,7 +144,9 @@ void ContentBrowser::UpdateLayer(Project& currentProject, std::vector<InputEvent
 			return;
 		}
 
-	
+		ImGui::End();
+		return;
+		
 
 		ImGuizmo::SetOrthographic(false);
 		ImGuizmo::SetDrawlist();

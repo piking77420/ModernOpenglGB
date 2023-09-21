@@ -7,10 +7,6 @@
 class Transform;
 
 
-
-#define THREADPOOLSIZE 6
-
-
 class GraphScene : public IEcsSystem
 {
 public:
@@ -29,12 +25,9 @@ public:
 
 	GraphScene(){};
 	 ~GraphScene() {};
-	 static inline bool IsDynamic = true;
 private:
-	ThreadPool<THREADPOOLSIZE> m_threadPool;
-	ThreadPoolDynamic m_threadPoolDynamic = ThreadPoolDynamic(THREADPOOLSIZE);
-
 	const Matrix4X4 m_rootWorld = Matrix4X4::Identity();
+
 	static Matrix4X4 ToMatrix(Transform* transform);
 
 	void UpdateTransform(Transform* transform, uint32_t treeIndex);
@@ -52,13 +45,6 @@ private:
 	static void ThreadUpdateTranform(std::vector<Transform>* transformVector,uint32_t startIndex, uint32_t endIndex);
 
 	static Matrix4X4 ReturnParentsMatrix(const Transform* parent);
-
-
-	void UpdateArray(std::vector<Transform>* transformVector);
-	void UpdateVector(std::vector<Transform>* transformVector);
-
-	double m_timeForGraphUpdate;
-
 
 };
 

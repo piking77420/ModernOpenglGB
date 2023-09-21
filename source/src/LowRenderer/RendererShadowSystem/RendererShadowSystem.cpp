@@ -75,8 +75,7 @@ void RendererShadowSystem::CalCulateDepthBufferDirectionnal(Scene* scene)
 {
 
 	Shader* depthShader = scene->currentProject->resourcesManager.GetElement<Shader>("DepthMapShader");
-	std::vector<uint8_t>* data = currentScene->GetComponentDataArray<DirectionalLight>();
-	std::vector<DirectionalLight>* dataDirectionalLight = reinterpret_cast<std::vector<DirectionalLight>*>(data);
+	std::vector<DirectionalLight>* dataDirectionalLight = scene->GetComponentDataArray<DirectionalLight>();
 
 
 

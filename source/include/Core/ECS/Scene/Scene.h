@@ -135,9 +135,9 @@ public :
 	}
 
 	template<class T>
-	std::vector<uint8_t>* GetComponentDataArray()
+	std::vector<T>* GetComponentDataArray()
 	{
-		return m_registerScene.ComponentsData[T::componentTypeID].second;
+		return  reinterpret_cast<std::vector<T>*>(m_registerScene.ComponentsData[T::componentTypeID].second);
 	}
 
 	std::vector<uint8_t>* GetComponentDataArray(uint32_t ID)

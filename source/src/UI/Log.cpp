@@ -16,6 +16,8 @@ void Log::UpdateLayer(Project& currentProject, std::vector<InputEvent*>& inputsE
  
     ImGui::Begin(WindowName.c_str(), &Isopen);
    
+    static bool d = true;
+    ImGui::ShowDemoWindow(&d);
 
        if (ImGui::BeginPopup("Options"))
        {

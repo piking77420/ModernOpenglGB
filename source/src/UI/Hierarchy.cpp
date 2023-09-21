@@ -8,8 +8,6 @@
 void Hierarchy::UpdateLayer(Project& currentProject, std::vector<InputEvent*>& inputEvent)
 {
 
-	
-
 	static bool open = true;
 
 	if (!currentProject.currentScene)
@@ -23,16 +21,12 @@ void Hierarchy::UpdateLayer(Project& currentProject, std::vector<InputEvent*>& i
 			ListenToInput(currentProject, inputEvent);
 		}
 
-		
+		std::vector<Transform>* transformDataVector = currentProject.currentScene->GetComponentDataArray<Transform>();
 
 
-		std::vector<uint8_t>* transformDataVector = currentProject.currentScene->GetComponentDataArray<Transform>();
-
-
-		for (size_t i = 0; i < transformDataVector->size() / sizeof(Transform); i++)
+		for (size_t i = 0; i < transformDataVector->size() ; i++)
 		{
-			size_t offset = i * sizeof(Transform);
-			Transform* transfrom = reinterpret_cast<Transform*>(&(*transformDataVector)[offset]);
+			Transform* transfrom = &(*transformDataVector)[i];
 
 			if (!transfrom->parent)
 			{

@@ -28,16 +28,7 @@ void GraphScene::OnDrawGizmo(Scene* scene)
 }
 void GraphScene::FixedUpdate(Scene* scene)
 {
-
-	// Getting All the data
-	std::vector<Transform>* transformDataVector = reinterpret_cast<std::vector<Transform>*>(scene->GetComponentDataArray<Transform>());
-
-	std::chrono::system_clock::time_point timeStart = std::chrono::system_clock::now();
-	StarTree(transformDataVector);
-	std::chrono::system_clock::time_point timeEnd = std::chrono::system_clock::now();
-
-	m_timeForGraphUpdate = std::chrono::duration_cast<std::chrono::microseconds>(timeEnd - timeStart).count();
-
+	StarTree(scene->GetComponentDataArray<Transform>());
 };
 void GraphScene::Update(Scene* scene)
 {
@@ -50,20 +41,6 @@ void GraphScene::LateUpdate(Scene* scene)
 
 void GraphScene::Render(Shader& shader,Scene* scene)
 {
-
-		if (ImGui::Begin("GraphSceneUpdate"))
-		{
-			ImGui::Text("Time for update  = %f  microseconds", m_timeForGraphUpdate);
-
-			if (!App::IsMonoThread)
-			{
-				ImGui::Checkbox(" Is dynamic thread ", &GraphScene::IsDynamic);
-			}
-			ImGui::End();
-		}
-
-	
-
 
 };
 
@@ -167,109 +144,14 @@ void GraphScene::StarTree(std::vector<Transform>* transformVector)
 	if (transformVector->empty())
 		return;
 
-
 	UpdateLocalMatrix(transformVector);
 
-
-	if (App::IsMonoThread)
+	for (size_t i = 0; i < transformVector->size(); i++)
 	{
-		for (size_t i = 0; i < transformVector->size(); i++)
-		{
 			UpdateWorld(&transformVector->at(i));
-		}
-		return;
 	}
 	
-	GraphScene::IsDynamic ? UpdateVector(transformVector) : UpdateArray(transformVector);
-
 }
-
-
-
-void GraphScene::UpdateArray(std::vector<Transform>* transformVector)
-{
-	for (size_t i = 0; i < m_threadPool.GetSize(); i++)
-	{
-		if (transformVector->size() <= m_threadPool.GetSize())
-		{
-			if (i > transformVector->size())
-				break;
-
-			m_threadPool[i] = std::thread(&GraphScene::ThreadUpdateTranform, transformVector, i, i);
-			continue;
-		}
-
-
-
-		int offset = (transformVector->size() / m_threadPool.GetSize());
-		int startIndex = i * offset;
-		int endIndex = startIndex + offset;
-		float fOffset = ((float)transformVector->size() / (float)m_threadPool.GetSize());
-
-		if (fOffset > offset)
-		{
-			if (i == m_threadPool.GetSize() - 1)
-			{
-				int lastOffset = transformVector->size() - endIndex;
-				endIndex += lastOffset;
-			}
-
-		}
-
-
-
-		m_threadPool[i] = std::thread(&GraphScene::ThreadUpdateTranform, transformVector, startIndex, endIndex);
-	}
-
-	m_threadPool.JoinIfJoinable();
-}
-
-void GraphScene::UpdateVector(std::vector<Transform>* transformVector)
-{
-	m_threadPoolDynamic.Resize(THREADPOOLSIZE);
-
-	for (size_t i = 0; i < THREADPOOLSIZE; i++)
-	{
-		if (transformVector->size() <= m_threadPoolDynamic.GetSize())
-		{
-			if (i > transformVector->size())
-				break;
-
-			m_threadPoolDynamic[i] = std::thread(&GraphScene::ThreadUpdateTranform, transformVector, i, i);
-			continue;
-		}
-
-
-
-		int offset = (transformVector->size() / m_threadPoolDynamic.GetSize());
-		int startIndex = i * offset;
-		int endIndex = startIndex + offset;
-		float fOffset = ((float)transformVector->size() / (float)m_threadPoolDynamic.GetSize());
-
-		if (fOffset > offset)
-		{
-			if (i == m_threadPoolDynamic.GetSize() - 1)
-			{
-				int lastOffset = transformVector->size() - endIndex;
-
-				m_threadPoolDynamic.Resize(m_threadPoolDynamic.GetSize() + 1);
-
-				m_threadPoolDynamic[i + 1] = std::thread(&GraphScene::ThreadUpdateTranform, transformVector, endIndex, endIndex + lastOffset);
-			}
-
-		}
-
-
-
-		m_threadPoolDynamic[i] = std::thread(&GraphScene::ThreadUpdateTranform, transformVector, startIndex, endIndex);
-	}
-
-	m_threadPoolDynamic.JoinIfJoinable();
-	m_threadPoolDynamic.Clear();
-}
-
-
-
 
 
 

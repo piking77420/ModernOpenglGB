@@ -21,8 +21,6 @@ void PrintConsole(const std::string color, const std::string& time, const std::s
 void OpengFileAndPrint(std::fstream& debugLogStream, const std::string color, const std::string& time,const std::string& message)
 {
 
-
-
 	if (debugLogStream.is_open())
 	{
 		debugLogStream << time;

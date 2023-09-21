@@ -86,7 +86,7 @@ void RendererLightSystem::OnResizeData(uint32_t ComponentTypeID,std::vector<uint
 
 
 
-void RendererLightSystem::UpdateDirectionnalLights(std::vector<uint8_t>* data, Scene* scene)
+void RendererLightSystem::UpdateDirectionnalLights(std::vector<DirectionalLight>* data, Scene* scene)
 {
 	if(data->size() > sizeof(DirectionalLight))
 	{
@@ -94,10 +94,10 @@ void RendererLightSystem::UpdateDirectionnalLights(std::vector<uint8_t>* data, S
 	}
 
 
-	for (size_t i = 0; i < data->size() / sizeof(DirectionalLight); i++)
+	for (size_t i = 0; i < data->size(); i++)
 	{
-		size_t offset = i * sizeof(DirectionalLight);
-		DirectionalLight* directionalLight = reinterpret_cast<DirectionalLight*>(&(*data)[offset]);
+		DirectionalLight* directionalLight = (&(*data)[i]);
+
 		if (!directionalLight->isEnable)
 			continue;
 
@@ -106,14 +106,14 @@ void RendererLightSystem::UpdateDirectionnalLights(std::vector<uint8_t>* data, S
 	}
 }
 
-void RendererLightSystem::UpdatePointLights(std::vector<uint8_t>* data, Scene* scene)
+void RendererLightSystem::UpdatePointLights(std::vector<PointLight>* data, Scene* scene)
 {
-	std::vector<PointLight>* pointLightData = reinterpret_cast<std::vector<PointLight>*>(data);
+	
 
-	currentShader->SetInt("numberOfPointLight", pointLightData->size());
-	for (size_t i = 0; i < pointLightData->size(); i++)
+	currentShader->SetInt("numberOfPointLight", data->size());
+	for (size_t i = 0; i < data->size(); i++)
 	{
-		PointLight* pointlight = &(*pointLightData)[i];
+		PointLight* pointlight = &(*data)[i];
 		Entity* entity = scene->GetEntities(pointlight->entityID);
 		Transform* transformOfLight = scene->GetComponent<Transform>(entity);
 
@@ -133,15 +133,14 @@ void RendererLightSystem::UpdatePointLights(std::vector<uint8_t>* data, Scene* s
 
 }
 
-void RendererLightSystem::UpdateSpothLights(std::vector<uint8_t>* data, Scene* scene)
+void RendererLightSystem::UpdateSpothLights(std::vector<SpothLight>* data, Scene* scene)
 {
 
-	std::vector<SpothLight>* spothLightData = reinterpret_cast<std::vector<SpothLight>*>(data);
 
 
-	for (size_t i = 0; i < spothLightData->size(); i++)
+	for (size_t i = 0; i < data->size(); i++)
 	{
-		SpothLight* spothlight = &(*spothLightData)[i];
+		SpothLight* spothlight = &(*data)[i];
 		Entity* entity = scene->GetEntities(spothlight->entityID);
 		Transform* transformOfLight = scene->GetComponent<Transform>(entity);
 

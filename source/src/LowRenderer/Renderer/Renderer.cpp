@@ -22,10 +22,8 @@ void Renderer::framebuffer_size_callback(GLFWwindow* window, int width, int heig
 
 void Renderer::RendereScene(Scene* scene,Shader* shader)
 {
-	
-	std::vector<uint8_t>* data = scene->GetComponentDataArray<MeshRenderer>();
 
-	std::vector<MeshRenderer>* MeshRenderData = reinterpret_cast<std::vector<MeshRenderer>*>(data);
+	std::vector<MeshRenderer>* MeshRenderData = scene->GetComponentDataArray<MeshRenderer>();
 
 	for (uint32_t i = 0; i < MeshRenderData->size(); i++)
 	{
