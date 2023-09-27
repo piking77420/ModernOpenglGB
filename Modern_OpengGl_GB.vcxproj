@@ -40,13 +40,13 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -74,15 +74,15 @@
     <PublicIncludeDirectories>
     </PublicIncludeDirectories>
     <AllProjectIncludesArePublic>true</AllProjectIncludesArePublic>
-    <IncludePath>$(SolutionDir)\source\Include;$(SolutionDir)\source\Include\Math;$(SolutionDir)\source\Include\External;$(SolutionDir)\source\Include\LowRenderer;$(SolutionDir)\source\Include\Core;(SolutionDir)\source\Include\Core\Debug;$(SolutionDir)\source\Include\Core\DataStructure;$(SolutionDir)\source\Include\Core\DataStructure\Component</IncludePath>
-    <LibraryPath>$(SolutionDir)\source\src\External\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\source\Include;$(SolutionDir)\source\Include\Math;$(SolutionDir)\source\Include\External;$(SolutionDir)\source\Include\LowRenderer;$(SolutionDir)\source\Include\Core;(SolutionDir)\source\Include\Core\Debug;$(SolutionDir)\source\Include\Core\DataStructure;$(SolutionDir)\source\Include\Core\DataStructure\Component;$(Python)include</IncludePath>
+    <LibraryPath>$(SolutionDir)\source\src\External\lib;$(Python)libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PublicIncludeDirectories>
     </PublicIncludeDirectories>
     <AllProjectIncludesArePublic>true</AllProjectIncludesArePublic>
-    <IncludePath>$(SolutionDir)\source\Include;$(SolutionDir)\source\Include\Math;$(SolutionDir)\source\Include\External;$(SolutionDir)\source\Include\LowRenderer;$(SolutionDir)\source\Include\Core;(SolutionDir)\source\Include\Core\Debug;$(SolutionDir)\source\Include\Core\DataStructure;$(SolutionDir)\source\Include\Core\DataStructure\Component</IncludePath>
-    <LibraryPath>$(SolutionDir)\source\src\External\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\source\Include;$(SolutionDir)\source\Include\Math;$(SolutionDir)\source\Include\External;$(SolutionDir)\source\Include\LowRenderer;$(SolutionDir)\source\Include\Core;(SolutionDir)\source\Include\Core\Debug;$(SolutionDir)\source\Include\Core\DataStructure;$(SolutionDir)\source\Include\Core\DataStructure\Component;$(Python)include</IncludePath>
+    <LibraryPath>$(SolutionDir)\source\src\External\lib;$(Python)libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -122,8 +122,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)source\Include\Core\Math;$(ProjectDir)source\Include\Core\DataStructure\Component;$(ProjectDir)source\Include;$(ProjectDir)source\Include\External;%(AdditionalIncludeDirectories);$(Pyton)\include\</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)source\Include\Core\Math;$(ProjectDir)source\Include\Core\DataStructure\Component;$(ProjectDir)source\Include;$(ProjectDir)source\Include\External;%(AdditionalIncludeDirectories);$(Python)\include\</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -141,8 +141,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)source\Include\Core\Math;$(ProjectDir)source\Include\Core\DataStructure\Component;$(ProjectDir)source\Include;$(ProjectDir)source\Include\External;%(AdditionalIncludeDirectories);$(Pyton)\include\</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)source\Include\Core\Math;$(ProjectDir)source\Include\Core\DataStructure\Component;$(ProjectDir)source\Include;$(ProjectDir)source\Include\External;%(AdditionalIncludeDirectories);$(Python)\include\</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -177,6 +177,7 @@
     <ClInclude Include="source\include\Core\ISerialzable\ISerialzable.h" />
     <ClInclude Include="source\include\Core\Math\EasyFunction.h" />
     <ClInclude Include="source\include\Core\Math\ToolBoxMathHeaders.h" />
+    <ClInclude Include="source\include\Core\Python\TestPython.h" />
     <ClInclude Include="source\include\External\glad\glad.h" />
     <ClInclude Include="source\include\Physics\Raycast\Raycast.h" />
     <ClInclude Include="source\include\Ressources\Model\Model.h" />
@@ -302,6 +303,7 @@
     <ClCompile Include="source\src\Core\Input\CoreInput.cpp" />
     <ClCompile Include="ProjectFolder\Project1\assets\Scipt\RumicsCube.cpp" />
     <ClCompile Include="source\src\Core\ISerialzable\ISerialzable.cpp" />
+    <ClCompile Include="source\src\Core\Python\TestPython.cpp" />
     <ClCompile Include="source\src\Physics\Raycast\Raycast.cpp" />
     <ClCompile Include="source\src\Ressources\Model\Model.cpp" />
     <ClCompile Include="source\src\UI\Log.cpp" />

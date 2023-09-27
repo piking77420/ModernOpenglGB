@@ -339,6 +339,9 @@
     <ClInclude Include="source\include\Core\Python\PythonObject.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="source\include\Core\Python\TestPython.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -638,6 +641,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\Core\Python\PythonObject.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Core\Python\TestPython.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
