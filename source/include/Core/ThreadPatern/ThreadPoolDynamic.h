@@ -33,7 +33,7 @@ public:
 		threads.clear();
 	};
 
-	constexpr __forceinline uint32_t GetSize()
+	__forceinline uint32_t GetSize()
 	{
 		return threads.size();
 	}

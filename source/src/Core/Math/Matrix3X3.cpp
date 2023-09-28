@@ -76,27 +76,7 @@ Matrix3X3 Matrix3X3::Identity()
 
 
 
-Matrix3X3 Matrix3X3::operator*(const Matrix3X3& matrix)
-{
-	Matrix3X3 result;
 
-
-
-	result.Coloms[0].x = this->Coloms[0].x * matrix[0].x + this->Coloms[0].y * matrix[1].x + this->Coloms[0].z * matrix[2].x;
-	result.Coloms[0].y = this->Coloms[0].x * matrix[0].y + this->Coloms[0].y * matrix[1].y + this->Coloms[0].z * matrix[2].y ;
-	result.Coloms[0].z = this->Coloms[0].x * matrix[0].z + this->Coloms[0].y * matrix[1].z + this->Coloms[0].z * matrix[2].z ;
-
-	result.Coloms[1].x = this->Coloms[1].x * matrix[0].x + this->Coloms[1].y * matrix[1].x + this->Coloms[1].z * matrix[2].x ;
-	result.Coloms[1].y = this->Coloms[1].x * matrix[0].y + this->Coloms[1].y * matrix[1].y + this->Coloms[1].z * matrix[2].y ;
-	result.Coloms[1].z = this->Coloms[1].x * matrix[0].z + this->Coloms[1].y * matrix[1].z + this->Coloms[1].z * matrix[2].z ;
-
-	result.Coloms[2].x = this->Coloms[2].x * matrix[0].x + this->Coloms[2].y * matrix[1].x + this->Coloms[2].z * matrix[2].x ;
-	result.Coloms[2].y = this->Coloms[2].x * matrix[0].y + this->Coloms[2].y * matrix[1].y + this->Coloms[2].z * matrix[2].y ;
-	result.Coloms[2].z = this->Coloms[2].x * matrix[0].z + this->Coloms[2].y * matrix[1].z + this->Coloms[2].z * matrix[2].z ;
-
-
-	return result;
-}
 
 Matrix3X3 Matrix3X3::Invert()
 {/*
@@ -149,85 +129,7 @@ Matrix3X3::operator Matrix()
 }
 
 
- Matrix3X3 operator+(const Matrix3X3& max, const Matrix2X2& max1)
-{
-	Matrix3X3 result;
 
-	result.Coloms[0] = max.Coloms[0] + (Vector3)max1.Coloms[0];
-	result.Coloms[1] = max.Coloms[1] + (Vector3)max1.Coloms[1];
-	result.Coloms[2] = max.Coloms[2];
-
-	return result;
-}
-
- Matrix3X3 operator+(const Matrix2X2& max, const Matrix3X3& max1)
-{
-	Matrix3X3 result;
-
-	result.Coloms[0] = (Vector3)max.Coloms[0] + max1.Coloms[0];
-	result.Coloms[1] = (Vector3)max.Coloms[1] + max1.Coloms[1];
-	result.Coloms[2] = max1.Coloms[2];
-
-	return result;
-}
-
-
- Matrix3X3 operator+(const Matrix3X3& max, const Matrix3X3& max1)
-{
-	Matrix3X3 result;
-
-
-	result.Coloms[0] = max.Coloms[0] + max1.Coloms[0];
-	result.Coloms[1] = max.Coloms[1] + max1.Coloms[1];
-	result.Coloms[2] = max.Coloms[2] + max1.Coloms[2];
-
-
-	return result;
-}
-
- Matrix3X3 operator-(const Matrix3X3& max, const Matrix3X3& max1)
-{
-	Matrix3X3 result;
-
-
-	result.Coloms[0] = max.Coloms[0] - max1.Coloms[0];
-	result.Coloms[1] = max.Coloms[1] - max1.Coloms[1];
-	result.Coloms[2] = max.Coloms[2] - max1.Coloms[2];
-
-
-	return result;
-}
-
-
-
- Matrix3X3 operator-(const Matrix2X2& max, const Matrix3X3& max1)
-{
-	Matrix3X3 result;
-
-
-	result.Coloms[0] = (Vector3)max.Coloms[0] + max1.Coloms[0];
-	result.Coloms[1] = (Vector3)max.Coloms[1] + max1.Coloms[1];
-	result.Coloms[2] = max1.Coloms[2];
-
-	return Matrix3X3();
-}
-
-
- Matrix3X3 operator-(const Matrix3X3& max, const Matrix2X2& max1)
-{
-	Matrix3X3 result;
-
-	result.Coloms[0] = max.Coloms[0] - (Vector3)max1.Coloms[0];
-	result.Coloms[1] = max.Coloms[1] - (Vector3)max1.Coloms[1];
-	result.Coloms[2] = max.Coloms[2];
-
-	return result;
-}
-
- Matrix3X3 operator*(const float& value, const Matrix2X2& max)
-{
-	return Matrix3X3();
-}
 
  std::ostream& operator<<(std::ostream& stream, const Matrix3X3& maxtrix)
  {
@@ -243,26 +145,5 @@ Matrix3X3::operator Matrix()
 
 
 
- Matrix3X3 operator*(const float& value, const Matrix3X3& max)
-{
-	Matrix3X3 result = max;
-
-	result.Coloms[0].x *= value;
-	result.Coloms[0].y *= value;
-	result.Coloms[0].z *= value;
 
 
-	result.Coloms[1].x *= value;
-	result.Coloms[1].y *= value;
-	result.Coloms[1].z *= value;
-
-	result.Coloms[2].x *= value;
-	result.Coloms[2].y *= value;
-	result.Coloms[2].z *= value;
-
-
-
-	return result;
-
-
-}

@@ -36,7 +36,14 @@ public:
 
 
 	[[nodiscard]]
-	static inline float Angle(const Vector4& vec1, const Vector4& vec2);
+	static inline float Angle(const Vector4& vec1, const Vector4& vec2) 
+	{
+		float dot = DotProduct(vec1, vec2);
+		float normVec1 = vec1.Norm();
+		float normVec2 = vec2.Norm();
+		float angle = std::acos(dot / (normVec1 * normVec2));
+		return angle;
+	}
 
 
 
@@ -52,10 +59,82 @@ public:
 	}
 
 
-	Vector4 operator+(float value);
-	Vector4 operator-(float value);
-	Vector4 operator*(float value);
-	Vector4 operator/(float value);
+	constexpr inline Vector4 operator+(float value)  const
+	{
+		return Vector4(x + value, y + value, z + value, w + value);
+	}
+	constexpr inline Vector4 operator-(float value) const
+	{
+		return Vector4(x - value, y - value, z - value, w - value);
+	}
+	constexpr inline Vector4 operator*(float value) const
+	{
+		return Vector4(x * value, y * value, z * value, w * value);
+	}
+
+	constexpr inline Vector4 operator/(float value) const
+	{
+		return Vector4(x / value, y / value, z / value, w / value);
+	}
+
+
+
+#pragma region Operator
+
+	inline Vector4 operator+(const Vector4& Row1) const
+	{
+		return Vector4(x + Row1.x, y + Row1.y, z + Row1.z, w + Row1.w);
+	}
+	inline Vector4 operator-(const Vector4& Row1) const
+	{
+		return Vector4(x - Row1.x, y - Row1.y, z - Row1.z, w - Row1.w);
+	}
+	
+	inline Vector4 operator*(const Vector4& Row1) const
+	{
+		return Vector4(x * Row1.x, y * Row1.y, z * Row1.z, w / Row1.w);
+	}
+	inline Vector4 operator/(const Vector4& Row1) const
+	{
+		return Vector4(x / Row1.x, y / Row1.y, z / Row1.z, w / Row1.w);
+	}
+
+
+	inline void operator+=(float value)
+	{
+		x += value;
+		y += value;
+		z += value;
+		w += value;
+
+	}
+	inline void operator-=(float value)
+	{
+		x -= value;
+		y -= value;
+		z -= value;
+		w -= value;
+	}
+
+	inline void operator*=(float value)
+	{
+		x *= value;
+		y *= value;
+		z *= value;
+		w *= value;
+	}
+	inline void operator/=(float value)
+	{
+		x /= value;
+		y /= value;
+		z /= value;
+		w /= value;
+	}
+	inline Vector4 operator-() const
+	{
+		return Vector4(-x, -y, -z, -w);
+	}
+
 
 
 	explicit operator Vector() const;
@@ -109,96 +188,6 @@ private:
 
 std::ostream& operator<<(std::ostream& stream, const Vector4& vec);
 
-
-#pragma region Operator
-
-inline Vector4 operator+(const Vector4& vec1, const Vector4& Row1)
-{
-	return Vector4(vec1.x + Row1.x, vec1.y + Row1.y, vec1.z + Row1.z, vec1.w + Row1.w);
-}
-inline Vector4 operator-(const Vector4& vec1, const Vector4& Row1)
-{
-	return Vector4(vec1.x - Row1.x, vec1.y - Row1.y, vec1.z - Row1.z , vec1.w - Row1.w);
-}
-inline Vector4 operator-(const Vector4& vec)
-{
-	return Vector4(-vec.x, -vec.y, -vec.z , -vec.w);
-}
-inline Vector4 operator*(const Vector4& vec1, const Vector4& Row1)
-{
-	return Vector4(vec1.x * Row1.x, vec1.y * Row1.y, vec1.z * Row1.z , vec1.w / Row1.w);
-}
-inline Vector4 operator/(const Vector4& vec1, const Vector4& Row1)
-{
-	return Vector4(vec1.x / Row1.x, vec1.y / Row1.y, vec1.z / Row1.z , vec1.w / Row1.w);
-}
-
-inline void operator+= (Vector4& vec1, const Vector4 Row1)
-{
-	vec1.x += Row1.x;
-	vec1.y += Row1.y;
-	vec1.z += Row1.z;
-	vec1.w += Row1.w;
-
-}
-inline void operator-= (Vector4& vec1, const Vector4 Row1)
-{
-	vec1.x -= Row1.x;
-	vec1.y -= Row1.y;
-	vec1.z -= Row1.z;
-	vec1.w -= Row1.w;
-
-}
-inline void operator*= (Vector4& vec1, const Vector4 Row1)
-{
-	vec1.x *= Row1.x;
-	vec1.y *= Row1.y;
-	vec1.z *= Row1.z;
-}
-inline void operator/= (Vector4& vec1, const Vector4 Row1)
-{
-	vec1.x /= Row1.x;
-	vec1.y /= Row1.y;
-	vec1.z /= Row1.z;
-	vec1.w /= Row1.w;
-
-}
-inline Vector4 operator+(const Vector4& vec1, const float& value)
-{
-	Vector4 result = vec1;
-	result.x += value;
-	result.y += value;
-	result.z += value;
-	result.w += value;
-	return result;
-}
-inline Vector4 operator*(const Vector4& vec1, const float& value)
-{
-	Vector4 result = vec1;
-	result.x *= value;
-	result.y *= value;
-	result.z *= value;
-	result.w *= value;
-	return result;
-}
-inline Vector4 operator/(const Vector4& vec1, const float& value)
-{
-	Vector4 result = vec1;
-	result.x /= value;
-	result.y /= value;
-	result.z /= value;
-	result.w /= value;
-	return result;
-}
-inline Vector4 operator-(const Vector4& vec1, const float& value)
-{
-	Vector4 result = vec1;
-	result.x -= value;
-	result.y -= value;
-	result.z -= value;
-	result.w -= value;
-	return result;
-}
 
 
 

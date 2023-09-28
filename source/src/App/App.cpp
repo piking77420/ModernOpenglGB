@@ -10,6 +10,7 @@
 #include <string>
 #include <LowRenderer/Cam/Camera.h>   
 #include "App/App.h"
+#include "Core/ECS/Component.h"
 #include <Core/Debug/LogClass.h>
 #include <Core/Debug/AssertClass.h>
 #include "Core/DataStructure/Project.hpp"
@@ -20,6 +21,29 @@
 #include "External/ImguiGizmo/ImGuizmo.h"
 #include "LowRenderer/FrameBuffer/FrameBuffer.h"
 
+#include "UI/ContentBrowser.h"
+#include "LowRenderer/Gizmo/Gizmo.hpp"
+
+#include "LowRenderer/MeshRenderer/MeshRenderer.h"
+#include "Physics/Collider/ColliderSystem.hpp"
+
+#include "Physics/Transform/Transform.hpp"
+#include "LowRenderer/RendererLightSystem/RendererLightSystem.hpp"
+#include "LowRenderer/Light/DirectionalLight/DirectionalLight.hpp"
+#include "LowRenderer/Light/SpothLight/SpothLight.hpp"
+#include "LowRenderer/Light/PointLight/PointLight.hpp"
+#include "Core/DataStructure/Project.hpp"
+#include "LowRenderer/SystemRendererSkyMap/SystemRendererSkyMap.hpp"
+#include "LowRenderer/RendererShadowSystem/RendererShadowSystem.h"
+#include "LowRenderer/Gizmo/Gizmo.hpp"
+#include "LowRenderer/Renderer/Renderer.hpp"
+#include "Physics/Collider/SphereCollider.hpp"
+#include "Physics/GraphScene/GraphScene.h"
+#include "Physics/Collider/BoxCollider.hpp"
+#include "Physics/PhysicsSystem/PhysicsSystem.hpp"
+#include "Physics/RigidBody/Rigidbody.h"
+#include "LowRenderer/Light/PointLight/PointLight.hpp"
+#include "LowRenderer/Light/SpothLight/SpothLight.hpp"
 
 void App::EnableOpenGl()
 {
@@ -244,6 +268,9 @@ App::App()
 {
 	InitImguiTheme();
 	LOG("App::IsMonoThread = " + std::to_string(App::IsMonoThread) + " ", STATELOG::WARNING);
+
+	// ecs Compoenent Here // 
+
 }
 
 

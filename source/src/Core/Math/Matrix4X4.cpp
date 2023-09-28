@@ -277,20 +277,6 @@ Matrix4X4::operator Matrix()
 
 
 
-Vector4 operator*(const Matrix4X4& matrix, const Vector4& Row1)
-{
-	Vector4 resutl;
-	Matrix4X4 m = matrix.Transposate();
-
-	resutl.x = Vector4::DotProduct(m[0], Row1);
-	resutl.y = Vector4::DotProduct(m[1], Row1);
-	resutl.z = Vector4::DotProduct(m[2], Row1);
-	resutl.w = Vector4::DotProduct(m[3], Row1);
-
-
-	return resutl;
-}
- 
 std::ostream& operator<<(std::ostream& stream, const Matrix4X4& maxtrix)
 {
 

@@ -18,3 +18,4 @@
 #include <utility>
 
 #define BIT(x) 0 << x
+namespace fs = std::filesystem;

@@ -6,34 +6,6 @@
 
 
 
-Vector4 Vector4::operator+(float value)
-{
-	return Vector4(x + value, y + value, z + value, w + value);
-
-}
-
-
-
-Vector4 Vector4::operator-(float value)
-{
-	return Vector4(x - value, y - value, z - value, w - value);
-
-}
-
-Vector4 Vector4::operator/(float value)
-{
-	return Vector4(x / value, y / value, z / value, w / value);
-
-}
-
-
-Vector4 Vector4::operator*(float value)
-{
-
-	return Vector4(x * value, y * value, z * value, w * value);
-}
-
-
 
 
 
@@ -96,14 +68,7 @@ Vector4::operator Vector2() const
 
 
 
-float inline  Vector4::Angle(const Vector4& vec1, const Vector4& vec2)
-{
-	float dot = DotProduct(vec1, vec2);
-	float normVec1 = vec1.Norm();
-	float normVec2 = vec2.Norm();
-	float angle = std::acos(dot / (normVec1 * normVec2));
-	return angle;
-}
+
 std::ostream& operator<<(std::ostream& stream, const Vector4& vec)
 {
 	stream << vec.x << " " << vec.y << " " << vec.z << " " << vec.w << '\n';

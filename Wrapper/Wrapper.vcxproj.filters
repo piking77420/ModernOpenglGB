@@ -16,6 +16,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="resources.i" />
-    <None Include="CoreMathPython.i" />
+    <None Include="CorePythonMath.i" />
+    <None Include="TestPython.i" />
+    <None Include="CorePython.i" />
   </ItemGroup>
 </Project>

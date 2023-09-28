@@ -598,7 +598,7 @@
     <ClCompile Include="source\src\Physics\PhysicsSystem\PhysicsSystem.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="source\include\Physics\RigidBody\Rigidbody.cpp">
+    <ClCompile Include="source\src\Physics\RigidBody\Rigidbody.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\Core\AppTime.cpp">

@@ -7,6 +7,10 @@
 
 Register::Register()
 {
+	if (Component::m_componentTypeInfos == nullptr)
+		Component::m_componentTypeInfos = new std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >();
+
+
 	for (size_t i = 0; i < Component::GetNbrOfComponent(); i++)
 	{
 		std::pair<uint32_t, std::vector<uint8_t>*> newArray(i, new std::vector<uint8_t>());

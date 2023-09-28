@@ -96,7 +96,6 @@ public:
 	}
 
 
-	Matrix3X3 operator*(const Matrix3X3& matrix);	
 	explicit operator Matrix();
 
 
@@ -119,17 +118,58 @@ public:
 	}
 	constexpr Matrix3X3() = default;
 
+
+
+
+
+	constexpr Matrix3X3 operator*(const float value) const
+	{
+		Matrix3X3 result = *this;
+
+		result.Coloms[0].x *= value;
+		result.Coloms[0].y *= value;
+		result.Coloms[0].z *= value;
+
+
+		result.Coloms[1].x *= value;
+		result.Coloms[1].y *= value;
+		result.Coloms[1].z *= value;
+
+		result.Coloms[2].x *= value;
+		result.Coloms[2].y *= value;
+		result.Coloms[2].z *= value;
+
+
+
+		return result;
+	}
+
+	Matrix3X3 operator*(const Matrix3X3& matrix) const 
+	{
+		Matrix3X3 result;
+
+		result.Coloms[0].x = this->Coloms[0].x * matrix[0].x + this->Coloms[0].y * matrix[1].x + this->Coloms[0].z * matrix[2].x;
+		result.Coloms[0].y = this->Coloms[0].x * matrix[0].y + this->Coloms[0].y * matrix[1].y + this->Coloms[0].z * matrix[2].y;
+		result.Coloms[0].z = this->Coloms[0].x * matrix[0].z + this->Coloms[0].y * matrix[1].z + this->Coloms[0].z * matrix[2].z;
+
+		result.Coloms[1].x = this->Coloms[1].x * matrix[0].x + this->Coloms[1].y * matrix[1].x + this->Coloms[1].z * matrix[2].x;
+		result.Coloms[1].y = this->Coloms[1].x * matrix[0].y + this->Coloms[1].y * matrix[1].y + this->Coloms[1].z * matrix[2].y;
+		result.Coloms[1].z = this->Coloms[1].x * matrix[0].z + this->Coloms[1].y * matrix[1].z + this->Coloms[1].z * matrix[2].z;
+
+		result.Coloms[2].x = this->Coloms[2].x * matrix[0].x + this->Coloms[2].y * matrix[1].x + this->Coloms[2].z * matrix[2].x;
+		result.Coloms[2].y = this->Coloms[2].x * matrix[0].y + this->Coloms[2].y * matrix[1].y + this->Coloms[2].z * matrix[2].y;
+		result.Coloms[2].z = this->Coloms[2].x * matrix[0].z + this->Coloms[2].y * matrix[1].z + this->Coloms[2].z * matrix[2].z;
+
+
+		return result;
+	}
+
+
 private:
 
 };
 
-Matrix3X3 operator+(const Matrix3X3& max , const Matrix2X2& max1);
-Matrix3X3 operator+(const Matrix2X2& max, const Matrix3X3& max1);
-Matrix3X3 operator+(const Matrix3X3& max, const Matrix3X3& max1);
-Matrix3X3 operator-(const Matrix3X3& max, const Matrix3X3& max1);
-Matrix3X3 operator-(const Matrix2X2& max, const Matrix3X3& max1);
-Matrix3X3 operator-(const Matrix3X3& max, const Matrix2X2& max1);
-Matrix3X3 operator*(const float& value , const Matrix2X2& max );
+
 
 
 std::ostream& operator<<(std::ostream& stream, const  Matrix3X3& maxtrix);

@@ -307,7 +307,7 @@
     <ClCompile Include="source\src\Physics\Raycast\Raycast.cpp" />
     <ClCompile Include="source\src\Ressources\Model\Model.cpp" />
     <ClCompile Include="source\src\UI\Log.cpp" />
-    <ClCompile Include="source\include\Physics\RigidBody\Rigidbody.cpp" />
+    <ClCompile Include="source\src\Physics\RigidBody\Rigidbody.cpp" />
     <ClCompile Include="source\src\Physics\PhysicsSystem\PhysicsSystem.cpp" />
     <ClCompile Include="source\src\LowRenderer\Gizmo\Gizmo.cpp" />
     <ClCompile Include="source\src\Physics\Collider\Collider.cpp" />

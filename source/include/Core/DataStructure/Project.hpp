@@ -1,6 +1,4 @@
 #pragma once 
-#include <string>
-#include <filesystem>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "LowRenderer/FrameBuffer/FrameBuffer.h"
@@ -13,7 +11,6 @@
 #include "Core/Input/CoreInput.h"
 #include "Core/CoreEngine.h"
 
-namespace fs = std::filesystem;
 
 class ResourcesManager;
 

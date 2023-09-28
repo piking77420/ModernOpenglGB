@@ -1,11 +1,14 @@
 #pragma once
 #include <iostream>
 
-class TestPyton
+class TestPythonClass
 {
 public:
 
 	void PrintHello();
+
+	TestPythonClass(){}
+
 private:
 
 };

@@ -174,6 +174,12 @@ class Vector2(object):
 
     def __ge__(self, vec2):
         return _CorePythonMath.Vector2___ge__(self, vec2)
+
+    def __getitem__(self, index):
+        return _CorePythonMath.Vector2___getitem__(self, index)
+
+    def __setitem__(self, index, value):
+        return _CorePythonMath.Vector2___setitem__(self, index, value)
     __swig_destroy__ = _CorePythonMath.delete_Vector2
 
 # Register Vector2 in _CorePythonMath:
@@ -305,8 +311,271 @@ class Vector3(object):
 
     def __imul__(self, *args):
         return _CorePythonMath.Vector3___imul__(self, *args)
+
+    def __getitem__(self, index):
+        return _CorePythonMath.Vector3___getitem__(self, index)
+
+    def __setitem__(self, index, value):
+        return _CorePythonMath.Vector3___setitem__(self, index, value)
     __swig_destroy__ = _CorePythonMath.delete_Vector3
 
 # Register Vector3 in _CorePythonMath:
 _CorePythonMath.Vector3_swigregister(Vector3)
+class Vector4(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    x = property(_CorePythonMath.Vector4_x_get, _CorePythonMath.Vector4_x_set)
+    y = property(_CorePythonMath.Vector4_y_get, _CorePythonMath.Vector4_y_set)
+    z = property(_CorePythonMath.Vector4_z_get, _CorePythonMath.Vector4_z_set)
+    w = property(_CorePythonMath.Vector4_w_get, _CorePythonMath.Vector4_w_set)
+
+    @staticmethod
+    def Size():
+        return _CorePythonMath.Vector4_Size()
+
+    def Norm(self):
+        return _CorePythonMath.Vector4_Norm(self)
+
+    def Normalize(self):
+        return _CorePythonMath.Vector4_Normalize(self)
+
+    @staticmethod
+    def DotProduct(vec1, vec2):
+        return _CorePythonMath.Vector4_DotProduct(vec1, vec2)
+
+    @staticmethod
+    def Angle(vec1, vec2):
+        return _CorePythonMath.Vector4_Angle(vec1, vec2)
+
+    def __add__(self, *args):
+        return _CorePythonMath.Vector4___add__(self, *args)
+
+    def __sub__(self, *args):
+        return _CorePythonMath.Vector4___sub__(self, *args)
+
+    def __mul__(self, *args):
+        return _CorePythonMath.Vector4___mul__(self, *args)
+
+    def __truediv__(self, *args):
+        return _CorePythonMath.Vector4___truediv__(self, *args)
+    __div__ = __truediv__
+
+
+
+    def __iadd__(self, value):
+        return _CorePythonMath.Vector4___iadd__(self, value)
+
+    def __isub__(self, value):
+        return _CorePythonMath.Vector4___isub__(self, value)
+
+    def __imul__(self, value):
+        return _CorePythonMath.Vector4___imul__(self, value)
+
+    def __itruediv__(self, *args):
+        return _CorePythonMath.Vector4___itruediv__(self, *args)
+    __idiv__ = __itruediv__
+
+
+
+    def __neg__(self):
+        return _CorePythonMath.Vector4___neg__(self)
+
+    @staticmethod
+    def DistanceSquare(a, b):
+        return _CorePythonMath.Vector4_DistanceSquare(a, b)
+
+    @staticmethod
+    def Distance(a, b):
+        return _CorePythonMath.Vector4_Distance(a, b)
+
+    def GetPtr(self):
+        return _CorePythonMath.Vector4_GetPtr(self)
+
+    def SetPtr(self):
+        return _CorePythonMath.Vector4_SetPtr(self)
+
+    @staticmethod
+    def Zero():
+        return _CorePythonMath.Vector4_Zero()
+
+    @staticmethod
+    def One():
+        return _CorePythonMath.Vector4_One()
+
+    def __init__(self, *args):
+        _CorePythonMath.Vector4_swiginit(self, _CorePythonMath.new_Vector4(*args))
+
+    def __getitem__(self, index):
+        return _CorePythonMath.Vector4___getitem__(self, index)
+
+    def __setitem__(self, index, value):
+        return _CorePythonMath.Vector4___setitem__(self, index, value)
+    __swig_destroy__ = _CorePythonMath.delete_Vector4
+
+# Register Vector4 in _CorePythonMath:
+_CorePythonMath.Vector4_swigregister(Vector4)
+class Matrix2X2(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    Coloms = property(_CorePythonMath.Matrix2X2_Coloms_get, _CorePythonMath.Matrix2X2_Coloms_set)
+
+    @staticmethod
+    def Determinant(matrix):
+        return _CorePythonMath.Matrix2X2_Determinant(matrix)
+
+    @staticmethod
+    def Size():
+        return _CorePythonMath.Matrix2X2_Size()
+
+    @staticmethod
+    def RotationMatrix2X2(angle):
+        return _CorePythonMath.Matrix2X2_RotationMatrix2X2(angle)
+
+    def GetPtr(self):
+        return _CorePythonMath.Matrix2X2_GetPtr(self)
+
+    def SetPtr(self):
+        return _CorePythonMath.Matrix2X2_SetPtr(self)
+
+    def __init__(self, *args):
+        _CorePythonMath.Matrix2X2_swiginit(self, _CorePythonMath.new_Matrix2X2(*args))
+
+    @staticmethod
+    def Identity():
+        return _CorePythonMath.Matrix2X2_Identity()
+    __swig_destroy__ = _CorePythonMath.delete_Matrix2X2
+
+# Register Matrix2X2 in _CorePythonMath:
+_CorePythonMath.Matrix2X2_swigregister(Matrix2X2)
+class Matrix3X3(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    Coloms = property(_CorePythonMath.Matrix3X3_Coloms_get, _CorePythonMath.Matrix3X3_Coloms_set)
+
+    @staticmethod
+    def Identity():
+        return _CorePythonMath.Matrix3X3_Identity()
+
+    @staticmethod
+    def TranslationMatrix3X3(translation):
+        return _CorePythonMath.Matrix3X3_TranslationMatrix3X3(translation)
+
+    @staticmethod
+    def Rotation2DMatrix3X3(angle):
+        return _CorePythonMath.Matrix3X3_Rotation2DMatrix3X3(angle)
+
+    def Invert(self):
+        return _CorePythonMath.Matrix3X3_Invert(self)
+
+    def Transposate(self):
+        return _CorePythonMath.Matrix3X3_Transposate(self)
+
+    @staticmethod
+    def Determinant(matrix):
+        return _CorePythonMath.Matrix3X3_Determinant(matrix)
+
+    @staticmethod
+    def AdjoinMatrix(matrix):
+        return _CorePythonMath.Matrix3X3_AdjoinMatrix(matrix)
+
+    def GetPtr(self):
+        return _CorePythonMath.Matrix3X3_GetPtr(self)
+
+    def SetPtr(self):
+        return _CorePythonMath.Matrix3X3_SetPtr(self)
+
+    def __init__(self, *args):
+        _CorePythonMath.Matrix3X3_swiginit(self, _CorePythonMath.new_Matrix3X3(*args))
+
+    def __mul__(self, *args):
+        return _CorePythonMath.Matrix3X3___mul__(self, *args)
+    __swig_destroy__ = _CorePythonMath.delete_Matrix3X3
+
+# Register Matrix3X3 in _CorePythonMath:
+_CorePythonMath.Matrix3X3_swigregister(Matrix3X3)
+class Matrix4X4(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    Colums = property(_CorePythonMath.Matrix4X4_Colums_get, _CorePythonMath.Matrix4X4_Colums_set)
+
+    def GetPos(self):
+        return _CorePythonMath.Matrix4X4_GetPos(self)
+
+    @staticmethod
+    def PerspectiveMatrix(fov, aspect, Near, Far):
+        return _CorePythonMath.Matrix4X4_PerspectiveMatrix(fov, aspect, Near, Far)
+
+    @staticmethod
+    def OrthoGraphicMatrix(left, right, bottom, top, zNear, zFar):
+        return _CorePythonMath.Matrix4X4_OrthoGraphicMatrix(left, right, bottom, top, zNear, zFar)
+
+    @staticmethod
+    def DecomposeMatrix(matrix, tranlation, rotation, scale):
+        return _CorePythonMath.Matrix4X4_DecomposeMatrix(matrix, tranlation, rotation, scale)
+
+    @staticmethod
+    def LookAt(eye, at, up):
+        return _CorePythonMath.Matrix4X4_LookAt(eye, at, up)
+
+    @staticmethod
+    def RotationZ4X4(angle):
+        return _CorePythonMath.Matrix4X4_RotationZ4X4(angle)
+
+    @staticmethod
+    def RotationY4X4(angle):
+        return _CorePythonMath.Matrix4X4_RotationY4X4(angle)
+
+    @staticmethod
+    def RotationX4X4(angle):
+        return _CorePythonMath.Matrix4X4_RotationX4X4(angle)
+
+    @staticmethod
+    def RotationMatrix4X4(angle):
+        return _CorePythonMath.Matrix4X4_RotationMatrix4X4(angle)
+
+    @staticmethod
+    def TranslateMatrix4X4(translation):
+        return _CorePythonMath.Matrix4X4_TranslateMatrix4X4(translation)
+
+    @staticmethod
+    def ScalingMatrix4X4(ScalingFactor):
+        return _CorePythonMath.Matrix4X4_ScalingMatrix4X4(ScalingFactor)
+
+    @staticmethod
+    def TRS(*args):
+        return _CorePythonMath.Matrix4X4_TRS(*args)
+
+    @staticmethod
+    def Identity():
+        return _CorePythonMath.Matrix4X4_Identity()
+
+    def Invert(self):
+        return _CorePythonMath.Matrix4X4_Invert(self)
+
+    def Transposate(self):
+        return _CorePythonMath.Matrix4X4_Transposate(self)
+
+    @staticmethod
+    def Determinant(matrix):
+        return _CorePythonMath.Matrix4X4_Determinant(matrix)
+
+    def GetPtr(self):
+        return _CorePythonMath.Matrix4X4_GetPtr(self)
+
+    def SetPtr(self):
+        return _CorePythonMath.Matrix4X4_SetPtr(self)
+
+    @staticmethod
+    def AdjoinMatrix(matrix):
+        return _CorePythonMath.Matrix4X4_AdjoinMatrix(matrix)
+
+    def __mul__(self, *args):
+        return _CorePythonMath.Matrix4X4___mul__(self, *args)
+
+    def __init__(self, *args):
+        _CorePythonMath.Matrix4X4_swiginit(self, _CorePythonMath.new_Matrix4X4(*args))
+    __swig_destroy__ = _CorePythonMath.delete_Matrix4X4
+
+# Register Matrix4X4 in _CorePythonMath:
+_CorePythonMath.Matrix4X4_swigregister(Matrix4X4)
 

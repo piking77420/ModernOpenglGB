@@ -1,6 +1,6 @@
 #include "Core/Python/TestPython.h"
 
-void TestPyton::PrintHello()
+void TestPythonClass::PrintHello()
 {
 	std::cout << " feur " << std::endl;
 	std::getchar();

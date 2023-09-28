@@ -21,7 +21,7 @@ namespace Debug
 
 
 	};
-	static AssertClass* Assert = new Debug::AssertClass();
+	static inline AssertClass* Assert = new Debug::AssertClass();
 
 
 }

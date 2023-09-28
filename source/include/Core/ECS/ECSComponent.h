@@ -74,4 +74,3 @@ const GetNameOfComponent EcsComponent<T>::NameFunction(GetName<T>);
 
 
 
-#define MONOBEHAVIOUR(x) : public EcsComponent<x>

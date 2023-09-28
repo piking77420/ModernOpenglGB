@@ -22,5 +22,15 @@ struct Vertex
 	int m_BoneIDs[MAX_BONE_INFLUENCE];
 	//weights from each bone
 	float m_Weights[MAX_BONE_INFLUENCE];
+
+	Vertex(const Vector3& pos , const Vector3& normal , const Vector3 uv) : Position(pos) , Normal(normal) , TextureCoord(uv)
+	{
+
+	}
+
+	Vertex()
+	{
+
+	}
 };
 

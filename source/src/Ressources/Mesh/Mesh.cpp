@@ -487,11 +487,14 @@ void Mesh::LoadVertex(const MeshData& data, bool& isFaced, bool& is3dTextute)
 			int posNormal = (data.indexVector[i + 2]) - 1;
 			int posTexture = (data.indexVector[i + 1]) - 1;
 
+			Vertex newv;
 
-			
-			Vertex newVertex = Vertex(data.vertexPos[posIndex], data.vertexNormal[posNormal], data.vertexUv[posTexture]);
+			newv.Position = data.vertexPos[posIndex];
+			newv.Normal = data.vertexNormal[posNormal];
+			newv.TextureCoord = data.vertexUv[posTexture];
 
-			vertexVector.push_back(newVertex);
+
+			vertexVector.push_back(newv);
 
 
 			indexVector.push_back(posIndex);
@@ -511,8 +514,13 @@ void Mesh::LoadVertex(const MeshData& data, bool& isFaced, bool& is3dTextute)
 
 			//Vertex newVertex = Vertex(data.vertexPos[posIndex], data.vertexNormal[posNormal], data.vertexUv[posTexture]);
 			
+			Vertex newv;
 
-			Face[counter] = Vertex(data.vertexPos[posIndex], data.vertexNormal[posNormal], data.vertexUv[posTexture]);
+			newv.Position = data.vertexPos[posIndex];
+			newv.Normal = data.vertexNormal[posNormal];
+			newv.TextureCoord = data.vertexUv[posTexture];
+
+			Face[counter] = newv;
 
 			if (counter < 4)
 			{
