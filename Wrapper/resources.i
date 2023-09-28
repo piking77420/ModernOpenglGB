@@ -9,7 +9,7 @@
 	#include "../source/include/Ressources/Texture/Texture.hpp"
 %}
 
-
+%nspace fs = std::filesystem
 
 %include "../source/include/Ressources/RessourcesManager/RessourcesManager.h"
 %include "../source/include/Ressources/IResources/IResource.h"

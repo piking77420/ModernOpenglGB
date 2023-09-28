@@ -189,113 +189,123 @@ public:
 
 
 
-};
+	constexpr inline Vector2 operator+(const Vector2 Row1) const
+	{
+		return Vector2(x + Row1.x, y + Row1.y);
+	}
+
+	constexpr inline Vector2 operator+(const float value) const
+	{
+		Vector2 result = *this;
+		result.x += value;
+		result.y += value;
+		return result;
+	}
 
 
 
 #pragma region Operator
 
-constexpr inline Vector2 operator+(const Vector2 vec1, const Vector2 Row1)
-{
-	return Vector2(vec1.x + Row1.x, vec1.y + Row1.y);
-}
 
-constexpr inline Vector2 operator-(const Vector2 vec1, const Vector2 Row1)
-{
-	return Vector2(vec1.x - Row1.x, vec1.y - Row1.y);
-}
+	constexpr inline Vector2 operator-( const Vector2 Row1) const
+	{
+		return Vector2(x - Row1.x, y - Row1.y);
+	}
 
-constexpr inline Vector2 operator*(const Vector2 vec1, const Vector2 Row1)
-{
-	return Vector2(vec1.x * Row1.x, vec1.y * Row1.y);
-}
+	constexpr inline Vector2 operator*(const Vector2 Row1) const
+	{
+		return Vector2(x * Row1.x, y * Row1.y);
+	}
 
-constexpr inline Vector2 operator/(const Vector2 vec1, const Vector2 Row1)
-{
-	return Vector2(vec1.x / Row1.x, vec1.y / Row1.y);
-}
+	constexpr inline Vector2 operator/(const Vector2 Row1) const
+	{
+		return Vector2(x / Row1.x, y / Row1.y);
+	}
 
 
-constexpr inline Vector2 operator+(const Vector2 vec1, const float& value)
-{
-	Vector2 result = vec1;
-	result.x += value;
-	result.y += value;
-	return result;
-}
 
-constexpr inline Vector2 operator*(const Vector2 vec1, const float& value)
-{
-	Vector2 result = vec1;
-	result.x *= value;
-	result.y *= value;
-	return result;
-}
+	constexpr inline Vector2 operator*(const float& value) const
+	{
+		Vector2 result = *this;
+		result.x *= value;
+		result.y *= value;
+		return result;
+	}
 
-constexpr inline Vector2 operator/(const Vector2 vec1, const float& value)
-{
-	Vector2 result = vec1;
-	result.x /= value;
-	result.y /= value;
-	return result;
-}
+	constexpr inline Vector2 operator/(const float& value) const
+	{
+		Vector2 result = *this;
+		result.x /= value;
+		result.y /= value;
+		return result;
+	}
 
-constexpr inline Vector2 operator-(const Vector2 vec1, const float& value)
-{
-	Vector2 result = vec1;
-	result.x -= value;
-	result.y -= value;
-	return result;
-}
+	constexpr inline Vector2 operator-(const float& value) const
+	{
+		Vector2 result = *this;
+		result.x -= value;
+		result.y -= value;
+		return result;
+	}
 
 
-constexpr inline void operator+=(Vector2& vec1, Vector2 Row1)
-{
-	vec1.x += Row1.x;
-	vec1.y += Row1.y;
-}
+	constexpr inline void operator+=(Vector2 Row1)
+	{
+		x += Row1.x;
+		y += Row1.y;
+	}
 
-constexpr inline void operator-=(Vector2& vec1, Vector2 Row1)
-{
-	vec1.x -= Row1.x;
-	vec1.y -= Row1.y;
-}
+	constexpr inline void operator-=(Vector2 Row1)
+	{
+		x -= Row1.x;
+		y -= Row1.y;
+	}
 
 
-constexpr inline void operator*=(Vector2& vec1, Vector2 Row1)
-{
-	vec1.x *= Row1.x;
-	vec1.y *= Row1.y;
-}
+	constexpr inline void operator*=(Vector2 Row1)
+	{
+		x *= Row1.x;
+		y *= Row1.y;
+	}
 
-constexpr inline void operator/=(Vector2& vec1, Vector2 Row1)
-{
-	vec1.x /= Row1.x;
-	vec1.y /= Row1.y;
-}
+	constexpr inline void operator/=(Vector2 Row1)
+	{
+		x /= Row1.x;
+		y /= Row1.y;
+	}
 
 
 #pragma endregion
 
 
+
+	
+
+
+	constexpr inline bool operator!=(const Vector2& vec2)
+	{
+		return x != vec2.x && y != vec2.y;
+	}
+
+	constexpr inline bool operator==(const Vector2& vec2)
+	{
+		return x == vec2.x && y == vec2.y;
+	}
+
+	constexpr inline bool operator<=(const Vector2& vec2)
+	{
+		return x <= vec2.x && y <= vec2.y;
+	}
+
+	constexpr inline bool operator>=(const Vector2& vec2)
+	{
+		return x >= vec2.x && y >= vec2.y;
+	}
+
+};
+
+
+
+
 std::ostream& operator<<(std::ostream& stream, const Vector2& vec);
 
-constexpr inline bool operator!=(const Vector2& vec1, const Vector2& vec2)
-{
-	return vec1.x != vec2.x && vec1.y != vec2.y;
-}
-
-constexpr inline bool operator==(const Vector2& vec1, const Vector2& vec2)
-{
-	return vec1.x == vec2.x && vec1.y == vec2.y;
-}
-
-constexpr inline bool operator<=(const Vector2& vec1, const Vector2& vec2)
-{
-	return vec1.x <= vec2.x && vec1.y <= vec2.y;
-}
-
-constexpr inline bool operator>=(const Vector2& vec1, const Vector2& vec2)
-{
-	return vec1.x >= vec2.x && vec1.y >= vec2.y;
-}

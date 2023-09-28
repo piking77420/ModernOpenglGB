@@ -201,7 +201,7 @@ public:
 	/**
 	 * @brief Return Vector(0,0,0)
 	 */
-	consteval inline static const Vector3 Zero() noexcept
+	constexpr inline static Vector3 Zero() noexcept
 	{
 		return Vector3(0, 0, 0);
 	}
@@ -209,7 +209,7 @@ public:
 	/**
 	 * @brief Return Vector(1,1,1)
 	 */
-	consteval inline static const Vector3 One() noexcept
+	constexpr inline static  Vector3 One() noexcept
 	{
 		return Vector3(1, 1, 1);
 	}
@@ -217,7 +217,7 @@ public:
 	/**
 	 * @brief Return Vector(1,0,0)
 	 */
-	consteval inline static const Vector3 Right() noexcept
+	constexpr inline static  Vector3 Right() noexcept
 	{
 		return Vector3(1.f, 0.f, 0.f);
 	}
@@ -225,7 +225,7 @@ public:
 	/**
 	 * @brief Return Vector(-1,0,0)
 	 */
-	consteval inline static const Vector3 Left() noexcept
+	constexpr inline static  Vector3 Left() noexcept
 	{
 		return Vector3(-1.f, 0.f, 0.f);
 	}
@@ -233,7 +233,7 @@ public:
 	/**
 	 * @brief Return Vector(0,1,0)
 	 */
-	consteval inline static const Vector3 Up() noexcept
+	constexpr inline static  Vector3 Up() noexcept
 	{
 		return Vector3(0.f, 1.f, 0.f);
 	}
@@ -241,7 +241,7 @@ public:
 	/**
 	 * @brief Return Vector(0,-1,0)
 	 */
-	consteval inline static const Vector3 Down() noexcept
+	constexpr inline static  Vector3 Down() noexcept
 	{
 		return Vector3(0.f, -1.f, 0.f);
 	}
@@ -249,7 +249,7 @@ public:
 	/**
 	 * @brief Return Vector(0,0,1)
 	 */
-	consteval inline static const Vector3 Forward() noexcept
+	constexpr inline static  Vector3 Forward() noexcept
 	{
 		return Vector3(0.f, 0.f, 1.f);
 	}
@@ -257,7 +257,7 @@ public:
 	/**
 	 * @brief Return Vector(0,0,-1)
 	 */
-	consteval inline static const Vector3 BackForward() noexcept
+	constexpr inline static  Vector3 BackForward() noexcept
 	{
 		return Vector3(0.f, 0.f, -1.f);
 	}
@@ -343,186 +343,94 @@ public:
 
 	/** @} */ // End of Constructor
 
+
+
+	constexpr inline Vector3 operator+(const Vector3& Row1) const noexcept
+	{
+		return Vector3(x + Row1.x, y + Row1.y, z + Row1.z);
+	}
+	constexpr inline Vector3 operator-(const Vector3& Row1) const noexcept
+	{
+		return Vector3(x - Row1.x, y - Row1.y, z - Row1.z);
+	}
+
+	constexpr inline Vector3 operator-() const noexcept
+	{
+		return Vector3(-x, -y, -z);
+	}
+	
+	constexpr inline Vector3 operator*(const Vector3& Row1) const noexcept
+	{
+		return Vector3(x * Row1.x, y * Row1.y, z * Row1.z);
+	}
+	constexpr inline Vector3 operator/(const Vector3& Row1) const noexcept
+	{
+		return Vector3(x / Row1.x, y / Row1.y, z / Row1.z);
+	}
+
+
+
+	constexpr inline void operator+= ( const Vector3 Row1) noexcept
+	{
+		x += Row1.x;
+		y += Row1.y;
+		z += Row1.z;
+	}
+	constexpr inline void operator-= ( const Vector3 Row1) noexcept
+	{
+		x -= Row1.x;
+		y -= Row1.y;
+		z -= Row1.z;
+	}
+	constexpr inline void operator*= (const Vector3 Row1) noexcept
+	{
+		x *= Row1.x;
+		y *= Row1.y;
+		z *= Row1.z;
+	}
+	constexpr inline void operator/= (const Vector3 Row1) noexcept
+	{
+		x /= Row1.x;
+		y /= Row1.y;
+		z /= Row1.z;
+	}
+
+
+	constexpr inline Vector3 operator+(const float value) const noexcept
+	{
+		Vector3 result = *this;
+		result.x += value;
+		result.y += value;
+		result.z += value;
+		return result;
+	}
+
+
+	
+
+	constexpr inline Vector3 operator-(const float value) const noexcept
+	{
+		Vector3 result = *this;
+		result.x -= value;
+		result.y -= value;
+		result.z -= value;
+		return result;
+	}
+
+	constexpr inline Vector3 operator*=(const float value) noexcept
+	{
+		Vector3 result = *this;
+		result.x *= value;
+		result.y *= value;
+		result.z *= value;
+		return result;
+	}
+
+
 };
 
 
 
-
-
-constexpr inline Vector3 operator+(const Vector3& vec1, const Vector3& Row1) noexcept
-{
-	return Vector3(vec1.x + Row1.x, vec1.y + Row1.y, vec1.z + Row1.z);
-}
-constexpr inline Vector3 operator-(const Vector3& vec1, const Vector3& Row1) noexcept
-{
-	return Vector3(vec1.x - Row1.x, vec1.y - Row1.y, vec1.z - Row1.z);
-}
-constexpr inline Vector3 operator-(const Vector3& vec) noexcept
-{
-	return Vector3(-vec.x, -vec.y, -vec.z);
-}
-constexpr inline Vector3 operator*(const Vector3& vec1, const Vector3& Row1) noexcept
-{
-	return Vector3(vec1.x * Row1.x, vec1.y * Row1.y, vec1.z * Row1.z);
-}
-constexpr inline Vector3 operator/(const Vector3& vec1, const Vector3& Row1) noexcept
-{
-	return Vector3(vec1.x / Row1.x, vec1.y / Row1.y, vec1.z / Row1.z);
-}
-
-constexpr inline void operator+= (Vector3& vec1, const Vector3 Row1) noexcept
-{
-	vec1.x += Row1.x;
-	vec1.y += Row1.y;
-	vec1.z += Row1.z;
-}
-constexpr inline void operator-= (Vector3& vec1, const Vector3 Row1) noexcept
-{
-	vec1.x -= Row1.x;
-	vec1.y -= Row1.y;
-	vec1.z -= Row1.z;
-}
-constexpr inline void operator*= (Vector3& vec1, const Vector3 Row1) noexcept
-{
-	vec1.x *= Row1.x;
-	vec1.y *= Row1.y;
-	vec1.z *= Row1.z;
-}
-constexpr inline void operator/= (Vector3& vec1, const Vector3 Row1) noexcept
-{
-	vec1.x /= Row1.x;
-	vec1.y /= Row1.y;
-	vec1.z /= Row1.z;
-}
-constexpr inline Vector3 operator+(const Vector3& vec1, const float value) noexcept
-{
-	Vector3 result = vec1;
-	result.x += value;
-	result.y += value;
-	result.z += value;
-	return result;
-}
-
-
-constexpr inline Vector3 operator*(const float value, const Vector3& vec1) noexcept
-{
-	Vector3 result = vec1;
-	result.x *= value;
-	result.y *= value;
-	result.z *= value;
-	return result;
-}
-
-constexpr inline Vector3 operator-(const Vector3& vec1, const float value) noexcept
-{
-	Vector3 result = vec1;
-	result.x -= value;
-	result.y -= value;
-	result.z -= value;
-	return result;
-}
-
-constexpr inline Vector3 operator*=(const Vector3& vec1, const float value) noexcept
-{
-	Vector3 result = vec1;
-	result.x *= value;
-	result.y *= value;
-	result.z *= value;
-	return result;
-}
-
-
-
-constexpr inline bool operator!=(const Vector3& vec1, const Vector3& vec2) noexcept
-{
-	return (vec1.x != vec2.x) || (vec1.y != vec2.y) || (vec1.z != vec2.z);
-}
-
-constexpr inline bool operator==(const Vector3& vec1, const Vector3& vec2) noexcept
-{
-	return vec1.x == vec2.x && vec1.y == vec2.y && vec1.z == vec2.z;
-}
-
-constexpr inline bool operator<=(const Vector3& vec1, const Vector3& vec2) noexcept
-{
-	return vec1.x <= vec2.x && vec1.y <= vec2.y && vec1.z <= vec2.z;
-}
-
-constexpr inline bool operator<(const Vector3& vec1, const Vector3& vec2) noexcept
-{
-	return vec1.x < vec2.x&& vec1.y < vec2.y&& vec1.z < vec2.z;
-}
-
-constexpr inline bool operator>(const Vector3& vec1, const Vector3& vec2) noexcept
-{
-	return vec1.x > vec2.x && vec1.y > vec2.y && vec1.z > vec2.z;
-}
-
-constexpr inline bool operator>=(const Vector3& vec1, const Vector3& vec2) noexcept
-{
-	return vec1.x >= vec2.x && vec1.y >= vec2.y && vec1.z >= vec2.z;
-}
-
-constexpr inline Vector3 operator/(const float value, const Vector3& Row1) noexcept
-{
-	return Vector3(value / Row1.x, value / Row1.y, value / Row1.z);
-}
-
-
-constexpr inline void operator+= (Vector3& vec1, const Vector2 Row1) noexcept
-{
-	vec1.x += Row1.x;
-	vec1.y += Row1.y;
-
-}
-
-
-constexpr inline void operator-= (Vector3& vec1, const Vector2 Row1) noexcept
-{
-	vec1.x -= Row1.x;
-	vec1.y -= Row1.y;
-}
-
-constexpr inline void operator*= (Vector3& vec1, const Vector2 Row1) noexcept
-{
-	vec1.x *= Row1.x;
-	vec1.y *= Row1.y;
-}
-constexpr inline void operator/= (Vector3& vec1, const Vector2 Row1) noexcept
-{
-	vec1.x /= Row1.x;
-	vec1.y /= Row1.y;
-}
-
-
-
-constexpr inline void operator+= (Vector3& vec1, float value) noexcept
-{
-	vec1.x += value;
-	vec1.y += value;
-	vec1.z += value;
-}
-
-constexpr inline void operator-= (Vector3& vec1, float value) noexcept
-{
-	vec1.x -= value;
-	vec1.y -= value;
-	vec1.z -= value;
-}
-
-constexpr inline void operator*= (Vector3& vec1, float value) noexcept
-{
-	vec1.x *= value;
-	vec1.y *= value;
-	vec1.z *= value;
-}
-
-constexpr inline void operator/= (Vector3& vec1, float value) noexcept
-{
-	vec1.x /= value;
-	vec1.y /= value;
-	vec1.z /= value;
-}
 
 
 

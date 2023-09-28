@@ -130,12 +130,12 @@ void PhysicsSystem::CollisionRespond(Scene* scene, std::vector<Rigidbody>* rigid
 
 			if (rbOther)
 			{
-				Forceadded = collptr->depht * collptr->Normal * rbOther->mass;
+				Forceadded = collptr->Normal * collptr->depht * rbOther->mass;
 			}
 			else
 			{
 
-				Forceadded = (collptr->Normal) * (rb->mass * -gravity);
+				Forceadded = (collptr->Normal) * (-gravity * rb->mass);
 			}
 			rb->Force += Forceadded;
 

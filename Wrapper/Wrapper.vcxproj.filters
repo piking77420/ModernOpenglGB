@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Test.i" />
     <None Include="resources.i" />
+    <None Include="CoreMathPython.i" />
   </ItemGroup>
 </Project>

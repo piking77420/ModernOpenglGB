@@ -98,7 +98,7 @@ public:
 
 
 		float scalarResult = Q1.w * Q2.w - Vector3::DotProduct(im1, im2);
-		Vector3 vectorResult = Q1.w * im2 + im1 * Q2.w + Vector3::CrossProduct(im1, im2);
+		Vector3 vectorResult =   (im2 * Q1.w )+ im1 * Q2.w + Vector3::CrossProduct(im1, im2);
 		return Quaternion(vectorResult.x, vectorResult.y, vectorResult.z, scalarResult);
 
 	}

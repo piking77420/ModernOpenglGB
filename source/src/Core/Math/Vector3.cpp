@@ -47,7 +47,7 @@ Vector3 Vector3::Reflect(const Vector3& Vector, const Vector3& Normal)
 	Vector3 result;
 	Vector3 NoramizeNormal = Normal.Normalize();
 
-	result = Vector - (NoramizeNormal * (2.f * (DotProduct(Vector, Normal))));
+	result = (NoramizeNormal * (2.f * (DotProduct(Vector, Normal)))) - Vector;
 
 	return result;
 }

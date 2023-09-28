@@ -60,7 +60,11 @@ public:
 
 	explicit operator Vector() const;
 	explicit operator Vector2() const;
-	explicit operator Vector3() const;
+	explicit operator Vector3() const 
+	{
+		return Vector3(x, y, z);
+	}
+
 
 #pragma endregion
 
