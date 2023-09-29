@@ -7,7 +7,7 @@
 #include "Mathf.h"
 #include "Core/DataStructure/Project.hpp"
 
-#include "ECS/Scene/Scene.h"
+#include "ECS/Scene.h"
 #include "Core/DataStructure/Project.hpp"
 
 // Camera Init // 

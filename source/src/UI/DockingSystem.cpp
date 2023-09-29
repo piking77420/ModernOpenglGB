@@ -5,7 +5,7 @@
 
 #include "UI/DockingSystem.hpp"
 #include "Core/DataStructure/Project.hpp"
-#include "ECS/Scene/Scene.h"
+#include "ECS/Scene.h"
 #include "LowRenderer/Cam/Camera.h"
 #include "UI/ContentBrowser.h"
 #include "UI/Inspector.hpp"

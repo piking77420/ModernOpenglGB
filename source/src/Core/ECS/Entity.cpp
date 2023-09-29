@@ -1,7 +1,7 @@
 #include "Core/ECS/Entity.h"
 #include "Core/ECS/Component.h"
 #include <atomic>
-#include "ECS/Scene/Scene.h"
+#include "ECS/Scene.h"
 
 void Entity::OnInspector(uint32_t entityID , Scene* scene) 
 {

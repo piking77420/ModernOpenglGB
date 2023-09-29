@@ -23,7 +23,7 @@ class Component : public ISerialzable
 
 private:
 
-	static inline std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >* m_componentTypeInfos = new std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >();
+	static std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >* m_componentTypeInfos;
 
 public:
 	virtual ~Component() {}
@@ -34,24 +34,25 @@ public:
 	
 	static inline const std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >* GetComponentTypeInfos() { return m_componentTypeInfos; }
 	static inline std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >* SetComponentTypeInfos() { return m_componentTypeInfos; }
-
-protected:
-	static uint32_t GetNbrOfComponent()
-	{
-		return Component::m_componentTypeInfos->size();
-	}
-
+	
 	template<typename T>
 	static  uint32_t RegisterComponent(ECSComponentCreateFunction createfn,
 		ECSComponentFreeFunction freefn, size_t size, GetNameOfComponent namefn)
 	{
-
+		
 		// Which array all the data of all this type Componenet will be 
 		uint32_t DataArrayIndex = m_componentTypeInfos->size();
 		m_componentTypeInfos->push_back({ createfn,freefn,size, namefn() });
 
 		return DataArrayIndex;
 	}
+protected:
+	static uint32_t GetNbrOfComponent()
+	{
+		return Component::m_componentTypeInfos->size();
+	}
+
+	
 
 	friend Entity;
 private:

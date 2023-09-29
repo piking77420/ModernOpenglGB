@@ -42,29 +42,27 @@ class EcsComponent : public Component
 {
 public:
 
-	static  const uint32_t componentTypeID;
+	static  inline uint32_t componentTypeID = 0;
 
 	// Size_t Of the component
-	static  const size_t size;
+	static  const size_t size   ;
 	// ONLY WORK ON C++ 17 or more
 
 
 private:
 
-	static  const ECSComponentCreateFunction CreateFunction;
+	static inline const ECSComponentCreateFunction CreateFunction = ECSComponentCreate<T>;
 	static  const GetNameOfComponent NameFunction;
 	static  const ECSComponentFreeFunction FreeFunction;
 };
 
 
-template<class T>
-const uint32_t EcsComponent<T>::componentTypeID(Component::RegisterComponent<T>(ECSComponentCreate<T>, ECSComponentFree<T>, sizeof(T), GetName<T>));
+
 
 template<class T>
-const size_t EcsComponent<T>::size(sizeof(T));
+const size_t EcsComponent<T>::size = sizeof(T);
 
-template<class T>
-const ECSComponentCreateFunction EcsComponent<T>::CreateFunction(ECSComponentCreate<T>);
+
 
 template<class T>
 const ECSComponentFreeFunction EcsComponent<T>::FreeFunction(ECSComponentFree<T>);

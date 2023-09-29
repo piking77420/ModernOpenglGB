@@ -45,8 +45,5 @@
     <ClCompile Include="..\source\src\Core\Math\Vector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CorePythonMath_wrap.cxx">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

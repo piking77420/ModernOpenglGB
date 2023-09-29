@@ -29,7 +29,6 @@
     <ClCompile Include="..\source\src\Core\Math\Vector2.cpp" />
     <ClCompile Include="..\source\src\Core\Math\Vector3.cpp" />
     <ClCompile Include="..\source\src\Core\Math\Vector4.cpp" />
-    <ClCompile Include="CorePythonMath_wrap.cxx" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -85,16 +84,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetExt>.pyd</TargetExt>
-    <IncludePath>$(Python)\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(Python)\libs;$(LibraryPath)</LibraryPath>
-    <TargetName>_CorePythonMath</TargetName>
+    <IncludePath>$(Python)\include;C:\Program Files\Python37\include;$(SolutionDir)\source\Include\External;$(IncludePath)</IncludePath>
+    <LibraryPath>$(Python)\libs;C:\Program Files\Python37\libs;$(LibraryPath)</LibraryPath>
+    <TargetName>_CorePython</TargetName>
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetExt>.pyd</TargetExt>
-    <IncludePath>$(Python)\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(Python)\libs;$(LibraryPath)</LibraryPath>
-    <TargetName>_CorePythonMath</TargetName>
+    <IncludePath>$(Python)\include;C:\Program Files\Python37\include;$(SolutionDir)\source\Include\External;$(IncludePath)</IncludePath>
+    <LibraryPath>$(Python)\libs;C:\Program Files\Python37\libs;$(LibraryPath)</LibraryPath>
+    <TargetName>_CorePython</TargetName>
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -151,7 +150,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)source\Include\Core\Math;$(SolutionDir)\source\Include\Core;$(SolutionDir)\source\Include;$(SolutionDir)\source\Include\Core\Python\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)source\Include\Core\Math;$(SolutionDir)\source\Include\Core;$(SolutionDir)\source\Include;$(SolutionDir)\source\Include\Core\Python\;$(SolutionDir)\source\Include\External</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4996 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
@@ -168,7 +167,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)source\Include\Core\Math;$(SolutionDir)\source\Include\Core;$(SolutionDir)\source\Include;$(SolutionDir)\source\Include\Core\Python\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)source\Include\Core\Math;$(SolutionDir)\source\Include\Core;$(SolutionDir)\source\Include;$(SolutionDir)\source\Include\Core\Python\;$(SolutionDir)\source\Include\External</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4996 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>

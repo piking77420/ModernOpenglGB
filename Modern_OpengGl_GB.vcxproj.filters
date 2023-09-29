@@ -330,7 +330,7 @@
     <ClInclude Include="source\include\Core\Debug\Imgui\imstb_truetype.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\Core\ECS\Scene\Scene.h">
+    <ClInclude Include="source\include\Core\ECS\Scene.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="source\include\Core\ECS\PythonScript.h">
@@ -634,7 +634,7 @@
     <ClCompile Include="source\src\Core\ThreadPatern\ThreadPoolDynamic.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="source\src\Core\ECS\Scene\Scene.cpp">
+    <ClCompile Include="source\src\Core\ECS\Scene.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\Core\ECS\PythonScript.cpp">

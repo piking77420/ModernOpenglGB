@@ -1,6 +1,6 @@
 #include <filesystem>
 #include"LowRenderer/Cam/Camera.h"
-#include "Core/ECS/Scene/Scene.h"
+#include "Core/ECS/Scene.h"
 #include "App/App.h"
 #include "LowRenderer/FrameBuffer/FrameBuffer.h"
 #include "Physics/Transform/Transform.hpp"

@@ -1,6 +1,6 @@
 #pragma once
 #include "Core/ECS/IECSSystem.h"
-#include "ECS/Scene/Scene.h"
+#include "ECS/Scene.h"
 
 
 class RumicsCube : public IEcsSystem

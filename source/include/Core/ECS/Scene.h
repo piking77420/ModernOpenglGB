@@ -1,6 +1,5 @@
 #pragma once
 #include<vector>
-#include "Ressources/IResources/IResource.h"
 #include <unordered_map>
 #include "Ressources/RessourcesManager/RessourcesManager.h"
 
@@ -155,6 +154,15 @@ public :
 	{
 		return m_registerScene.ComponentsData[ID].second;
 	}
+
+#ifndef SWIG
+
+
+
+
+#endif // !SWIG
+
+
 
 	std::string sceneName = "Scene";
 	ImGuiIO io;

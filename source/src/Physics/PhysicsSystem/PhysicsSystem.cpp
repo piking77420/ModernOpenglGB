@@ -1,5 +1,5 @@
 #include "Physics/PhysicsSystem/PhysicsSystem.hpp"
-#include "ECS/Scene/Scene.h"
+#include "ECS/Scene.h"
 #include "Physics/RigidBody/Rigidbody.h"
 #include "Physics/Transform/Transform.hpp"
 #include "Physics/Collider/SphereCollider.hpp"

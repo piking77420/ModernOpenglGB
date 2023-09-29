@@ -118,121 +118,6 @@ class SwigPyIterator(object):
 
 # Register SwigPyIterator in _CorePython:
 _CorePython.SwigPyIterator_swigregister(SwigPyIterator)
-class Project(object):
-    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
-    __repr__ = _swig_repr
-    projectFolderDirectory = property(_CorePython.Project_projectFolderDirectory_get, _CorePython.Project_projectFolderDirectory_set)
-    currentScene = property(_CorePython.Project_currentScene_get, _CorePython.Project_currentScene_set)
-    resourcesManager = property(_CorePython.Project_resourcesManager_get, _CorePython.Project_resourcesManager_set)
-    dockingSystem = property(_CorePython.Project_dockingSystem_get, _CorePython.Project_dockingSystem_set)
-    projectName = property(_CorePython.Project_projectName_get, _CorePython.Project_projectName_set)
-    mainCamera = property(_CorePython.Project_mainCamera_get, _CorePython.Project_mainCamera_set)
-    coreInput = property(_CorePython.Project_coreInput_get, _CorePython.Project_coreInput_set)
-    shaderNormal = property(_CorePython.Project_shaderNormal_get, _CorePython.Project_shaderNormal_set)
-    shaderShadowMapping = property(_CorePython.Project_shaderShadowMapping_get, _CorePython.Project_shaderShadowMapping_set)
-    skybox = property(_CorePython.Project_skybox_get, _CorePython.Project_skybox_set)
-
-    def Update(self):
-        return _CorePython.Project_Update(self)
-
-    def __init__(self, *args):
-        _CorePython.Project_swiginit(self, _CorePython.new_Project(*args))
-    __swig_destroy__ = _CorePython.delete_Project
-
-    def InitScene(self):
-        return _CorePython.Project_InitScene(self)
-
-# Register Project in _CorePython:
-_CorePython.Project_swigregister(Project)
-cvar = _CorePython.cvar
-
-MAX_LOG_SIZE = _CorePython.MAX_LOG_SIZE
-LOG_PATH = _CorePython.LOG_PATH
-FORMAT = _CorePython.FORMAT
-WHITE = _CorePython.WHITE
-BLACK = _CorePython.BLACK
-RED = _CorePython.RED
-GREEN = _CorePython.GREEN
-YELLOW = _CorePython.YELLOW
-PURPLE = _CorePython.PURPLE
-
-def GetTime():
-    return _CorePython.GetTime()
-
-def GetCurrentFile(currentPath):
-    return _CorePython.GetCurrentFile(currentPath)
-
-def OpengFileAndPrint(debugLogStream, color, time, message):
-    return _CorePython.OpengFileAndPrint(debugLogStream, color, time, message)
-STATELOG_NONE = _CorePython.STATELOG_NONE
-STATELOG_GOOD = _CorePython.STATELOG_GOOD
-STATELOG_WARNING = _CorePython.STATELOG_WARNING
-STATELOG_CRITICALERROR = _CorePython.STATELOG_CRITICALERROR
-class PythonScript(object):
-    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
-    __repr__ = _swig_repr
-    pythonObject = property(_CorePython.PythonScript_pythonObject_get, _CorePython.PythonScript_pythonObject_set)
-
-    def Init(self, scene):
-        return _CorePython.PythonScript_Init(self, scene)
-
-    def Awake(self, scene):
-        return _CorePython.PythonScript_Awake(self, scene)
-
-    def Start(self, scene):
-        return _CorePython.PythonScript_Start(self, scene)
-
-    def OnDrawGizmo(self, scene):
-        return _CorePython.PythonScript_OnDrawGizmo(self, scene)
-
-    def FixedUpdate(self, scene):
-        return _CorePython.PythonScript_FixedUpdate(self, scene)
-
-    def Update(self, scene):
-        return _CorePython.PythonScript_Update(self, scene)
-
-    def LateUpdate(self, scene):
-        return _CorePython.PythonScript_LateUpdate(self, scene)
-
-    def Render(self, shader, scene):
-        return _CorePython.PythonScript_Render(self, shader, scene)
-
-    def OnResizeData(self, ComponentTypeID, data):
-        return _CorePython.PythonScript_OnResizeData(self, ComponentTypeID, data)
-
-    def __init__(self):
-        _CorePython.PythonScript_swiginit(self, _CorePython.new_PythonScript())
-    __swig_destroy__ = _CorePython.delete_PythonScript
-
-# Register PythonScript in _CorePython:
-_CorePython.PythonScript_swigregister(PythonScript)
-LogFileName = cvar.LogFileName
-LogFileformat = cvar.LogFileformat
-FileName = cvar.FileName
-
-class Component(object):
-    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
-    __repr__ = _swig_repr
-    __swig_destroy__ = _CorePython.delete_Component
-
-    def ImguiWindowComponent(self):
-        return _CorePython.Component_ImguiWindowComponent(self)
-    isEnable = property(_CorePython.Component_isEnable_get, _CorePython.Component_isEnable_set)
-    entityID = property(_CorePython.Component_entityID_get, _CorePython.Component_entityID_set)
-
-    @staticmethod
-    def GetComponentTypeInfos():
-        return _CorePython.Component_GetComponentTypeInfos()
-
-    @staticmethod
-    def SetComponentTypeInfos():
-        return _CorePython.Component_SetComponentTypeInfos()
-
-    def __init__(self):
-        _CorePython.Component_swiginit(self, _CorePython.new_Component())
-
-# Register Component in _CorePython:
-_CorePython.Component_swigregister(Component)
 ComponentNULL = _CorePython.ComponentNULL
 EntityNULL = _CorePython.EntityNULL
 class Entity(object):
@@ -265,6 +150,82 @@ class Entity(object):
 
 # Register Entity in _CorePython:
 _CorePython.Entity_swigregister(Entity)
+class Component(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    __swig_destroy__ = _CorePython.delete_Component
+
+    def ImguiWindowComponent(self):
+        return _CorePython.Component_ImguiWindowComponent(self)
+    isEnable = property(_CorePython.Component_isEnable_get, _CorePython.Component_isEnable_set)
+    entityID = property(_CorePython.Component_entityID_get, _CorePython.Component_entityID_set)
+
+    @staticmethod
+    def GetComponentTypeInfos():
+        return _CorePython.Component_GetComponentTypeInfos()
+
+    @staticmethod
+    def SetComponentTypeInfos():
+        return _CorePython.Component_SetComponentTypeInfos()
+
+    def __init__(self):
+        _CorePython.Component_swiginit(self, _CorePython.new_Component())
+
+# Register Component in _CorePython:
+_CorePython.Component_swigregister(Component)
+class EcsComponent_Transform(Component):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    componentTypeID = property(_CorePython.EcsComponent_Transform_componentTypeID_get, _CorePython.EcsComponent_Transform_componentTypeID_set)
+
+    def __init__(self):
+        _CorePython.EcsComponent_Transform_swiginit(self, _CorePython.new_EcsComponent_Transform())
+    __swig_destroy__ = _CorePython.delete_EcsComponent_Transform
+
+# Register EcsComponent_Transform in _CorePython:
+_CorePython.EcsComponent_Transform_swigregister(EcsComponent_Transform)
+cvar = _CorePython.cvar
+EcsComponent_Transform.size = _CorePython.cvar.EcsComponent_Transform_size
+
+class EcsComponent_BoxCollider(Component):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    componentTypeID = property(_CorePython.EcsComponent_BoxCollider_componentTypeID_get, _CorePython.EcsComponent_BoxCollider_componentTypeID_set)
+
+    def __init__(self):
+        _CorePython.EcsComponent_BoxCollider_swiginit(self, _CorePython.new_EcsComponent_BoxCollider())
+    __swig_destroy__ = _CorePython.delete_EcsComponent_BoxCollider
+
+# Register EcsComponent_BoxCollider in _CorePython:
+_CorePython.EcsComponent_BoxCollider_swigregister(EcsComponent_BoxCollider)
+EcsComponent_BoxCollider.size = _CorePython.cvar.EcsComponent_BoxCollider_size
+
+class EcsComponent_Rigidbody(Component):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    componentTypeID = property(_CorePython.EcsComponent_Rigidbody_componentTypeID_get, _CorePython.EcsComponent_Rigidbody_componentTypeID_set)
+
+    def __init__(self):
+        _CorePython.EcsComponent_Rigidbody_swiginit(self, _CorePython.new_EcsComponent_Rigidbody())
+    __swig_destroy__ = _CorePython.delete_EcsComponent_Rigidbody
+
+# Register EcsComponent_Rigidbody in _CorePython:
+_CorePython.EcsComponent_Rigidbody_swigregister(EcsComponent_Rigidbody)
+EcsComponent_Rigidbody.size = _CorePython.cvar.EcsComponent_Rigidbody_size
+
+class EcsComponent_SphereCollider(Component):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    componentTypeID = property(_CorePython.EcsComponent_SphereCollider_componentTypeID_get, _CorePython.EcsComponent_SphereCollider_componentTypeID_set)
+
+    def __init__(self):
+        _CorePython.EcsComponent_SphereCollider_swiginit(self, _CorePython.new_EcsComponent_SphereCollider())
+    __swig_destroy__ = _CorePython.delete_EcsComponent_SphereCollider
+
+# Register EcsComponent_SphereCollider in _CorePython:
+_CorePython.EcsComponent_SphereCollider_swigregister(EcsComponent_SphereCollider)
+EcsComponent_SphereCollider.size = _CorePython.cvar.EcsComponent_SphereCollider_size
+
 class IEcsSystem(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
 
@@ -316,7 +277,160 @@ class Register(object):
 
 # Register Register in _CorePython:
 _CorePython.Register_swigregister(Register)
-class BoxCollider(object):
+class Project(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    projectFolderDirectory = property(_CorePython.Project_projectFolderDirectory_get, _CorePython.Project_projectFolderDirectory_set)
+    currentScene = property(_CorePython.Project_currentScene_get, _CorePython.Project_currentScene_set)
+    resourcesManager = property(_CorePython.Project_resourcesManager_get, _CorePython.Project_resourcesManager_set)
+    dockingSystem = property(_CorePython.Project_dockingSystem_get, _CorePython.Project_dockingSystem_set)
+    projectName = property(_CorePython.Project_projectName_get, _CorePython.Project_projectName_set)
+    mainCamera = property(_CorePython.Project_mainCamera_get, _CorePython.Project_mainCamera_set)
+    coreInput = property(_CorePython.Project_coreInput_get, _CorePython.Project_coreInput_set)
+    shaderNormal = property(_CorePython.Project_shaderNormal_get, _CorePython.Project_shaderNormal_set)
+    shaderShadowMapping = property(_CorePython.Project_shaderShadowMapping_get, _CorePython.Project_shaderShadowMapping_set)
+    skybox = property(_CorePython.Project_skybox_get, _CorePython.Project_skybox_set)
+
+    def Update(self):
+        return _CorePython.Project_Update(self)
+
+    def __init__(self, *args):
+        _CorePython.Project_swiginit(self, _CorePython.new_Project(*args))
+    __swig_destroy__ = _CorePython.delete_Project
+
+    def InitScene(self):
+        return _CorePython.Project_InitScene(self)
+
+# Register Project in _CorePython:
+_CorePython.Project_swigregister(Project)
+MAX_LOG_SIZE = _CorePython.MAX_LOG_SIZE
+LOG_PATH = _CorePython.LOG_PATH
+FORMAT = _CorePython.FORMAT
+WHITE = _CorePython.WHITE
+BLACK = _CorePython.BLACK
+RED = _CorePython.RED
+GREEN = _CorePython.GREEN
+YELLOW = _CorePython.YELLOW
+PURPLE = _CorePython.PURPLE
+
+def GetTime():
+    return _CorePython.GetTime()
+
+def GetCurrentFile(currentPath):
+    return _CorePython.GetCurrentFile(currentPath)
+
+def OpengFileAndPrint(debugLogStream, color, time, message):
+    return _CorePython.OpengFileAndPrint(debugLogStream, color, time, message)
+STATELOG_NONE = _CorePython.STATELOG_NONE
+STATELOG_GOOD = _CorePython.STATELOG_GOOD
+STATELOG_WARNING = _CorePython.STATELOG_WARNING
+STATELOG_CRITICALERROR = _CorePython.STATELOG_CRITICALERROR
+class PythonScript(IEcsSystem):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    pythonObject = property(_CorePython.PythonScript_pythonObject_get, _CorePython.PythonScript_pythonObject_set)
+
+    def Init(self, scene):
+        return _CorePython.PythonScript_Init(self, scene)
+
+    def Awake(self, scene):
+        return _CorePython.PythonScript_Awake(self, scene)
+
+    def Start(self, scene):
+        return _CorePython.PythonScript_Start(self, scene)
+
+    def OnDrawGizmo(self, scene):
+        return _CorePython.PythonScript_OnDrawGizmo(self, scene)
+
+    def FixedUpdate(self, scene):
+        return _CorePython.PythonScript_FixedUpdate(self, scene)
+
+    def Update(self, scene):
+        return _CorePython.PythonScript_Update(self, scene)
+
+    def LateUpdate(self, scene):
+        return _CorePython.PythonScript_LateUpdate(self, scene)
+
+    def Render(self, shader, scene):
+        return _CorePython.PythonScript_Render(self, shader, scene)
+
+    def OnResizeData(self, ComponentTypeID, data):
+        return _CorePython.PythonScript_OnResizeData(self, ComponentTypeID, data)
+
+    def __init__(self):
+        _CorePython.PythonScript_swiginit(self, _CorePython.new_PythonScript())
+    __swig_destroy__ = _CorePython.delete_PythonScript
+
+# Register PythonScript in _CorePython:
+_CorePython.PythonScript_swigregister(PythonScript)
+LogFileName = cvar.LogFileName
+LogFileformat = cvar.LogFileformat
+FileName = cvar.FileName
+
+class Scene(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def Init(self):
+        return _CorePython.Scene_Init(self)
+
+    def Awake(self):
+        return _CorePython.Scene_Awake(self)
+
+    def Start(self):
+        return _CorePython.Scene_Start(self)
+
+    def DrawGizmo(self):
+        return _CorePython.Scene_DrawGizmo(self)
+
+    def FixedUpdate(self):
+        return _CorePython.Scene_FixedUpdate(self)
+
+    def Update(self):
+        return _CorePython.Scene_Update(self)
+
+    def LateUpdate(self):
+        return _CorePython.Scene_LateUpdate(self)
+
+    def Render(self, shader):
+        return _CorePython.Scene_Render(self, shader)
+
+    def RenderScene(self, shader):
+        return _CorePython.Scene_RenderScene(self, shader)
+
+    def CreateEntity(self):
+        return _CorePython.Scene_CreateEntity(self)
+
+    def GetEntities(self, ID):
+        return _CorePython.Scene_GetEntities(self, ID)
+
+    def AddComponent(self, componentTypeID, entity):
+        return _CorePython.Scene_AddComponent(self, componentTypeID, entity)
+
+    def HasComponent(self, componentTypeID, entity):
+        return _CorePython.Scene_HasComponent(self, componentTypeID, entity)
+
+    def RemoveEntity(self, entity):
+        return _CorePython.Scene_RemoveEntity(self, entity)
+
+    def AddSystem(self, system):
+        return _CorePython.Scene_AddSystem(self, system)
+
+    def GetComponentDataArray(self, *args):
+        return _CorePython.Scene_GetComponentDataArray(self, *args)
+    sceneName = property(_CorePython.Scene_sceneName_get, _CorePython.Scene_sceneName_set)
+    io = property(_CorePython.Scene_io_get, _CorePython.Scene_io_set)
+    deltatime = property(_CorePython.Scene_deltatime_get, _CorePython.Scene_deltatime_set)
+    currentProject = property(_CorePython.Scene_currentProject_get, _CorePython.Scene_currentProject_set)
+    renderer = property(_CorePython.Scene_renderer_get, _CorePython.Scene_renderer_set)
+
+    def __init__(self, name):
+        _CorePython.Scene_swiginit(self, _CorePython.new_Scene(name))
+    __swig_destroy__ = _CorePython.delete_Scene
+
+# Register Scene in _CorePython:
+_CorePython.Scene_swigregister(Scene)
+class BoxCollider(EcsComponent_BoxCollider):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
     collider = property(_CorePython.BoxCollider_collider_get, _CorePython.BoxCollider_collider_set)
@@ -411,7 +525,7 @@ class ColliderSystem(IEcsSystem):
 
 # Register ColliderSystem in _CorePython:
 _CorePython.ColliderSystem_swigregister(ColliderSystem)
-class SphereCollider(object):
+class SphereCollider(EcsComponent_SphereCollider):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
     collider = property(_CorePython.SphereCollider_collider_get, _CorePython.SphereCollider_collider_set)
@@ -524,7 +638,7 @@ class PhysicsSystem(IEcsSystem):
 
 # Register PhysicsSystem in _CorePython:
 _CorePython.PhysicsSystem_swigregister(PhysicsSystem)
-class Rigidbody(object):
+class Rigidbody(EcsComponent_Rigidbody):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
     IsKinematic = property(_CorePython.Rigidbody_IsKinematic_get, _CorePython.Rigidbody_IsKinematic_set)
@@ -543,7 +657,7 @@ class Rigidbody(object):
 
 # Register Rigidbody in _CorePython:
 _CorePython.Rigidbody_swigregister(Rigidbody)
-class Transform(object):
+class Transform(EcsComponent_Transform):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
     pos = property(_CorePython.Transform_pos_get, _CorePython.Transform_pos_set)
@@ -570,4 +684,524 @@ class Transform(object):
 
 # Register Transform in _CorePython:
 _CorePython.Transform_swigregister(Transform)
+class Vector2(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    x = property(_CorePython.Vector2_x_get, _CorePython.Vector2_x_set)
+    y = property(_CorePython.Vector2_y_get, _CorePython.Vector2_y_set)
+
+    @staticmethod
+    def Size():
+        return _CorePython.Vector2_Size()
+
+    def Norm(self):
+        return _CorePython.Vector2_Norm(self)
+
+    def Normalize(self):
+        return _CorePython.Vector2_Normalize(self)
+
+    @staticmethod
+    def DotProduct(vec1, Row1):
+        return _CorePython.Vector2_DotProduct(vec1, Row1)
+
+    def Normal(self):
+        return _CorePython.Vector2_Normal(self)
+
+    def Angle(self, *args):
+        return _CorePython.Vector2_Angle(self, *args)
+
+    @staticmethod
+    def Determinant(vec1, vec2):
+        return _CorePython.Vector2_Determinant(vec1, vec2)
+
+    @staticmethod
+    def CrossProduct(vec1, vec2):
+        return _CorePython.Vector2_CrossProduct(vec1, vec2)
+
+    @staticmethod
+    def DistanceSquare(a, b):
+        return _CorePython.Vector2_DistanceSquare(a, b)
+
+    @staticmethod
+    def Distance(a, b):
+        return _CorePython.Vector2_Distance(a, b)
+
+    def SetPtr(self):
+        return _CorePython.Vector2_SetPtr(self)
+
+    def GetPtr(self):
+        return _CorePython.Vector2_GetPtr(self)
+
+    @staticmethod
+    def Zero():
+        return _CorePython.Vector2_Zero()
+
+    @staticmethod
+    def One():
+        return _CorePython.Vector2_One()
+
+    @staticmethod
+    def Right():
+        return _CorePython.Vector2_Right()
+
+    @staticmethod
+    def Left():
+        return _CorePython.Vector2_Left()
+
+    @staticmethod
+    def Up():
+        return _CorePython.Vector2_Up()
+
+    @staticmethod
+    def Down():
+        return _CorePython.Vector2_Down()
+
+    def __init__(self, *args):
+        _CorePython.Vector2_swiginit(self, _CorePython.new_Vector2(*args))
+
+    def __add__(self, *args):
+        return _CorePython.Vector2___add__(self, *args)
+
+    def __mul__(self, *args):
+        return _CorePython.Vector2___mul__(self, *args)
+
+    def __truediv__(self, *args):
+        return _CorePython.Vector2___truediv__(self, *args)
+    __div__ = __truediv__
+
+
+
+    def __sub__(self, *args):
+        return _CorePython.Vector2___sub__(self, *args)
+
+    def __iadd__(self, Row1):
+        return _CorePython.Vector2___iadd__(self, Row1)
+
+    def __isub__(self, Row1):
+        return _CorePython.Vector2___isub__(self, Row1)
+
+    def __imul__(self, Row1):
+        return _CorePython.Vector2___imul__(self, Row1)
+
+    def __itruediv__(self, *args):
+        return _CorePython.Vector2___itruediv__(self, *args)
+    __idiv__ = __itruediv__
+
+
+
+    def __ne__(self, vec2):
+        return _CorePython.Vector2___ne__(self, vec2)
+
+    def __eq__(self, vec2):
+        return _CorePython.Vector2___eq__(self, vec2)
+
+    def __le__(self, vec2):
+        return _CorePython.Vector2___le__(self, vec2)
+
+    def __ge__(self, vec2):
+        return _CorePython.Vector2___ge__(self, vec2)
+
+    def __getitem__(self, index):
+        return _CorePython.Vector2___getitem__(self, index)
+
+    def __setitem__(self, index, value):
+        return _CorePython.Vector2___setitem__(self, index, value)
+    __swig_destroy__ = _CorePython.delete_Vector2
+
+# Register Vector2 in _CorePython:
+_CorePython.Vector2_swigregister(Vector2)
+class Vector3(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    x = property(_CorePython.Vector3_x_get, _CorePython.Vector3_x_set)
+    y = property(_CorePython.Vector3_y_get, _CorePython.Vector3_y_set)
+    z = property(_CorePython.Vector3_z_get, _CorePython.Vector3_z_set)
+
+    @staticmethod
+    def Size():
+        return _CorePython.Vector3_Size()
+
+    def Norm(self):
+        return _CorePython.Vector3_Norm(self)
+
+    def Normalize(self):
+        return _CorePython.Vector3_Normalize(self)
+
+    def FNorm(self):
+        return _CorePython.Vector3_FNorm(self)
+
+    def FNormalize(self):
+        return _CorePython.Vector3_FNormalize(self)
+
+    @staticmethod
+    def Reflect(Vector, Normal):
+        return _CorePython.Vector3_Reflect(Vector, Normal)
+
+    @staticmethod
+    def DotProduct(vec1, vec2):
+        return _CorePython.Vector3_DotProduct(vec1, vec2)
+
+    @staticmethod
+    def CrossProduct(vec1, vec2):
+        return _CorePython.Vector3_CrossProduct(vec1, vec2)
+
+    @staticmethod
+    def Angle(vec1, Row1):
+        return _CorePython.Vector3_Angle(vec1, Row1)
+
+    @staticmethod
+    def DistanceSquare(a, b):
+        return _CorePython.Vector3_DistanceSquare(a, b)
+
+    @staticmethod
+    def Distance(a, b):
+        return _CorePython.Vector3_Distance(a, b)
+
+    @staticmethod
+    def scale(v, desiredLength):
+        return _CorePython.Vector3_scale(v, desiredLength)
+
+    def SetPtr(self):
+        return _CorePython.Vector3_SetPtr(self)
+
+    def GetPtr(self):
+        return _CorePython.Vector3_GetPtr(self)
+
+    def MakePositivEuleur(self):
+        return _CorePython.Vector3_MakePositivEuleur(self)
+
+    @staticmethod
+    def Zero():
+        return _CorePython.Vector3_Zero()
+
+    @staticmethod
+    def One():
+        return _CorePython.Vector3_One()
+
+    @staticmethod
+    def Right():
+        return _CorePython.Vector3_Right()
+
+    @staticmethod
+    def Left():
+        return _CorePython.Vector3_Left()
+
+    @staticmethod
+    def Up():
+        return _CorePython.Vector3_Up()
+
+    @staticmethod
+    def Down():
+        return _CorePython.Vector3_Down()
+
+    @staticmethod
+    def Forward():
+        return _CorePython.Vector3_Forward()
+
+    @staticmethod
+    def BackForward():
+        return _CorePython.Vector3_BackForward()
+
+    def __init__(self, *args):
+        _CorePython.Vector3_swiginit(self, _CorePython.new_Vector3(*args))
+
+    def __neg__(self):
+        return _CorePython.Vector3___neg__(self)
+
+    def __mul__(self, *args):
+        return _CorePython.Vector3___mul__(self, *args)
+
+    def __truediv__(self, *args):
+        return _CorePython.Vector3___truediv__(self, *args)
+    __div__ = __truediv__
+
+
+
+    def __iadd__(self, Row1):
+        return _CorePython.Vector3___iadd__(self, Row1)
+
+    def __isub__(self, Row1):
+        return _CorePython.Vector3___isub__(self, Row1)
+
+    def __itruediv__(self, *args):
+        return _CorePython.Vector3___itruediv__(self, *args)
+    __idiv__ = __itruediv__
+
+
+
+    def __add__(self, *args):
+        return _CorePython.Vector3___add__(self, *args)
+
+    def __sub__(self, *args):
+        return _CorePython.Vector3___sub__(self, *args)
+
+    def __imul__(self, *args):
+        return _CorePython.Vector3___imul__(self, *args)
+
+    def __getitem__(self, index):
+        return _CorePython.Vector3___getitem__(self, index)
+
+    def __setitem__(self, index, value):
+        return _CorePython.Vector3___setitem__(self, index, value)
+    __swig_destroy__ = _CorePython.delete_Vector3
+
+# Register Vector3 in _CorePython:
+_CorePython.Vector3_swigregister(Vector3)
+class Vector4(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    x = property(_CorePython.Vector4_x_get, _CorePython.Vector4_x_set)
+    y = property(_CorePython.Vector4_y_get, _CorePython.Vector4_y_set)
+    z = property(_CorePython.Vector4_z_get, _CorePython.Vector4_z_set)
+    w = property(_CorePython.Vector4_w_get, _CorePython.Vector4_w_set)
+
+    @staticmethod
+    def Size():
+        return _CorePython.Vector4_Size()
+
+    def Norm(self):
+        return _CorePython.Vector4_Norm(self)
+
+    def Normalize(self):
+        return _CorePython.Vector4_Normalize(self)
+
+    @staticmethod
+    def DotProduct(vec1, vec2):
+        return _CorePython.Vector4_DotProduct(vec1, vec2)
+
+    @staticmethod
+    def Angle(vec1, vec2):
+        return _CorePython.Vector4_Angle(vec1, vec2)
+
+    def __add__(self, *args):
+        return _CorePython.Vector4___add__(self, *args)
+
+    def __sub__(self, *args):
+        return _CorePython.Vector4___sub__(self, *args)
+
+    def __mul__(self, *args):
+        return _CorePython.Vector4___mul__(self, *args)
+
+    def __truediv__(self, *args):
+        return _CorePython.Vector4___truediv__(self, *args)
+    __div__ = __truediv__
+
+
+
+    def __iadd__(self, value):
+        return _CorePython.Vector4___iadd__(self, value)
+
+    def __isub__(self, value):
+        return _CorePython.Vector4___isub__(self, value)
+
+    def __imul__(self, value):
+        return _CorePython.Vector4___imul__(self, value)
+
+    def __itruediv__(self, *args):
+        return _CorePython.Vector4___itruediv__(self, *args)
+    __idiv__ = __itruediv__
+
+
+
+    def __neg__(self):
+        return _CorePython.Vector4___neg__(self)
+
+    @staticmethod
+    def DistanceSquare(a, b):
+        return _CorePython.Vector4_DistanceSquare(a, b)
+
+    @staticmethod
+    def Distance(a, b):
+        return _CorePython.Vector4_Distance(a, b)
+
+    def GetPtr(self):
+        return _CorePython.Vector4_GetPtr(self)
+
+    def SetPtr(self):
+        return _CorePython.Vector4_SetPtr(self)
+
+    @staticmethod
+    def Zero():
+        return _CorePython.Vector4_Zero()
+
+    @staticmethod
+    def One():
+        return _CorePython.Vector4_One()
+
+    def __init__(self, *args):
+        _CorePython.Vector4_swiginit(self, _CorePython.new_Vector4(*args))
+
+    def __getitem__(self, index):
+        return _CorePython.Vector4___getitem__(self, index)
+
+    def __setitem__(self, index, value):
+        return _CorePython.Vector4___setitem__(self, index, value)
+    __swig_destroy__ = _CorePython.delete_Vector4
+
+# Register Vector4 in _CorePython:
+_CorePython.Vector4_swigregister(Vector4)
+class Matrix2X2(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    Coloms = property(_CorePython.Matrix2X2_Coloms_get, _CorePython.Matrix2X2_Coloms_set)
+
+    @staticmethod
+    def Determinant(matrix):
+        return _CorePython.Matrix2X2_Determinant(matrix)
+
+    @staticmethod
+    def Size():
+        return _CorePython.Matrix2X2_Size()
+
+    @staticmethod
+    def RotationMatrix2X2(angle):
+        return _CorePython.Matrix2X2_RotationMatrix2X2(angle)
+
+    def GetPtr(self):
+        return _CorePython.Matrix2X2_GetPtr(self)
+
+    def SetPtr(self):
+        return _CorePython.Matrix2X2_SetPtr(self)
+
+    def __init__(self, *args):
+        _CorePython.Matrix2X2_swiginit(self, _CorePython.new_Matrix2X2(*args))
+
+    @staticmethod
+    def Identity():
+        return _CorePython.Matrix2X2_Identity()
+    __swig_destroy__ = _CorePython.delete_Matrix2X2
+
+# Register Matrix2X2 in _CorePython:
+_CorePython.Matrix2X2_swigregister(Matrix2X2)
+class Matrix3X3(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    Coloms = property(_CorePython.Matrix3X3_Coloms_get, _CorePython.Matrix3X3_Coloms_set)
+
+    @staticmethod
+    def Identity():
+        return _CorePython.Matrix3X3_Identity()
+
+    @staticmethod
+    def TranslationMatrix3X3(translation):
+        return _CorePython.Matrix3X3_TranslationMatrix3X3(translation)
+
+    @staticmethod
+    def Rotation2DMatrix3X3(angle):
+        return _CorePython.Matrix3X3_Rotation2DMatrix3X3(angle)
+
+    def Invert(self):
+        return _CorePython.Matrix3X3_Invert(self)
+
+    def Transposate(self):
+        return _CorePython.Matrix3X3_Transposate(self)
+
+    @staticmethod
+    def Determinant(matrix):
+        return _CorePython.Matrix3X3_Determinant(matrix)
+
+    @staticmethod
+    def AdjoinMatrix(matrix):
+        return _CorePython.Matrix3X3_AdjoinMatrix(matrix)
+
+    def GetPtr(self):
+        return _CorePython.Matrix3X3_GetPtr(self)
+
+    def SetPtr(self):
+        return _CorePython.Matrix3X3_SetPtr(self)
+
+    def __init__(self, *args):
+        _CorePython.Matrix3X3_swiginit(self, _CorePython.new_Matrix3X3(*args))
+
+    def __mul__(self, *args):
+        return _CorePython.Matrix3X3___mul__(self, *args)
+    __swig_destroy__ = _CorePython.delete_Matrix3X3
+
+# Register Matrix3X3 in _CorePython:
+_CorePython.Matrix3X3_swigregister(Matrix3X3)
+class Matrix4X4(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    Colums = property(_CorePython.Matrix4X4_Colums_get, _CorePython.Matrix4X4_Colums_set)
+
+    def GetPos(self):
+        return _CorePython.Matrix4X4_GetPos(self)
+
+    @staticmethod
+    def PerspectiveMatrix(fov, aspect, Near, Far):
+        return _CorePython.Matrix4X4_PerspectiveMatrix(fov, aspect, Near, Far)
+
+    @staticmethod
+    def OrthoGraphicMatrix(left, right, bottom, top, zNear, zFar):
+        return _CorePython.Matrix4X4_OrthoGraphicMatrix(left, right, bottom, top, zNear, zFar)
+
+    @staticmethod
+    def DecomposeMatrix(matrix, tranlation, rotation, scale):
+        return _CorePython.Matrix4X4_DecomposeMatrix(matrix, tranlation, rotation, scale)
+
+    @staticmethod
+    def LookAt(eye, at, up):
+        return _CorePython.Matrix4X4_LookAt(eye, at, up)
+
+    @staticmethod
+    def RotationZ4X4(angle):
+        return _CorePython.Matrix4X4_RotationZ4X4(angle)
+
+    @staticmethod
+    def RotationY4X4(angle):
+        return _CorePython.Matrix4X4_RotationY4X4(angle)
+
+    @staticmethod
+    def RotationX4X4(angle):
+        return _CorePython.Matrix4X4_RotationX4X4(angle)
+
+    @staticmethod
+    def RotationMatrix4X4(angle):
+        return _CorePython.Matrix4X4_RotationMatrix4X4(angle)
+
+    @staticmethod
+    def TranslateMatrix4X4(translation):
+        return _CorePython.Matrix4X4_TranslateMatrix4X4(translation)
+
+    @staticmethod
+    def ScalingMatrix4X4(ScalingFactor):
+        return _CorePython.Matrix4X4_ScalingMatrix4X4(ScalingFactor)
+
+    @staticmethod
+    def TRS(*args):
+        return _CorePython.Matrix4X4_TRS(*args)
+
+    @staticmethod
+    def Identity():
+        return _CorePython.Matrix4X4_Identity()
+
+    def Invert(self):
+        return _CorePython.Matrix4X4_Invert(self)
+
+    def Transposate(self):
+        return _CorePython.Matrix4X4_Transposate(self)
+
+    @staticmethod
+    def Determinant(matrix):
+        return _CorePython.Matrix4X4_Determinant(matrix)
+
+    def GetPtr(self):
+        return _CorePython.Matrix4X4_GetPtr(self)
+
+    def SetPtr(self):
+        return _CorePython.Matrix4X4_SetPtr(self)
+
+    @staticmethod
+    def AdjoinMatrix(matrix):
+        return _CorePython.Matrix4X4_AdjoinMatrix(matrix)
+
+    def __mul__(self, *args):
+        return _CorePython.Matrix4X4___mul__(self, *args)
+
+    def __init__(self, *args):
+        _CorePython.Matrix4X4_swiginit(self, _CorePython.new_Matrix4X4(*args))
+    __swig_destroy__ = _CorePython.delete_Matrix4X4
+
+# Register Matrix4X4 in _CorePython:
+_CorePython.Matrix4X4_swigregister(Matrix4X4)
 

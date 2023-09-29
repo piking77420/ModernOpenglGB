@@ -75,14 +75,14 @@
     </PublicIncludeDirectories>
     <AllProjectIncludesArePublic>true</AllProjectIncludesArePublic>
     <IncludePath>$(SolutionDir)\source\Include;$(SolutionDir)\source\Include\Math;$(SolutionDir)\source\Include\External;$(SolutionDir)\source\Include\LowRenderer;$(SolutionDir)\source\Include\Core;(SolutionDir)\source\Include\Core\Debug;$(SolutionDir)\source\Include\Core\DataStructure;$(SolutionDir)\source\Include\Core\DataStructure\Component;$(Python)include</IncludePath>
-    <LibraryPath>$(SolutionDir)\source\src\External\lib;$(Python)libs;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)\source\src\External\lib;$(Python)\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PublicIncludeDirectories>
     </PublicIncludeDirectories>
     <AllProjectIncludesArePublic>true</AllProjectIncludesArePublic>
     <IncludePath>$(SolutionDir)\source\Include;$(SolutionDir)\source\Include\Math;$(SolutionDir)\source\Include\External;$(SolutionDir)\source\Include\LowRenderer;$(SolutionDir)\source\Include\Core;(SolutionDir)\source\Include\Core\Debug;$(SolutionDir)\source\Include\Core\DataStructure;$(SolutionDir)\source\Include\Core\DataStructure\Component;$(Python)include</IncludePath>
-    <LibraryPath>$(SolutionDir)\source\src\External\lib;$(Python)libs;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)\source\src\External\lib;$(Python)\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -122,7 +122,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)source\Include\Core\Math;$(ProjectDir)source\Include\Core\DataStructure\Component;$(ProjectDir)source\Include;$(ProjectDir)source\Include\External;%(AdditionalIncludeDirectories);$(Python)\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)source\Include\Core\Math;$(ProjectDir)source\Include\Core\DataStructure\Component;$(ProjectDir)source\Include;$(ProjectDir)source\Include\External;%(AdditionalIncludeDirectories);$(Python)\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -141,7 +141,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)source\Include\Core\Math;$(ProjectDir)source\Include\Core\DataStructure\Component;$(ProjectDir)source\Include;$(ProjectDir)source\Include\External;%(AdditionalIncludeDirectories);$(Python)\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)source\Include\Core\Math;$(ProjectDir)source\Include\Core\DataStructure\Component;$(ProjectDir)source\Include;$(ProjectDir)source\Include\External;%(AdditionalIncludeDirectories);$(Python)\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -169,7 +169,7 @@
     <ClInclude Include="source\include\Core\Debug\Imgui\imstb_textedit.h" />
     <ClInclude Include="source\include\Core\Debug\Imgui\imstb_truetype.h" />
     <ClInclude Include="source\include\Core\Debug\LogClass.h" />
-    <ClInclude Include="source\include\Core\ECS\Scene\Scene.h" />
+    <ClInclude Include="source\include\Core\ECS\Scene.h" />
     <ClInclude Include="source\include\Core\Input\InputEvent.h" />
     <ClInclude Include="source\include\Core\Input\CoreInput.h" />
     <ClInclude Include="ProjectFolder\Project1\assets\Scipt\RumicsCube.h" />
@@ -298,7 +298,7 @@
   <ItemGroup>
     <ClCompile Include="source\src\Core\Python\PythonObject.cpp" />
     <ClCompile Include="source\src\Core\ECS\PythonScript.cpp" />
-    <ClCompile Include="source\src\Core\ECS\Scene\Scene.cpp" />
+    <ClCompile Include="source\src\Core\ECS\Scene.cpp" />
     <ClCompile Include="source\src\Core\Input\InputEvent.cpp" />
     <ClCompile Include="source\src\Core\Input\CoreInput.cpp" />
     <ClCompile Include="ProjectFolder\Project1\assets\Scipt\RumicsCube.cpp" />

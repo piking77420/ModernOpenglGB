@@ -35,10 +35,14 @@ public:
 	Project CurrentProject;
 	App();
 	~App();
+	
+	static void InitEcsComponent();
+
 private:
 	static void EnableOpenGl();
 	void HandleSwitchMulthiMonoThread(GLFWwindow* mainWindow);
 	static void LoadCursorAppCursor(GLFWwindow* window);
 	void InitImguiTheme();
+	
 };
 

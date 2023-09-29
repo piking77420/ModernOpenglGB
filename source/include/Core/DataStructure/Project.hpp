@@ -2,7 +2,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "LowRenderer/FrameBuffer/FrameBuffer.h"
-#include "ECS/Scene/Scene.h"
+#include "ECS/Scene.h"
 #include "LowRenderer/Cam/Camera.h"
 #include "UI/DockingSystem.hpp"
 #include "LowRenderer/Renderer/Renderer.hpp"

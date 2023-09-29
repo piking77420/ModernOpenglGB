@@ -4,7 +4,7 @@
 #include "Ressources/RessourcesManager/RessourcesManager.h"
 #include "App/App.h"
 #include "UI/InspectorSelectable.h"
-#include "ECS/Scene/Scene.h"
+#include "ECS/Scene.h"
 #include "Core/DataStructure/Project.hpp" 
 #include<Core/Debug/Imgui/imgui.h>
 #include<Core/Debug/Imgui/imgui_impl_glfw.h>
