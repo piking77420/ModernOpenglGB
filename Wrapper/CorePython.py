@@ -173,6 +173,20 @@ class Component(object):
 
 # Register Component in _CorePython:
 _CorePython.Component_swigregister(Component)
+class Register(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def __init__(self):
+        _CorePython.Register_swiginit(self, _CorePython.new_Register())
+    __swig_destroy__ = _CorePython.delete_Register
+    entities = property(_CorePython.Register_entities_get, _CorePython.Register_entities_set)
+    ComponentsData = property(_CorePython.Register_ComponentsData_get, _CorePython.Register_ComponentsData_set)
+    systems = property(_CorePython.Register_systems_get, _CorePython.Register_systems_set)
+    OnReSizeDataVector = property(_CorePython.Register_OnReSizeDataVector_get, _CorePython.Register_OnReSizeDataVector_set)
+
+# Register Register in _CorePython:
+_CorePython.Register_swigregister(Register)
 class EcsComponent_Transform(Component):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
@@ -226,6 +240,81 @@ class EcsComponent_SphereCollider(Component):
 _CorePython.EcsComponent_SphereCollider_swigregister(EcsComponent_SphereCollider)
 EcsComponent_SphereCollider.size = _CorePython.cvar.EcsComponent_SphereCollider_size
 
+
+def GetComponent_Transform(entity):
+    return _CorePython.GetComponent_Transform(entity)
+
+def GetComponent_BoxCollider(entity):
+    return _CorePython.GetComponent_BoxCollider(entity)
+
+def GetComponent_Rigidbody(entity):
+    return _CorePython.GetComponent_Rigidbody(entity)
+
+def GetComponent_SphereCollider(entity):
+    return _CorePython.GetComponent_SphereCollider(entity)
+class Scene(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def Init(self):
+        return _CorePython.Scene_Init(self)
+
+    def Awake(self):
+        return _CorePython.Scene_Awake(self)
+
+    def Start(self):
+        return _CorePython.Scene_Start(self)
+
+    def DrawGizmo(self):
+        return _CorePython.Scene_DrawGizmo(self)
+
+    def FixedUpdate(self):
+        return _CorePython.Scene_FixedUpdate(self)
+
+    def Update(self):
+        return _CorePython.Scene_Update(self)
+
+    def LateUpdate(self):
+        return _CorePython.Scene_LateUpdate(self)
+
+    def Render(self, shader):
+        return _CorePython.Scene_Render(self, shader)
+
+    def RenderScene(self, shader):
+        return _CorePython.Scene_RenderScene(self, shader)
+
+    def CreateEntity(self):
+        return _CorePython.Scene_CreateEntity(self)
+
+    def GetEntities(self, ID):
+        return _CorePython.Scene_GetEntities(self, ID)
+
+    def AddComponent(self, componentTypeID, entity):
+        return _CorePython.Scene_AddComponent(self, componentTypeID, entity)
+
+    def HasComponent(self, componentTypeID, entity):
+        return _CorePython.Scene_HasComponent(self, componentTypeID, entity)
+
+    def RemoveEntity(self, entity):
+        return _CorePython.Scene_RemoveEntity(self, entity)
+
+    def AddSystem(self, system):
+        return _CorePython.Scene_AddSystem(self, system)
+
+    def GetComponentDataArray(self, *args):
+        return _CorePython.Scene_GetComponentDataArray(self, *args)
+    sceneName = property(_CorePython.Scene_sceneName_get, _CorePython.Scene_sceneName_set)
+    io = property(_CorePython.Scene_io_get, _CorePython.Scene_io_set)
+    deltatime = property(_CorePython.Scene_deltatime_get, _CorePython.Scene_deltatime_set)
+    currentProject = property(_CorePython.Scene_currentProject_get, _CorePython.Scene_currentProject_set)
+    renderer = property(_CorePython.Scene_renderer_get, _CorePython.Scene_renderer_set)
+
+    def __init__(self, name):
+        _CorePython.Scene_swiginit(self, _CorePython.new_Scene(name))
+    __swig_destroy__ = _CorePython.delete_Scene
+
+# Register Scene in _CorePython:
+_CorePython.Scene_swigregister(Scene)
 class IEcsSystem(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
 
@@ -263,20 +352,6 @@ class IEcsSystem(object):
 
 # Register IEcsSystem in _CorePython:
 _CorePython.IEcsSystem_swigregister(IEcsSystem)
-class Register(object):
-    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
-    __repr__ = _swig_repr
-
-    def __init__(self):
-        _CorePython.Register_swiginit(self, _CorePython.new_Register())
-    __swig_destroy__ = _CorePython.delete_Register
-    entities = property(_CorePython.Register_entities_get, _CorePython.Register_entities_set)
-    ComponentsData = property(_CorePython.Register_ComponentsData_get, _CorePython.Register_ComponentsData_set)
-    systems = property(_CorePython.Register_systems_get, _CorePython.Register_systems_set)
-    OnReSizeDataVector = property(_CorePython.Register_OnReSizeDataVector_get, _CorePython.Register_OnReSizeDataVector_set)
-
-# Register Register in _CorePython:
-_CorePython.Register_swigregister(Register)
 class Project(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
@@ -367,69 +442,6 @@ LogFileName = cvar.LogFileName
 LogFileformat = cvar.LogFileformat
 FileName = cvar.FileName
 
-class Scene(object):
-    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
-    __repr__ = _swig_repr
-
-    def Init(self):
-        return _CorePython.Scene_Init(self)
-
-    def Awake(self):
-        return _CorePython.Scene_Awake(self)
-
-    def Start(self):
-        return _CorePython.Scene_Start(self)
-
-    def DrawGizmo(self):
-        return _CorePython.Scene_DrawGizmo(self)
-
-    def FixedUpdate(self):
-        return _CorePython.Scene_FixedUpdate(self)
-
-    def Update(self):
-        return _CorePython.Scene_Update(self)
-
-    def LateUpdate(self):
-        return _CorePython.Scene_LateUpdate(self)
-
-    def Render(self, shader):
-        return _CorePython.Scene_Render(self, shader)
-
-    def RenderScene(self, shader):
-        return _CorePython.Scene_RenderScene(self, shader)
-
-    def CreateEntity(self):
-        return _CorePython.Scene_CreateEntity(self)
-
-    def GetEntities(self, ID):
-        return _CorePython.Scene_GetEntities(self, ID)
-
-    def AddComponent(self, componentTypeID, entity):
-        return _CorePython.Scene_AddComponent(self, componentTypeID, entity)
-
-    def HasComponent(self, componentTypeID, entity):
-        return _CorePython.Scene_HasComponent(self, componentTypeID, entity)
-
-    def RemoveEntity(self, entity):
-        return _CorePython.Scene_RemoveEntity(self, entity)
-
-    def AddSystem(self, system):
-        return _CorePython.Scene_AddSystem(self, system)
-
-    def GetComponentDataArray(self, *args):
-        return _CorePython.Scene_GetComponentDataArray(self, *args)
-    sceneName = property(_CorePython.Scene_sceneName_get, _CorePython.Scene_sceneName_set)
-    io = property(_CorePython.Scene_io_get, _CorePython.Scene_io_set)
-    deltatime = property(_CorePython.Scene_deltatime_get, _CorePython.Scene_deltatime_set)
-    currentProject = property(_CorePython.Scene_currentProject_get, _CorePython.Scene_currentProject_set)
-    renderer = property(_CorePython.Scene_renderer_get, _CorePython.Scene_renderer_set)
-
-    def __init__(self, name):
-        _CorePython.Scene_swiginit(self, _CorePython.new_Scene(name))
-    __swig_destroy__ = _CorePython.delete_Scene
-
-# Register Scene in _CorePython:
-_CorePython.Scene_swigregister(Scene)
 class BoxCollider(EcsComponent_BoxCollider):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
@@ -1204,4 +1216,62 @@ class Matrix4X4(object):
 
 # Register Matrix4X4 in _CorePython:
 _CorePython.Matrix4X4_swigregister(Matrix4X4)
+class Camera(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def GetLookMatrix(self):
+        return _CorePython.Camera_GetLookMatrix(self)
+
+    def GetProjectionMatrix(self):
+        return _CorePython.Camera_GetProjectionMatrix(self)
+
+    def ImguiCameraWindow(self):
+        return _CorePython.Camera_ImguiCameraWindow(self)
+
+    def CameraUpdate(self):
+        return _CorePython.Camera_CameraUpdate(self)
+
+    def CameraRenderer(self, shader):
+        return _CorePython.Camera_CameraRenderer(self, shader)
+
+    def CameraGetInput(self, xInput, yInput):
+        return _CorePython.Camera_CameraGetInput(self, xInput, yInput)
+
+    def GetTransform(self):
+        return _CorePython.Camera_GetTransform(self)
+    cam = property(_CorePython.Camera_cam_get, _CorePython.Camera_cam_set)
+
+    @staticmethod
+    def MouseCallback(context, _xpos, _ypos):
+        return _CorePython.Camera_MouseCallback(context, _xpos, _ypos)
+
+    @staticmethod
+    def MouseButtonCallBack(window, button, action, mods):
+        return _CorePython.Camera_MouseButtonCallBack(window, button, action, mods)
+
+    def __init__(self):
+        _CorePython.Camera_swiginit(self, _CorePython.new_Camera())
+    __swig_destroy__ = _CorePython.delete_Camera
+    eye = property(_CorePython.Camera_eye_get, _CorePython.Camera_eye_set)
+    Front = property(_CorePython.Camera_Front_get, _CorePython.Camera_Front_set)
+    Up = property(_CorePython.Camera_Up_get, _CorePython.Camera_Up_set)
+    Right = property(_CorePython.Camera_Right_get, _CorePython.Camera_Right_set)
+    pitch = property(_CorePython.Camera_pitch_get, _CorePython.Camera_pitch_set)
+    yaw = property(_CorePython.Camera_yaw_get, _CorePython.Camera_yaw_set)
+    cameraVelocity = property(_CorePython.Camera_cameraVelocity_get, _CorePython.Camera_cameraVelocity_set)
+    mouseSentivity = property(_CorePython.Camera_mouseSentivity_get, _CorePython.Camera_mouseSentivity_set)
+    LeftClick = property(_CorePython.Camera_LeftClick_get, _CorePython.Camera_LeftClick_set)
+    mousePos = property(_CorePython.Camera_mousePos_get, _CorePython.Camera_mousePos_set)
+
+    def GetVp(self):
+        return _CorePython.Camera_GetVp(self)
+
+# Register Camera in _CorePython:
+_CorePython.Camera_swigregister(Camera)
+CAMERASENSITIVITY = cvar.CAMERASENSITIVITY
+YAW = cvar.YAW
+PITCH = cvar.PITCH
+SPEED = cvar.SPEED
+
 

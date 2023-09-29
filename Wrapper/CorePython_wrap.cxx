@@ -2994,50 +2994,51 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 #define SWIGTYPE_p_EcsComponentT_SphereCollider_t swig_types[10]
 #define SWIGTYPE_p_EcsComponentT_Transform_t swig_types[11]
 #define SWIGTYPE_p_Entity swig_types[12]
-#define SWIGTYPE_p_GraphScene swig_types[13]
-#define SWIGTYPE_p_IEcsSystem swig_types[14]
-#define SWIGTYPE_p_ImGuiIO swig_types[15]
-#define SWIGTYPE_p_Matrix2X2 swig_types[16]
-#define SWIGTYPE_p_Matrix3X3 swig_types[17]
-#define SWIGTYPE_p_Matrix4X4 swig_types[18]
-#define SWIGTYPE_p_PhyscicalMaterial swig_types[19]
-#define SWIGTYPE_p_PhysicsSystem swig_types[20]
-#define SWIGTYPE_p_Project swig_types[21]
-#define SWIGTYPE_p_PythonObject swig_types[22]
-#define SWIGTYPE_p_PythonScript swig_types[23]
-#define SWIGTYPE_p_Quaternion swig_types[24]
-#define SWIGTYPE_p_Register swig_types[25]
-#define SWIGTYPE_p_Renderer swig_types[26]
-#define SWIGTYPE_p_ResourcesManager swig_types[27]
-#define SWIGTYPE_p_Rigidbody swig_types[28]
-#define SWIGTYPE_p_Scene swig_types[29]
-#define SWIGTYPE_p_Shader swig_types[30]
-#define SWIGTYPE_p_SphereCollider swig_types[31]
-#define SWIGTYPE_p_Transform swig_types[32]
-#define SWIGTYPE_p_Vector2 swig_types[33]
-#define SWIGTYPE_p_Vector3 swig_types[34]
-#define SWIGTYPE_p_Vector4 swig_types[35]
-#define SWIGTYPE_p_char swig_types[36]
-#define SWIGTYPE_p_float swig_types[37]
-#define SWIGTYPE_p_fs__path swig_types[38]
-#define SWIGTYPE_p_std__fstream swig_types[39]
-#define SWIGTYPE_p_std__futureT_Shader_p_t swig_types[40]
-#define SWIGTYPE_p_std__invalid_argument swig_types[41]
-#define SWIGTYPE_p_std__mutex swig_types[42]
-#define SWIGTYPE_p_std__vectorT_CollisionPoint_std__allocatorT_CollisionPoint_t_t swig_types[43]
-#define SWIGTYPE_p_std__vectorT_Entity_p_std__allocatorT_Entity_p_t_t swig_types[44]
-#define SWIGTYPE_p_std__vectorT_IEcsSystem_p_std__allocatorT_IEcsSystem_p_t_t swig_types[45]
-#define SWIGTYPE_p_std__vectorT_std__functionT_void_fIEcsSystem_R_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_pF_t_std__allocatorT_std__functionT_void_fIEcsSystem_R_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_pF_t_t_t swig_types[46]
-#define SWIGTYPE_p_std__vectorT_std__pairT_uint32_t_Transform_p_t_std__allocatorT_std__pairT_uint32_t_Transform_p_t_t_t swig_types[47]
-#define SWIGTYPE_p_std__vectorT_std__pairT_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_p_t_std__allocatorT_std__pairT_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_p_t_t_t swig_types[48]
-#define SWIGTYPE_p_std__vectorT_std__tupleT_uint32_t_fpFfstd__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_R_Entity_p_Component_ppF_void_fpFfComponent_pF_size_t_std__string_t_std__allocatorT_std__tupleT_uint32_t_fpFfstd__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_R_Entity_p_Component_ppF_void_fpFfComponent_pF_size_t_std__string_t_t_t swig_types[49]
-#define SWIGTYPE_p_std__vectorT_uint32_t_std__allocatorT_uint32_t_t_t swig_types[50]
-#define SWIGTYPE_p_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t swig_types[51]
-#define SWIGTYPE_p_swig__SwigPyIterator swig_types[52]
-#define SWIGTYPE_p_uint16_t swig_types[53]
-#define SWIGTYPE_p_uint32_t swig_types[54]
-static swig_type_info *swig_types[56];
-static swig_module_info swig_module = {swig_types, 55, 0, 0, 0, 0};
+#define SWIGTYPE_p_GLFWwindow swig_types[13]
+#define SWIGTYPE_p_GraphScene swig_types[14]
+#define SWIGTYPE_p_IEcsSystem swig_types[15]
+#define SWIGTYPE_p_ImGuiIO swig_types[16]
+#define SWIGTYPE_p_Matrix2X2 swig_types[17]
+#define SWIGTYPE_p_Matrix3X3 swig_types[18]
+#define SWIGTYPE_p_Matrix4X4 swig_types[19]
+#define SWIGTYPE_p_PhyscicalMaterial swig_types[20]
+#define SWIGTYPE_p_PhysicsSystem swig_types[21]
+#define SWIGTYPE_p_Project swig_types[22]
+#define SWIGTYPE_p_PythonObject swig_types[23]
+#define SWIGTYPE_p_PythonScript swig_types[24]
+#define SWIGTYPE_p_Quaternion swig_types[25]
+#define SWIGTYPE_p_Register swig_types[26]
+#define SWIGTYPE_p_Renderer swig_types[27]
+#define SWIGTYPE_p_ResourcesManager swig_types[28]
+#define SWIGTYPE_p_Rigidbody swig_types[29]
+#define SWIGTYPE_p_Scene swig_types[30]
+#define SWIGTYPE_p_Shader swig_types[31]
+#define SWIGTYPE_p_SphereCollider swig_types[32]
+#define SWIGTYPE_p_Transform swig_types[33]
+#define SWIGTYPE_p_Vector2 swig_types[34]
+#define SWIGTYPE_p_Vector3 swig_types[35]
+#define SWIGTYPE_p_Vector4 swig_types[36]
+#define SWIGTYPE_p_char swig_types[37]
+#define SWIGTYPE_p_float swig_types[38]
+#define SWIGTYPE_p_fs__path swig_types[39]
+#define SWIGTYPE_p_std__fstream swig_types[40]
+#define SWIGTYPE_p_std__futureT_Shader_p_t swig_types[41]
+#define SWIGTYPE_p_std__invalid_argument swig_types[42]
+#define SWIGTYPE_p_std__mutex swig_types[43]
+#define SWIGTYPE_p_std__vectorT_CollisionPoint_std__allocatorT_CollisionPoint_t_t swig_types[44]
+#define SWIGTYPE_p_std__vectorT_Entity_p_std__allocatorT_Entity_p_t_t swig_types[45]
+#define SWIGTYPE_p_std__vectorT_IEcsSystem_p_std__allocatorT_IEcsSystem_p_t_t swig_types[46]
+#define SWIGTYPE_p_std__vectorT_std__functionT_void_fIEcsSystem_R_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_pF_t_std__allocatorT_std__functionT_void_fIEcsSystem_R_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_pF_t_t_t swig_types[47]
+#define SWIGTYPE_p_std__vectorT_std__pairT_uint32_t_Transform_p_t_std__allocatorT_std__pairT_uint32_t_Transform_p_t_t_t swig_types[48]
+#define SWIGTYPE_p_std__vectorT_std__pairT_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_p_t_std__allocatorT_std__pairT_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_p_t_t_t swig_types[49]
+#define SWIGTYPE_p_std__vectorT_std__tupleT_uint32_t_fpFfstd__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_R_Entity_p_Component_ppF_void_fpFfComponent_pF_size_t_std__string_t_std__allocatorT_std__tupleT_uint32_t_fpFfstd__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_R_Entity_p_Component_ppF_void_fpFfComponent_pF_size_t_std__string_t_t_t swig_types[50]
+#define SWIGTYPE_p_std__vectorT_uint32_t_std__allocatorT_uint32_t_t_t swig_types[51]
+#define SWIGTYPE_p_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t swig_types[52]
+#define SWIGTYPE_p_swig__SwigPyIterator swig_types[53]
+#define SWIGTYPE_p_uint16_t swig_types[54]
+#define SWIGTYPE_p_uint32_t swig_types[55]
+static swig_type_info *swig_types[57];
+static swig_module_info swig_module = {swig_types, 56, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3216,6 +3217,7 @@ namespace swig {
     #include "../source/include/Core/Math/Matrix3X3.h"
     #include "../source/include/Core/Math/Matrix4X4.h"
 
+    #include "../source/include/LowRenderer/Cam/Camera.h"
 
 
 
@@ -3973,13 +3975,6 @@ SWIG_From_size_t  (size_t value)
 }
 
 
-SWIGINTERNINLINE PyObject * 
-SWIG_FromCharPtr(const char *cptr)
-{ 
-  return SWIG_FromCharPtrAndSize(cptr, (cptr ? strlen(cptr) : 0));
-}
-
-
 /* Getting isfinite working pre C99 across multiple platforms is non-trivial. Users can provide SWIG_isfinite on older platforms. */
 #ifndef SWIG_isfinite
 /* isfinite() is a macro for C99 */
@@ -4043,6 +4038,13 @@ SWIGINTERNINLINE PyObject *
 SWIG_From_float  (float value)
 {    
   return SWIG_From_double  (value);
+}
+
+
+SWIGINTERNINLINE PyObject * 
+SWIG_FromCharPtr(const char *cptr)
+{ 
+  return SWIG_FromCharPtrAndSize(cptr, (cptr ? strlen(cptr) : 0));
 }
 
 
@@ -5520,6 +5522,260 @@ SWIGINTERN PyObject *Component_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject
   return SWIG_Python_InitShadowInstance(args);
 }
 
+SWIGINTERN PyObject *_wrap_new_Register(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Register *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "new_Register", 0, 0, 0)) SWIG_fail;
+  result = (Register *)new Register();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Register, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_Register(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Register *arg1 = (Register *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Register, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Register" "', argument " "1"" of type '" "Register *""'"); 
+  }
+  arg1 = reinterpret_cast< Register * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Register_entities_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Register *arg1 = (Register *) 0 ;
+  std::vector< Entity *,std::allocator< Entity * > > *arg2 = (std::vector< Entity *,std::allocator< Entity * > > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Register_entities_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Register, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Register_entities_set" "', argument " "1"" of type '" "Register *""'"); 
+  }
+  arg1 = reinterpret_cast< Register * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_std__vectorT_Entity_p_std__allocatorT_Entity_p_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Register_entities_set" "', argument " "2"" of type '" "std::vector< Entity *,std::allocator< Entity * > > *""'"); 
+  }
+  arg2 = reinterpret_cast< std::vector< Entity *,std::allocator< Entity * > > * >(argp2);
+  if (arg1) (arg1)->entities = *arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Register_entities_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Register *arg1 = (Register *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::vector< Entity *,std::allocator< Entity * > > *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Register, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Register_entities_get" "', argument " "1"" of type '" "Register *""'"); 
+  }
+  arg1 = reinterpret_cast< Register * >(argp1);
+  result = (std::vector< Entity *,std::allocator< Entity * > > *)& ((arg1)->entities);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_Entity_p_std__allocatorT_Entity_p_t_t, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Register_ComponentsData_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Register *arg1 = (Register *) 0 ;
+  std::vector< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * >,std::allocator< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * > > > *arg2 = (std::vector< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * >,std::allocator< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * > > > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Register_ComponentsData_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Register, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Register_ComponentsData_set" "', argument " "1"" of type '" "Register *""'"); 
+  }
+  arg1 = reinterpret_cast< Register * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_std__vectorT_std__pairT_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_p_t_std__allocatorT_std__pairT_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_p_t_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Register_ComponentsData_set" "', argument " "2"" of type '" "std::vector< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * >,std::allocator< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * > > > *""'"); 
+  }
+  arg2 = reinterpret_cast< std::vector< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * >,std::allocator< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * > > > * >(argp2);
+  if (arg1) (arg1)->ComponentsData = *arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Register_ComponentsData_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Register *arg1 = (Register *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::vector< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * >,std::allocator< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * > > > *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Register, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Register_ComponentsData_get" "', argument " "1"" of type '" "Register *""'"); 
+  }
+  arg1 = reinterpret_cast< Register * >(argp1);
+  result = (std::vector< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * >,std::allocator< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * > > > *)& ((arg1)->ComponentsData);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_std__pairT_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_p_t_std__allocatorT_std__pairT_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_p_t_t_t, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Register_systems_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Register *arg1 = (Register *) 0 ;
+  std::vector< IEcsSystem *,std::allocator< IEcsSystem * > > *arg2 = (std::vector< IEcsSystem *,std::allocator< IEcsSystem * > > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Register_systems_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Register, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Register_systems_set" "', argument " "1"" of type '" "Register *""'"); 
+  }
+  arg1 = reinterpret_cast< Register * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_std__vectorT_IEcsSystem_p_std__allocatorT_IEcsSystem_p_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Register_systems_set" "', argument " "2"" of type '" "std::vector< IEcsSystem *,std::allocator< IEcsSystem * > > *""'"); 
+  }
+  arg2 = reinterpret_cast< std::vector< IEcsSystem *,std::allocator< IEcsSystem * > > * >(argp2);
+  if (arg1) (arg1)->systems = *arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Register_systems_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Register *arg1 = (Register *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::vector< IEcsSystem *,std::allocator< IEcsSystem * > > *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Register, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Register_systems_get" "', argument " "1"" of type '" "Register *""'"); 
+  }
+  arg1 = reinterpret_cast< Register * >(argp1);
+  result = (std::vector< IEcsSystem *,std::allocator< IEcsSystem * > > *)& ((arg1)->systems);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_IEcsSystem_p_std__allocatorT_IEcsSystem_p_t_t, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Register_OnReSizeDataVector_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Register *arg1 = (Register *) 0 ;
+  std::vector< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) >,std::allocator< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) > > > *arg2 = (std::vector< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) >,std::allocator< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) > > > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Register_OnReSizeDataVector_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Register, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Register_OnReSizeDataVector_set" "', argument " "1"" of type '" "Register *""'"); 
+  }
+  arg1 = reinterpret_cast< Register * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_std__vectorT_std__functionT_void_fIEcsSystem_R_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_pF_t_std__allocatorT_std__functionT_void_fIEcsSystem_R_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_pF_t_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Register_OnReSizeDataVector_set" "', argument " "2"" of type '" "std::vector< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) >,std::allocator< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) > > > *""'"); 
+  }
+  arg2 = reinterpret_cast< std::vector< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) >,std::allocator< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) > > > * >(argp2);
+  if (arg1) (arg1)->OnReSizeDataVector = *arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Register_OnReSizeDataVector_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Register *arg1 = (Register *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::vector< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) >,std::allocator< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) > > > *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Register, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Register_OnReSizeDataVector_get" "', argument " "1"" of type '" "Register *""'"); 
+  }
+  arg1 = reinterpret_cast< Register * >(argp1);
+  result = (std::vector< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) >,std::allocator< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) > > > *)& ((arg1)->OnReSizeDataVector);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_std__functionT_void_fIEcsSystem_R_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_pF_t_std__allocatorT_std__functionT_void_fIEcsSystem_R_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_pF_t_t_t, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *Register_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_Register, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *Register_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
 SWIGINTERN int Swig_var_EcsComponent_Transform_componentTypeID_set(PyObject *_val) {
   {
     void *argp = 0;
@@ -5932,6 +6188,985 @@ SWIGINTERN PyObject *EcsComponent_SphereCollider_swiginit(PyObject *SWIGUNUSEDPA
   return SWIG_Python_InitShadowInstance(args);
 }
 
+SWIGINTERN PyObject *_wrap_GetComponent_Transform(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Entity *arg1 = (Entity *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Transform *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Entity, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GetComponent_Transform" "', argument " "1"" of type '" "Entity *""'"); 
+  }
+  arg1 = reinterpret_cast< Entity * >(argp1);
+  result = (Transform *)GetComponent_Transform(arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Transform, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GetComponent_BoxCollider(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Entity *arg1 = (Entity *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  BoxCollider *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Entity, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GetComponent_BoxCollider" "', argument " "1"" of type '" "Entity *""'"); 
+  }
+  arg1 = reinterpret_cast< Entity * >(argp1);
+  result = (BoxCollider *)GetComponent_BoxCollider(arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_BoxCollider, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GetComponent_Rigidbody(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Entity *arg1 = (Entity *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Rigidbody *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Entity, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GetComponent_Rigidbody" "', argument " "1"" of type '" "Entity *""'"); 
+  }
+  arg1 = reinterpret_cast< Entity * >(argp1);
+  result = (Rigidbody *)GetComponent_Rigidbody(arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Rigidbody, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GetComponent_SphereCollider(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Entity *arg1 = (Entity *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  SphereCollider *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Entity, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GetComponent_SphereCollider" "', argument " "1"" of type '" "Entity *""'"); 
+  }
+  arg1 = reinterpret_cast< Entity * >(argp1);
+  result = (SphereCollider *)GetComponent_SphereCollider(arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_SphereCollider, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_Init(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_Init" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  (arg1)->Init();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_Awake(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_Awake" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  (arg1)->Awake();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_Start(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_Start" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  (arg1)->Start();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_DrawGizmo(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_DrawGizmo" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  (arg1)->DrawGizmo();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_FixedUpdate(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_FixedUpdate" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  (arg1)->FixedUpdate();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_Update(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_Update" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  (arg1)->Update();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_LateUpdate(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_LateUpdate" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  (arg1)->LateUpdate();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_Render(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  Shader *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Scene_Render", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_Render" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_Shader,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_Render" "', argument " "2"" of type '" "Shader &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_Render" "', argument " "2"" of type '" "Shader &""'"); 
+  }
+  arg2 = reinterpret_cast< Shader * >(argp2);
+  (arg1)->Render(*arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_RenderScene(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  Shader *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Scene_RenderScene", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_RenderScene" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_Shader,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_RenderScene" "', argument " "2"" of type '" "Shader &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_RenderScene" "', argument " "2"" of type '" "Shader &""'"); 
+  }
+  arg2 = reinterpret_cast< Shader * >(argp2);
+  (arg1)->RenderScene(*arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_CreateEntity(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Entity *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_CreateEntity" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  result = (Entity *)(arg1)->CreateEntity();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Entity, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_GetEntities(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  uint32_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  Entity *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Scene_GetEntities", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_GetEntities" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  {
+    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_uint32_t,  0  | 0);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_GetEntities" "', argument " "2"" of type '" "uint32_t""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_GetEntities" "', argument " "2"" of type '" "uint32_t""'");
+    } else {
+      uint32_t * temp = reinterpret_cast< uint32_t * >(argp2);
+      arg2 = *temp;
+      if (SWIG_IsNewObj(res2)) delete temp;
+    }
+  }
+  result = (Entity *)(arg1)->GetEntities(arg2);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Entity, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_AddComponent(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  uint32_t arg2 ;
+  Entity *arg3 = (Entity *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Scene_AddComponent", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_AddComponent" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  {
+    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_uint32_t,  0  | 0);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_AddComponent" "', argument " "2"" of type '" "uint32_t""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_AddComponent" "', argument " "2"" of type '" "uint32_t""'");
+    } else {
+      uint32_t * temp = reinterpret_cast< uint32_t * >(argp2);
+      arg2 = *temp;
+      if (SWIG_IsNewObj(res2)) delete temp;
+    }
+  }
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_Entity, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Scene_AddComponent" "', argument " "3"" of type '" "Entity *""'"); 
+  }
+  arg3 = reinterpret_cast< Entity * >(argp3);
+  (arg1)->AddComponent(arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_HasComponent(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  uint32_t arg2 ;
+  Entity *arg3 = (Entity *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  bool result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Scene_HasComponent", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_HasComponent" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  {
+    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_uint32_t,  0  | 0);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_HasComponent" "', argument " "2"" of type '" "uint32_t""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_HasComponent" "', argument " "2"" of type '" "uint32_t""'");
+    } else {
+      uint32_t * temp = reinterpret_cast< uint32_t * >(argp2);
+      arg2 = *temp;
+      if (SWIG_IsNewObj(res2)) delete temp;
+    }
+  }
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_Entity, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Scene_HasComponent" "', argument " "3"" of type '" "Entity const *""'"); 
+  }
+  arg3 = reinterpret_cast< Entity * >(argp3);
+  result = (bool)(arg1)->HasComponent(arg2,(Entity const *)arg3);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_RemoveEntity(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  Entity *arg2 = (Entity *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Scene_RemoveEntity", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_RemoveEntity" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_Entity, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_RemoveEntity" "', argument " "2"" of type '" "Entity *""'"); 
+  }
+  arg2 = reinterpret_cast< Entity * >(argp2);
+  (arg1)->RemoveEntity(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_AddSystem(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  IEcsSystem *arg2 = (IEcsSystem *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Scene_AddSystem", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_AddSystem" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_IEcsSystem, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_AddSystem" "', argument " "2"" of type '" "IEcsSystem *""'"); 
+  }
+  arg2 = reinterpret_cast< IEcsSystem * >(argp2);
+  (arg1)->AddSystem(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_GetComponentDataArray__SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  uint32_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  std::vector< uint8_t,std::allocator< uint8_t > > *result = 0 ;
+  
+  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_GetComponentDataArray" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  {
+    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_uint32_t,  0  | 0);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_GetComponentDataArray" "', argument " "2"" of type '" "uint32_t""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_GetComponentDataArray" "', argument " "2"" of type '" "uint32_t""'");
+    } else {
+      uint32_t * temp = reinterpret_cast< uint32_t * >(argp2);
+      arg2 = *temp;
+      if (SWIG_IsNewObj(res2)) delete temp;
+    }
+  }
+  result = (std::vector< uint8_t,std::allocator< uint8_t > > *)(arg1)->GetComponentDataArray(arg2);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_GetComponentDataArray__SWIG_3(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  uint32_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  std::vector< uint8_t,std::allocator< uint8_t > > *result = 0 ;
+  
+  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_GetComponentDataArray" "', argument " "1"" of type '" "Scene const *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  {
+    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_uint32_t,  0  | 0);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_GetComponentDataArray" "', argument " "2"" of type '" "uint32_t""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_GetComponentDataArray" "', argument " "2"" of type '" "uint32_t""'");
+    } else {
+      uint32_t * temp = reinterpret_cast< uint32_t * >(argp2);
+      arg2 = *temp;
+      if (SWIG_IsNewObj(res2)) delete temp;
+    }
+  }
+  result = (std::vector< uint8_t,std::allocator< uint8_t > > *)((Scene const *)arg1)->GetComponentDataArray(arg2);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_GetComponentDataArray(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[3] = {
+    0
+  };
+  
+  if (!(argc = SWIG_Python_UnpackTuple(args, "Scene_GetComponentDataArray", 0, 2, argv))) SWIG_fail;
+  --argc;
+  if (argc == 2) {
+    int _v = 0;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Scene, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_uint32_t, SWIG_POINTER_NO_NULL | 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_Scene_GetComponentDataArray__SWIG_1(self, argc, argv);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v = 0;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Scene, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_uint32_t, SWIG_POINTER_NO_NULL | 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_Scene_GetComponentDataArray__SWIG_3(self, argc, argv);
+      }
+    }
+  }
+  
+fail:
+  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'Scene_GetComponentDataArray'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Scene::GetComponentDataArray(uint32_t)\n"
+    "    Scene::GetComponentDataArray(uint32_t) const\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_sceneName_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Scene_sceneName_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_sceneName_set" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(swig_obj[1], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_sceneName_set" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_sceneName_set" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  if (arg1) (arg1)->sceneName = *arg2;
+  resultobj = SWIG_Py_Void();
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return resultobj;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_sceneName_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::string *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_sceneName_get" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  result = (std::string *) & ((arg1)->sceneName);
+  resultobj = SWIG_From_std_string(static_cast< std::string >(*result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_io_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  ImGuiIO arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Scene_io_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_io_set" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  {
+    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_ImGuiIO,  0  | 0);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_io_set" "', argument " "2"" of type '" "ImGuiIO""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_io_set" "', argument " "2"" of type '" "ImGuiIO""'");
+    } else {
+      ImGuiIO * temp = reinterpret_cast< ImGuiIO * >(argp2);
+      arg2 = *temp;
+      if (SWIG_IsNewObj(res2)) delete temp;
+    }
+  }
+  if (arg1) (arg1)->io = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_io_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  ImGuiIO result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_io_get" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  result =  ((arg1)->io);
+  resultobj = SWIG_NewPointerObj((new ImGuiIO(result)), SWIGTYPE_p_ImGuiIO, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_deltatime_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Scene_deltatime_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_deltatime_set" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  ecode2 = SWIG_AsVal_float(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Scene_deltatime_set" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  if (arg1) (arg1)->deltatime = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_deltatime_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  float result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_deltatime_get" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  result = (float) ((arg1)->deltatime);
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_currentProject_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  Project *arg2 = (Project *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Scene_currentProject_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_currentProject_set" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_Project, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_currentProject_set" "', argument " "2"" of type '" "Project *""'"); 
+  }
+  arg2 = reinterpret_cast< Project * >(argp2);
+  if (arg1) (arg1)->currentProject = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_currentProject_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Project *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_currentProject_get" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  result = (Project *) ((arg1)->currentProject);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Project, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_renderer_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  Renderer arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Scene_renderer_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_renderer_set" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  {
+    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_Renderer,  0  | 0);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_renderer_set" "', argument " "2"" of type '" "Renderer""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_renderer_set" "', argument " "2"" of type '" "Renderer""'");
+    } else {
+      Renderer * temp = reinterpret_cast< Renderer * >(argp2);
+      arg2 = *temp;
+      if (SWIG_IsNewObj(res2)) delete temp;
+    }
+  }
+  if (arg1) (arg1)->renderer = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Scene_renderer_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Renderer result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_renderer_get" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  result =  ((arg1)->renderer);
+  resultobj = SWIG_NewPointerObj((new Renderer(result)), SWIGTYPE_p_Renderer, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_Scene(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::string arg1 ;
+  PyObject *swig_obj[1] ;
+  Scene *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "new_Scene" "', argument " "1"" of type '" "std::string""'"); 
+    }
+    arg1 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  result = (Scene *)new Scene(arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Scene, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_Scene(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Scene *arg1 = (Scene *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Scene" "', argument " "1"" of type '" "Scene *""'"); 
+  }
+  arg1 = reinterpret_cast< Scene * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *Scene_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_Scene, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *Scene_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
 SWIGINTERN PyObject *_wrap_IEcsSystem_Init(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   IEcsSystem *arg1 = (IEcsSystem *) 0 ;
@@ -6247,260 +7482,6 @@ SWIGINTERN PyObject *IEcsSystem_swigregister(PyObject *SWIGUNUSEDPARM(self), PyO
   if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
   SWIG_TypeNewClientData(SWIGTYPE_p_IEcsSystem, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_new_Register(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Register *result = 0 ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "new_Register", 0, 0, 0)) SWIG_fail;
-  result = (Register *)new Register();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Register, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_Register(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Register *arg1 = (Register *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Register, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Register" "', argument " "1"" of type '" "Register *""'"); 
-  }
-  arg1 = reinterpret_cast< Register * >(argp1);
-  delete arg1;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Register_entities_set(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Register *arg1 = (Register *) 0 ;
-  std::vector< Entity *,std::allocator< Entity * > > *arg2 = (std::vector< Entity *,std::allocator< Entity * > > *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Register_entities_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Register, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Register_entities_set" "', argument " "1"" of type '" "Register *""'"); 
-  }
-  arg1 = reinterpret_cast< Register * >(argp1);
-  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_std__vectorT_Entity_p_std__allocatorT_Entity_p_t_t, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Register_entities_set" "', argument " "2"" of type '" "std::vector< Entity *,std::allocator< Entity * > > *""'"); 
-  }
-  arg2 = reinterpret_cast< std::vector< Entity *,std::allocator< Entity * > > * >(argp2);
-  if (arg1) (arg1)->entities = *arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Register_entities_get(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Register *arg1 = (Register *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  std::vector< Entity *,std::allocator< Entity * > > *result = 0 ;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Register, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Register_entities_get" "', argument " "1"" of type '" "Register *""'"); 
-  }
-  arg1 = reinterpret_cast< Register * >(argp1);
-  result = (std::vector< Entity *,std::allocator< Entity * > > *)& ((arg1)->entities);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_Entity_p_std__allocatorT_Entity_p_t_t, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Register_ComponentsData_set(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Register *arg1 = (Register *) 0 ;
-  std::vector< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * >,std::allocator< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * > > > *arg2 = (std::vector< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * >,std::allocator< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * > > > *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Register_ComponentsData_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Register, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Register_ComponentsData_set" "', argument " "1"" of type '" "Register *""'"); 
-  }
-  arg1 = reinterpret_cast< Register * >(argp1);
-  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_std__vectorT_std__pairT_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_p_t_std__allocatorT_std__pairT_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_p_t_t_t, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Register_ComponentsData_set" "', argument " "2"" of type '" "std::vector< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * >,std::allocator< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * > > > *""'"); 
-  }
-  arg2 = reinterpret_cast< std::vector< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * >,std::allocator< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * > > > * >(argp2);
-  if (arg1) (arg1)->ComponentsData = *arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Register_ComponentsData_get(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Register *arg1 = (Register *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  std::vector< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * >,std::allocator< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * > > > *result = 0 ;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Register, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Register_ComponentsData_get" "', argument " "1"" of type '" "Register *""'"); 
-  }
-  arg1 = reinterpret_cast< Register * >(argp1);
-  result = (std::vector< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * >,std::allocator< std::pair< uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > * > > > *)& ((arg1)->ComponentsData);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_std__pairT_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_p_t_std__allocatorT_std__pairT_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_p_t_t_t, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Register_systems_set(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Register *arg1 = (Register *) 0 ;
-  std::vector< IEcsSystem *,std::allocator< IEcsSystem * > > *arg2 = (std::vector< IEcsSystem *,std::allocator< IEcsSystem * > > *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Register_systems_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Register, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Register_systems_set" "', argument " "1"" of type '" "Register *""'"); 
-  }
-  arg1 = reinterpret_cast< Register * >(argp1);
-  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_std__vectorT_IEcsSystem_p_std__allocatorT_IEcsSystem_p_t_t, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Register_systems_set" "', argument " "2"" of type '" "std::vector< IEcsSystem *,std::allocator< IEcsSystem * > > *""'"); 
-  }
-  arg2 = reinterpret_cast< std::vector< IEcsSystem *,std::allocator< IEcsSystem * > > * >(argp2);
-  if (arg1) (arg1)->systems = *arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Register_systems_get(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Register *arg1 = (Register *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  std::vector< IEcsSystem *,std::allocator< IEcsSystem * > > *result = 0 ;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Register, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Register_systems_get" "', argument " "1"" of type '" "Register *""'"); 
-  }
-  arg1 = reinterpret_cast< Register * >(argp1);
-  result = (std::vector< IEcsSystem *,std::allocator< IEcsSystem * > > *)& ((arg1)->systems);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_IEcsSystem_p_std__allocatorT_IEcsSystem_p_t_t, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Register_OnReSizeDataVector_set(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Register *arg1 = (Register *) 0 ;
-  std::vector< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) >,std::allocator< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) > > > *arg2 = (std::vector< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) >,std::allocator< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) > > > *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Register_OnReSizeDataVector_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Register, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Register_OnReSizeDataVector_set" "', argument " "1"" of type '" "Register *""'"); 
-  }
-  arg1 = reinterpret_cast< Register * >(argp1);
-  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_std__vectorT_std__functionT_void_fIEcsSystem_R_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_pF_t_std__allocatorT_std__functionT_void_fIEcsSystem_R_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_pF_t_t_t, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Register_OnReSizeDataVector_set" "', argument " "2"" of type '" "std::vector< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) >,std::allocator< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) > > > *""'"); 
-  }
-  arg2 = reinterpret_cast< std::vector< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) >,std::allocator< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) > > > * >(argp2);
-  if (arg1) (arg1)->OnReSizeDataVector = *arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Register_OnReSizeDataVector_get(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Register *arg1 = (Register *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  std::vector< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) >,std::allocator< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) > > > *result = 0 ;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Register, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Register_OnReSizeDataVector_get" "', argument " "1"" of type '" "Register *""'"); 
-  }
-  arg1 = reinterpret_cast< Register * >(argp1);
-  result = (std::vector< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) >,std::allocator< std::function< void (IEcsSystem &,uint32_t,std::vector< uint8_t,std::allocator< uint8_t > > *) > > > *)& ((arg1)->OnReSizeDataVector);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_std__functionT_void_fIEcsSystem_R_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_pF_t_std__allocatorT_std__functionT_void_fIEcsSystem_R_uint32_t_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t_pF_t_t_t, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *Register_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_Register, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *Register_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  return SWIG_Python_InitShadowInstance(args);
 }
 
 SWIGINTERN int Swig_var_Project_projectFolderDirectory_set(PyObject *_val) {
@@ -7749,893 +8730,6 @@ SWIGINTERN PyObject *PythonScript_swigregister(PyObject *SWIGUNUSEDPARM(self), P
 }
 
 SWIGINTERN PyObject *PythonScript_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  return SWIG_Python_InitShadowInstance(args);
-}
-
-SWIGINTERN PyObject *_wrap_Scene_Init(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_Init" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  (arg1)->Init();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_Awake(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_Awake" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  (arg1)->Awake();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_Start(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_Start" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  (arg1)->Start();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_DrawGizmo(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_DrawGizmo" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  (arg1)->DrawGizmo();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_FixedUpdate(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_FixedUpdate" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  (arg1)->FixedUpdate();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_Update(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_Update" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  (arg1)->Update();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_LateUpdate(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_LateUpdate" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  (arg1)->LateUpdate();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_Render(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  Shader *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Scene_Render", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_Render" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_Shader,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_Render" "', argument " "2"" of type '" "Shader &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_Render" "', argument " "2"" of type '" "Shader &""'"); 
-  }
-  arg2 = reinterpret_cast< Shader * >(argp2);
-  (arg1)->Render(*arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_RenderScene(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  Shader *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Scene_RenderScene", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_RenderScene" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_Shader,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_RenderScene" "', argument " "2"" of type '" "Shader &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_RenderScene" "', argument " "2"" of type '" "Shader &""'"); 
-  }
-  arg2 = reinterpret_cast< Shader * >(argp2);
-  (arg1)->RenderScene(*arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_CreateEntity(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  Entity *result = 0 ;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_CreateEntity" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  result = (Entity *)(arg1)->CreateEntity();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Entity, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_GetEntities(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  uint32_t arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  Entity *result = 0 ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Scene_GetEntities", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_GetEntities" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  {
-    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_uint32_t,  0  | 0);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_GetEntities" "', argument " "2"" of type '" "uint32_t""'"); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_GetEntities" "', argument " "2"" of type '" "uint32_t""'");
-    } else {
-      uint32_t * temp = reinterpret_cast< uint32_t * >(argp2);
-      arg2 = *temp;
-      if (SWIG_IsNewObj(res2)) delete temp;
-    }
-  }
-  result = (Entity *)(arg1)->GetEntities(arg2);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Entity, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_AddComponent(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  uint32_t arg2 ;
-  Entity *arg3 = (Entity *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject *swig_obj[3] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Scene_AddComponent", 3, 3, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_AddComponent" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  {
-    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_uint32_t,  0  | 0);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_AddComponent" "', argument " "2"" of type '" "uint32_t""'"); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_AddComponent" "', argument " "2"" of type '" "uint32_t""'");
-    } else {
-      uint32_t * temp = reinterpret_cast< uint32_t * >(argp2);
-      arg2 = *temp;
-      if (SWIG_IsNewObj(res2)) delete temp;
-    }
-  }
-  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_Entity, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Scene_AddComponent" "', argument " "3"" of type '" "Entity *""'"); 
-  }
-  arg3 = reinterpret_cast< Entity * >(argp3);
-  (arg1)->AddComponent(arg2,arg3);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_HasComponent(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  uint32_t arg2 ;
-  Entity *arg3 = (Entity *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject *swig_obj[3] ;
-  bool result;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Scene_HasComponent", 3, 3, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_HasComponent" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  {
-    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_uint32_t,  0  | 0);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_HasComponent" "', argument " "2"" of type '" "uint32_t""'"); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_HasComponent" "', argument " "2"" of type '" "uint32_t""'");
-    } else {
-      uint32_t * temp = reinterpret_cast< uint32_t * >(argp2);
-      arg2 = *temp;
-      if (SWIG_IsNewObj(res2)) delete temp;
-    }
-  }
-  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_Entity, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Scene_HasComponent" "', argument " "3"" of type '" "Entity const *""'"); 
-  }
-  arg3 = reinterpret_cast< Entity * >(argp3);
-  result = (bool)(arg1)->HasComponent(arg2,(Entity const *)arg3);
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_RemoveEntity(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  Entity *arg2 = (Entity *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Scene_RemoveEntity", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_RemoveEntity" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_Entity, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_RemoveEntity" "', argument " "2"" of type '" "Entity *""'"); 
-  }
-  arg2 = reinterpret_cast< Entity * >(argp2);
-  (arg1)->RemoveEntity(arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_AddSystem(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  IEcsSystem *arg2 = (IEcsSystem *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Scene_AddSystem", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_AddSystem" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_IEcsSystem, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_AddSystem" "', argument " "2"" of type '" "IEcsSystem *""'"); 
-  }
-  arg2 = reinterpret_cast< IEcsSystem * >(argp2);
-  (arg1)->AddSystem(arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_GetComponentDataArray__SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  uint32_t arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  std::vector< uint8_t,std::allocator< uint8_t > > *result = 0 ;
-  
-  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_GetComponentDataArray" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  {
-    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_uint32_t,  0  | 0);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_GetComponentDataArray" "', argument " "2"" of type '" "uint32_t""'"); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_GetComponentDataArray" "', argument " "2"" of type '" "uint32_t""'");
-    } else {
-      uint32_t * temp = reinterpret_cast< uint32_t * >(argp2);
-      arg2 = *temp;
-      if (SWIG_IsNewObj(res2)) delete temp;
-    }
-  }
-  result = (std::vector< uint8_t,std::allocator< uint8_t > > *)(arg1)->GetComponentDataArray(arg2);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_GetComponentDataArray__SWIG_3(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  uint32_t arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  std::vector< uint8_t,std::allocator< uint8_t > > *result = 0 ;
-  
-  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_GetComponentDataArray" "', argument " "1"" of type '" "Scene const *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  {
-    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_uint32_t,  0  | 0);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_GetComponentDataArray" "', argument " "2"" of type '" "uint32_t""'"); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_GetComponentDataArray" "', argument " "2"" of type '" "uint32_t""'");
-    } else {
-      uint32_t * temp = reinterpret_cast< uint32_t * >(argp2);
-      arg2 = *temp;
-      if (SWIG_IsNewObj(res2)) delete temp;
-    }
-  }
-  result = (std::vector< uint8_t,std::allocator< uint8_t > > *)((Scene const *)arg1)->GetComponentDataArray(arg2);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_uint8_t_std__allocatorT_uint8_t_t_t, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_GetComponentDataArray(PyObject *self, PyObject *args) {
-  Py_ssize_t argc;
-  PyObject *argv[3] = {
-    0
-  };
-  
-  if (!(argc = SWIG_Python_UnpackTuple(args, "Scene_GetComponentDataArray", 0, 2, argv))) SWIG_fail;
-  --argc;
-  if (argc == 2) {
-    int _v = 0;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Scene, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_uint32_t, SWIG_POINTER_NO_NULL | 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_Scene_GetComponentDataArray__SWIG_1(self, argc, argv);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v = 0;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Scene, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_uint32_t, SWIG_POINTER_NO_NULL | 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_Scene_GetComponentDataArray__SWIG_3(self, argc, argv);
-      }
-    }
-  }
-  
-fail:
-  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'Scene_GetComponentDataArray'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    Scene::GetComponentDataArray(uint32_t)\n"
-    "    Scene::GetComponentDataArray(uint32_t) const\n");
-  return 0;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_sceneName_set(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Scene_sceneName_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_sceneName_set" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string(swig_obj[1], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_sceneName_set" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_sceneName_set" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    arg2 = ptr;
-  }
-  if (arg1) (arg1)->sceneName = *arg2;
-  resultobj = SWIG_Py_Void();
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return resultobj;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_sceneName_get(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  std::string *result = 0 ;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_sceneName_get" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  result = (std::string *) & ((arg1)->sceneName);
-  resultobj = SWIG_From_std_string(static_cast< std::string >(*result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_io_set(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  ImGuiIO arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Scene_io_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_io_set" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  {
-    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_ImGuiIO,  0  | 0);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_io_set" "', argument " "2"" of type '" "ImGuiIO""'"); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_io_set" "', argument " "2"" of type '" "ImGuiIO""'");
-    } else {
-      ImGuiIO * temp = reinterpret_cast< ImGuiIO * >(argp2);
-      arg2 = *temp;
-      if (SWIG_IsNewObj(res2)) delete temp;
-    }
-  }
-  if (arg1) (arg1)->io = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_io_get(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  ImGuiIO result;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_io_get" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  result =  ((arg1)->io);
-  resultobj = SWIG_NewPointerObj((new ImGuiIO(result)), SWIGTYPE_p_ImGuiIO, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_deltatime_set(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  float arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  float val2 ;
-  int ecode2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Scene_deltatime_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_deltatime_set" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  ecode2 = SWIG_AsVal_float(swig_obj[1], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Scene_deltatime_set" "', argument " "2"" of type '" "float""'");
-  } 
-  arg2 = static_cast< float >(val2);
-  if (arg1) (arg1)->deltatime = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_deltatime_get(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  float result;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_deltatime_get" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  result = (float) ((arg1)->deltatime);
-  resultobj = SWIG_From_float(static_cast< float >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_currentProject_set(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  Project *arg2 = (Project *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Scene_currentProject_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_currentProject_set" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_Project, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_currentProject_set" "', argument " "2"" of type '" "Project *""'"); 
-  }
-  arg2 = reinterpret_cast< Project * >(argp2);
-  if (arg1) (arg1)->currentProject = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_currentProject_get(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  Project *result = 0 ;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_currentProject_get" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  result = (Project *) ((arg1)->currentProject);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Project, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_renderer_set(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  Renderer arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Scene_renderer_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_renderer_set" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  {
-    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_Renderer,  0  | 0);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Scene_renderer_set" "', argument " "2"" of type '" "Renderer""'"); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Scene_renderer_set" "', argument " "2"" of type '" "Renderer""'");
-    } else {
-      Renderer * temp = reinterpret_cast< Renderer * >(argp2);
-      arg2 = *temp;
-      if (SWIG_IsNewObj(res2)) delete temp;
-    }
-  }
-  if (arg1) (arg1)->renderer = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Scene_renderer_get(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  Renderer result;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Scene_renderer_get" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  result =  ((arg1)->renderer);
-  resultobj = SWIG_NewPointerObj((new Renderer(result)), SWIGTYPE_p_Renderer, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_Scene(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  std::string arg1 ;
-  PyObject *swig_obj[1] ;
-  Scene *result = 0 ;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  {
-    std::string *ptr = (std::string *)0;
-    int res = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
-    if (!SWIG_IsOK(res) || !ptr) {
-      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "new_Scene" "', argument " "1"" of type '" "std::string""'"); 
-    }
-    arg1 = *ptr;
-    if (SWIG_IsNewObj(res)) delete ptr;
-  }
-  result = (Scene *)new Scene(arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Scene, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_Scene(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  Scene *arg1 = (Scene *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Scene, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Scene" "', argument " "1"" of type '" "Scene *""'"); 
-  }
-  arg1 = reinterpret_cast< Scene * >(argp1);
-  delete arg1;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *Scene_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_Scene, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *Scene_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   return SWIG_Python_InitShadowInstance(args);
 }
 
@@ -18325,6 +18419,948 @@ SWIGINTERN PyObject *Matrix4X4_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject
   return SWIG_Python_InitShadowInstance(args);
 }
 
+SWIGINTERN int Swig_var_CAMERASENSITIVITY_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable CAMERASENSITIVITY is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_CAMERASENSITIVITY_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&CAMERASENSITIVITY), SWIGTYPE_p_Vector2,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_YAW_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable YAW is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_YAW_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_From_float(static_cast< float >(YAW));
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_PITCH_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable PITCH is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_PITCH_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_From_float(static_cast< float >(PITCH));
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_SPEED_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable SPEED is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_SPEED_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_From_float(static_cast< float >(SPEED));
+  return pyobj;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_GetLookMatrix(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Matrix4X4 result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_GetLookMatrix" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  result = (arg1)->GetLookMatrix();
+  resultobj = SWIG_NewPointerObj((new Matrix4X4(result)), SWIGTYPE_p_Matrix4X4, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_GetProjectionMatrix(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Matrix4X4 result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_GetProjectionMatrix" "', argument " "1"" of type '" "Camera const *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  result = ((Camera const *)arg1)->GetProjectionMatrix();
+  resultobj = SWIG_NewPointerObj((new Matrix4X4(result)), SWIGTYPE_p_Matrix4X4, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_ImguiCameraWindow(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_ImguiCameraWindow" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  (arg1)->ImguiCameraWindow();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_CameraUpdate(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_CameraUpdate" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  (arg1)->CameraUpdate();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_CameraRenderer(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  Shader *arg2 = (Shader *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Camera_CameraRenderer", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_CameraRenderer" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_Shader, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Camera_CameraRenderer" "', argument " "2"" of type '" "Shader *""'"); 
+  }
+  arg2 = reinterpret_cast< Shader * >(argp2);
+  (arg1)->CameraRenderer(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_CameraGetInput(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  float val3 ;
+  int ecode3 = 0 ;
+  PyObject *swig_obj[3] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Camera_CameraGetInput", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_CameraGetInput" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  ecode2 = SWIG_AsVal_float(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Camera_CameraGetInput" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  ecode3 = SWIG_AsVal_float(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Camera_CameraGetInput" "', argument " "3"" of type '" "float""'");
+  } 
+  arg3 = static_cast< float >(val3);
+  (arg1)->CameraGetInput(arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_GetTransform(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Matrix4X4 result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_GetTransform" "', argument " "1"" of type '" "Camera const *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  result = ((Camera const *)arg1)->GetTransform();
+  resultobj = SWIG_NewPointerObj((new Matrix4X4(result)), SWIGTYPE_p_Matrix4X4, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN int Swig_var_Camera_cam_set(PyObject *_val) {
+  {
+    void *argp = 0;
+    int res = SWIG_ConvertPtr(_val, &argp, SWIGTYPE_p_Camera,  0 );  
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""Camera::cam""' of type '""Camera *""'");
+    }
+    Camera::cam = reinterpret_cast< Camera * >(argp);
+  }
+  return 0;
+fail:
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Camera_cam_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(Camera::cam), SWIGTYPE_p_Camera,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_cam_get(PyObject *SWIGUNUSEDPARM(self), PyObject *SWIGUNUSEDPARM(args)) {
+  return Swig_var_Camera_cam_get();
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_cam_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  int res;
+  
+  res = Swig_var_Camera_cam_set(args);
+  return !res ? SWIG_Py_Void() : NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_MouseCallback(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GLFWwindow *arg1 = (GLFWwindow *) 0 ;
+  double arg2 ;
+  double arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  double val3 ;
+  int ecode3 = 0 ;
+  PyObject *swig_obj[3] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Camera_MouseCallback", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_GLFWwindow, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_MouseCallback" "', argument " "1"" of type '" "GLFWwindow *""'"); 
+  }
+  arg1 = reinterpret_cast< GLFWwindow * >(argp1);
+  ecode2 = SWIG_AsVal_double(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Camera_MouseCallback" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  ecode3 = SWIG_AsVal_double(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Camera_MouseCallback" "', argument " "3"" of type '" "double""'");
+  } 
+  arg3 = static_cast< double >(val3);
+  Camera::MouseCallback(arg1,arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_MouseButtonCallBack(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GLFWwindow *arg1 = (GLFWwindow *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  PyObject *swig_obj[4] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Camera_MouseButtonCallBack", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_GLFWwindow, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_MouseButtonCallBack" "', argument " "1"" of type '" "GLFWwindow *""'"); 
+  }
+  arg1 = reinterpret_cast< GLFWwindow * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Camera_MouseButtonCallBack" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Camera_MouseButtonCallBack" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Camera_MouseButtonCallBack" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  Camera::MouseButtonCallBack(arg1,arg2,arg3,arg4);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_Camera(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "new_Camera", 0, 0, 0)) SWIG_fail;
+  result = (Camera *)new Camera();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Camera, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_Camera(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Camera" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_eye_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  Vector3 *arg2 = (Vector3 *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Camera_eye_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_eye_set" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_Vector3, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Camera_eye_set" "', argument " "2"" of type '" "Vector3 *""'"); 
+  }
+  arg2 = reinterpret_cast< Vector3 * >(argp2);
+  if (arg1) (arg1)->eye = *arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_eye_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Vector3 *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_eye_get" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  result = (Vector3 *)& ((arg1)->eye);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Vector3, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_Front_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  Vector3 *arg2 = (Vector3 *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Camera_Front_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_Front_set" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_Vector3, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Camera_Front_set" "', argument " "2"" of type '" "Vector3 *""'"); 
+  }
+  arg2 = reinterpret_cast< Vector3 * >(argp2);
+  if (arg1) (arg1)->Front = *arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_Front_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Vector3 *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_Front_get" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  result = (Vector3 *)& ((arg1)->Front);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Vector3, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_Up_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  Vector3 *arg2 = (Vector3 *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Camera_Up_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_Up_set" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_Vector3, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Camera_Up_set" "', argument " "2"" of type '" "Vector3 *""'"); 
+  }
+  arg2 = reinterpret_cast< Vector3 * >(argp2);
+  if (arg1) (arg1)->Up = *arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_Up_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Vector3 *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_Up_get" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  result = (Vector3 *)& ((arg1)->Up);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Vector3, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_Right_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  Vector3 *arg2 = (Vector3 *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Camera_Right_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_Right_set" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_Vector3, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Camera_Right_set" "', argument " "2"" of type '" "Vector3 *""'"); 
+  }
+  arg2 = reinterpret_cast< Vector3 * >(argp2);
+  if (arg1) (arg1)->Right = *arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_Right_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Vector3 *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_Right_get" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  result = (Vector3 *)& ((arg1)->Right);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Vector3, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_pitch_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Camera_pitch_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_pitch_set" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  ecode2 = SWIG_AsVal_float(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Camera_pitch_set" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  if (arg1) (arg1)->pitch = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_pitch_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  float result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_pitch_get" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  result = (float) ((arg1)->pitch);
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_yaw_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Camera_yaw_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_yaw_set" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  ecode2 = SWIG_AsVal_float(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Camera_yaw_set" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  if (arg1) (arg1)->yaw = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_yaw_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  float result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_yaw_get" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  result = (float) ((arg1)->yaw);
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_cameraVelocity_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Camera_cameraVelocity_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_cameraVelocity_set" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  ecode2 = SWIG_AsVal_float(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Camera_cameraVelocity_set" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  if (arg1) (arg1)->cameraVelocity = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_cameraVelocity_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  float result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_cameraVelocity_get" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  result = (float) ((arg1)->cameraVelocity);
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_mouseSentivity_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  Vector2 *arg2 = (Vector2 *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Camera_mouseSentivity_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_mouseSentivity_set" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_Vector2, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Camera_mouseSentivity_set" "', argument " "2"" of type '" "Vector2 *""'"); 
+  }
+  arg2 = reinterpret_cast< Vector2 * >(argp2);
+  if (arg1) (arg1)->mouseSentivity = *arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_mouseSentivity_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Vector2 *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_mouseSentivity_get" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  result = (Vector2 *)& ((arg1)->mouseSentivity);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Vector2, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_LeftClick_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Camera_LeftClick_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_LeftClick_set" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  ecode2 = SWIG_AsVal_bool(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Camera_LeftClick_set" "', argument " "2"" of type '" "bool""'");
+  } 
+  arg2 = static_cast< bool >(val2);
+  if (arg1) (arg1)->LeftClick = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_LeftClick_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  bool result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_LeftClick_get" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  result = (bool) ((arg1)->LeftClick);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_mousePos_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  Vector2 *arg2 = (Vector2 *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "Camera_mousePos_set", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_mousePos_set" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_Vector2, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Camera_mousePos_set" "', argument " "2"" of type '" "Vector2 *""'"); 
+  }
+  arg2 = reinterpret_cast< Vector2 * >(argp2);
+  if (arg1) (arg1)->mousePos = *arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_mousePos_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Vector2 *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_mousePos_get" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  result = (Vector2 *)& ((arg1)->mousePos);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Vector2, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Camera_GetVp(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  Camera *arg1 = (Camera *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Matrix4X4 result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Camera, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Camera_GetVp" "', argument " "1"" of type '" "Camera *""'"); 
+  }
+  arg1 = reinterpret_cast< Camera * >(argp1);
+  result = (arg1)->GetVp();
+  resultobj = SWIG_NewPointerObj((new Matrix4X4(result)), SWIGTYPE_p_Matrix4X4, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *Camera_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_Camera, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *Camera_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
 static PyMethodDef SwigMethods[] = {
 	 { "delete_SwigPyIterator", _wrap_delete_SwigPyIterator, METH_O, NULL},
 	 { "SwigPyIterator_value", _wrap_SwigPyIterator_value, METH_O, NULL},
@@ -18372,6 +19408,18 @@ static PyMethodDef SwigMethods[] = {
 	 { "new_Component", _wrap_new_Component, METH_NOARGS, NULL},
 	 { "Component_swigregister", Component_swigregister, METH_O, NULL},
 	 { "Component_swiginit", Component_swiginit, METH_VARARGS, NULL},
+	 { "new_Register", _wrap_new_Register, METH_NOARGS, NULL},
+	 { "delete_Register", _wrap_delete_Register, METH_O, NULL},
+	 { "Register_entities_set", _wrap_Register_entities_set, METH_VARARGS, NULL},
+	 { "Register_entities_get", _wrap_Register_entities_get, METH_O, NULL},
+	 { "Register_ComponentsData_set", _wrap_Register_ComponentsData_set, METH_VARARGS, NULL},
+	 { "Register_ComponentsData_get", _wrap_Register_ComponentsData_get, METH_O, NULL},
+	 { "Register_systems_set", _wrap_Register_systems_set, METH_VARARGS, NULL},
+	 { "Register_systems_get", _wrap_Register_systems_get, METH_O, NULL},
+	 { "Register_OnReSizeDataVector_set", _wrap_Register_OnReSizeDataVector_set, METH_VARARGS, NULL},
+	 { "Register_OnReSizeDataVector_get", _wrap_Register_OnReSizeDataVector_get, METH_O, NULL},
+	 { "Register_swigregister", Register_swigregister, METH_O, NULL},
+	 { "Register_swiginit", Register_swiginit, METH_VARARGS, NULL},
 	 { "EcsComponent_Transform_componentTypeID_get", _wrap_EcsComponent_Transform_componentTypeID_get, METH_VARARGS, NULL},
 	 { "EcsComponent_Transform_componentTypeID_set", _wrap_EcsComponent_Transform_componentTypeID_set, METH_O, NULL},
 	 { "new_EcsComponent_Transform", _wrap_new_EcsComponent_Transform, METH_NOARGS, NULL},
@@ -18396,6 +19444,40 @@ static PyMethodDef SwigMethods[] = {
 	 { "delete_EcsComponent_SphereCollider", _wrap_delete_EcsComponent_SphereCollider, METH_O, NULL},
 	 { "EcsComponent_SphereCollider_swigregister", EcsComponent_SphereCollider_swigregister, METH_O, NULL},
 	 { "EcsComponent_SphereCollider_swiginit", EcsComponent_SphereCollider_swiginit, METH_VARARGS, NULL},
+	 { "GetComponent_Transform", _wrap_GetComponent_Transform, METH_O, NULL},
+	 { "GetComponent_BoxCollider", _wrap_GetComponent_BoxCollider, METH_O, NULL},
+	 { "GetComponent_Rigidbody", _wrap_GetComponent_Rigidbody, METH_O, NULL},
+	 { "GetComponent_SphereCollider", _wrap_GetComponent_SphereCollider, METH_O, NULL},
+	 { "Scene_Init", _wrap_Scene_Init, METH_O, NULL},
+	 { "Scene_Awake", _wrap_Scene_Awake, METH_O, NULL},
+	 { "Scene_Start", _wrap_Scene_Start, METH_O, NULL},
+	 { "Scene_DrawGizmo", _wrap_Scene_DrawGizmo, METH_O, NULL},
+	 { "Scene_FixedUpdate", _wrap_Scene_FixedUpdate, METH_O, NULL},
+	 { "Scene_Update", _wrap_Scene_Update, METH_O, NULL},
+	 { "Scene_LateUpdate", _wrap_Scene_LateUpdate, METH_O, NULL},
+	 { "Scene_Render", _wrap_Scene_Render, METH_VARARGS, NULL},
+	 { "Scene_RenderScene", _wrap_Scene_RenderScene, METH_VARARGS, NULL},
+	 { "Scene_CreateEntity", _wrap_Scene_CreateEntity, METH_O, NULL},
+	 { "Scene_GetEntities", _wrap_Scene_GetEntities, METH_VARARGS, NULL},
+	 { "Scene_AddComponent", _wrap_Scene_AddComponent, METH_VARARGS, NULL},
+	 { "Scene_HasComponent", _wrap_Scene_HasComponent, METH_VARARGS, NULL},
+	 { "Scene_RemoveEntity", _wrap_Scene_RemoveEntity, METH_VARARGS, NULL},
+	 { "Scene_AddSystem", _wrap_Scene_AddSystem, METH_VARARGS, NULL},
+	 { "Scene_GetComponentDataArray", _wrap_Scene_GetComponentDataArray, METH_VARARGS, NULL},
+	 { "Scene_sceneName_set", _wrap_Scene_sceneName_set, METH_VARARGS, NULL},
+	 { "Scene_sceneName_get", _wrap_Scene_sceneName_get, METH_O, NULL},
+	 { "Scene_io_set", _wrap_Scene_io_set, METH_VARARGS, NULL},
+	 { "Scene_io_get", _wrap_Scene_io_get, METH_O, NULL},
+	 { "Scene_deltatime_set", _wrap_Scene_deltatime_set, METH_VARARGS, NULL},
+	 { "Scene_deltatime_get", _wrap_Scene_deltatime_get, METH_O, NULL},
+	 { "Scene_currentProject_set", _wrap_Scene_currentProject_set, METH_VARARGS, NULL},
+	 { "Scene_currentProject_get", _wrap_Scene_currentProject_get, METH_O, NULL},
+	 { "Scene_renderer_set", _wrap_Scene_renderer_set, METH_VARARGS, NULL},
+	 { "Scene_renderer_get", _wrap_Scene_renderer_get, METH_O, NULL},
+	 { "new_Scene", _wrap_new_Scene, METH_O, NULL},
+	 { "delete_Scene", _wrap_delete_Scene, METH_O, NULL},
+	 { "Scene_swigregister", Scene_swigregister, METH_O, NULL},
+	 { "Scene_swiginit", Scene_swiginit, METH_VARARGS, NULL},
 	 { "IEcsSystem_Init", _wrap_IEcsSystem_Init, METH_VARARGS, NULL},
 	 { "IEcsSystem_Awake", _wrap_IEcsSystem_Awake, METH_VARARGS, NULL},
 	 { "IEcsSystem_Start", _wrap_IEcsSystem_Start, METH_VARARGS, NULL},
@@ -18407,18 +19489,6 @@ static PyMethodDef SwigMethods[] = {
 	 { "IEcsSystem_OnResizeData", _wrap_IEcsSystem_OnResizeData, METH_VARARGS, NULL},
 	 { "delete_IEcsSystem", _wrap_delete_IEcsSystem, METH_O, NULL},
 	 { "IEcsSystem_swigregister", IEcsSystem_swigregister, METH_O, NULL},
-	 { "new_Register", _wrap_new_Register, METH_NOARGS, NULL},
-	 { "delete_Register", _wrap_delete_Register, METH_O, NULL},
-	 { "Register_entities_set", _wrap_Register_entities_set, METH_VARARGS, NULL},
-	 { "Register_entities_get", _wrap_Register_entities_get, METH_O, NULL},
-	 { "Register_ComponentsData_set", _wrap_Register_ComponentsData_set, METH_VARARGS, NULL},
-	 { "Register_ComponentsData_get", _wrap_Register_ComponentsData_get, METH_O, NULL},
-	 { "Register_systems_set", _wrap_Register_systems_set, METH_VARARGS, NULL},
-	 { "Register_systems_get", _wrap_Register_systems_get, METH_O, NULL},
-	 { "Register_OnReSizeDataVector_set", _wrap_Register_OnReSizeDataVector_set, METH_VARARGS, NULL},
-	 { "Register_OnReSizeDataVector_get", _wrap_Register_OnReSizeDataVector_get, METH_O, NULL},
-	 { "Register_swigregister", Register_swigregister, METH_O, NULL},
-	 { "Register_swiginit", Register_swiginit, METH_VARARGS, NULL},
 	 { "Project_projectFolderDirectory_get", _wrap_Project_projectFolderDirectory_get, METH_VARARGS, NULL},
 	 { "Project_projectFolderDirectory_set", _wrap_Project_projectFolderDirectory_set, METH_O, NULL},
 	 { "Project_currentScene_set", _wrap_Project_currentScene_set, METH_VARARGS, NULL},
@@ -18463,36 +19533,6 @@ static PyMethodDef SwigMethods[] = {
 	 { "delete_PythonScript", _wrap_delete_PythonScript, METH_O, NULL},
 	 { "PythonScript_swigregister", PythonScript_swigregister, METH_O, NULL},
 	 { "PythonScript_swiginit", PythonScript_swiginit, METH_VARARGS, NULL},
-	 { "Scene_Init", _wrap_Scene_Init, METH_O, NULL},
-	 { "Scene_Awake", _wrap_Scene_Awake, METH_O, NULL},
-	 { "Scene_Start", _wrap_Scene_Start, METH_O, NULL},
-	 { "Scene_DrawGizmo", _wrap_Scene_DrawGizmo, METH_O, NULL},
-	 { "Scene_FixedUpdate", _wrap_Scene_FixedUpdate, METH_O, NULL},
-	 { "Scene_Update", _wrap_Scene_Update, METH_O, NULL},
-	 { "Scene_LateUpdate", _wrap_Scene_LateUpdate, METH_O, NULL},
-	 { "Scene_Render", _wrap_Scene_Render, METH_VARARGS, NULL},
-	 { "Scene_RenderScene", _wrap_Scene_RenderScene, METH_VARARGS, NULL},
-	 { "Scene_CreateEntity", _wrap_Scene_CreateEntity, METH_O, NULL},
-	 { "Scene_GetEntities", _wrap_Scene_GetEntities, METH_VARARGS, NULL},
-	 { "Scene_AddComponent", _wrap_Scene_AddComponent, METH_VARARGS, NULL},
-	 { "Scene_HasComponent", _wrap_Scene_HasComponent, METH_VARARGS, NULL},
-	 { "Scene_RemoveEntity", _wrap_Scene_RemoveEntity, METH_VARARGS, NULL},
-	 { "Scene_AddSystem", _wrap_Scene_AddSystem, METH_VARARGS, NULL},
-	 { "Scene_GetComponentDataArray", _wrap_Scene_GetComponentDataArray, METH_VARARGS, NULL},
-	 { "Scene_sceneName_set", _wrap_Scene_sceneName_set, METH_VARARGS, NULL},
-	 { "Scene_sceneName_get", _wrap_Scene_sceneName_get, METH_O, NULL},
-	 { "Scene_io_set", _wrap_Scene_io_set, METH_VARARGS, NULL},
-	 { "Scene_io_get", _wrap_Scene_io_get, METH_O, NULL},
-	 { "Scene_deltatime_set", _wrap_Scene_deltatime_set, METH_VARARGS, NULL},
-	 { "Scene_deltatime_get", _wrap_Scene_deltatime_get, METH_O, NULL},
-	 { "Scene_currentProject_set", _wrap_Scene_currentProject_set, METH_VARARGS, NULL},
-	 { "Scene_currentProject_get", _wrap_Scene_currentProject_get, METH_O, NULL},
-	 { "Scene_renderer_set", _wrap_Scene_renderer_set, METH_VARARGS, NULL},
-	 { "Scene_renderer_get", _wrap_Scene_renderer_get, METH_O, NULL},
-	 { "new_Scene", _wrap_new_Scene, METH_O, NULL},
-	 { "delete_Scene", _wrap_delete_Scene, METH_O, NULL},
-	 { "Scene_swigregister", Scene_swigregister, METH_O, NULL},
-	 { "Scene_swiginit", Scene_swiginit, METH_VARARGS, NULL},
 	 { "BoxCollider_collider_set", _wrap_BoxCollider_collider_set, METH_VARARGS, NULL},
 	 { "BoxCollider_collider_get", _wrap_BoxCollider_collider_get, METH_O, NULL},
 	 { "BoxCollider_Size_set", _wrap_BoxCollider_Size_set, METH_VARARGS, NULL},
@@ -18804,6 +19844,42 @@ static PyMethodDef SwigMethods[] = {
 	 { "delete_Matrix4X4", _wrap_delete_Matrix4X4, METH_O, NULL},
 	 { "Matrix4X4_swigregister", Matrix4X4_swigregister, METH_O, NULL},
 	 { "Matrix4X4_swiginit", Matrix4X4_swiginit, METH_VARARGS, NULL},
+	 { "Camera_GetLookMatrix", _wrap_Camera_GetLookMatrix, METH_O, NULL},
+	 { "Camera_GetProjectionMatrix", _wrap_Camera_GetProjectionMatrix, METH_O, NULL},
+	 { "Camera_ImguiCameraWindow", _wrap_Camera_ImguiCameraWindow, METH_O, NULL},
+	 { "Camera_CameraUpdate", _wrap_Camera_CameraUpdate, METH_O, NULL},
+	 { "Camera_CameraRenderer", _wrap_Camera_CameraRenderer, METH_VARARGS, NULL},
+	 { "Camera_CameraGetInput", _wrap_Camera_CameraGetInput, METH_VARARGS, NULL},
+	 { "Camera_GetTransform", _wrap_Camera_GetTransform, METH_O, NULL},
+	 { "Camera_cam_get", _wrap_Camera_cam_get, METH_VARARGS, NULL},
+	 { "Camera_cam_set", _wrap_Camera_cam_set, METH_O, NULL},
+	 { "Camera_MouseCallback", _wrap_Camera_MouseCallback, METH_VARARGS, NULL},
+	 { "Camera_MouseButtonCallBack", _wrap_Camera_MouseButtonCallBack, METH_VARARGS, NULL},
+	 { "new_Camera", _wrap_new_Camera, METH_NOARGS, NULL},
+	 { "delete_Camera", _wrap_delete_Camera, METH_O, NULL},
+	 { "Camera_eye_set", _wrap_Camera_eye_set, METH_VARARGS, NULL},
+	 { "Camera_eye_get", _wrap_Camera_eye_get, METH_O, NULL},
+	 { "Camera_Front_set", _wrap_Camera_Front_set, METH_VARARGS, NULL},
+	 { "Camera_Front_get", _wrap_Camera_Front_get, METH_O, NULL},
+	 { "Camera_Up_set", _wrap_Camera_Up_set, METH_VARARGS, NULL},
+	 { "Camera_Up_get", _wrap_Camera_Up_get, METH_O, NULL},
+	 { "Camera_Right_set", _wrap_Camera_Right_set, METH_VARARGS, NULL},
+	 { "Camera_Right_get", _wrap_Camera_Right_get, METH_O, NULL},
+	 { "Camera_pitch_set", _wrap_Camera_pitch_set, METH_VARARGS, NULL},
+	 { "Camera_pitch_get", _wrap_Camera_pitch_get, METH_O, NULL},
+	 { "Camera_yaw_set", _wrap_Camera_yaw_set, METH_VARARGS, NULL},
+	 { "Camera_yaw_get", _wrap_Camera_yaw_get, METH_O, NULL},
+	 { "Camera_cameraVelocity_set", _wrap_Camera_cameraVelocity_set, METH_VARARGS, NULL},
+	 { "Camera_cameraVelocity_get", _wrap_Camera_cameraVelocity_get, METH_O, NULL},
+	 { "Camera_mouseSentivity_set", _wrap_Camera_mouseSentivity_set, METH_VARARGS, NULL},
+	 { "Camera_mouseSentivity_get", _wrap_Camera_mouseSentivity_get, METH_O, NULL},
+	 { "Camera_LeftClick_set", _wrap_Camera_LeftClick_set, METH_VARARGS, NULL},
+	 { "Camera_LeftClick_get", _wrap_Camera_LeftClick_get, METH_O, NULL},
+	 { "Camera_mousePos_set", _wrap_Camera_mousePos_set, METH_VARARGS, NULL},
+	 { "Camera_mousePos_get", _wrap_Camera_mousePos_get, METH_O, NULL},
+	 { "Camera_GetVp", _wrap_Camera_GetVp, METH_O, NULL},
+	 { "Camera_swigregister", Camera_swigregister, METH_O, NULL},
+	 { "Camera_swiginit", Camera_swiginit, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
@@ -18871,6 +19947,7 @@ static swig_type_info _swigt__p_EcsComponentT_Rigidbody_t = {"_p_EcsComponentT_R
 static swig_type_info _swigt__p_EcsComponentT_SphereCollider_t = {"_p_EcsComponentT_SphereCollider_t", "EcsComponent< SphereCollider > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_EcsComponentT_Transform_t = {"_p_EcsComponentT_Transform_t", "EcsComponent< Transform > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Entity = {"_p_Entity", "Entity *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_GLFWwindow = {"_p_GLFWwindow", "GLFWwindow *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_GraphScene = {"_p_GraphScene", "GraphScene *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_IEcsSystem = {"_p_IEcsSystem", "IEcsSystem *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ImGuiIO = {"_p_ImGuiIO", "ImGuiIO *", 0, 0, (void*)0, 0};
@@ -18928,6 +20005,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_EcsComponentT_SphereCollider_t,
   &_swigt__p_EcsComponentT_Transform_t,
   &_swigt__p_Entity,
+  &_swigt__p_GLFWwindow,
   &_swigt__p_GraphScene,
   &_swigt__p_IEcsSystem,
   &_swigt__p_ImGuiIO,
@@ -18985,6 +20063,7 @@ static swig_cast_info _swigc__p_EcsComponentT_Rigidbody_t[] = {  {&_swigt__p_Ecs
 static swig_cast_info _swigc__p_EcsComponentT_SphereCollider_t[] = {  {&_swigt__p_EcsComponentT_SphereCollider_t, 0, 0, 0},  {&_swigt__p_SphereCollider, _p_SphereColliderTo_p_EcsComponentT_SphereCollider_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_EcsComponentT_Transform_t[] = {  {&_swigt__p_EcsComponentT_Transform_t, 0, 0, 0},  {&_swigt__p_Transform, _p_TransformTo_p_EcsComponentT_Transform_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Entity[] = {  {&_swigt__p_Entity, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_GLFWwindow[] = {  {&_swigt__p_GLFWwindow, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_GraphScene[] = {  {&_swigt__p_GraphScene, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IEcsSystem[] = {  {&_swigt__p_IEcsSystem, 0, 0, 0},  {&_swigt__p_ColliderSystem, _p_ColliderSystemTo_p_IEcsSystem, 0, 0},  {&_swigt__p_GraphScene, _p_GraphSceneTo_p_IEcsSystem, 0, 0},  {&_swigt__p_PhysicsSystem, _p_PhysicsSystemTo_p_IEcsSystem, 0, 0},  {&_swigt__p_PythonScript, _p_PythonScriptTo_p_IEcsSystem, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ImGuiIO[] = {  {&_swigt__p_ImGuiIO, 0, 0, 0},{0, 0, 0, 0}};
@@ -19042,6 +20121,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_EcsComponentT_SphereCollider_t,
   _swigc__p_EcsComponentT_Transform_t,
   _swigc__p_Entity,
+  _swigc__p_GLFWwindow,
   _swigc__p_GraphScene,
   _swigc__p_IEcsSystem,
   _swigc__p_ImGuiIO,
@@ -19591,6 +20671,11 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "CollisionType_Sphere",SWIG_From_int(static_cast< int >(CollisionType::Sphere)));
   SWIG_Python_SetConstant(d, "CollisionType_Box",SWIG_From_int(static_cast< int >(CollisionType::Box)));
   SWIG_addvarlink(globals, "PhysicsSystem_gravity", Swig_var_PhysicsSystem_gravity_get, Swig_var_PhysicsSystem_gravity_set);
+  SWIG_addvarlink(globals, "CAMERASENSITIVITY", Swig_var_CAMERASENSITIVITY_get, Swig_var_CAMERASENSITIVITY_set);
+  SWIG_addvarlink(globals, "YAW", Swig_var_YAW_get, Swig_var_YAW_set);
+  SWIG_addvarlink(globals, "PITCH", Swig_var_PITCH_get, Swig_var_PITCH_set);
+  SWIG_addvarlink(globals, "SPEED", Swig_var_SPEED_get, Swig_var_SPEED_set);
+  SWIG_addvarlink(globals, "Camera_cam", Swig_var_Camera_cam_get, Swig_var_Camera_cam_set);
 #if PY_VERSION_HEX >= 0x03000000
   return m;
 #else

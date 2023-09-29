@@ -56,13 +56,8 @@ private:
 	static  const ECSComponentFreeFunction FreeFunction;
 };
 
-
-
-
 template<class T>
 const size_t EcsComponent<T>::size = sizeof(T);
-
-
 
 template<class T>
 const ECSComponentFreeFunction EcsComponent<T>::FreeFunction(ECSComponentFree<T>);
