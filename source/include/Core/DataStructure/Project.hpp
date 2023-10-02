@@ -32,9 +32,9 @@ public:
 
 	CoreInput coreInput;
 
-	std::future<Shader*> shaderNormal;
-	std::future<Shader*> shaderShadowMapping;
-	std::future<Shader*> skybox;
+	Shader* shaderNormal;
+	Shader* shaderShadowMapping;
+	Shader* skybox;
 
 	void Update();
 	Project(std::string ProjectPath);

@@ -4,7 +4,7 @@
 #include "External/Std_Image/std_image.h"
 #include "App/App.h"
 
-void Texture::Init()
+void Texture::InitResource()
 {
     glGenTextures(1, &ID);
     glActiveTexture(GL_TEXTURE0);

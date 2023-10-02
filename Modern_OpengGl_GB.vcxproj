@@ -179,6 +179,8 @@
     <ClInclude Include="source\include\Core\Math\ToolBoxMathHeaders.h" />
     <ClInclude Include="source\include\Core\Python\TestPython.h" />
     <ClInclude Include="source\include\External\glad\glad.h" />
+    <ClInclude Include="source\include\External\GLFW\glfw3.h" />
+    <ClInclude Include="source\include\External\GLFW\glfw3native.h" />
     <ClInclude Include="source\include\Physics\Raycast\Raycast.h" />
     <ClInclude Include="source\include\Ressources\Model\Model.h" />
     <ClInclude Include="source\include\UI\Log.hpp" />

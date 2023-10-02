@@ -17,7 +17,7 @@ class ShaderSource : public IResource
 public:
 
 	void CompileShader();
-	void Init() override;
+	void InitResource() override;
 
 	ShaderSource(const fs::path& FilePath);
 	~ShaderSource();

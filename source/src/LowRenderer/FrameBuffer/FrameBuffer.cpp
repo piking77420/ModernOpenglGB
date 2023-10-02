@@ -3,7 +3,7 @@
 #include "Ressources/Shader/Shader.h"
 
 
-void FrameBuffer::Init()
+void FrameBuffer::InitResources()
 {
     // Create Frame Buffer Object
 

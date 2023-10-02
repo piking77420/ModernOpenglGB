@@ -10,7 +10,7 @@ class BoxCollider;
 class ColliderSystem : public IEcsSystem
 {
 public:
-	void Init(Scene* scene) override; 
+	void Init(Scene* scene) override;
 	void Awake(Scene* scene) override; 
 	void Start(Scene* scene) override; 
 	void OnDrawGizmo(Scene* scene) override;

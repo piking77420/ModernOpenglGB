@@ -11,7 +11,7 @@ public:
 
 	Depthmap(uint32_t _widht,uint32_t _height);
 
-	 void Init();
+	 void InitResources();
 	 void Bind();
 	 void UnBind();
 

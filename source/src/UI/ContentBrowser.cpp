@@ -197,9 +197,9 @@ ContentBrowser::ContentBrowser()
 	FolderIcon = new Texture("Ressources/Icon/FolderIcon.png");
 	PlayIcon = new Texture("Ressources/Icon/Play.png");
 	Pause = new Texture("Ressources/Icon/Pause.png");
-	FolderIcon->Init();
-	PlayIcon->Init();
-	Pause->Init();
+	FolderIcon->InitResource();
+	PlayIcon->InitResource();
+	Pause->InitResource();
 }
 
 ContentBrowser::~ContentBrowser()

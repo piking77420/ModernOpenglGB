@@ -27,7 +27,7 @@ private:
 
 public:
 	virtual ~Component() {}
-	virtual void ImguiWindowComponent();
+	virtual void ImguiWindowComponent() {};
 
 	bool isEnable = true;
 	uint32_t entityID;

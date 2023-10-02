@@ -5,7 +5,7 @@
 #include "Physics/Collider/ColliderSystem.hpp"
 #include "Physics/Collider/SphereCollider.hpp"
 #include "Physics/Collider/BoxCollider.hpp"
-#include "ECS/Scene/Scene.h"
+#include "Core/ECS/Scene.h"
 #include "Core/DataStructure/Project.hpp"
 #include "LowRenderer/Gizmo/Gizmo.hpp"
 #include "Physics/Raycast/Raycast.h"
@@ -122,8 +122,8 @@ void ColliderSystem::ProcessSphereBox(std::vector<SphereCollider>* sphereData, s
 
 void ColliderSystem::FixedUpdate(Scene* scene)
 {
-	std::vector<SphereCollider>* dataSphere =  reinterpret_cast<std::vector<SphereCollider>*>(scene->GetComponentDataArray<SphereCollider>());
-	std::vector<BoxCollider>* dataBox = reinterpret_cast<std::vector<BoxCollider>*>(scene->GetComponentDataArray<BoxCollider>());
+	std::vector<SphereCollider>* dataSphere =  scene->GetComponentDataArray<SphereCollider>();
+	std::vector<BoxCollider>* dataBox = scene->GetComponentDataArray<BoxCollider>();
 
 
 	ProcessSphereSphere(dataSphere);
@@ -148,8 +148,8 @@ void ColliderSystem::Update(Scene* scene)
 void ColliderSystem::LateUpdate(Scene* scene)
 {
 
-	std::vector<SphereCollider>* dataSphere = reinterpret_cast<std::vector<SphereCollider>*>(scene->GetComponentDataArray<SphereCollider>());
-	std::vector<BoxCollider>* dataBox = reinterpret_cast<std::vector<BoxCollider>*>(scene->GetComponentDataArray<BoxCollider>());
+	std::vector<SphereCollider>* dataSphere = scene->GetComponentDataArray<SphereCollider>();
+	std::vector<BoxCollider>* dataBox = scene->GetComponentDataArray<BoxCollider>();
 
 	
 

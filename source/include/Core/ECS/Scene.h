@@ -8,9 +8,12 @@
 #include "Core/ECS/Entity.h"
 #include "Core/ECS/Register.h"
 
+#ifndef SWIG
 #include<Core/Debug/Imgui/imgui.h>
 #include<Core/Debug/Imgui/imgui_impl_glfw.h>
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>
+#endif 
+
 #include "LowRenderer/Renderer/Renderer.hpp"
 
 

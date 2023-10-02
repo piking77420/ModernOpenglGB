@@ -1,11 +1,14 @@
 #include "Physics/Transform/Transform.hpp"
+
+#ifndef SWIG
+
 #include <Core/Debug/Imgui/imgui.h>
 #include <Core/Debug/Imgui/imgui_impl_glfw.h>
 #include <Core/Debug/Imgui/imgui_impl_opengl3.h>
+#endif 
 
 
-
-
+#ifndef SWIG
 void Transform::ImguiWindowComponent()
 {
 	Component::ImguiWindowComponent();
@@ -40,6 +43,7 @@ void Transform::ImguiWindowComponent()
 
 	ImGui::PopID();
 }
+#endif 
 
 Transform::Transform()
 {

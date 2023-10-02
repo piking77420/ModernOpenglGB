@@ -4,8 +4,5 @@
 #include <Core/Debug/Imgui/imgui_internal.h>
 
 
-void Component::ImguiWindowComponent()
-{
 
-}
 std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >* Component::m_componentTypeInfos = new  std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t, std::string> >();

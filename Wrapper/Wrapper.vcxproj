@@ -160,7 +160,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="CorePython.i" />
-    <None Include="CorePythonMath.i" />
     <None Include="resources.i" />
     <None Include="TestPython.i" />
   </ItemGroup>

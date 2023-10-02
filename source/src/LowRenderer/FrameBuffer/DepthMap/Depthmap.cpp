@@ -5,10 +5,10 @@ Depthmap::Depthmap(uint32_t _widht, uint32_t _height)
 {
 	widht = _widht;
 	height = _height;
-	Init();
+	InitResources();
 }
 
-void Depthmap::Init()
+void Depthmap::InitResources()
 {
     glGenFramebuffers(1, &depthMapFBO);
     // create depth texture
@@ -48,7 +48,7 @@ Depthmap::Depthmap()
 	widht = 4096;
     height = 4096;
 
-	Init();
+	InitResources();
 }
 
 

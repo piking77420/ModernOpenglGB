@@ -1,5 +1,5 @@
 #include <Ressources/RessourcesManager/RessourcesManager.h>
-#include "ECS/Scene/Scene.h"
+#include "Core/ECS/Scene.h"
 #include "LowRenderer/Cam/Camera.h"
 #include<Ressources/Texture/Texture.hpp>
 #include "Ressources/Shader/Shader.h"
@@ -12,53 +12,8 @@
 #include "Ressources/CubeMaps/CubeMaps.h"
 #include<ostream>
 #include "App/App.h"
+#include "Core/ECS/PythonScript.h"
 
-// Look recursively in all file from projectFolder
-// and push path in the queue
-void ResourcesManager::ProduceurFunc(const std::string& projectFolder)
-{
-	fs::path assetsPath(assetsFolder);
-
-	for (const auto& entry : std::filesystem::directory_iterator(projectFolder))
-		LookFiles(entry.path());
-
-	
-
-	m_consumerProd.WaitForEveryProducersExpect(std::this_thread::get_id());
-	m_consumerProd.EndProduction();	
-}
-
-// consume a path to create a Ressources
-void ResourcesManager::ConsumersFunc(TheardCP<PRODUCER, CONSUMERS, std::filesystem::path>& production)
-{
-	while(!production.EndProcess())
-	{
-		std::unique_lock<std::mutex> lock(production.resourcesMutex);
-		production.consumersCv.wait(lock, [&] { return !production.resources.empty(); });
-		std::filesystem::path ressourcesPath = production.ConsumersGetValue();
-		lock.unlock();
-
-
-		std::string tostring = ressourcesPath.generic_string();
-
-		if (ResourcesManager::IsModel(tostring))
-		{
-			CreateOnLoad<Mesh>(ressourcesPath);
-			continue;
-		}
-		else if (ResourcesManager::IsTexture(tostring))
-		{
-			CreateOnLoad<Texture>(ressourcesPath);
-			continue;
-		}
-		else if (ResourcesManager::IsShader(tostring))
-		{
-			CreateOnLoad<Shader>(ressourcesPath);
-			continue;
-		}
-
-	}
-}
 
 void PrintTime(std::chrono::system_clock::time_point& start,int mapzize)
 {
@@ -92,30 +47,13 @@ void ResourcesManager::LoadAllAssets(const std::string& projectFolder)
 
 	std::chrono::system_clock::time_point timeStart = std::chrono::system_clock::now();
 
-	if (!App::IsMonoThread)
-	{
-		m_consumerProd.GetProducer(0) = std::thread(&ResourcesManager::ProduceurFunc,this,std::ref(projectFolder));
-
-		for (std::thread& t : m_consumerProd.consumers)
-		{
-			t = std::thread(&ResourcesManager::ConsumersFunc,this, std::ref(m_consumerProd));
-		}
-		m_consumerProd.JoinIfJoinableProducers();
-		m_consumerProd.JoinIfJoinableConsumers();
-	}
-	else
-	{
-		for (const auto& entry : std::filesystem::directory_iterator(projectFolder))
+	
+	
+	for (const auto& entry : std::filesystem::directory_iterator(projectFolder))
 			LookFiles(entry.path());
-	}
+	
 
-	// Init all ressources
-	if(!App::IsMonoThread)
-	for (auto it = m_mainResourcesMap.begin(); it != m_mainResourcesMap.end(); it++)
-	{
 
-		it->second->Init();
-	}
 
 	PrintTime(timeStart, m_mainResourcesMap.size());
 }
@@ -127,7 +65,6 @@ void ResourcesManager::DeleteAllasset()
 		delete it->second;
 	}
 	m_mainResourcesMap.clear();
-	m_consumerProd.Reset();
 }
 
 void ResourcesManager::SetCameraInfoForShader(Camera* cam)
@@ -212,20 +149,24 @@ bool ResourcesManager::IsShader(std::string path_string)
 	return true;
 }
 
+bool ResourcesManager::IsPythonScript(std::string path_string)
+{
+
+	if (IsThisValidForThisFormat(path_string, pythonFormat))
+	{
+		return true;
+	}
+	return false;
+}
+
 void ResourcesManager::LoadTexture(fs::path path)
 {
 	std::string path_string = path.generic_string();
 
 	if (ResourcesManager::IsTexture(path_string))
 	{
-		if(!App::IsMonoThread)
-		{
-			m_consumerProd.ProducersPushRessoures(path_string);
-		}
-		else
-		{
-			Create<Texture>(path);
-		}
+		Create<Texture>(path);
+		
 	}
 }
 
@@ -237,15 +178,9 @@ void ResourcesManager::LoadModel(std::filesystem::path path)
 
 	if (ResourcesManager::IsModel(path_string))
 	{
-		if (!App::IsMonoThread)
-		{
-			m_consumerProd.ProducersPushRessoures(path_string);
-		}
-		else
-		{
-			Create<Mesh>(path);
-		}
-     }
+		Create<Mesh>(path);
+		
+    }
 }
 
 void ResourcesManager::LoadShader(std::filesystem::path path)
@@ -275,15 +210,17 @@ void ResourcesManager::LoadShader(std::filesystem::path path)
 	if (fragmentShader.size() == 0 || vertexShader.size() == 0)
 		return;
 
-	if(!App::IsMonoThread)
-	{
-		m_consumerProd.ProducersPushRessoures(path);
-	}
-	else
-	{
-		Create<Shader>(path);
-	}	
 
+	Create<Shader>(path);	
+
+}
+void ResourcesManager::LoadScript(std::filesystem::path path)
+{
+	if (ResourcesManager::IsPythonScript(path.generic_string()))
+	{
+		Create<PythonScript>(path);
+
+	}
 }
 // Look In the folder
 void ResourcesManager::LookFiles(fs::path _path)
@@ -297,37 +234,11 @@ void ResourcesManager::LookFiles(fs::path _path)
 	{
 		if (entry.is_directory())
 		{
-			if(App::IsMonoThread)
-			{
-				LookFiles(entry.path());
-				LoadShader(entry.path());
-			}
-			else
-			{
-				std::thread* t = m_consumerProd.GetAsleepProducer();
-
-				if (t != nullptr)
-				{
-					auto l = [&]()
-						{
-							LookFiles(entry.path());
-							LoadShader(entry.path());
-						};
-					*t = std::thread(l);
-				}
-				else
-				{
-
-					LookFiles(entry.path());
-					LoadShader(entry.path());
-				}
-			}
-
-
-			
+			LookFiles(entry.path());
+			LoadShader(entry.path());
 
 		}
-
+		LoadScript(entry.path());
 		LoadTexture(entry.path().c_str());
 		LoadModel(entry.path().c_str());
 		

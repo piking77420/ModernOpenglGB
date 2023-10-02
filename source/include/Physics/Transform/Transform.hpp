@@ -38,8 +38,10 @@ public:
 	const Transform* parent = nullptr;
 	std::vector <std::pair<uint32_t,Transform* >> childs;
 
+#ifndef SWIG
 
 	void ImguiWindowComponent() override;
+#endif
 
 	Transform();
 	~Transform();

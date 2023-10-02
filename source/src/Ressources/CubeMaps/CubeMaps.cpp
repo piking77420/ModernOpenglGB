@@ -15,7 +15,7 @@ void CubeMaps::UnBindCubeMap() const
     glBindTexture(type, 0);
 }
 
-void CubeMaps::Init()
+void CubeMaps::InitResource()
 {
     float skyboxVertices[] = {
         // positions          

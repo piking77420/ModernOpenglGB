@@ -18,7 +18,7 @@ public:
 
 	
 	
-	void Init() override;
+	void InitResource() override;
 	void BindTexture() const;
 	void UnBindTexture()const;
 	void TextureShaderUniform(const Shader& shader, const char* uniform, GLuint unit);

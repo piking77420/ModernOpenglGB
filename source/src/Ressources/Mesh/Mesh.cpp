@@ -415,7 +415,7 @@ Mesh::~Mesh()
 
 }
 
-void Mesh::Init()
+void Mesh::InitResource()
 {
 	// Init VAO \ Init VBO //
 

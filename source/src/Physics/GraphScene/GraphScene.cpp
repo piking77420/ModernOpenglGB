@@ -1,5 +1,5 @@
 #include "Physics/GraphScene/GraphScene.h"
-#include "ECS/Scene/Scene.h"
+#include "Core/ECS/Scene.h"
 #include "Physics/Transform/Transform.hpp"
 #include "LowRenderer/Gizmo/Gizmo.hpp"
 #include "App/App.h"

@@ -1,5 +1,5 @@
 #include "LowRenderer/SystemRendererSkyMap/SystemRendererSkyMap.hpp"
-#include "ECS/Scene/Scene.h"
+#include "ECS/Scene.h"
 #include "Physics/Transform/Transform.hpp"
 #include "Core/DataStructure/Project.hpp"
 #include "Ressources/SkyBox/SkyBox.h"

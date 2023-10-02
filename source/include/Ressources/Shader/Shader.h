@@ -48,7 +48,7 @@ public:
     void SetMaterial(const std::string& name, const Material& material) const ;
  
     GLuint GetId() const ;
-    void Init() override;
+    void InitResource() override;
 
     // we assume that There is Fragment vertex and geometry shader is this folder
     Shader(const fs::path& FilePath);

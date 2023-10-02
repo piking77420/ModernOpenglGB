@@ -3,6 +3,11 @@
 #include <atomic>
 #include "ECS/Scene.h"
 
+
+
+#ifndef SWIG
+
+
 void Entity::OnInspector(uint32_t entityID , Scene* scene) 
 {
 	Entity* ent = scene->GetEntities(entityID);
@@ -46,6 +51,7 @@ void Entity::OnInspector(uint32_t entityID , Scene* scene)
 	
 
 }
+#endif // !SWIG
 
 void Entity::OnSerialize(Scene* scene) const
 {

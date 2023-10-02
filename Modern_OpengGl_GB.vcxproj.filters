@@ -342,6 +342,12 @@
     <ClInclude Include="source\include\Core\Python\TestPython.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="source\include\External\GLFW\glfw3.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\External\GLFW\glfw3native.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />

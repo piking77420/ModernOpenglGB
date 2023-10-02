@@ -45,7 +45,7 @@ public:
 	
 
 
-	virtual void Init() override;
+	virtual void InitResource() override;
 private:
 
 

@@ -13,37 +13,142 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\ECS">
+      <UniqueIdentifier>{8d5a1951-dd95-4e7e-a761-c8089ac8b8f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math">
+      <UniqueIdentifier>{cb8ba7d0-8b70-47f5-82b3-0dd2e321318b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\NewFilter1">
+      <UniqueIdentifier>{30bb8fb6-d14a-4083-9375-ad8650b63652}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LowRenderer">
+      <UniqueIdentifier>{3966ea09-cc5c-476e-9041-b92fb5ffe18f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Debug">
+      <UniqueIdentifier>{bc4fdee2-61c1-4709-9063-997e0b4cc27e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{eca11225-3f9f-4e5e-9e7f-04ac2905ec7a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\source\src\Core\Math\Matrix2X2.cpp">
+    <ClCompile Include="..\source\src\Physics\Transform\Transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\src\Core\Math\Matrix3X3.cpp">
+    <ClCompile Include="..\source\src\Physics\GraphScene\GraphScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\src\Core\Math\Matrix4X4.cpp">
+    <ClCompile Include="..\source\src\Core\ECS\PythonScript.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\src\Core\Math\Vector2.cpp">
+    <ClCompile Include="..\source\src\Ressources\RessourcesManager\RessourcesManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\src\Core\Math\Vector3.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\source\src\Core\ECS\Component.cpp">
+      <Filter>Source Files\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\src\Core\Math\Vector4.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\source\src\Core\ECS\ECSComponent.cpp">
+      <Filter>Source Files\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Core\ECS\Entity.cpp">
+      <Filter>Source Files\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Core\ECS\IECSSystem.cpp">
+      <Filter>Source Files\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Core\ECS\Register.cpp">
+      <Filter>Source Files\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Core\ECS\Scene.cpp">
+      <Filter>Source Files\ECS</Filter>
     </ClCompile>
     <ClCompile Include="..\source\src\Core\Math\Mathf.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Math</Filter>
     </ClCompile>
     <ClCompile Include="..\source\src\Core\Math\Matrix.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Math</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\src\Core\Math\Quaternion.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\source\src\Core\Math\Matrix2X2.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Core\Math\Matrix3X3.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Core\Math\Matrix4X4.cpp">
+      <Filter>Source Files\Math</Filter>
     </ClCompile>
     <ClCompile Include="..\source\src\Core\Math\Vector.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Core\Math\Vector2.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Core\Math\Vector3.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Core\Math\Vector4.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Core\Math\Quaternion.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\LowRenderer\Cam\Camera.cpp">
+      <Filter>LowRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Core\Debug\AssertClass.cpp">
+      <Filter>Source Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Core\Debug\LogClass.cpp">
+      <Filter>Source Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\LowRenderer\FrameBuffer\FrameBuffer.cpp">
+      <Filter>LowRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\LowRenderer\Renderer\Renderer.cpp">
+      <Filter>LowRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Ressources\Shader\Shader.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Ressources\IResource\IResource.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Ressources\Mesh\Mesh.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Ressources\Texture\Texture.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Ressources\CubeMaps\CubeMaps.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\External\Glad\glad.c">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\External\Std_Image\std_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Core\Debug\Imgui\imgui.cpp">
+      <Filter>Source Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Core\Debug\Imgui\imgui_demo.cpp">
+      <Filter>Source Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Core\Debug\Imgui\imgui_draw.cpp">
+      <Filter>Source Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Core\Debug\Imgui\imgui_impl_glfw.cpp">
+      <Filter>Source Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Core\Debug\Imgui\imgui_impl_opengl3.cpp">
+      <Filter>Source Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Core\Debug\Imgui\imgui_tables.cpp">
+      <Filter>Source Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\src\Core\Debug\Imgui\imgui_widgets.cpp">
+      <Filter>Source Files\Debug</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

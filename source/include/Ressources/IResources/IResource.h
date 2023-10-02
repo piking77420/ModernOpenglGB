@@ -11,9 +11,10 @@ namespace fs = std::filesystem;
 class IResource 
 {
 public:
-	virtual void Init() {  };
-	virtual ~IResource();
+	virtual void InitResource() {  };
+	virtual ~IResource() {};
 }; 
 
 
 
+	

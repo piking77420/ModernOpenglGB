@@ -21,7 +21,7 @@ void ShaderSource::CompileShader()
 	}
 }
 
-void ShaderSource::Init()
+void ShaderSource::InitResource()
 {
 	int success;
 	char infoLog[512];

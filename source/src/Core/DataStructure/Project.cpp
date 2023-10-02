@@ -29,6 +29,7 @@
 #include "LowRenderer/Light/PointLight/PointLight.hpp"
 #include "LowRenderer/Light/SpothLight/SpothLight.hpp"
 #include "../../../ProjectFolder/Project1/assets/Scipt/RumicsCube.h"
+#include "Core/ECS/PythonScript.h"
 
 #include"App/App.h"
 
@@ -36,7 +37,7 @@ void Project::Update()
 {
 
 	std::vector<InputEvent*> inputsEvents;
-	resourcesManager.GetResource(shaderShadowMapping, "ShadowMapping");
+	shaderShadowMapping = resourcesManager.GetElement<Shader>("ShadowMapping");
 
 
 	resourcesManager.SetCameraInfoForShader(mainCamera);
@@ -58,13 +59,8 @@ void Project::Update()
 
 
 
-
-
-	shaderShadowMapping.wait();
-	Shader* shader = shaderShadowMapping.get();
-
-	currentScene->Render(*shader);
-	currentScene->RenderScene(*shader);
+	currentScene->Render(*shaderShadowMapping);
+	currentScene->RenderScene(*shaderShadowMapping);
 	currentScene->DrawGizmo();
 	currentScene->renderer.OpenGlRenderToImgui->UnBind();
 
@@ -87,7 +83,7 @@ Project::Project()
 	ContentBrowser::CurrentPath = ContentBrowser::BasePath;
 	Gizmo::InitGizmo(*this);
 	InitScene();
-	Renderer::OpenGlRenderToImgui->Init();
+	Renderer::OpenGlRenderToImgui->InitResources();
 
 
 }
@@ -170,7 +166,8 @@ void Project::InitScene()
 	Cube2rdr->material.diffuse = *resourcesManager.GetElement<Texture>("Viking_room.png");
 	Cube2rdr->material.specular = *resourcesManager.GetElement<Texture>("Viking_room.png");
 
-	
+	PythonScript* pt = resourcesManager.GetElement<PythonScript>("CorePython.py");
+	currentScene->AddSystem(pt);
 
 	currentScene->Init();
 

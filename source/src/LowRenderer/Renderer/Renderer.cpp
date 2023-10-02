@@ -2,7 +2,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "ECS/Scene/Scene.h"
+#include "Core/ECS/Scene.h"
 #include "Ressources/RessourcesManager/RessourcesManager.h"
 #include "LowRenderer/MeshRenderer/MeshRenderer.h"
 #include "Physics/Transform/Transform.hpp"

@@ -1,3 +1,4 @@
+#pragma once
 #include <vector>
 #include "Entity.h"
 #include "IECSSystem.h"
@@ -6,13 +7,12 @@
 
 
 class Component;
-class Scene;
 
 class Register
 {
 public:
 
-	Register();
+	Register();	
 	~Register();
 
 	std::vector<Entity*> entities;

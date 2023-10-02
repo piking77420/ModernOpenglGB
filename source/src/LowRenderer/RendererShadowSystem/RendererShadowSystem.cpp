@@ -6,7 +6,7 @@
 #include "LowRenderer/Light/DirectionalLight/DirectionalLight.hpp"
 #include "LowRenderer/Light/SpothLight/SpothLight.hpp"
 #include "LowRenderer/Light/PointLight/PointLight.hpp"
-#include "ECS/Scene/Scene.h"
+#include "Core/ECS/Scene.h"
 #include "Physics/Transform/Transform.hpp"
 #include "Core/DataStructure/Project.hpp"
 #include "LowRenderer/Light/PointLight/PointLight.hpp"

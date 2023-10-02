@@ -5,8 +5,7 @@
 #include <Vector4.h>
 #include<Ressources/Shader/Shader.h>
 
-#include <GLFW/glfw3.h>
-#include <glad/glad.h>
+
 #include"Ressources/RessourcesManager/RessourcesManager.h"
 
 const Vector2 CAMERASENSITIVITY = Vector2(0.2f, 0.2f);
@@ -33,8 +32,13 @@ public:
 	Matrix4X4 GetTransform() const;
 
 	static Camera* cam;
+
+
+#ifndef SWIG
+
 	static void MouseCallback(GLFWwindow* context, double _xpos, double _ypos);
 	static void MouseButtonCallBack(GLFWwindow* window, int button, int action, int mods);
+#endif // !SWIG
 
 	Camera();
 	~Camera();
@@ -62,8 +66,11 @@ public:
 	}
 
 private : 
-	void CameraRotation();
+	void CameraRotation(); 
+#ifndef SWIG
+
 	void CameraMovment(GLFWwindow* context, const ImGuiIO& io);
+#endif // !SWIG
 
 	//Camera Shader
 	float fov = 85.f;

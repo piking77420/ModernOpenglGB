@@ -306,7 +306,7 @@ void App::HandleSwitchMulthiMonoThread(GLFWwindow* mainWindow)
 		CurrentProject.resourcesManager.LoadAllAssets("ProjectFolder/Project1");
 		delete CurrentProject.currentScene;
 
-		Renderer::OpenGlRenderToImgui->Init();
+		Renderer::OpenGlRenderToImgui->InitResources();
 
 
 		CurrentProject.currentScene = new Scene("Scene 0");

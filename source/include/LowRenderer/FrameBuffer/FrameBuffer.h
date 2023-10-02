@@ -22,7 +22,7 @@ public:
 
 	unsigned int GetTexture() const;
 	void ResizeFrammeBuffer(float _width, float _height);
-	virtual void Init();
+	virtual void InitResources();
 
 	void DestroyBuffers();
 

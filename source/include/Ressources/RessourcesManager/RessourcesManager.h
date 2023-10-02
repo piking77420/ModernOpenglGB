@@ -113,11 +113,11 @@ public:
 	template<class T>
 	void Create(const fs::path& FilePath);
 	
-	std::mutex resourcesMutex;	
 
 	static bool IsTexture(std::string path_string);
 	static bool IsModel(std::string path_string);
 	static bool IsShader(std::string path_string);
+	static bool IsPythonScript(std::string path_string);
 
 	static bool IsThisValidForThisFormat(std::string path, std::string format);
 
@@ -127,24 +127,23 @@ public:
 	static constexpr std::string GetGeometryShaderFormat() { return ResourcesManager::geometryShaderFormat; }
 
 
+
 private:
 
 
-	TheardCP<PRODUCER ,CONSUMERS, std::filesystem::path> m_consumerProd;
 	std::map<std::string, IResource*> m_mainResourcesMap;
 
 	// Look for 
 	void LoadTexture(std::filesystem::path path);
 	void LoadModel(std::filesystem::path path);	
 	void LoadShader(std::filesystem::path path);
+	void LoadScript(std::filesystem::path path);
 
 	// Look in the project folder rescursively to push resources path
 	void LookFiles(std::filesystem::path _path);
 
 	// On Load Func //
 
-	void ProduceurFunc(const std::string& projectFolder);
-	void ConsumersFunc(TheardCP<PRODUCER, CONSUMERS, std::filesystem::path>& production);
 	template<class T>
 	void CreateOnLoad(std::filesystem::path path);
 
@@ -163,6 +162,9 @@ private:
 	static inline const std::string sceneFormat = ".scene";
 	// Assets Folder
 	static inline const std::string assetsFolder = "assets";
+	// python Format
+	static inline const std::string pythonFormat = ".py";
+
 };
 
 
@@ -218,7 +220,7 @@ inline void ResourcesManager::Create(const fs::path& FilePath)
 		return;
 	}
 	m_mainResourcesMap.insert({ FilePath.filename().generic_string(),newResources});
-	newResources->Init();
+	newResources->InitResource();
 	
 }
 
@@ -234,7 +236,7 @@ inline void ResourcesManager::PushBackElement(std::string name, T* newElement)
 	}
 
 	m_mainResourcesMap.insert({ name, newElement });
-	newElement->Init();
+	newElement->InitResource();
 }
 
 template<class T>
@@ -243,7 +245,6 @@ inline void ResourcesManager::CreateOnLoad(std::filesystem::path path)
 	std::string toString = path.filename().generic_string();
 	T* newResources = new T(path);
 
-	std::lock_guard<std::mutex> lock(resourcesMutex);
 
 	if (m_mainResourcesMap.contains(toString))
 	{

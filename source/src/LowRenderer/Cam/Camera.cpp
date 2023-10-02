@@ -1,14 +1,18 @@
 #include <LowRenderer/Cam/Camera.h>
 #include <Core/Debug/LogClass.h>
 #include "App/App.h"
+#ifndef SWIG
+
 #include<Core/Debug/Imgui/imgui.h>
 #include<Core/Debug/Imgui/imgui_impl_glfw.h>
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>
+#endif // !SWIG
+
 #include "Mathf.h"
 #include "Core/DataStructure/Project.hpp"
-
+#include <GLFW/glfw3.h>
+#include <glad/glad.h>
 #include "ECS/Scene.h"
-#include "Core/DataStructure/Project.hpp"
 
 // Camera Init // 
 float lastX = windowWidth / 2.0f;
@@ -16,14 +20,19 @@ float lastY = windowHeight / 2.0f;
 bool firstmove = false;
 Camera* Camera::cam = new Camera();
 
-bool IskeyPress(GLFWwindow* context , const int& GLFWInput )
-{
-	if(glfwGetKey(context, GLFWInput) == GLFW_PRESS)
+
+#ifndef SWIG
+
+	bool IskeyPress(GLFWwindow* context, const int& GLFWInput)
 	{
-		return true;
+		if (glfwGetKey(context, GLFWInput) == GLFW_PRESS)
+		{
+			return true;
+		}
+		return false;
 	}
-	return false;
-}
+#endif // !SWIG
+
 
 
 Matrix4X4 Camera::GetLookMatrix() 
@@ -41,7 +50,8 @@ Matrix4X4 Camera::GetProjectionMatrix() const
 }
 
 
-	
+#ifndef SWIG
+
 
 void Camera::CameraUpdate() 
 {
@@ -54,6 +64,7 @@ void Camera::CameraUpdate()
 
 }
 
+#endif // !SWIG
 
 	
 void Camera::CameraRenderer(Shader* shader)
@@ -67,6 +78,7 @@ void Camera::CameraRenderer(Shader* shader)
 }
 
 
+#ifndef SWIG
 
 void Camera::ImguiCameraWindow()
 {
@@ -79,6 +91,7 @@ void Camera::ImguiCameraWindow()
 	}
 
 }
+#endif // !SWIG
 
 
 Camera::Camera()
@@ -150,10 +163,10 @@ void Camera::CameraRotation()
 }
 
 
+#ifndef SWIG
 
 void Camera::CameraMovment( GLFWwindow* context,const ImGuiIO& io )
 {
-	
 	float velocity = cameraVelocity *  io.DeltaTime;
 
 	if (IskeyPress(context, GLFW_KEY_W))
@@ -187,9 +200,11 @@ void Camera::CameraMovment( GLFWwindow* context,const ImGuiIO& io )
 	{
 		this->eye -= Up * velocity;
 	}
-	
+
+
 		
 }
+
 void Camera::MouseCallback(GLFWwindow* context, double _xpos, double _ypos)
 {
 	float xpos = static_cast<float>(_xpos);
@@ -229,3 +244,4 @@ void Camera::MouseButtonCallBack(GLFWwindow* window, int button, int action, int
 	}
 
 }
+#endif // !SWIG

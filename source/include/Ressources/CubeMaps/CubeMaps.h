@@ -29,7 +29,7 @@ public:
 
 	void BindCubeMap() const;
 	void UnBindCubeMap() const;
-	void Init() override;
+	void InitResource() override;
 
 	
 	void operator=(const CubeMaps& cubeMaps);

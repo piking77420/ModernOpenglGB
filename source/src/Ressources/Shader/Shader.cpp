@@ -86,7 +86,7 @@ GLuint Shader::GetId() const
     return m_ID;
 }
 
-void Shader::Init()
+void Shader::InitResource()
 {
     // 2. compile shaders
     unsigned int vertex, fragment, geometry;
