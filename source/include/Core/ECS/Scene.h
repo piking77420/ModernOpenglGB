@@ -22,7 +22,7 @@ class FrameBuffer;
 class Project;
 class Shader;
 
-class Scene : public IResource
+class Scene 
 {
 public :
 
@@ -176,8 +176,8 @@ public :
 	Scene(std::string name);
 	~Scene();
 
-private:
 	Register m_registerScene;
+private:
 };
 
 template<class T>

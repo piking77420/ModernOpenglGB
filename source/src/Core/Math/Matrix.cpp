@@ -67,9 +67,9 @@ Matrix Matrix::operator+(const Matrix& maxtrix)
 {
 	int sizNewMatrix = ReturnGreaterMatrix(*this, maxtrix);
 	Matrix newMatrix = Matrix(sizNewMatrix);
-	for (size_t i = 0; i < newMatrix.Size(); i++)
+	for (int i = 0; i < newMatrix.Size(); i++)
 	{
-		for (size_t k = 0; k < newMatrix.mData[i].Size(); k++)
+		for (int k = 0; k < newMatrix.mData[i].Size(); k++)
 		{
 			newMatrix[i][k] = mData[i][k] + maxtrix[i][k];
 		}
@@ -82,15 +82,15 @@ Matrix Matrix::operator*(const float value)
 {
 	Matrix newMatrix = Matrix(this->Size() ,this->mData[0].Size());
 
-	for (size_t i = 0; i < newMatrix.Size(); i++)
+	for (int i = 0; i < newMatrix.Size(); i++)
 	{
-		for (size_t k = 0; k < newMatrix[i].Size(); k++)
+		for (int k = 0; k < newMatrix[i].Size(); k++)
 		{
-			newMatrix = mData[i][k] * value;
+			newMatrix[i][k] = mData[i][k] * value;
 		}
 	}
 
-	return Matrix();
+	return newMatrix;
 }
 
 Vector Matrix::operator*(const Vector& vector)
@@ -98,11 +98,11 @@ Vector Matrix::operator*(const Vector& vector)
 	
 
 
-	Vector result(mData[0].data.size());
+	Vector result((int)mData[0].data.size());
 
-	for (size_t i = 0; i < mData.size(); i++)
+	for (int i = 0; i < mData.size(); i++)
 	{
-		for (size_t j = 0; j < mData[0].data.size(); j++)
+		for (int j = 0; j < (int)mData[0].data.size(); j++)
 		{
 			result[i] += mData[i][j] * vector[i];
 		}
@@ -119,17 +119,17 @@ Matrix Matrix::operator*(const Matrix& matrix)
 {
 
 	int NbrOfVector = this->Size();
-	int SizeOfVector = matrix.mData[0].data.size();
+	int SizeOfVector = (int)matrix.mData[0].data.size();
 	
 
 
 	Matrix newMatrix = Matrix(NbrOfVector, SizeOfVector);
 
-	for (size_t i = 0; i < newMatrix.Size() ; i++)
+	for (int i = 0; i < newMatrix.Size() ; i++)
 	{
-		for (size_t k = 0; k < NbrOfVector ; k++)
+		for (int k = 0; k < NbrOfVector ; k++)
 		{
-			for (size_t l = 0; l < NbrOfVector ; l++)
+			for (int l = 0; l < NbrOfVector ; l++)
 			{
 				newMatrix.mData[k].data[i] += mData[l].data[i] * matrix.mData[k].data[l];
 
@@ -147,9 +147,9 @@ Matrix::operator Matrix4X4()
 {
 	Matrix4X4 result = Matrix4X4::Identity();
 
-	int sizeVector = this->mData.size();
+	int sizeVector = (int)this->mData.size();
 	int DimensionVector = 0;
-	for (size_t i = 0; i < this->mData.size(); i++)
+	for (int i = 0; i < (int)this->mData.size(); i++)
 	{
 		if (DimensionVector < mData[i].Size())
 			DimensionVector = mData[i].Size();
@@ -165,9 +165,9 @@ Matrix::operator Matrix4X4()
 	
 	float* data = result.SetPtr();
 
-	for (size_t x = 0; x < sizeVector; x++)
+	for (int x = 0; x < sizeVector; x++)
 	{
-		for (size_t y = 0; y < DimensionVector; y++)
+		for (int y = 0; y < DimensionVector; y++)
 		{
 			data[(x * sizeVector) + y] = mData[x][y];
 		}
@@ -180,9 +180,9 @@ Matrix::operator Matrix3X3()
 {
 	Matrix3X3 result = Matrix3X3();
 
-	int sizeVector = this->mData.size();
+	int sizeVector = (int)this->mData.size();
 	int DimensionVector = 0;
-	for (size_t i = 0; i < this->mData.size(); i++)
+	for (int i = 0; i < (int)this->mData.size(); i++)
 	{
 		if (DimensionVector < mData[i].Size())
 			DimensionVector = mData[i].Size();
@@ -198,9 +198,9 @@ Matrix::operator Matrix3X3()
 
 	float* data = result.SetPtr();
 
-	for (size_t x = 0; x < sizeVector; x++)
+	for (int x = 0; x < sizeVector; x++)
 	{
-		for (size_t y = 0; y < DimensionVector; y++)
+		for (int y = 0; y < DimensionVector; y++)
 		{
 			data[(x * sizeVector) + y] = mData[x][y];
 		}
@@ -216,9 +216,9 @@ Matrix Matrix::operator-(const Matrix& maxtrix)
 {
 	int sizNewMatrix = ReturnGreaterMatrix(*this, maxtrix);
 	Matrix newMatrix = Matrix(sizNewMatrix);
-	for (size_t i = 0; i < newMatrix.Size(); i++)
+	for (int i = 0; i < newMatrix.Size(); i++)
 	{
-		for (size_t k = 0; k < newMatrix.mData[i].Size(); k++)
+		for (int k = 0; k < newMatrix.mData[i].Size(); k++)
 		{
 			newMatrix[i][k] = mData[i][k] - maxtrix[i][k];
 		}
@@ -232,7 +232,7 @@ Matrix Matrix::operator-(const Matrix& maxtrix)
 Matrix::Matrix(const int size)
 {
 
-	for (size_t i = 0; i < size; i++)
+	for (int i = 0; i < size; i++)
 	{
 		mData.push_back(Vector(size));
 	}
@@ -242,10 +242,10 @@ Matrix::Matrix(const int size)
 Matrix::Matrix(const int lign , const int coloms)
 {
 
-	for (size_t i = 0; i < lign; i++)
+	for (int i = 0; i < lign; i++)
 	{
 
-		Vector added = Vector(size_t(coloms));
+		Vector added = Vector(int(coloms));
 		this->mData.push_back(added);
 	}
 
@@ -262,7 +262,7 @@ Matrix::~Matrix()
 
 int const Matrix::Size() const
 {
-	return mData.size();
+	return (int)mData.size();
 }
 
 Matrix Matrix::Transposate()
@@ -286,7 +286,7 @@ Matrix Matrix::Identity(const int size)
 {
 	Matrix matrix(size);
 	
-	for (size_t i = 0; i < matrix.mData.size() ; i++)
+	for (int i = 0; i < matrix.mData.size() ; i++)
 	{	
 			matrix[i].data[i] = 1;
 	}
@@ -300,7 +300,7 @@ Matrix Matrix::Identity(const int sizeX, const int sizeY)
 	Matrix result = Matrix(sizeX, sizeY);
 
 
-	for (size_t i = 0; i < sizeX; i++)
+	for (int i = 0; i < sizeX; i++)
 	{
 		result[i].data[i] = 1;
 	}
@@ -360,8 +360,8 @@ Matrix Matrix::PivotDeGauss()
 
 
 	int r = 0;
-	int n = result.mData.size(); // nbr of ligne
-	int i = result.mData[0].data.size(); /// taile d'une ligne 
+	int n = (int)result.mData.size(); // nbr of ligne
+	int i = (int)result.mData[0].data.size(); /// taile d'une ligne 
 
 	for (int j = 0; j < n; j++)
 	{
@@ -536,10 +536,10 @@ Matrix Matrix::ReturnAugmentedMatrix(const Matrix& base, const Matrix& added)
 {
 	Matrix result = base;
 
-	int baseM = base.mData.size();
-	int baseN = base[0].data.size();
-	int addedM = added.mData.size();
-	int addedN = added[0].data.size();
+	int baseM = (int)base.mData.size();
+	int baseN = (int)base[0].data.size();
+	int addedM = (int)added.mData.size();
+	int addedN = (int)added[0].data.size();
 
 	assert(baseM == addedM, "Not same Size M");
 
@@ -569,15 +569,15 @@ Matrix Matrix::Invert()
 	if (determiant == 0)
 		return copy;
 
-	copy = ReturnAugmentedMatrix(copy, copy.Identity(copy.mData.size()));
+	copy = ReturnAugmentedMatrix(copy, copy.Identity((int)copy.mData.size()));
 
 	copy = copy.PivotDeGauss();
 
 
-	int lignSize = copy[0].data.size();
+	int lignSize = (int)copy[0].data.size();
 	int ligneSize2 = lignSize / 2;
 
-	Matrix result(copy.mData.size(), ligneSize2);
+	Matrix result((int)copy.mData.size(), ligneSize2);
 
 	for (int i = 0; i < copy.mData.size(); i++)
 	{

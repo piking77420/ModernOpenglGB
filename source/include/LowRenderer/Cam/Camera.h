@@ -33,6 +33,11 @@ public:
 
 	static Camera* cam;
 
+	Camera* GetMainCamera()  
+	{
+		return cam;
+	}
+
 
 #ifndef SWIG
 

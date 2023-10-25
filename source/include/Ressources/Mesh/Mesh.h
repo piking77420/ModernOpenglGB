@@ -38,8 +38,7 @@ public:
 	 virtual ~Mesh();
 	Mesh() {};
 
-	GLuint VAO;
-	GLuint VBO;
+	GLuint VAO = -1, VBO = -1;
 	std::vector<Vertex> vertexVector;
 	std::vector<uint32_t> indexVector;
 	

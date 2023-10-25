@@ -28,8 +28,8 @@ Quaternion Quaternion::ConvertToUnitNormQuaternion() const
 
 
 	result.imaginary = imaginary.Normalize();
-	result.w = std::cosf(angle * 0.5);
-	result.imaginary = result.imaginary * std::sinf(angle * 0.5);
+	result.w = std::cosf(angle * 0.5f);
+	result.imaginary = result.imaginary * std::sinf(angle * 0.5f);
 
 	return result;
 
@@ -109,10 +109,10 @@ Quaternion Quaternion::EulerAngle(const Vector3& eulerAngle)
 
 float NormalizeAngle(float angle)
 {
-	while (angle > M_PI * 2.f)
-		angle -= M_PI * 2.f;
+	while (angle > (float)M_PI * 2.f)
+		angle -= (float)M_PI * 2.f;
 	while (angle < 0)
-		angle += M_PI * 2.f;
+		angle += (float)M_PI * 2.f;
 	return angle;
 }
 Vector3 NormalizeAngles(Vector3 angles)
@@ -139,15 +139,15 @@ Vector3 Quaternion::ToEulerAngle() const
 	if (test > 0.4995f * unit)
 	{ // singularity at north pole
 		v.y = 2.f * std::atan2(imaginary.y, imaginary.x);
-		v.x = M_PI/ 2.f;
+		v.x = (float)M_PI/ 2.f;
 		v.z = 0;
 		return NormalizeAngles(v);
 	}
 	if (test < -0.4995f * unit)
 	{ // singularity at south pole
 		v.y = -2.f * std::atan2(imaginary.y, imaginary.x);
-		v.x = -M_PI / 2;
-		v.z = 0;
+		v.x = -(float)M_PI / 2.f;
+		v.z = 0.f;
 		return NormalizeAngles(v);
 	}
 

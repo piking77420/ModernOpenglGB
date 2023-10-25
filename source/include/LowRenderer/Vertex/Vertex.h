@@ -1,7 +1,7 @@
 #pragma once
 #include<Mathf.h>
 #include<Math/ToolBoxMathHeaders.h>
-#define MAX_BONE_INFLUENCE 4
+constexpr auto MAX_BONE_INFLUENCE = 4;
 
 
 struct Vertex
@@ -19,9 +19,9 @@ struct Vertex
 	// bitangent
 	Vector3 Bitangent;
 	//bone indexes which will influence this vertex
-	int m_BoneIDs[MAX_BONE_INFLUENCE];
+	int m_BoneIDs[MAX_BONE_INFLUENCE] = {};
 	//weights from each bone
-	float m_Weights[MAX_BONE_INFLUENCE];
+	float m_Weights[MAX_BONE_INFLUENCE] = {};
 
 	Vertex(const Vector3& pos , const Vector3& normal , const Vector3 uv) : Position(pos) , Normal(normal) , TextureCoord(uv)
 	{

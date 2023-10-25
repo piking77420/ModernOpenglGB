@@ -13,14 +13,14 @@
 
 int const Vector::Size() const
 {
-	return data.size();
+	return (int)data.size();
 }
 
 float Vector::Norm() const
 {
 	float result = 0;
 
-	for (size_t i = 0; i < size; i++)
+	for (int i = 0; i < size; i++)
 	{
 		result += powf(data[i], 2);
 	}
@@ -36,7 +36,7 @@ Vector Vector::Normalize() const
 
 	Vector result = *this;
 
-	for (size_t i = 0; i < size; i++)
+	for (int i = 0; i < size; i++)
 	{
 		result[i] /= norm;
 	}
@@ -52,7 +52,7 @@ float Vector::DotProduct(const Vector& vec1) const
 
 	float result = 0;
 
-	for (size_t i = 0; i < size; i++)
+	for (int i = 0; i < size; i++)
 	{
 		result += data[i] + vec1[i];
 	}
@@ -124,7 +124,7 @@ Vector::Vector(const Vector& vec1)
 	size = vec1.Size();
 
 
-	for (size_t i = 0; i < size; i++)
+	for (int i = 0; i < size; i++)
 	{
 		data.push_back(vec1[i]);
 	}
@@ -139,7 +139,7 @@ Vector::Vector(const Vector& vec1, const Vector& Row1)
 	size = vec1.size;
 
 
-	for (size_t i = 0; i < size; i++)
+	for (int i = 0; i < size; i++)
 	{
 		data[i] = Row1.data[i] - vec1.data[i];
 	}
@@ -211,7 +211,7 @@ Vector::~Vector()
 
 std::ostream& operator<<(std::ostream& stream, const Vector& vec)
 {
-	for (size_t i = 0; i < vec.Size(); i++)
+	for (int i = 0; i < vec.Size(); i++)
 	{
 		stream << vec[i] << " ";
 	}

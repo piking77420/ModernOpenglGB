@@ -35,7 +35,7 @@ public:
 
 	__forceinline uint32_t GetSize()
 	{
-		return threads.size();
+		return (uint32_t)threads.size();
 	}
 
 	ThreadPoolDynamic() = delete;

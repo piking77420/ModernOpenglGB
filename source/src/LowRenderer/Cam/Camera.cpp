@@ -43,10 +43,7 @@ Matrix4X4 Camera::GetLookMatrix()
 
 Matrix4X4 Camera::GetProjectionMatrix() const
 {
-	
-	//return Matrix4X4::PerspectiveMatrix(Math::Deg2Rad * (fov), (float)Renderer::OpenGlRenderToImgui->widht / (float)Renderer::OpenGlRenderToImgui->height, Fnear, Ffar);
 	return Matrix4X4::PerspectiveMatrix(Math::Deg2Rad * (fov), (float)windowWidth/ (float)windowHeight, Fnear, Ffar);
-
 }
 
 
@@ -163,10 +160,11 @@ void Camera::CameraRotation()
 }
 
 
-#ifndef SWIG
 
 void Camera::CameraMovment( GLFWwindow* context,const ImGuiIO& io )
 {
+
+
 	float velocity = cameraVelocity *  io.DeltaTime;
 
 	if (IskeyPress(context, GLFW_KEY_W))
@@ -244,4 +242,3 @@ void Camera::MouseButtonCallBack(GLFWwindow* window, int button, int action, int
 	}
 
 }
-#endif // !SWIG

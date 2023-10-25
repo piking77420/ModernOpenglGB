@@ -21,7 +21,7 @@ private:
 
 	void RenderDirectionalLight(const DirectionalLight* dirLight, Scene* scene);
 
-	const Shader const* currentShader;
+	const Shader* currentShader;
 
 	Scene* currentScene;
 

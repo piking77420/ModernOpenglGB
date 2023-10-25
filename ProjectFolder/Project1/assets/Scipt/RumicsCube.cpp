@@ -23,7 +23,6 @@ void RumicsCube::Init(Scene* scene)
 
 
 
-
     int numCubesPerRow = 2; // Number of cubes in each row
     int cubeSize = 2; // Size of each cube
     float spacing = 2.0f; // Spacing between cubes

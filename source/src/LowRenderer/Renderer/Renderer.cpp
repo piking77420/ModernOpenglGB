@@ -15,7 +15,7 @@ void Renderer::framebuffer_size_callback(GLFWwindow* window, int width, int heig
 
 
 	glViewport(0, 0, width, height);
-	OpenGlRenderToImgui->ResizeFrammeBuffer(width, height);
+	OpenGlRenderToImgui->ResizeFrammeBuffer((float)width, (float)height);
 }
 
 

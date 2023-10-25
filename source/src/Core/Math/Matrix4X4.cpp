@@ -255,9 +255,9 @@ Matrix4X4::operator Matrix()
 	Matrix result = Matrix(4);
 
 
-	for (size_t i = 0; i < 4; i++)
+	for (int i = 0; i < 4; i++)
 	{
-		for (size_t y = 0; y < 4; y++)
+		for (int y = 0; y < 4; y++)
 		{
 			result[i][y] = Colums[i][y];
 

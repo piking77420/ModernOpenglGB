@@ -1,9 +1,10 @@
 #pragma once
 #include "Core/ECS/ECSComponent.h"
-#include<Math/ToolBoxMathHeaders.h>
+#include <Math/ToolBoxMathHeaders.h>
 #include "Physics/Transform/Transform.hpp"
+
 class Scene;
-class Collider;
+struct Collider;
 
 class Rigidbody : public EcsComponent<Rigidbody>
 {

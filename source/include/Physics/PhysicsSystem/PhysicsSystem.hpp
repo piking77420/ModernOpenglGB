@@ -4,7 +4,7 @@
 
 
 struct CollisionPoint;
-class Collider;
+struct Collider;
 class Rigidbody;
 class Transfrom;
 

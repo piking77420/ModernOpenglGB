@@ -41,7 +41,7 @@ public:
 	{
 		
 		// Which array all the data of all this type Componenet will be 
-		uint32_t DataArrayIndex = m_componentTypeInfos->size();
+		uint32_t DataArrayIndex = (uint32_t)m_componentTypeInfos->size();
 		m_componentTypeInfos->push_back({ createfn,freefn,size, namefn() });
 
 		return DataArrayIndex;
@@ -49,7 +49,7 @@ public:
 protected:
 	static uint32_t GetNbrOfComponent()
 	{
-		return Component::m_componentTypeInfos->size();
+		return (uint32_t)Component::m_componentTypeInfos->size();
 	}
 
 	

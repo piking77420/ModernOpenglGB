@@ -79,7 +79,7 @@ public:
 	 [[nodiscard]]
 	 constexpr inline float FNorm() const
 	 {
-		 return Math::FSqrtf((x * x) + (y * y) + (z * z));
+		 return (float)Math::FSqrtf((x * x) + (y * y) + (z * z));
 	 }
 	 /**
 	 * @fn line Vector3 Normalize() const

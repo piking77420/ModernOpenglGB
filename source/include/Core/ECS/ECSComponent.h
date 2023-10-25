@@ -5,7 +5,7 @@
 template<class T>
 uint32_t ECSComponentCreate(std::vector<uint8_t>& memory, Entity* entity, Component** ptr)
 {
-	uint32_t index = memory.size();
+	uint32_t index = (uint32_t)memory.size();
 	memory.resize(index + T::size);
 	T* component = new(&memory[index]) T();
 	component->entityID = entity->ID;

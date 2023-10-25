@@ -78,7 +78,7 @@ inline Vector operator+(const Vector& vec1, const Vector& vec2)
 		result = vec2;
 
 
-		for (size_t i = 0; i < lessSize; i++)
+		for (int i = 0; i < lessSize; i++)
 		{
 			result[i] += vec1[i];
 		}
@@ -90,7 +90,7 @@ inline Vector operator+(const Vector& vec1, const Vector& vec2)
 		result = vec1;
 
 
-		for (size_t i = 0; i < lessSize; i++)
+		for (int i = 0; i < lessSize; i++)
 		{
 			result[i] += vec2[i];
 		}
@@ -117,7 +117,7 @@ inline Vector operator-(const Vector& vec1, const Vector& vec2)
 		result = vec2;
 
 
-		for (size_t i = 0; i < lessSize; i++)
+		for (int i = 0; i < lessSize; i++)
 		{
 			result[i] -= vec1[i];
 		}
@@ -129,7 +129,7 @@ inline Vector operator-(const Vector& vec1, const Vector& vec2)
 		result = vec1;
 
 
-		for (size_t i = 0; i < lessSize; i++)
+		for (int i = 0; i < lessSize; i++)
 		{
 			result[i] -= vec2[i];
 		}

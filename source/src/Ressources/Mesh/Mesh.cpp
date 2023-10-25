@@ -419,6 +419,10 @@ void Mesh::InitResource()
 {
 	// Init VAO \ Init VBO //
 
+	if (vertexVector.empty())
+		return;
+
+
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
 	glBindVertexArray(VAO);

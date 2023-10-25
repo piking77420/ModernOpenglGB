@@ -40,7 +40,7 @@ void OpengFileAndPrint(std::fstream& debugLogStream, const std::string color, co
 std::string GetTime()
 {
 
-	SYSTEMTIME st, lt;
+	SYSTEMTIME lt;
 	GetLocalTime(&lt);
 
 
@@ -63,7 +63,7 @@ std::string GetCurrentFile(const std::string& currentPath)
 		if (currentPath.at(i) == '\\')
 		{
 			count++;
-			currentIndexOflast = i;
+			currentIndexOflast = (int)i;
 		}
 		
 	}

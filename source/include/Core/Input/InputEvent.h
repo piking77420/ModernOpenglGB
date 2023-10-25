@@ -14,10 +14,9 @@ class InputEvent
 {
 public:
 
-	InputEventType eventType;
+	InputEventType eventType = {};
 	virtual std::string ToString() = 0;
 
-private:
 };
 
 
@@ -31,7 +30,6 @@ public:
 		return "MouseRightClick";
 	}
 
-private:
 };
 
 
@@ -46,7 +44,6 @@ public:
 		return "MouseLeftClick";
 	}
 
-private:
 };
 
 
@@ -66,6 +63,6 @@ public:
 	const uint32_t GetKeyCode() { return keyCode; }
 
 private:
-	uint32_t keyCode;
+	uint32_t keyCode = -1;
 
 };

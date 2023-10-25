@@ -44,18 +44,18 @@ Vector2::operator Vector4() const
 
 constexpr inline float Vector2::Norm() const
 {
-	return Math::FSqrtf(x * x + y * y );
+	return (float)Math::FSqrtf(x * x + y * y );
 }
 
 
 float Vector2::Angle() const
 {
-	return std::atan2(x, y);
+	return std::atan2f(x, y);
 }
 
 float Vector2::Distance(Vector2 a, Vector2 b)
 {
-	return std::sqrt((a.x - b.x * a.x - b.x) + (a.y - b.y * a.y - b.y));
+	return std::sqrtf((a.x - b.x * a.x - b.x) + (a.y - b.y * a.y - b.y));
 }
 
 float Vector2::Angle(const Vector2 vec1 , const Vector2 Row1) 

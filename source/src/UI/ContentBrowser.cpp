@@ -23,7 +23,7 @@ fs::path ContentBrowser::CurrentPath;
 bool ContentBrowser::IsThisFormat(const fs::path& path, const std::string& format)
 {
 	std::string pathS = path.generic_string();
-	int index = pathS.find_last_of('.');
+	size_t index = pathS.find_last_of('.');
 	std::string test;
 
 	for (size_t i = index; i < pathS.size(); i++)
@@ -107,7 +107,7 @@ void ContentBrowser::Renderer(Project& currentProject)
 
 std::string ContentBrowser::GetPreviousPath(const fs::path& currentPath)
 {
-	int lastof = CurrentPath.string().find_last_of('\\');
+	size_t lastof = CurrentPath.string().find_last_of('\\');
 	std::string pathstring = CurrentPath.string();
 	std::string newpathstring;
 	for (size_t i = 0; i < lastof; i++)

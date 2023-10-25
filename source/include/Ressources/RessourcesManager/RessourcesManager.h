@@ -117,7 +117,6 @@ public:
 	static bool IsTexture(std::string path_string);
 	static bool IsModel(std::string path_string);
 	static bool IsShader(std::string path_string);
-	static bool IsPythonScript(std::string path_string);
 
 	static bool IsThisValidForThisFormat(std::string path, std::string format);
 
@@ -126,6 +125,19 @@ public:
 	static constexpr std::string GetFragmentShaderFormat() { return ResourcesManager::fragmentShaderFormat; }
 	static constexpr std::string GetGeometryShaderFormat() { return ResourcesManager::geometryShaderFormat; }
 
+	template<class T>
+	void ReloadResources() 
+	{
+		for (auto it = m_mainResourcesMap.begin(); it != m_mainResourcesMap.end(); it++)
+		{
+			T* ptr = nullptr;
+			ptr = dynamic_cast<T*>(it->second);
+			if(ptr != nullptr) 
+			{
+				ptr->Reload();
+			}
+		}
+	}
 
 
 private:
@@ -137,7 +149,6 @@ private:
 	void LoadTexture(std::filesystem::path path);
 	void LoadModel(std::filesystem::path path);	
 	void LoadShader(std::filesystem::path path);
-	void LoadScript(std::filesystem::path path);
 
 	// Look in the project folder rescursively to push resources path
 	void LookFiles(std::filesystem::path _path);
@@ -162,8 +173,6 @@ private:
 	static inline const std::string sceneFormat = ".scene";
 	// Assets Folder
 	static inline const std::string assetsFolder = "assets";
-	// python Format
-	static inline const std::string pythonFormat = ".py";
 
 };
 

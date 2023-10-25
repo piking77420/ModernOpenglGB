@@ -16,7 +16,7 @@ void Transform::ImguiWindowComponent()
 	ImGui::PushID("");
 
 	// Pos
-	ImGui::DragFloat3("Position", &pos.x, 0.2);
+	ImGui::DragFloat3("Position", &pos.x, 0.2f);
 
 
 	

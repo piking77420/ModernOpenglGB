@@ -235,9 +235,9 @@ Vector3 ColliderSystem::GetVertexBox(Transform& transform, const Vector3& halfLe
 	double ySign = (vertexIndex & 2) == 0 ? 1.0 : -1.0;
 	double zSign = (vertexIndex & 4) == 0 ? 1.0 : -1.0;
 
-	vertex.x = xSign * halfLength.x;
-	vertex.y = ySign * halfLength.y;
-	vertex.z = zSign * halfLength.z;
+	vertex.x = (float)xSign * halfLength.x;
+	vertex.y = (float)ySign * halfLength.y;
+	vertex.z = (float)zSign * halfLength.z;
 
 	Vector4 transformedVertex = transform.world * Vector4(vertex.x, vertex.y, vertex.z, 1.0);
 

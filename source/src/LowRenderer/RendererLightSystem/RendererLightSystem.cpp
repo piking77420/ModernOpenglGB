@@ -94,7 +94,7 @@ void RendererLightSystem::UpdateDirectionnalLights(std::vector<DirectionalLight>
 	}
 
 
-	for (size_t i = 0; i < data->size(); i++)
+	for (int i = 0; i < data->size(); i++)
 	{
 		DirectionalLight* directionalLight = (&(*data)[i]);
 
@@ -110,8 +110,8 @@ void RendererLightSystem::UpdatePointLights(std::vector<PointLight>* data, Scene
 {
 	
 
-	currentShader->SetInt("numberOfPointLight", data->size());
-	for (size_t i = 0; i < data->size(); i++)
+	currentShader->SetInt("numberOfPointLight", (int)data->size());
+	for (int i = 0; i < data->size(); i++)
 	{
 		PointLight* pointlight = &(*data)[i];
 		Entity* entity = scene->GetEntities(pointlight->entityID);
@@ -124,9 +124,9 @@ void RendererLightSystem::UpdatePointLights(std::vector<PointLight>* data, Scene
 		currentShader->SetFloat("pointLights[" + std::to_string(i) + "].far_plane", pointlight->lightData.maxRange);
 
 
-		currentShader->SetInt("pointLights[" + std::to_string(i) + "].depthMapCube",10 + i );
+		currentShader->SetInt("pointLights[" + std::to_string(i) + "].depthMapCube",10 + i);
 
-		glActiveTexture(GL_TEXTURE10 + i );
+		glActiveTexture(GL_TEXTURE10 + i);
 		glBindTexture(GL_TEXTURE_CUBE_MAP, pointlight->depthMap.ID);
 
 	}
@@ -138,7 +138,7 @@ void RendererLightSystem::UpdateSpothLights(std::vector<SpothLight>* data, Scene
 
 
 
-	for (size_t i = 0; i < data->size(); i++)
+	for (int i = 0; i < data->size(); i++)
 	{
 		SpothLight* spothlight = &(*data)[i];
 		Entity* entity = scene->GetEntities(spothlight->entityID);

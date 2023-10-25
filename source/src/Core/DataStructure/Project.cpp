@@ -29,14 +29,19 @@
 #include "LowRenderer/Light/PointLight/PointLight.hpp"
 #include "LowRenderer/Light/SpothLight/SpothLight.hpp"
 #include "../../../ProjectFolder/Project1/assets/Scipt/RumicsCube.h"
-#include "Core/ECS/PythonScript.h"
 
 #include"App/App.h"
+#include <GLFW/glfw3.h>
+#include <glad/glad.h>
+
+
+
+
 
 void Project::Update()
 {
-
 	std::vector<InputEvent*> inputsEvents;
+
 	shaderShadowMapping = resourcesManager.GetElement<Shader>("ShadowMapping");
 
 
@@ -67,12 +72,17 @@ void Project::Update()
 
 	dockingSystem.UpdateDockSpace(*this, inputsEvents);
 
+
 }
 
 
 
 Project::Project() 
 {
+
+
+
+
 	resourcesManager.LoadAllAssets("ProjectFolder/Project1");
 	currentScene = new Scene("Scene 0");
 	currentScene->currentProject = this;
@@ -90,6 +100,7 @@ Project::Project()
 
 Project::~Project()
 {
+
 	delete currentScene;
 }
 
@@ -106,6 +117,10 @@ Project::~Project()
 void Project::InitScene()
 {
 	
+	//PyRun_SimpleString("sys.path.append(\".\")");
+	//PyRun_SimpleString("sys.path.append(\"C:/Projet/ModernOpenglGB/source/include/Core/Python\")");
+
+
 	// UPDATE PHYSICS FIRST
 	currentScene->AddSystem(new PhysicsSystem());
 	// Check Collsiion for nextframe
@@ -121,22 +136,7 @@ void Project::InitScene()
 
 	
 	currentScene->AddSystem(new RumicsCube());
-	/*
 	
-	Entity* plane = currentScene->CreateEntity();
-	currentScene->AddComponent<MeshRenderer>(plane);
-	MeshRenderer* planerdr = currentScene->GetComponent<MeshRenderer>(plane);
-	currentScene->GetComponent<Transform>(plane)->scaling = Vector3(25, 0.1, 25);
-	currentScene->GetComponent<Transform>(plane)->pos = Vector3(0, -0.5f, 0);
-	planerdr->mesh = *ressourcesManager.GetElement<Mesh>("cube.obj");
-	planerdr->material.diffuse = *ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
-	planerdr->material.specular = *ressourcesManager.GetElement<Texture>("DiamondBlock.jpg");
-
-
-	*/
-
-
-
 	//currentScene->AddComponent<Rigidbody>(entity2);
 
 	
@@ -165,9 +165,6 @@ void Project::InitScene()
 	Cube2rdr->mesh = *resourcesManager.GetElement<Mesh>("viking_room.obj");
 	Cube2rdr->material.diffuse = *resourcesManager.GetElement<Texture>("Viking_room.png");
 	Cube2rdr->material.specular = *resourcesManager.GetElement<Texture>("Viking_room.png");
-
-	PythonScript* pt = resourcesManager.GetElement<PythonScript>("CorePython.py");
-	currentScene->AddSystem(pt);
 
 	currentScene->Init();
 

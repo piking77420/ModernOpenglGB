@@ -333,15 +333,6 @@
     <ClInclude Include="source\include\Core\ECS\Scene.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\Core\ECS\PythonScript.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Core\Python\PythonObject.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="source\include\Core\Python\TestPython.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="source\include\External\GLFW\glfw3.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -641,15 +632,6 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\Core\ECS\Scene.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\Core\ECS\PythonScript.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\Core\Python\PythonObject.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\Core\Python\TestPython.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

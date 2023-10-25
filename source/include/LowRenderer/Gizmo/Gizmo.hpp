@@ -39,6 +39,7 @@ private:
 			return Vector4(0, 0, 1, 1);
 			break;
 		default:
+			return Vector4(0, 0, 0, 0);
 			break;
 		}
 	}

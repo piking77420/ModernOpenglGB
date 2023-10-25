@@ -12,8 +12,6 @@
 #include "Ressources/CubeMaps/CubeMaps.h"
 #include<ostream>
 #include "App/App.h"
-#include "Core/ECS/PythonScript.h"
-
 
 void PrintTime(std::chrono::system_clock::time_point& start,int mapzize)
 {
@@ -42,6 +40,9 @@ void ResourcesManager::LoadAllAssets(const std::string& projectFolder)
 		"ProjectFolder/Project1/assets/cube_maps/skybox/SkySkybox/back.jpg",
 
 	};
+
+
+
 	CubeMaps* SkySkybox = new CubeMaps(cubemapsSkyString);
 	PushBackElement<CubeMaps>("SkySkybox", SkySkybox);
 
@@ -52,10 +53,19 @@ void ResourcesManager::LoadAllAssets(const std::string& projectFolder)
 	for (const auto& entry : std::filesystem::directory_iterator(projectFolder))
 			LookFiles(entry.path());
 	
+	/*
+	// LoadScript 
+	fs::path scriptPath("PythonSource");
+
+	for (const auto& entry : fs::directory_iterator(scriptPath)) 
+	{
+		LoadScript(entry.path().c_str());
+	}
+	*/
 
 
 
-	PrintTime(timeStart, m_mainResourcesMap.size());
+	PrintTime(timeStart, (int)m_mainResourcesMap.size());
 }
 
 void ResourcesManager::DeleteAllasset()
@@ -149,15 +159,7 @@ bool ResourcesManager::IsShader(std::string path_string)
 	return true;
 }
 
-bool ResourcesManager::IsPythonScript(std::string path_string)
-{
 
-	if (IsThisValidForThisFormat(path_string, pythonFormat))
-	{
-		return true;
-	}
-	return false;
-}
 
 void ResourcesManager::LoadTexture(fs::path path)
 {
@@ -165,8 +167,7 @@ void ResourcesManager::LoadTexture(fs::path path)
 
 	if (ResourcesManager::IsTexture(path_string))
 	{
-		Create<Texture>(path);
-		
+		Create<Texture>(path);		
 	}
 }
 
@@ -183,14 +184,25 @@ void ResourcesManager::LoadModel(std::filesystem::path path)
     }
 }
 
+bool IsPythonCacheFile(const fs::path& filePath) {
+	return filePath.extension() == ".pyc";
+}
+
+
 void ResourcesManager::LoadShader(std::filesystem::path path)
 {
 	std::string vertexShader;
 	std::string fragmentShader;
 	std::string geometry;
-
-	for (const auto& entry : fs::directory_iterator(path))
+	
+	for (const fs::directory_entry& entry : fs::directory_iterator(path))
 	{
+		const auto permissions = fs::status(entry.path()).permissions();
+
+		// Skip Python cache files
+		if (IsPythonCacheFile(entry.path()))
+			continue;
+
 
 		if (IsThisValidForThisFormat(entry.path().string(), vertexShaderFormat))
 		{
@@ -214,14 +226,7 @@ void ResourcesManager::LoadShader(std::filesystem::path path)
 	Create<Shader>(path);	
 
 }
-void ResourcesManager::LoadScript(std::filesystem::path path)
-{
-	if (ResourcesManager::IsPythonScript(path.generic_string()))
-	{
-		Create<PythonScript>(path);
 
-	}
-}
 // Look In the folder
 void ResourcesManager::LookFiles(fs::path _path)
 {
@@ -232,13 +237,15 @@ void ResourcesManager::LookFiles(fs::path _path)
 	
 	for (const auto& entry : fs::directory_iterator(_path))
 	{
+		if (entry.path().stem().generic_string() == "__pycache__")
+			continue;
+
 		if (entry.is_directory())
 		{
 			LookFiles(entry.path());
 			LoadShader(entry.path());
 
 		}
-		LoadScript(entry.path());
 		LoadTexture(entry.path().c_str());
 		LoadModel(entry.path().c_str());
 		

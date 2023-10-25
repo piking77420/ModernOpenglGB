@@ -3,7 +3,7 @@
 #include "Physics/Transform/Transform.hpp"
 #include <array>
 
-class Collider;
+struct Collider;
 class SphereCollider;
 class BoxCollider;
 

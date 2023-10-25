@@ -74,14 +74,14 @@
     <PublicIncludeDirectories>
     </PublicIncludeDirectories>
     <AllProjectIncludesArePublic>true</AllProjectIncludesArePublic>
-    <IncludePath>$(SolutionDir)\source\Include;$(SolutionDir)\source\Include\Math;$(SolutionDir)\source\Include\External;$(SolutionDir)\source\Include\LowRenderer;$(SolutionDir)\source\Include\Core;(SolutionDir)\source\Include\Core\Debug;$(SolutionDir)\source\Include\Core\DataStructure;$(SolutionDir)\source\Include\Core\DataStructure\Component;$(Python)include</IncludePath>
+    <IncludePath>$(SolutionDir)\source\Include;$(SolutionDir)\source\Include\Math;$(SolutionDir)\source\Include\External;$(SolutionDir)\source\Include\LowRenderer;$(SolutionDir)\source\Include\Core;(SolutionDir)\source\Include\Core\Debug;$(SolutionDir)\source\Include\Core\DataStructure;$(SolutionDir)\source\Include\Core\DataStructure\Component;$(Python)\include</IncludePath>
     <LibraryPath>$(SolutionDir)\source\src\External\lib;$(Python)\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PublicIncludeDirectories>
     </PublicIncludeDirectories>
     <AllProjectIncludesArePublic>true</AllProjectIncludesArePublic>
-    <IncludePath>$(SolutionDir)\source\Include;$(SolutionDir)\source\Include\Math;$(SolutionDir)\source\Include\External;$(SolutionDir)\source\Include\LowRenderer;$(SolutionDir)\source\Include\Core;(SolutionDir)\source\Include\Core\Debug;$(SolutionDir)\source\Include\Core\DataStructure;$(SolutionDir)\source\Include\Core\DataStructure\Component;$(Python)include</IncludePath>
+    <IncludePath>$(SolutionDir)\source\Include;$(SolutionDir)\source\Include\Math;$(SolutionDir)\source\Include\External;$(SolutionDir)\source\Include\LowRenderer;$(SolutionDir)\source\Include\Core;(SolutionDir)\source\Include\Core\Debug;$(SolutionDir)\source\Include\Core\DataStructure;$(SolutionDir)\source\Include\Core\DataStructure\Component;$(Python)\include</IncludePath>
     <LibraryPath>$(SolutionDir)\source\src\External\lib;$(Python)\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -130,8 +130,12 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(Pyton)\libs\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(Python)\libs\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -151,12 +155,14 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(Pyton)\libs\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(Python)\libs\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="source\include\Core\Python\PythonObject.h" />
-    <ClInclude Include="source\include\Core\ECS\PythonScript.h" />
     <ClInclude Include="source\include\Core\Debug\AssertClass.h" />
     <ClInclude Include="source\include\Core\Debug\Debug.h" />
     <ClInclude Include="source\include\Core\Debug\Imgui\imconfig.h" />
@@ -177,7 +183,6 @@
     <ClInclude Include="source\include\Core\ISerialzable\ISerialzable.h" />
     <ClInclude Include="source\include\Core\Math\EasyFunction.h" />
     <ClInclude Include="source\include\Core\Math\ToolBoxMathHeaders.h" />
-    <ClInclude Include="source\include\Core\Python\TestPython.h" />
     <ClInclude Include="source\include\External\glad\glad.h" />
     <ClInclude Include="source\include\External\GLFW\glfw3.h" />
     <ClInclude Include="source\include\External\GLFW\glfw3native.h" />
@@ -298,14 +303,11 @@
     <ResourceCompile Include="Modern_OpengGl_GB.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\src\Core\Python\PythonObject.cpp" />
-    <ClCompile Include="source\src\Core\ECS\PythonScript.cpp" />
     <ClCompile Include="source\src\Core\ECS\Scene.cpp" />
     <ClCompile Include="source\src\Core\Input\InputEvent.cpp" />
     <ClCompile Include="source\src\Core\Input\CoreInput.cpp" />
     <ClCompile Include="ProjectFolder\Project1\assets\Scipt\RumicsCube.cpp" />
     <ClCompile Include="source\src\Core\ISerialzable\ISerialzable.cpp" />
-    <ClCompile Include="source\src\Core\Python\TestPython.cpp" />
     <ClCompile Include="source\src\Physics\Raycast\Raycast.cpp" />
     <ClCompile Include="source\src\Ressources\Model\Model.cpp" />
     <ClCompile Include="source\src\UI\Log.cpp" />

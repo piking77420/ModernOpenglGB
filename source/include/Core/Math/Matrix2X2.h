@@ -31,7 +31,7 @@ public:
 		return 4;
 	}
 
-	[[nosdiscard]]
+	
 	static Matrix2X2 RotationMatrix2X2(float angle);
 	
 	constexpr const float* GetPtr() const
@@ -63,7 +63,7 @@ public:
 	constexpr Matrix2X2() = default;
 	
 
-	[[nosdiscard]]
+	
 	constexpr inline static Matrix2X2 Identity()
 	{
 		return Matrix2X2(1, 0, 0, 1);

@@ -8,8 +8,8 @@ class FrameBuffer
 {
 public:
 	uint32_t FBO = 0 ;
-	uint32_t framebufferTexture = 0 ;
 	uint32_t RBO = 0 ;
+	uint32_t framebufferTexture = 0 ;
 
 	uint32_t rectVAO = 0 ;
 	uint32_t rectVBO = 0 ;

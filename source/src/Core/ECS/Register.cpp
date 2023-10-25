@@ -13,7 +13,7 @@ Register::Register()
 
 	for (size_t i = 0; i < Component::GetNbrOfComponent(); i++)
 	{
-		std::pair<uint32_t, std::vector<uint8_t>*> newArray(i, new std::vector<uint8_t>());
+		std::pair<uint32_t, std::vector<uint8_t>*> newArray((uint32_t)i, new std::vector<uint8_t>());
 		ComponentsData.push_back(newArray);
 		
 	}
@@ -97,6 +97,7 @@ Entity* Register::GetEntiesById(uint32_t entityId)
 		if (entities[i]->GetID() == entityId)
 			return entities[i];
 	}
+	return nullptr;
 }
 
 
@@ -118,7 +119,7 @@ void Register::RemoveComponentInternal(uint32_t componentTypeID, Entity* entity)
 	size_t sizeOfComponent = Component::GetSizeOfComponent(componentTypeID);
 
 	//Last index for last Componenet
-	uint32_t lastIndex = dataArray.size() - sizeOfComponent;
+	uint32_t lastIndex = (uint32_t)(dataArray.size() - sizeOfComponent);
 
 	Component* destComp = reinterpret_cast<Component*>(&dataArray[index]);
 	Component* lastComp = reinterpret_cast<Component*>(&dataArray[lastIndex]);
@@ -132,15 +133,22 @@ void Register::RemoveComponentInternal(uint32_t componentTypeID, Entity* entity)
 		return;
 	}
 
+
+	Entity* entitylast = nullptr;
+	entitylast = GetEntiesById(lastComp->entityID);
+
+	if (entitylast == nullptr)
+		throw std::runtime_error("Entity not found for lastComp->entityID");
+
+
 	memcpy(destComp, lastComp, sizeOfComponent);
-	Entity* entitylast = GetEntiesById(lastComp->entityID);
+	
 	entitylast->entityComponents.at(componentTypeID) = index;
 	dataArray.resize(lastIndex);
 
 	RemoveComponentEntity(entity, componentTypeID);
 
 	TriggerOnresizeDataEvent(componentTypeID, &dataArray);
-
 	
 }
 
@@ -148,7 +156,7 @@ void Register::RemoveComponentInternal(uint32_t componentTypeID, Entity* entity)
 
 void Register::RemoveEntityInternal(Entity* entity)
 {
-	for (size_t i = 0; i < entity->entityComponents.size(); i++)
+	for (uint32_t i = 0; i < entity->entityComponents.size(); i++)
 	{
 		RemoveComponentInternal(i, entity);
 	}
@@ -156,7 +164,7 @@ void Register::RemoveEntityInternal(Entity* entity)
 
 	uint32_t destIndex = entity->GetID();
 
-	uint32_t srcIndex = entities.size() - 1;
+	uint32_t srcIndex = (uint32_t)entities.size() - 1;
 
 	delete entities[destIndex];
 

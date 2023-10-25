@@ -1,5 +1,5 @@
 #include "Ui/Hierarchy.hpp"
-#include "ECS/Scene/Scene.h"
+#include "ECS/Scene.h"
 #include "LowRenderer/Cam/Camera.h"
 #include "App/App.h"
 #include "Physics/Transform/Transform.hpp"

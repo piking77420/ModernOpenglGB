@@ -26,9 +26,9 @@ public:
 		Matrix3X3 result;
 
 
-		for (size_t x = 0; x < 3; x++)
+		for (int x = 0; x < 3; x++)
 		{
-			for (size_t y = 0; y < 3; y++)
+			for (int y = 0; y < 3; y++)
 			{
 				result[x][y] = Coloms[y][x];
 			}

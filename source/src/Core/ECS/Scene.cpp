@@ -92,7 +92,7 @@ Entity* Scene::CreateEntity()
 	Entity* NewEntitie = new Entity();
 	NewEntitie->scene = this;
 
-	NewEntitie->SetID() = m_registerScene.entities.size();
+	NewEntitie->SetID() = (uint32_t)m_registerScene.entities.size();
 	NewEntitie->entityName = "Entity " + std::to_string(NewEntitie->ID);
 	m_registerScene.entities.push_back(NewEntitie);
 

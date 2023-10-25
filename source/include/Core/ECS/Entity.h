@@ -4,9 +4,9 @@
 #include <string>
 #include "UI/InspectorSelectable.h"
 #include "Core/ISerialzable/ISerialzable.h"
-#define ComponentNULL 4294967295
-#define EntityNULL 4294967295
 
+#define ComponentNULL 4294967295
+#define EntityNULL  4294967295
 
 class Scene;
 

@@ -21,7 +21,7 @@ float Vector4::Norm() const
 {
 	float result = x * x + y * y + z * z+ w * w;
 
-	return Math::FSqrtf(result) ;
+	return (float)Math::FSqrtf(result);
 }
 
 Vector4 Vector4::Normalize() const
@@ -47,7 +47,7 @@ Vector4::operator Vector() const
 
 	const float* data = &x;
 
-	for (size_t i = 0; i < 4; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		result[i] = data[i];
 	}
