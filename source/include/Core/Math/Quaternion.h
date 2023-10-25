@@ -20,12 +20,23 @@ public:
 
 	constexpr inline float NormSquare() const
 	{
-
 		return imaginary.x * imaginary.x + imaginary.y * imaginary.y + imaginary.z * imaginary.z + w * w;
 	}
 	inline float Norm() const
 	{
 		return std::sqrt(NormSquare());
+	}
+	static constexpr float DotProduct(const Quaternion& q1, const Quaternion& q2)
+	{
+		return q1.imaginary.x * q2.imaginary.x + q1.imaginary.y * q2.imaginary.y + q1.imaginary.z * q2.imaginary.z + q1.w * q2.w;
+	}
+
+	// in radians
+	static Quaternion AngleAxis(float angle , const Vector3& axis) 
+	{
+		float Qangle = angle / 2.f;
+		Vector3 axisN = axis.Normalize();
+		return Quaternion(std::sin(Qangle) * axisN.x, std::sin(Qangle) * axisN.y, std::sin(Qangle) * axisN.z, std::cos(Qangle));
 	}
 
 	inline Quaternion Normalize() const
@@ -98,7 +109,7 @@ public:
 
 
 		float scalarResult = Q1.w * Q2.w - Vector3::DotProduct(im1, im2);
-		Vector3 vectorResult =   (im2 * Q1.w )+ im1 * Q2.w + Vector3::CrossProduct(im1, im2);
+		Vector3 vectorResult =   (im2 * Q1.w )+ (im1 * Q2.w) + Vector3::CrossProduct(im1, im2);
 		return Quaternion(vectorResult.x, vectorResult.y, vectorResult.z, scalarResult);
 
 	}
@@ -123,13 +134,49 @@ public:
 
 	[[nodiscard]]
 	constexpr const float* GetPtr()const { return &imaginary.x; }
+		
+	/*
+	[[nodiscard]]
+	static inline Quaternion Slerp(const Quaternion& q1, const Quaternion& q2, float t)
+	{	
+		float dotAB = Quaternion::DotProduct(q1, q2);
+		float theta = std::acos(dotAB);
+		float sinTheta = std::sin(theta);
+		float af = std::sin((1.0f - t) * theta) / sinTheta;
+		float bf = std::sin(t * theta) / sinTheta;
+		return (q1 *  af + q2 * bf);
 
+	}*/
+
+	[[nodiscard]]
+	static inline Quaternion Lerp(const Quaternion& q1, const Quaternion& q2, float t)
+	{
+		float dotAB = Quaternion::DotProduct(q1, q2);
+		float theta = std::acos(dotAB);
+		float sinTheta = std::sin(theta);
+		float af = std::sin((1.0f - t) * theta) / sinTheta;
+		float bf = std::sin(t * theta) / sinTheta;
+		return (q1 * af + q2 * bf);
+
+	}
+	
 
 
 #pragma region Operator
 
 
 	inline Quaternion operator*(const Quaternion& Q1) const;
+	inline Quaternion operator*(float value) const
+	{
+		return { imaginary.x * value , imaginary.y * value ,imaginary.z * value ,w * value };
+	}
+
+	inline Quaternion operator+(const Quaternion& q) const
+	{
+		return { imaginary.x + q.imaginary.x , imaginary.y + q.imaginary.y ,imaginary.z + q.imaginary.z ,w + q.w };
+	}
+
+
 	inline void operator*=(const Quaternion& Q1);
 	float operator[](int i) const;
 	float& operator[](int i);
@@ -147,6 +194,7 @@ public:
 
 	constexpr Quaternion() = default;
 
+	
 
 private:
 };

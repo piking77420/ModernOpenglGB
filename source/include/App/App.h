@@ -36,7 +36,6 @@ public:
 	App();
 	~App();
 	
-	static void InitEcsComponent();
 
 private:
 	static void EnableOpenGl();

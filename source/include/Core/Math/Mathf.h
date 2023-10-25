@@ -33,6 +33,7 @@ namespace Math
 
 	
 
+
 	 constexpr static inline float Deg2Rad((float)M_PI / 180.f);
 
 	 constexpr static inline float Rad2Deg = 57.29578f;

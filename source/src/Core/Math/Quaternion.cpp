@@ -23,7 +23,7 @@ Quaternion Quaternion::ConvertToUnitNormQuaternion() const
 {
 
 
-	float angle = Math::Deg2Rad * w;
+	float angle = w;
 	Quaternion result;
 
 

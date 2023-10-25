@@ -192,7 +192,18 @@ public:
 	[[nodiscard]]
 	Vector3 MakePositivEuleur() const;
 
-	
+	/*
+	[[nodiscard]]
+	static inline Vector3 Slerp(const Vector3& v1, const Vector3& v2, float t)
+	{
+		float phi = std::acos(Vector3::DotProduct(v1, v2));
+		float valueP0 = std::sin((1 - t) * phi) / std::sin(phi);
+		float valueP1 = std::sin(t * phi) / std::sin(phi);
+
+
+		return  (v1 * valueP0) + (v2 * valueP1);
+	}
+	*/
 	/**
 	* \name Basic Value Constants
 	* @{
@@ -425,7 +436,6 @@ public:
 		result.z *= value;
 		return result;
 	}
-
 
 };
 

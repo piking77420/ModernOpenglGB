@@ -279,19 +279,6 @@ App::~App()
 {
 }
 
-void App::InitEcsComponent()
-{
-	// ecs Compoenent Here // 
-	EcsComponent<Transform>::componentTypeID = (Component::RegisterComponent<EcsComponent<Transform>>(ECSComponentCreate<Transform>, ECSComponentFree<Transform>, sizeof(Transform), GetName<Transform>));
-	EcsComponent<MeshRenderer>::componentTypeID = (Component::RegisterComponent<EcsComponent<MeshRenderer>>(ECSComponentCreate<MeshRenderer>, ECSComponentFree<MeshRenderer>, sizeof(MeshRenderer), GetName<MeshRenderer>));
-	EcsComponent<Rigidbody>::componentTypeID = (Component::RegisterComponent<EcsComponent<Rigidbody>>(ECSComponentCreate<Rigidbody>, ECSComponentFree<Rigidbody>, sizeof(Rigidbody), GetName<Rigidbody>));
-	EcsComponent<BoxCollider>::componentTypeID = (Component::RegisterComponent<EcsComponent<BoxCollider>>(ECSComponentCreate<BoxCollider>, ECSComponentFree<BoxCollider>, sizeof(BoxCollider), GetName<BoxCollider>));
-	EcsComponent<SphereCollider>::componentTypeID = (Component::RegisterComponent<EcsComponent<SphereCollider>>(ECSComponentCreate<SphereCollider>, ECSComponentFree<SphereCollider>, sizeof(SphereCollider), GetName<SphereCollider>));
-	EcsComponent<DirectionalLight>::componentTypeID = (Component::RegisterComponent<EcsComponent<DirectionalLight>>(ECSComponentCreate<DirectionalLight>, ECSComponentFree<DirectionalLight>, sizeof(DirectionalLight), GetName<DirectionalLight>));
-	EcsComponent<SpothLight>::componentTypeID = (Component::RegisterComponent<EcsComponent<SpothLight>>(ECSComponentCreate<SpothLight>, ECSComponentFree<SpothLight>, sizeof(SpothLight), GetName<SpothLight>));
-	EcsComponent<PointLight>::componentTypeID = (Component::RegisterComponent<EcsComponent<PointLight>>(ECSComponentCreate<PointLight>, ECSComponentFree<PointLight>, sizeof(PointLight), GetName<PointLight>));
-
-}
 
 
 

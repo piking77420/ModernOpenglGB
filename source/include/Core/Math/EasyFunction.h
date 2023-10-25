@@ -5,21 +5,22 @@
 namespace Math
 {
 	template<class T>
-	static inline T Lerp(const T& startValue, const T& endValue, float prt)
+	constexpr float Lerp(const T& t0, const T& t2, float t)
 	{
-		return (startValue + (endValue - startValue) * prt);
+		return (1 - t) * t0 + t * t2;
 	}
 
-
-
-	[[nodiscard]]
-	static inline Vector3 Slerp(const Vector3& p0, const Vector3& p1, float t) noexcept
+	template<class T>
+	[[nodiscard]] static inline T Slerp(const T& t1, const T& t2, float t)
 	{
-		float angle = Vector3::Angle(p0, p1);
+		float dotAB = T::DotProduct(t1, t2);
+		float theta = std::acos(dotAB);
+		float sinTheta = std::sin(theta);
+		float af = std::sin((1.0f - t) * theta) / sinTheta;
+		float bf = std::sin(t * theta) / sinTheta;
+		return (t1 * af + t2 * bf);
 
-		float value0 = (std::sin((1 - t) * angle) / sin(angle));
-		float value1 = (std::sin(t * angle) / std::sin(angle));
-
-		return  p0 * value0 + p1 * value1;
 	}
+
+	
 }
