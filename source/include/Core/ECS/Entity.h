@@ -10,7 +10,7 @@
 
 class Scene;
 
-class Entity :  public ISerialzable
+class Entity : public ISerialzable
 {
 public:
 
