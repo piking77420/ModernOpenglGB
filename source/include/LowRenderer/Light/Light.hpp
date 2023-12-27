@@ -7,7 +7,7 @@ class Depthmap;
 
 struct Light 
 {
-	Vector4 color  = Vector4(0.5f, 0.5f, 0.5f, 0.5f);
+	Vector4 color  = Vector4(1.F, 1.F, 1.F, 1.F);
 	Matrix4X4 LightSpaceMatrix;
 	float minimumRange = 2.5f;
 	float maxRange = 100.f;

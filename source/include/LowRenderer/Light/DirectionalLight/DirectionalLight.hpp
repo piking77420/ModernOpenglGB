@@ -10,6 +10,10 @@ public:
 	Light lightData;
 	Depthmap depthmap;
 
+	float c1 = 0.2f;
+	float c2 = 0.2f;
+	float c3 = 0.2f;
+
 	void ImguiWindowComponent() override;
 
 

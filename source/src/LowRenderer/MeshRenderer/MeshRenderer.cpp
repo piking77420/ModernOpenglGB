@@ -17,8 +17,12 @@ void MeshRenderer::ImguiWindowComponent()
 	ImGui::Image((ImTextureID)material.diffuse.ID,ImVec2(50,50),
 		ImVec2(0, 1),
 		ImVec2(1, 0));
-	//ImGui::DragInt("diffuse", &material.specular);
-	//ImGui::DragFloat("diffuse", &material.shininess);
+
+
+	ImGui::DragFloat("shininess", &material.shininess);
+	ImGui::DragFloat("ka", &material.ka,0.15f,0,1);
+	ImGui::DragFloat("kd", &material.kd, 0.15f,0,1);
+	ImGui::DragFloat("ks", &material.ks, 0.15f,0,1);
 
 	ImGui::PopID();
 

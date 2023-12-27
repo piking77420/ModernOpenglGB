@@ -23,6 +23,9 @@ void Renderer::framebuffer_size_callback(GLFWwindow* window, int width, int heig
 void Renderer::RendereScene(Scene* scene,Shader* shader)
 {
 
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glStencilMask(0x00);
+
 	std::vector<MeshRenderer>* MeshRenderData = scene->GetComponentDataArray<MeshRenderer>();
 
 	for (uint32_t i = 0; i < MeshRenderData->size(); i++)
@@ -60,9 +63,6 @@ Renderer::~Renderer()
 
 void Renderer::RenderMeshRender(const MeshRenderer* meshRender, Shader& shader, Scene* scene)
 {
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-	glStencilMask(0x00);
 
 	// get Shader and bind
 	shader.Use();
@@ -71,9 +71,9 @@ void Renderer::RenderMeshRender(const MeshRenderer* meshRender, Shader& shader, 
 
 	Entity* entity = scene->GetEntities(meshRender->entityID);
 	const Transform* transform = scene->GetComponent<Transform>(entity);
-	const Matrix4X4 model = transform->world;
-	const Matrix4X4 MVP = Camera::cam->GetProjectionMatrix() * Camera::cam->GetLookMatrix() * model;
-	const Matrix4X4 NormalMatrix = Quaternion::ToRotationMatrix4X4(transform->GetRotation()).Invert().Transposate();
+	const Matrix4X4& model = transform->world;
+	const Matrix4X4& MVP = Camera::cam->GetProjectionMatrix() * Camera::cam->GetLookMatrix() * model;
+	const Matrix4X4& NormalMatrix = Quaternion::ToRotationMatrix4X4(transform->GetRotation()).Invert().Transposate();
 
 
 
@@ -88,7 +88,11 @@ void Renderer::RenderMeshRender(const MeshRenderer* meshRender, Shader& shader, 
 	shader.SetInt("material.diffuse",0);
 	shader.SetInt("material.specular",1);
 	shader.SetFloat("material.shininess", meshRender->material.shininess);
-	
+	shader.SetVector3("material.MPos", model[3].GetPtr());
+	shader.SetFloat("material.ka", meshRender->material.ka);
+	shader.SetFloat("material.kd", meshRender->material.kd);
+	shader.SetFloat("material.ks", meshRender->material.ks);
+
 
 	// Set Diffuse Texture 
 	glActiveTexture(GL_TEXTURE0);

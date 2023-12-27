@@ -53,12 +53,6 @@ void RendererLightSystem::LateUpdate(Scene* scene)
 void RendererLightSystem::Render(Shader& shader, Scene* scene)
 {
 	currentShader = &shader;
-	
-
-
-
-
-
 
 	currentShader->Use();
 
@@ -167,12 +161,16 @@ void RendererLightSystem::RenderDirectionalLight(const DirectionalLight* dirLigh
 	Transform* transformOfLight = scene->GetComponent<Transform>(entity);
 	Vector3 LightDirection = static_cast<Vector3>(Quaternion::ToRotationMatrix4X4(transformOfLight->GetRotation()) * Vector4(0,1,0,0) ).Normalize();
 	
+
 	currentShader->SetVector3("dirLight.color", dirLight->lightData.color.GetPtr());
 	
 	currentShader->SetVector3("dirLight.LightDirection", LightDirection.GetPtr());
 
 	currentShader->SetVector3("dirLight.lightPos", transformOfLight->world.GetPos().GetPtr());
 	currentShader->SetMatrix("lightSpaceMatrix", dirLight->lightData.LightSpaceMatrix.GetPtr());
+	currentShader->SetVector3("dirLight.c1", &dirLight->c1);
+	currentShader->SetVector3("dirLight.c2", &dirLight->c2);
+	currentShader->SetVector3("dirLight.c3", &dirLight->c3);
 
 
 	currentShader->SetInt("dirLight.shadowMap", 2);

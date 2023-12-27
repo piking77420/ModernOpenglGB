@@ -13,6 +13,12 @@ void DirectionalLight::ImguiWindowComponent()
 	ImGui::DragFloat("minimumRange", &lightData.minimumRange);
 	ImGui::DragFloat("maxRange", &lightData.maxRange);
 	ImGui::DragFloat("Size", &lightData.size);
+	ImGui::Spacing();
+	ImGui::Text("LightConstant");
+	ImGui::DragFloat("c1", &c1,0.1f);
+	ImGui::DragFloat("c2", &c2, 0.1f);
+	ImGui::DragFloat("c3", &c3, 0.1f);
+
 	ImGui::Text(" ");
 
 }

@@ -59,6 +59,9 @@ void Project::Update()
 
 	coreInput.LookForInput(inputsEvents);
 	currentScene->FixedUpdate();
+	float value = (float)std::sin(ImGui::GetTime());
+	currentScene->GetComponent<Transform>(currentScene->GetEntities(2))->rotationValue += Vector3(value, value, 0) * 0.16;
+
 	currentScene->Update();
 	currentScene->LateUpdate();
 
@@ -135,36 +138,42 @@ void Project::InitScene()
 	currentScene->AddSystem(new SystemRendererSkyMap());
 
 	
-	currentScene->AddSystem(new RumicsCube());
 	
-	//currentScene->AddComponent<Rigidbody>(entity2);
 
 	
 	Entity* Directionnale = currentScene->CreateEntity();
-	currentScene->GetComponent<Transform>(Directionnale)->pos = Vector3(-2.0f, 4.0f, -1.0f);
+	currentScene->GetComponent<Transform>(Directionnale)->pos = Vector3(-2.0f, 7, -1.0f);
 	currentScene->AddComponent<DirectionalLight>(Directionnale);
+	Directionnale->entityName = "Directional";
+
+	Entity* ground = currentScene->CreateEntity();
+	currentScene->AddComponent<MeshRenderer>(ground);
+	currentScene->GetComponent<Transform>(ground)->scaling = Vector3(10, 1, 10);
+	ground->entityName = "Ground";
+	MeshRenderer* meshRenderer = currentScene->GetComponent<MeshRenderer>(ground);
+	meshRenderer->mesh = *resourcesManager.GetElement<Mesh>("cube.obj");
+	meshRenderer->material.diffuse = *resourcesManager.GetElement<Texture>("woodenGround.jpg");
+	meshRenderer->material.specular = *resourcesManager.GetElement<Texture>("woodenGround.jpg");
+	meshRenderer->material.ka = 0.4;
+	meshRenderer->material.kd = 0.3;
+	meshRenderer->material.ks = 0.2;
+	meshRenderer->material.shininess = 10;
 
 
-	Entity* Cube1 = currentScene->CreateEntity();
-	currentScene->AddComponent<MeshRenderer>(Cube1);
+	// Cue
 
-	currentScene->GetComponent<Transform>(Cube1)->pos = Vector3(-2.0f, 4.0f, -1.0f);
-	MeshRenderer* Cube1rdr = currentScene->GetComponent<MeshRenderer>(Cube1);
-	currentScene->AddComponent<BoxCollider>(Cube1);
-	Cube1rdr->mesh = *resourcesManager.GetElement<Mesh>("viking_room.obj");
-	Cube1rdr->material.diffuse = *resourcesManager.GetElement<Texture>("Viking_room.png");
-	Cube1rdr->material.specular = *resourcesManager.GetElement<Texture>("Viking_room.png");
+	Entity* Cube = currentScene->CreateEntity();
+	currentScene->AddComponent<MeshRenderer>(Cube);
+	currentScene->GetComponent<Transform>(Cube)->pos = Vector3(0, 2.5, 0);
 
-	Entity* Cube2 = currentScene->CreateEntity();
-	currentScene->AddComponent<MeshRenderer>(Cube2);
-	currentScene->AddComponent<BoxCollider>(Cube2);
-	currentScene->GetComponent<Transform>(Cube2)->pos = Vector3(-4.0f, 5.0f, -3.0f);
-
-	currentScene->GetComponent<Transform>(Cube2)->pos = Vector3(-2.0f, 4.0f, -1.0f);
-	MeshRenderer* Cube2rdr = currentScene->GetComponent<MeshRenderer>(Cube2);
-	Cube2rdr->mesh = *resourcesManager.GetElement<Mesh>("viking_room.obj");
-	Cube2rdr->material.diffuse = *resourcesManager.GetElement<Texture>("Viking_room.png");
-	Cube2rdr->material.specular = *resourcesManager.GetElement<Texture>("Viking_room.png");
+	MeshRenderer* meshRendererCube = currentScene->GetComponent<MeshRenderer>(Cube);
+	meshRendererCube->mesh = *resourcesManager.GetElement<Mesh>("cube.obj");
+	meshRendererCube->material.diffuse = *resourcesManager.GetElement<Texture>("EmerauldBlock.png");
+	meshRendererCube->material.specular = *resourcesManager.GetElement<Texture>("EmerauldBlock.png");
+	meshRendererCube->material.ka = 0.5;
+	meshRendererCube->material.kd = 0.7;
+	meshRendererCube->material.ks = 0.75;
+	meshRendererCube->material.shininess = 80;
 
 	currentScene->Init();
 
