@@ -143,7 +143,7 @@ void Project::InitScene()
 	Entity* Directionnale = currentScene->CreateEntity();
 	currentScene->GetComponent<Transform>(Directionnale)->pos = Vector3(-2.0f, 7, -1.0f);
 	currentScene->AddComponent<PointLight>(Directionnale);
-	Directionnale->entityName = "Point";
+	Directionnale->entityName = "PointLight";
 
 	Entity* ground = currentScene->CreateEntity();
 	currentScene->AddComponent<MeshRenderer>(ground);
@@ -158,7 +158,7 @@ void Project::InitScene()
 	meshRenderer->material.ks = 0.2;
 	meshRenderer->material.shininess = 10;
 
-
+	
 	// Cue
 
 	Entity* Cube = currentScene->CreateEntity();

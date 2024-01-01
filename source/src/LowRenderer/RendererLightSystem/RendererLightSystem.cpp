@@ -105,15 +105,13 @@ void RendererLightSystem::UpdatePointLights(std::vector<PointLight>* data, Scene
 
 		currentShader->SetVector3("pointLights[" + std::to_string(i) + "].position", transformOfLight->world.GetPos().GetPtr());
 		currentShader->SetVector3("pointLights[" + std::to_string(i) + "].color", pointlight->lightData.color.GetPtr());
-		currentShader->SetFloat("pointLights[" + std::to_string(i) + "].constant", pointlight->constant);
-		currentShader->SetFloat("pointLights[" + std::to_string(i) + "].quadratic", pointlight->quadratic);
 		currentShader->SetFloat("pointLights[" + std::to_string(i) + "].far_plane", pointlight->lightData.maxRange);
 
 
 		//currentShader->SetInt("pointLights[" + std::to_string(i) + "].depthMapCube",10 + i);
 
-		glActiveTexture(GL_TEXTURE10 + i);
-		glBindTexture(GL_TEXTURE_CUBE_MAP, pointlight->depthMap.ID);
+		//glActiveTexture(GL_TEXTURE10 + i);
+		//glBindTexture(GL_TEXTURE_CUBE_MAP, pointlight->depthMap.ID);
 
 	}
 

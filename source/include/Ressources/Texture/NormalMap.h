@@ -1,5 +1,7 @@
 #pragma once
 #include "Texture.hpp"
+
+
 class NormalMap : public Texture
 {
 public:

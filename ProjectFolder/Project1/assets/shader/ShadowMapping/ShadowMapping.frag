@@ -19,12 +19,9 @@ struct Material
 struct PointLight {    
     vec3 position;
     vec3 color;
-        
-    float constant;
-    float linear;
-    float quadratic;
+       
 
-    samplerCube depthMapCube;
+    //samplerCube depthMapCube;
     float far_plane;
 
 }; 
@@ -125,6 +122,7 @@ vec3 gridSamplingDisk[20] = vec3[]
    vec3(0, 1,  1), vec3( 0, -1,  1), vec3( 0, -1, -1), vec3( 0, 1, -1)
 );
 
+/*
 float ShadowCalculationPointLight(PointLight light,vec3 fragPos)
 {
     // get vector between fragment position and light position
@@ -168,7 +166,7 @@ float ShadowCalculationPointLight(PointLight light,vec3 fragPos)
         closestDepth *= light.far_plane;   // undo mapping [0;1]
         if(currentDepth - bias > closestDepth)
             shadow += 1.0;
-    }*/
+    }
     shadow /= float(samples);
         
     // display closestDepth as debug (to visualize depth cubemap)
@@ -176,7 +174,7 @@ float ShadowCalculationPointLight(PointLight light,vec3 fragPos)
         
     return shadow;
 }
-
+*/
 
 vec3 DirectionnalLightCalcul()
 {
@@ -274,8 +272,8 @@ vec3 PointLightCalcul(PointLight light)
 
 void main()
 {           
-     vec3 endresult = vec3(0) ;
-     endresult += DirectionnalLightCalcul();
+     vec3 endresult = texture(material.diffuse, fs_in.TexCoords).rgb;
+    // endresult += DirectionnalLightCalcul();
     
     for(int i = 0 ; i < numberOfPointLight;i++)
     {

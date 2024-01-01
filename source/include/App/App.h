@@ -19,8 +19,8 @@ class Texture;
 class Shader;
 class Scene;
 class Project;
-const int windowWidth = 1920;
-const int windowHeight = 1080;
+const int windowWidth = 1000;
+const int windowHeight = 600;
 const int MSAA = 8;
 
 
