@@ -59,8 +59,7 @@ void Project::Update()
 
 	coreInput.LookForInput(inputsEvents);
 	currentScene->FixedUpdate();
-	float value = (float)std::sin(ImGui::GetTime());
-	currentScene->GetComponent<Transform>(currentScene->GetEntities(2))->rotationValue += Vector3(value, value, 0) * 0.16;
+
 
 	currentScene->Update();
 	currentScene->LateUpdate();
@@ -143,8 +142,8 @@ void Project::InitScene()
 	
 	Entity* Directionnale = currentScene->CreateEntity();
 	currentScene->GetComponent<Transform>(Directionnale)->pos = Vector3(-2.0f, 7, -1.0f);
-	currentScene->AddComponent<DirectionalLight>(Directionnale);
-	Directionnale->entityName = "Directional";
+	currentScene->AddComponent<PointLight>(Directionnale);
+	Directionnale->entityName = "Point";
 
 	Entity* ground = currentScene->CreateEntity();
 	currentScene->AddComponent<MeshRenderer>(ground);
@@ -167,7 +166,7 @@ void Project::InitScene()
 	currentScene->GetComponent<Transform>(Cube)->pos = Vector3(0, 2.5, 0);
 
 	MeshRenderer* meshRendererCube = currentScene->GetComponent<MeshRenderer>(Cube);
-	meshRendererCube->mesh = *resourcesManager.GetElement<Mesh>("cube.obj");
+	meshRendererCube->mesh = *resourcesManager.GetElement<Mesh>("Sphere.obj");
 	meshRendererCube->material.diffuse = *resourcesManager.GetElement<Texture>("EmerauldBlock.png");
 	meshRendererCube->material.specular = *resourcesManager.GetElement<Texture>("EmerauldBlock.png");
 	meshRendererCube->material.ka = 0.5;

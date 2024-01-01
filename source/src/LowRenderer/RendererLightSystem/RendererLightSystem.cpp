@@ -82,19 +82,11 @@ void RendererLightSystem::OnResizeData(uint32_t ComponentTypeID,std::vector<uint
 
 void RendererLightSystem::UpdateDirectionnalLights(std::vector<DirectionalLight>* data, Scene* scene)
 {
-	if(data->size() > sizeof(DirectionalLight))
-	{
-		LOG("There Is One more than one DirectionnalLight", STATELOG::CRITICALERROR);
-	}
-
 
 	for (int i = 0; i < data->size(); i++)
 	{
 		DirectionalLight* directionalLight = (&(*data)[i]);
-
-		if (!directionalLight->isEnable)
-			continue;
-
+	
 		RenderDirectionalLight(directionalLight, scene);
 
 	}
@@ -118,7 +110,7 @@ void RendererLightSystem::UpdatePointLights(std::vector<PointLight>* data, Scene
 		currentShader->SetFloat("pointLights[" + std::to_string(i) + "].far_plane", pointlight->lightData.maxRange);
 
 
-		currentShader->SetInt("pointLights[" + std::to_string(i) + "].depthMapCube",10 + i);
+		//currentShader->SetInt("pointLights[" + std::to_string(i) + "].depthMapCube",10 + i);
 
 		glActiveTexture(GL_TEXTURE10 + i);
 		glBindTexture(GL_TEXTURE_CUBE_MAP, pointlight->depthMap.ID);
@@ -130,8 +122,6 @@ void RendererLightSystem::UpdatePointLights(std::vector<PointLight>* data, Scene
 void RendererLightSystem::UpdateSpothLights(std::vector<SpothLight>* data, Scene* scene)
 {
 
-
-
 	for (int i = 0; i < data->size(); i++)
 	{
 		SpothLight* spothlight = &(*data)[i];
@@ -141,12 +131,13 @@ void RendererLightSystem::UpdateSpothLights(std::vector<SpothLight>* data, Scene
 		currentShader->SetVector3("spotLights[" + std::to_string(i) + "].position", transformOfLight->world.GetPos().GetPtr());
 		currentShader->SetVector3("spotLights[" + std::to_string(i) + "].direction", spothlight->direction.GetPtr());
 		currentShader->SetVector3("spotLights[" + std::to_string(i) + "].color", spothlight->lightData.color.GetPtr());
+		/*
 		currentShader->SetFloat("spotLights[" + std::to_string(i) + "].cutOff", spothlight->cutOff);
 		currentShader->SetFloat("spotLights[" + std::to_string(i) + "].outerCutOff", spothlight->outerCutOff);
 		currentShader->SetFloat("spotLights[" + std::to_string(i) + "].constant", spothlight->constant);
 		currentShader->SetFloat("spotLights[" + std::to_string(i) + "].quadratic", spothlight->quadratic);
 		currentShader->SetInt("spotLights[" + std::to_string(i) + "].depthMapCube", 3);
-		
+		*/
 	
 	}
 
@@ -161,21 +152,21 @@ void RendererLightSystem::RenderDirectionalLight(const DirectionalLight* dirLigh
 	Transform* transformOfLight = scene->GetComponent<Transform>(entity);
 	Vector3 LightDirection = static_cast<Vector3>(Quaternion::ToRotationMatrix4X4(transformOfLight->GetRotation()) * Vector4(0,1,0,0) ).Normalize();
 	
+		currentShader->SetVector3("dirLight.color", dirLight->lightData.color.GetPtr());
 
-	currentShader->SetVector3("dirLight.color", dirLight->lightData.color.GetPtr());
-	
-	currentShader->SetVector3("dirLight.LightDirection", LightDirection.GetPtr());
+		currentShader->SetVector3("dirLight.LightDirection", LightDirection.GetPtr());
 
-	currentShader->SetVector3("dirLight.lightPos", transformOfLight->world.GetPos().GetPtr());
-	currentShader->SetMatrix("lightSpaceMatrix", dirLight->lightData.LightSpaceMatrix.GetPtr());
-	currentShader->SetVector3("dirLight.c1", &dirLight->c1);
-	currentShader->SetVector3("dirLight.c2", &dirLight->c2);
-	currentShader->SetVector3("dirLight.c3", &dirLight->c3);
+		currentShader->SetVector3("dirLight.lightPos", transformOfLight->world.GetPos().GetPtr());
+		currentShader->SetMatrix("lightSpaceMatrix", dirLight->lightData.LightSpaceMatrix.GetPtr());
+		currentShader->SetVector3("dirLight.c1", &dirLight->c1);
+		currentShader->SetVector3("dirLight.c2", &dirLight->c2);
+		currentShader->SetVector3("dirLight.c3", &dirLight->c3);
 
 
-	currentShader->SetInt("dirLight.shadowMap", 2);
-	glActiveTexture(GL_TEXTURE2);
-	glBindTexture(GL_TEXTURE_2D, dirLight->depthmap.depthMap);
+		currentShader->SetInt("dirLight.shadowMap", 2);
+		glActiveTexture(GL_TEXTURE2);
+		glBindTexture(GL_TEXTURE_2D, dirLight->depthmap.depthMap);
+
 
 
 }

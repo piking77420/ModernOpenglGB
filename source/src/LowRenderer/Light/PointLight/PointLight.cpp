@@ -2,6 +2,17 @@
 
 
 
+void PointLight::ImguiWindowComponent()
+{
+
+    ImGui::Spacing();
+    ImGui::ColorPicker4("ambiantColor", lightData.color.SetPtr());
+    ImGui::DragFloat("minimumRange", &lightData.minimumRange);
+    ImGui::DragFloat("maxRange", &lightData.maxRange);
+    ImGui::DragFloat("Size", &lightData.size);
+    ImGui::Spacing();
+}
+
 PointLight::PointLight()
 {
     

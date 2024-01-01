@@ -181,78 +181,93 @@ float ShadowCalculationPointLight(PointLight light,vec3 fragPos)
 vec3 DirectionnalLightCalcul()
 {
     // PixelColor
-    vec3 Mcolor = texture(material.diffuse, fs_in.TexCoords).rgb;
+    vec3 BaseColor = texture(material.diffuse, fs_in.TexCoords).rgb;
 
-    vec3 normal = normalize(fs_in.Normal);
 
     vec3 lightColor = dirLight.color;
 
     // ambient
-    vec3 ambient = lightColor  * material.ka;
+    float ambient =  material.ka;
 
 
     // diffuse
-    //vec3 lightDir = normalize(lightPos - fs_in.FragPos);
-    float diff = max(dot(dirLight.LightDirection, normal), 0.0);
-    vec3 diffuse = diff * material.kd * lightColor;
+    vec3 normal = normalize(fs_in.Normal);
+
+    vec3 lightDir = normalize(dirLight.lightPos - fs_in.FragPos);
+    float diff = max(dot(lightDir, normal), 0.0);
+    //float diff = max(dot(dirLight.LightDirection, normal), 0.0);
+    float diffuse = diff * material.kd ;
 
 
     // specular
-    vec3 viewDir = normalize(viewPos - fs_in.FragPos);
-    vec3 reflectDir = reflect(-dirLight.LightDirection, normal);
     float spec = 0.0;
+    vec3 viewDir = normalize(viewPos - fs_in.FragPos);
     vec3 halfwayDir = normalize(dirLight.LightDirection + viewDir);  
+
+    vec3 reflectDir = reflect(-dirLight.LightDirection, normal);
     spec = pow(max(dot(normal, halfwayDir), 0.0),material.shininess);
 
-    vec3 specular = lightColor * spec * material.ks;
+    float specular = spec * material.ks;
 
     
-    // attenuation
-    float pixelLightDistance = distance(fs_in.FragPos , dirLight.lightPos);
-    float viewPosDistance = distance(fs_in.FragPos,viewPos);
 
-    float fAtt = 1 /  (viewPosDistance +  pixelLightDistance) ;
-
-    fAtt = min(fAtt,1);
     
 
     // calculate shadow
     float shadow = ShadowCalculationDirectionLight(fs_in.FragPosLightSpace);
+    float shadowf = (1.0 - shadow);
 
-    vec3 lighting = (  Mcolor * (ambient  + ( (diffuse + specular) * fAtt ) )  )  * (1.0 - shadow);  
-
-    return lighting;
+    
+    vec3 lighting =  ( (diffuse  + ambient) + specular ) * lightColor * shadowf; 
+    BaseColor *= lighting;
+        
+    return BaseColor;
 }
 
 vec3 PointLightCalcul(PointLight light)
 {
-    vec3 color = texture(material.diffuse, fs_in.TexCoords).rgb;
-    vec3 normal = normalize(fs_in.Normal);
-    
+  // PixelColor
+    vec3 BaseColor = texture(material.diffuse, fs_in.TexCoords).rgb;
+
+
     vec3 lightColor = light.color;
 
     // ambient
-    vec3 ambient = lightColor;
+    float ambient =  material.ka;
+
+
     // diffuse
+    vec3 normal = normalize(fs_in.Normal);
+
     vec3 lightDir = normalize(light.position - fs_in.FragPos);
     float diff = max(dot(lightDir, normal), 0.0);
-    vec3 diffuse = diff * lightColor;
+    //float diff = max(dot(dirLight.LightDirection, normal), 0.0);
+    float diffuse = diff * material.kd ;
+
+
     // specular
-    vec3 viewDir = normalize(viewPos - fs_in.FragPos);
-    vec3 reflectDir = reflect(-lightDir, normal);
     float spec = 0.0;
+    vec3 viewDir = normalize(viewPos - fs_in.FragPos);
     vec3 halfwayDir = normalize(lightDir + viewDir);  
+
+    vec3 reflectDir = reflect(-lightDir, normal);
     spec = pow(max(dot(normal, halfwayDir), 0.0),material.shininess);
 
-    vec3 specular = lightColor * spec * vec3(texture(material.specular, fs_in.TexCoords));
-    // calculate shadow
-    float shadow = ShadowCalculationPointLight(light,fs_in.FragPos);                
-    /*
-    /*
-    */
-    vec3 lighting = (ambient + (1.0 - shadow) * (diffuse + specular)) * color;  
-    return lighting;
+    float specular = spec * material.ks;
 
+    
+    // attenuation
+    float pixelLightDistance = distance(fs_in.FragPos , light.position);
+    float viewPosDistance = distance(fs_in.FragPos,viewPos);
+
+    float fAtt = 1.0/ (viewPosDistance +  pixelLightDistance) ;
+
+    fAtt = min(fAtt,1.0);
+     
+    vec3 lighting =  ( (diffuse * fAtt + ambient) + specular * fAtt) * lightColor; 
+    BaseColor *= lighting;
+        
+    return BaseColor;
 }
 
 
@@ -260,11 +275,11 @@ vec3 PointLightCalcul(PointLight light)
 void main()
 {           
      vec3 endresult = vec3(0) ;
-     endresult = DirectionnalLightCalcul();
+     endresult += DirectionnalLightCalcul();
     
     for(int i = 0 ; i < numberOfPointLight;i++)
     {
-     //  endresult += PointLightCalcul(pointLights[i]);
+       endresult += PointLightCalcul(pointLights[i]);
     }
 
     FragColor = vec4(endresult, 1.0);

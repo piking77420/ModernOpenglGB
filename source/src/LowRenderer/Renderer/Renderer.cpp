@@ -73,7 +73,7 @@ void Renderer::RenderMeshRender(const MeshRenderer* meshRender, Shader& shader, 
 	const Transform* transform = scene->GetComponent<Transform>(entity);
 	const Matrix4X4& model = transform->world;
 	const Matrix4X4& MVP = Camera::cam->GetProjectionMatrix() * Camera::cam->GetLookMatrix() * model;
-	const Matrix4X4& NormalMatrix = Quaternion::ToRotationMatrix4X4(transform->GetRotation()).Invert().Transposate();
+	const Matrix4X4& NormalMatrix = Quaternion::ToRotationMatrix4X4(transform->GetRotation());
 
 
 

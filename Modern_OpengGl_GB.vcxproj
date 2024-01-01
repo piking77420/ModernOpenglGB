@@ -163,6 +163,8 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\include\Ressources\Texture\NormalMap.h" />
+    <ClInclude Include="ProjectFolder\Project1\assets\Scipt\RotateTransform.hpp" />
     <ClInclude Include="source\include\Core\Debug\AssertClass.h" />
     <ClInclude Include="source\include\Core\Debug\Debug.h" />
     <ClInclude Include="source\include\Core\Debug\Imgui\imconfig.h" />
@@ -303,6 +305,8 @@
     <ResourceCompile Include="Modern_OpengGl_GB.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\src\Ressources\Texture\NormalMap.cpp" />
+    <ClCompile Include="ProjectFolder\Project1\assets\Scipt\RotateTransform.cpp" />
     <ClCompile Include="source\src\Core\ECS\Scene.cpp" />
     <ClCompile Include="source\src\Core\Input\InputEvent.cpp" />
     <ClCompile Include="source\src\Core\Input\CoreInput.cpp" />

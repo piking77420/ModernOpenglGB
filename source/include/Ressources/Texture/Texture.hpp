@@ -19,16 +19,16 @@ public:
 	
 	
 	void InitResource() override;
-	void BindTexture() const;
-	void UnBindTexture()const;
-	void TextureShaderUniform(const Shader& shader, const char* uniform, GLuint unit);
+	virtual void BindTexture() const;
+	virtual void UnBindTexture()const;
+	virtual void TextureShaderUniform(const Shader& shader, const char* uniform, GLuint unit);
 
 	GLuint ID;
 
 	Texture(const fs::path& FilePath);
 	Texture();
 
-	~Texture();
+	virtual ~Texture();
 
 	static GLuint GetFormat(int nbrOfChannel);
 	void operator=(const Texture& other);

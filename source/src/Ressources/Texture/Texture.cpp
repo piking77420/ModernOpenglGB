@@ -59,8 +59,6 @@ Texture::~Texture()
 
 GLuint Texture::GetFormat(int nbrOfChannel)
 {
-   
-    
 
         if (nbrOfChannel == 1)
         {
@@ -74,8 +72,6 @@ GLuint Texture::GetFormat(int nbrOfChannel)
         {
             return GL_RGBA;
         }
-    
-    
 
     return GL_RGB;
 
