@@ -10,6 +10,7 @@
 
 class Register;
 class Component;
+class Scene;
 
 typedef uint32_t(*ECSComponentCreateFunction)(std::vector<uint8_t>& memory, Entity* entity, Component** ptr);
 typedef void(*ECSComponentFreeFunction)(Component* ptr);
@@ -55,6 +56,7 @@ protected:
 
 	friend Entity;
 private:
+	friend Scene;
 	static inline ECSComponentCreateFunction GetCreateFN(uint32_t ID)
 	{
 		return std::get<0>(m_componentTypeInfos->at(ID));

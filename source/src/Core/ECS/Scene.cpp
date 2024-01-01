@@ -107,3 +107,47 @@ Entity* Scene::GetEntities(uint32_t ID)
 	return m_registerScene.GetEntiesById(ID);
 
 }
+
+void Scene::OnEntitySelectInspector(uint32_t entityID)
+{
+	Entity* ent = GetEntities(entityID);
+
+
+	for (uint32_t i = 0; i < ent->entityComponents.size(); i++)
+	{
+		if (ent->entityComponents[i] == ComponentNULL) continue;
+
+		if (ImGui::CollapsingHeader(Component::GetComponentName(i).c_str()))
+		{
+
+			std::vector<uint8_t>* data = GetComponentDataArray(i);
+			Component* comp = reinterpret_cast<Component*>(&data->at(ent->entityComponents[i]));
+
+			comp->ImguiWindowComponent();
+
+		}
+
+
+	}
+
+	if (ImGui::CollapsingHeader("Add Component"))
+	{
+		for (uint32_t i = 0; i < Component::GetComponentTypeInfos()->size(); i++)
+		{
+
+			if (HasComponent(i, ent))
+				continue;
+
+			if (ImGui::Button(Component::GetComponentName(i).c_str()))
+			{
+				AddComponent(i, ent);
+			}
+
+		}
+
+
+	}
+
+
+
+}

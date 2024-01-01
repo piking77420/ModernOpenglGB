@@ -47,6 +47,11 @@ public :
 	Entity* GetEntities(uint32_t ID);
 
 
+
+	void OnEntitySelectInspector(uint32_t entityID);
+	
+
+
 	template<class T>
 	bool IsEntityHas(const Entity* entity);
 

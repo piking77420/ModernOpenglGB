@@ -15,7 +15,6 @@ class Entity : public ISerialzable
 public:
 
 
-	static void OnInspector(uint32_t entityID, Scene* scene);
 	void OnSerialize(Scene* scene) const override;
 	void OnDeSerialize(Scene* scene) override;
 

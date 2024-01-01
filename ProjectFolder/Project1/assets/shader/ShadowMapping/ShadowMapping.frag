@@ -272,7 +272,7 @@ vec3 PointLightCalcul(PointLight light)
 
 void main()
 {           
-     vec3 endresult = texture(material.diffuse, fs_in.TexCoords).rgb;
+     vec3 endresult = vec3(0.0);
     // endresult += DirectionnalLightCalcul();
     
     for(int i = 0 ; i < numberOfPointLight;i++)

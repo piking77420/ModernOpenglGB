@@ -8,49 +8,6 @@
 
 
 
-void Entity::OnInspector(uint32_t entityID , Scene* scene) 
-{
-	Entity* ent = scene->GetEntities(entityID);
-
-	
-		for (uint32_t i = 0; i < ent->entityComponents.size(); i++)
-		{
-			if (ent->entityComponents[i] == ComponentNULL) continue;
-
-			if (ImGui::CollapsingHeader(Component::GetComponentName(i).c_str()))
-			{
-
-				std::vector<uint8_t>* data = scene->GetComponentDataArray(i);
-				Component* comp = reinterpret_cast<Component*>(&data->at(ent->entityComponents[i]));
-
-				comp->ImguiWindowComponent();
-
-			}
-
-
-		}
-
-		if (ImGui::CollapsingHeader("Add Component"))
-		{
-			for (uint32_t i = 0; i < Component::GetComponentTypeInfos()->size(); i++)
-			{
-
-				if (scene->HasComponent(i, ent))
-					continue;
-
-				if(ImGui::Button(Component::GetComponentName(i).c_str()))
-				{
-					scene->AddComponent(i, ent);
-				}
-
-			}
-
-
-		}
-
-	
-
-}
 
 void Entity::OnSerialize(Scene* scene) const
 {

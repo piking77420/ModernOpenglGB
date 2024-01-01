@@ -15,7 +15,7 @@ void Inspector::UpdateLayer(Project& currentProject, std::vector<InputEvent*>& i
 		ImGui::PushID("");
 		
 		if (currentProject.dockingSystem.EnitySelectedID != EntityNULL)
-			Entity::OnInspector(currentProject.dockingSystem.EnitySelectedID, currentProject.currentScene);
+			currentProject.currentScene->OnEntitySelectInspector(currentProject.dockingSystem.EnitySelectedID);
 	
 
 		ImGui::PopID();
