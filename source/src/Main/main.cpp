@@ -1,5 +1,4 @@
 #include "App/App.h"
-#include"EasyFunction.h"
 
  
    int main()

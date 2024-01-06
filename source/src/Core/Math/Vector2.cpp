@@ -4,17 +4,6 @@
 #include "Vector.h"
 #include "Mathf.h"
 
-
-
-
-
-
-
-
-
-
-
-
 Vector2::operator Vector() const
 {
 	Vector Row0 = Vector(2);
@@ -27,26 +16,13 @@ Vector2::operator Vector() const
 
 Vector2::operator Vector3() const
 {
-	return  Vector3(x, y, 0);
+	return  Vector3(x, y, 0.f);
 }
 
 Vector2::operator Vector4() const
 {
-	return Vector4(x, y, 0, 0);
+	return Vector4(x, y, 0.f, 0.f);
 }
-
-
-
-
-
-
-
-
-constexpr inline float Vector2::Norm() const
-{
-	return (float)Math::FSqrtf(x * x + y * y );
-}
-
 
 float Vector2::Angle() const
 {

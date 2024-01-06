@@ -39,7 +39,6 @@ public :
 	void LateUpdate();
 
 	void Render(Shader& shader);
-	void RenderScene(Shader& shader);
 
 
 	Entity* CreateEntity();
@@ -176,7 +175,6 @@ public :
 	ImGuiIO io;
 	float  deltatime;
 	Project* currentProject;
-	Renderer renderer;
 
 	Scene(std::string name);
 	~Scene();

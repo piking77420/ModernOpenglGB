@@ -7,7 +7,7 @@ class Project;
 class Inspector : public ImguiLayer
 {
 public:
-	void UpdateLayer(Project& currentProject, std::vector<InputEvent*>& inputsEvents) override;
+	void UpdateLayer(Project& currentProject) override;
 
 
 	Inspector()

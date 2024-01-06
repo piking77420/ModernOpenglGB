@@ -27,35 +27,21 @@
 #include "LowRenderer/MeshRenderer/MeshRenderer.h"
 #include "Physics/Collider/ColliderSystem.hpp"
 
-#include "Physics/Transform/Transform.hpp"
-#include "LowRenderer/RendererLightSystem/RendererLightSystem.hpp"
-#include "LowRenderer/Light/DirectionalLight/DirectionalLight.hpp"
-#include "LowRenderer/Light/SpothLight/SpothLight.hpp"
-#include "LowRenderer/Light/PointLight/PointLight.hpp"
-#include "Core/DataStructure/Project.hpp"
-#include "LowRenderer/SystemRendererSkyMap/SystemRendererSkyMap.hpp"
-#include "LowRenderer/RendererShadowSystem/RendererShadowSystem.h"
-#include "LowRenderer/Gizmo/Gizmo.hpp"
-#include "LowRenderer/Renderer/Renderer.hpp"
-#include "Physics/Collider/SphereCollider.hpp"
-#include "Physics/GraphScene/GraphScene.h"
-#include "Physics/Collider/BoxCollider.hpp"
-#include "Physics/PhysicsSystem/PhysicsSystem.hpp"
-#include "Physics/RigidBody/Rigidbody.h"
-#include "LowRenderer/Light/PointLight/PointLight.hpp"
-#include "LowRenderer/Light/SpothLight/SpothLight.hpp"
+
 
 void App::EnableOpenGl()
 {
-	glDepthFunc(GL_LESS);
 
 	glEnable(GL_STENCIL_TEST);
 	glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
 	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 	glEnable(GL_MULTISAMPLE);
 	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LEQUAL);
+
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
 
 }
 
@@ -72,6 +58,9 @@ void App::LoadCursorAppCursor(GLFWwindow* window)
 
 }
 
+
+
+
 GLFWwindow* App::InitOpenglImgui()
 {
 #ifdef _DEBUG
@@ -84,6 +73,7 @@ GLFWwindow* App::InitOpenglImgui()
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_SAMPLES, 4);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	GLFWwindow* mainWindow = glfwCreateWindow(windowWidth, windowHeight, "Engine", NULL, NULL);
@@ -91,28 +81,33 @@ GLFWwindow* App::InitOpenglImgui()
 	glfwMakeContextCurrent(mainWindow);
 
 	gladLoadGL();
-	Renderer::framebuffer_size_callback(mainWindow, windowWidth, windowHeight);
-	glfwSetFramebufferSizeCallback(mainWindow, Renderer::framebuffer_size_callback);
-	glfwSetCursorPosCallback(mainWindow, Camera::MouseCallback);
-	glfwSetMouseButtonCallback(mainWindow, Camera::MouseButtonCallBack);
-
+	Project::framebuffer_size_callback(mainWindow, windowWidth, windowHeight);
 
 	EnableOpenGl();
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 
 	ImGui::StyleColorsDark();
-	ImGui_ImplGlfw_InitForOpenGL(mainWindow, true);
 	ImGui_ImplOpenGL3_Init("#version 330");
-
+	ImGui_ImplGlfw_InitForOpenGL(mainWindow, true);
+	glfwSetFramebufferSizeCallback(mainWindow, Project::framebuffer_size_callback);
+	//CoreInput::InitCallBack(mainWindow);
 
 	// Imgui Init // 
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
 	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 	io.ConfigFlags |= ImGuiConfigFlags_NoMouseCursorChange;
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
+
+	
 
 	App::LoadCursorAppCursor(mainWindow);
+
+
+
+
+
 
 	return mainWindow;
 }
@@ -223,7 +218,6 @@ void App::AppUpdate(GLFWwindow* mainWindow)
 	while (!glfwWindowShouldClose(mainWindow))
 	{
 		CloseWindow(mainWindow);
-		HandleSwitchMulthiMonoThread(mainWindow);
 
 
 
@@ -232,7 +226,7 @@ void App::AppUpdate(GLFWwindow* mainWindow)
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 		ImGuizmo::BeginFrame();
-		CurrentProject.Update();
+		CurrentProject->Update();
 		
 		
 		
@@ -268,50 +262,20 @@ App::App()
 {
 	
 	InitImguiTheme();
-	LOG("App::IsMonoThread = " + std::to_string(App::IsMonoThread) + " ", STATELOG::WARNING);
-
-
+	// Init Project
+	CurrentProject = new Project();
 
 }
 
 
 App::~App()
 {
+	delete CurrentProject;
 }
 
 
 
 
-void App::HandleSwitchMulthiMonoThread(GLFWwindow* mainWindow)
-{
-	if (ImGui::IsKeyPressed(ImGuiKey_L, false))
-	{
-		App::IsMonoThread = !App::IsMonoThread;
-
-
-		CurrentProject.resourcesManager.DeleteAllasset();
-		CurrentProject.resourcesManager.LoadAllAssets("ProjectFolder/Project1");
-		delete CurrentProject.currentScene;
-
-		Renderer::OpenGlRenderToImgui->InitResources();
-
-
-		CurrentProject.currentScene = new Scene("Scene 0");
-		CurrentProject.currentScene->currentProject = &CurrentProject;
-
-
-		ContentBrowser::BasePath = "ProjectFolder/Project1";
-		ContentBrowser::CurrentPath = ContentBrowser::BasePath;
-		Gizmo::InitGizmo(CurrentProject);
-
-		CurrentProject.InitScene();
-
-		Renderer::framebuffer_size_callback(mainWindow, windowWidth, windowHeight);
-
-
-
-	}
-}
 
 
 

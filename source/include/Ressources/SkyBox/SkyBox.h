@@ -13,6 +13,9 @@ public :
 	~SkyBox();
 	CubeMaps* cubemap = nullptr;
 	void operator=(const SkyBox& skybox);
+
+
+	
 private: 
 };
 

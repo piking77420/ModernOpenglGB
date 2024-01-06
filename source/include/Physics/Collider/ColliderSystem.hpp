@@ -17,7 +17,7 @@ public:
 	void FixedUpdate(Scene* scene) override; 
 	void Update(Scene* scene) override; 
 	void LateUpdate(Scene* scene) override; 
-	void Render(Shader& shader, Scene* scene) override; 
+	void Render(Shader& shader,Scene* scene) override; 
 	void OnResizeData(uint32_t ComponentTypeID, std::vector<uint8_t>* data) override;
 
 	

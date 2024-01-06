@@ -6,7 +6,7 @@
 #include "Core/ECS/Entity.h"
 
 
-void Inspector::UpdateLayer(Project& currentProject, std::vector<InputEvent*>& inputsEvents)
+void Inspector::UpdateLayer(Project& currentProject)
 {
 	if (ImGui::Begin(WindowName.c_str()))
 	{
@@ -29,4 +29,5 @@ void Inspector::UpdateLayer(Project& currentProject, std::vector<InputEvent*>& i
 
 void Inspector::ListenToInput(Project& currentProject,std::vector<InputEvent*>& inputEvent)
 {
+
 }

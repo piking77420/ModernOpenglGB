@@ -12,7 +12,10 @@ class SpothLight;
 class RendererShadowSystem : public IEcsSystem
 { 
 public:
-	ImplementIEcsSystem;
+	void FixedUpdate(Scene* scene);
+
+	void Render(Shader& shader, Scene* scene);
+	
 private:
 	Scene* currentScene;
 

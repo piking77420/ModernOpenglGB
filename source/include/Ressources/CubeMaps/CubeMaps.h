@@ -5,6 +5,7 @@
 #include<glad/glad.h>
 #include <filesystem>
 #include "Ressources/Texture/Texture.hpp"
+#include "LowRenderer/FrameBuffer/FrameBuffer.h"
 namespace fs = std::filesystem;
 
 
@@ -33,11 +34,28 @@ public:
 
 	
 	void operator=(const CubeMaps& cubeMaps);
-	CubeMaps(std::vector<std::string> allMapsFile);
+	CubeMaps(std::vector<std::string>& allMapsFile, TextureFlags flags);
+	CubeMaps(const std::string& hdrMap);
+
 	CubeMaps() {};
 	~CubeMaps();
+
+
+	GLuint captureFBO;
+	GLuint captureRBO;
+	GLuint envCubemap;
+
+
+	TextureFlags flags;
 private:
 	static inline float cubeMapSize = 250;
+
+	void Load(std::vector<std::string>& allMapsFile);
+	void LoadHDR(std::vector<std::string>& allMapsFile);
+	void InitFrammeBuffer();
+
+
+	
 
 };
 

@@ -71,10 +71,7 @@ void Scene::Render(Shader& shader)
 	}
 }
 
-void Scene::RenderScene(Shader& shader)
-{
-	renderer.RendereScene(this,&shader);
-}
+
 
 Scene::Scene(std::string name)
 {

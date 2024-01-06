@@ -15,7 +15,6 @@ namespace Math
 		return std::numeric_limits<float>::epsilon();
 	}
 
-
 	inline bool epsilonEqual
 	(
 		double const& x,
@@ -30,19 +29,14 @@ namespace Math
 	{
 		return abs(x - y) >= epsilon;
 	}
-
 	
-
-
 	 constexpr static inline float Deg2Rad((float)M_PI / 180.f);
 
 	 constexpr static inline float Rad2Deg = 57.29578f;
 
-
 	// Fast std::Sqrtf base on Quake3 32bits  
 	constexpr static inline double FSqrtf(float value)
 	{
-
 		long long i = 0;
 		double x2 = 0 , y = 0 ;
 		const double threehalfs = 1.5;
@@ -59,13 +53,10 @@ namespace Math
 
 	constexpr static inline void ZeroPrecision(float* value)
 	{
-
 		if (*value > -TOLERANCE && *value < TOLERANCE)
 		{
 			*value = 0.f;
 		}
-
 	}
-
 }
 

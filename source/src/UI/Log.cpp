@@ -4,7 +4,7 @@
 #include <Core/Debug/Imgui/imgui_internal.h>
 
 
-void Log::UpdateLayer(Project& currentProject, std::vector<InputEvent*>& inputsEvents)
+void Log::UpdateLayer(Project& currentProject)
 {
     
   /*

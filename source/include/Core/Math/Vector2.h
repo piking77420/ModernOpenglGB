@@ -32,14 +32,17 @@ public:
 	* @return The norm of the vector.
 	*/
 	[[nodiscard]]
-	constexpr inline float Norm() const;
+	inline float Norm() const 
+	{
+		return std::sqrt(x * x + y * y);
+	}
 	/**
 	* @fn constexpr inline Vector2 Normalize() const
 	* @brief This function calculates The vector normalize
 	* @return The normalize vector.
 	*/
 	[[nodiscard]]
-	constexpr inline Vector2 Normalize() const
+	inline Vector2 Normalize() const
 	{
 		float magnitude = Norm();
 
@@ -64,7 +67,7 @@ public:
 	* @return The Normal Vector.
 	*/
 	[[nodiscard]]
-	constexpr inline Vector2 Normal() const 
+	inline Vector2 Normal() const 
 	{
 		return Vector2(y, -x).Normalize();
 	}
@@ -72,44 +75,42 @@ public:
 	// Return Angle between 2 vectors
 	[[nodiscard]]
 	static float Angle(const Vector2 vec1, const Vector2 Row1) ;
+
 	// Return Trigonametrial angle Cos(x) and sin(Y)
 	[[nodiscard]]
 	float Angle() const;
+
 	//Return Determiant
 	[[nodiscard]]
 	constexpr static inline  float Determinant(const Vector2 vec1, const Vector2 vec2)
 	{
 		return (vec1.x * vec2.y) - (vec1.y * vec2.x);
 	}
+
 	// Return CrossProduct
 	[[nodiscard]]
 	constexpr inline static float CrossProduct(const Vector2 vec1, const Vector2 vec2)
 	{
 		return Determinant(vec1, vec2);
 	}
+
 	// Return Distance from 2 Vector without std::sqrtf;
 	[[nodiscard]]
 	constexpr static inline float DistanceSquare(Vector2 a, Vector2 b)
 	{
 		return ((a.x - b.x * a.x - b.x) + (a.y - b.y * a.y - b.y));
 	}
+
 	// Return Distance from 2 Vector
 	[[nodiscard]]
 	static float Distance(Vector2 a, Vector2 b);
 	
-
 	// Return the address of the first value;
 	[[nodiscard]]
-	constexpr float* SetPtr() 
-	{
-		return &x;
-	}
+	constexpr float* SetPtr() {	return &x;}
 	// Return the address of the first value;
 	[[nodiscard]]
-	constexpr const float* GetPtr() const 
-	{
-		return &x;
-	}
+	constexpr const float* GetPtr() const { return &x;}
 
 	/**
 	* \name Basic Value Constants

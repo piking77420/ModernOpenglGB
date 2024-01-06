@@ -5,7 +5,7 @@
 #include "Physics/Transform/Transform.hpp"
 #include "Core/DataStructure/Project.hpp" 
 
-void Hierarchy::UpdateLayer(Project& currentProject, std::vector<InputEvent*>& inputEvent)
+void Hierarchy::UpdateLayer(Project& currentProject)
 {
 
 	static bool open = true;
@@ -14,12 +14,12 @@ void Hierarchy::UpdateLayer(Project& currentProject, std::vector<InputEvent*>& i
 		return;
 
 
+
 	if (ImGui::Begin("GraphScene", &open))
 	{
-		if (ImGui::IsWindowHovered())
-		{
-			ListenToInput(currentProject, inputEvent);
-		}
+		IsFocus = ImGui::IsWindowFocused();
+
+
 
 		std::vector<Transform>* transformDataVector = currentProject.currentScene->GetComponentDataArray<Transform>();
 
@@ -117,24 +117,3 @@ Hierarchy::~Hierarchy()
 {
 }
 
-void Hierarchy::ListenToInput(Project& currentProject, std::vector<InputEvent*>& inputEvent)
-{
-	
-
-	for (size_t i = 0; i < inputEvent.size(); i++)
-	{
-		switch(inputEvent[i]->eventType)
-		{
-		case MOUSELEFTCLICK:
-			//hierackyMenue = true;
-			break;
-		default:
-			break;
-
-		}
-	}
-
-	//if(hierackyMenue)
-	//HierarchyMenue(currentProject);
-
-}

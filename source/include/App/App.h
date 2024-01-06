@@ -32,14 +32,13 @@ public:
 	void AppUpdate(GLFWwindow* mainWindow);
 		
 	static inline bool IsMonoThread = false;
-	Project CurrentProject;
+	Project* CurrentProject;
 	App();
 	~App();
 	
 
 private:
 	static void EnableOpenGl();
-	void HandleSwitchMulthiMonoThread(GLFWwindow* mainWindow);
 	static void LoadCursorAppCursor(GLFWwindow* window);
 	void InitImguiTheme();
 	

@@ -163,6 +163,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\include\LowRenderer\Material\PBRnode.hpp" />
     <ClInclude Include="source\include\Ressources\Texture\NormalMap.h" />
     <ClInclude Include="ProjectFolder\Project1\assets\Scipt\RotateTransform.hpp" />
     <ClInclude Include="source\include\Core\Debug\AssertClass.h" />
@@ -267,6 +268,7 @@
     <ClInclude Include="source\include\UI\ContentBrowser.h" />
     <ClInclude Include="source\include\UI\InspectorSelectable.h" />
     <ClInclude Include="source\include\LowRenderer\SystemRendererSkyMap\SystemRendererSkyMap.hpp" />
+    <ClInclude Include="source\include\UI\SceneView.h" />
     <ClInclude Include="source\include\UI\TransformGuizmo.hpp" />
     <ClInclude Include="source\include\Physics\Collider\SphereCollider.hpp" />
     <ClInclude Include="source\include\Core\AppTime.h" />
@@ -305,6 +307,7 @@
     <ResourceCompile Include="Modern_OpengGl_GB.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\src\LowRenderer\Material\PBRnode.cpp" />
     <ClCompile Include="source\src\Ressources\Texture\NormalMap.cpp" />
     <ClCompile Include="ProjectFolder\Project1\assets\Scipt\RotateTransform.cpp" />
     <ClCompile Include="source\src\Core\ECS\Scene.cpp" />
@@ -388,6 +391,7 @@
     <ClCompile Include="source\src\UI\InspectorSelectable.cpp" />
     <ClCompile Include="source\src\LowRenderer\Light\SpothLight\SpothLight.cpp" />
     <ClCompile Include="source\src\LowRenderer\SystemRendererSkyMap\SystemRendererSkyMap.cpp" />
+    <ClCompile Include="source\src\UI\SceneView.cpp" />
     <ClCompile Include="source\src\UI\TransformGuizmo.cpp" />
     <ClCompile Include="source\src\Physics\Collider\SphereCollider.cpp" />
     <ClCompile Include="source\src\Core\AppTime.cpp" />

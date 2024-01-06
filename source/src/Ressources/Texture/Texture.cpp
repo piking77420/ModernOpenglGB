@@ -10,32 +10,76 @@ void Texture::InitResource()
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, ID);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    if(!(flags & HDR))
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, datac);
 
-    glGenerateMipmap(GL_TEXTURE_2D);
-    delete data;
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        glGenerateMipmap(GL_TEXTURE_2D);
+        delete datac;
+    }
+    else
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, dataf);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        glGenerateMipmap(GL_TEXTURE_2D);
+        delete dataf;
+    }
+
+
 }
 Texture::Texture(const fs::path& FilePath) 
-{
-    
+{  
     stbi_set_flip_vertically_on_load(true);
-    data = stbi_load(FilePath.generic_string().c_str(), &width, &height, &nbrOfChannel, 0);
+    datac = stbi_load(FilePath.generic_string().c_str(), &width, &height, &nbrOfChannel, 0);
 
 
     format = GetFormat(nbrOfChannel);
 
-    if (!data)
+    if (!datac)
     {
         std::cout << "Fail to load texture" << std::endl;
+    } 
+
+}
+
+Texture::Texture(const fs::path& FilePath, TextureFlags flags)
+{
+    if (!(flags & HDR))
+    {
+        stbi_set_flip_vertically_on_load(true);
+        datac = stbi_load(FilePath.generic_string().c_str(), &width, &height, &nbrOfChannel, 0);
+
+
+        format = GetFormat(nbrOfChannel);
+
+        if (!datac)
+        {
+            std::cout << "Fail to load texture" << std::endl;
+        }
     }
+    else
+    {
+        stbi_set_flip_vertically_on_load(true);
+        dataf = stbi_loadf(FilePath.generic_string().c_str(), &width, &height, &nbrOfChannel, 0);
 
 
-   
+        format = GetFormat(nbrOfChannel);
 
+        if (!datac)
+        {
+            std::cout << "Fail to load texture" << std::endl;
+        }
+    }
 }
 
 Texture::Texture()
@@ -59,7 +103,25 @@ Texture::~Texture()
 
 GLuint Texture::GetFormat(int nbrOfChannel)
 {
+    constexpr bool GammaCorretion = false;
 
+    if(GammaCorretion)
+    {
+        if (nbrOfChannel == 1)
+        {
+            return GL_RED;
+        }
+        else if (nbrOfChannel == 3)
+        {
+            return GL_SRGB;
+        }
+        else if (nbrOfChannel == 4)
+        {
+            return GL_SRGB_ALPHA;
+        }
+    }
+    else
+    {
         if (nbrOfChannel == 1)
         {
             return GL_RED;
@@ -72,6 +134,9 @@ GLuint Texture::GetFormat(int nbrOfChannel)
         {
             return GL_RGBA;
         }
+    }
+
+      
 
     return GL_RGB;
 

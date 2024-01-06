@@ -10,7 +10,7 @@
 #include "External/ImguiGizmo/ImGuizmo.h"
 #include "Physics/Transform/Transform.hpp"
 
-void TransformGuizmo::UpdateLayer(Project& currentProject, std::vector<InputEvent*>& inputsEvents)
+void TransformGuizmo::UpdateLayer(Project& currentProject)
 {
 
 

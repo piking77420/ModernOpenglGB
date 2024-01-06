@@ -1,26 +1,25 @@
-
 #pragma once
 #include "ToolBoxMathHeaders.h"
 
 namespace Math
 {
 	template<class T>
-	constexpr float Lerp(const T& t0, const T& t2, float t)
+	[[nodiscard]]
+	constexpr __forceinline T Lerp(const T& t0, const T& t2, float t)
 	{
-		return (1 - t) * t0 + t * t2;
-	}
+		return t0 * (1.f - t) + t2 * t;
+	}	
 
-	template<class T>
-	[[nodiscard]] static inline T Slerp(const T& t1, const T& t2, float t)
+	template<typename T>
+	[[nodiscard]]
+	constexpr int Sign(T t1)
 	{
-		float dotAB = T::DotProduct(t1, t2);
-		float theta = std::acos(dotAB);
-		float sinTheta = std::sin(theta);
-		float af = std::sin((1.0f - t) * theta) / sinTheta;
-		float bf = std::sin(t * theta) / sinTheta;
-		return (t1 * af + t2 * bf);
+		if (t1 < static_cast<T>(0))
+			return -1;
 
+		if (t1 > static_cast<T>(0))
+			return 1;
+
+		return static_cast<T>(0);
 	}
-
-	
 }

@@ -158,6 +158,9 @@ private:
 	template<class T>
 	void CreateOnLoad(std::filesystem::path path);
 
+
+	void LoadPrimitive();
+
 	/////////////////
 
 	// Texture file accetptes jpg png 
@@ -229,7 +232,6 @@ inline void ResourcesManager::Create(const fs::path& FilePath)
 		return;
 	}
 	m_mainResourcesMap.insert({ FilePath.filename().generic_string(),newResources});
-	newResources->InitResource();
 	
 }
 
@@ -245,7 +247,6 @@ inline void ResourcesManager::PushBackElement(std::string name, T* newElement)
 	}
 
 	m_mainResourcesMap.insert({ name, newElement });
-	newElement->InitResource();
 }
 
 template<class T>

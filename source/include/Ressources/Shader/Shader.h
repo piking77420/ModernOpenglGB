@@ -44,8 +44,6 @@ public:
     void SetMatrix(const std::string& name, const float* matrixValue) const;
     void SetVector3(const std::string& name, const float* value) const;
 
-    // DeadFonction For Load Model
-    void SetMaterial(const std::string& name, const Material& material) const ;
  
     GLuint GetId() const ;
     void InitResource() override;

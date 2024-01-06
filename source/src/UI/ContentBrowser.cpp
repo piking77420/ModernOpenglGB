@@ -13,6 +13,7 @@
 #include "External/ImguiGizmo/ImGuizmo.h"
 #include "Physics/Transform/Transform.hpp"
 #include "LowRenderer/Light/DirectionalLight/DirectionalLight.hpp"
+#include "UI/Hierarchy.hpp"
 
 fs::path ContentBrowser::BasePath;
 
@@ -120,76 +121,12 @@ std::string ContentBrowser::GetPreviousPath(const fs::path& currentPath)
 
 
 
-void ContentBrowser::UpdateLayer(Project& currentProject, std::vector<InputEvent*>& inputsEvents)
+void ContentBrowser::UpdateLayer(Project& currentProject)
 {
 	ImGui::Begin("ContentBrowser", NULL);
 	Renderer(currentProject);
 	ImGui::End();
 	
-
-	// to do move this
-	if (ImGui::Begin("Render"))
-	{
-	
-
-
-		ImGui::Image((ImTextureID)Renderer::OpenGlRenderToImgui->framebufferTexture, ImGui::GetContentRegionAvail(),
-			ImVec2(0, 1),
-			ImVec2(1, 0));
-
-
-		if (!currentProject.dockingSystem.EnitySelectedID == EntityNULL)
-		{
-			ImGui::End();
-			return;
-		}
-
-		ImGui::End();
-		return;
-		
-
-		ImGuizmo::SetOrthographic(false);
-		ImGuizmo::SetDrawlist();
-
-		float windowWidht = (float)ImGui::GetWindowWidth();
-		float windowHeight = (float)ImGui::GetWindowHeight();
-		ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidht, windowHeight);
-
-		static ImGuizmo::OPERATION mCurrentGizmoOperation(ImGuizmo::ROTATE);
-		static ImGuizmo::MODE mCurrentGizmoMode(ImGuizmo::WORLD);
-
-		if (ImGui::IsKeyPressed(ImGuiKey_E))
-			mCurrentGizmoOperation = ImGuizmo::TRANSLATE;
-		if (ImGui::IsKeyPressed(ImGuiKey_R))
-			mCurrentGizmoOperation = ImGuizmo::ROTATE;
-		if (ImGui::IsKeyPressed(ImGuiKey_Z)) // r Key
-			mCurrentGizmoOperation = ImGuizmo::SCALE;
-	
-
-		
-
-
-		//Camera
-		Camera& cam = *Camera::cam;
-		const Matrix4X4& projection = cam.GetProjectionMatrix();
-		Matrix4X4 camerview = cam.GetLookMatrix();
-
-		uint32_t entityId = currentProject.dockingSystem.EnitySelectedID;
-		Transform* transform = currentProject.currentScene->GetComponent<Transform>(currentProject.currentScene->GetEntities(entityId));
-	
-
-		ImGuizmo::Manipulate(camerview.GetPtr(), projection.GetPtr(), mCurrentGizmoOperation, ImGuizmo::LOCAL, transform->world.SetPtr());
-
-	
-		
-		
-
-
-		ImGui::End();
-
-		
-
-	}
 }
 
 ContentBrowser::ContentBrowser()

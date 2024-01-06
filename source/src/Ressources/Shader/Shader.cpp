@@ -75,11 +75,7 @@ void Shader::SetVector3(const std::string& name, const float* value) const
     glUniform3fv(currentLoc, 1, value);
 }
 
-void Shader::SetMaterial(const std::string& name, const Material& material) const
-{
-  
 
-}
 
 GLuint Shader::GetId() const
 {

@@ -44,8 +44,7 @@ void RumicsCube::Init(Scene* scene)
 
                         MeshRenderer* meshRenderer = scene->GetComponent<MeshRenderer>(entity);
                         meshRenderer->mesh = *scene->currentProject->resourcesManager.GetElement<Mesh>("cube.obj");
-                        meshRenderer->material.diffuse = *scene->currentProject->resourcesManager.GetElement<Texture>("DiamondBlock.jpg");
-                        meshRenderer->material.specular = *scene->currentProject->resourcesManager.GetElement<Texture>("DiamondBlock.jpg");
+                        meshRenderer->material.phongMaterial.albedo = *scene->currentProject->resourcesManager.GetElement<Texture>("DiamondBlock.jpg");
                     }
                 }
             }

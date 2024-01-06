@@ -51,15 +51,15 @@ public:
 	 * @fn inline float Norm() const
 	 * @brief This function calculates the norm of the vector.
 	 *
-	 * <img src="vector3Norm.png" alt="Vector3 Norm" style="float: left; margin-right: 10px;" />
-	 * <br> <!-- Line break -->
-	 * <br> <!-- Line break -->
-	 * <br> <!-- Line break -->
 	 *
 	 * @return The norm of the vector.
 	 */
 	[[nodiscard]]
-	inline float Norm() const;
+	inline float Norm() const 
+	{
+		return std::sqrt(Vector3::DotProduct(*this, *this));
+	}
+
 
 	
 	/**
@@ -68,7 +68,15 @@ public:
 	* @return The NormalizeVector.
 	*/
 	[[nodiscard]]
-	 Vector3 Normalize() const;
+	 Vector3 Normalize() const
+	 {
+		 float norm = Norm();
+
+		 if (norm == 1.f)
+			 return *this;
+
+		 return Vector3(x / norm, y / norm, z / norm);
+	 }
 	
 
 	 /**
@@ -102,7 +110,15 @@ public:
 	* @param vec2 the NormalVector
 	* @return The ReflectVector.
 	*/ [[nodiscard]]
-	static Vector3 Reflect(const Vector3& Vector, const Vector3& Normal);
+	static inline Vector3 Reflect(const Vector3& Vector, const Vector3& Normal)
+	{
+		Vector3 result;
+		Vector3 NoramizeNormal = Normal.Normalize();
+
+		result = (NoramizeNormal * (2.f * (DotProduct(Vector, Normal)))) - Vector;
+
+		return result;
+	}
 
 	/**
 	* @fn constexpr inline static float DotProduct(const Vector3& vec1, const Vector3& vec2) noexcept
@@ -171,7 +187,7 @@ public:
 
 
 
-	static inline Vector3 scale(const Vector3& v, float desiredLength)
+	static inline Vector3 Scale(const Vector3& v, float desiredLength)
 	{
 		return v * desiredLength / v.Norm();
 	}
@@ -189,21 +205,6 @@ public:
 	*/
 	constexpr const float* GetPtr() const { return &x; }
 
-	[[nodiscard]]
-	Vector3 MakePositivEuleur() const;
-
-	/*
-	[[nodiscard]]
-	static inline Vector3 Slerp(const Vector3& v1, const Vector3& v2, float t)
-	{
-		float phi = std::acos(Vector3::DotProduct(v1, v2));
-		float valueP0 = std::sin((1 - t) * phi) / std::sin(phi);
-		float valueP1 = std::sin(t * phi) / std::sin(phi);
-
-
-		return  (v1 * valueP0) + (v2 * valueP1);
-	}
-	*/
 	/**
 	* \name Basic Value Constants
 	* @{
@@ -246,7 +247,7 @@ public:
 	 */
 	constexpr inline static  Vector3 Up() noexcept
 	{
-		return Vector3(0.f, 1.f, 0.f);
+		return Vector3(0.f, 1,0);
 	}
 
 	/**
@@ -254,7 +255,7 @@ public:
 	 */
 	constexpr inline static  Vector3 Down() noexcept
 	{
-		return Vector3(0.f, -1.f, 0.f);
+		return Vector3(0.f, -1, 0);
 	}
 
 	/**
@@ -262,7 +263,7 @@ public:
 	 */
 	constexpr inline static  Vector3 Forward() noexcept
 	{
-		return Vector3(0.f, 0.f, 1.f);
+		return Vector3(0.f, 0, 1.f);
 	}
 
 	/**

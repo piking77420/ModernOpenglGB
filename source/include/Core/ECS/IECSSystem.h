@@ -22,19 +22,19 @@ class IEcsSystem
 public:
 
 	
-	virtual void Init(Scene* scene)  = 0;
+	virtual void Init(Scene* scene) {}
 
-	virtual void Awake(Scene* scene)  = 0;
-	virtual void Start(Scene* scene) = 0;
+	virtual void Awake(Scene* scene)  {}
+	virtual void Start(Scene* scene) {}
 
-	virtual void OnDrawGizmo(Scene* scene) = 0;
+	virtual void OnDrawGizmo(Scene* scene) {}
 	
-	virtual void FixedUpdate(Scene* scene) = 0;
-	virtual void Update(Scene* scene) = 0;
-	virtual void LateUpdate(Scene* scene) = 0;
+	virtual void FixedUpdate(Scene* scene) {}
+	virtual void Update(Scene* scene) {}
+	virtual void LateUpdate(Scene* scene) {}
 
-	virtual void Render(Shader& shader,Scene* scene) = 0;
-	virtual void OnResizeData(uint32_t ComponentTypeID,std::vector<uint8_t>* data)  = 0;
+	virtual void Render(Shader& shader,Scene* scene) {}
+	virtual void OnResizeData(uint32_t ComponentTypeID,std::vector<uint8_t>* data)  {}
 	virtual ~IEcsSystem() {};
 
 };

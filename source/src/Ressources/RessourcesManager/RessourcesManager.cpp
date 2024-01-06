@@ -41,10 +41,14 @@ void ResourcesManager::LoadAllAssets(const std::string& projectFolder)
 
 	};
 
-
-
-	CubeMaps* SkySkybox = new CubeMaps(cubemapsSkyString);
+	CubeMaps* SkySkybox = new CubeMaps(cubemapsSkyString, TextureFlags::NONEFLAG);
 	PushBackElement<CubeMaps>("SkySkybox", SkySkybox);
+
+
+
+	CubeMaps* textureHdr = new CubeMaps("ProjectFolder/Project1/assets/cube_maps/skybox.hdr");
+	PushBackElement<CubeMaps>("skybox", textureHdr);
+
 
 	std::chrono::system_clock::time_point timeStart = std::chrono::system_clock::now();
 
@@ -53,17 +57,11 @@ void ResourcesManager::LoadAllAssets(const std::string& projectFolder)
 	for (const auto& entry : std::filesystem::directory_iterator(projectFolder))
 			LookFiles(entry.path());
 	
-	/*
-	// LoadScript 
-	fs::path scriptPath("PythonSource");
 
-	for (const auto& entry : fs::directory_iterator(scriptPath)) 
+	for (auto it = m_mainResourcesMap.begin(); it != m_mainResourcesMap.end(); it++)
 	{
-		LoadScript(entry.path().c_str());
+		it->second->InitResource();
 	}
-	*/
-
-
 
 	PrintTime(timeStart, (int)m_mainResourcesMap.size());
 }
@@ -252,3 +250,4 @@ void ResourcesManager::LookFiles(fs::path _path)
 	}		
 		
 }
+

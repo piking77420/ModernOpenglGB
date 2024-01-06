@@ -8,7 +8,7 @@ public:
 
 
 	std::string WindowName;
-	 void UpdateLayer(Project& currentProject, std::vector<InputEvent*>& inputsEvents) override;
+	 void UpdateLayer(Project& currentProject) override;
 
 	 Log() {
 		 WindowName = "Log";
@@ -20,7 +20,7 @@ protected:
 
 private:
 	static char buffer[36];
-	static inline bool Isopen = true;
+	
 	static inline bool AutoScroll = true;
 
 };

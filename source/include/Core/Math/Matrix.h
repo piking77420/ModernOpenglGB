@@ -22,7 +22,7 @@ public:
 	
 
 
-	Matrix Transposate();
+	Matrix Transpose();
 	static Matrix Identity(const int size) ;
 	static Matrix Identity(const int sizeX , const int sizeY);
 	static Matrix ReturnAugmentedMatrix(const Matrix& base, const Matrix& added);
@@ -30,8 +30,8 @@ public:
 	Matrix Invert();
 	void AddInMatrixVector(const Vector& Row0);
 	static Matrix SubDivideMatrix(const Matrix& matrix, int index);
-	static float CalculateDertimant(const Matrix& matrix);	
-	Matrix PivotDeGauss();
+	static float CalculateDeterminant(const Matrix& matrix);	
+	Matrix GaussianElimination();
 
 
 
@@ -55,7 +55,7 @@ public:
 #pragma endregion
 
 	Matrix(const int size);
-	Matrix(const int lign, const int coloms);
+	Matrix(const int lign, const int Columns);
 	Matrix();
 	~Matrix();
 

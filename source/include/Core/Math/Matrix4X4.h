@@ -10,7 +10,7 @@ class Matrix;
 
 /**
 	*@class Matrix4X4
-	*@brief Matrix4X4 ColomsMajor \n
+	*@brief Matrix4X4 ColumnsMajor \n
 	* m00 m10 m20 m30 \n
 	* m01 m11 m21 m31 \n
 	* m02 m12 m22 m32 \n
@@ -24,21 +24,10 @@ class Matrix4X4
 public:
 
 	/**
-	* @var Colums
+	* @var Columns
 	Data of the Matrix
 	*/
-	Vector4 Colums[4];
-
-	/**
-	* @fn inline Vector3 GetPos();
-	* @brief This function Return the Translation of the matrix.
-	* @return m30 m31 m32 m33.
-	*/
-	inline Vector3 GetPos()
-	{
-		return static_cast<Vector3>(Colums[3]);
-	}
-
+	Vector4 Columns[4];
 
 #pragma region GraphicMatrix
 
@@ -49,6 +38,8 @@ public:
 	*/
 	static inline Matrix4X4 PerspectiveMatrix(const float fov, const float aspect, const float Near,const float Far)
 	{
+	
+		
 		float fFovRad = 1.0f / std::tanf(fov * 0.5f);
 		float zdiff = Near - Far;
 
@@ -57,13 +48,13 @@ public:
 
 		float r22 = (Far + Near) / zdiff;
 		float r32 = (2 * Far * Near) / zdiff;
-
+		
 		return {
 				{r00, 0.f, 0.f,0.f },
 				{0.f, r11, 0.f,0.f },
 				{0.f, 0.f, r22, -1.0f},
-				{0, 0,r32, 1.f}
-		};
+				{0, 0,r32, 0}
+		}; 
 
 	}
 	/**
@@ -91,6 +82,18 @@ public:
 				{r03, r13,r23, 1.f}
 		};
 	}
+
+
+	constexpr inline float GetTrace() 
+	{
+		float x = Columns[0][0];
+		float y = Columns[1][1];
+		float z = Columns[2][2];
+		float w = Columns[3][3];
+
+		return x + y + z + w;
+	}
+
 
 	static inline bool DecomposeMatrix(const Matrix4X4& matrix, Vector3& tranlation , Vector3& rotation , Vector3& scale )
 	{
@@ -130,11 +133,11 @@ public:
 
 		// Compute X scale factor and normalize first row.
 		scale.x = Row[0].Norm();
-		Row[0] = Vector3::scale(Row[0], 1.f);
+		Row[0] = Vector3::Scale(Row[0], 1.f);
 		scale.y = Row[1].Norm();
-		Row[1] = Vector3::scale(Row[1], 1.f);
+		Row[1] = Vector3::Scale(Row[1], 1.f);
 		scale.z = Row[2].Norm();
-		Row[2] = Vector3::scale(Row[2], 1.f);
+		Row[2] = Vector3::Scale(Row[2], 1.f);
 
 
 
@@ -226,9 +229,7 @@ public:
 	}
 	constexpr static inline Matrix4X4 TRS(const Vector3& translation, const Quaternion& rotation, const Vector3& scaling)
 	{
-
-
-		return (TranslateMatrix4X4(translation) * (Quaternion::ToRotationMatrix4X4(rotation) * ScalingMatrix4X4(scaling)));
+		return (TranslateMatrix4X4(translation) * (Quaternion::ToRotationMatrix4X4(rotation.Normalize()) * ScalingMatrix4X4(scaling)));
 	}
 
 #pragma endregion
@@ -245,15 +246,15 @@ public:
 		};
 	}
 
-	Matrix4X4 Invert();
-	constexpr inline Matrix4X4 Transposate() const 
+	Matrix4X4 Invert() const;
+	constexpr inline Matrix4X4 Transpose() const 
 	{
 		Matrix4X4 result;
 
-		result[0].x = Colums[0].x; result[0].y = Colums[1].x; result[0].z = Colums[2].x; result[0].w = Colums[3].x;
-		result[1].x = Colums[0].y; result[1].y = Colums[1].y; result[1].z = Colums[2].y; result[1].w = Colums[3].y;
-		result[2].x = Colums[0].z; result[2].y = Colums[1].z; result[2].z = Colums[2].z; result[2].w = Colums[3].z;
-		result[3].x = Colums[0].w; result[3].y = Colums[1].w; result[3].z = Colums[2].w; result[3].w = Colums[3].w;
+		result[0].x = Columns[0].x; result[0].y = Columns[1].x; result[0].z = Columns[2].x; result[0].w = Columns[3].x;
+		result[1].x = Columns[0].y; result[1].y = Columns[1].y; result[1].z = Columns[2].y; result[1].w = Columns[3].y;
+		result[2].x = Columns[0].z; result[2].y = Columns[1].z; result[2].z = Columns[2].z; result[2].w = Columns[3].z;
+		result[3].x = Columns[0].w; result[3].y = Columns[1].w; result[3].z = Columns[2].w; result[3].w = Columns[3].w;
 
 
 		return result;
@@ -262,11 +263,11 @@ public:
 
 	constexpr inline const float* GetPtr() const
 	{
-		return &Colums[0].x;
+		return &Columns[0].x;
 	}
 	constexpr inline float* SetPtr()
 	{
-		return &Colums[0].x;
+		return &Columns[0].x;
 	}
 
 
@@ -278,25 +279,25 @@ public:
 
 		Matrix4X4 result;
 
-		result.Colums[0].x = this->Colums[0].x * matrix[0].x + this->Colums[1].x * matrix[0].y + this->Colums[2].x * matrix[0].z + this->Colums[3].x * matrix[0].w;
-		result.Colums[0].y = this->Colums[0].y * matrix[0].x + this->Colums[1].y * matrix[0].y + this->Colums[2].y * matrix[0].z + this->Colums[3].y * matrix[0].w;
-		result.Colums[0].z = this->Colums[0].z * matrix[0].x + this->Colums[1].z * matrix[0].y + this->Colums[2].z * matrix[0].z + this->Colums[3].z * matrix[0].w;
-		result.Colums[0].w = this->Colums[0].w * matrix[0].x + this->Colums[1].w * matrix[0].y + this->Colums[2].w * matrix[0].z + this->Colums[3].w * matrix[0].w;
+		result.Columns[0].x = this->Columns[0].x * matrix[0].x + this->Columns[1].x * matrix[0].y + this->Columns[2].x * matrix[0].z + this->Columns[3].x * matrix[0].w;
+		result.Columns[0].y = this->Columns[0].y * matrix[0].x + this->Columns[1].y * matrix[0].y + this->Columns[2].y * matrix[0].z + this->Columns[3].y * matrix[0].w;
+		result.Columns[0].z = this->Columns[0].z * matrix[0].x + this->Columns[1].z * matrix[0].y + this->Columns[2].z * matrix[0].z + this->Columns[3].z * matrix[0].w;
+		result.Columns[0].w = this->Columns[0].w * matrix[0].x + this->Columns[1].w * matrix[0].y + this->Columns[2].w * matrix[0].z + this->Columns[3].w * matrix[0].w;
 
-		result.Colums[1].x = this->Colums[0].x * matrix[1].x + this->Colums[1].x * matrix[1].y + this->Colums[2].x * matrix[1].z + this->Colums[3].x * matrix[1].w;
-		result.Colums[1].y = this->Colums[0].y * matrix[1].x + this->Colums[1].y * matrix[1].y + this->Colums[2].y * matrix[1].z + this->Colums[3].y * matrix[1].w;
-		result.Colums[1].z = this->Colums[0].z * matrix[1].x + this->Colums[1].z * matrix[1].y + this->Colums[2].z * matrix[1].z + this->Colums[3].z * matrix[1].w;
-		result.Colums[1].w = this->Colums[0].w * matrix[1].x + this->Colums[1].w * matrix[1].y + this->Colums[2].w * matrix[1].z + this->Colums[3].w * matrix[1].w;
+		result.Columns[1].x = this->Columns[0].x * matrix[1].x + this->Columns[1].x * matrix[1].y + this->Columns[2].x * matrix[1].z + this->Columns[3].x * matrix[1].w;
+		result.Columns[1].y = this->Columns[0].y * matrix[1].x + this->Columns[1].y * matrix[1].y + this->Columns[2].y * matrix[1].z + this->Columns[3].y * matrix[1].w;
+		result.Columns[1].z = this->Columns[0].z * matrix[1].x + this->Columns[1].z * matrix[1].y + this->Columns[2].z * matrix[1].z + this->Columns[3].z * matrix[1].w;
+		result.Columns[1].w = this->Columns[0].w * matrix[1].x + this->Columns[1].w * matrix[1].y + this->Columns[2].w * matrix[1].z + this->Columns[3].w * matrix[1].w;
 
-		result.Colums[2].x = this->Colums[0].x * matrix[2].x + this->Colums[1].x * matrix[2].y + this->Colums[2].x * matrix[2].z + this->Colums[3].x * matrix[2].w;
-		result.Colums[2].y = this->Colums[0].y * matrix[2].x + this->Colums[1].y * matrix[2].y + this->Colums[2].y * matrix[2].z + this->Colums[3].y * matrix[2].w;
-		result.Colums[2].z = this->Colums[0].z * matrix[2].x + this->Colums[1].z * matrix[2].y + this->Colums[2].z * matrix[2].z + this->Colums[3].z * matrix[2].w;
-		result.Colums[2].w = this->Colums[0].w * matrix[2].x + this->Colums[1].w * matrix[2].y + this->Colums[2].w * matrix[2].z + this->Colums[3].w * matrix[2].w;
+		result.Columns[2].x = this->Columns[0].x * matrix[2].x + this->Columns[1].x * matrix[2].y + this->Columns[2].x * matrix[2].z + this->Columns[3].x * matrix[2].w;
+		result.Columns[2].y = this->Columns[0].y * matrix[2].x + this->Columns[1].y * matrix[2].y + this->Columns[2].y * matrix[2].z + this->Columns[3].y * matrix[2].w;
+		result.Columns[2].z = this->Columns[0].z * matrix[2].x + this->Columns[1].z * matrix[2].y + this->Columns[2].z * matrix[2].z + this->Columns[3].z * matrix[2].w;
+		result.Columns[2].w = this->Columns[0].w * matrix[2].x + this->Columns[1].w * matrix[2].y + this->Columns[2].w * matrix[2].z + this->Columns[3].w * matrix[2].w;
 
-		result.Colums[3].x = this->Colums[0].x * matrix[3].x + this->Colums[1].x * matrix[3].y + this->Colums[2].x * matrix[3].z + this->Colums[3].x * matrix[3].w;
-		result.Colums[3].y = this->Colums[0].y * matrix[3].x + this->Colums[1].y * matrix[3].y + this->Colums[2].y * matrix[3].z + this->Colums[3].y * matrix[3].w;
-		result.Colums[3].z = this->Colums[0].z * matrix[3].x + this->Colums[1].z * matrix[3].y + this->Colums[2].z * matrix[3].z + this->Colums[3].z * matrix[3].w;
-		result.Colums[3].w = this->Colums[0].w * matrix[3].x + this->Colums[1].w * matrix[3].y + this->Colums[2].w * matrix[3].z + this->Colums[3].w * matrix[3].w;
+		result.Columns[3].x = this->Columns[0].x * matrix[3].x + this->Columns[1].x * matrix[3].y + this->Columns[2].x * matrix[3].z + this->Columns[3].x * matrix[3].w;
+		result.Columns[3].y = this->Columns[0].y * matrix[3].x + this->Columns[1].y * matrix[3].y + this->Columns[2].y * matrix[3].z + this->Columns[3].y * matrix[3].w;
+		result.Columns[3].z = this->Columns[0].z * matrix[3].x + this->Columns[1].z * matrix[3].y + this->Columns[2].z * matrix[3].z + this->Columns[3].z * matrix[3].w;
+		result.Columns[3].w = this->Columns[0].w * matrix[3].x + this->Columns[1].w * matrix[3].y + this->Columns[2].w * matrix[3].z + this->Columns[3].w * matrix[3].w;
 
 		return result;
 
@@ -307,7 +308,7 @@ public:
 	Vector4 operator*(const Vector4& Row1)
 	{
 		Vector4 resutl;
-		Matrix4X4 m = Transposate();
+		Matrix4X4 m = Transpose();
 
 		resutl.x = Vector4::DotProduct(m[0], Row1);
 		resutl.y = Vector4::DotProduct(m[1], Row1);
@@ -318,25 +319,40 @@ public:
 		return resutl;
 	}
 
+	Matrix4X4 operator*(float value)
+	{
+		
+		Matrix4X4 m = *this;
+
+		for (int i = 0; i < 4; i++)
+		{
+			for (int k = 0; k < 4; k++) 
+			{
+				m[i][k] *= value;
+			}
+		}
+
+		return m;
+	}
 
 
 	constexpr inline const Vector4& operator[](int i) const 
 	{
-		return Colums[i];
+		return Columns[i];
 	}
 	constexpr inline Vector4& operator[](int i)
 	{
-		return Colums[i];
+		return Columns[i];
 	}
 	explicit operator Matrix();
 #pragma endregion
 
 	constexpr Matrix4X4(const Vector4& a, const Vector4& b, const Vector4& c, const Vector4& d)
 	{
-		Colums[0] = a;
-		Colums[1] = b;
-		Colums[2] = c;
-		Colums[3] = d;
+		Columns[0] = a;
+		Columns[1] = b;
+		Columns[2] = c;
+		Columns[3] = d;
 	}
 	constexpr Matrix4X4() = default;
 	

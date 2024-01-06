@@ -2,15 +2,6 @@
 #include "Mathf.h"
 #include "ToolBoxMathHeaders.h"
 
-
-
-
-
-
-
-
-
-
 int const Vector::Size() const
 {
 	return (int)data.size();
@@ -32,13 +23,14 @@ float Vector::Norm() const
 
 Vector Vector::Normalize() const
 {
-	float norm = Norm();
+	float iNorm = 1.f/ Norm();
+
 
 	Vector result = *this;
 
 	for (int i = 0; i < size; i++)
 	{
-		result[i] /= norm;
+		result[i] *= iNorm;
 	}
 
 
@@ -48,9 +40,9 @@ Vector Vector::Normalize() const
 float Vector::DotProduct(const Vector& vec1) const
 {
 	if (size != vec1.size)
-		return 0;
+		return 0.f;
 
-	float result = 0;
+	float result = 0.f;
 
 	for (int i = 0; i < size; i++)
 	{
@@ -67,8 +59,6 @@ float Vector::DotProduct(const Vector& vec1, const Vector& Row1) const
 	 return vec1.DotProduct(Row1);
 }
 
-
-
 float Vector::operator[](const int& i) const
 {
 	return data[i];
@@ -84,7 +74,7 @@ float& Vector::operator[](const int& i)
 Vector::operator Vector2() 
 {
 	if (size == 0 || size < 2)
-		return Vector2(data[0], 0);
+		return Vector2(data[0], 0.f);
 	
 	return Vector2(data[0], data[1]);
 }
@@ -95,7 +85,7 @@ Vector::operator Vector3()
 	{
 		if( size == 1)
 		{
-			return Vector3(data[0], 0, 0);
+			return Vector3(data[0], 0.f, 0.f);
 		}
 		else if( size == 2)
 		{
@@ -138,7 +128,6 @@ Vector::Vector(const Vector& vec1, const Vector& Row1)
 	data.reserve(vec1.size);
 	size = vec1.size;
 
-
 	for (int i = 0; i < size; i++)
 	{
 		data[i] = Row1.data[i] - vec1.data[i];
@@ -153,13 +142,11 @@ Vector::Vector(float x, float y)
 	size = 2;
 
 	*this = vector;
-
 }
 
 Vector::Vector(const float& x, const float& y, const float& z)
 {
 	Vector vector = Vector(3);
-
 
 	size = 3;
 
@@ -174,7 +161,6 @@ Vector::Vector(const float& x, const float& y, const float& z, const float& w)
 {
 	Vector vector = Vector(4);
 
-
 	size = 4;
 
 	vector[0] = x;
@@ -182,18 +168,14 @@ Vector::Vector(const float& x, const float& y, const float& z, const float& w)
 	vector[2] = z;
 	vector[3] = w;
 
-
 	*this = vector;
-
 }
 
 Vector::Vector(int _size)
 {
 	size = _size;
-
 	
 	data.resize(_size);
-
 }
 
 
@@ -201,7 +183,6 @@ Vector::Vector()
 {
 	size = 0;
 	
-
 	data.reserve(2);
 }
 

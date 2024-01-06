@@ -10,12 +10,13 @@ class Hierarchy : public ImguiLayer
 {
 public:
 
-	void UpdateLayer(Project& currentProject, std::vector<InputEvent*>& inputsEvents);
+	void UpdateLayer(Project& currentProject);
 
 	Hierarchy();
 	 ~Hierarchy() override;
+	 
+
 protected:
-	void ListenToInput(Project& currentProject, std::vector<InputEvent*>& inputsEvents) override;
 
 private:
 	void ImguiDrawChildren(Entity* entity, Project& currentProject);

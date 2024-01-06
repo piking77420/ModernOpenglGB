@@ -39,7 +39,7 @@ void ColliderSystem::OnDrawGizmo(Scene* scene)
 		if(sphereptr->collider.IsDrawing)
 		{
 			Transform* transform = scene->GetComponent<Transform>(scene->GetEntities( sphereptr->entityID));
-			Vector3 transformPos = transform->world.GetPos();
+			Vector3 transformPos = static_cast<Vector3>(transform->world[3]);
 			Gizmo::DrawSphere(transformPos, sphereptr->radius,GizmoColor::GREENGIZMO);
 
 		}
@@ -54,7 +54,7 @@ void ColliderSystem::OnDrawGizmo(Scene* scene)
 		if (boxptr->collider.IsDrawing)
 		{
 			Transform* transform = scene->GetComponent<Transform>(scene->GetEntities(boxptr->entityID));
-			Vector3 transformPos = transform->world.GetPos();
+			Vector3 transformPos = static_cast<Vector3>(transform->world[3]);
 			Gizmo::DrawBox(transform->world, boxptr->Size, GizmoColor::GREENGIZMO);
 
 		}
@@ -418,13 +418,13 @@ void ColliderSystem::CheckCollisionBoxBox(BoxCollider& Box1, BoxCollider& Box2)
 		p1.collisionPoint = ImpactPoint1;
 		p1.depht = depth;
 		p1.entityIDBeenCollidWith = Box2.entityID;
-		p1.Normal = DeterminateVectorNormal(NormalCollision, transformbox1.world.GetPos());
+		p1.Normal = DeterminateVectorNormal(NormalCollision, static_cast<Vector3>(transformbox1.world[3]));
 
 		CollisionPoint p2;
 		p2.collisionPoint = ImpactPoint2;
 		p2.depht = depth;
 		p2.entityIDBeenCollidWith = Box1.entityID;
-		p2.Normal = DeterminateVectorNormal(NormalCollision, transformbox2.world.GetPos());
+		p2.Normal = DeterminateVectorNormal(NormalCollision, static_cast<Vector3>(transformbox2.world[3]));
 
 
 

@@ -9,14 +9,23 @@ public:
 	
 	static inline float GetDeltatime()
 	{
-		return ImGui::GetIO().DeltaTime;
+		return deltatime;
 	}
 
 	constexpr static inline float GetFixedDeltatime()
 	{
-		return 0.03f;
+		return fixdeltatime;
 	}
 
+	static float& GetDeltatimeFromImgui() 
+	{
+		return deltatime; 
+	};
+
+private : 
+
+	static inline float deltatime;
+	constexpr static inline float fixdeltatime = 0.03f;
 
 };
 

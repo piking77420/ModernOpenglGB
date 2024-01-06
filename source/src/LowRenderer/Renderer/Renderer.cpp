@@ -10,13 +10,6 @@
 #include "Core/DataStructure/Project.hpp"
 
 	
-void Renderer::framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-
-
-	glViewport(0, 0, width, height);
-	OpenGlRenderToImgui->ResizeFrammeBuffer((float)width, (float)height);
-}
 
 
 
@@ -51,13 +44,9 @@ void Renderer::RendereScene(Scene* scene,Shader* shader)
 
 
 
-Renderer::Renderer()
+void Renderer::RendereScene(Scene* scene)
 {
 
-}
-
-Renderer::~Renderer()
-{
 }
 
 
@@ -73,8 +62,7 @@ void Renderer::RenderMeshRender(const MeshRenderer* meshRender, Shader& shader, 
 	const Transform* transform = scene->GetComponent<Transform>(entity);
 	const Matrix4X4& model = transform->world;
 	const Matrix4X4& MVP = Camera::cam->GetProjectionMatrix() * Camera::cam->GetLookMatrix() * model;
-	const Matrix4X4& NormalMatrix = Quaternion::ToRotationMatrix4X4(transform->GetRotation());
-
+	const Matrix4X4& NormalMatrix = Quaternion::ToRotationMatrix4X4(transform->GetRotation()).Invert().Transpose() ;
 
 
 	// Set info to shaderProgramm
@@ -83,31 +71,120 @@ void Renderer::RenderMeshRender(const MeshRenderer* meshRender, Shader& shader, 
 	shader.SetMatrix("NormalMatrix", NormalMatrix.GetPtr());
 	shader.SetVector3("viewPos", Camera::cam->eye.GetPtr());
 
+
 	
-	// Set Material 
-	shader.SetInt("material.diffuse",0);
-	shader.SetInt("material.specular",1);
-	shader.SetFloat("material.shininess", meshRender->material.shininess);
-	shader.SetVector3("material.MPos", model[3].GetPtr());
-	shader.SetFloat("material.ka", meshRender->material.ka);
-	shader.SetFloat("material.kd", meshRender->material.kd);
-	shader.SetFloat("material.ks", meshRender->material.ks);
 
 
-	// Set Diffuse Texture 
-	glActiveTexture(GL_TEXTURE0);
-	meshRender->material.diffuse.BindTexture();
 
-	// Set Specular Texture 
-	glActiveTexture(GL_TEXTURE1);
-	meshRender->material.specular.BindTexture();
-	
-	// Draw The Object
-	meshRender->mesh.Draw();
+	if (Project::shaderType == MATERIALSHADER::PHONG)
+	{
+		RenderPhong(meshRender, shader, scene);
+	}
+	else
+	{
+		RenderPBR(meshRender, shader, scene);
+
+	}
+
 
 
 }
 
 void Renderer::RenderStencil(const MeshRenderer* meshRender, const Shader& shader, Scene* scene)
 {
+
+}
+
+void Renderer::RenderPhong(const MeshRenderer* meshRender, Shader& shader, Scene* scene)
+{
+
+	Entity* entity = scene->GetEntities(meshRender->entityID);
+	const Transform* transform = scene->GetComponent<Transform>(entity);
+
+	// Set Material 
+	shader.SetInt("material.albedo", 0);
+	shader.SetFloat("material.shininess", meshRender->material.phongMaterial.shininess);
+	shader.SetFloat("material.ka", meshRender->material.phongMaterial.ka);
+	shader.SetFloat("material.kd", meshRender->material.phongMaterial.kd);
+	shader.SetFloat("material.ks", meshRender->material.phongMaterial.ks);
+
+
+	// Set Diffuse Texture 
+	glActiveTexture(GL_TEXTURE0);
+	meshRender->material.phongMaterial.albedo.BindTexture();
+
+
+	// Draw The Object
+	meshRender->mesh.Draw();
+
+}
+
+void Renderer::RenderPBR(const MeshRenderer* meshRender, Shader& shader, Scene* scene)
+{
+	Entity* entity = scene->GetEntities(meshRender->entityID);
+	const Transform* transform = scene->GetComponent<Transform>(entity);
+	const MaterialPBR& material = meshRender->material.pbrMaterial;
+
+	// albedo 
+	if (material.albedo.ressourceMap != nullptr)
+	{
+		shader.SetInt("albedoNode.AlbedoTexture", 0);
+		// Set Diffuse Texture 
+		glActiveTexture(GL_TEXTURE0);
+		meshRender->material.pbrMaterial.albedo.ressourceMap->BindTexture();
+
+		shader.SetBool("albedoNode.valueTexture", 1);
+	}
+	else
+	{
+		shader.SetVector3("albedoNode.color", material.albedo.coeff.GetPtr());
+		shader.SetBool("albedoNode.valueTexture", 0);
+	}
+
+	// Metallic //
+
+	if (material.metallic.ressourceMap != nullptr)
+	{
+		shader.SetInt("metallicNode.MetallicTexture", 1);
+		shader.SetBool("metallicNode.valueTexture", 1);
+		glActiveTexture(GL_TEXTURE1);
+		meshRender->material.pbrMaterial.metallic.ressourceMap->BindTexture();
+	}
+	else
+	{
+		shader.SetFloat("metallicNode.metallicValue", material.metallic.coeff);
+		shader.SetBool("metallicNode.valueTexture", 0);
+	}
+
+	// Rougness
+	if (material.metallic.ressourceMap != nullptr)
+	{
+		shader.SetInt("roughnessNode.RoughnessTexture", 2);
+		shader.SetBool("roughnessNode.valueTexture", 1);
+		glActiveTexture(GL_TEXTURE2);
+		meshRender->material.pbrMaterial.roughness.ressourceMap->BindTexture();
+	}
+	else
+	{
+		shader.SetFloat("roughnessNode.RoughnesValue", material.roughness.coeff);
+		shader.SetBool("roughnessNode.valueTexture", 0);
+	}
+
+
+	// Occlusion
+	if (material.metallic.ressourceMap != nullptr)
+	{
+		shader.SetInt("ambinatOcclusion.OcclusionTexture", 3);
+		shader.SetBool("ambinatOcclusion.valueTexture", 1);
+		glActiveTexture(GL_TEXTURE3);
+		meshRender->material.pbrMaterial.ao.ressourceMap->BindTexture();
+	}
+	else
+	{
+		shader.SetFloat("ambinatOcclusion.OcclusionValue", material.ao.coeff);
+		shader.SetBool("ambinatOcclusion.valueTexture", 0);
+	}
+
+
+	meshRender->mesh.Draw();
 }

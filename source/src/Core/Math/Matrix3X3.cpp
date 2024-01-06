@@ -7,21 +7,17 @@ Matrix3X3 Matrix3X3::TranslationMatrix3X3(const Vector2& translation)
 {
 	Matrix3X3 result;
 
-	result.Coloms[0].x = translation.x;
-	result.Coloms[0].y = 0;
-	result.Coloms[0].z = 0;
+	result.Columns[0].x = translation.x;
+	result.Columns[0].y = 0.f;
+	result.Columns[0].z = 0.f;
 
+	result.Columns[1].x = 0.f;
+	result.Columns[1].y = translation.y;
+	result.Columns[1].z = 0.f;
 
-	result.Coloms[1].x = 0;
-	result.Coloms[1].y = translation.y;
-	result.Coloms[1].z = 0;
-
-
-
-	result.Coloms[2].x = 0;
-	result.Coloms[2].y = 0;
-	result.Coloms[2].z = 1;
-
+	result.Columns[2].x = 0.f;
+	result.Columns[2].y = 0.f;
+	result.Columns[2].z = 1.f;
 
 	return result;
 }
@@ -30,23 +26,19 @@ Matrix3X3 Matrix3X3::Rotation2DMatrix3X3(const float& angle)
 {
 	Matrix3X3 result;
 
-	result.Coloms[0].x = std::cos((angle));
-	result.Coloms[0].y = 0;
-	result.Coloms[0].z = 0;
+	result.Columns[0].x = std::cos((angle));
+	result.Columns[0].y = 0.f;
+	result.Columns[0].z = 0.f;
 
+	result.Columns[1].x = 0.f;
+	result.Columns[1].y = std::sin((angle));
+	result.Columns[1].z = 0.f;
 
-	result.Coloms[1].x = 0;
-	result.Coloms[1].y = std::sin((angle));
-	result.Coloms[1].z = 0;
-
-
-
-	result.Coloms[2].x = 0;
-	result.Coloms[2].y = 0;
-	result.Coloms[2].z = 1;
+	result.Columns[2].x = 0.f;
+	result.Columns[2].y = 0.f;
+	result.Columns[2].z = 1.f;
 
 	return result;
-
 }
 
 
@@ -55,21 +47,17 @@ Matrix3X3 Matrix3X3::Identity()
 {
 	Matrix3X3 result;
 
-	result.Coloms[0].x = 1;
-	result.Coloms[0].y = 0;
-	result.Coloms[0].z = 0;
+	result.Columns[0].x = 1.f;
+	result.Columns[0].y = 0.f;
+	result.Columns[0].z = 0.f;
 
+	result.Columns[1].x = 0.f;
+	result.Columns[1].y = 1.f;
+	result.Columns[1].z = 0.f;
 
-	result.Coloms[1].x = 0;
-	result.Coloms[1].y = 1;
-	result.Coloms[1].z = 0;
-
-
-
-	result.Coloms[2].x = 0;
-	result.Coloms[2].y = 0;
-	result.Coloms[2].z = 1;
-
+	result.Columns[2].x = 0.f;
+	result.Columns[2].y = 0.f;
+	result.Columns[2].z = 1.f;
 
 	return result;
 }
@@ -79,13 +67,7 @@ Matrix3X3 Matrix3X3::Identity()
 
 
 Matrix3X3 Matrix3X3::Invert()
-{/*
-	Matrix m = (Matrix)*this;
-
-	m = m.Invert();
-
-	return (Matrix3X3)m;*/
-
+{
 	Matrix3X3 adj = Matrix3X3::AdjoinMatrix(*this);
 	float determinant = Matrix3X3::Determinant(*this);
 
@@ -112,18 +94,18 @@ Matrix3X3::operator Matrix()
 {
 	Matrix result = Matrix(3); 
 
-	result[0][0] = Coloms[0].x;
-	result[1][0] = Coloms[0].y;
-	result[2][0] = Coloms[0].z;
+	result[0][0] = Columns[0].x;
+	result[1][0] = Columns[0].y;
+	result[2][0] = Columns[0].z;
 
-	result[0][1] = Coloms[1].x;
-	result[1][1] = Coloms[1].y;
-	result[2][1] = Coloms[1].z;
+	result[0][1] = Columns[1].x;
+	result[1][1] = Columns[1].y;
+	result[2][1] = Columns[1].z;
 
 
-	result[0][2] = Coloms[2].x;
-	result[1][2] = Coloms[2].y;
-	result[2][2] = Coloms[2].z;
+	result[0][2] = Columns[2].x;
+	result[1][2] = Columns[2].y;
+	result[2][2] = Columns[2].z;
 
 	return result;
 }
@@ -133,11 +115,11 @@ Matrix3X3::operator Matrix()
 
  std::ostream& operator<<(std::ostream& stream, const Matrix3X3& maxtrix)
  {
-	 stream << maxtrix.Coloms[0].x << " " << maxtrix.Coloms[1].x << " " << maxtrix.Coloms[2].x << " ";
+	 stream << maxtrix.Columns[0].x << " " << maxtrix.Columns[1].x << " " << maxtrix.Columns[2].x << " ";
 	 stream << '\n';
-	 stream << maxtrix.Coloms[0].y << " " << maxtrix.Coloms[1].y << " " << maxtrix.Coloms[2].y << " ";
+	 stream << maxtrix.Columns[0].y << " " << maxtrix.Columns[1].y << " " << maxtrix.Columns[2].y << " ";
 	 stream << '\n';
-	 stream << maxtrix.Coloms[0].z << " " << maxtrix.Coloms[1].z << " " << maxtrix.Coloms[2].z << " ";
+	 stream << maxtrix.Columns[0].z << " " << maxtrix.Columns[1].z << " " << maxtrix.Columns[2].z << " ";
 	
 
 	 return stream;

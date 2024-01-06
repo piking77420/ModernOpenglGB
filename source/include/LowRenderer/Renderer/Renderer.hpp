@@ -12,15 +12,23 @@ class Renderer
 {
 public:
 
-	static inline FrameBuffer* OpenGlRenderToImgui = new FrameBuffer(800,800);
-	static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+	static inline FrameBuffer* BindedFrameBuffer = nullptr;
+	// Use If you want to draw the scene in a with a specific shader
+	static void RendereScene(Scene* scene, Shader* shader);
 
-	void RendereScene(Scene* scene, Shader* shader);
+	// Render Scene as usual
+	static void RendereScene(Scene* scene);
 
-	Renderer();
-	~Renderer();
+	Renderer() = delete;
+	~Renderer() = delete;
 private:
-	void RenderMeshRender(const MeshRenderer* meshRender, Shader& shader, Scene* scene);
-	void RenderStencil(const MeshRenderer* meshRender,const Shader& shader, Scene* scene);
+	static void RenderMeshRender(const MeshRenderer* meshRender, Shader& shader, Scene* scene);
+	static void RenderStencil(const MeshRenderer* meshRender,const Shader& shader, Scene* scene);
+
+	static void RenderPhong(const MeshRenderer* meshRender, Shader& shader, Scene* scene);
+	static void RenderPBR(const MeshRenderer* meshRender, Shader& shader, Scene* scene);
+
+
+
 };
 

@@ -38,22 +38,7 @@ Collider* PhysicsSystem::GetCollider(Scene* scene, uint32_t EntityID)
 	return nullptr;
 }
 
-void PhysicsSystem::Init(Scene* scene)
-{
-};
 
-void PhysicsSystem::Awake(Scene* scene)
-{
-
-};
-void PhysicsSystem::Start(Scene* scene)
-{
-
-};
-void PhysicsSystem::OnDrawGizmo(Scene* scene)
-{
-
-};
 
 void PhysicsSystem::FixedUpdate(Scene* scene)
 {
@@ -65,23 +50,6 @@ void PhysicsSystem::FixedUpdate(Scene* scene)
 	ApplieGravity(scene,rigidBodys);
 	//CollisionRespond(scene, rigidBodys);
 	ApplieForces(scene, rigidBodys);
-
-};
-void PhysicsSystem::Update(Scene* scene)
-{
-
-};
-void PhysicsSystem::LateUpdate(Scene* scene)
-{
-
-};
-
-void PhysicsSystem::Render(Shader& shader, Scene* scene)
-{
-
-};
-void PhysicsSystem::OnResizeData(uint32_t ComponentTypeID, std::vector<uint8_t>* data)
-{
 
 };
 

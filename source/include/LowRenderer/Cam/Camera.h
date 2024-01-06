@@ -8,7 +8,6 @@
 
 #include"Ressources/RessourcesManager/RessourcesManager.h"
 
-const Vector2 CAMERASENSITIVITY = Vector2(0.2f, 0.2f);
 
 
 // Default Camera Value // 
@@ -26,24 +25,19 @@ public:
 	Matrix4X4 GetLookMatrix();
 	Matrix4X4 GetProjectionMatrix() const;
 	void ImguiCameraWindow();
-	void CameraUpdate();
 	void CameraRenderer(Shader* shader);
 	void CameraGetInput(float xInput, float yInput);
+	void CameraGetInput(Vector2 Input);
+
 	Matrix4X4 GetTransform() const;
 
 	static Camera* cam;
 
-	Camera* GetMainCamera()  
+	static inline Camera* GetMainCamera()  
 	{
 		return cam;
 	}
 
-
-#ifndef SWIG
-
-	static void MouseCallback(GLFWwindow* context, double _xpos, double _ypos);
-	static void MouseButtonCallBack(GLFWwindow* window, int button, int action, int mods);
-#endif // !SWIG
 
 	Camera();
 	~Camera();
@@ -60,7 +54,7 @@ public:
 
 	// CameraControl
 
-	Vector2 mouseSentivity;
+	Vector2 mouseSentivity = Vector2::One() * 0.5f;
 	bool LeftClick;
 	Vector2 mousePos;
 
@@ -70,19 +64,15 @@ public:
 		return GetProjectionMatrix() * GetLookMatrix();
 	}
 
+	void CameraRotation();
+	void CameraMovment();
 private : 
-	void CameraRotation(); 
-#ifndef SWIG
 
-	void CameraMovment(GLFWwindow* context, const ImGuiIO& io);
-#endif // !SWIG
 
 	//Camera Shader
-	float fov = 85.f;
+	float fov = 90;
 	float Fnear = 0.01f;
 	float Ffar = 1000.f;
-	Matrix4X4 VP;
-	Matrix4X4 m_LookAtMatrix;
-	Matrix4X4 m_ProjectionMatrix;
+
 };
 

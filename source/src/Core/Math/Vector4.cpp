@@ -4,19 +4,6 @@
 #include "Vector2.h"
 #include "Mathf.h"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 float Vector4::Norm() const
 {
 	float result = x * x + y * y + z * z+ w * w;
@@ -26,20 +13,20 @@ float Vector4::Norm() const
 
 Vector4 Vector4::Normalize() const
 {
-	float norm = Norm();
+	//BIG
+	float iNorm = 1.f / Norm();
 
 	Vector4 result = *this;
 
-	result.x /= norm;
-	result.y /= norm;
-	result.z /= norm;
-	result.w /= norm;
+	result.x *= iNorm;
+	result.y *= iNorm;
+	result.z *= iNorm;
+	result.w *= iNorm;
 
 
 
 	return result;
 }
-
 
 Vector4::operator Vector() const
 {
@@ -60,26 +47,9 @@ Vector4::operator Vector2() const
 	return Vector2(x, y);
 }
 
-
-
-
-
-
-
-
-
-
 std::ostream& operator<<(std::ostream& stream, const Vector4& vec)
 {
 	stream << vec.x << " " << vec.y << " " << vec.z << " " << vec.w << '\n';
 
 	return stream;
 }
-
-
-
-
-
-
-
-

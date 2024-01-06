@@ -13,12 +13,14 @@
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 #include "ECS/Scene.h"
+#include "Core/Input/CoreInput.h"
+#include "AppTime.h"
 
 // Camera Init // 
 float lastX = windowWidth / 2.0f;
 float lastY = windowHeight / 2.0f;
 bool firstmove = false;
-Camera* Camera::cam = new Camera();
+Camera* Camera::cam = nullptr;//new Camera();
 
 
 #ifndef SWIG
@@ -43,23 +45,14 @@ Matrix4X4 Camera::GetLookMatrix()
 
 Matrix4X4 Camera::GetProjectionMatrix() const
 {
-	return Matrix4X4::PerspectiveMatrix(Math::Deg2Rad * (fov), (float)windowWidth/ (float)windowHeight, Fnear, Ffar);
+	return Matrix4X4::PerspectiveMatrix(Math::Deg2Rad * (fov), (float)Renderer::BindedFrameBuffer->widht/ (float)Renderer::BindedFrameBuffer->height, Fnear, Ffar);
 }
 
 
 #ifndef SWIG
 
 
-void Camera::CameraUpdate() 
-{
-	GLFWwindow* currentContext = glfwGetCurrentContext();
-	ImGuiIO& io = ImGui::GetIO();
-	CameraMovment(currentContext, io);
-	CameraRotation();
-	m_ProjectionMatrix = GetProjectionMatrix();
-	m_LookAtMatrix = GetLookMatrix();
 
-}
 
 #endif // !SWIG
 
@@ -67,6 +60,8 @@ void Camera::CameraUpdate()
 void Camera::CameraRenderer(Shader* shader)
 {
 	shader->Use();
+	Matrix4X4&& VP = GetProjectionMatrix() * GetLookMatrix();
+
 	shader->SetMatrix("VP", VP.GetPtr());
 	shader->SetMatrix("view", GetLookMatrix().GetPtr());
 	shader->SetVector3("viewPos", &eye.x);
@@ -107,12 +102,6 @@ Camera::Camera()
 
 	CameraRotation();
 
-	m_LookAtMatrix = GetLookMatrix();
-	m_ProjectionMatrix = GetProjectionMatrix();
-
-	VP = m_ProjectionMatrix * m_LookAtMatrix;
-	mouseSentivity = CAMERASENSITIVITY;
-
 
 }
 
@@ -123,11 +112,34 @@ Camera::~Camera()
 
 void Camera::CameraGetInput(float xInput, float yInput)
 {
-	xInput *= mouseSentivity.x;
-	yInput *= mouseSentivity.y;
 
-	yaw += xInput;
-	pitch += yInput;
+	float xpos = static_cast<float>(xInput);
+	float ypos = static_cast<float>(yInput);
+
+
+	if (!firstmove)
+	{
+		lastX = xpos;
+		lastY = ypos;
+		firstmove = true;
+	}
+
+	float xoffset = xpos - lastX;
+	float yoffset = lastY - ypos;
+
+
+
+	lastX = xpos;
+	lastY = ypos;
+
+
+
+
+	xoffset *= mouseSentivity.x;
+	yoffset *= mouseSentivity.y;
+
+	yaw += xoffset;
+	pitch += yoffset;
 
 
 	if (pitch > 89.0f)
@@ -136,6 +148,11 @@ void Camera::CameraGetInput(float xInput, float yInput)
 		pitch = -89.0f;
 
 	CameraRotation();
+}
+
+void Camera::CameraGetInput(Vector2 Input)
+{
+	CameraGetInput(Input.x, Input.y);
 }
 
 Matrix4X4 Camera::GetTransform() const
@@ -161,84 +178,66 @@ void Camera::CameraRotation()
 
 
 
-void Camera::CameraMovment( GLFWwindow* context,const ImGuiIO& io )
+void Camera::CameraMovment()
 {
 
 
-	float velocity = cameraVelocity *  io.DeltaTime;
+	float addValue = cameraVelocity * AppTime::GetDeltatime();
 
-	if (IskeyPress(context, GLFW_KEY_W))
+	
+	if (CoreInput::IsKeyHold(KEY_W))
 	{
-
-		this->eye += Front * velocity;
-
+		eye += Front * addValue;
 	}
-	else if (IskeyPress(context, GLFW_KEY_S))
+	if (CoreInput::IsKeyHold(KEY_S))
 	{
-		this->eye -= Front * velocity;
+		eye -= Front * addValue;
 	}
-
-
-	if (IskeyPress(context, GLFW_KEY_A))
+	if (CoreInput::IsKeyHold(KEY_A))
 	{
-
-		this->eye -= Right * velocity;
+		eye -= Right * addValue;
 	}
-	else if (IskeyPress(context, GLFW_KEY_D))
+	if (CoreInput::IsKeyHold(KEY_D))
 	{
-
-		this->eye += Right * velocity;
-	}
-
-	if (IskeyPress(context, GLFW_KEY_SPACE))
-	{
-		this->eye += Up * velocity;
-	}
-	else if (IskeyPress(context, GLFW_KEY_LEFT_CONTROL))
-	{
-		this->eye -= Up * velocity;
+		eye += Right * addValue;
 	}
 
 
-		
+	if (CoreInput::IsKeyHold(KEY_Space))
+	{
+		eye += Up * addValue;
+	}
+	if (CoreInput::IsKeyHold(KEY_LeftCtrl))
+	{
+		eye -= Up * addValue;
+	}
+	
+	/*
+	if (ImGui::IsKeyPressed(ImGuiKey_W,true))
+	{
+		eye += Front * addValue;
+	}
+	if (ImGui::IsKeyPressed(ImGuiKey_S, true))
+	{
+		eye -= Front * addValue;
+	}
+	if (ImGui::IsKeyPressed(ImGuiKey_A, true))
+	{
+		eye -= Right * addValue;
+	}
+	if (ImGui::IsKeyPressed(ImGuiKey_D, true))
+	{
+		eye += Right * addValue;
+	}
+
+
+	if (ImGui::IsKeyPressed(ImGuiKey_Space, true))
+	{
+		eye += Up * addValue;
+	}
+	if (ImGui::IsKeyPressed(ImGuiKey_LeftCtrl, true))
+	{
+		eye -= Up * addValue;
+	}*/
 }
 
-void Camera::MouseCallback(GLFWwindow* context, double _xpos, double _ypos)
-{
-	float xpos = static_cast<float>(_xpos);
-	float ypos = static_cast<float>(_ypos);
-
-
-	if (!firstmove)
-	{
-		lastX = xpos;
-		lastY = ypos;
-		firstmove = true;
-	}
-
-	float xoffset = xpos - lastX;
-	float yoffset = lastY - ypos;
-
-
-
-	lastX = xpos;
-	lastY = ypos;
-
-	if (glfwGetMouseButton(context, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
-		Camera::cam->CameraGetInput(xoffset, yoffset);
-
-}
-
-void Camera::MouseButtonCallBack(GLFWwindow* window, int button, int action, int mods)
-{
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) 
-	{
-		Camera::cam->LeftClick = true;
-		double x, y;
-		glfwGetCursorPos(window, &x, &y);
-		Camera::cam->mousePos.x = (float)x;
-		Camera::cam->mousePos.y = (float)y;
-
-	}
-
-}

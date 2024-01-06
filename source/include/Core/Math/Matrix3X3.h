@@ -9,7 +9,7 @@ class Matrix3X3
 public:
 
 
-	Vector3 Coloms[3];
+	Vector3 Columns[3];
 	static Matrix3X3 Identity();
 
 	
@@ -21,7 +21,7 @@ public:
 	[[nodiscard]]
 	Matrix3X3 Invert();
 	[[nodiscard]]
-	constexpr inline Matrix3X3 Transposate() const
+	constexpr inline Matrix3X3 Transpose() const
 	{
 		Matrix3X3 result;
 
@@ -30,7 +30,7 @@ public:
 		{
 			for (int y = 0; y < 3; y++)
 			{
-				result[x][y] = Coloms[y][x];
+				result[x][y] = Columns[y][x];
 			}
 		}
 
@@ -63,20 +63,20 @@ public:
 	static inline Matrix3X3 AdjoinMatrix(const Matrix3X3& matrix)
 	{
 
-		Matrix3X3 copy = matrix.Transposate();
+		Matrix3X3 copy = matrix.Transpose();
 		Matrix3X3 minor;
 
-		minor.Coloms[0][0] = Matrix2X2::Determinant(Matrix2X2(copy[1].y, copy[1].z, copy[2].y, copy[2].z));
-		minor.Coloms[0][1] = -Matrix2X2::Determinant(Matrix2X2(copy[1].x, copy[1].z, copy[2].x, copy[2].z));
-		minor.Coloms[0][2] = Matrix2X2::Determinant(Matrix2X2(copy[1].x, copy[1].y, copy[2].x, copy[2].y));
+		minor.Columns[0][0] = Matrix2X2::Determinant(Matrix2X2(copy[1].y, copy[1].z, copy[2].y, copy[2].z));
+		minor.Columns[0][1] = -Matrix2X2::Determinant(Matrix2X2(copy[1].x, copy[1].z, copy[2].x, copy[2].z));
+		minor.Columns[0][2] = Matrix2X2::Determinant(Matrix2X2(copy[1].x, copy[1].y, copy[2].x, copy[2].y));
 
-		minor.Coloms[1][0] = -Matrix2X2::Determinant(Matrix2X2(copy[0].y, copy[0].z, copy[2].y, copy[2].z));
-		minor.Coloms[1][1] = Matrix2X2::Determinant(Matrix2X2(copy[0].x, copy[0].z, copy[2].x, copy[2].z));
-		minor.Coloms[1][2] = -Matrix2X2::Determinant(Matrix2X2(copy[0].x, copy[0].y, copy[2].x, copy[2].y));
+		minor.Columns[1][0] = -Matrix2X2::Determinant(Matrix2X2(copy[0].y, copy[0].z, copy[2].y, copy[2].z));
+		minor.Columns[1][1] = Matrix2X2::Determinant(Matrix2X2(copy[0].x, copy[0].z, copy[2].x, copy[2].z));
+		minor.Columns[1][2] = -Matrix2X2::Determinant(Matrix2X2(copy[0].x, copy[0].y, copy[2].x, copy[2].y));
 
-		minor.Coloms[2][0] = Matrix2X2::Determinant(Matrix2X2(copy[0].y, copy[0].z, copy[1].y, copy[1].z));
-		minor.Coloms[2][1] = -Matrix2X2::Determinant(Matrix2X2(copy[0].x, copy[0].z, copy[1].x, copy[1].z));
-		minor.Coloms[2][2] = Matrix2X2::Determinant(Matrix2X2(copy[0].x, copy[0].y, copy[1].x, copy[1].y));
+		minor.Columns[2][0] = Matrix2X2::Determinant(Matrix2X2(copy[0].y, copy[0].z, copy[1].y, copy[1].z));
+		minor.Columns[2][1] = -Matrix2X2::Determinant(Matrix2X2(copy[0].x, copy[0].z, copy[1].x, copy[1].z));
+		minor.Columns[2][2] = Matrix2X2::Determinant(Matrix2X2(copy[0].x, copy[0].y, copy[1].x, copy[1].y));
 
 
 
@@ -88,13 +88,19 @@ public:
 	
 	constexpr inline Vector3& operator[](const int& i)
 	{
-		return Coloms[i];
+		return Columns[i];
 	}
 	constexpr inline const Vector3& operator[](const int& i) const
 	{
-		return Coloms[i];
+		return Columns[i];
 	}
 
+
+	constexpr inline float Trace()
+	{
+		Matrix3X3& m = *this;
+		return m[0][0] + m[1][1] + m[2][2];
+	}
 
 	explicit operator Matrix();
 
@@ -102,19 +108,19 @@ public:
 	[[nodiscard]]
 	constexpr const float* GetPtr() const
 	{
-		return &Coloms[0].x;
+		return &Columns[0].x;
 	}
 	[[nodiscard]]
 	constexpr float* SetPtr()
 	{
-		return &Coloms[0].x;
+		return &Columns[0].x;
 	}
 
 	constexpr Matrix3X3(const Vector3& a, const Vector3& b, const Vector3& c)
 	{
-		Coloms[0] = a;
-		Coloms[1] = b;
-		Coloms[2] = c;
+		Columns[0] = a;
+		Columns[1] = b;
+		Columns[2] = c;
 	}
 	constexpr Matrix3X3() = default;
 
@@ -126,18 +132,18 @@ public:
 	{
 		Matrix3X3 result = *this;
 
-		result.Coloms[0].x *= value;
-		result.Coloms[0].y *= value;
-		result.Coloms[0].z *= value;
+		result.Columns[0].x *= value;
+		result.Columns[0].y *= value;
+		result.Columns[0].z *= value;
 
 
-		result.Coloms[1].x *= value;
-		result.Coloms[1].y *= value;
-		result.Coloms[1].z *= value;
+		result.Columns[1].x *= value;
+		result.Columns[1].y *= value;
+		result.Columns[1].z *= value;
 
-		result.Coloms[2].x *= value;
-		result.Coloms[2].y *= value;
-		result.Coloms[2].z *= value;
+		result.Columns[2].x *= value;
+		result.Columns[2].y *= value;
+		result.Columns[2].z *= value;
 
 
 
@@ -148,17 +154,17 @@ public:
 	{
 		Matrix3X3 result;
 
-		result.Coloms[0].x = this->Coloms[0].x * matrix[0].x + this->Coloms[0].y * matrix[1].x + this->Coloms[0].z * matrix[2].x;
-		result.Coloms[0].y = this->Coloms[0].x * matrix[0].y + this->Coloms[0].y * matrix[1].y + this->Coloms[0].z * matrix[2].y;
-		result.Coloms[0].z = this->Coloms[0].x * matrix[0].z + this->Coloms[0].y * matrix[1].z + this->Coloms[0].z * matrix[2].z;
+		result.Columns[0].x = this->Columns[0].x * matrix[0].x + this->Columns[0].y * matrix[1].x + this->Columns[0].z * matrix[2].x;
+		result.Columns[0].y = this->Columns[0].x * matrix[0].y + this->Columns[0].y * matrix[1].y + this->Columns[0].z * matrix[2].y;
+		result.Columns[0].z = this->Columns[0].x * matrix[0].z + this->Columns[0].y * matrix[1].z + this->Columns[0].z * matrix[2].z;
 
-		result.Coloms[1].x = this->Coloms[1].x * matrix[0].x + this->Coloms[1].y * matrix[1].x + this->Coloms[1].z * matrix[2].x;
-		result.Coloms[1].y = this->Coloms[1].x * matrix[0].y + this->Coloms[1].y * matrix[1].y + this->Coloms[1].z * matrix[2].y;
-		result.Coloms[1].z = this->Coloms[1].x * matrix[0].z + this->Coloms[1].y * matrix[1].z + this->Coloms[1].z * matrix[2].z;
+		result.Columns[1].x = this->Columns[1].x * matrix[0].x + this->Columns[1].y * matrix[1].x + this->Columns[1].z * matrix[2].x;
+		result.Columns[1].y = this->Columns[1].x * matrix[0].y + this->Columns[1].y * matrix[1].y + this->Columns[1].z * matrix[2].y;
+		result.Columns[1].z = this->Columns[1].x * matrix[0].z + this->Columns[1].y * matrix[1].z + this->Columns[1].z * matrix[2].z;
 
-		result.Coloms[2].x = this->Coloms[2].x * matrix[0].x + this->Coloms[2].y * matrix[1].x + this->Coloms[2].z * matrix[2].x;
-		result.Coloms[2].y = this->Coloms[2].x * matrix[0].y + this->Coloms[2].y * matrix[1].y + this->Coloms[2].z * matrix[2].y;
-		result.Coloms[2].z = this->Coloms[2].x * matrix[0].z + this->Coloms[2].y * matrix[1].z + this->Coloms[2].z * matrix[2].z;
+		result.Columns[2].x = this->Columns[2].x * matrix[0].x + this->Columns[2].y * matrix[1].x + this->Columns[2].z * matrix[2].x;
+		result.Columns[2].y = this->Columns[2].x * matrix[0].y + this->Columns[2].y * matrix[1].y + this->Columns[2].z * matrix[2].y;
+		result.Columns[2].z = this->Columns[2].x * matrix[0].z + this->Columns[2].y * matrix[1].z + this->Columns[2].z * matrix[2].z;
 
 
 		return result;

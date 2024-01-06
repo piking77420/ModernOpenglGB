@@ -9,6 +9,11 @@ class Shader;
 // DIFFUSE 0 
 // SPECULAR 1 
 
+enum TextureFlags {
+	NONEFLAG = 0,  // 1
+	HDR = 1,  // 1
+};
+
 
 
 
@@ -26,6 +31,8 @@ public:
 	GLuint ID;
 
 	Texture(const fs::path& FilePath);
+	Texture(const fs::path& FilePath, TextureFlags flags);
+
 	Texture();
 
 	virtual ~Texture();
@@ -33,11 +40,14 @@ public:
 	static GLuint GetFormat(int nbrOfChannel);
 	void operator=(const Texture& other);
 
+	TextureFlags flags;
+
 protected:
 	GLuint format;
 	int width;
 	int height;
 	int nbrOfChannel;
-	unsigned char* data;
+	unsigned char* datac;
+	float* dataf;
 
 };

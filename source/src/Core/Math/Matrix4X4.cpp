@@ -3,43 +3,31 @@
 #include "Matrix.h"
 #include "Vector.h"
 
-
-
-
-
-
-
-
-
-
-
 Matrix4X4 Matrix4X4::RotationX4X4(const float& angle)
 {
 	Matrix4X4 result;
 	
-	result.Colums[0].x = 1;
-	result.Colums[0].y = 0;
-	result.Colums[0].z = 0;
-	result.Colums[0].w = 0;
+	result.Columns[0].x = 1.f;
+	result.Columns[0].y = 0.f;
+	result.Columns[0].z = 0.f;
+	result.Columns[0].w = 0.f;
 
-	result.Colums[1].x = 0;
-	result.Colums[1].y = std::cos((angle));
-	result.Colums[1].z = std::sin((angle));
-	result.Colums[1].w = 0;
+	result.Columns[1].x = 0.f;
+	result.Columns[1].y = std::cos((angle));
+	result.Columns[1].z = std::sin((angle));
+	result.Columns[1].w = 0.f;
 
-	result.Colums[2].x = 0;
-	result.Colums[2].y = -std::sin((angle));
-	result.Colums[2].z = std::cos((angle));
-	result.Colums[2].w = 0;
+	result.Columns[2].x = 0;
+	result.Columns[2].y = -std::sin((angle));
+	result.Columns[2].z = std::cos((angle));
+	result.Columns[2].w = 0.f;
 
-	result.Colums[3].x = 0;
-	result.Colums[3].y = 0;
-	result.Colums[3].z = 0;
-	result.Colums[3].w = 1;
-	
+	result.Columns[3].x = 0.f;
+	result.Columns[3].y = 0.f;
+	result.Columns[3].z = 0.f;
+	result.Columns[3].w = 1.f;
 
 	return result;
-
 }
 
 
@@ -56,28 +44,29 @@ Matrix4X4 Matrix4X4::RotationY4X4(const float& angle)
 	Matrix4X4 result;
 	
 
-	result.Colums[0].x = std::cos((angle));
-	result.Colums[0].y = 0;
-	result.Colums[0].z = -std::sin((angle));
-	result.Colums[0].w = 0;
+	result.Columns[0].x = std::cos((angle));
+	result.Columns[0].y = 0;
+	result.Columns[0].z = -std::sin((angle));
+	result.Columns[0].w = 0;
 
-	result.Colums[1].x = 0;
-	result.Colums[1].y = 1;
-	result.Colums[1].z = 0;
-	result.Colums[1].w = 0;
+	result.Columns[1].x = 0;
+	result.Columns[1].y = 1;
+	result.Columns[1].z = 0;
+	result.Columns[1].w = 0;
 
-	result.Colums[2].x = std::sin((angle));
-	result.Colums[2].y = 0;
-	result.Colums[2].z = std::cos((angle));
-	result.Colums[2].w = 0;
+	result.Columns[2].x = std::sin((angle));
+	result.Columns[2].y = 0;
+	result.Columns[2].z = std::cos((angle));
+	result.Columns[2].w = 0;
 
-	result.Colums[3].x = 0;
-	result.Colums[3].y = 0;
-	result.Colums[3].z = 0;
-	result.Colums[3].w = 1;
+	result.Columns[3].x = 0;
+	result.Columns[3].y = 0;
+	result.Columns[3].z = 0;
+	result.Columns[3].w = 1;
 	
 	return result;
 }
+
 
 // rad
 Matrix4X4 Matrix4X4::RotationZ4X4(const float& angle)
@@ -87,25 +76,25 @@ Matrix4X4 Matrix4X4::RotationZ4X4(const float& angle)
 
 
 
-	result.Colums[0].x = std::cos((angle));
-	result.Colums[0].y = std::sin((angle));
-	result.Colums[0].z = 0;
-	result.Colums[0].w = 0;
+	result.Columns[0].x = std::cos((angle));
+	result.Columns[0].y = std::sin((angle));
+	result.Columns[0].z = 0;
+	result.Columns[0].w = 0;
 
-	result.Colums[1].x = -std::sin((angle));
-	result.Colums[1].y = std::cos((angle));
-	result.Colums[1].z = 0;
-	result.Colums[1].w = 0;
+	result.Columns[1].x = -std::sin((angle));
+	result.Columns[1].y = std::cos((angle));
+	result.Columns[1].z = 0;
+	result.Columns[1].w = 0;
 
-	result.Colums[2].x = 0;
-	result.Colums[2].y = 0;
-	result.Colums[2].z = 1;
-	result.Colums[2].w = 0;
+	result.Columns[2].x = 0;
+	result.Columns[2].y = 0;
+	result.Columns[2].z = 1;
+	result.Columns[2].w = 0;
 
-	result.Colums[3].x = 0;
-	result.Colums[3].y = 0;
-	result.Colums[3].z = 0;
-	result.Colums[3].w = 1;
+	result.Columns[3].x = 0;
+	result.Columns[3].y = 0;
+	result.Columns[3].z = 0;
+	result.Columns[3].w = 1;
 	
 	return result;
 }
@@ -113,7 +102,7 @@ Matrix4X4 Matrix4X4::RotationZ4X4(const float& angle)
 inline Matrix4X4 Matrix4X4::AdjoinMatrix(const Matrix4X4& matrix)
 {
 
-	Matrix4X4 copy = matrix.Transposate();
+	Matrix4X4 copy = matrix.Transpose();
 	Matrix4X4 minor;
 
 	Matrix3X3 m1 = Matrix3X3(Vector3(copy[1][1], copy[1][2], copy[1][3]), Vector3(copy[2][1], copy[2][2], copy[2][3]), Vector3(copy[3][1], copy[3][2], copy[3][3]));
@@ -180,17 +169,17 @@ inline Matrix4X4 Matrix4X4::AdjoinMatrix(const Matrix4X4& matrix)
 
 
 
-Matrix4X4 Matrix4X4::Invert()  
+Matrix4X4 Matrix4X4::Invert()  const
 {
 	Matrix4X4 adj = Matrix4X4::AdjoinMatrix(*this);
-	float determinant = Determinant(*this);
+	float determinant = 1.f / Determinant(*this);
 
 	Matrix4X4 result;
 	for (int i = 0; i < 4; i++)
 	{
 		for (int k = 0; k < 4; k++)
 		{
-			result[i][k] = (1.f / determinant) * adj[i][k];
+			result[i][k] = determinant * adj[i][k];
 		}
 	}
 
@@ -206,33 +195,33 @@ inline float Matrix4X4::Determinant(const Matrix4X4& matrix)
 	float result = 0;
 
 	Matrix3X3 m0;
-	m0.Coloms[0].x = matrix.Colums[1].y; m0.Coloms[1].x = matrix.Colums[2].y; m0.Coloms[2].x = matrix.Colums[3].y;
-	m0.Coloms[0].y = matrix.Colums[1].z; m0.Coloms[1].y = matrix.Colums[2].z; m0.Coloms[2].y = matrix.Colums[3].z;
-	m0.Coloms[0].z = matrix.Colums[1].w; m0.Coloms[1].z = matrix.Colums[2].w; m0.Coloms[2].z = matrix.Colums[3].w;
+	m0.Columns[0].x = matrix.Columns[1].y; m0.Columns[1].x = matrix.Columns[2].y; m0.Columns[2].x = matrix.Columns[3].y;
+	m0.Columns[0].y = matrix.Columns[1].z; m0.Columns[1].y = matrix.Columns[2].z; m0.Columns[2].y = matrix.Columns[3].z;
+	m0.Columns[0].z = matrix.Columns[1].w; m0.Columns[1].z = matrix.Columns[2].w; m0.Columns[2].z = matrix.Columns[3].w;
 
 
 	Matrix3X3 m1;
-	m1.Coloms[0].x = matrix.Colums[1].x; m1.Coloms[1].x = matrix.Colums[2].x; m1.Coloms[2].x = matrix.Colums[3].x;
-	m1.Coloms[0].y = matrix.Colums[1].z; m1.Coloms[1].y = matrix.Colums[2].z; m1.Coloms[2].y = matrix.Colums[3].z;
-	m1.Coloms[0].z = matrix.Colums[1].w; m1.Coloms[1].z = matrix.Colums[2].w; m1.Coloms[2].z = matrix.Colums[3].w;
+	m1.Columns[0].x = matrix.Columns[1].x; m1.Columns[1].x = matrix.Columns[2].x; m1.Columns[2].x = matrix.Columns[3].x;
+	m1.Columns[0].y = matrix.Columns[1].z; m1.Columns[1].y = matrix.Columns[2].z; m1.Columns[2].y = matrix.Columns[3].z;
+	m1.Columns[0].z = matrix.Columns[1].w; m1.Columns[1].z = matrix.Columns[2].w; m1.Columns[2].z = matrix.Columns[3].w;
 
 
 	Matrix3X3 m2;
-	m2.Coloms[0].x = matrix.Colums[1].x; m2.Coloms[1].x = matrix.Colums[2].x; m2.Coloms[2].x = matrix.Colums[3].x;
-	m2.Coloms[0].y = matrix.Colums[1].y; m2.Coloms[1].y = matrix.Colums[2].y; m2.Coloms[2].y = matrix.Colums[3].y;
-	m2.Coloms[0].z = matrix.Colums[1].w; m2.Coloms[1].z = matrix.Colums[2].w; m2.Coloms[2].z = matrix.Colums[3].w;
+	m2.Columns[0].x = matrix.Columns[1].x; m2.Columns[1].x = matrix.Columns[2].x; m2.Columns[2].x = matrix.Columns[3].x;
+	m2.Columns[0].y = matrix.Columns[1].y; m2.Columns[1].y = matrix.Columns[2].y; m2.Columns[2].y = matrix.Columns[3].y;
+	m2.Columns[0].z = matrix.Columns[1].w; m2.Columns[1].z = matrix.Columns[2].w; m2.Columns[2].z = matrix.Columns[3].w;
 
 	Matrix3X3 m3;
-	m3.Coloms[0].x = matrix.Colums[1].x; m3.Coloms[1].x = matrix.Colums[2].x; m3.Coloms[2].x = matrix.Colums[3].x;
-	m3.Coloms[0].y = matrix.Colums[1].y; m3.Coloms[1].y = matrix.Colums[2].y; m3.Coloms[2].y = matrix.Colums[3].y;
-	m3.Coloms[0].z = matrix.Colums[1].z; m3.Coloms[1].z = matrix.Colums[2].z; m3.Coloms[2].z = matrix.Colums[3].z;
+	m3.Columns[0].x = matrix.Columns[1].x; m3.Columns[1].x = matrix.Columns[2].x; m3.Columns[2].x = matrix.Columns[3].x;
+	m3.Columns[0].y = matrix.Columns[1].y; m3.Columns[1].y = matrix.Columns[2].y; m3.Columns[2].y = matrix.Columns[3].y;
+	m3.Columns[0].z = matrix.Columns[1].z; m3.Columns[1].z = matrix.Columns[2].z; m3.Columns[2].z = matrix.Columns[3].z;
 
 
 
-	float add0 = matrix.Colums[0].x * Matrix3X3::Determinant(m0);
-	float add1 = -1.f * matrix.Colums[0].y * Matrix3X3::Determinant(m1);
-	float add2 = matrix.Colums[0].z * Matrix3X3::Determinant(m2);
-	float add3 = -1.f * matrix.Colums[0].w * Matrix3X3::Determinant(m3);
+	float add0 = matrix.Columns[0].x * Matrix3X3::Determinant(m0);
+	float add1 = -1.f * matrix.Columns[0].y * Matrix3X3::Determinant(m1);
+	float add2 = matrix.Columns[0].z * Matrix3X3::Determinant(m2);
+	float add3 = -1.f * matrix.Columns[0].w * Matrix3X3::Determinant(m3);
 
 
 	result = add0 + add1 + add2 + add3;
@@ -259,7 +248,7 @@ Matrix4X4::operator Matrix()
 	{
 		for (int y = 0; y < 4; y++)
 		{
-			result[i][y] = Colums[i][y];
+			result[i][y] = Columns[i][y];
 
 		}
 	}
@@ -284,7 +273,7 @@ std::ostream& operator<<(std::ostream& stream, const Matrix4X4& maxtrix)
 	{
 		for (short int k = 0;k < 4;k++)
 		{
-			float value = maxtrix.Colums[k][i];
+			float value = maxtrix.Columns[k][i];
 			if (value > -0.0002 && value < 0.0002)
 				value = 0;
 
@@ -293,13 +282,13 @@ std::ostream& operator<<(std::ostream& stream, const Matrix4X4& maxtrix)
 		stream << '\n';
 	}
 	/*
-	stream << maxtrix.Colums[0].x << " " << maxtrix.Colums[1].x << " " << maxtrix.Colums[2].x << " " << maxtrix.Colums[3].x << " ";
+	stream << maxtrix.Columns[0].x << " " << maxtrix.Columns[1].x << " " << maxtrix.Columns[2].x << " " << maxtrix.Columns[3].x << " ";
 	stream << '\n';
-	stream << maxtrix.Colums[0].y << " " << maxtrix.Colums[1].y << " " << maxtrix.Colums[2].y << " " << maxtrix.Colums[3].y << " ";
+	stream << maxtrix.Columns[0].y << " " << maxtrix.Columns[1].y << " " << maxtrix.Columns[2].y << " " << maxtrix.Columns[3].y << " ";
 	stream << '\n';
-	stream << maxtrix.Colums[0].z << " " << maxtrix.Colums[1].z << " " << maxtrix.Colums[2].z << " " << maxtrix.Colums[3].z << " ";
+	stream << maxtrix.Columns[0].z << " " << maxtrix.Columns[1].z << " " << maxtrix.Columns[2].z << " " << maxtrix.Columns[3].z << " ";
 	stream << '\n';
-	stream << maxtrix.Colums[0].w << " " << maxtrix.Colums[1].w << " " << maxtrix.Colums[2].w << " " << maxtrix.Colums[3].w << " ";
+	stream << maxtrix.Columns[0].w << " " << maxtrix.Columns[1].w << " " << maxtrix.Columns[2].w << " " << maxtrix.Columns[3].w << " ";
 	*/
 	return stream;
 }

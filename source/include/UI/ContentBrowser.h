@@ -4,6 +4,8 @@
 #include<Core/Debug/Imgui/imgui_impl_opengl3.h>
 #include <Core/Debug/Imgui/imgui_internal.h>
 #include "ImguiLayer.h"
+#include "ECS/Entity.h"
+
 namespace fs = std::filesystem;
 
 class Texture;
@@ -18,11 +20,13 @@ public:
 	static fs::path CurrentPath;
 	static fs::path PreviousPath;
 
-	void UpdateLayer(Project& currentProject, std::vector<InputEvent*>& inputsEvents) override;
+	void UpdateLayer(Project& currentProject) override;
 
 
 	ContentBrowser();
 	~ContentBrowser();
+
+
 protected:
 	void ListenToInput(Project& currentProject,std::vector<InputEvent*>& inputEvent);
 

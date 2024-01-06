@@ -33,46 +33,76 @@
 #include"App/App.h"
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
+#include "AppTime.h"
 
-
+void Project::framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+	m_Width = width;
+	m_Height = height;
+	Resize = true;
+}
 
 
 
 void Project::Update()
 {
-	std::vector<InputEvent*> inputsEvents;
+	dockingSystem.BindDockSpace();
 
-	shaderShadowMapping = resourcesManager.GetElement<Shader>("ShadowMapping");
+	if(Resize)
+	{
+		dockingSystem.scene.ResizeBuffer((float)m_Width, (float)m_Height);
+		dockingSystem.game.ResizeBuffer((float)m_Width, (float)m_Height);
+
+		Resize = false;
+	}
 
 
-	resourcesManager.SetCameraInfoForShader(mainCamera);
-	mainCamera->CameraUpdate();
-
-
-
-	currentScene->renderer.OpenGlRenderToImgui->Bind();
+	if (shaderType == PHONG)
+	{
+		shaderToRenderer = resourcesManager.GetElement<Shader>("PHONG");
+	}
+	else
+	{
+		shaderToRenderer = resourcesManager.GetElement<Shader>("PBR");
+	}
 
 	glClearColor(0, 0, 0, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
+	AppTime::GetDeltatimeFromImgui() = ImGui::GetIO().DeltaTime;
+	coreInput.LookForInput();
 
 
-	coreInput.LookForInput(inputsEvents);
 	currentScene->FixedUpdate();
-
-
+	dockingSystem.UpdateDockSpace(*this);
 	currentScene->Update();
 	currentScene->LateUpdate();
 
 
+	Render(&dockingSystem.scene);
+	Render(&dockingSystem.game);
+	dockingSystem.RenderDockSpace(*this);
 
-	currentScene->Render(*shaderShadowMapping);
-	currentScene->RenderScene(*shaderShadowMapping);
+	dockingSystem.UnBindDockSpace();
+
+	coreInput.ClearInputs();
+}
+
+void Project::Render(SceneView* sceneView)
+{
+	sceneView->BindSceneView();
+	resourcesManager.SetCameraInfoForShader(&sceneView->m_cam);
+
+	Renderer::BindedFrameBuffer->Bind();
+
+	currentScene->Render(*shaderToRenderer);
+	Renderer::RendereScene(currentScene,shaderToRenderer);
 	currentScene->DrawGizmo();
-	currentScene->renderer.OpenGlRenderToImgui->UnBind();
 
+	Renderer::BindedFrameBuffer->UnBind();
 
-	dockingSystem.UpdateDockSpace(*this, inputsEvents);
+	// Make the effect here // 
+
 
 
 }
@@ -88,14 +118,16 @@ Project::Project()
 	resourcesManager.LoadAllAssets("ProjectFolder/Project1");
 	currentScene = new Scene("Scene 0");
 	currentScene->currentProject = this;
-	mainCamera = Camera::cam;
 
 	
 	ContentBrowser::BasePath = "ProjectFolder/Project1";
 	ContentBrowser::CurrentPath = ContentBrowser::BasePath;
 	Gizmo::InitGizmo(*this);
+
+	glClearColor(0, 0, 0, 0);
+	glClear(GL_COLOR_BUFFER_BIT);
+
 	InitScene();
-	Renderer::OpenGlRenderToImgui->InitResources();
 
 
 }
@@ -118,10 +150,6 @@ Project::~Project()
 
 void Project::InitScene()
 {
-	
-	//PyRun_SimpleString("sys.path.append(\".\")");
-	//PyRun_SimpleString("sys.path.append(\"C:/Projet/ModernOpenglGB/source/include/Core/Python\")");
-
 
 	// UPDATE PHYSICS FIRST
 	currentScene->AddSystem(new PhysicsSystem());
@@ -130,14 +158,9 @@ void Project::InitScene()
 	// UPDATE MATRIX 
 	currentScene->AddSystem(new GraphScene());
 
-
-
 	currentScene->AddSystem(new RendererShadowSystem());
 	currentScene->AddSystem(new RendererLightSystem());
 	currentScene->AddSystem(new SystemRendererSkyMap());
-
-	
-	
 
 	
 	Entity* Directionnale = currentScene->CreateEntity();
@@ -151,28 +174,47 @@ void Project::InitScene()
 	ground->entityName = "Ground";
 	MeshRenderer* meshRenderer = currentScene->GetComponent<MeshRenderer>(ground);
 	meshRenderer->mesh = *resourcesManager.GetElement<Mesh>("cube.obj");
-	meshRenderer->material.diffuse = *resourcesManager.GetElement<Texture>("woodenGround.jpg");
-	meshRenderer->material.specular = *resourcesManager.GetElement<Texture>("woodenGround.jpg");
-	meshRenderer->material.ka = 0.4;
-	meshRenderer->material.kd = 0.3;
-	meshRenderer->material.ks = 0.2;
-	meshRenderer->material.shininess = 10;
-
+	//PHONG // 
+	meshRenderer->material.phongMaterial.albedo = *resourcesManager.GetElement<Texture>("woodenGround.jpg");
+	meshRenderer->material.phongMaterial.ka = 0.005f;
+	meshRenderer->material.phongMaterial.kd = 0.3f;
+	meshRenderer->material.phongMaterial.ks = 0.2f;
+	meshRenderer->material.phongMaterial.shininess = 10.f;
 	
-	// Cue
+	// PBR // 
+	meshRenderer->material.pbrMaterial.albedo.ressourceMap = resourcesManager.GetElement<Texture>("wood_0066_color_2k.jpg");
+	meshRenderer->material.pbrMaterial.metallic.coeff = 0;
+	meshRenderer->material.pbrMaterial.roughness.ressourceMap = resourcesManager.GetElement<Texture>("wood_0066_roughness_2k.jpg");
+	meshRenderer->material.pbrMaterial.ao.ressourceMap = resourcesManager.GetElement<Texture>("wood_0066_ao_2k.jpg");
+
+
+
+
+
 
 	Entity* Cube = currentScene->CreateEntity();
 	currentScene->AddComponent<MeshRenderer>(Cube);
 	currentScene->GetComponent<Transform>(Cube)->pos = Vector3(0, 2.5, 0);
 
+
 	MeshRenderer* meshRendererCube = currentScene->GetComponent<MeshRenderer>(Cube);
 	meshRendererCube->mesh = *resourcesManager.GetElement<Mesh>("Sphere.obj");
-	meshRendererCube->material.diffuse = *resourcesManager.GetElement<Texture>("EmerauldBlock.png");
-	meshRendererCube->material.specular = *resourcesManager.GetElement<Texture>("EmerauldBlock.png");
-	meshRendererCube->material.ka = 0.5;
-	meshRendererCube->material.kd = 0.7;
-	meshRendererCube->material.ks = 0.75;
-	meshRendererCube->material.shininess = 80;
+	// Phong
+	meshRendererCube->material.phongMaterial.albedo = *resourcesManager.GetElement<Texture>("EmerauldBlock.png");
+	meshRendererCube->material.phongMaterial.ka = 0.005f;
+	meshRendererCube->material.phongMaterial.kd = 0.7;
+	meshRendererCube->material.phongMaterial.ks = 0.75;
+	meshRendererCube->material.phongMaterial.shininess = 80;
+	/*
+	// PBR
+	meshRendererCube->material.pbrMaterial.albedo.ressourceMap = resourcesManager.GetElement<Texture>("plasticpattern1-albedo.png");
+	meshRendererCube->material.pbrMaterial.metallic.ressourceMap = resourcesManager.GetElement<Texture>("plasticpattern1-metalness.png");
+	meshRendererCube->material.pbrMaterial.roughness.ressourceMap = resourcesManager.GetElement<Texture>("plasticpattern1-roughness2.png");
+	*/
+
+	meshRendererCube->material.pbrMaterial.albedo.coeff = Vector3(1, 0, 0);
+	meshRendererCube->material.pbrMaterial.metallic.coeff = 0.4;
+	meshRendererCube->material.pbrMaterial.roughness.coeff = 0.1;
 
 	currentScene->Init();
 

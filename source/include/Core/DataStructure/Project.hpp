@@ -10,9 +10,17 @@
 #include "LowRenderer/RendererShadowSystem/RendererShadowSystem.h"
 #include "Core/Input/CoreInput.h"
 #include "Core/CoreEngine.h"
+#include "UI/SceneView.h"
 
 
 class ResourcesManager;
+
+enum MATERIALSHADER
+{
+	PHONG,
+	PBR,
+	MATERIALSHADERSIZE
+};
 
 
 class Project
@@ -20,27 +28,31 @@ class Project
 public:
 
 	static inline fs::path projectFolderDirectory = fs::path("ProjectFolder");
+	static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+	std::string projectName = "Project";
+
 	
 	Scene* currentScene = nullptr;
-	
 	ResourcesManager resourcesManager;
 	DockingSystem dockingSystem;
-
-
-	std::string projectName = "Project";
-	Camera* mainCamera = nullptr;
-
 	CoreInput coreInput;
 
-	Shader* shaderNormal;
-	Shader* shaderShadowMapping;
+	Shader* shaderToRenderer;
 	Shader* skybox;
 
 	void Update();
+	void Render(SceneView* sceneView);
+
+
 	Project(std::string ProjectPath);
 	Project();
 	~Project();
 	
 	void InitScene();
+	static inline MATERIALSHADER shaderType = MATERIALSHADER::PHONG;
 private:
+
+	static inline bool Resize;
+	static inline int m_Width;
+	static inline int m_Height;
 };

@@ -103,8 +103,11 @@ void RendererLightSystem::UpdatePointLights(std::vector<PointLight>* data, Scene
 		Entity* entity = scene->GetEntities(pointlight->entityID);
 		Transform* transformOfLight = scene->GetComponent<Transform>(entity);
 
-		currentShader->SetVector3("pointLights[" + std::to_string(i) + "].position", transformOfLight->world.GetPos().GetPtr());
-		currentShader->SetVector3("pointLights[" + std::to_string(i) + "].color", pointlight->lightData.color.GetPtr());
+		currentShader->SetVector3("pointLights[" + std::to_string(i) + "].position", static_cast<Vector3>(transformOfLight->world[3]).GetPtr());
+
+		const Vector4 color = pointlight->lightData.color * pointlight->lightData.intensity;
+		currentShader->SetVector3("pointLights[" + std::to_string(i) + "].color", color.GetPtr());
+
 		currentShader->SetFloat("pointLights[" + std::to_string(i) + "].far_plane", pointlight->lightData.maxRange);
 
 
@@ -126,7 +129,7 @@ void RendererLightSystem::UpdateSpothLights(std::vector<SpothLight>* data, Scene
 		Entity* entity = scene->GetEntities(spothlight->entityID);
 		Transform* transformOfLight = scene->GetComponent<Transform>(entity);
 
-		currentShader->SetVector3("spotLights[" + std::to_string(i) + "].position", transformOfLight->world.GetPos().GetPtr());
+		currentShader->SetVector3("spotLights[" + std::to_string(i) + "].position", static_cast<Vector3>(transformOfLight->world[3]).GetPtr());
 		currentShader->SetVector3("spotLights[" + std::to_string(i) + "].direction", spothlight->direction.GetPtr());
 		currentShader->SetVector3("spotLights[" + std::to_string(i) + "].color", spothlight->lightData.color.GetPtr());
 		/*
@@ -146,15 +149,17 @@ void RendererLightSystem::UpdateSpothLights(std::vector<SpothLight>* data, Scene
 
 void RendererLightSystem::RenderDirectionalLight(const DirectionalLight* dirLight, Scene* scene)
 {
-	Entity* entity = scene->GetEntities(dirLight->entityID);
-	Transform* transformOfLight = scene->GetComponent<Transform>(entity);
-	Vector3 LightDirection = static_cast<Vector3>(Quaternion::ToRotationMatrix4X4(transformOfLight->GetRotation()) * Vector4(0,1,0,0) ).Normalize();
+		Entity* entity = scene->GetEntities(dirLight->entityID);
+		Transform* transformOfLight = scene->GetComponent<Transform>(entity);
+		Vector3 LightDirection = static_cast<Vector3>(Quaternion::ToRotationMatrix4X4(transformOfLight->GetRotation()) * Vector4(0,1,0,0) ).Normalize();
 	
-		currentShader->SetVector3("dirLight.color", dirLight->lightData.color.GetPtr());
+		const Vector4 color = dirLight->lightData.color * dirLight->lightData.intensity;
+
+		currentShader->SetVector3("dirLight.color", color.GetPtr());
 
 		currentShader->SetVector3("dirLight.LightDirection", LightDirection.GetPtr());
 
-		currentShader->SetVector3("dirLight.lightPos", transformOfLight->world.GetPos().GetPtr());
+		currentShader->SetVector3("dirLight.lightPos", transformOfLight->world[3].GetPtr());
 		currentShader->SetMatrix("lightSpaceMatrix", dirLight->lightData.LightSpaceMatrix.GetPtr());
 		currentShader->SetVector3("dirLight.c1", &dirLight->c1);
 		currentShader->SetVector3("dirLight.c2", &dirLight->c2);

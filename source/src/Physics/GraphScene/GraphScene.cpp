@@ -4,44 +4,12 @@
 #include "LowRenderer/Gizmo/Gizmo.hpp"
 #include "App/App.h"
 #include<algorithm>
+#include "UI/ContentBrowser.h"
 
 
-
-void GraphScene::Init(Scene* scene)
-{
-
-};
-
-void GraphScene::Awake(Scene* scene)
-{
-
-};
-void GraphScene::Start(Scene* scene)
-{
-
-};
-
-void GraphScene::OnDrawGizmo(Scene* scene)
-{
-	
-
-}
 void GraphScene::FixedUpdate(Scene* scene)
 {
-	StarTree(scene->GetComponentDataArray<Transform>());
-};
-void GraphScene::Update(Scene* scene)
-{
-
-};
-void GraphScene::LateUpdate(Scene* scene)
-{
-
-};
-
-void GraphScene::Render(Shader& shader,Scene* scene)
-{
-
+	StarTree(scene->GetComponentDataArray<Transform>(), scene->currentProject->dockingSystem.EnitySelectedID);
 };
 
 
@@ -52,8 +20,6 @@ void GraphScene::OnResizeData(uint32_t ComponentTypeID,std::vector<uint8_t>* dat
 	{
 		UpdateAllTransformPointers(data);
 	}
-
-
 };
 
 
@@ -111,6 +77,9 @@ void GraphScene::UnChild(Transform* Parent, Transform* Child)
 
 void GraphScene::UpdateTransform(Transform* transform,uint32_t treevalue)
 {
+
+
+
 	transform->local = ToMatrix(transform);
 
 	
@@ -139,15 +108,18 @@ void ThreadingCountParent(Transform* transform,uint32_t index,uint32_t* max, std
 	_treeNod.at(index) = { transform,CurrentTransformLinkValue };
 }
 
-void GraphScene::StarTree(std::vector<Transform>* transformVector)
+void GraphScene::StarTree(std::vector<Transform>* transformVector, std::uint32_t entityToAvoid)
 {
 	if (transformVector->empty())
 		return;
 
-	UpdateLocalMatrix(transformVector);
 
 	for (size_t i = 0; i < transformVector->size(); i++)
 	{
+		//if (transformVector->at(i).entityID == entityToAvoid)
+			//continue;
+
+			transformVector->at(i).local = ToMatrix(&transformVector->at(i));
 			UpdateWorld(&transformVector->at(i));
 	}
 	
@@ -155,13 +127,7 @@ void GraphScene::StarTree(std::vector<Transform>* transformVector)
 
 
 
-void GraphScene::UpdateLocalMatrix(std::vector<Transform>* transformVector)
-{
-	for (size_t i = 0; i < transformVector->size(); i++)
-	{
-		transformVector->at(i).local = ToMatrix(&transformVector->at(i));
-	}
-}
+
 
 void GraphScene::UpdateWorld(Transform* transform)
 {
@@ -199,7 +165,7 @@ Matrix4X4 GraphScene::ReturnParentsMatrix(const Transform* parent)
 
 Matrix4X4 GraphScene::ToMatrix(Transform* transform)
 {
-	transform->m_rotation = Quaternion::EulerAngle(transform->rotationValue * Math::Deg2Rad);
+	transform->m_rotation = Quaternion::FromEulerAngle(transform->rotationValue * Math::Deg2Rad);
 	return Matrix4X4::TRS(transform->pos, transform->m_rotation, transform->scaling);
 }
 
@@ -230,6 +196,9 @@ void GraphScene::UpdateAllTransformPointers(std::vector<uint8_t>* data)
 
 	for (size_t i = 0; i < dataTransform->size(); i++)
 	{
+
+		
+
 		Transform* UpdatedTransform = &(*dataTransform)[i];
 		if (!HasParent(UpdatedTransform) && !HasChild(UpdatedTransform))
 			continue;

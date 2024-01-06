@@ -34,7 +34,7 @@ void Transform::ImguiWindowComponent()
 
 	if(x || y || z)
 	{
-		m_rotation = Quaternion::EulerAngle(rotationValue);
+		m_rotation = Quaternion::FromEulerAngle(rotationValue);
 	}
 
 	// Scale

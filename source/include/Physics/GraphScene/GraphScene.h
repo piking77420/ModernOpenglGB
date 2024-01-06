@@ -12,7 +12,12 @@ class GraphScene : public IEcsSystem
 public:
 
 
-	ImplementIEcsSystem;
+	void FixedUpdate(Scene* scene) override ;
+
+
+	void OnResizeData(uint32_t ComponentTypeID, std::vector<uint8_t>* data) override ;
+	
+
 
 
 	static void BeChildOf(Transform* Parent, Transform* Child);
@@ -31,8 +36,7 @@ private:
 	static Matrix4X4 ToMatrix(Transform* transform);
 
 	void UpdateTransform(Transform* transform, uint32_t treeIndex);
-	void StarTree(std::vector<Transform>* transformVector);
-	void UpdateLocalMatrix(std::vector<Transform>* transformVector);
+	void StarTree(std::vector<Transform>* transformVector , std::uint32_t entityToAvoid);
 
 	void UpdateAllTransformPointers(std::vector<uint8_t>* data);
 

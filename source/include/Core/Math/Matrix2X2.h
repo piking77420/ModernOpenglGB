@@ -13,14 +13,14 @@ class Matrix2X2
 public:
 
 
-	Vector2 Coloms[2];
+	Vector2 Columns[2];
 
 
 	constexpr inline static float Determinant(Matrix2X2 matrix)
 	{
 		float result = 0;
 
-		result = matrix.Coloms[0].x * matrix.Coloms[1].y - matrix.Coloms[0].y * matrix.Coloms[1].x;
+		result = matrix.Columns[0].x * matrix.Columns[1].y - matrix.Columns[0].y * matrix.Columns[1].x;
 
 		return result;
 
@@ -36,29 +36,29 @@ public:
 	
 	constexpr const float* GetPtr() const
 	{
-		return &Coloms[0].x;
+		return &Columns[0].x;
 	}
 
 	constexpr float* SetPtr() 
 	{
-		return &Coloms[0].x;
+		return &Columns[0].x;
 	}
 
 
 	constexpr Matrix2X2(float x1, float y1, float x2, float y2)
 	{
-		Coloms[0].x = x1;
-		Coloms[0].y = y1;
+		Columns[0].x = x1;
+		Columns[0].y = y1;
 
 
-		Coloms[1].x = x2;
-		Coloms[1].y = y2;
+		Columns[1].x = x2;
+		Columns[1].y = y2;
 
 	};
 	constexpr Matrix2X2(Vector2 _vec, Vector2 _vec2) {
 
-		Coloms[0] = _vec;
-		Coloms[1] = _vec2;
+		Columns[0] = _vec;
+		Columns[1] = _vec2;
 	};
 	constexpr Matrix2X2() = default;
 	
@@ -72,11 +72,11 @@ public:
 
 	constexpr inline Vector2& operator[](const int& i)
 	{
-		return Coloms[i];
+		return Columns[i];
 	}
 	constexpr inline const Vector2& operator[](const int& i) const
 	{
-		return Coloms[i];
+		return Columns[i];
 	}
 
 	explicit operator Matrix() const;

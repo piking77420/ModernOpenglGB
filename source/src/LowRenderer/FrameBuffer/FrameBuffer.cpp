@@ -3,7 +3,7 @@
 #include "Ressources/Shader/Shader.h"
 
 
-void FrameBuffer::InitResources()
+void FrameBuffer::Init()
 {
     // Create Frame Buffer Object
 
@@ -17,7 +17,9 @@ void FrameBuffer::InitResources()
 
     glGenTextures(1, &framebufferTexture);
     glBindTexture(GL_TEXTURE_2D, framebufferTexture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, widht, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+    //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, widht, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, widht, height, 0, GL_RGBA, GL_FLOAT, NULL);
+
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE); // Prevents edge bleeding
@@ -38,47 +40,11 @@ void FrameBuffer::InitResources()
         LOG(" FRAMME BUFFER ERROR " + std::to_string(FrameBufferError),STATELOG::CRITICALERROR);
     }
 
-    InitVAOVBO();
 }
 
 
-void FrameBuffer::InitVAOVBO()
-{
-
-	float rectangleVertices[] = {
-		// Coords    // texCoords
-			1.0f, -1.0f, 1.0f, 0.0f,
-			-1.0f, -1.0f, 0.0f, 0.0f,
-			-1.0f, 1.0f, 0.0f, 1.0f,
-
-			1.0f, 1.0f, 1.0f, 1.0f,
-			1.0f, -1.0f, 1.0f, 0.0f,
-			-1.0f, 1.0f, 0.0f, 1.0f
-	};
 
 
-    // Prepare framebuffer rectangle VBO and VAO
-    glGenVertexArrays(1, &rectVAO);
-    glGenBuffers(1, &rectVBO);
-    glBindVertexArray(rectVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, rectVBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(rectangleVertices), &rectangleVertices, GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
-
-
-}
-
-void FrameBuffer::DrawBuffer(const Shader& shader)
-{
-    shader.Use();
-    glBindVertexArray(rectVAO);
-    glDisable(GL_DEPTH_TEST);
-    glBindTexture(GL_TEXTURE_2D, framebufferTexture);
-    glDrawArrays(GL_TRIANGLES, 0, 6);
-}
 
 
 void FrameBuffer::Bind()
@@ -91,17 +57,16 @@ void FrameBuffer::UnBind()
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-unsigned int FrameBuffer::GetTexture() const
-{
-    return framebufferTexture;
-}
+
 
 void FrameBuffer::ResizeFrammeBuffer(float _width, float _height)
 {
     widht = (uint32_t)_width;
     height = (uint32_t)_height;
     glBindTexture(GL_TEXTURE_2D, framebufferTexture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (GLsizei)_width, (GLsizei)_height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+    //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (GLsizei)_width, (GLsizei)_height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, (GLsizei)_width, (GLsizei)_height, 0, GL_RGBA, GL_FLOAT, NULL);
+
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, framebufferTexture, 0);
@@ -111,22 +76,47 @@ void FrameBuffer::ResizeFrammeBuffer(float _width, float _height)
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, RBO);
 }
 
+void FrameBuffer::DrawQuad()
+{
+    if (quadVAO == 0)
+    {
+        float quadVertices[] = {
+            // positions        // texture Coords
+            -1.0f,  1.0f,  0.0f, 1.0f,
+            -1.0f, -1.0f,  0.0f, 0.0f,
+             1.0f, -1.0f,  1.0f, 0.0f,
+
+             -1.0f,  1.0f,  0.0f, 1.0f,
+             1.0f, -1.0f,  1.0f, 0.0f,
+            1.0f,  1.0f,  1.0f, 1.0f
+        };
+
+        glGenVertexArrays(1, &quadVAO);
+        glGenBuffers(1, &quadVBO);
+        glBindVertexArray(quadVAO);
+        glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+        glEnableVertexAttribArray(1);
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+    }
+    glBindVertexArray(quadVAO);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    glBindVertexArray(0);
+}
+
 FrameBuffer::FrameBuffer(int windowWidth,int windowHeight)
 {
     widht = windowWidth;
     height = windowHeight;
+    Init();
 }
 
 void FrameBuffer::DestroyBuffers()
 {
     if (glIsBuffer(FBO))
         glDeleteBuffers(1, &FBO);
-
-    if (glIsBuffer(rectVAO))
-        glDeleteBuffers(1, &rectVAO);
-
-    if (glIsBuffer(rectVBO))
-        glDeleteBuffers(1, &rectVBO);
 
     if (glIsTexture(framebufferTexture))
         glDeleteTextures(1, &framebufferTexture);
@@ -138,7 +128,7 @@ void FrameBuffer::DestroyBuffers()
 
 FrameBuffer::FrameBuffer()
 {
-    InitVAOVBO();
+    Init();
 }
 
 FrameBuffer::~FrameBuffer()

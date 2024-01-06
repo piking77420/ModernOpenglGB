@@ -12,17 +12,67 @@
 #include "UI/Log.hpp"
 #include "UI/Hierarchy.hpp"
 
-void DockingSystem::UpdateDockSpace(Project& CurrentProject, std::vector<InputEvent*>& inputsEvents)
+void DockingSystem::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
-	
-	
+	ResizeFrammeBuffer = true;
+	Newwidht = width;
+	Newheight = height;
+}
+
+void DockingSystem::UpdateDockSpace(Project& CurrentProject)
+{
+	if(ResizeFrammeBuffer)
+	{
+		scene.m_SceneBuffer.ResizeFrammeBuffer(Newwidht, Newheight);
+		game.m_SceneBuffer.ResizeFrammeBuffer(Newwidht, Newheight);
+
+		ResizeFrammeBuffer = false;
+	}
+
+
+
+	for (ImguiLayer* imguiLayer : ImguiLayers)
+	{
+		imguiLayer->UpdateLayer(CurrentProject);
+	}
+
 
 	
+}
+
+void DockingSystem::RenderDockSpace(Project& CurrentProject)
+{
+	for (ImguiLayer* imguiLayer : ImguiLayers)
+	{
+		imguiLayer->RendererLayer(CurrentProject);
+	}
 
 
-	
+	ImGui::Begin("Config window");
 
-	
+	ImGui::Checkbox("IsPbr", reinterpret_cast<bool*>(&Project::shaderType));
+
+	ImGui::End();
+}
+
+DockingSystem::DockingSystem()
+{
+	ImguiLayers.push_back(new ContentBrowser());
+	ImguiLayers.push_back(new Hierarchy());
+	ImguiLayers.push_back(new Inspector());
+	ImguiLayers.push_back(new Log());
+
+	scene.sceneViewEnum = SceneViewEnum::EDITOR;
+	game.sceneViewEnum = SceneViewEnum::GAME;
+
+	ImguiLayers.push_back(&scene);
+	ImguiLayers.push_back(&game);
+
+}
+
+void DockingSystem::BindDockSpace()
+{
+
 	// Create docking layout
 	static bool dockspaceOpen = true;
 	static bool opt_fullscreen_persistant = true;
@@ -43,6 +93,7 @@ void DockingSystem::UpdateDockSpace(Project& CurrentProject, std::vector<InputEv
 		windowFlags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus | ImGuiWindowFlags_NoBackground;
 	}
 
+
 	// Begin docking layout
 	ImGui::Begin("DockSpace Demo", &dockspaceOpen, windowFlags);
 	if (opt_fullscreen)
@@ -50,38 +101,11 @@ void DockingSystem::UpdateDockSpace(Project& CurrentProject, std::vector<InputEv
 
 	ImGuiID dockspaceID = ImGui::GetID("DockSpace");
 	ImGui::DockSpace(dockspaceID, ImVec2(0.0f, 0.0f), dockspaceFlags);
-	
-	
-	// Create windows
-	if (ImGui::BeginMenuBar())
-	{
-		if (ImGui::BeginMenu("File"))
-		{
-			if (ImGui::MenuItem("Open")) {}
-			if (ImGui::MenuItem("Save")) {}
-			ImGui::EndMenu();
-		}
-		ImGui::EndMenuBar();
-	}
-	
-
-	for (ImguiLayer* imguiLayer : ImguiLayers)
-	{
-		imguiLayer->UpdateLayer(CurrentProject,inputsEvents);
-	}
 
 
-
-	ImGui::End();
-	
 }
 
-DockingSystem::DockingSystem()
+void DockingSystem::UnBindDockSpace()
 {
-	ImguiLayers.push_back(new ContentBrowser());
-	ImguiLayers.push_back(new Hierarchy());
-	ImguiLayers.push_back(new Inspector());
-	ImguiLayers.push_back(new Log());
-
-
+	ImGui::End();
 }

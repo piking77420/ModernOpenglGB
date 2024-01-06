@@ -4,7 +4,7 @@
 class TransformGuizmo : public ImguiLayer
 {
 	std::string WindowName;
-	void UpdateLayer(Project& currentProject, std::vector<InputEvent*>& inputsEvents) override;
+	void UpdateLayer(Project& currentProject) override;
 	
 
 	 ~TransformGuizmo() override{};

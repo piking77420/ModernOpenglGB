@@ -28,7 +28,7 @@ public:
 	// In Radians
 	void SetRotation(const Vector3& eulerangle)
 	{ 
-		m_rotation = Quaternion::EulerAngle(eulerangle);
+		m_rotation = Quaternion::FromEulerAngle(eulerangle);
 		rotationValue = eulerangle * Math::Rad2Deg;
 	};
 

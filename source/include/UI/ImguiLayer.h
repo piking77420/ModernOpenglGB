@@ -9,13 +9,14 @@ class ImguiLayer
 public:
 	
 	std::string WindowName;
-	virtual void UpdateLayer(Project& currentProject, std::vector<InputEvent*>& inputsEvents) {};
+	virtual void UpdateLayer(Project& currentProject) {};
+	virtual void RendererLayer(Project& currentProject) {};
 
 	virtual ~ImguiLayer(){};
-
+	bool IsFocus;
 
 protected:
-	virtual void ListenToInput(Project& currentProject,std::vector<InputEvent*>& inputEvent) = 0;
-
+	virtual void ListenToInput(Project& currentProject,std::vector<InputEvent*>& inputEvent);
+	bool Isopen = true;
 };
 
