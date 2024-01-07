@@ -351,6 +351,9 @@
     <ClInclude Include="source\include\Ressources\CubeMaps\CubeMapHdr.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="source\include\Ressources\CubeMaps\DepthCubeMap.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -656,6 +659,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\Ressources\CubeMaps\CubeMapHdr.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Ressources\CubeMaps\DepthCubeMap.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

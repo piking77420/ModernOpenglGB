@@ -269,11 +269,12 @@ void Renderer::UpdatePointLights(std::vector<PointLight>* data, Scene* scene)
 		m_CurrentShader->SetFloat("pointLights[" + std::to_string(i) + "].far_plane", pointlight->lightData.maxRange);
 
 
-		//m_CurrentShader->SetInt("pointLights[" + std::to_string(i) + "].depthMapCube",10 + i);
+		/*
+		m_CurrentShader->SetInt("pointLights[" + std::to_string(i) + "].depthMapCube",11);
 
-		//glActiveTexture(GL_TEXTURE10 + i);
-		//glBindTexture(GL_TEXTURE_CUBE_MAP, pointlight->depthMap.ID);
-
+		glActiveTexture(GL_TEXTURE11);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, pointlight->depthMap.ID);
+		*/
 	}
 }
 
@@ -288,6 +289,8 @@ void Renderer::UpdateSpothLights(std::vector<SpothLight>* data, Scene* scene)
 		m_CurrentShader->SetVector3("spotLights[" + std::to_string(i) + "].position", static_cast<Vector3>(transformOfLight->world[3]).GetPtr());
 		m_CurrentShader->SetVector3("spotLights[" + std::to_string(i) + "].direction", spothlight->direction.GetPtr());
 		m_CurrentShader->SetVector3("spotLights[" + std::to_string(i) + "].color", spothlight->lightData.color.GetPtr());
+
+
 		/*
 		currentShader->SetFloat("spotLights[" + std::to_string(i) + "].cutOff", spothlight->cutOff);
 		currentShader->SetFloat("spotLights[" + std::to_string(i) + "].outerCutOff", spothlight->outerCutOff);
@@ -309,7 +312,7 @@ void Renderer::RenderDirectionalLight(const DirectionalLight* dirLight, Scene* s
 
 	m_CurrentShader->SetVector3("dirLight.color", color.GetPtr());
 	m_CurrentShader->SetVector3("dirLight.LightDirection", LightDirection.GetPtr());
-	m_CurrentShader->SetVector3("dirLight.lightPos", transformOfLight->world[3].GetPtr());
+	//m_CurrentShader->SetVector3("dirLight.lightPos", transformOfLight->world[3].GetPtr());
 	m_CurrentShader->SetMatrix("lightSpaceMatrix", dirLight->lightData.LightSpaceMatrix.GetPtr());
 	m_CurrentShader->SetInt("dirLight.FilterSize", dirLight->filterSize);
 	

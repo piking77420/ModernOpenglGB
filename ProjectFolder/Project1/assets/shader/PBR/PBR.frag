@@ -55,7 +55,7 @@ uniform PBRAmbinatOcclusion ambinatOcclusion;
 // LIGHT
 
 struct DirLight {
-    vec3 lightPos;
+    //vec3 lightPos;
     vec3 LightDirection;
     vec3 color;
     sampler2D shadowMap;
@@ -262,11 +262,10 @@ vec3 ComputeDirectionalLight(DirLight light,vec3 V,vec3 N ,vec3 F0,vec3 albedo, 
 {
         vec3 Lo = vec3(0.0);
 
-        vec3 L = normalize(light.lightPos - fs_in.FragPos);
+        vec3 L = dirLight.LightDirection;
         vec3 H = normalize(V + L);
-        float distance    = length(light.lightPos - fs_in.FragPos);
-        float attenuation = 1.0 / (distance * distance);
-        vec3 radiance     = light.color  *  attenuation;        
+
+        vec3 radiance     = light.color;        
         
         // cook-torrance brdf
         float NDF = distributionGGX(N, H, roughness);        

@@ -135,7 +135,7 @@ void RendererShadowSystem::ResetViewPort() const
 void RendererShadowSystem::CalCulateDepthBufferPointLight(Scene* scene)
 {
 	
-	/*
+	return;
 	Shader*&& depthShader = ResourcesManager::GetElement<Shader>("DepthMapShaderPointLight");
 	std::vector<PointLight>*&& dataDirectionalLight = scene->GetComponentDataArray<PointLight>();
 
@@ -147,8 +147,8 @@ void RendererShadowSystem::CalCulateDepthBufferPointLight(Scene* scene)
 		Entity* entity = scene->GetEntities(pointLight->entityID);
 		Transform* transform = scene->GetComponent<Transform>(entity);
 
-		float shadowWidht = (float)pointLight->depthMap.width;
-		float shadowHeight = (float)pointLight->depthMap.height;
+		float shadowWidht = (float)pointLight->depthMap.ShadowMapWidth;
+		float shadowHeight = (float)pointLight->depthMap.ShadowMapHeight;
 
 		Vector3&& lightPos = static_cast<Vector3>(transform->world[3]);
 		Matrix4X4&& shadowProj = Matrix4X4::PerspectiveMatrix(Math::Deg2Rad * 90.f, shadowWidht / shadowHeight, pointLight->lightData.minimumRange, pointLight->lightData.maxRange);
@@ -169,7 +169,7 @@ void RendererShadowSystem::CalCulateDepthBufferPointLight(Scene* scene)
 		depthShader->Use();
 	
 		glViewport(0, 0, (GLsizei)shadowWidht, (GLsizei)shadowHeight);
-		glBindFramebuffer(GL_FRAMEBUFFER, pointLight->depthMapFBO);
+		pointLight->depthMap.BindDethFrameBuffer();
 		glClear(GL_DEPTH_BUFFER_BIT);
 
 		//Render Scene here  
@@ -185,11 +185,10 @@ void RendererShadowSystem::CalCulateDepthBufferPointLight(Scene* scene)
 		glCullFace(GL_BACK);
 
 
-		glBindFramebuffer(GL_FRAMEBUFFER,0);
+		
 
 
 
 	}
-	ResetViewPort();
-	*/
+	Renderer::ResetViewPort();
 }

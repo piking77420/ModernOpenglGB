@@ -35,6 +35,12 @@ CubeMapHdr::CubeMapHdr(const std::string& PathToHdri)
 
 CubeMapHdr::~CubeMapHdr()
 {
+
+	glDeleteFramebuffers(1, &captureFBO);
+	glDeleteRenderbuffers(1, &captureRBO);
+
+	glDeleteTextures(1, &envCubemap);
+	glDeleteTextures(1, &irradianceMap);
 }
 
 void CubeMapHdr::InitCubeMap(const Shader* shader)
