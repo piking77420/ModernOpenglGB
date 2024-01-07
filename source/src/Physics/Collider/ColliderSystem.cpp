@@ -165,18 +165,6 @@ void ColliderSystem::LateUpdate(Scene* scene)
 	}
 }
 
-void ColliderSystem::Render(Shader& shader, Scene* scene)
-{
-
-
-}
-
-void ColliderSystem::OnResizeData(uint32_t ComponentTypeID, std::vector<uint8_t>* data)
-{
-
-
-}
-
 
 
 void ColliderSystem::CheckCollisionSphereSphere(SphereCollider& sphere1, SphereCollider& sphere2)

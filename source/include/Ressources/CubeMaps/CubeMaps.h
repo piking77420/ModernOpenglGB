@@ -40,11 +40,9 @@ public:
 	CubeMaps() {};
 	~CubeMaps();
 
-
 	GLuint captureFBO;
 	GLuint captureRBO;
 	GLuint envCubemap;
-
 
 	TextureFlags flags;
 private:

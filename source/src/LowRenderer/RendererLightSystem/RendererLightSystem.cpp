@@ -11,47 +11,9 @@
 #include "Core/DataStructure/Project.hpp"
 
 
-
-void RendererLightSystem::OnDrawGizmo(Scene* scene)
+void RendererLightSystem::Render(Scene* scene)
 {
-
-
-
-}
-
-void RendererLightSystem::Init(Scene* scene)
-{
-
-
-
-	  
-};
-
-void RendererLightSystem::Awake(Scene* scene)
-{
-
-};
-void RendererLightSystem::Start(Scene* scene)
-{
-
-};
-
-
-void RendererLightSystem::FixedUpdate(Scene* scene)
-{
-
-};
-void RendererLightSystem::Update(Scene* scene)
-{
-
-};
-void RendererLightSystem::LateUpdate(Scene* scene)
-{
-
-};
-
-void RendererLightSystem::Render(Shader& shader, Scene* scene)
-{
+	/*
 	currentShader = &shader;
 
 	currentShader->Use();
@@ -64,21 +26,8 @@ void RendererLightSystem::Render(Shader& shader, Scene* scene)
 	UpdateSpothLights(scene->GetComponentDataArray<SpothLight>(), scene);
 
 	currentShader->UnUse();
-
+	*/
 };
-void RendererLightSystem::OnResizeData(uint32_t ComponentTypeID,std::vector<uint8_t>* data)
-{
-
-};
-
-
-
-
-
-
-
-
-
 
 void RendererLightSystem::UpdateDirectionnalLights(std::vector<DirectionalLight>* data, Scene* scene)
 {
@@ -161,16 +110,15 @@ void RendererLightSystem::RenderDirectionalLight(const DirectionalLight* dirLigh
 
 		currentShader->SetVector3("dirLight.lightPos", transformOfLight->world[3].GetPtr());
 		currentShader->SetMatrix("lightSpaceMatrix", dirLight->lightData.LightSpaceMatrix.GetPtr());
-		currentShader->SetVector3("dirLight.c1", &dirLight->c1);
-		currentShader->SetVector3("dirLight.c2", &dirLight->c2);
-		currentShader->SetVector3("dirLight.c3", &dirLight->c3);
 
 
+
+		/*
 		currentShader->SetInt("dirLight.shadowMap", 2);
 		glActiveTexture(GL_TEXTURE2);
 		glBindTexture(GL_TEXTURE_2D, dirLight->depthmap.depthMap);
 
-
+		*/
 
 }
 

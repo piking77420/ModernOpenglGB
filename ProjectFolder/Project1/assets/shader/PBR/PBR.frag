@@ -3,9 +3,13 @@
 
 in VS_OUT 
 {
+    vec3 FragPos;
     vec3 Normal;
     vec2 TexCoords;
-    vec3 FragPos;  
+    vec4 FragPosLightSpace;
+    vec3 TangentLightPos;
+    vec3 TangentViewPos;
+    vec3 TangentFragPos;
 } fs_in;
 
 
@@ -55,10 +59,8 @@ struct DirLight {
     vec3 LightDirection;
     vec3 color;
     sampler2D shadowMap;
+    int FilterSize;
 
-    float c1;
-    float c2;
-    float c3;
 
 };
 
@@ -81,6 +83,47 @@ uniform int numberOfPointLight;
 
 
 out vec4 FragColor;
+
+
+float ShadowCalculationDirectionLight(vec4 fragPosLightSpace)
+{
+     // perform perspective divide
+    vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+    // transform to [0,1] range
+    projCoords = projCoords * 0.5 + 0.5;
+    // get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
+    float closestDepth = texture(dirLight.shadowMap, projCoords.xy).r; 
+    // get depth of current fragment from light's perspective
+    float currentDepth = projCoords.z;
+    // calculate bias (based on depth map resolution and slope)
+    vec3 normal = normalize(fs_in.Normal);
+    //vec3 lightDir = normalize(lightPos - fs_in.FragPos);
+    float bias = max(0.05 * (1.0 - dot(normal, dirLight.LightDirection)), 0.005);
+    // check whether current frag pos is in shadow
+    float shadow = currentDepth - bias > closestDepth  ? 1.0 : 0.0;
+
+    vec2 texelSize = 1.0 / textureSize(dirLight.shadowMap, 0);
+    int halfFilter = dirLight.FilterSize / 2 ;
+
+    for(int x = -halfFilter; x < -halfFilter + dirLight.FilterSize; ++x)
+    {
+        for(int y = -halfFilter; y < -halfFilter + dirLight.FilterSize; ++y)
+        {
+            vec2 offSet = vec2(x, y) * texelSize;
+            float pcfDepth = texture(dirLight.shadowMap, projCoords.xy + offSet).x; 
+            shadow += currentDepth - bias > pcfDepth  ? 1.0 : 0.0;        
+        }    
+    }
+    shadow /= 9.0;
+    
+    // keep the shadow at 0.0 when outside the far_plane region of the light's frustum.
+    if(projCoords.z > 1.0)
+        shadow = 0.0;
+        
+    return shadow;
+}
+
+
 
 float distributionGGX(vec3 N ,vec3 H, float a)
 {
@@ -161,30 +204,17 @@ float GetAmbientocclusion()
    return texture(ambinatOcclusion.OcclusionTexture, fs_in.TexCoords).r;
 }
 
-void main()
-{
-    // BASE INPUT // 
-    vec3 albedo = GetAlbedoValue();
-    float metallic = GetMetallicValue();
-    float roughness = GetRoughnessValue();
-    float ao = GetAmbientocclusion();
-    
-    vec3 N = normalize(fs_in.Normal);
-    vec3 V = normalize(viewPos - fs_in.FragPos);
 
-    vec3 F0 = vec3(0.04); 
-    F0 = mix(F0, albedo, metallic);
-	           
-    // reflectance equation
-    vec3 Lo = vec3(0.0);
-    for(int i = 0; i < numberOfPointLight; ++i) 
-    {
+
+vec3 ComputePointLight(PointLight pointLight,vec3 V,vec3 N ,vec3 F0,vec3 albedo, float roughness,float metallic)
+{
+        vec3 Lo = vec3(0.0);
         // calculate per-light radiance
-        vec3 L = normalize(pointLights[i].position - fs_in.FragPos);
+        vec3 L = normalize(pointLight.position - fs_in.FragPos);
         vec3 H = normalize(V + L);
-        float distance    = length(pointLights[i].position - fs_in.FragPos);
+        float distance    = length(pointLight.position - fs_in.FragPos);
         float attenuation = 1.0 / (distance * distance);
-        vec3 radiance     = pointLights[i].color  *  attenuation;        
+        vec3 radiance     = pointLight.color  *  attenuation;        
         
         // cook-torrance brdf
         float NDF = distributionGGX(N, H, roughness);        
@@ -202,6 +232,70 @@ void main()
         // add to outgoing radiance Lo
         float NdotL = max(dot(N, L), 0.0);                
         Lo += (kD * albedo / PI + specular) * radiance * NdotL; 
+
+        return Lo;
+}
+
+vec3 ComputeDirectionalLight(DirLight light,vec3 V,vec3 N ,vec3 F0,vec3 albedo, float roughness,float metallic)
+{
+        vec3 Lo = vec3(0.0);
+
+        vec3 L = normalize(light.lightPos - fs_in.FragPos);
+        vec3 H = normalize(V + L);
+        float distance    = length(light.lightPos - fs_in.FragPos);
+        float attenuation = 1.0 / (distance * distance);
+        vec3 radiance     = light.color  *  attenuation;        
+        
+        // cook-torrance brdf
+        float NDF = distributionGGX(N, H, roughness);        
+        float G   = GeometrySmith(N, V, L, roughness);      
+        vec3 F    = fresnelSchlick(max(dot(H, V), 0.0), F0);       
+        
+        vec3 kS = F;
+        vec3 kD = vec3(1.0) - kS;
+        kD *= 1.0 - metallic;	  
+        
+        vec3 numerator    = NDF * G * F;
+        float denominator = 4.0 * max(dot(N, V), 0.0) * max(dot(N, L), 0.0) + 0.0001;
+        vec3 specular     = numerator / denominator;  
+            
+        // add to outgoing radiance Lo
+        float NdotL = max(dot(N, L), 0.0);                
+        Lo += (kD * albedo / PI + specular) * radiance * NdotL; 
+        // calculate shadow
+        float shadow = ShadowCalculationDirectionLight(fs_in.FragPosLightSpace);
+        float shadowf = (1.0 - shadow);
+        Lo *= shadowf;
+
+    return Lo;
+}
+
+
+
+
+void main()
+{
+    // BASE INPUT // 
+    vec3 albedo = GetAlbedoValue();
+    float metallic = GetMetallicValue();
+    float roughness = GetRoughnessValue();
+    float ao = GetAmbientocclusion();
+    
+    vec3 N = normalize(fs_in.Normal);
+    vec3 V = normalize(viewPos - fs_in.FragPos);
+
+    vec3 F0 = vec3(0.04); 
+    F0 = mix(F0, albedo, metallic);
+	           
+
+    // reflectance equation
+    vec3 Lo = vec3(0.0);
+
+    Lo += ComputeDirectionalLight(dirLight,V,N,F0,albedo,roughness,metallic);
+
+    for(int i = 0; i < numberOfPointLight; ++i) 
+    {
+        Lo += ComputePointLight(pointLights[i],V,N,F0,albedo,roughness,metallic);
     }   
   
     vec3 ambient = vec3(0.03) * albedo * ao;

@@ -43,8 +43,8 @@ void RumicsCube::Init(Scene* scene)
                         GraphScene::BeChildOf(scene->GetComponent<Transform>(Rumicube), scene->GetComponent<Transform>(entity));
 
                         MeshRenderer* meshRenderer = scene->GetComponent<MeshRenderer>(entity);
-                        meshRenderer->mesh = *scene->currentProject->resourcesManager.GetElement<Mesh>("cube.obj");
-                        meshRenderer->material.phongMaterial.albedo = *scene->currentProject->resourcesManager.GetElement<Texture>("DiamondBlock.jpg");
+                        meshRenderer->mesh = *ResourcesManager::GetElement<Mesh>("cube.obj");
+                        meshRenderer->material.phongMaterial.albedo = *ResourcesManager::GetElement<Texture>("DiamondBlock.jpg");
                     }
                 }
             }
@@ -54,23 +54,7 @@ void RumicsCube::Init(Scene* scene)
 
 };
 
-void RumicsCube::Awake(Scene* scene)
-{
 
-};
-void RumicsCube::Start(Scene* scene)
-{
-
-};
-void RumicsCube::OnDrawGizmo(Scene* scene)
-{
-
-};
-
-void RumicsCube::FixedUpdate(Scene* scene)
-{
-
-};
 void RumicsCube::Update(Scene* scene)
 {
 
@@ -78,19 +62,4 @@ void RumicsCube::Update(Scene* scene)
 
 
 };
-void RumicsCube::LateUpdate(Scene* scene)
-{
 
-};
-
-void RumicsCube::Render(Shader& shader, Scene* scene)
-{
-
-};
-
-
-
-void RumicsCube::OnResizeData(uint32_t ComponentTypeID, std::vector<uint8_t>* data)
-{
-
-};

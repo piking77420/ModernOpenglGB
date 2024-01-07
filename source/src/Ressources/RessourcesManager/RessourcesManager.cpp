@@ -12,6 +12,7 @@
 #include "Ressources/CubeMaps/CubeMaps.h"
 #include<ostream>
 #include "App/App.h"
+#include "Ressources/Model/Model.h"
 
 void PrintTime(std::chrono::system_clock::time_point& start,int mapzize)
 {
@@ -64,6 +65,13 @@ void ResourcesManager::LoadAllAssets(const std::string& projectFolder)
 	}
 
 	PrintTime(timeStart, (int)m_mainResourcesMap.size());
+
+
+	// TestAssimp //
+
+	//Model model("Ressources/TestModel/Girl/girl OBJ.obj");
+	
+	
 }
 
 void ResourcesManager::DeleteAllasset()

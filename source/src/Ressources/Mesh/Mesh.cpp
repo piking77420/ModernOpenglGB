@@ -415,6 +415,12 @@ Mesh::~Mesh()
 
 }
 
+Mesh::Mesh(std::vector<Vertex> _vertexVector, std::vector<uint32_t> _indexVector)
+{
+	vertexVector = _vertexVector;
+	indexVector = _indexVector;
+}
+
 void Mesh::InitResource()
 {
 	// Init VAO \ Init VBO //

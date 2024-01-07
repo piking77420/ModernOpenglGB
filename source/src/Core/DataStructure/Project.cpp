@@ -48,6 +48,7 @@ void Project::Update()
 {
 	dockingSystem.BindDockSpace();
 
+
 	if(Resize)
 	{
 		dockingSystem.scene.ResizeBuffer((float)m_Width, (float)m_Height);
@@ -57,14 +58,6 @@ void Project::Update()
 	}
 
 
-	if (shaderType == PHONG)
-	{
-		shaderToRenderer = resourcesManager.GetElement<Shader>("PHONG");
-	}
-	else
-	{
-		shaderToRenderer = resourcesManager.GetElement<Shader>("PBR");
-	}
 
 	glClearColor(0, 0, 0, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
@@ -72,9 +65,10 @@ void Project::Update()
 	AppTime::GetDeltatimeFromImgui() = ImGui::GetIO().DeltaTime;
 	coreInput.LookForInput();
 
+	// ORDER INPORTENT Input are made here so don't put it after update matrix made in fixedUpdate;
+	dockingSystem.UpdateDockSpace(*this);
 
 	currentScene->FixedUpdate();
-	dockingSystem.UpdateDockSpace(*this);
 	currentScene->Update();
 	currentScene->LateUpdate();
 
@@ -91,12 +85,19 @@ void Project::Update()
 void Project::Render(SceneView* sceneView)
 {
 	sceneView->BindSceneView();
-	resourcesManager.SetCameraInfoForShader(&sceneView->m_cam);
 
 	Renderer::BindedFrameBuffer->Bind();
+	
+	glClearColor(0, 0, 0, 0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	glEnable(GL_DEPTH_TEST);
+	
 
-	currentScene->Render(*shaderToRenderer);
-	Renderer::RendereScene(currentScene,shaderToRenderer);
+	ResourcesManager::SetCameraInfoForShader(&sceneView->m_cam);
+
+
+	currentScene->Render();
+	Renderer::RendereScene(currentScene);
 	currentScene->DrawGizmo();
 
 	Renderer::BindedFrameBuffer->UnBind();
@@ -115,7 +116,7 @@ Project::Project()
 
 
 
-	resourcesManager.LoadAllAssets("ProjectFolder/Project1");
+	ResourcesManager::LoadAllAssets("ProjectFolder/Project1");
 	currentScene = new Scene("Scene 0");
 	currentScene->currentProject = this;
 
@@ -134,7 +135,7 @@ Project::Project()
 
 Project::~Project()
 {
-
+	ResourcesManager::DeleteAllasset();
 	delete currentScene;
 }
 
@@ -159,33 +160,39 @@ void Project::InitScene()
 	currentScene->AddSystem(new GraphScene());
 
 	currentScene->AddSystem(new RendererShadowSystem());
-	currentScene->AddSystem(new RendererLightSystem());
+	//currentScene->AddSystem(new RendererLightSystem());
 	currentScene->AddSystem(new SystemRendererSkyMap());
 
 	
 	Entity* Directionnale = currentScene->CreateEntity();
 	currentScene->GetComponent<Transform>(Directionnale)->pos = Vector3(-2.0f, 7, -1.0f);
-	currentScene->AddComponent<PointLight>(Directionnale);
-	Directionnale->entityName = "PointLight";
+	currentScene->AddComponent<DirectionalLight>(Directionnale);
+	Directionnale->entityName = "DirectionalLight";
+	
+	
+	Entity* pointLight = currentScene->CreateEntity();
+	currentScene->GetComponent<Transform>(pointLight)->pos = Vector3(2.0f, 4, 1.0f);
+	currentScene->AddComponent<PointLight>(pointLight);
+	pointLight->entityName = "PointLight";
 
 	Entity* ground = currentScene->CreateEntity();
 	currentScene->AddComponent<MeshRenderer>(ground);
 	currentScene->GetComponent<Transform>(ground)->scaling = Vector3(10, 1, 10);
 	ground->entityName = "Ground";
 	MeshRenderer* meshRenderer = currentScene->GetComponent<MeshRenderer>(ground);
-	meshRenderer->mesh = *resourcesManager.GetElement<Mesh>("cube.obj");
+	meshRenderer->mesh = *ResourcesManager::GetElement<Mesh>("cube.obj");
 	//PHONG // 
-	meshRenderer->material.phongMaterial.albedo = *resourcesManager.GetElement<Texture>("woodenGround.jpg");
+	meshRenderer->material.phongMaterial.albedo = *ResourcesManager::GetElement<Texture>("woodenGround.jpg");
 	meshRenderer->material.phongMaterial.ka = 0.005f;
 	meshRenderer->material.phongMaterial.kd = 0.3f;
 	meshRenderer->material.phongMaterial.ks = 0.2f;
 	meshRenderer->material.phongMaterial.shininess = 10.f;
 	
 	// PBR // 
-	meshRenderer->material.pbrMaterial.albedo.ressourceMap = resourcesManager.GetElement<Texture>("wood_0066_color_2k.jpg");
+	meshRenderer->material.pbrMaterial.albedo.ressourceMap = ResourcesManager::GetElement<Texture>("wood_0066_color_2k.jpg");
 	meshRenderer->material.pbrMaterial.metallic.coeff = 0;
-	meshRenderer->material.pbrMaterial.roughness.ressourceMap = resourcesManager.GetElement<Texture>("wood_0066_roughness_2k.jpg");
-	meshRenderer->material.pbrMaterial.ao.ressourceMap = resourcesManager.GetElement<Texture>("wood_0066_ao_2k.jpg");
+	meshRenderer->material.pbrMaterial.roughness.ressourceMap = ResourcesManager::GetElement<Texture>("wood_0066_roughness_2k.jpg");
+	meshRenderer->material.pbrMaterial.ao.ressourceMap = ResourcesManager::GetElement<Texture>("wood_0066_ao_2k.jpg");
 
 
 
@@ -198,9 +205,9 @@ void Project::InitScene()
 
 
 	MeshRenderer* meshRendererCube = currentScene->GetComponent<MeshRenderer>(Cube);
-	meshRendererCube->mesh = *resourcesManager.GetElement<Mesh>("Sphere.obj");
+	meshRendererCube->mesh = *ResourcesManager::GetElement<Mesh>("Sphere.obj");
 	// Phong
-	meshRendererCube->material.phongMaterial.albedo = *resourcesManager.GetElement<Texture>("EmerauldBlock.png");
+	meshRendererCube->material.phongMaterial.albedo = *ResourcesManager::GetElement<Texture>("EmerauldBlock.png");
 	meshRendererCube->material.phongMaterial.ka = 0.005f;
 	meshRendererCube->material.phongMaterial.kd = 0.7;
 	meshRendererCube->material.phongMaterial.ks = 0.75;

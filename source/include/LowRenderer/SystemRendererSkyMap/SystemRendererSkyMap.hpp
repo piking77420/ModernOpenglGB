@@ -9,7 +9,7 @@ class SystemRendererSkyMap : public IEcsSystem
 public:
 	const Shader* shaderProgram = nullptr;
 		
-	ImplementIEcsSystem;
+	virtual void Render(Scene* scene) override;
 
 	SkyBox skybox;
 

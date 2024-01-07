@@ -8,11 +8,9 @@ class DirectionalLight : public EcsComponent<DirectionalLight>
 {
 public:
 	Light lightData;
+	uint32_t filterSize = 2.f;
 	Depthmap depthmap;
 
-	float c1 = 0.2f;
-	float c2 = 0.2f;
-	float c3 = 0.2f;
 
 	void ImguiWindowComponent() override;
 

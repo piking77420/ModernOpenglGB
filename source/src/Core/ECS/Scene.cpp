@@ -63,11 +63,11 @@ void Scene::LateUpdate()
 	}
 }
 
-void Scene::Render(Shader& shader)
+void Scene::Render()
 {
 	for (IEcsSystem* system : m_registerScene.systems)
 	{
-		system->Render(shader,this);
+		system->Render(this);
 	}
 }
 

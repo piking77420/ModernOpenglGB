@@ -15,12 +15,6 @@
 
 class ResourcesManager;
 
-enum MATERIALSHADER
-{
-	PHONG,
-	PBR,
-	MATERIALSHADERSIZE
-};
 
 
 class Project
@@ -33,7 +27,6 @@ public:
 
 	
 	Scene* currentScene = nullptr;
-	ResourcesManager resourcesManager;
 	DockingSystem dockingSystem;
 	CoreInput coreInput;
 
@@ -49,7 +42,6 @@ public:
 	~Project();
 	
 	void InitScene();
-	static inline MATERIALSHADER shaderType = MATERIALSHADER::PHONG;
 private:
 
 	static inline bool Resize;

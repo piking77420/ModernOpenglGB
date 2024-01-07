@@ -40,7 +40,7 @@ public:
 private:
 	static void EnableOpenGl();
 	static void LoadCursorAppCursor(GLFWwindow* window);
-	void InitImguiTheme();
+	static void InitImguiTheme();
 	
 };
 

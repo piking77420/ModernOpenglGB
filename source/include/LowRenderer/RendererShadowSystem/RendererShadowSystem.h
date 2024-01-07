@@ -12,12 +12,11 @@ class SpothLight;
 class RendererShadowSystem : public IEcsSystem
 { 
 public:
-	void FixedUpdate(Scene* scene);
+	virtual void FixedUpdate(Scene* scene) override;
 
-	void Render(Shader& shader, Scene* scene);
+	virtual void Render(Scene* scene) override;
 	
 private:
-	Scene* currentScene;
 
 
 	void CalCulateDepthBufferDirectionnal(Scene* scene);

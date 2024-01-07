@@ -6,7 +6,8 @@
 class RumicsCube : public IEcsSystem
 {
 public:
-	ImplementIEcsSystem
+	void Init(Scene* scene) override;
+	void Update(Scene* scene) override;
 
 	uint32_t RumicksCubeEntityId;
 	Entity* Rumicube;

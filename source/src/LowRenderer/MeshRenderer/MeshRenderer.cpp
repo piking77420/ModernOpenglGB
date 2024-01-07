@@ -12,7 +12,7 @@ void MeshRenderer::ImguiWindowComponent()
 
 
 
-	if(Project::shaderType == MATERIALSHADER::PHONG)
+	if(Renderer::shaderType == MATERIALSHADER::PHONG)
 	{
 		ImGui::PushID("");
 

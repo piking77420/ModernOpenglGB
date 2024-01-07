@@ -16,27 +16,22 @@
 void Renderer::RendereScene(Scene* scene,Shader* shader)
 {
 
+	shader->Use();
+	
+
+	std::vector<MeshRenderer>* MeshRenderData = scene->GetComponentDataArray<MeshRenderer>();
+
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glStencilMask(0x00);
 
-	std::vector<MeshRenderer>* MeshRenderData = scene->GetComponentDataArray<MeshRenderer>();
 
 	for (uint32_t i = 0; i < MeshRenderData->size(); i++)
 	{
 		MeshRenderer* meshRenderer = &(*MeshRenderData)[i];
 		RenderMeshRender(meshRenderer, *shader, scene);
-
-		if(meshRenderer->stencil)
-		{
-			const Shader* stencilShader = scene->currentProject->resourcesManager.GetElement<Shader>("StencilTest");
-			RenderStencil(meshRenderer, *stencilShader, scene);
-
-		}
-
 	}
-
-
 	
+	shader->UnUse();
 
 
 }
@@ -47,6 +42,39 @@ void Renderer::RendereScene(Scene* scene,Shader* shader)
 void Renderer::RendereScene(Scene* scene)
 {
 
+	if (shaderType == PHONG)
+	{
+		m_CurrentShader = ResourcesManager::GetElement<Shader>("PHONG");
+	}
+	else
+	{
+		m_CurrentShader = ResourcesManager::GetElement<Shader>("PBR");
+	}
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glStencilMask(0x00);
+	m_CurrentShader->Use();
+
+
+	ComputeLight(*m_CurrentShader, scene);
+
+	std::vector<MeshRenderer>* MeshRenderData = scene->GetComponentDataArray<MeshRenderer>();
+
+	for (uint32_t i = 0; i < MeshRenderData->size(); i++)
+	{
+		MeshRenderer* meshRenderer = &(*MeshRenderData)[i];
+		RenderMeshRender(meshRenderer, *m_CurrentShader, scene);
+
+		if (meshRenderer->stencil)
+		{
+			const Shader* stencilShader =ResourcesManager::GetElement<Shader>("StencilTest");
+			RenderStencil(meshRenderer, *stencilShader, scene);
+
+		}
+	}
+
+	m_CurrentShader->UnUse();
+
 }
 
 
@@ -54,7 +82,6 @@ void Renderer::RenderMeshRender(const MeshRenderer* meshRender, Shader& shader, 
 {
 
 	// get Shader and bind
-	shader.Use();
 	
 
 
@@ -72,11 +99,7 @@ void Renderer::RenderMeshRender(const MeshRenderer* meshRender, Shader& shader, 
 	shader.SetVector3("viewPos", Camera::cam->eye.GetPtr());
 
 
-	
-
-
-
-	if (Project::shaderType == MATERIALSHADER::PHONG)
+	if (Renderer::shaderType == MATERIALSHADER::PHONG)
 	{
 		RenderPhong(meshRender, shader, scene);
 	}
@@ -187,4 +210,95 @@ void Renderer::RenderPBR(const MeshRenderer* meshRender, Shader& shader, Scene* 
 
 
 	meshRender->mesh.Draw();
+}
+
+void Renderer::ComputeLight(Shader& shader, Scene* scene)
+{
+
+	UpdateDirectionnalLights(scene->GetComponentDataArray<DirectionalLight>(), scene);
+
+	UpdatePointLights(scene->GetComponentDataArray<PointLight>(), scene);
+
+	UpdateSpothLights(scene->GetComponentDataArray<SpothLight>(), scene);
+}
+
+void Renderer::UpdateDirectionnalLights(std::vector<DirectionalLight>* data, Scene* scene)
+{
+
+	for (int i = 0; i < data->size(); i++)
+	{
+		DirectionalLight* directionalLight = (&(*data)[i]);
+
+		RenderDirectionalLight(directionalLight, scene);
+
+	}
+
+
+}
+
+void Renderer::UpdatePointLights(std::vector<PointLight>* data, Scene* scene)
+{
+	m_CurrentShader->SetInt("numberOfPointLight", (int)data->size());
+	for (int i = 0; i < data->size(); i++)
+	{
+		PointLight* pointlight = &(*data)[i];
+		Entity* entity = scene->GetEntities(pointlight->entityID);
+		Transform* transformOfLight = scene->GetComponent<Transform>(entity);
+
+		m_CurrentShader->SetVector3("pointLights[" + std::to_string(i) + "].position", static_cast<Vector3>(transformOfLight->world[3]).GetPtr());
+
+		const Vector4 color = pointlight->lightData.color * pointlight->lightData.intensity;
+		m_CurrentShader->SetVector3("pointLights[" + std::to_string(i) + "].color", color.GetPtr());
+
+		m_CurrentShader->SetFloat("pointLights[" + std::to_string(i) + "].far_plane", pointlight->lightData.maxRange);
+
+
+		//m_CurrentShader->SetInt("pointLights[" + std::to_string(i) + "].depthMapCube",10 + i);
+
+		//glActiveTexture(GL_TEXTURE10 + i);
+		//glBindTexture(GL_TEXTURE_CUBE_MAP, pointlight->depthMap.ID);
+
+	}
+}
+
+void Renderer::UpdateSpothLights(std::vector<SpothLight>* data, Scene* scene)
+{
+	for (int i = 0; i < data->size(); i++)
+	{
+		SpothLight* spothlight = &(*data)[i];
+		Entity* entity = scene->GetEntities(spothlight->entityID);
+		Transform* transformOfLight = scene->GetComponent<Transform>(entity);
+
+		m_CurrentShader->SetVector3("spotLights[" + std::to_string(i) + "].position", static_cast<Vector3>(transformOfLight->world[3]).GetPtr());
+		m_CurrentShader->SetVector3("spotLights[" + std::to_string(i) + "].direction", spothlight->direction.GetPtr());
+		m_CurrentShader->SetVector3("spotLights[" + std::to_string(i) + "].color", spothlight->lightData.color.GetPtr());
+		/*
+		currentShader->SetFloat("spotLights[" + std::to_string(i) + "].cutOff", spothlight->cutOff);
+		currentShader->SetFloat("spotLights[" + std::to_string(i) + "].outerCutOff", spothlight->outerCutOff);
+		currentShader->SetFloat("spotLights[" + std::to_string(i) + "].constant", spothlight->constant);
+		currentShader->SetFloat("spotLights[" + std::to_string(i) + "].quadratic", spothlight->quadratic);
+		currentShader->SetInt("spotLights[" + std::to_string(i) + "].depthMapCube", 3);
+		*/
+
+	}
+}
+
+void Renderer::RenderDirectionalLight(const DirectionalLight* dirLight, Scene* scene)
+{
+	Entity* entity = scene->GetEntities(dirLight->entityID);
+	Transform* transformOfLight = scene->GetComponent<Transform>(entity);
+	Vector3 LightDirection = static_cast<Vector3>(Quaternion::ToRotationMatrix4X4(transformOfLight->GetRotation()) * Vector4(0, 1, 0, 0)).Normalize();
+
+	const Vector4 color = dirLight->lightData.color * dirLight->lightData.intensity;
+
+	m_CurrentShader->SetVector3("dirLight.color", color.GetPtr());
+	m_CurrentShader->SetVector3("dirLight.LightDirection", LightDirection.GetPtr());
+	m_CurrentShader->SetVector3("dirLight.lightPos", transformOfLight->world[3].GetPtr());
+	m_CurrentShader->SetMatrix("lightSpaceMatrix", dirLight->lightData.LightSpaceMatrix.GetPtr());
+	m_CurrentShader->SetInt("dirLight.FilterSize", dirLight->filterSize);
+	
+
+	m_CurrentShader->SetInt("dirLight.shadowMap", 10);
+	glActiveTexture(GL_TEXTURE10);
+	glBindTexture(GL_TEXTURE_2D, dirLight->depthmap.depthMap);
 }

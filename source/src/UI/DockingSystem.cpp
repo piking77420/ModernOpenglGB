@@ -50,7 +50,7 @@ void DockingSystem::RenderDockSpace(Project& CurrentProject)
 
 	ImGui::Begin("Config window");
 
-	ImGui::Checkbox("IsPbr", reinterpret_cast<bool*>(&Project::shaderType));
+	ImGui::Checkbox("IsPbr", reinterpret_cast<bool*>(&Renderer::shaderType));
 
 	ImGui::End();
 }

@@ -12,10 +12,10 @@ class GraphScene : public IEcsSystem
 public:
 
 
-	void FixedUpdate(Scene* scene) override ;
+	virtual void FixedUpdate(Scene* scene) override ;
 
 
-	void OnResizeData(uint32_t ComponentTypeID, std::vector<uint8_t>* data) override ;
+	virtual void OnResizeData(uint32_t ComponentTypeID, std::vector<uint8_t>* data) override ;
 	
 
 

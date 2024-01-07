@@ -87,20 +87,23 @@ GLFWwindow* App::InitOpenglImgui()
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 
-	ImGui::StyleColorsDark();
-	ImGui_ImplOpenGL3_Init("#version 330");
-	ImGui_ImplGlfw_InitForOpenGL(mainWindow, true);
-	glfwSetFramebufferSizeCallback(mainWindow, Project::framebuffer_size_callback);
-	//CoreInput::InitCallBack(mainWindow);
-
 	// Imgui Init // 
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
 	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 	io.ConfigFlags |= ImGuiConfigFlags_NoMouseCursorChange;
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
+	io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;       // Enable Multi-Viewport / Platform Windows
 
-	
+	ImGui::StyleColorsDark();
+	InitImguiTheme();
+
+
+	ImGui_ImplOpenGL3_Init("#version 330");
+	ImGui_ImplGlfw_InitForOpenGL(mainWindow, true);
+	glfwSetFramebufferSizeCallback(mainWindow, Project::framebuffer_size_callback);
+	//CoreInput::InitCallBack(mainWindow);
+
 
 	App::LoadCursorAppCursor(mainWindow);
 
@@ -114,13 +117,13 @@ GLFWwindow* App::InitOpenglImgui()
 
 void App::InitImguiTheme()
 {
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
 
 	ImGuiStyle& style = ImGui::GetStyle();
 
 	style.Alpha = 1.0f;
 	style.DisabledAlpha = 0.6000000238418579f;
 	style.WindowPadding = ImVec2(8.0f, 8.0f);
-	style.WindowRounding = 0.0f;
 	style.WindowBorderSize = 1.0f;
 	style.WindowMinSize = ImVec2(32.0f, 32.0f);
 	style.WindowTitleAlign = ImVec2(0.0f, 0.5f);
@@ -201,6 +204,13 @@ void App::InitImguiTheme()
 	style.Colors[ImGuiCol_NavWindowingHighlight] = ImVec4(1.0f, 1.0f, 1.0f, 0.699999988079071f);
 	style.Colors[ImGuiCol_NavWindowingDimBg] = ImVec4(0.800000011920929f, 0.800000011920929f, 0.800000011920929f, 0.2000000029802322f);
 	style.Colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.2000000029802322f, 0.2000000029802322f, 0.2000000029802322f, 0.3499999940395355f);
+
+	if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+	{
+		style.WindowRounding = 0.0f;
+		style.Colors[ImGuiCol_WindowBg].w = 1.0f;
+	}
+
 }
 
 void CloseWindow(GLFWwindow* window)
@@ -217,8 +227,8 @@ void App::AppUpdate(GLFWwindow* mainWindow)
 	// Main Loop // 
 	while (!glfwWindowShouldClose(mainWindow))
 	{
+		glfwPollEvents();
 		CloseWindow(mainWindow);
-
 
 
 		//Imgui new frame // 
@@ -238,8 +248,14 @@ void App::AppUpdate(GLFWwindow* mainWindow)
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 		glfwSwapBuffers(mainWindow);
-		glfwPollEvents();
 
+		
+		
+		GLFWwindow* backup_current_context = glfwGetCurrentContext();
+		ImGui::UpdatePlatformWindows();
+		ImGui::RenderPlatformWindowsDefault();
+		glfwMakeContextCurrent(backup_current_context);
+		
 
 	}
 	LOG("On Window Close", STATELOG::NONE);
@@ -261,7 +277,6 @@ void App::AppUpdate(GLFWwindow* mainWindow)
 App::App()
 {
 	
-	InitImguiTheme();
 	// Init Project
 	CurrentProject = new Project();
 

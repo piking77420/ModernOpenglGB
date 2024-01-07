@@ -4,52 +4,16 @@
 #include "Core/DataStructure/Project.hpp"
 
 
-void SystemRendererSkyMap::OnDrawGizmo(Scene* scene)
+void SystemRendererSkyMap::Render(Scene* scene)
 {
-
-
-
-}
-
-
-void SystemRendererSkyMap::Init(Scene* scene)
-{
-
-
-};
-
-void SystemRendererSkyMap::Awake(Scene* scene)
-{
-
-};
-void SystemRendererSkyMap::Start(Scene* scene)
-{
-
-};
-
-
-void SystemRendererSkyMap::FixedUpdate(Scene* scene)
-{
-
-};
-void SystemRendererSkyMap::Update(Scene* scene)
-{
-
-};
-void SystemRendererSkyMap::LateUpdate(Scene* scene)
-{
-
-};
-
-void SystemRendererSkyMap::Render(Shader& shader, Scene* scene)
-{
-	skybox.cubemap = scene->currentProject->resourcesManager.GetElement<CubeMaps>("skybox");
+	
+	skybox.cubemap = ResourcesManager::GetElement<CubeMaps>("skybox");
 
 	static bool hastInit = false;
 
 	if (!hastInit)
 	{
-		shaderProgram = scene->currentProject->resourcesManager.GetElement<Shader>("EquirectangularToCubemapShader");
+		shaderProgram = ResourcesManager::GetElement<Shader>("EquirectangularToCubemapShader");
 
 		Matrix4X4 captureProjection = Matrix4X4::PerspectiveMatrix(Math::Deg2Rad * 90.0f, 1, 0.1f, 10.0f);
 		Matrix4X4 captureViews[] =
@@ -90,7 +54,7 @@ void SystemRendererSkyMap::Render(Shader& shader, Scene* scene)
 	}
 
 
-	shaderProgram = scene->currentProject->resourcesManager.GetElement<Shader>("BackgroundShader");
+	shaderProgram = ResourcesManager::GetElement<Shader>("BackgroundShader");
 
 	shaderProgram->Use();
 	shaderProgram->SetInt("environmentMap", 0);
@@ -102,16 +66,10 @@ void SystemRendererSkyMap::Render(Shader& shader, Scene* scene)
 	shaderProgram->UnUse();
 
 
-	shader.Use();
 
 
 
 }
-
-void SystemRendererSkyMap::OnResizeData(uint32_t ComponentTypeID, std::vector<uint8_t>* data)
-{
-
-};
 
 
 

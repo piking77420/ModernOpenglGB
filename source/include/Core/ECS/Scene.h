@@ -38,7 +38,7 @@ public :
 	void Update();
 	void LateUpdate();
 
-	void Render(Shader& shader);
+	void Render();
 
 
 	Entity* CreateEntity();

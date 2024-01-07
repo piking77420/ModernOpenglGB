@@ -12,7 +12,7 @@ class SpothLight;
 class RendererLightSystem : public IEcsSystem
 {
 public:
-	ImplementIEcsSystem;
+	void Render(Scene* scene) override;
 private:
 	void UpdateDirectionnalLights(std::vector<DirectionalLight>* data, Scene* scene);
 	void UpdatePointLights(std::vector<PointLight>* data, Scene* scene);

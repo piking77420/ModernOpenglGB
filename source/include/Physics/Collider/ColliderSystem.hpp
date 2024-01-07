@@ -10,15 +10,13 @@ class BoxCollider;
 class ColliderSystem : public IEcsSystem
 {
 public:
-	void Init(Scene* scene) override;
-	void Awake(Scene* scene) override; 
-	void Start(Scene* scene) override; 
-	void OnDrawGizmo(Scene* scene) override;
-	void FixedUpdate(Scene* scene) override; 
-	void Update(Scene* scene) override; 
-	void LateUpdate(Scene* scene) override; 
-	void Render(Shader& shader,Scene* scene) override; 
-	void OnResizeData(uint32_t ComponentTypeID, std::vector<uint8_t>* data) override;
+	virtual void Init(Scene* scene) override;
+	virtual void Awake(Scene* scene) override; 
+	virtual void Start(Scene* scene) override; 
+	virtual void OnDrawGizmo(Scene* scene) override;
+	virtual void FixedUpdate(Scene* scene) override; 
+	virtual void Update(Scene* scene) override; 
+	virtual void LateUpdate(Scene* scene) override; 
 
 	
 

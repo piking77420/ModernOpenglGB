@@ -42,7 +42,7 @@ public:
 	std::vector<Vertex> vertexVector;
 	std::vector<uint32_t> indexVector;
 	
-
+	Mesh(std::vector<Vertex> _vertexVector,std::vector<uint32_t> _indexVector);
 
 	virtual void InitResource() override;
 private:

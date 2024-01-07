@@ -33,7 +33,7 @@ public:
 	virtual void Update(Scene* scene) {}
 	virtual void LateUpdate(Scene* scene) {}
 
-	virtual void Render(Shader& shader,Scene* scene) {}
+	virtual void Render(Scene* scene) {}
 	virtual void OnResizeData(uint32_t ComponentTypeID,std::vector<uint8_t>* data)  {}
 	virtual ~IEcsSystem() {};
 

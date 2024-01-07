@@ -20,44 +20,48 @@ class Camera;
 #define PRODUCER 1
 #define CONSUMERS 5
 
-class ResourcesManager
+static class ResourcesManager
 {
 public:
 
-	ResourcesManager()
-	{
-	}
-	~ResourcesManager()
-	{
-		// delete all ressources
-		for (auto it = m_mainResourcesMap.begin(); it != m_mainResourcesMap.end(); it++)
-		{
-			delete it->second;
-		}
-		m_mainResourcesMap.clear();
-	}
-
-	void SetCameraInfoForShader(Camera* cam);
+	ResourcesManager() = delete;
+	
+	~ResourcesManager()= delete;
+	
+	
+	static void SetCameraInfoForShader(Camera* cam);
 	
 	// function to load all asset in projectFolder
-	void LoadAllAssets(const std::string& projectFolder);
+	static void LoadAllAssets(const std::string& projectFolder);
 
-	void DeleteAllasset();
+	static void DeleteAllasset();
 	
 	template<class T>
-	void Remove(const std::string& name);
+	static void Remove(const std::string& name);
 	
 	template<class T>
-	void PushBackElement(std::string name, T* newElement);
+	static void PushBackElement(std::string name, T* newElement);
 	
 	template<class T>
-	T* GetElement(const std::string& name);
+	static inline T* GetElement(const std::string& name)
+	{
+		auto wanted = (m_mainResourcesMap.find(name));
+
+		if (wanted != m_mainResourcesMap.end())
+		{
+			return dynamic_cast<T*>(wanted->second);
+		}
+		std::string nameofTemplate = typeid(T).name();
+		std::string outputMessage = " There is no " + nameofTemplate + " name as " + name;
+		LOG(outputMessage,STATELOG::WARNING);
+
+		return nullptr;
+	}
+	
+
 
 	template<class T>
-	const T* GetElement(const std::string& name) const ;
-
-	template<class T>
-	void GetResource(std::future<T*>& futureResource,std::string name)
+	static void GetResource(std::future<T*>& futureResource,std::string name)
 	{
 		std::promise<T*> promise;
 		futureResource = promise.get_future();
@@ -85,7 +89,7 @@ public:
 
 
 	template<class T>
-	void GetResource(std::future<const T*>& futureResource,std::string name)
+	static void GetResource(std::future<const T*>& futureResource,std::string name)
 	{
 		std::promise<const T*> promise;
 		futureResource = promise.get_future();
@@ -111,7 +115,7 @@ public:
 
 
 	template<class T>
-	void Create(const fs::path& FilePath);
+	static void Create(const fs::path& FilePath);
 	
 
 	static bool IsTexture(std::string path_string);
@@ -126,7 +130,7 @@ public:
 	static constexpr std::string GetGeometryShaderFormat() { return ResourcesManager::geometryShaderFormat; }
 
 	template<class T>
-	void ReloadResources() 
+	static void ReloadResources() 
 	{
 		for (auto it = m_mainResourcesMap.begin(); it != m_mainResourcesMap.end(); it++)
 		{
@@ -143,23 +147,23 @@ public:
 private:
 
 
-	std::map<std::string, IResource*> m_mainResourcesMap;
+	static inline std::map<std::string, IResource*> m_mainResourcesMap;
 
 	// Look for 
-	void LoadTexture(std::filesystem::path path);
-	void LoadModel(std::filesystem::path path);	
-	void LoadShader(std::filesystem::path path);
+	static void LoadTexture(std::filesystem::path path);
+	static void LoadModel(std::filesystem::path path);	
+	static void LoadShader(std::filesystem::path path);
 
 	// Look in the project folder rescursively to push resources path
-	void LookFiles(std::filesystem::path _path);
+	static void LookFiles(std::filesystem::path _path);
 
 	// On Load Func //
 
 	template<class T>
-	void CreateOnLoad(std::filesystem::path path);
+	static void CreateOnLoad(std::filesystem::path path);
 
 
-	void LoadPrimitive();
+	static void LoadPrimitive();
 
 	/////////////////
 
@@ -178,44 +182,6 @@ private:
 	static inline const std::string assetsFolder = "assets";
 
 };
-
-
-
-
-template<class T>
-inline T* ResourcesManager::GetElement(const std::string& name)
-	{
-	
-	auto wanted = (m_mainResourcesMap.find(name));
-
-	if (wanted != m_mainResourcesMap.end())
-	{
-		return dynamic_cast<T*>(wanted->second);
-	}
-	std::string nameofTemplate = typeid(T).name();
-	std::string outputMessage = " There is no " + nameofTemplate + " name as " + name;
-	LOG(outputMessage,STATELOG::WARNING);
-
-	return nullptr;
-}
-
-
-
-template<class T>
-inline const T* ResourcesManager::GetElement(const std::string& name) const
-{
-	auto wanted = (m_mainResourcesMap.find(name));
-
-	if (wanted != m_mainResourcesMap.end())
-	{
-		return dynamic_cast<const T*>(wanted->second);
-	}
-	std::string nameofTemplate = typeid(T).name();
-	std::string outputMessage = " There is no " + nameofTemplate + " name as " + name;
-	LOG(outputMessage, STATELOG::WARNING);
-
-	return nullptr;
-}
 
 template<class T>
 inline void ResourcesManager::Create(const fs::path& FilePath)

@@ -29,7 +29,7 @@ void SceneView::UpdateLayer(Project& currentProject)
 
 void SceneView::RendererLayer(Project& currentProject)
 {
-	Shader* shader = currentProject.resourcesManager.GetElement<Shader>("AAShader");
+	Shader* shader = ResourcesManager::GetElement<Shader>("AAShader");
 
 
 	if (sceneViewEnum == SceneViewEnum::EDITOR)

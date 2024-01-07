@@ -1,9 +1,10 @@
 #include "Ressources/Model/Model.h"
 #include "Ressources/Mesh/Mesh.h"
 #include "Ressources/Texture/Texture.hpp"
-
+#include "Ressources/Texture/NormalMap.h"
 #include "Core/Debug/LogClass.h"
 #include "LowRenderer/Material/Material.h"
+#include "Ressources/RessourcesManager/RessourcesManager.h"
 
 /*
 Model::Model(const fs::path& FilePath)
@@ -46,7 +47,7 @@ void Model::processNode(aiNode* node, const aiScene* scene)
 
 
 
-Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
+Mesh* Model::processMesh(aiMesh* mesh, const aiScene* scene)
 {
     // data to fill
     std::vector<Vertex> vertices;
@@ -114,27 +115,30 @@ Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
     // normal: texture_normalN
 
     // 1. diffuse maps
-    std::vector<Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
+    std::vector<Texture*> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
     textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
     // 2. specular maps
-    std::vector<Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
+    std::vector<Texture*> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
     textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
     // 3. normal maps
-    std::vector<Texture> normalMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
-    textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
+    
+    std::vector<Texture*> normalMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
+    //textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
     // 4. height maps
-    std::vector<Texture> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
+    std::vector<Texture*> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
     textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 
     // return a mesh object created from the extracted mesh data
-    return Mesh(vertices, indices, textures);
+    Mesh meshes;
+    return &meshes;
 }
 
 // checks all material textures of a given type and loads the textures if they're not loaded yet.
     // the required info is returned as a Texture struct.
-std::vector<Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName)
+std::vector<Texture*> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName)
 {
-    std::vector<Texture> textures;
+    
+    std::vector<Texture*> textures;
     for (unsigned int i = 0; i < mat->GetTextureCount(type); i++)
     {
         aiString str;
@@ -143,6 +147,7 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType 
         bool skip = false;
         for (unsigned int j = 0; j < textures_loaded.size(); j++)
         {
+            /*
             if (std::strcmp(textures_loaded[j].path.data(), str.C_Str()) == 0)
             {
                 textures.push_back(textures_loaded[j]);
@@ -152,10 +157,14 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType 
         }
         if (!skip)
         {   // if texture hasn't been loaded already, load it
+            /*
             Texture texture;
-            //texture.ID = TextureFromFile(str.C_Str(), this->directory);
-            texture.type = typeName;
-            texture.path = str.C_Str();
+            texture.ID = TextureFromFile(str.C_Str(), this->directory);
+            
+            //texture.type = typeName;
+            //texture.path = str.C_Str();
+            Texture* texture = new Texture(directory + str.C_Str());
+            ResourcesManager::PushBackElement<Texture>(directory,texture);
             textures.push_back(texture);
             textures_loaded.push_back(texture);  // store it as texture loaded for entire model, to ensure we won't unnecessary load duplicate textures.
         }

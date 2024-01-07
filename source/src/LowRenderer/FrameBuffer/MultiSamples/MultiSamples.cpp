@@ -25,7 +25,7 @@ void MultiSamples::Init()
     // create a multisampled color attachment texture
     glGenTextures(1, &framebufferTexture);
     glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, framebufferTexture);
-    glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, Samples, GL_RGB, widht, height, GL_TRUE);
+    glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, Samples, GL_RGB16F, widht, height, GL_TRUE);
     glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D_MULTISAMPLE, framebufferTexture, 0);
 
