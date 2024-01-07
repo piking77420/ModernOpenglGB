@@ -142,6 +142,24 @@ public:
 			}
 		}
 	}
+	template<class T>
+	static std::vector<std::pair<std::string, T*>> GetAllElementOfType()
+	{
+		std::vector<std::pair<std::string,T*>> vector;
+		for (auto it = m_mainResourcesMap.begin(); it != m_mainResourcesMap.end(); it++)
+		{
+			T* ptr = nullptr;
+			ptr = dynamic_cast<T*>(it->second);
+			if (!ptr)
+				continue;
+
+			vector.push_back({ it->first,ptr });
+
+		}
+
+		return vector;
+	}
+
 
 
 private:

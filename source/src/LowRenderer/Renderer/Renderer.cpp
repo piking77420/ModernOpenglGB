@@ -8,7 +8,7 @@
 #include "Physics/Transform/Transform.hpp"
 #include "LowRenderer/Cam/Camera.h"
 #include "Core/DataStructure/Project.hpp"
-
+#include "LowRenderer/SystemRendererSkyMap/SystemRendererSkyMap.hpp"
 	
 
 
@@ -75,6 +75,15 @@ void Renderer::RendereScene(Scene* scene)
 
 	m_CurrentShader->UnUse();
 
+}
+
+void Renderer::ResetViewPort()
+{
+	if (BindedFrameBuffer == nullptr)
+		return;
+
+	BindedFrameBuffer->Bind();
+	glViewport(0, 0, BindedFrameBuffer->widht, BindedFrameBuffer->height);
 }
 
 
@@ -208,6 +217,13 @@ void Renderer::RenderPBR(const MeshRenderer* meshRender, Shader& shader, Scene* 
 		shader.SetBool("ambinatOcclusion.valueTexture", 0);
 	}
 
+	// Bind IBL //
+	
+	shader.SetInt("irradianceMap", 4);
+	glActiveTexture(GL_TEXTURE4);
+	scene->GetSystem<SystemRendererSkyMap>()->cubemap->BindIBL();
+	
+	shader.SetFloat("irridanceFactor", scene->GetSystem<SystemRendererSkyMap>()->irridianceFactor);
 
 	meshRender->mesh.Draw();
 }

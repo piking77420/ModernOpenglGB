@@ -111,9 +111,6 @@
     <ClInclude Include="source\include\Ressources\Shader\Shader.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="source\include\Ressources\SkyBox\SkyBox.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="source\include\src\App\App.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -351,6 +348,9 @@
     <ClInclude Include="source\include\UI\SceneView.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="source\include\Ressources\CubeMaps\CubeMapHdr.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -455,9 +455,6 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\Ressources\Shader\Shader.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\src\Ressources\SkyBox\SkyBox.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\LowRenderer\FrameBuffer\MultiSamples\MultiSamples.cpp">
@@ -656,6 +653,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="source\src\UI\SceneView.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\src\Ressources\CubeMaps\CubeMapHdr.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

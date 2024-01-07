@@ -15,9 +15,9 @@ void Hierarchy::UpdateLayer(Project& currentProject)
 
 
 
-	if (ImGui::Begin("GraphScene", &open))
-	{
-		IsFocus = ImGui::IsWindowFocused();
+	ImGui::Begin("GraphScene", &open);
+	
+	IsFocus = ImGui::IsWindowFocused();
 
 
 
@@ -38,8 +38,8 @@ void Hierarchy::UpdateLayer(Project& currentProject)
 
 		
 
-		ImGui::End();
-	}
+	ImGui::End();
+	
 
 
 }

@@ -29,6 +29,8 @@ public:
 	// Render Scene as usual
 	static void RendereScene(Scene* scene);
 
+	static void ResetViewPort();
+
 	Renderer() = delete;
 	~Renderer() = delete;
 

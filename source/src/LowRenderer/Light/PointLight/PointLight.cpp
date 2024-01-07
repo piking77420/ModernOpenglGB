@@ -16,7 +16,7 @@ void PointLight::ImguiWindowComponent()
 
 PointLight::PointLight()
 {
-    
+    /*
     CubeMaps& cubemap = this->depthMap;
     depthMap.width = 2048;
     depthMap.height = 2048;
@@ -42,7 +42,7 @@ PointLight::PointLight()
     }  
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-
+    */
     
 }
 

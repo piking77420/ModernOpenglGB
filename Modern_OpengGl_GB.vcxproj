@@ -164,6 +164,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="source\include\LowRenderer\Material\PBRnode.hpp" />
+    <ClInclude Include="source\include\Ressources\CubeMaps\CubeMapHdr.h" />
     <ClInclude Include="source\include\Ressources\Texture\NormalMap.h" />
     <ClInclude Include="ProjectFolder\Project1\assets\Scipt\RotateTransform.hpp" />
     <ClInclude Include="source\include\Core\Debug\AssertClass.h" />
@@ -260,7 +261,6 @@
     <ClInclude Include="source\include\Ressources\Mesh\Mesh.h" />
     <ClInclude Include="source\include\Ressources\RessourcesManager\RessourcesManager.h" />
     <ClInclude Include="source\include\Ressources\Shader\Shader.h" />
-    <ClInclude Include="source\include\Ressources\SkyBox\SkyBox.h" />
     <ClInclude Include="source\include\Ressources\Texture\Texture.hpp" />
     <ClInclude Include="source\include\src\AppData\AppData.h" />
     <ClInclude Include="source\include\src\App\App.h" />
@@ -308,6 +308,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\src\LowRenderer\Material\PBRnode.cpp" />
+    <ClCompile Include="source\src\Ressources\CubeMaps\CubeMapHdr.cpp" />
     <ClCompile Include="source\src\Ressources\Texture\NormalMap.cpp" />
     <ClCompile Include="ProjectFolder\Project1\assets\Scipt\RotateTransform.cpp" />
     <ClCompile Include="source\src\Core\ECS\Scene.cpp" />
@@ -384,7 +385,6 @@
     <ClCompile Include="source\src\Ressources\RessourcesManager\RessourcesManager.cpp" />
     <ClCompile Include="source\src\Ressources\Shader\Shader.cpp" />
     <ClCompile Include="source\src\Ressources\Shader\ShaderSource\ShaderSource.cpp" />
-    <ClCompile Include="source\src\Ressources\SkyBox\SkyBox.cpp" />
     <ClCompile Include="source\src\Ressources\Texture\Texture.cpp" />
     <ClCompile Include="source\src\Event\Event.cpp" />
     <ClCompile Include="source\src\UI\ContentBrowser.cpp" />

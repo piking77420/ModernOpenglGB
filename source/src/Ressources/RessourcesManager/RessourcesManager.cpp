@@ -8,11 +8,11 @@
 #include "LowRenderer/FrameBuffer/DepthMap/Depthmap.h"
 #include "LowRenderer/FrameBuffer/ShadowMap/ShadowMaps.h"
 #include "LowRenderer/FrameBuffer/MultiSamples/MultiSamples.h"
-#include "Ressources/SkyBox/SkyBox.h"
 #include "Ressources/CubeMaps/CubeMaps.h"
 #include<ostream>
 #include "App/App.h"
 #include "Ressources/Model/Model.h"
+#include "Ressources/CubeMaps/CubeMapHdr.h"
 
 void PrintTime(std::chrono::system_clock::time_point& start,int mapzize)
 {
@@ -31,25 +31,14 @@ void PrintTime(std::chrono::system_clock::time_point& start,int mapzize)
 
 void ResourcesManager::LoadAllAssets(const std::string& projectFolder)
 {
-	std::vector<std::string> cubemapsSkyString =
-	{
-		"ProjectFolder/Project1/assets/cube_maps/skybox/SkySkybox/right.jpg",
-		"ProjectFolder/Project1/assets/cube_maps/skybox/SkySkybox/left.jpg",
-		"ProjectFolder/Project1/assets/cube_maps/skybox/SkySkybox/top.jpg",
-		"ProjectFolder/Project1/assets/cube_maps/skybox/SkySkybox/bottom.jpg",
-		"ProjectFolder/Project1/assets/cube_maps/skybox/SkySkybox/front.jpg",
-		"ProjectFolder/Project1/assets/cube_maps/skybox/SkySkybox/back.jpg",
+	
 
-	};
-
-	CubeMaps* SkySkybox = new CubeMaps(cubemapsSkyString, TextureFlags::NONEFLAG);
-	PushBackElement<CubeMaps>("SkySkybox", SkySkybox);
+	CubeMapHdr* NightCity = new CubeMapHdr("ProjectFolder/Project1/assets/cube_maps/NightCity.hdr");
+	PushBackElement<CubeMapHdr>("NightCity", NightCity);
 
 
-
-	CubeMaps* textureHdr = new CubeMaps("ProjectFolder/Project1/assets/cube_maps/skybox.hdr");
-	PushBackElement<CubeMaps>("skybox", textureHdr);
-
+	CubeMapHdr* WinterForest = new CubeMapHdr("ProjectFolder/Project1/assets/cube_maps/WinterForest.hdr");
+	PushBackElement<CubeMapHdr>("WinterForest", WinterForest);
 
 	std::chrono::system_clock::time_point timeStart = std::chrono::system_clock::now();
 

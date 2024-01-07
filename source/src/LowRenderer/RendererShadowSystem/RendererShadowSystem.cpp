@@ -135,6 +135,7 @@ void RendererShadowSystem::ResetViewPort() const
 void RendererShadowSystem::CalCulateDepthBufferPointLight(Scene* scene)
 {
 	
+	/*
 	Shader*&& depthShader = ResourcesManager::GetElement<Shader>("DepthMapShaderPointLight");
 	std::vector<PointLight>*&& dataDirectionalLight = scene->GetComponentDataArray<PointLight>();
 
@@ -190,5 +191,5 @@ void RendererShadowSystem::CalCulateDepthBufferPointLight(Scene* scene)
 
 	}
 	ResetViewPort();
-
+	*/
 }

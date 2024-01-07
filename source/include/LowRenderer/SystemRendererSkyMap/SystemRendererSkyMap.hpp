@@ -1,6 +1,6 @@
 #pragma once
 #include "Core/ECS/IECSSystem.h"
-#include "Ressources/SkyBox/SkyBox.h"
+#include "Ressources/CubeMaps/CubeMapHdr.h"
 
 class Shader;
 
@@ -8,19 +8,22 @@ class SystemRendererSkyMap : public IEcsSystem
 {
 public:
 	const Shader* shaderProgram = nullptr;
+	CubeMapHdr* cubemap = nullptr;
 		
+	virtual void Init(Scene* scene) override;
 	virtual void Render(Scene* scene) override;
-
-	SkyBox skybox;
-
+	virtual void Update(Scene* scene) override;
 
 	SystemRendererSkyMap(){};
 	~SystemRendererSkyMap(){};
 
-private :
-	void DrawCube();
 
-	static inline unsigned int cubeVAO = 0;
-	static inline unsigned int cubeVBO = 0;
+	float irridianceFactor = 1.0f;
+
+private :
+	void DrawCubeMap();
+	bool m_OpenChangeCubeMap = true;
+	
+
 };
 
